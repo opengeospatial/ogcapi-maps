@@ -1,5 +1,5 @@
-:Title: OGC (add title text)
-:titletext: OGC API Coverages
+:Title: OGC API-MapsTiles
+:titletext: OGC API Maps Tiles
 :doctype: book
 :encoding: utf-8
 :lang: en
