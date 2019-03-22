@@ -5,7 +5,7 @@
 
 The resouce SHALL be identified using the following URL template:
 
-    http://{root}/{style}/{Dimension*}/{SetID}/{matrixID}/{row}/{column}/{j}/{I}
+    http://{root}/{style}/{dimension*}/{setID}/{matrixID}/{tileRow}/{tileCol}/{J}/{I}
 
 |===
     
@@ -15,12 +15,12 @@ The GetResourceRepresentation URL template variables are described in the follow
 |===
 ^|**URL template variable** ^|**Meaning** ^|**Possible values** ^|**Multiplicity**
 |"style" |Style identifier |identifier in Table 7 |One (mandatory)
-|"Dimension" |Dimension values |identifier in Table 9 ./Dimension[ows:Identifier={./Dimension/ows:Identifier}]/Value |One for each dimension available (mandatory if there are dimensions defined)
-|"TileMatrix Set" |tile matrix set identifier |identifier in Table 6 ./ TileMatrixSetLink/TileMatrixSet |One (mandatory)
-|"TileMatrix" |tile matrix identifier |identifier in Table 14 /Capabilities/Contents/TileMatrixSet[ows:Identifier={TileMatrixSet}]/TileMatrix/ ows:Identifier |One (mandatory)
-|"TileRow" |row index of tile matrix |If TileMatrixSetLimits is present, see Table 10, (./TileMatrixSetLimits), SHALL be any integer value between MinTileRow and MaxTileRow in Table 12 (both included)(./tileMatrixSetLimits/tileMatrixLimits[./TileMatrix={TileMatrix}]/MinTileRow and ./tileMatrixSetLimits/tileMatrixLimits[./TileMatrix={TileMatrix}]/MaxTileRow). else SHALL be any integer value between 0 and MatrixHeight – 1, see Table 14, (both included) (0 and /Capabilities/Contents/TileMatrixSet[ows:Identifier={TileMatrixSet}]/TileMatrix[ows:Identifier={TileMatrix}]/MatrixHeight – 1) |One (mandatory)
-|"TileCol" |col index of tile matrix |If TileMatrixSetLimits is present, see Table 10, (./TileMatrixSetLimits), SHALL be any integer value between MinTileCol and MaxTileCol in Table 12 (both included) (./tileMatrixSetLimits/tileMatrixLimits[./TileMatrix={TileMatrix}]/MinTileCol and ./tileMatrixSetLimits/tileMatrixLimits[./TileMatrix={TileMatrix}]/MaxTileCol) else SHALL be any integer value between 0 and MatrixWidth – 1, see Table 14, (both included) (0 and /Capabilities/Contents/TileMatrixSet[ows:Identifier={TileMatrixSet}]/TileMatrix[ows:Identifier={TileMatrix}]/ MatrixWidth – 1) |One (mandatory)
-|"J" Pixel |row index in a tile |SHALL be any integer value between 0 and TileHeight-1 (see Table 14) (both included) (0 and /Capabilities/Contents/TileMatrixSet[ows:Identifier={TileMatrixSet}]/TileMatrix[ows:Identifier={TileMatrix}]/TileHeight – 1) |One (mandatory)
-|"I" Pixel |column index in a tile |SHALL be any integer value between 0 and TileWidth -1 (see Table14) (both included) (0 and /Capabilities/Contents/TileMatrixSet[ows:Identifier={TileMatrixSet}]/TileMatrix[ows:Identifier={TileMatrix}]/TileWidth – 1) |One (mandatory)
+|"dimension" |Dimension values |identifier in Table 9 ./Dimension[ows:Identifier={./Dimension/ows:Identifier}]/Value |One for each dimension available (mandatory if there are dimensions defined)
+|"setID" |tile matrix set identifier |identifier in Table 6 ./ TileMatrixSetLink/TileMatrixSet |One (mandatory)
+|"matrixID" |tile matrix identifier |identifier in Table 14 /Capabilities/Contents/TileMatrixSet[ows:Identifier={TileMatrixSet}]/TileMatrix/ ows:Identifier |One (mandatory)
+|"tileRow" |row index of tile matrix |If TileMatrixSetLimits is present, see Table 10, (./TileMatrixSetLimits), SHALL be any integer value between MinTileRow and MaxTileRow in Table 12 (both included)(./tileMatrixSetLimits/tileMatrixLimits[./TileMatrix={TileMatrix}]/MinTileRow and ./tileMatrixSetLimits/tileMatrixLimits[./TileMatrix={TileMatrix}]/MaxTileRow). else SHALL be any integer value between 0 and MatrixHeight – 1, see Table 14, (both included) (0 and /Capabilities/Contents/TileMatrixSet[ows:Identifier={TileMatrixSet}]/TileMatrix[ows:Identifier={TileMatrix}]/MatrixHeight – 1) |One (mandatory)
+|"tileCol" |col index of tile matrix |If TileMatrixSetLimits is present, see Table 10, (./TileMatrixSetLimits), SHALL be any integer value between MinTileCol and MaxTileCol in Table 12 (both included) (./tileMatrixSetLimits/tileMatrixLimits[./TileMatrix={TileMatrix}]/MinTileCol and ./tileMatrixSetLimits/tileMatrixLimits[./TileMatrix={TileMatrix}]/MaxTileCol) else SHALL be any integer value between 0 and MatrixWidth – 1, see Table 14, (both included) (0 and /Capabilities/Contents/TileMatrixSet[ows:Identifier={TileMatrixSet}]/TileMatrix[ows:Identifier={TileMatrix}]/ MatrixWidth – 1) |One (mandatory)
+|"J" pixel |row index in a tile |SHALL be any integer value between 0 and TileHeight-1 (see Table 14) (both included) (0 and /Capabilities/Contents/TileMatrixSet[ows:Identifier={TileMatrixSet}]/TileMatrix[ows:Identifier={TileMatrix}]/TileHeight – 1) |One (mandatory)
+|"I" pixel |column index in a tile |SHALL be any integer value between 0 and TileWidth -1 (see Table14) (both included) (0 and /Capabilities/Contents/TileMatrixSet[ows:Identifier={TileMatrixSet}]/TileMatrix[ows:Identifier={TileMatrix}]/TileWidth – 1) |One (mandatory)
 |===
 

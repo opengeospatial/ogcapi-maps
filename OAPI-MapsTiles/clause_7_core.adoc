@@ -18,11 +18,17 @@ Mature how /api and /compliance will be used. Update any references to Service M
 
 MapsTiles APIs are designed to serve map image tiles. The API Description document described in the previous subclause lists the tiles available on the server and the requirements for requesting a tile. Typically clients will first request the API Description Document and then use the information in that document to discover how to perform valid requests for tiles.
 
+CAUTION: link:https://github.com/opengeospatial/OAPI-MapsTiles/issues/2[ISSUE 2] +
+Or maybe not.
+
 ==== Tile resource
 
 The tile resource is generally a rectangular image containing cartographic data. Alternatively, this resource might be a non-image representation of the tile such as a description of the tile or a link to the actual image. For example, the tile resource could be a KML document used in a superoverlay, or a tile metadata document. When returning an image tile, a full single tile SHALL always be returned. Also, the background pixels of a tile SHOULD be transparent when possible so that the client can overlay the tiles on top of other map data (possibly other tiles).
 
 The Tile resource representation SHALL be returned in the format specified in the request **when the format has been advertised in the ServiceMetadata document as available for that Tile resource.**
+
+CAUTION: link:https://github.com/opengeospatial/OAPI-MapsTiles/issues/2[ISSUE 2] +
+See below.
 
 ==== GetTile
 
@@ -44,6 +50,9 @@ include::requirements/core/REQ_gt-op.adoc[]
 A successful GetTile response is defined by the following requirement:
 
 include::requirements/core/REQ_gt-success.adoc[]
+
+CAUTION: link:https://github.com/opengeospatial/OAPI-MapsTiles/issues/3[ISSUE 3] +
+Additional info should be provided to discuss the use of alternative schema for the description non-JSON response schema in an OpenAPI document.
 
 ===== Error situations
 
@@ -87,6 +96,8 @@ It corresponds to the following ResourceURL element: <ResourceURL format="applic
 A successful GetResourceRepresentation response is defined by the following requirement:
 
 include::requirements/core/REQ_grr-success.adoc[]
+
+An XML document conforming GML Simple Features Profile [06-049r1] is the most typical representation but other representations and formats are also allowed.
 
 ===== Error situations
 
