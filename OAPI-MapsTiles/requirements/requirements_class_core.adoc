@@ -1,22 +1,8 @@
+[[rc_core]]
 [cols="1,4",width="90%"]
 |===
-2+|*Requirements Class: Core* {set:cellbgcolor:#CACCCE}
-2+|http://www.opengis.net/spec/wmts/3.0/req/core
-{set:cellbgcolor:#FFFFFF}
-
-|**Requirement {counter:req-id}** {set:cellbgcolor:#CACCCE}
-|http://www.opengis.net/spec/wmts/3.0/req/core/common +
-_APIs implementing this standard SHALL conform with OAPI-Common 1.0_
-{set:cellbgcolor:#FFFFFF}
-
-|**Requirement {counter:req-id}** {set:cellbgcolor:#CACCCE}
-|http://www.opengis.net/spec/wmts/3.0/req/core/common +
-_APIs implementing this standard SHALL conform with OAPI-Common 1.0_
-{set:cellbgcolor:#FFFFFF}
-
-|**Requirement {counter:req-id}** {set:cellbgcolor:#CACCCE}
-|http://www.opengis.net/spec/wmts/3.0/req/core/common +
-_APIs implementing this standard SHALL conform with OAPI-Common 1.0_
-{set:cellbgcolor:#FFFFFF}
-
+2+|*Requirements Class*
+2+|http://www.opengis.net/spec/OAPI-MT/3.0/req/core
+|Target type |Web API
+|Dependency |OAPI-Common Version 1.0
 |===
