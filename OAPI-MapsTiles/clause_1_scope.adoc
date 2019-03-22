@@ -1,5 +1,8 @@
 == Scope
-[NOTE]
-====
-Insert Scope text here. Give the subject of the document and the aspects of that scope covered by the document.
-====
+
+This International Standard specifies the behaviour of an API that provides access to Map Tiles in a manner independent of the underlying data store. This standard specifies discovery and query operations.
+
+Discovery operations allow the API to be interrogated to determine its capabilities and retrieve information (metadata) about this distribution of tiles. This includes the API definition as well as metadata about the feature collections provided through the API.
+
+Query operations allow features to be retrieved from the underlying data store based upon simple selection criteria, defined by the client.
+

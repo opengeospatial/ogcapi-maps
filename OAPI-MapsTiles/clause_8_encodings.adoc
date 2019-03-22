@@ -2,7 +2,7 @@
 
 [NOTE]
 ========
-The following content is from the OAPI Common specification and should be modified for Coverage APIs. Keep in mind that both coverages and metadata are supplied by the API. So HTML and GeoJSON encoding may be retained for the metadata responses.
+The following content is from the OAPI Common specification and should be modified for Map Tile APIs. Keep in mind that both Map Tiles and metadata are supplied by the API. So HTML and GeoJSON encoding may be retained for the metadata responses.
 ========
 
 === Overview
