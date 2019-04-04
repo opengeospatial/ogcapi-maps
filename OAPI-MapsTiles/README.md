@@ -1,4 +1,4 @@
-# OGC API (OAPI) Maps Tiles Specification
+# OGC API (OAPI) Map Tiles Specification
 
 This directory contains the OGC API Specification for Map Tiles. This specification, working with the parallel OGC API Common specification, define the API analog to the WMTS standard.  
 
