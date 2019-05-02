@@ -14,30 +14,43 @@ This work encompasses two standards that will be developed simultaniously. It is
 A "OGC API - Maps" is a standard API that provides maps representing geospatial data.
 
 ```
-GET /.../.../style/{styleId}
+GET /.../.../map/style/{styleId}
 ```
 
-The identifier of the "layer" is replaced by "{collectionId}" 
+The identifier of the "layer" is replaced by "{collectionId}" or "coverage"...
 
 Maps can be requested in any available CRS and can be subset by bbox width and height (and eventually other parameters such as time and elevation)
 ```
-GET /.../.../style/{styleId}/{crsId}?bbox=160.6,-55.95,-170,-25.89&width=600&height=400
+GET /.../.../map/style/{styleId}/{crsId}?bbox=160.6,-55.95,-170,-25.89&width=600&height=400
 ```
-Returns a map - a representation of real-world elements at a given resolution
+Returns a map - a representation of real-world elements at a given resolution. style/{styleId} is optional.
 
+Map are available at some crsId and styles that need to be enumerated in:
+```
+GET /.../.../map
+```
 
 ### Tiles
 
 A "OGC API - Tiles" is a standard API that provides tiles of maps representing geospatial data.
 
 ```
-GET /.../.../style/{styleId}/tiles/{tileMatrixSetId}/{tileMatrixId}/{tileRow}/{tileCol}
+GET /.../.../tile/style/{styleId}/{tileMatrixSetId}/{tileMatrixId}/{tileRow}/{tileCol}
 ```
 
-The identifier of the "layer" is replaced by "{collectionId}" 
+Returns a tile - a representation of real-world elements at a given resolution restricted by the selected Tile Matrix Set.  style/{styleId} is optional.
 
-Returns a tile - a representation of real-world elements at a given resolution restricted by the selected Tile Matrix Set
+The identifier of the "layer" is replaced by "{collectionId}" or "coverage"...
 
+Tiles are available at some TileMatrixSetId and styles that need to be enumerated in:
+```
+GET /.../.../tiles
+```
+
+There is a need for describing the TileMatrixSet available 
+```
+GET /tileMatrixSet/{tileMatrixSetId}
+```
 
 ## Using the standard
 
