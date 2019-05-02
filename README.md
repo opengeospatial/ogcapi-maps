@@ -5,6 +5,8 @@ Web Map Service and Web Map Tile Service standards for requesting maps and tiles
 rewrite of previous versions, focusing on a simple RESTful core specified
 as reusable [OpenAPI](http://openapis.org) components.
 
+This work encompasses two standards that will be developed simultaniously. It is still unclear if they will become 2 independent documents or OGC API's.
+
 ## Overview
 
 ### Maps
