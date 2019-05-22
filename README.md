@@ -7,6 +7,8 @@ as reusable [OpenAPI](http://openapis.org) components.
 
 This work encompasses two standards that will be developed simultaniously. It is still unclear if they will become 2 independent documents or OGC API's.
 
+IMPORTANT NOTE: For the moment, most of the work so far is done directly in the [Swagger HUB](https://app.swaggerhub.com/apis/joanma747/opf-map-tiles-api/1.0.0). Latter it will be translated into requirements and informative text here.
+
 ## Overview
 
 ### Maps
