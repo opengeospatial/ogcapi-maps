@@ -1,0 +1,1509 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/joanma747/opf-map-tiles-api/1.0.0"
+  } ],
+  "info" : {
+    "title" : "OGC API Maps and Tiles (preliminary DRAFT)",
+    "description" : "This is a draft of the OGC API maps and tiles produced in the Testbed-15 Open Portrayal Framework in collaboration with the WMS.SWG. The Map Tile API is a Web API for fetching and managing maps and tiles.\n\nThe extensions are the following.\n* There are \n* The feature collection metadata (path `/collections/{collectionId}`) has been extended by the set of applicable styles (member `styles`, same\nvalue as in `/styles` in the Style API) and a default style \n(member `defaultStyle`, the style id).\n* The PATCH operation on the feature collection metadata \n(path `/collections/{collectionId}`) has been added. Only `styles` and\n`defaultStyle` may be updated.\n* The queryables resource (path `/collections/{collectionId}/queryables`)\nhas been added to support clients like visual style editors to construct \nexpressions for selection criteria in queries on features in the collection.\n\nFor more background information see [the Vector Tiles Pilot Extension Engineering \nReport](http://docs.opengeospatial.org/per/18-101.html#StylesAPI).\n\nThis document is also available in [GitHub](https://github.com/cportele/t15-opf/blob/master/data-api-with-style-extensions.yaml).",
+    "version" : "1.0.0",
+    "contact" : {
+      "name" : "Clemens Portele",
+      "email" : "portele@interactive-instruments.de"
+    },
+    "license" : {
+      "name" : "OGC License",
+      "url" : "https://raw.githubusercontent.com/opengeospatial/WFS_FES/master/LICENSE"
+    }
+  },
+  "tags" : [ {
+    "name" : "Capabilities",
+    "description" : "essential characteristics of this API"
+  }, {
+    "name" : "Features",
+    "description" : "access to data (features)"
+  }, {
+    "name" : "Tiles",
+    "description" : "access to data representations, partitioned into a hierarchy of tiles (renderizations or vector tiles)."
+  }, {
+    "name" : "Maps",
+    "description" : "access to map renderizations of collections."
+  }, {
+    "name" : "FeatureInfos",
+    "description" : "access to information about a point in a map or a tile."
+  } ],
+  "paths" : {
+    "/" : {
+      "get" : {
+        "tags" : [ "Capabilities" ],
+        "summary" : "landing page",
+        "description" : "The landing page provides links to the API definition, the conformance statements and to the feature collections in this dataset.",
+        "operationId" : "getLandingPage",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/f-json-html"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Links to the API capabilities and the TileMatrixSets shared by this API.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/landing-page"
+                },
+                "example" : [ {
+                  "href" : "http://data.example.org/?f=json",
+                  "rel" : "self",
+                  "type" : "application/json",
+                  "title" : "this document"
+                }, {
+                  "href" : "http://data.example.org/?f=html",
+                  "rel" : "alternate",
+                  "type" : "text/html",
+                  "title" : "this document in HTML"
+                }, {
+                  "href" : "http://data.example.org/api?f=json",
+                  "rel" : "service",
+                  "type" : "application/vnd.oai.openapi+json;version=3.0",
+                  "title" : "the API definition in OpenAPI 3.0 JSON"
+                }, {
+                  "href" : "http://data.example.org/api?f=html",
+                  "rel" : "service",
+                  "type" : "text/html",
+                  "title" : "the API definition in HTML"
+                }, {
+                  "href" : "http://data.example.org/conformance?f=json",
+                  "rel" : "conformance",
+                  "type" : "application/json",
+                  "title" : "the list of conformance classes implemented by this API"
+                }, {
+                  "href" : "http://data.example.org/collections?f=json",
+                  "rel" : "data",
+                  "type" : "application/json",
+                  "title" : "The feature collections in the dataset in JSON"
+                }, {
+                  "href" : "http://data.example.org/collections?f=html",
+                  "rel" : "data",
+                  "type" : "text/html",
+                  "title" : "The feature collections in the dataset in HTML"
+                }, {
+                  "href" : "http://data.example.org/tileMatrixSet?f=json",
+                  "rel" : "tileMatrixSets",
+                  "type" : "application/json",
+                  "title" : "the list of tileMatrixSets implemented by this API in JSON"
+                }, {
+                  "href" : "http://data.example.org/tileMatrixSet?f=html",
+                  "rel" : "tileMatrixSets",
+                  "type" : "text/html",
+                  "title" : "the list of tileMatrixSets implemented by this API in HTML"
+                } ]
+              },
+              "text/html" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/conformance" : {
+      "get" : {
+        "summary" : "information about specifications that this API conforms to",
+        "description" : "A list of all requirements classes specified in a standard that the \nserver conforms to.",
+        "operationId" : "getConformanceDeclaration",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/f-json"
+        } ],
+        "tags" : [ "Capabilities" ],
+        "responses" : {
+          "200" : {
+            "description" : "the URIs of all requirements classes supported by \nthis API        ",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/req-classes"
+                },
+                "example" : [ "http://www.opengis.net/spec/ogcapi-features-1/1.0/req/core", "http://www.opengis.net/spec/ogcapi-features-1/1.0/req/oas30", "http://www.opengis.net/spec/ogcapi-features-1/1.0/req/html", "http://www.opengis.net/spec/ogcapi-features-1/1.0/req/geojson", "http://www.opengis.net/spec/ogcapi-maps-tiles-1/1.0/req/core" ]
+              }
+            }
+          },
+          "400" : {
+            "description" : "invalid or unknown query parameters"
+          },
+          "406" : {
+            "description" : "The media types accepted by the client are not \nsupported for this resource"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/collections" : {
+      "get" : {
+        "tags" : [ "Capabilities" ],
+        "summary" : "the collections in the dataset",
+        "operationId" : "getCollections",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/f-json-html"
+        } ],
+        "responses" : {
+          "200" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/Collections"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}" : {
+      "get" : {
+        "tags" : [ "Capabilities" ],
+        "summary" : "describe a collection",
+        "operationId" : "describeCollection",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/collectionId"
+        }, {
+          "$ref" : "#/components/parameters/f-json-html"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Metadata about the collection including style information.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/collectionInfo"
+                }
+              },
+              "text/html" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "Capabilities" ],
+        "summary" : "update parts of the style metadata",
+        "description" : "Update selected elements of the metadata for \nthe collection with the id `collectionId`.\n\nThe only members that may be updated at this \ntime are `styles` and `defaultStyle`.\n\nThe PATCH semantics in this operation are defined by \nRFC 7396 (JSON Merge Patch). From the specification:\n\n_\"A JSON merge patch document describes changes to be \nmade to a target JSON document using a syntax that \nclosely mimics the document being modified. Recipients\nof a merge patch document determine the exact set of \nchanges being requested by comparing the content of \nthe provided patch against the current content of the \ntarget document. If the provided merge patch contains \nmembers that do not appear within the target, those \nmembers are added. If the target does contain the \nmember, the value is replaced. Null values in the \nmerge patch are given special meaning to indicate \nthe removal of existing values in the target.\"_\n\nSome examples:\n\nTo add or update the default style, just send\n\n```\n{\n  \"defaultStyle\": \"night\"\n}\n```\n\nTo remove the default style, send \n\n```\n{\n  \"defaultStyle\": null\n}\n```\n\nFor arrays the complete array needs to be sent. I.e., to\nupdate the list of styles, send the complete new array value.\n\nTo remove all styles, send\n\n```\n{\n  \"styles\": null\n}\n```\n\nThis operation is only available to registered \nusers.",
+        "operationId" : "patchCollectionMetadata",
+        "security" : [ {
+          "BasicAuth" : [ ]
+        } ],
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/collectionId"
+        } ],
+        "requestBody" : {
+          "description" : "The updated style information for the collection.",
+          "content" : {
+            "application/merge-patch+json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/collectionInfo-patch"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "204" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/Updated"
+          },
+          "400" : {
+            "description" : "Malformed patch document."
+          },
+          "401" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/UnauthorizedAccess"
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "415" : {
+            "description" : "Unsupported patch document.",
+            "headers" : {
+              "Accept-Patch" : {
+                "description" : "supported patch document media types",
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable request. The patch document appears \nto be valid, but the server is incapable of processing \nthe request."
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}/queryables" : {
+      "get" : {
+        "tags" : [ "Capabilities" ],
+        "summary" : "fetch the queryable properties of the feature collection",
+        "description" : "This operation supports clients to construct expressions for \nselection criteria in queries on features in the collection. \n\nThe response is an array with the queryable properties of \nthe feature collection. \"Queryable\" means that the property may\nbe used in query expressions, for example, in a CQL query \nexpression or as part of a selection criteria in a SLD/SE or\nMapbox styling rule.\n\nOften the list will be a subset of all available properties \nin the features and be restricted to those properties that\nare, for example, indexed in the backend datastore to support\nperformant queries.\n\nFor each queryable property the following information is provided.\n* **id** (required) - the property name for use in expressions \n* **type** (required) - the data type of the property, one of\n  * string\n  * uri\n  * enum\n  * number\n  * integer\n  * date\n  * dateTime\n  * boolean\n* **description** (optional) - a description of the property\n* **required** (optional) - indicator whether the property is \nalways present in features\n* **mediaTypes** (optional) - in general, the representation of \nthe queryables is meant to be independent of the feature encoding;\nhowever, this is not always the case; for example, length restrictions \nor namespace prefixes may result in different property identifiers \nfor the same property; to support this, the definition of a queryable\nmay be restricted to one or more feature encodings (media types).\n* **pattern** (optional, only for \"string\" and \"uri\") - a regular \nexpression to validate the values of the property\n* **values** (required, only for \"enum\") - an array of valid values \nof the property\n* **range** (optional, only for \"number\", \"integer\", \"date\" and \n\"dateTime\") - the range of valid values expressed as an array with\ntwo items; open ranges can be expressed using `null` for the minimum\nor maximum value\n\nNote that this is separate from providing a complete schema for \nthe features in the collection. A schema provides a complete syntactic \ndefinition of a specific feature encoding, typically for validation \npurposes. Schema languages like XML Schema or JSON Schema are \nmuch richer and support more complex syntactic rules, but are also \nmore complex to parse.",
+        "operationId" : "getQueryables",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/collectionId"
+        }, {
+          "$ref" : "#/components/parameters/f-json-html"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The list of queryable properties for the features in the collection.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/queryables"
+                }
+              },
+              "text/html" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}/items" : {
+      "get" : {
+        "tags" : [ "Features" ],
+        "summary" : "retrieve features of the feature collection",
+        "operationId" : "getFeatures",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/collectionId"
+        }, {
+          "$ref" : "#/components/parameters/f-json-html"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/limit"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/offset"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/resultType"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/properties"
+        }, {
+          "name" : "f_code",
+          "in" : "query",
+          "description" : "Filter the collection by f_code",
+          "required" : false,
+          "style" : "form",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Information about the feature collection plus the first features\nmatching the selection parameters.",
+            "content" : {
+              "application/geo+json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON"
+                }
+              },
+              "text/html" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}/items/{featureId}" : {
+      "get" : {
+        "tags" : [ "Features" ],
+        "summary" : "fetch a feature",
+        "operationId" : "getFeature",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/collectionId"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/featureId"
+        }, {
+          "$ref" : "#/components/parameters/f-json-html"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/properties"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A feature.",
+            "content" : {
+              "application/geo+json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureGeoJSON"
+                }
+              },
+              "text/html" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/tileMatrixSet" : {
+      "get" : {
+        "tags" : [ "Capabilities" ],
+        "summary" : "fetch all available tile matrix sets (tiling schemes)",
+        "operationId" : "getTileMatrixSets",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/f-json"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A list of tiling schemes.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/tileMatrixSet"
+                }
+              }
+            }
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/tileMatrixSet/{tileMatrixSetId}" : {
+      "get" : {
+        "tags" : [ "Capabilities" ],
+        "summary" : "fetch a tiling scheme by id",
+        "operationId" : "getTileMatrixSetDescription",
+        "parameters" : [ {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId"
+        }, {
+          "$ref" : "#/components/parameters/f-json"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A tiling scheme.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/tileMatrixSet"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}" : {
+      "get" : {
+        "tags" : [ "Tiles" ],
+        "summary" : "retrieve a tile of the dataset",
+        "description" : "The tile in the requested tiling scheme, on the requested zoom level in\nthe tiling scheme, with the requested grid coordinates (row, column) is\nreturned. Each collection of the dataset is returned as a separate\nlayer. The collections and the feature properties to include in the tile\nrepresentation can be limited using query parameters.",
+        "operationId" : "getTileCollections",
+        "parameters" : [ {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collections"
+        }, {
+          "$ref" : "#/components/parameters/styles"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrix"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileRow"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileCol"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/properties"
+        }, {
+          "$ref" : "#/components/parameters/f-png-jpeg-vector"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A multi-layer tile of the dataset.",
+            "content" : {
+              "image/jpeg" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              },
+              "image/png" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              },
+              "image/gif" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              },
+              "image/mvt" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "application/geo+json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}" : {
+      "get" : {
+        "tags" : [ "Tiles" ],
+        "summary" : "fetch a tile of the collection with or without style",
+        "description" : "Retrieves the tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.",
+        "operationId" : "getTileOfCollectionId",
+        "parameters" : [ {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId"
+        }, {
+          "$ref" : "#/components/parameters/styles"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrix"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileRow"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileCol"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/properties"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime"
+        }, {
+          "$ref" : "#/components/parameters/f-png-jpeg-vector"
+        }, {
+          "name" : "f_code",
+          "in" : "query",
+          "description" : "Filter the collection by f_code",
+          "required" : false,
+          "style" : "form",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A tile of the collection.",
+            "content" : {
+              "image/jpeg" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              },
+              "image/png" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              },
+              "image/gif" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              },
+              "image/mvt" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "application/geo+json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/{j}/{i}" : {
+      "get" : {
+        "tags" : [ "Tiles", "FeatureInfos" ],
+        "summary" : "fetch information on a point of a tile of the collection with or without style",
+        "description" : "Retrieves information on a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.",
+        "operationId" : "getFeatureInfoTileOfCollections",
+        "parameters" : [ {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId"
+        }, {
+          "$ref" : "#/components/parameters/styles"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrix"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileRow"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileCol"
+        }, {
+          "$ref" : "#/components/parameters/tile-i"
+        }, {
+          "$ref" : "#/components/parameters/tile-j"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/properties"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime"
+        }, {
+          "$ref" : "#/components/parameters/f-json-html"
+        }, {
+          "name" : "f_code",
+          "in" : "query",
+          "description" : "Filter the collection by f_code",
+          "required" : false,
+          "style" : "form",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A getFeatureInfo of a tile of the collections.",
+            "content" : {
+              "application/geo+json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/{j}/{i}" : {
+      "get" : {
+        "tags" : [ "Tiles", "FeatureInfos" ],
+        "summary" : "fetch information of a point in a tile of the collection with or without style",
+        "description" : "Retrieves inforamtion on a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.",
+        "operationId" : "getFeatureInfoTileOfCollectionId",
+        "parameters" : [ {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId"
+        }, {
+          "$ref" : "#/components/parameters/styles"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrix"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileRow"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileCol"
+        }, {
+          "$ref" : "#/components/parameters/tile-i"
+        }, {
+          "$ref" : "#/components/parameters/tile-j"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/properties"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime"
+        }, {
+          "$ref" : "#/components/parameters/f-json-html"
+        }, {
+          "name" : "f_code",
+          "in" : "query",
+          "description" : "Filter the collection by f_code",
+          "required" : false,
+          "style" : "form",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A getFeatureInfo of a tile of the collection.",
+            "content" : {
+              "application/geo+json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/tiles/{tileMatrixSetId}" : {
+      "get" : {
+        "tags" : [ "Tiles" ],
+        "summary" : "fetch tiles from several collections.",
+        "description" : "Tiles in the requested tiling scheme. \nThe collections and the feature properties to include in the tile\nrepresentation can be limited using query parameters.\nThe CRS of the bbox is the CRS indicated int he TileMatrixSet definition.",
+        "operationId" : "getTilesCollections",
+        "parameters" : [ {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collections"
+        }, {
+          "$ref" : "#/components/parameters/styles"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId"
+        }, {
+          "$ref" : "#/components/parameters/tileMatrices"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox"
+        }, {
+          "$ref" : "#/components/parameters/innerFormat"
+        }, {
+          "$ref" : "#/components/parameters/embedded"
+        }, {
+          "$ref" : "#/components/parameters/f-json-zip"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A tiling scheme used to partition the dataset into tiles.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/tiles-set"
+                }
+              },
+              "application/x-zip-compressed" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}/tiles/{tileMatrixSetId}" : {
+      "get" : {
+        "tags" : [ "Tiles" ],
+        "summary" : "fetch tiles of a collection",
+        "operationId" : "getTiles",
+        "parameters" : [ {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId"
+        }, {
+          "$ref" : "#/components/parameters/styles"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId"
+        }, {
+          "$ref" : "#/components/parameters/tileMatrices"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox"
+        }, {
+          "$ref" : "#/components/parameters/innerFormat"
+        }, {
+          "$ref" : "#/components/parameters/embedded"
+        }, {
+          "$ref" : "#/components/parameters/f-json-zip"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A tiling scheme used to partition the collection into tiles.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/tiles-set"
+                }
+              },
+              "application/x-zip-compressed" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/maps" : {
+      "get" : {
+        "tags" : [ "Maps" ],
+        "summary" : "fetch a map of collections with or without style",
+        "description" : "Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.",
+        "operationId" : "getMapCollections",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/f-json"
+        }, {
+          "$ref" : "#/components/parameters/map-crs"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox"
+        }, {
+          "$ref" : "#/components/parameters/collections"
+        }, {
+          "$ref" : "#/components/parameters/styles"
+        }, {
+          "$ref" : "#/components/parameters/width"
+        }, {
+          "$ref" : "#/components/parameters/height"
+        }, {
+          "$ref" : "#/components/parameters/transparent"
+        }, {
+          "$ref" : "#/components/parameters/bgcolor"
+        }, {
+          "$ref" : "#/components/parameters/time"
+        }, {
+          "$ref" : "#/components/parameters/elevation"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieves a map that renders objects of one or more collections in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.",
+            "content" : {
+              "image/jpeg" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              },
+              "image/png" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              },
+              "image/gif" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              },
+              "application/geo+json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}/maps" : {
+      "get" : {
+        "tags" : [ "Maps" ],
+        "summary" : "fetch a maps from the collection with or without style",
+        "description" : "Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.        ",
+        "operationId" : "getMapCollectionId",
+        "parameters" : [ {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId"
+        }, {
+          "$ref" : "#/components/parameters/f-json"
+        }, {
+          "$ref" : "#/components/parameters/map-crs"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox"
+        }, {
+          "$ref" : "#/components/parameters/collections"
+        }, {
+          "$ref" : "#/components/parameters/styles"
+        }, {
+          "$ref" : "#/components/parameters/width"
+        }, {
+          "$ref" : "#/components/parameters/height"
+        }, {
+          "$ref" : "#/components/parameters/transparent"
+        }, {
+          "$ref" : "#/components/parameters/bgcolor"
+        }, {
+          "$ref" : "#/components/parameters/time"
+        }, {
+          "$ref" : "#/components/parameters/elevation"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.",
+            "content" : {
+              "image/jpeg" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              },
+              "image/png" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              },
+              "image/gif" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              },
+              "application/geo+json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/maps/getFeatureInfo" : {
+      "get" : {
+        "tags" : [ "Maps", "FeatureInfos" ],
+        "summary" : "fetch a maps from the collection with or without style",
+        "description" : "Retrieves a getFeatureInfo in map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.        ",
+        "operationId" : "getFeatureInfoCollections",
+        "parameters" : [ {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId"
+        }, {
+          "$ref" : "#/components/parameters/f-json-html"
+        }, {
+          "$ref" : "#/components/parameters/map-crs"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox"
+        }, {
+          "$ref" : "#/components/parameters/collections"
+        }, {
+          "$ref" : "#/components/parameters/styles"
+        }, {
+          "$ref" : "#/components/parameters/width"
+        }, {
+          "$ref" : "#/components/parameters/height"
+        }, {
+          "$ref" : "#/components/parameters/transparent"
+        }, {
+          "$ref" : "#/components/parameters/bgcolor"
+        }, {
+          "$ref" : "#/components/parameters/time"
+        }, {
+          "$ref" : "#/components/parameters/elevation"
+        }, {
+          "$ref" : "#/components/parameters/coord_i"
+        }, {
+          "$ref" : "#/components/parameters/coord_j"
+        }, {
+          "$ref" : "#/components/parameters/mapFormat"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.",
+            "content" : {
+              "application/geo+json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}/maps/getFeatureInfo" : {
+      "get" : {
+        "tags" : [ "Maps", "FeatureInfos" ],
+        "summary" : "fetch a maps from the collection with or without style",
+        "description" : "Retrieves a getFeatureInfo in map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.        ",
+        "operationId" : "getFeatureInfoCollectionId",
+        "parameters" : [ {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId"
+        }, {
+          "$ref" : "#/components/parameters/f-json-html"
+        }, {
+          "$ref" : "#/components/parameters/map-crs"
+        }, {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox"
+        }, {
+          "$ref" : "#/components/parameters/collections"
+        }, {
+          "$ref" : "#/components/parameters/styles"
+        }, {
+          "$ref" : "#/components/parameters/width"
+        }, {
+          "$ref" : "#/components/parameters/height"
+        }, {
+          "$ref" : "#/components/parameters/transparent"
+        }, {
+          "$ref" : "#/components/parameters/bgcolor"
+        }, {
+          "$ref" : "#/components/parameters/time"
+        }, {
+          "$ref" : "#/components/parameters/elevation"
+        }, {
+          "$ref" : "#/components/parameters/coord_i"
+        }, {
+          "$ref" : "#/components/parameters/coord_j"
+        }, {
+          "$ref" : "#/components/parameters/mapFormat"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.",
+            "content" : {
+              "application/geo+json" : {
+                "schema" : {
+                  "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON"
+                }
+              }
+            }
+          },
+          "404" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound"
+          },
+          "500" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "collectionInfo" : {
+        "allOf" : [ {
+          "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/collectionInfo"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "styles" : {
+              "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/style-set"
+            },
+            "crs-set" : {
+              "$ref" : "#/components/schemas/crs-set"
+            },
+            "tileMatrixSetLink" : {
+              "$ref" : "#/components/schemas/tileMatrixSetLink-set"
+            },
+            "defaultStyle" : {
+              "type" : "string",
+              "description" : "the style id of a recommended default style to use for this collection",
+              "example" : "topographic"
+            }
+          }
+        } ]
+      },
+      "collectionInfo-patch" : {
+        "type" : "object",
+        "properties" : {
+          "styles" : {
+            "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/style-set"
+          },
+          "defaultStyle" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "the style id of a recommended default style to use for this collection",
+            "example" : "topographic"
+          }
+        }
+      },
+      "collectionList" : {
+        "description" : "This list should be the same that is returned by the GET \\collections operation",
+        "type" : "string",
+        "enum" : [ "aeronauticcrv", "aeronauticsrf", "agriculturepnt", "agriculturesrf", "culturepnt", "culturesrf", "facilitypnt", "facilitysrf" ]
+      },
+      "tileMatrixSetLink-set" : {
+        "description" : "This list tileMatrixSetLink as defined in OGC 17-083r2 supported by this collectionId. \nThe presence of this property indicates that the collection is available as tiles",
+        "type" : "array",
+        "nullable" : true,
+        "items" : {
+          "$ref" : "#/components/schemas/tileMatrixSetLink-entry"
+        },
+        "example" : [ {
+          "id" : "WebMercatorQuad",
+          "links" : [ {
+            "href" : "https://example.com/api/1.0/tileMatrixSet/WebMercatorQuad?f=ogc-tms-1-0",
+            "type" : "application/vnd.ogc-tms-1-0.tms+json",
+            "rel" : "tileMatrixSet"
+          } ]
+        } ]
+      },
+      "tileMatrixSetLink-entry" : {
+        "type" : "object",
+        "nullable" : true,
+        "required" : [ "id", "links" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "links" : {
+            "type" : "array",
+            "nullable" : true,
+            "minItems" : 1,
+            "items" : {
+              "$ref" : "https://app.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/link"
+            }
+          },
+          "tileMatrixSetLimits" : {
+            "type" : "array",
+            "nullable" : true,
+            "minItems" : 1,
+            "items" : {
+              "$ref" : "#/components/schemas/tileMatrixSetLimits-entry"
+            }
+          }
+        }
+      },
+      "tileMatrixSetLimits-entry" : {
+        "type" : "object",
+        "nullable" : true,
+        "required" : [ "tileMatrix", "minTileRow", "maxTileRow", "minTileCol", "maxTileCol" ],
+        "properties" : {
+          "tileMatrix" : {
+            "type" : "string"
+          },
+          "minTileRow" : {
+            "type" : "number",
+            "nullable" : true,
+            "minItems" : 0,
+            "items" : {
+              "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/link"
+            }
+          },
+          "tileMatrixSetLimits" : {
+            "type" : "array",
+            "nullable" : true,
+            "minItems" : 1,
+            "items" : {
+              "$ref" : "#/components/schemas/tileMatrixSetLimits-entry"
+            }
+          }
+        }
+      },
+      "crs-set" : {
+        "description" : "This list crsIds supported by this collectionId.  The presence of this property indicates that the collection is available as maps",
+        "type" : "array",
+        "nullable" : true,
+        "items" : {
+          "$ref" : "#/components/schemas/crs-entry"
+        },
+        "example" : [ {
+          "id" : "CRS:84",
+          "links" : [ {
+            "href" : "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
+            "type" : "application/xml",
+            "rel" : "describedby"
+          } ]
+        } ]
+      },
+      "crs-entry" : {
+        "type" : "object",
+        "nullable" : true,
+        "required" : [ "id", "links" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "nullable" : false
+          },
+          "title" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "links" : {
+            "type" : "array",
+            "nullable" : false,
+            "minItems" : 1,
+            "items" : {
+              "$ref" : "https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/link"
+            }
+          }
+        }
+      },
+      "tiles-set" : {
+        "description" : "This is the response of a multiple tiles request.",
+        "required" : [ "type" ],
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/tiles-entry"
+        }
+      },
+      "tiles-entry" : {
+        "description" : "This is an entry on a multiple tiles request.",
+        "type" : "object",
+        "required" : [ "tileURL", "tileMatrix", "tileRow", "tileCol" ],
+        "properties" : {
+          "tileURL" : {
+            "type" : "string",
+            "format" : "anyURI",
+            "nullable" : false
+          },
+          "tileMatrix" : {
+            "type" : "string",
+            "nullable" : false
+          },
+          "tileRow" : {
+            "type" : "number",
+            "nullable" : false
+          },
+          "tileCol" : {
+            "type" : "number",
+            "nullable" : false
+          },
+          "width" : {
+            "type" : "number",
+            "description" : "The width of the tile in randering device pixels. If it excedes the visual display area be should cut when displayed",
+            "nullable" : true
+          },
+          "height" : {
+            "type" : "number",
+            "description" : "The height of the tile in randering device pixels. If it excedes the visual display area be should cut when displayed",
+            "nullable" : true
+          },
+          "top" : {
+            "type" : "number",
+            "description" : "Vertical position from the top of the visual display area in pixels. Negative value means that the left side of the tile is outside the top-left corner of the display and should be cut when displayed",
+            "nullable" : true
+          },
+          "left" : {
+            "type" : "number",
+            "description" : "Horizontal position from the left of the visual display area in pixels. Negative value means that the left side of the tile is outside the top-left corner of the display and should be cut when displayed",
+            "nullable" : true
+          }
+        }
+      }
+    },
+    "parameters" : {
+      "f-json-html" : {
+        "name" : "f",
+        "in" : "query",
+        "description" : "The format of the response. If no value is provided, the standard http\nrules apply, i.e., the accept header is used to determine the format.\n\nPre-defined values are \"json\" and \"html\". The response to other \nvalues is determined by the server.",
+        "required" : false,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "string",
+          "enum" : [ "json", "html" ]
+        },
+        "example" : "json"
+      },
+      "f-json" : {
+        "name" : "f",
+        "in" : "query",
+        "description" : "The format of the response. If no value is provided, the standard http\nrules apply, i.e., the accept header is used to determine the format.\n\nThe only pre-defined value is \"json\". The response to other values is \ndetermined by the server.",
+        "required" : false,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "string",
+          "enum" : [ "json" ]
+        },
+        "example" : "json"
+      },
+      "f-json-zip" : {
+        "name" : "f",
+        "in" : "query",
+        "description" : "The format of the response. If no value is provided, the standard http\nrules apply, i.e., the accept header is used to determine the format.\n\nThe only pre-defined value is \"json\". The response to other values is \ndetermined by the server.",
+        "required" : false,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "string",
+          "enum" : [ "json", "zip" ]
+        },
+        "example" : "json"
+      },
+      "f-png-jpeg-vector" : {
+        "name" : "f",
+        "in" : "query",
+        "description" : "The format of the response. If no value is provided, the standard http rules apply, i.e., the accept header is used to determine the format.\n\nPre-defined values are \"mvt\" for a Mapbox Vector Tile, \"json\" for a GeoJSON tiled feature collection and jpeg, png or gif for image based tiles \nThe response to other values is determined by the server.",
+        "required" : false,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "string",
+          "enum" : [ "pgn", "jpeg", "gif", "mvt", "json" ]
+        },
+        "example" : "png"
+      },
+      "collections" : {
+        "name" : "collections",
+        "in" : "query",
+        "description" : "The collections that should be included in the tile. The parameter value\nis a list of collection identifiers.",
+        "required" : false,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/components/schemas/collectionList"
+          }
+        }
+      },
+      "collectionId" : {
+        "name" : "collectionId",
+        "in" : "path",
+        "description" : "local identifier of a collection",
+        "required" : true,
+        "schema" : {
+          "$ref" : "#/components/schemas/collectionList"
+        }
+      },
+      "styles" : {
+        "name" : "styles",
+        "in" : "query",
+        "description" : "The styleId that should be included in the map or tile. Each collectionId has a valid list of stylesId. To know the valid styleId values of each collectionId use /collections/{collectionId}.\nThe parameter value is a list of comma separated styles identifiers. If the parameter 'collections' exists, the list should be as long as 'collections' and each styleId correspons to one collectionId. If the path includes 'collections/{collectionId}' one style should be mentioned. ",
+        "required" : false,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "width" : {
+        "name" : "width",
+        "in" : "query",
+        "description" : "Width in pixels of map picture.",
+        "required" : true,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "number"
+        }
+      },
+      "height" : {
+        "name" : "height",
+        "in" : "query",
+        "description" : "Height in pixels of map picture.",
+        "required" : true,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "number"
+        }
+      },
+      "coord_i" : {
+        "name" : "i",
+        "in" : "query",
+        "description" : "Height in pixels of map picture.",
+        "required" : true,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "number"
+        }
+      },
+      "coord_j" : {
+        "name" : "j",
+        "in" : "query",
+        "description" : "Height in pixels of map picture.",
+        "required" : true,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "number"
+        }
+      },
+      "transparent" : {
+        "name" : "transparent",
+        "in" : "query",
+        "description" : "Background transparency of map (default=FALSE). ",
+        "required" : false,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "boolean"
+        }
+      },
+      "bgcolor" : {
+        "name" : "bgcolor",
+        "in" : "query",
+        "description" : "Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF) if alpha is not specified \"opaque\" opacity is assumed.",
+        "required" : false,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "time" : {
+        "name" : "time",
+        "in" : "query",
+        "description" : "Time value",
+        "required" : false,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "elevation" : {
+        "name" : "elevation",
+        "in" : "query",
+        "description" : "Elevation value",
+        "required" : false,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "number"
+        }
+      },
+      "map-crs" : {
+        "name" : "crs",
+        "in" : "query",
+        "description" : "CRSId used to rended the map. It is also the CRS of the bbox parameter.\nYou can only ask for CRSs that are valid of the collectionId.",
+        "required" : false,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        },
+        "example" : "EPSG:4326"
+      },
+      "tileMatrices" : {
+        "name" : "tileMatrices",
+        "in" : "query",
+        "description" : "Tiles that belong to this tileMatrices should be included in the response. The parameter value is a list of tileMatrices.",
+        "required" : false,
+        "style" : "form",
+        "explode" : false,
+        "schema" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      },
+      "mapFormat" : {
+        "name" : "mapFormat",
+        "in" : "query",
+        "description" : "Format of the map for a getFeatureInfo.",
+        "required" : false,
+        "style" : "form",
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "innerFormat" : {
+        "name" : "innerFormat",
+        "in" : "query",
+        "description" : "Internal format of the tiles referenced or embedded.",
+        "required" : false,
+        "style" : "form",
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "embedded" : {
+        "name" : "embedded",
+        "in" : "query",
+        "description" : "Are the tiles embedded. If false they are only referenced.",
+        "required" : false,
+        "style" : "form",
+        "schema" : {
+          "type" : "boolean"
+        }
+      },
+      "tile-j" : {
+        "name" : "j",
+        "in" : "path",
+        "description" : "Row index of the tile on the selected zoom level. \n\nIf the Google Maps Tiling Scheme is used see\nhttp://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/\nfor more information about `tileMatrix`, `tileRow` and `tileCol`. For example, \nIreland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.",
+        "required" : true,
+        "schema" : {
+          "type" : "number"
+        },
+        "example" : "827"
+      },
+      "tile-i" : {
+        "name" : "i",
+        "in" : "path",
+        "description" : "Row index of the tile on the selected zoom level. \n\nIf the Google Maps Tiling Scheme is used see\nhttp://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/\nfor more information about `tileMatrix`, `tileRow` and `tileCol`. For example, \nIreland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.",
+        "required" : true,
+        "schema" : {
+          "type" : "number"
+        },
+        "example" : "827"
+      }
+    },
+    "responses" : { }
+  }
+}
