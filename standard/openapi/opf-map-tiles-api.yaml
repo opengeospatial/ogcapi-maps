@@ -524,7 +524,7 @@ paths:
       operationId: getTileOfCollectionId
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
-        - $ref: '#/components/parameters/styles'
+        - $ref: '#/components/parameters/style'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrix'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileRow'
@@ -617,7 +617,7 @@ paths:
       operationId: getFeatureInfoTileOfCollectionId
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
-        - $ref: '#/components/parameters/styles'
+        - $ref: '#/components/parameters/style'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrix'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileRow'
@@ -691,7 +691,7 @@ paths:
       operationId: getTiles
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
-        - $ref: '#/components/parameters/styles'
+        - $ref: '#/components/parameters/style'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: '#/components/parameters/tileMatrices'        
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox'
@@ -773,7 +773,7 @@ paths:
         - $ref: '#/components/parameters/map-crs'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox'
         - $ref: '#/components/parameters/collections'
-        - $ref: '#/components/parameters/styles'
+        - $ref: '#/components/parameters/style'
         - $ref: '#/components/parameters/width'
         - $ref: '#/components/parameters/height'
         - $ref: '#/components/parameters/transparent'
@@ -804,7 +804,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
-  '/maps/getFeatureInfo':
+  '/maps/featureInfos':
     get:
       tags:
         - Maps
@@ -841,7 +841,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'          
-  '/collections/{collectionId}/maps/getFeatureInfo':
+  '/collections/{collectionId}/maps/featureInfos':
     get:
       tags:
         - Maps
@@ -856,7 +856,7 @@ paths:
         - $ref: '#/components/parameters/map-crs'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox'
         - $ref: '#/components/parameters/collections'
-        - $ref: '#/components/parameters/styles'
+        - $ref: '#/components/parameters/style'
         - $ref: '#/components/parameters/width'
         - $ref: '#/components/parameters/height'
         - $ref: '#/components/parameters/transparent'
@@ -1158,6 +1158,16 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/collectionList'
+    style:
+      name: style
+      in: query
+      description: |-
+        The styleId that should be included in the map or tile. Each collectionId has a valid list of stylesId. To know the valid styleId values of each collectionId use /collections/{collectionId}.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
     styles:
       name: styles
       in: query
