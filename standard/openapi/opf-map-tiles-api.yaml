@@ -949,7 +949,7 @@ components:
           nullable: true
           minItems: 1
           items:
-            $ref: 'https://app.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/link'
+            $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/link'
         tileMatrixSetLimits:
           type: array
           nullable: true
