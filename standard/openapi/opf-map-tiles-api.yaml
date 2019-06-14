@@ -566,7 +566,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
-  '/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/{j}/{i}':
+  '/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
         - Tiles
@@ -582,8 +582,9 @@ paths:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrix'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileRow'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileCol'
-        - $ref: '#/components/parameters/tile-i'
-        - $ref: '#/components/parameters/tile-j'
+        - $ref: '#/components/parameters/coord_i'
+        - $ref: '#/components/parameters/coord_j'
+        - $ref: '#/components/parameters/tileFormat'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/properties'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime'
         - $ref: '#/components/parameters/f-json-html'
@@ -714,7 +715,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'          
-  '/maps':
+  '/map':
     get:
       tags:
         - Maps
@@ -759,7 +760,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
-  '/collections/{collectionId}/maps':
+  '/collections/{collectionId}/map':
     get:
       tags:
         - Maps
@@ -1287,7 +1288,16 @@ components:
       name: mapFormat
       in: query
       description: |-
-        Format of the map for a getFeatureInfo.
+        Internal format of the maps referenced by a getFeatureInfo.
+      required: false
+      style: form
+      schema:
+        type: string          
+    tileFormat:
+      name: tileFormat
+      in: query
+      description: |-
+        Internal format of the tiles referenced or embedded.
       required: false
       style: form
       schema:
