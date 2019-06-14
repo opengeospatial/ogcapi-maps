@@ -1293,7 +1293,7 @@ components:
       schema:
         type: string          
     innerFormat:
-      name: innerFormat
+      name: mapFormat
       in: query
       description: |-
         Internal format of the tiles referenced or embedded.
