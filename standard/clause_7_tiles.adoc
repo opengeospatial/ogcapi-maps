@@ -1,0 +1,90 @@
+=== Tiles
+
+MapsTiles APIs are designed to serve map image tiles. The API Description document described in the previous subclause lists the tiles available on the server and the requirements for requesting a tile. Typically clients will first request the API Description Document and then use the information in that document to discover how to perform valid requests for tiles.
+
+CAUTION: link:https://github.com/opengeospatial/OAPI-MapsTiles/issues/2[ISSUE 2] +
+Or maybe not.
+
+==== Tile resource
+
+The tile resource is generally a rectangular image containing cartographic data. Alternatively, this resource might be a non-image representation of the tile such as a description of the tile or a link to the actual image. For example, the tile resource could be a KML document used in a superoverlay, or a tile metadata document. When returning an image tile, a full single tile SHALL always be returned. Also, the background pixels of a tile SHOULD be transparent when possible so that the client can overlay the tiles on top of other map data (possibly other tiles).
+
+The Tile resource representation SHALL be returned in the format specified in the request **when the format has been advertised in the ServiceMetadata document as available for that Tile resource.**
+
+CAUTION: link:https://github.com/opengeospatial/OAPI-MapsTiles/issues/2[ISSUE 2] +
+See below.
+
+==== GetTile
+
+The GetTile operation allows Map Tile clients to request a particular tile of a particular tile matrix set in a predefined format. This operation has some parameters in common with WMS GetMap but it has been deliberately simplified. For instance, only one layer can be retrieved at a time. Map Tile APIs that want to allow a combination of layers to be served and requested have to give this combination an identifier and add it as a new layer in the **service metadata document**. Nevertheless, clients are expected to be able easily to overlay layers themselves eliminating the need for servers to offer layers by combination.
+
+CAUTION: link:https://github.com/opengeospatial/OAPI-MapsTiles/issues/2[ISSUE 2] +
+The list of avaliable layers should be available through a metadata resource rather than the API description. This represents a change from the OWS approach where the full resource holdings were described in the Service Metadata document.
+
+include::requirements/core/REQ_gt.adoc[]
+
+===== Operation
+
+The GetTile request operation is defined by the following requirement:
+
+include::requirements/core/REQ_gt-op.adoc[]
+
+===== Response
+
+A successful GetTile response is defined by the following requirement:
+
+include::requirements/core/REQ_gt-success.adoc[]
+
+CAUTION: link:https://github.com/opengeospatial/OAPI-MapsTiles/issues/3[ISSUE 3] +
+Additional info should be provided to discuss the use of alternative schema for the description non-JSON response schema in an OpenAPI document.
+
+===== Error situations
+
+An unsuccessful GetTile reponse follows the general guidance for HTTP status codes provided in <<http_status_codes>> and the following requirement:
+
+include::requirements/core/REQ_gt-error.adoc[]
+
+=== FeatureInfo
+
+Map Tile APIs may support requests for information about the features present at a particular pixel location on a map tile. Requests for feature information will specify the tile along with a pixel location on that tile. The server will provide information on the features present at or near the location specified by the client request. The server may choose what information to provide about the nearby features.
+
+==== FeatureInfo document
+
+A FeatureInfo document is the resource representation of a FeatureInfo resource in resource oriented architectural style. The FeatureInfo document SHALL be in the format specified in the request when that format has been advertised in the *ServiceMetadata document* as available for that FeatureInfo resource.
+
+For a better interoperability between servers and clients we strongly recommend GML Simple Features Profile [06-049r1] as a supported document format for FeatureInfo resources. That standard defines three levels of content in three profiles with different degrees of constraints to the GML flexibility. We strongly recommend support of the most constrained one (level 0) that results in a simpler GML document. In the context of that profile only simple XML types can be used as thematic properties and cardinality greater than one is not allowed. Servers and clients SHALL specify the MIME type "application/gml+xml; version=3.1" as an InfoFormat value and the GML application schema of the response SHOULD conform to GML Simple Features profile level 0 when that GML profile is used. In most cases, only thematic attributes of the features are intended to be included in a FeatureInfo document but the Simple Feature profiles were evidently intended to include the geometric information of the features in the GML objects. However, it is possible to generate an application schema that does not include feature geometry and only describes non-geometric feature attribute types. This can be very useful to avoid unnecessarily requesting long sequences of position values in line or polygon layers.
+
+Also, to allow easy presentation of the data, support for the HTML format (represented by an InfoFormat MIME type of "text/html") is also recommended.
+
+==== GetResourceRepresentation
+
+The ServiceMetadata document in the resource oriented architectural style may contain a list of Layer elements and each layer that is available to be retrieved in this architectural style and is queryable SHALL have one or more <ResourceURL> elements with the "resourceType" attribute set to "FeatureInfo" and a template attribute. In this RESTful approach the template attribute contains a URL template that can be converted to a URL by using a template processor and then get the expected FeatureInfo in the format specified by the attribute "format" by requesting the resource with a standard HTTP GET.
+
+include::requirements/core/REQ_grr.adoc[]
+
+===== Operation
+
+The GetResourceRepresentation request operation is defined by the following requirement:
+
+include::requirements/core/REQ_grr-op.adoc[]
+
+An example GetResourceRepresentation request
+is
+
+    http://www.maps.bob/etopo2/default/WholeWorld_CRS_84/10m/1/3/86/132.xml
+
+It corresponds to the following ResourceURL element: <ResourceURL format="application/gml+xml; version=3.1" resourceType="FeatureInfo" template="http://www.maps.bob/etopo2/default/ {TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}/{J}/{I}.xml"
+
+===== Response
+
+A successful GetResourceRepresentation response is defined by the following requirement:
+
+include::requirements/core/REQ_grr-success.adoc[]
+
+An XML document conforming GML Simple Features Profile [06-049r1] is the most typical representation but other representations and formats are also allowed.
+
+===== Error situations
+
+An unsuccessful GetResourceRepresentation reponse follows the general guidance for HTTP status codes provided in <<http_status_codes>> and the following requirement:
+
+include::requirements/core/REQ_grr-error.adoc[]

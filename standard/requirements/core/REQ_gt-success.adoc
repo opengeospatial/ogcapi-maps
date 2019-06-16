@@ -1,9 +1,0 @@
-[width="90%",cols="2,6a"]
-|===
-|*Requirement {counter:req-id}* |/req/core/fc-gt-success 
-2+|A successful execution of the operation SHALL be reported as a response with a HTTP status code `200`.
-
-The content of that response SHALL be either an image representation of the tile or a reference to an image. An image is the most typical representation but representations in other formats are also allowed.
-
-The response SHALL be encoded using the content type negotiated in the HTTP request and the corresponding response schema identified in the API Description document.
-|===

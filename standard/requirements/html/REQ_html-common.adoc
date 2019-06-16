@@ -1,0 +1,6 @@
+[[req_html_html-common]] 
+[width="90%",cols="2,6"]
+|===
+^|*Requirement {counter:req-id}* |*/req/html/html-common* 
+^|A |The API SHALL implement all capabilities specified in the http://www.opengis.net/spec/OAPI_Common/1.0/req/html Requirements Class of the OGC API-Common version 1.0 Standard.
+|===

@@ -1,0 +1,7 @@
+[[req_core_ds-op]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/core/ds-op*
+^|A |For every coverage (path `/collections/{collectionId}/coverages/{coverageId}`), the server SHALL describe the domain set of that coverage using the HTTP GET operation at the path `/collections/{collectionId}/coverages/{coverageId}/domainset`.
+^|B |The parameter `collectionId` is each `id` property in the coverage collections response (JSONPath: `$.collections[*].id`). `coverageId` is a local identifier of the coverage.
+|===

@@ -1,5 +1,0 @@
-[width="90%",cols="2,6a"]
-|===
-|*Requirement {counter:req-id}* |/req/core/fc-gt-error 
-2+|No specific requirements have been identifed at this time.
-|===

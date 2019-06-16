@@ -1,5 +1,0 @@
-[width="90%",cols="2,6a"]
-|===
-|*Requirement {counter:req-id}* |/req/core/grr
-2+|An API which is compliant with the OGC API MapsTiles standard SHALL support the GetResourceRepresentation operation. 
-|===

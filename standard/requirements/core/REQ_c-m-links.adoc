@@ -1,0 +1,12 @@
+[[req_core_c-m-links]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/core/c-m-links* 
+^|A |A `200`-response SHALL include the following links in the response:
+
+* a link to the response document (relation: `self`),
+* a link to the response document in every other media type supported by the service (relation: `alternate`), and
+* a link to the coverage collection that contains this coverage (relation: `collection`).
+
+^|B |All links SHALL include the `rel` and `type` link parameters.
+|===

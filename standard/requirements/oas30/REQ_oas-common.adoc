@@ -1,0 +1,6 @@
+[[req_oas30_oas-common]] 
+[width="90%",cols="2,6"]
+|===
+^|*Requirement {counter:req-id}* |*/req/oas30/oas-common* 
+^|A |The API SHALL implement all capabilities specified in the http://www.opengis.net/spec/ogcapi-features-1/1.0/req/oas30 Requirements Class of the OGC API-Common version 1.0 Standard.
+|===
