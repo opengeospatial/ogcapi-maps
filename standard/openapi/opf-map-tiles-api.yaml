@@ -524,7 +524,7 @@ paths:
       operationId: getTileOfCollectionId
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
-        - $ref: '#/components/parameters/styles'
+        - $ref: '#/components/parameters/style'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrix'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileRow'
@@ -566,7 +566,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
-  '/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/{j}/{i}':
+  '/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
         - Tiles
@@ -582,8 +582,9 @@ paths:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrix'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileRow'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileCol'
-        - $ref: '#/components/parameters/tile-i'
-        - $ref: '#/components/parameters/tile-j'
+        - $ref: '#/components/parameters/coord_i'
+        - $ref: '#/components/parameters/coord_j'
+        - $ref: '#/components/parameters/tileFormat'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/properties'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime'
         - $ref: '#/components/parameters/f-json-html'
@@ -606,7 +607,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
-  '/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/{j}/{i}':
+  '/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
         - Tiles
@@ -617,13 +618,14 @@ paths:
       operationId: getFeatureInfoTileOfCollectionId
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
-        - $ref: '#/components/parameters/styles'
+        - $ref: '#/components/parameters/style'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrix'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileRow'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileCol'
-        - $ref: '#/components/parameters/tile-i'
-        - $ref: '#/components/parameters/tile-j'
+        - $ref: '#/components/parameters/coord_i'
+        - $ref: '#/components/parameters/coord_j'
+        - $ref: '#/components/parameters/tileFormat'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/properties'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime'
         - $ref: '#/components/parameters/f-json-html'
@@ -663,7 +665,7 @@ paths:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: '#/components/parameters/tileMatrices'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox'
-        - $ref: '#/components/parameters/innerFormat'
+        - $ref: '#/components/parameters/tileFormat'
         - $ref: '#/components/parameters/embedded'
         - $ref: '#/components/parameters/f-json-zip'
       responses:
@@ -691,11 +693,11 @@ paths:
       operationId: getTiles
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
-        - $ref: '#/components/parameters/styles'
+        - $ref: '#/components/parameters/style'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: '#/components/parameters/tileMatrices'        
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox'
-        - $ref: '#/components/parameters/innerFormat'
+        - $ref: '#/components/parameters/tileFormat'
         - $ref: '#/components/parameters/embedded'        
         - $ref: '#/components/parameters/f-json-zip'
       responses:
@@ -714,7 +716,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'          
-  '/maps':
+  '/map':
     get:
       tags:
         - Maps
@@ -759,7 +761,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
-  '/collections/{collectionId}/maps':
+  '/collections/{collectionId}/map':
     get:
       tags:
         - Maps
@@ -773,7 +775,7 @@ paths:
         - $ref: '#/components/parameters/map-crs'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox'
         - $ref: '#/components/parameters/collections'
-        - $ref: '#/components/parameters/styles'
+        - $ref: '#/components/parameters/style'
         - $ref: '#/components/parameters/width'
         - $ref: '#/components/parameters/height'
         - $ref: '#/components/parameters/transparent'
@@ -804,7 +806,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
-  '/maps/getFeatureInfo':
+  '/map/info':
     get:
       tags:
         - Maps
@@ -841,7 +843,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'          
-  '/collections/{collectionId}/maps/getFeatureInfo':
+  '/collections/{collectionId}/map/info':
     get:
       tags:
         - Maps
@@ -856,7 +858,7 @@ paths:
         - $ref: '#/components/parameters/map-crs'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox'
         - $ref: '#/components/parameters/collections'
-        - $ref: '#/components/parameters/styles'
+        - $ref: '#/components/parameters/style'
         - $ref: '#/components/parameters/width'
         - $ref: '#/components/parameters/height'
         - $ref: '#/components/parameters/transparent'
@@ -949,7 +951,7 @@ components:
           nullable: true
           minItems: 1
           items:
-            $ref: 'https://app.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/link'
+            $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/link'
         tileMatrixSetLimits:
           type: array
           nullable: true
@@ -1158,6 +1160,16 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/collectionList'
+    style:
+      name: style
+      in: query
+      description: |-
+        The styleId that should be included in the map or tile. Each collectionId has a valid list of stylesId. To know the valid styleId values of each collectionId use /collections/{collectionId}.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
     styles:
       name: styles
       in: query
@@ -1277,20 +1289,20 @@ components:
       name: mapFormat
       in: query
       description: |-
-        Format of the map for a getFeatureInfo.
+        Internal format of the maps referenced by a getFeatureInfo.
       required: false
       style: form
       schema:
         type: string          
-    innerFormat:
-      name: innerFormat
+    tileFormat:
+      name: tileFormat
       in: query
       description: |-
-        Internal format of the tiles referenced or embedded.
+        Internal format of the multi- tiles referenced or embedded of for the info request on a tile
       required: false
       style: form
       schema:
-        type: string
+        type: string          
     embedded:
       name: embedded
       in: query
@@ -1300,32 +1312,4 @@ components:
       style: form
       schema:
         type: boolean
-    tile-j:
-      name: j
-      in: path
-      description: |-
-        Row index of the tile on the selected zoom level. 
-        
-        If the Google Maps Tiling Scheme is used see
-        http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
-        for more information about `tileMatrix`, `tileRow` and `tileCol`. For example, 
-        Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
-      required: true
-      schema:
-        type: number
-      example: '827'
-    tile-i:
-      name: i
-      in: path
-      description: |-
-        Row index of the tile on the selected zoom level. 
-        
-        If the Google Maps Tiling Scheme is used see
-        http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
-        for more information about `tileMatrix`, `tileRow` and `tileCol`. For example, 
-        Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
-      required: true
-      schema:
-        type: number
-      example: '827'      
   responses: {}

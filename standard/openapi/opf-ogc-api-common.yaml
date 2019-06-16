@@ -155,15 +155,15 @@ components:
           items:
             $ref: '#/components/schemas/link'
           example:
-            - href: 'http://data.example.com/buildings/items'
+            - href: 'http://data.example.com/collections/buildings/items'
               rel: 'items'
             - href: 'http://example.com/concepts/buildings.html'
               rel: 'describedBy'
               type: 'text/html'
-            - href: 'http://data.example.com/buildings/maps'
+            - href: 'http://data.example.com/collections/buildings/maps'
               rel: 'maps'
               type: 'text/html'
-            - href: 'http://data.example.com/buildings/tiles'
+            - href: 'http://data.example.com/collections/buildings/tiles'
               rel: 'tiles'
               type: 'text/html'
         extent:
