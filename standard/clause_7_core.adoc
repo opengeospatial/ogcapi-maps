@@ -430,7 +430,3 @@ Describes the {collectionId} collection
     }
 
 =================
-
-include::clause_7_tiles.adoc[]
-
-include::clause_7_maps.adoc[]
