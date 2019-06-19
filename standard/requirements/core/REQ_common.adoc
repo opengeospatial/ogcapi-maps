@@ -1,6 +1,0 @@
-[width="90%",cols="2,6a"]
-|===
-|*Requirement {counter:req-id}* |/req/core/common 
-2+|APIs implementing this standard SHALL conform with OAPI-Common 1.0.
-|Dependency: |none
-|===

@@ -344,7 +344,7 @@ Metadata about the collections shared by this API.
 
 include::requirements/core/REQ_cc-md-common.adoc[]
 
-==== Collections metadata
+==== Collection (singular) metadata
 
 Describes the {collectionId} collection
 

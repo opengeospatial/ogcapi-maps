@@ -1,7 +1,0 @@
-[[req_core_c-m-success]] 
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/core/c-m-success* 
-^|A |A successful execution of the operation SHALL be reported as a response with a HTTP status code `200`.
-^|B |The body of a successful response SHALL be metadata record encoded using a schema equivalent to the JSON fragement at <<coverageGeoJSON>>.
-|===

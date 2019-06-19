@@ -1,7 +1,0 @@
-[[req_core_c-op]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/core/c-op*
-^|A |For every coverage in a coverage collection (path `/collections/{collectionId}`), the server SHALL support the HTTP GET operation at the path `/collections/{collectionId}/coverages/{coverageId}`.
-^|B |The parameter `collectionId` is each `id` property in the coverage collections response (JSONPath: `$.collections[*].id`). `coverageId` is a local identifier of the coverage.
-|===

@@ -1,7 +1,0 @@
-[[req_core_rt-op]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/core/rt-op*
-^|A |For every coverage (path `/collections/{collectionId}/coverages/{coverageId}`), the server SHALL describe the range type of that coverage using the HTTP GET operation at the path `/collections/{collectionId}/coverages/{coverageId}/rangetype`.
-^|B |The parameter `collectionId` is each `id` property in the coverage collections response (JSONPath: `$.collections[*].id`). `coverageId` is a local identifier of the coverage.
-|===
