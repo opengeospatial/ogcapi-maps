@@ -8,7 +8,7 @@ IMPORTANT NOTE: For the moment, most of the work so far is done directly in the 
 
 ## Overview
 
-IMPORTANT NOTE: The description in this README.md can be older than the on in the [standard](standard) draft. In case of discrepancy the standard draft takes precedence.
+IMPORTANT NOTE: The description in this README.md can be older than the one in the [standard](standard) draft. In case of discrepancy the standard draft takes precedence.
 
 ### Maps
 
