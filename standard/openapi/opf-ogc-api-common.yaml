@@ -945,7 +945,7 @@ components:
       in: query
       description: |-
         The collections that should be included in the response. The parameter value
-        is a list of collection identifiers.
+        is a comma-separated list of collection identifiers.
       required: false
       style: form
       explode: false
