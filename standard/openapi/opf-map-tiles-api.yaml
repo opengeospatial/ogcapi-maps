@@ -120,6 +120,27 @@ paths:
                 type: string
         '500':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
+  '/api':
+    get:
+      tags:
+        - API_Description
+      summary: landing page
+      description: |-
+        A document describing this API in a machine readable format.
+      operationId: getAPI
+      responses:
+        '200':
+          description: |-
+            The API Description document for this API.
+          content:
+            application/json:
+              schema:
+                $ref: 'https://github.com/OAI/OpenAPI-Specification/blob/master/schemas/v3.0/schema.json'
+            application/yaml:
+              schema:
+                $ref: 'https://github.com/OAI/OpenAPI-Specification/blob/master/schemas/v3.0/schema.yaml'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
   '/conformance':
     get:
       summary: information about specifications that this API conforms to
