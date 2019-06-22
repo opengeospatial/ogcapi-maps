@@ -35,7 +35,7 @@ info:
 
   version: "1.0.0"
   contact:
-    name: Jaon Maso
+    name: Joan Maso
     email: joan.maso@uab.cat
   license:
     name: OGC License
@@ -102,11 +102,11 @@ paths:
                 - href: 'http://data.example.org/collections?f=json'
                   rel: data
                   type: application/json
-                  title: The feature collections in the dataset in JSON
+                  title: The collections in the dataset in JSON
                 - href: 'http://data.example.org/collections?f=html'
                   rel: data
                   type: text/html
-                  title: The feature collections in the dataset in HTML
+                  title: The collections in the dataset in HTML
                 - href: 'http://data.example.org/tileMatrixSet?f=json'
                   rel: tileMatrixSets
                   type: application/json
@@ -913,7 +913,7 @@ components:
             $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/link'
     tiles-set:
       description: |-
-        This is the response of a multiple tiles request.
+        This is the response for a multiple tiles request.
       required:
         - type
       type: array
@@ -945,12 +945,12 @@ components:
         width:
           type: number
           description: |-
-            The width of the tile in randering device pixels. If it excedes the visual display area be should cut when displayed
+            The width of the tile in rendering device pixels. If it exceeds the visual display area be should cut when displayed
           nullable: true
         height:
           type: number
           description: |-
-            The height of the tile in randering device pixels. If it excedes the visual display area be should cut when displayed
+            The height of the tile in rendering device pixels. If it exceeds the visual display area be should cut when displayed
           nullable: true
         top:
           type: number
@@ -1030,7 +1030,7 @@ components:
       schema:
         type: string
         enum:
-          - pgn
+          - png
           - jpeg
           - gif
           - mvt
@@ -1079,7 +1079,7 @@ components:
       name: i
       in: query
       description: |-
-        Height in pixels of map picture.
+        Horizontal (x) coordinate within a map or tile.
       required: true
       style: form
       explode: false
@@ -1089,7 +1089,7 @@ components:
       name: j
       in: query
       description: |-
-        Height in pixels of map picture.
+        Vertical (y) coordinate within a map or tile.
       required: true
       style: form
       explode: false
@@ -1099,7 +1099,7 @@ components:
       name: scaleDenRange
       in: query
       description: |-
-        A ange of scale denominators (that canb e used to deduce a list of tileMatrix names). Please consider that scale denominators have several significant digits. To prevent mistakes apply tolerances to intervals. Even if you want to specify a single scale denominator use an interval with tolerance
+        A range of scale denominators (that can be used to generate a list of tileMatrix names. Note that scale denominators have several significant digits. To prevent mistakes apply tolerances to intervals. Even if you want to specify a single scale denominator use an interval with tolerance
       required: false
       style: form
       explode: false
@@ -1113,7 +1113,7 @@ components:
       name: infoTemplate
       in: query
       description: |-
-        template used for showing the info. This parameter can be used to select among GML application schemas or JSON shemas and provide alternative presentations for the same info
+        template used for the information response. This parameter can be used to select among GML application schemas or JSON schemas and provide alternative presentations for the same information
       required: false
       style: form
       explode: false
@@ -1133,7 +1133,7 @@ components:
       name: bgcolor
       in: query
       description: |-
-        Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF) if alpha is not specified "opaque" opacity is assumed.
+        Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). If alpha is not specified, "opaque" opacity is assumed.
       required: false
       style: form
       explode: false
@@ -1153,8 +1153,8 @@ components:
       name: crs
       in: query
       description: |-
-        CRSId used to rended the map. It is also the CRS of the bbox parameter.
-        You can only ask for CRSs that are valid of the collectionId.
+        CRSId used to render the map. It is also the CRS of the bbox parameter.
+        You can only ask for CRSs that are valid for the collectionId.
       required: false
       style: form
       explode: false
@@ -1174,7 +1174,7 @@ components:
       name: tileFormat
       in: query
       description: |-
-        Internal format of the multi- tiles referenced or embedded of for the info request on a tile
+        Internal format of the multi-tiles referenced or embedded for the info request on a tile
       required: false
       style: form
       schema:
