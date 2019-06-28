@@ -1,0 +1,566 @@
+openapi: 3.0.2
+# Revisions:
+# 2019-05-09 initial version
+# 2019-05-11 added nullable values to support patch
+# 2019-05-17 TileRow and TileCol are now 'numbers' (not strings)
+# 2019-05-17 "unless a different coordinate reference system is specified in the parameter `bbox-crs`." has been removed and instead we have added "unless a different coordinate         reference system is specified by another parameter in the API."
+# 2019-05-21 "The default Tiling Scheme is the Google Maps Tiling Scheme" is changed to "The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme)"
+# 2019-05-21 "CRSId" has been added
+# 
+info:
+  title: OGC API Building Blocks
+  description: |-
+    Common components used in the OGC API family of standards. Deeply inspired in Clemens Portele work.
+    
+    This document is also available in [GitHub](https://github.com/opengeospatial/oapi_common/tree/master/OAPI-Common/openapi).
+
+  version: '1.0.0'
+  contact:
+    name: Joan Maso
+    email: joan.maso@uab.cat
+  license:
+    name: OGC License
+    url: 'https://raw.githubusercontent.com/opengeospatial/oapi_common/master/LICENSE'
+
+components:
+  ####################
+  # Common data models (schemas)
+  ####################
+  schemas:
+    landing-page:
+      required:
+        - links
+      type: object
+      properties:
+        links:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/link'
+      ##Example may vary among different services.
+      example:
+        - href: 'http://data.example.org/?f=json'
+          rel: self
+          type: application/json
+          title: this document
+        - href: 'http://data.example.org/?f=html'
+          rel: alternate
+          type: text/html
+          title: this document in HTML
+        - href: 'http://data.example.org/api?f=json'
+          rel: service
+          type: application/vnd.oai.openapi+json;version=3.0
+          title: the API definition in OpenAPI 3.0 JSON
+        - href: 'http://data.example.org/api?f=html'
+          rel: service
+          type: text/html
+          title: the API definition in HTML
+        - href: 'http://data.example.org/conformance?f=json'
+          rel: conformance
+          type: application/json
+          title: the list of conformance classes implemented by this API
+        - href: 'http://data.example.org/collections?f=json'
+          rel: data
+          type: application/json
+          title: The feature collections in the dataset in JSON
+        - href: 'http://data.example.org/collections?f=html'
+          rel: data
+          type: text/html
+          title: The feature collections in the dataset in HTML
+    link:
+      required:
+        - href
+      type: object
+      nullable: true
+      properties:
+        href:
+          type: string
+          nullable: true
+          example: 'http://data.example.com/buildings/123'
+        rel:
+          type: string
+          nullable: true
+          example: next
+        type:
+          type: string
+          nullable: true
+          example: application/geo+json
+        hreflang:
+          type: string
+          nullable: true
+          example: en
+    req-classes:
+      required:
+        - conformsTo
+      type: object
+      properties:
+        conformsTo:
+          type: array
+          nullable: true
+          example:
+            - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/core'
+            - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/oas30'
+            - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/html'
+            - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/geojson'
+          items:
+            type: string
+    collections:
+      type: object
+      required:
+        - links
+        - collections
+      properties:
+        links:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/link'
+          example:
+            - href: 'http://data.example.org/collections.json'
+              rel: self
+              type: application/json
+              title: this document
+            - href: 'http://data.example.org/collections.html'
+              rel: alternate
+              type: text/html
+              title: this document as HTML
+            - href: 'http://schemas.example.org/1.0/foobar.xsd'
+              rel: describedBy
+              type: application/xml
+              title: XML schema for Acme Corporation data
+        collections:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/collectionInfo'
+    collectionInfo:
+      type: object
+      required:
+        - id
+        - links
+      properties:
+        id:
+          type: string
+          example: address
+        title:
+          type: string
+          nullable: true
+          example: address
+        description:
+          type: string
+          nullable: true
+          example: An address.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example:
+            - href: 'http://data.example.com/collections/buildings/items'
+              rel: 'items'
+            - href: 'http://example.com/concepts/buildings.html'
+              rel: 'describedBy'
+              type: 'text/html'
+            - href: 'http://data.example.com/collections/buildings/maps'
+              rel: 'maps'
+              type: 'text/html'
+            - href: 'http://data.example.com/collections/buildings/tiles'
+              rel: 'tiles'
+              type: 'text/html'
+        extent:
+          $ref: '#/components/schemas/extent'
+        crs:
+          description: |-
+            The list of coordinate reference systems supported by the service.
+            The first item is the default coordinate reference system.
+          type: array
+          nullable: true
+          items:
+            type: string
+          default:
+            - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+          example:
+            - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+            - 'http://www.opengis.net/def/crs/EPSG/0/4326'
+    extent:
+      description: |-
+        The extent of the features in the collection. In the Core only spatial and temporal
+        extents are specified. Extensions may add additional members to represent other
+        extents, for example, thermal or pressure ranges.
+      type: object
+      nullable: true
+      properties:
+        spatial:
+          $ref: '#/components/schemas/spatial'
+        temporal:
+          $ref: '#/components/schemas/temporal'
+    spatial:
+      description: |-
+        The spatial extent of the features in the collection.
+      type: object
+      nullable: true
+      properties:
+        bbox:
+          $ref: '#/components/schemas/bbox'
+        crs:
+          $ref: '#/components/schemas/crs'
+    bbox:
+      description: |-
+        One or more bounding boxes that describe the spatial extent of the dataset.
+        In the Core only a single bounding box is supported. Extensions may support
+        additional areas. If multiple areas are provided, the union of the bounding
+        boxes describes the spatial extent.
+      type: array
+      nullable: true
+      minItems: 1
+      items:
+        description: |-
+          West, south, east, north edges of the bounding box. The coordinates
+          are in the coordinate reference system specified in `crs`. By default
+          this is WGS 84 longitude/latitude.
+        type: array
+        minItems: 4
+        maxItems: 6
+        items:
+          type: number
+        example:
+          - -180
+          - -90
+          - 180
+          - 90
+    crs:
+      description: |-
+        Coordinate reference system of the coordinates in the spatial extent
+        (property `bbox`). The default reference system is WGS 84 longitude/latitude.
+        In the Core this is the only supported coordinate reference system.
+        Extensions may support additional coordinate reference systems and add
+        additional enum values.
+      type: string
+      nullable: true
+      enum:
+        - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+      default: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+    temporal:
+      description: |-
+        The temporal extent of the features in the collection.
+      type: object
+      nullable: true
+      properties:
+        interval:
+          $ref: '#/components/schemas/interval'
+        trs:
+          $ref: '#/components/schemas/trs'
+    interval:
+      description: |-
+        One or more time intervals that describe the temporal extent of the dataset.
+        The value `null` is supported and indicates an open time intervall.
+        In the Core only a single time interval is supported. Extensions may support
+        multiple intervals. If multiple intervals are provided, the union of the
+        intervals describes the temporal extent.
+      type: array
+      nullable: true
+      minItems: 1
+      items:
+        description: |-
+          Begin and end times of the time interval. The timestamps
+          are in the coordinate reference system specified in `trs`. By default
+          this is the Gregorian calendar.
+        type: array
+        minItems: 2
+        maxItems: 2
+        items:
+          type: string
+          format: date-time
+          nullable: true
+        example:
+          - '2011-11-11T12:22:11Z'
+          - null
+    trs:
+      description: |-
+        Coordinate reference system of the coordinates in the temporal extent
+        (property `interval`). The default reference system is the Gregorian calendar.
+        In the Core this is the only supported temporal reference system.
+        Extensions may support additional temporal reference systems and add
+        additional enum values.
+      type: string
+      nullable: true
+      enum:
+        - 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
+      default: 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
+
+
+    exception:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+      example:
+        code: '500'
+        description: 'An internal server error occured. Incident ID: 1234567. Please contact admin@example.org.'
+
+  ####################
+  # Common parameters
+  ####################
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: |-
+        The optional limit parameter limits the number of items that are presented 
+        in the response document.
+      
+        Only items are counted that are on the first level of the collection in the response document. 
+        Nested objects contained within the explicitly requested items shall not be counted.
+      
+        Minimum = 1. Maximum = 10000. Default = 10.
+        
+        Defined in [OGC API - Features - Part 1:Core](http://docs.opengeospatial.org/DRAFTS/17-069.html).
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 10000
+        default: 10
+      style: form
+      explode: false
+    offset:
+      name: offset
+      in: query
+      description: |-
+        The optional offset parameter indicates the index within the result set
+        from which the server shall begin presenting results in the response
+        document. The first element has an index of 0.
+
+        Minimum = 0. Default = 0.
+      required: false
+      style: form
+      explode: false
+      schema:
+        minimum: 0
+        type: integer
+        default: 0
+      example: 0
+    bbox:
+      name: bbox
+      in: query
+      description: |-
+        Only features that have a geometry that intersects the bounding box are selected.
+        The bounding box is provided as four or six numbers, depending on whether the
+        coordinate reference system includes a vertical axis (elevation or depth):
+        
+        * Lower left corner, coordinate axis 1
+        * Lower left corner, coordinate axis 2
+        * Lower left corner, coordinate axis 3 (optional)
+        * Upper right corner, coordinate axis 1
+        * Upper right corner, coordinate axis 2
+        * Upper right corner, coordinate axis 3 (optional)
+      
+        The coordinate reference system of the values is WGS 84 longitude/latitude
+        (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a different coordinate
+        reference system is specified by another parameter in the API.
+      
+        For WGS 84 longitude/latitude the values are in most cases the sequence of
+        minimum longitude, minimum latitude, maximum longitude and maximum latitude.
+        However, in cases where the box spans the antimeridian the first value
+        (west-most box edge) is larger than the third value (east-most box edge).
+      
+        If a feature has multiple spatial geometry properties, it is the decision of the
+        server whether only a single spatial geometry property is used to determine
+        the extent or all relevant geometries.
+      required: false
+      schema:
+        type: array
+        minItems: 4
+        maxItems: 6
+        items:
+          type: number
+      style: form
+      explode: false
+    datetime:
+      name: datetime
+      in: query
+      description: |-
+        Either a date-time or an interval, open or closed. Date and time expressions
+        adhere to RFC 3339. Open intervals are expressed using double-dots.
+      
+        Examples:
+      
+        * A date-time: "2018-02-12T23:20:50Z"
+        * A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
+        * Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
+      
+        Only features that have a temporal property that intersects the value of
+        `datetime` are selected.
+      
+        If a feature has multiple temporal properties, it is the decision of the
+        server whether only a single temporal property is used to determine
+        the extent or all relevant temporal properties.
+      required: false
+      schema:
+        type: string
+      style: form
+      explode: false
+    resultType:
+      name: resultType
+      in: query
+      description: |-
+        This service will respond to a query in one of two ways (excluding an
+        exception response). It may either generate a complete response document
+        containing resources that satisfy the operation or it may simply
+        generate an empty response container that indicates the count of the
+        total number of resources that the operation would return. Which of
+        these two responses is generated is determined by the value of the
+        optional resultType parameter.
+
+        The allowed values for this parameter are "results" and "hits".
+
+        If the value of the resultType parameter is set to "results", the server
+        will generate a complete response document containing resources that
+        satisfy the operation.
+
+        If the value of the resultType attribute is set to "hits", the server
+        will generate an empty response document containing no resource
+        instances.
+
+        The default value is "results".
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+        default: results
+        enum:
+          - hits
+          - results
+      example: results
+    collectionId:
+      name: collectionId
+      in: path
+      description: |-
+        local identifier of a collection
+      required: true
+      schema:
+        type: string
+      example: buildings
+
+  #######################
+  # Common request bodies
+  #######################
+  requestBodies: {}
+
+  ####################
+  # Common responses. These responses are samples and you will copy them and extend them (e.g. with examples) into your API document instead of $ref them.
+  ####################
+  responses:
+    LandingPage:
+      description: |-
+        Links to top leve resources (API definition, conformance, resources...)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/landing-page'
+        text/html:
+          schema:
+            type: string
+    ConformanceDeclaration:
+      summary: |- 
+        This element is pro
+      description: |-
+        The URIs of all requirements classes supported by the server.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/req-classes'
+    Collections:
+      description: |-
+        The feature collections shared by this API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/collections'
+        text/html:
+          schema:
+            type: string
+    CollectionInfo:
+      description: |-
+        Metadata about the feature collection with id `collectionId`.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/collectionInfo'
+        text/html:
+          schema:
+            type: string
+    Created:
+      description: |-
+        Resource created. Response associated to 201
+      headers:
+        Location:
+          $ref: '#/components/headers/Location'
+    Updated:
+      description: |-
+        The resource has been updated or created. Response associated to 204
+    Deleted:
+      description: |-
+        The resource has been deleted. Response associated to 204
+    Invalid:
+      description: |-
+        The resource is an invalid input. Response associated to 400
+    UnauthorizedAccess:
+      description: |-
+        Unauthorized access. Response associated to 401
+    NotFound:
+      description: |-
+        The requested URI was not found. Response associated to 404
+    AlreadyExist:
+      description: |-
+        Resource with that id already exists. Response associated to 409        
+    ServerError:
+      description: |-
+        A server error occurred. Response associated to 500
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/exception'
+        text/html:
+          schema:
+            type: string
+  #########################
+  # Common response headers
+  #########################
+  headers: 
+    Location:
+      schema:
+          type: string
+          format: uri
+      description: |-
+        URI of the new resource.
+    Link:
+      description: |-
+        link header according to RFC 8288
+      schema:
+        type: string
+      example: "Link: <http://data.example.org/collections/buildings/items.json>; rel=\"self\"; type=\"application/geo+json\""
+
+  #######################
+  # Common path items
+  # NOTE: Referencing pathitems does not seem to work, so I have stopped defining/using them
+  #######################
+
+  ######################################
+  # Common examples of input/output data
+  ######################################
+  examples: {}
+
+  #########################
+  # Common link definitions
+  #########################
+  links: {}
+
+  #########################
+  # Common callback definitions
+  #########################
+  callbacks: {}
