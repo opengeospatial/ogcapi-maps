@@ -4,7 +4,7 @@ This GitHub repository contains the new revision of the [OGC](http://opengeospat
 
 This work encompasses two standards that will be developed simultaneously. In the end, must people believe at least 2 standards will emerge or even more when the core and extension model is applied.
 
-IMPORTANT NOTE: For the moment, most of the work so far is done directly in the [Swagger HUB version of the maps and tiles](https://app.swaggerhub.com/apis/joanma747/opf-map-tiles-api/1.0.0) in addition to [some definition made in a domain document](https://app.swaggerhub.com/domains/joanma747/ogc-api/1.0.0). In case of discrepancy with the material here the swagger portal takes precedence. Later it will be translated into requirements and informative text here. A less dynamic version of the swagger documents can be found [here](standard/openapi)
+IMPORTANT NOTE: For the moment, most of the work so far is done directly in the [Swagger HUB version of the maps and tiles](https://app.swaggerhub.com/apis/joanma747/opf-map-tiles-api/1.0.0) in addition to [some definition made in a domain document](https://app.swaggerhub.com/domains/joanma747/ogc-api/1.0.0). In case of discrepancy with the material here the swagger portal takes precedence. Later it will be translated into requirements and informative text here. A less dynamic version of the swagger documents can be found [here](standard/openapi)kjhkjh
 
 ## Overview
 
