@@ -4,7 +4,14 @@ This GitHub repository contains the new revision of the [OGC](http://opengeospat
 
 This work encompasses two standards that will be developed simultaneously. In the end, must people believe at least 2 standards will emerge or even more when the core and extension model is applied.
 
-IMPORTANT NOTE: For the moment, most of the work so far is done directly in the [Swagger HUB version of the maps and tiles](https://app.swaggerhub.com/apis/joanma747/opf-map-tiles-api/1.0.0) in addition to [some definition made in a domain document](https://app.swaggerhub.com/domains/joanma747/ogc-api/1.0.0). In case of discrepancy with the material here the swagger portal takes precedence. Later it will be translated into requirements and informative text here. A less dynamic version of the swagger documents can be found [here](standard/openapi)kjhkjh
+IMPORTANT NOTE: For the moment, most of the work so far is done directly in the Swagger HUB version of the maps and tiles
+
+In case of discrepancy with the material here the swagger portal takes precedence. Later it will be translated into requirements and informative text here. A less dynamic version of the swagger documents can be found [here](standard/openapi)
+
+The work in Swagger is structured in three parts:
+* A [OGC API maps and tiles OPF example](https://app.swaggerhub.com/apis/joanma747/ogc-api-map-tiles-opf-xmp/1.0.0) that contains and example of server with some features and coverages that are served as maps and/or tiles. In this file you can see some examples of responses in json format.
+* A [OGC API maps and tiles DOMAIN document](https://app.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0). It contains fragments that can be reference in api document instances. It could become part of a future OGC API maps and tiles standard additional material.
+* A [OGC API common DOMAIN document](https://app.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0). It contains fragments that can be reference in api document instances or other domain dociment. It could become part of a future OGC API common standard additional material.
 
 ## Overview
 
