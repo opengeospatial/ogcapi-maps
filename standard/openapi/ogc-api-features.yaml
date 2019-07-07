@@ -24,9 +24,10 @@ info:
     url: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/LICENSE'
 
 components:
-    #######################
-    # From OGC API Features
-    #######################
+  schemas:
+  #######################
+  # From OGC API Features
+  #######################
     queryables:
       type: array
       nullable: true
