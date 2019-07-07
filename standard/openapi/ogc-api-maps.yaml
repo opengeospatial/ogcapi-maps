@@ -1,0 +1,259 @@
+openapi: 3.0.2
+# Revisions:
+# 2019-05-09 initial version
+# 2019-05-11 added nullable values to support patch
+# 2019-05-17 TileRow and TileCol are now 'numbers' (not strings)
+# 2019-05-17 "unless a different coordinate reference system is specified in the parameter `bbox-crs`." has been removed and instead we have added "unless a different coordinate         reference system is specified by another parameter in the API."
+# 2019-05-21 "The default Tiling Scheme is the Google Maps Tiling Scheme" is changed to "The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme)"
+# 2019-05-21 "CRSId" has been added
+#
+info:
+  title: OGC API Building Blocks
+  description: |-
+    Common components used in the OGC API maps standards.
+
+    This document is also available in [GitHub](https://github.com/opengeospatial/OGC-API-Map-Tiles/tree/master/standard/openapi).
+
+  version: "1.0.0"
+  contact:
+    name: Joan Maso
+    email: joan.maso@uab.cat
+  license:
+    name: OGC License
+    url: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/LICENSE'
+
+components:
+  ####################
+  # Common data models
+  ####################
+  schemas:
+    #############################
+    # From OGC API Styles?
+    #############################
+    style-set:
+      type: array
+      nullable: true
+      items:
+        $ref: '#/components/schemas/style-set-entry'
+      example:
+        - id: 'night'
+          title: 'Topographic night style'
+          links:
+          - href: 'https://example.com/api/1.0/styles/night?f=mapbox'
+            type: 'application/vnd.mapbox.style+json'
+            rel: 'stylesheet'
+          - href: 'https://example.com/api/1.0/styles/night?f=sld10'
+            type: 'application/vnd.ogc.sld+xml;version=1.0'
+            rel: 'stylesheet'
+          - href: 'https://example.com/api/1.0/styles/night/metadata?f=json'
+            type: 'application/json'
+            rel: 'describedBy'
+        - id: 'topographic'
+          title: 'Regular topographic style'
+          links:
+          - href: 'https://example.com/api/1.0/styles/topographic?f=mapbox'
+            type: 'application/vnd.mapbox.style+json'
+            rel: 'stylesheet'
+          - href: 'https://example.com/api/1.0/styles/topographic?f=sld10'
+            type: 'application/vnd.ogc.sld+xml;version=1.0'
+            rel: 'stylesheet'
+          - href: 'https://example.com/api/1.0/styles/topographic/metadata?f=json'
+            type: 'application/json'
+            rel: 'describedBy'
+    style-set-entry:
+      type: object
+      nullable: true
+      required:
+        - id
+        - links
+      properties:
+        id:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        links:
+          type: array
+          nullable: true
+          minItems: 1
+          items:
+            $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
+    mapCRSSetLink:
+      description: |-
+        This list crsIds supported by this collectionId.  The presence of this property indicates that the collection is available as maps
+      type: array
+      nullable: true
+      items:
+        $ref: '#/components/schemas/crs-entry'
+      example:
+        - id: 'CRS:84'
+          links:
+          - href: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+            type: 'application/xml'
+            rel: 'describedby'
+    crs-entry:
+      type: object
+      nullable: true
+      required:
+        - id
+        - links
+      properties:
+        id:
+          type: string
+          nullable: false
+        title:
+          type: string
+          nullable: true
+        links:
+          type: array
+          nullable: false
+          minItems: 1
+          items:
+            $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
+    simbologyEncoding:
+      description: |-
+        SE encoding to create a map.
+      type: string
+  ####################
+  # Common parameters
+  ####################
+  parameters:
+    #############################
+    # From OGC API Maps and Tiles
+    #############################
+    mapId:
+      name: mapId
+      in: path
+      description: Local identifier of a specific map created with a post operation
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    crsId:
+      name: crsId
+      in: path
+      description: |-
+        Local identifier of a specific CRS. A list of all available CRSIds can be found under the /CRS path. The default CRS is WGS 84.
+      required: true
+      schema:
+        type: string
+      example: WGS84
+    styleId:
+      name: styleId
+      in: path
+      description: |-
+        The styleId that should be included in the map or tile. Each collectionId has a valid list of stylesId. To know the valid styleId values of each collectionId use /collections/{collectionId}.
+      required: true
+      schema:
+        type: string
+    styles:
+      name: styles
+      in: query
+      description: |-
+        The styleId that should be included in the map or tile. Each collectionId has a valid list of stylesId. To know the valid styleId values of each collectionId use /collections/{collectionId}.
+        The parameter value is a list of comma separated styles identifiers. If the parameter 'collections' exists, the list should be as long as 'collections' and each styleId correspons to one collectionId. If the path includes 'collections/{collectionId}' one style should be mentioned.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+    width:
+      name: width
+      in: query
+      description: |-
+        Width in pixels of map picture.
+      required: true
+      style: form
+      explode: false
+      schema:
+        type: number
+    height:
+      name: height
+      in: query
+      description: |-
+        Height in pixels of map picture.
+      required: true
+      style: form
+      explode: false
+      schema:
+        type: number
+    transparent:
+      name: transparent
+      in: query
+      description: |-
+        Background transparency of map (default=FALSE).
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: boolean
+    bgcolor:
+      name: bgcolor
+      in: query
+      description: |-
+        Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF) if alpha is not specified "opaque" opacity is assumed.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+    map-crs:
+      name: crs
+      in: query
+      description: |-
+        CRSId used to render the map. It is also the CRS of the bbox parameter.
+        You can only ask for CRSs that are valid for the collectionId.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+      example: 'EPSG:4326'
+    mapFormat:
+      name: mapFormat
+      in: query
+      description: |-
+        Internal format of the maps referenced by a getFeatureInfo.
+      required: false
+      style: form
+      schema:
+        type: string
+        
+  #######################
+  # Common request bodies
+  #######################
+  requestBodies: {}
+
+  ####################
+  # Common responses
+  ####################
+  responses:
+    {}
+
+  #########################
+  # Common response headers
+  #########################
+  headers:
+    {}
+
+  #######################
+  # Common path items
+  # NOTE: Referencing pathitems does not seem to work, so I have stopped defining/using them
+  #######################
+
+  ######################################
+  # Common examples of input/output data
+  ######################################
+  examples: {}
+
+  #########################
+  # Common link definitions
+  #########################
+  links: {}
+
+  #########################
+  # Common callback definitions
+  #########################
+  callbacks: {}

@@ -1,0 +1,98 @@
+openapi: 3.0.2
+# Revisions:
+# 2019-05-09 initial version
+# 2019-05-11 added nullable values to support patch
+# 2019-05-17 TileRow and TileCol are now 'numbers' (not strings)
+# 2019-05-17 "unless a different coordinate reference system is specified in the parameter `bbox-crs`." has been removed and instead we have added "unless a different coordinate         reference system is specified by another parameter in the API."
+# 2019-05-21 "The default Tiling Scheme is the Google Maps Tiling Scheme" is changed to "The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme)"
+# 2019-05-21 "CRSId" has been added
+#
+info:
+  title: OGC API Building Blocks
+  description: |-
+    Common components used in the OGC API Coverages of standards.
+    Deeply inspired in Stephan Meißl OGC API Coverages work.
+    https://raw.githubusercontent.com/opengeospatial/ogc_api_coverages/master/core/openapi/openapi.yaml
+
+    This document is also available in [GitHub](https://github.com/opengeospatial/OGC-API-Map-Tiles/tree/master/standard/openapi).
+
+  version: "1.0.0"
+  contact:
+    name: Joan Maso
+    email: joan.maso@uab.cat
+  license:
+    name: OGC License
+    url: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/LICENSE'
+
+components:
+  ####################
+  # Common data models
+  ####################
+  schemas:
+    ########################
+    # From OGC API Coverages
+    ########################
+    domainSetJSON:
+      description: TBD
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+    rangeTypeJSON:
+      description: TBD
+      type: object
+  ####################
+  # Common parameters
+  ####################
+  parameters:
+    ########################
+    # From OGC API Coverages
+    ########################
+    coverageId:
+      name: coverageId
+      in: path
+      description: Local identifier of a specific coverage
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+
+  #######################
+  # Common request bodies
+  #######################
+  requestBodies: {}
+
+  ####################
+  # Common responses
+  ####################
+  responses:
+    {}
+
+  #########################
+  # Common response headers
+  #########################
+  headers:
+    {}
+
+  #######################
+  # Common path items
+  # NOTE: Referencing pathitems does not seem to work, so I have stopped defining/using them
+  #######################
+
+  ######################################
+  # Common examples of input/output data
+  ######################################
+  examples: {}
+
+  #########################
+  # Common link definitions
+  #########################
+  links: {}
+
+  #########################
+  # Common callback definitions
+  #########################
+  callbacks: {}

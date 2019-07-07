@@ -1,0 +1,347 @@
+openapi: 3.0.2
+# Revisions:
+# 2019-05-09 initial version
+# 2019-05-11 added nullable values to support patch
+# 2019-05-17 TileRow and TileCol are now 'numbers' (not strings)
+# 2019-05-17 "unless a different coordinate reference system is specified in the parameter `bbox-crs`." has been removed and instead we have added "unless a different coordinate         reference system is specified by another parameter in the API."
+# 2019-05-21 "The default Tiling Scheme is the Google Maps Tiling Scheme" is changed to "The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme)"
+# 2019-05-21 "CRSId" has been added
+#
+info:
+  title: OGC API Building Blocks
+  description: |-
+    Common components used in the OGC API features standards.
+    Deeply inspired in Clemens Portele WFS3 work.
+
+    This document is also available in [GitHub](https://github.com/opengeospatial/OGC-API-Map-Tiles/tree/master/standard/openapi).
+
+  version: "1.0.0"
+  contact:
+    name: Joan Maso
+    email: joan.maso@uab.cat
+  license:
+    name: OGC License
+    url: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/LICENSE'
+
+components:
+    #######################
+    # From OGC API Features
+    #######################
+    queryables:
+      type: array
+      nullable: true
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/queryable-string'
+          - $ref: '#/components/schemas/queryable-enum'
+          - $ref: '#/components/schemas/queryable-number'
+          - $ref: '#/components/schemas/queryable-boolean'
+          - $ref: '#/components/schemas/queryable-date'
+          - $ref: '#/components/schemas/queryable-dateTime'
+    queryable:
+      type: object
+      nullable: true
+      required:
+        - id
+        - type
+      properties:
+        id:
+          type: string
+          nullable: true
+          description: |-
+            the property name for use in expressions
+        description:
+          type: string
+          nullable: true
+          description: |-
+            a description of the property
+        required:
+          type: boolean
+          nullable: true
+          default: false
+          description: |-
+            indicator whether the property is always present in features
+        mediaTypes:
+          type: array
+          nullable: true
+          description: |-
+            In cases where a property is available only in a subset of the
+            supported feature encodings, the list of the media types of the
+            encodings can be specified.
+
+            This capabilitiy is also needed for cases where the names of
+            properties may differ between feature encodings. For example,
+            identifiers in an XML/GML encoding may include a namespace,
+            in GeoJSON or MVT this is not the case.
+
+            There are other reasons, too. For example, the property identifier
+            in a Shapefile may be different because of length restrictions.
+          items:
+            type: string
+        type:
+          type: string
+          nullable: true
+          description: |-
+            the data type of the property
+          enum:
+            - string
+            - uri
+            - enum
+            - number
+            - integer
+            - date
+            - dateTime
+            - boolean
+      discriminator:
+        propertyName: type
+        mapping:
+          string: queryable-string
+          enum: queryable-enum
+          uri: queryable-string
+          number: queryable-number
+          integer: queryable-number
+          date: queryable-date
+          dateTime: queryable-dateTie
+          boolean: queryable-boolean
+    queryable-string:
+      allOf:
+      - $ref: '#/components/schemas/queryable'
+      - type: object
+        nullable: true
+        properties:
+          pattern:
+            type: string
+            nullable: true
+            description: a regular expression to validate the values of the property
+      example:
+        id: name
+        description: the name of the vegetation area
+        required: true
+        type: string
+        example: '[A-Z0-9]{5}'
+    queryable-enum:
+      allOf:
+      - $ref: '#/components/schemas/queryable'
+      - type: object
+        nullable: true
+        required:
+          - values
+        properties:
+          values:
+            type: array
+            nullable: true
+            description: the list of values of the property
+            items:
+              type: string
+      example:
+        id: type
+        description: the dominant charcteristic of vegetation area
+        type: enum
+        values: [ 'grassland', 'forest', 'farmland' ]
+    queryable-number:
+      allOf:
+      - $ref: '#/components/schemas/queryable'
+      - type: object
+        nullable: true
+        properties:
+          range:
+            type: array
+            nullable: true
+            minItems: 2
+            maxItems: 2
+            items:
+              type: number
+              nullable: true
+            description: a range of valid values; open range can be expressed using `null`
+      example:
+        id: count
+        description: the number of cattle
+        type: integer
+        range: [ 0 , null ]
+    queryable-boolean:
+      allOf:
+      - $ref: '#/components/schemas/queryable'
+      example:
+        id: fenced
+        description: indicator whether the area is walled or fenced
+        type: boolean
+    queryable-date:
+      allOf:
+      - $ref: '#/components/schemas/queryable'
+      - type: object
+        nullable: true
+        properties:
+          range:
+            type: array
+            nullable: true
+            minItems: 2
+            maxItems: 2
+            items:
+              type: string
+              format: date
+              nullable: true
+            description: a range of valid values; open range can be expressed using `null`
+      example:
+        id: inspectionDate
+        description: the date of the last inspection
+        type: date
+        range: [ '2010-01-01', null ]
+    queryable-dateTime:
+      allOf:
+      - $ref: '#/components/schemas/queryable'
+      - type: object
+        nullable: true
+        properties:
+          range:
+            type: array
+            nullable: true
+            minItems: 2
+            maxItems: 2
+            items:
+              type: string
+              format: date-time
+              nullable: true
+            description: a range of valid values; open range can be expressed using `null`
+      example:
+        id: lastUpdate
+        description: the date of the last update of the feature
+        type: dateTime
+        range: [ '2018-01-01T00:00:00Z', null ]
+    featureCollectionGeoJSON:
+      required:
+        - features
+        - type
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - FeatureCollection
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/featureGeoJSON'
+        links:
+          type: array
+          nullable: true
+          items:
+            $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
+        timeStamp:
+          type: string
+          nullable: true
+          format: dateTime
+        numberMatched:
+          minimum: 0
+          type: integer
+          nullable: true
+        numberReturned:
+          minimum: 0
+          type: integer
+          nullable: true
+    featureGeoJSON:
+      required:
+        - geometry
+        - properties
+        - type
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - Feature
+        geometry:
+          $ref: '#/components/schemas/geometryGeoJSON'
+        properties:
+          type: object
+          nullable: true
+        id:
+          oneOf:
+            - type: string
+            - type: integer
+          nullable: true
+        links:
+          type: array
+          nullable: true
+          items:
+            $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
+    geometryGeoJSON:
+      type: object
+      required:
+        - type
+      nullable: true
+      properties:
+        type:
+          type: string
+          enum:
+            - Point
+            - MultiPoint
+            - LineString
+            - MultiLineString
+            - Polygon
+            - MultiPolygon
+            - GeometryCollection
+  ####################
+  # Common parameters
+  ####################
+  parameters:
+    #######################
+    # From OGC API Features
+    #######################
+    featureId:
+      name: featureId
+      in: path
+      description: |-
+        local identifier of a feature
+      required: true
+      schema:
+        type: string
+    properties:
+      name: properties
+      in: query
+      description: |-
+        The properties that should be included for each feature. The parameter
+        value is a comma-separated list of property names.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
+
+  #######################
+  # Common request bodies
+  #######################
+  requestBodies: {}
+
+  ####################
+  # Common responses
+  ####################
+  responses:
+    {}
+
+  #########################
+  # Common response headers
+  #########################
+  headers:
+    {}
+
+  #######################
+  # Common path items
+  # NOTE: Referencing pathitems does not seem to work, so I have stopped defining/using them
+  #######################
+
+  ######################################
+  # Common examples of input/output data
+  ######################################
+  examples: {}
+
+  #########################
+  # Common link definitions
+  #########################
+  links: {}
+
+  #########################
+  # Common callback definitions
+  #########################
+  callbacks: {}
