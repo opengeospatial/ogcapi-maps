@@ -119,6 +119,16 @@ components:
       explode: false
       schema:
         type: number
+    elevation:
+      name: elevation
+      in: query
+      description: |-
+        Elevation value
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: number
         
   #######################
   # Common request bodies

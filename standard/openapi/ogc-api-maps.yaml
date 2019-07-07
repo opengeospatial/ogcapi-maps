@@ -8,7 +8,7 @@ openapi: 3.0.2
 # 2019-05-21 "CRSId" has been added
 #
 info:
-  title: OGC API Building Blocks
+  title: OGC API Maps Building Blocks
   description: |-
     Common components used in the OGC API maps standards.
 
@@ -220,7 +220,7 @@ components:
       style: form
       schema:
         type: string
-        
+
   #######################
   # Common request bodies
   #######################
