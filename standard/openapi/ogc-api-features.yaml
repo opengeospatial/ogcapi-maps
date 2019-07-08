@@ -34,12 +34,11 @@ components:
               type: array
               items:
                 $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
-      example:
-        items:
-          - href: 'http://data.example.com/collections/buildings/items'
-            rel: items
-            title: Retrieve the items of the buildings collection
-            type: 'image/png'
+              example:
+                - href: 'http://data.example.com/collections/buildings/items'
+                  rel: items
+                  title: Retrieve the items of the buildings collection
+                  type: 'image/png'
     queryables:
       type: array
       nullable: true
