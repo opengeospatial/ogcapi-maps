@@ -29,19 +29,22 @@ components:
   schemas:
     collectionInfo:
       type: object
-      required:
-        - links
       properties:
-        links:
-          type: array
-          items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
-            example:
-              - href: 'http://data.example.com/collections/buildings/maps'
-                rel: maps
-                type: 'image/png'
-        tileMatrixSetLink:
-          $ref: '#/components/schemas/tileMatrixSetLink-set'
+        tiles:
+          type: object
+          required:
+            - links
+          properties:
+            links:
+              type: array
+              items:
+                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+                example:
+                  - href: 'http://data.example.com/collections/buildings/maps'
+                    rel: maps
+                    type: 'image/png'
+            tileMatrixSetLink:
+              $ref: '#/components/schemas/tileMatrixSetLink-set'
     #############################
     # From OGC API Maps and Tiles
     #############################

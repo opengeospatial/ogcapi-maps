@@ -31,30 +31,32 @@ components:
     # From OGC API Styles?
     #############################
     collectionInfo:
-      maps:
-        type: object
-        properties:
-          links:
-            type: array
-            items:
-              $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+      type: object
+      properties:
+        maps:
+          type: object
+          properties:
+            links:
+              type: array
+              items:
+                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+                example:
+                  - href: 'http://data.example.com/collections/buildings/maps'
+                    rel: maps
+                    type: 'image/png'
+            crs:
+              type: array
+              items:
+                type: string
               example:
-                - href: 'http://data.example.com/collections/buildings/maps'
-                  rel: maps
-                  type: 'image/png'
-          crs:
-            type: array
-            items:
+                - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+            styles:
+              $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/style-set'
+            defaultStyle:
               type: string
-            example:
-              - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-          styles:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/style-set'
-          defaultStyle:
-            type: string
-            description: |-
-              the style id of a recommended default style to use for this collection
-            example: 'topographic'
+              description: |-
+                the style id of a recommended default style to use for this collection
+              example: 'topographic'
     collectionInfo-patch:
       type: object
       properties:
