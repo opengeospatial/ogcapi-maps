@@ -32,15 +32,15 @@ components:
     ##########################################
     collectionInfo:
       allOf:
-      - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/style-set'
+      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/style-set'
       - type: object
         properties:
           styles:
-            $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/style-set'
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/style-set'
           mapCRSSetLink:
-            $ref: '#/components/schemas/mapCRSSetLink'
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/mapCRSSetLink'
           tileMatrixSetLink:
-            $ref: '#/components/schemas/tileMatrixSetLink-set'
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/schemas/tileMatrixSetLink-set'
           defaultStyle:
             type: string
             description: |-
@@ -50,7 +50,7 @@ components:
       type: object
       properties:
         styles:
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/style-set'
+          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/style-set'
         defaultStyle:
           type: string
           nullable: true
@@ -129,7 +129,7 @@ components:
       explode: false
       schema:
         type: number
-        
+
   #######################
   # Common request bodies
   #######################

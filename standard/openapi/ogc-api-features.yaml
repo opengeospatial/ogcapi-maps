@@ -226,7 +226,7 @@ components:
           type: array
           nullable: true
           items:
-            $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
         timeStamp:
           type: string
           nullable: true
@@ -264,7 +264,7 @@ components:
           type: array
           nullable: true
           items:
-            $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
     geometryGeoJSON:
       type: object
       required:

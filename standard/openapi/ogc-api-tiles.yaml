@@ -182,7 +182,7 @@ components:
           nullable: true
           minItems: 1
           items:
-            $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
         tileMatrixSetLimits:
           type: array
           nullable: true
@@ -206,7 +206,7 @@ components:
           nullable: true
           minItems: 0
           items:
-            $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
         tileMatrixSetLimits:
           type: array
           nullable: true
@@ -231,7 +231,7 @@ components:
           nullable: false
           minItems: 1
           items:
-            $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
     tileSet:
       description: |-
         This is the response for a multiple tiles request.

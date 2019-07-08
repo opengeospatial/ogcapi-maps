@@ -78,7 +78,7 @@ components:
           nullable: true
           minItems: 1
           items:
-            $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
     mapCRSSetLink:
       description: |-
         This list crsIds supported by this collectionId.  The presence of this property indicates that the collection is available as maps
@@ -110,7 +110,7 @@ components:
           nullable: false
           minItems: 1
           items:
-            $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
     simbologyEncoding:
       description: |-
         SE encoding to create a map.
