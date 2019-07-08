@@ -33,6 +33,7 @@ components:
     collectionInfo:
       allOf:
       - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/collectionInfo'
+      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/collectionInfo'
       - type: object
         properties:
           styles:
