@@ -35,7 +35,7 @@ components:
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
             example:
               - href: 'http://data.example.com/collections/buildings/maps'
                 rel: maps
