@@ -155,14 +155,16 @@ components:
           items:
             $ref: '#/components/schemas/link'
           example:
-            - href: 'http://data.example.com/collections/buildings/items'
-              rel: 'items'
-            - href: 'http://example.com/concepts/buildings.html'
+            - href: 'http://example.com/concepts/buildings?f=json'
               rel: 'describedBy'
-              type: 'text/html'
+              type: 'application/json'
+              title: This document
+            - href: 'http://data.example.com/collections/buildings/items'
+              rel: items
+              title: Retrieve the items of the buildings collection
             - href: 'http://data.example.com/collections/buildings/maps'
-              rel: 'maps'
-              type: 'text/html'
+              rel: maps
+              type: 'image/png'
             - href: 'http://data.example.com/collections/buildings/tiles'
               rel: 'tiles'
               type: 'text/html'
