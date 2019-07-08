@@ -159,9 +159,6 @@ components:
               rel: 'self'
               type: 'application/json'
               title: This document
-            - href: 'http://data.example.com/collections/buildings/items'
-              rel: items
-              title: Retrieve the items of the buildings collection
         extent:
           $ref: '#/components/schemas/extent'
         crs:

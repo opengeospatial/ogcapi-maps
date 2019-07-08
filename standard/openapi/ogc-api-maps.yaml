@@ -31,17 +31,41 @@ components:
     # From OGC API Styles?
     #############################
     collectionInfo:
+      maps:
+        type: object
+        properties:
+          links:
+            type: array
+            items:
+              $ref: '#/components/schemas/link'
+              example:
+                - href: 'http://data.example.com/collections/buildings/maps'
+                  rel: maps
+                  type: 'image/png'
+          crs:
+            type: array
+            items:
+              type: string
+            example:
+              - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+          styles:
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/style-set'
+          defaultStyle:
+            type: string
+            description: |-
+              the style id of a recommended default style to use for this collection
+            example: 'topographic'
+    collectionInfo-patch:
       type: object
       properties:
-        links:
-          example:
-            - href: 'http://example.com/collections/buildings?f=json'
-              rel: 'self'
-              type: 'application/json'
-              title: This document
-            - href: 'http://data.example.com/collections/buildings/maps'
-              rel: maps
-              type: 'image/png'
+        styles:
+          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/style-set'
+        defaultStyle:
+          type: string
+          nullable: true
+          description: |-
+            the style id of a recommended default style to use for this collection
+          example: 'topographic'
     style-set:
       type: array
       nullable: true
@@ -91,19 +115,6 @@ components:
           minItems: 1
           items:
             $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
-    mapCRSSetLink:
-      description: |-
-        This list crsIds supported by this collectionId.  The presence of this property indicates that the collection is available as maps
-      type: array
-      nullable: true
-      items:
-        $ref: '#/components/schemas/crs-entry'
-      example:
-        - id: 'CRS:84'
-          links:
-          - href: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-            type: 'application/xml'
-            rel: 'describedby'
     crs-entry:
       type: object
       nullable: true

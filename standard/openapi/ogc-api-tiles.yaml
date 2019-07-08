@@ -27,6 +27,21 @@ components:
   # Common data models
   ####################
   schemas:
+    collectionInfo:
+      type: object
+      required:
+        - links
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+            example:
+              - href: 'http://data.example.com/collections/buildings/maps'
+                rel: maps
+                type: 'image/png'
+        tileMatrixSetLink:
+          $ref: '#/components/schemas/tileMatrixSetLink-set'
     #############################
     # From OGC API Maps and Tiles
     #############################

@@ -26,38 +26,7 @@ components:
   ####################
   # Common data models
   ####################
-  schemas:
-    ##########################################
-    # From OGC API Common collections extended
-    ##########################################
-    collectionInfo:
-      allOf:
-      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/collectionInfo'
-      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/collectionInfo'
-      - type: object
-        properties:
-          styles:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/style-set'
-          mapCRSSetLink:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/mapCRSSetLink'
-          tileMatrixSetLink:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/schemas/tileMatrixSetLink-set'
-          defaultStyle:
-            type: string
-            description: |-
-              the style id of a recommended default style to use for this collection
-            example: 'topographic'
-    collectionInfo-patch:
-      type: object
-      properties:
-        styles:
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/style-set'
-        defaultStyle:
-          type: string
-          nullable: true
-          description: |-
-            the style id of a recommended default style to use for this collection
-          example: 'topographic'
+  schemas: {}
   ####################
   # Common parameters
   ####################

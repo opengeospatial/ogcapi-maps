@@ -28,6 +28,15 @@ components:
   #######################
   # From OGC API Features
   #######################
+    collectionInfo:
+      items:
+        type: array
+        items:
+          $ref: '#/components/schemas/link'
+          example:
+            - href: 'http://data.example.com/collections/buildings/items'
+              rel: items
+              title: Retrieve the items of the buildings collection
     queryables:
       type: array
       nullable: true
