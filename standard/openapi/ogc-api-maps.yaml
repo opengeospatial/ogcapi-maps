@@ -30,6 +30,18 @@ components:
     #############################
     # From OGC API Styles?
     #############################
+    collectionInfo:
+      type: object
+      properties:
+        links:
+          example:
+            - href: 'http://example.com/collections/buildings?f=json'
+              rel: 'self'
+              type: 'application/json'
+              title: This document
+            - href: 'http://data.example.com/collections/buildings/maps'
+              rel: maps
+              type: 'image/png'
     style-set:
       type: array
       nullable: true

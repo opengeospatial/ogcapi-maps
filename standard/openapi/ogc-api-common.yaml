@@ -141,33 +141,27 @@ components:
       properties:
         id:
           type: string
-          example: address
+          example: buildings
         title:
           type: string
           nullable: true
-          example: address
+          example: Buildings in the area
         description:
           type: string
           nullable: true
-          example: An address.
+          example: This collection contains buildings.
         links:
           type: array
           items:
             $ref: '#/components/schemas/link'
           example:
-            - href: 'http://example.com/concepts/buildings?f=json'
-              rel: 'describedBy'
+            - href: 'http://example.com/collections/buildings?f=json'
+              rel: 'self'
               type: 'application/json'
               title: This document
             - href: 'http://data.example.com/collections/buildings/items'
               rel: items
               title: Retrieve the items of the buildings collection
-            - href: 'http://data.example.com/collections/buildings/maps'
-              rel: maps
-              type: 'image/png'
-            - href: 'http://data.example.com/collections/buildings/tiles'
-              rel: 'tiles'
-              type: 'text/html'
         extent:
           $ref: '#/components/schemas/extent'
         crs:
