@@ -6,12 +6,12 @@ openapi: 3.0.2
 # 2019-05-17 "unless a different coordinate reference system is specified in the parameter `bbox-crs`." has been removed and instead we have added "unless a different coordinate         reference system is specified by another parameter in the API."
 # 2019-05-21 "The default Tiling Scheme is the Google Maps Tiling Scheme" is changed to "The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme)"
 # 2019-05-21 "CRSId" has been added
-# 
+#
 info:
   title: OGC API Building Blocks
   description: |-
     Common components used in the OGC API family of standards. Deeply inspired in Clemens Portele work.
-    
+
     This document is also available in [GitHub](https://github.com/opengeospatial/oapi_common/tree/master/OAPI-Common/openapi).
 
   version: '1.0.0'
@@ -116,11 +116,11 @@ components:
           items:
             $ref: '#/components/schemas/link'
           example:
-            - href: 'http://data.example.org/collections.json'
+            - href: 'http://data.example.org/collections?f=json'
               rel: self
               type: application/json
               title: this document
-            - href: 'http://data.example.org/collections.html'
+            - href: 'http://data.example.org/collections?f=html'
               rel: alternate
               type: text/html
               title: this document as HTML
@@ -309,14 +309,14 @@ components:
       name: limit
       in: query
       description: |-
-        The optional limit parameter limits the number of items that are presented 
+        The optional limit parameter limits the number of items that are presented
         in the response document.
-      
-        Only items are counted that are on the first level of the collection in the response document. 
+
+        Only items are counted that are on the first level of the collection in the response document.
         Nested objects contained within the explicitly requested items shall not be counted.
-      
+
         Minimum = 1. Maximum = 10000. Default = 10.
-        
+
         Defined in [OGC API - Features - Part 1:Core](http://docs.opengeospatial.org/DRAFTS/17-069.html).
       required: false
       schema:
@@ -350,23 +350,23 @@ components:
         Only features that have a geometry that intersects the bounding box are selected.
         The bounding box is provided as four or six numbers, depending on whether the
         coordinate reference system includes a vertical axis (elevation or depth):
-        
+
         * Lower left corner, coordinate axis 1
         * Lower left corner, coordinate axis 2
         * Lower left corner, coordinate axis 3 (optional)
         * Upper right corner, coordinate axis 1
         * Upper right corner, coordinate axis 2
         * Upper right corner, coordinate axis 3 (optional)
-      
+
         The coordinate reference system of the values is WGS 84 longitude/latitude
         (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a different coordinate
         reference system is specified by another parameter in the API.
-      
+
         For WGS 84 longitude/latitude the values are in most cases the sequence of
         minimum longitude, minimum latitude, maximum longitude and maximum latitude.
         However, in cases where the box spans the antimeridian the first value
         (west-most box edge) is larger than the third value (east-most box edge).
-      
+
         If a feature has multiple spatial geometry properties, it is the decision of the
         server whether only a single spatial geometry property is used to determine
         the extent or all relevant geometries.
@@ -385,16 +385,16 @@ components:
       description: |-
         Either a date-time or an interval, open or closed. Date and time expressions
         adhere to RFC 3339. Open intervals are expressed using double-dots.
-      
+
         Examples:
-      
+
         * A date-time: "2018-02-12T23:20:50Z"
         * A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
         * Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
-      
+
         Only features that have a temporal property that intersects the value of
         `datetime` are selected.
-      
+
         If a feature has multiple temporal properties, it is the decision of the
         server whether only a single temporal property is used to determine
         the extent or all relevant temporal properties.
@@ -445,7 +445,41 @@ components:
       schema:
         type: string
       example: buildings
+    f-json-html:
+      name: f
+      in: query
+      description: |-
+        The format of the response. If no value is provided, the standard http
+        rules apply, i.e., the accept header is used to determine the format.
 
+        Pre-defined values are "json" and "html". The response to other
+        values is determined by the server.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+        enum:
+          - json
+          - html
+      example: json
+    f-json:
+      name: f
+      in: query
+      description: |-
+        The format of the response. If no value is provided, the standard http
+        rules apply, i.e., the accept header is used to determine the format.
+
+        The only pre-defined value is "json". The response to other values is
+        determined by the server.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+        enum:
+          - json
+      example: json
   #######################
   # Common request bodies
   #######################
@@ -466,7 +500,7 @@ components:
           schema:
             type: string
     ConformanceDeclaration:
-      summary: |- 
+      summary: |-
         This element is pro
       description: |-
         The URIs of all requirements classes supported by the server.
@@ -517,7 +551,7 @@ components:
         The requested URI was not found. Response associated to 404
     AlreadyExist:
       description: |-
-        Resource with that id already exists. Response associated to 409        
+        Resource with that id already exists. Response associated to 409
     ServerError:
       description: |-
         A server error occurred. Response associated to 500
@@ -531,7 +565,7 @@ components:
   #########################
   # Common response headers
   #########################
-  headers: 
+  headers:
     Location:
       schema:
           type: string
