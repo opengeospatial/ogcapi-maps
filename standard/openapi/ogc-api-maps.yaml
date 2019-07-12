@@ -54,7 +54,7 @@ components:
               description: |-
                 Minimum spatial extent surrounding the layer for each CRS available
               items:
-                $ref: '#/components/schemas/spatial'
+                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/spatial'
                 example:
                   - bbox:
                       - -180
