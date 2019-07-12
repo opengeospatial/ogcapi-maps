@@ -42,16 +42,84 @@ components:
                 $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
                 example:
                   - href: 'http://data.example.com/collections/buildings/maps'
-                    rel: maps
+                    rel: map
                     type: 'image/png'
-            crs:
+                  - href: 'http://data.example.com/collections/buildings/maps/info'
+                    rel: info
+                    type: 'text/html'
+            # A WMS layer definition has id, title, description, keyword that are already defined in OWS Common
+            # wgs84Bounding is the 'extent' that is already defined in OWS Common
+            spatialExtent:
               type: array
+              description: |-
+                Minimum spatial extent surrounding the layer for each CRS available
               items:
-                type: string
-              example:
-                - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+                $ref: '#/components/schemas/spatial'
+                example:
+                  - bbox:
+                      - -180
+                      - -90
+                      - 180
+                      - 90
+                    crs: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+                  - bbox:
+                      - -20037508.3427892
+                      - -20037508.3427892
+                      - 20037508.3427892
+                      - 20037508.3427892
+                    crs: 'http://www.opengis.net/def/crs/EPSG/0/3395'
+            crsLibray:
+              type: string
+              description: |-
+                Reference to a CRS library giving support to a comprehensive list of CRSs that are not advertised but supported anyway.
+              example: PROJ4G
+            attribution:
+              type: string
+              description: |-
+                The provider of the source data for the collection. Map Browsers are supposed to make this information visible to the user.
+              example: OpenStreetMap
+            minScaleDenominador:
+              type: number
+              description: |-
+                Minimum scale denominator (inclusive) for which it is appropriate to generate a map of this collection
+              example: 10
+            maxScaleDenominador:
+              type: number
+              description: |-
+                Maximum scale denominator (inclusive) for which it is appropriate to generate a map of this collection
+              example: 10000000
+            #spatialResolution (resx) this should be part of the common metadata but currently is not.
+            recomendedFormat:
+              type: string
+              description: |-
+                  Recommended output formats for a map request. The map operation details all available formats for the OGC API maps. In contrast, this is the better one for this type of information. It would be one of the supported for the map operation
+              example: 'image/jpeg'
+            #queryable is not included here because it is indicated by a link with 'rel':'info'
+            cascaded:
+              type: number
+              description: |-
+                Indicates how main times the layer has been retransmitted by another map service or API (cascading).
+              example: 0
+            opaque:
+              type: boolean
+              description: |-
+                Indicates whether the map data represents vector features that probably do not completely fill space or the map data are mostly or completely opaque.
+              example: false
+            noSubsets:
+              type: boolean
+              description: |-
+                Indicates whether the server can produce a map that is a subset of the full bounding box.
+              example: false
+            fixedWidth:
+              type: number
+              description: |-
+                Indicates that the server can only produce map of a fixed width instead of an arbitrary width
+            fixedHeight:
+              type: number
+              description: |-
+                Indicates that the server can only produce map of a fixed height instead of an arbitrary height
             styles:
-              $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/style-set'
+              $ref: '#/components/schemas/style-set'
             defaultStyle:
               type: string
               description: |-

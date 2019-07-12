@@ -6,6 +6,7 @@ openapi: 3.0.2
 # 2019-05-17 "unless a different coordinate reference system is specified in the parameter `bbox-crs`." has been removed and instead we have added "unless a different coordinate         reference system is specified by another parameter in the API."
 # 2019-05-21 "The default Tiling Scheme is the Google Maps Tiling Scheme" is changed to "The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme)"
 # 2019-05-21 "CRSId" has been added
+# 2019-07-11 Added keywords (there is tradition in using them)
 #
 info:
   title: OGC API Building Blocks
@@ -89,6 +90,21 @@ components:
           type: string
           nullable: true
           example: en
+    keyword:
+      required:
+        - keyword
+      type: object
+      nullable: true
+      properties:
+        keyword:
+          type: string
+          example: land cover
+        code:
+          type: string
+          example: '4612'
+        codeSpace:
+          type: string
+          example: https://www.eionet.europa.eu/gemet/en/concept/
     req-classes:
       required:
         - conformsTo
@@ -150,6 +166,10 @@ components:
           type: string
           nullable: true
           example: This collection contains buildings.
+        keywords:
+          type: array
+          items:
+            $ref: '#/components/schemas/keyword'
         links:
           type: array
           items:
@@ -159,6 +179,9 @@ components:
               rel: 'self'
               type: 'application/json'
               title: This document
+            - href: http://example.com/concepts/buildings.html
+              rel: describedBy
+              type: text/html
         extent:
           $ref: '#/components/schemas/extent'
         crs:
