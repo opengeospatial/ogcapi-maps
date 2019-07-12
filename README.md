@@ -4,14 +4,28 @@ This GitHub repository contains the new revision of the [OGC](http://opengeospat
 
 This work encompasses two standards that will be developed simultaneously. In the end, must people believe at least 2 standards will emerge or even more when the core and extension model is applied.
 
-IMPORTANT NOTE: For the moment, most of the work so far is done directly in the Swagger HUB version of the maps and tiles
+## Examples
+For the moment this work ins focused on providing OpenAPI services description examples and domains (libraries)
 
-In case of discrepancy with the material here the swagger portal takes precedence. Later it will be translated into requirements and informative text here. A less dynamic version of the swagger documents can be found [here](standard/openapi)
+IMPORTANT NOTE: Due to limitations in number of files in the Swagger HUB we had to abandon this tool as a "gold copy" and we use it only for validation.
 
-The work in Swagger is structured in three parts:
-* A [OGC API maps and tiles OPF example](https://app.swaggerhub.com/apis/joanma747/ogc-api-map-tiles-opf-xmp/1.0.0) that contains and example of server with some features and coverages that are served as maps and/or tiles. In this file you can see some examples of responses in json format.
-* A [OGC API maps and tiles DOMAIN document](https://app.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0). It contains fragments that can be reference in api document instances. It could become part of a future OGC API maps and tiles standard additional material.
-* A [OGC API common DOMAIN document](https://app.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0). It contains fragments that can be reference in api document instances or other domain dociment. It could become part of a future OGC API common standard additional material.
+The material in the [standards folder](standard/openapi) takes precedence.
+
+The files in the [standards folder](standard/openapi) are structured in several parts that can be combined together.
+
+![Diagram of the examples and domains](standard/images/diagram-xmp.png)
+
+Examples:
+* A [OGC API maps and tiles OPF FULL example](standard/openapi/ogc-api-map-tiles-opf-xmp-full.yaml) that contains full example of server with some features and coverages that are served as maps and/or tiles. Normally it is too long to be analyzed. The following are more easy to understand.
+* A [OGC API OPF example for vector tiles](standard/openapi/ogc-api-tiles-opf-xmp-vt-more-1-collection.yaml) that describes a service that can serve only vector tiles of one or more collections.
+* A [OGC API OPF example for vector tiles](standard/openapi/ogc-api-map-tiles-opf-xmp-mt-more-1-collection.yaml) that describes a service that can serve only map (raster) tiles of one or more collections.
+* A [OGC API OPF example for vector tiles](standard/openapi/ogc-api-maps-opf-xmp-ore-1-collection.yaml) that describes a service that can serve only maps of one or more collections.
+
+Libraries:
+* A [OGC API common DOMAIN document](standard/openapi/ogc-api-common.yaml). It contains fragments that can be reference in api document instances or other domain document. It could become part of a future OGC API common standard additional material.
+* A [OGC API maps DOMAIN document](standard/openapi/ogc-api-maps.yaml). It contains fragments that can be reference in api document instances or other domain document. It could become part of a future OGC API maps standard additional material.
+* A [OGC API maps DOMAIN document](standard/openapi/ogc-api-tiles.yaml). It contains fragments that can be reference in api document instances or other domain document. It could become part of a future OGC API tiles standard additional material.
+* A [OGC API maps DOMAIN document](standard/openapi/ogc-api-map-tiles.yaml). It contains fragments that can be reference in api document instances or other domain document. It will be included by OGC API maps standard and tiles standard.
 
 ## Overview
 
