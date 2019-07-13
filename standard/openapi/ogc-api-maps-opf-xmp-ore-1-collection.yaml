@@ -98,7 +98,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/landing-page'
+                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/landingPage'
               example:
                 - href: 'http://data.example.org/?f=json'
                   rel: self
@@ -158,7 +158,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/req-classes'
+                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/confClasses'
               example:
                 - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/core'
                 - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/oas30'
@@ -207,7 +207,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/collectionInfo'
+                $ref: '#/components/schemas/collection'
             text/html:
               schema:
                 type: string
@@ -287,7 +287,7 @@ paths:
         content:
           application/merge-patch+json:
             schema:
-              $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/collectionInfo-patch'
+              $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/collection-patch'
       responses:
         '204':
           $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/Updated'
@@ -1548,12 +1548,12 @@ paths:
 
 components:
   schemas:
-    collectionInfo:
+    collection:
       allOf:
-      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/collectionInfo'
-      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-features.yaml#/components/schemas/collectionInfo'
-      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/collectionInfo'
-      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/schemas/collectionInfo'
+      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/collection'
+      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-features.yaml#/components/schemas/collection'
+      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/collection'
+      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/schemas/collection'
   parameters:
     f-json-zip:
       name: f

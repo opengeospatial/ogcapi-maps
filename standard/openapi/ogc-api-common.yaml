@@ -15,6 +15,10 @@ info:
 
     This document is also available in [GitHub](https://github.com/opengeospatial/oapi_common/tree/master/OAPI-Common/openapi).
 
+    This document copies or is inspired in 
+    [GitHub](https://github.com/opengeospatial/WFS_FES/blob/master/core/openapi/bbox/ogcapi-features-1.yaml).
+	from Clemens Portele
+
   version: '1.0.0'
   contact:
     name: Joan Maso
@@ -24,316 +28,84 @@ info:
     url: 'https://raw.githubusercontent.com/opengeospatial/oapi_common/master/LICENSE'
 
 components:
-  ####################
-  # Common data models (schemas)
-  ####################
-  schemas:
-    landing-page:
-      required:
-        - links
-      type: object
-      properties:
-        links:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/link'
-      ##Example may vary among different services.
-      example:
-        - href: 'http://data.example.org/?f=json'
-          rel: self
-          type: application/json
-          title: this document
-        - href: 'http://data.example.org/?f=html'
-          rel: alternate
-          type: text/html
-          title: this document in HTML
-        - href: 'http://data.example.org/api?f=json'
-          rel: service
-          type: application/vnd.oai.openapi+json;version=3.0
-          title: the API definition in OpenAPI 3.0 JSON
-        - href: 'http://data.example.org/api?f=html'
-          rel: service
-          type: text/html
-          title: the API definition in HTML
-        - href: 'http://data.example.org/conformance?f=json'
-          rel: conformance
-          type: application/json
-          title: the list of conformance classes implemented by this API
-        - href: 'http://data.example.org/collections?f=json'
-          rel: data
-          type: application/json
-          title: The feature collections in the dataset in JSON
-        - href: 'http://data.example.org/collections?f=html'
-          rel: data
-          type: text/html
-          title: The feature collections in the dataset in HTML
-    link:
-      required:
-        - href
-      type: object
-      nullable: true
-      properties:
-        href:
-          type: string
-          nullable: true
-          example: 'http://data.example.com/buildings/123'
-        rel:
-          type: string
-          nullable: true
-          example: next
-        type:
-          type: string
-          nullable: true
-          example: application/geo+json
-        hreflang:
-          type: string
-          nullable: true
-          example: en
-    keyword:
-      required:
-        - keyword
-      type: object
-      nullable: true
-      properties:
-        keyword:
-          type: string
-          example: land cover
-        code:
-          type: string
-          example: '4612'
-        codeSpace:
-          type: string
-          example: https://www.eionet.europa.eu/gemet/en/concept/
-    req-classes:
-      required:
-        - conformsTo
-      type: object
-      properties:
-        conformsTo:
-          type: array
-          nullable: true
-          example:
-            - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/core'
-            - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/oas30'
-            - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/html'
-            - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/geojson'
-          items:
-            type: string
-    collections:
-      type: object
-      required:
-        - links
-        - collections
-      properties:
-        links:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/link'
-          example:
-            - href: 'http://data.example.org/collections?f=json'
-              rel: self
-              type: application/json
-              title: this document
-            - href: 'http://data.example.org/collections?f=html'
-              rel: alternate
-              type: text/html
-              title: this document as HTML
-            - href: 'http://schemas.example.org/1.0/foobar.xsd'
-              rel: describedBy
-              type: application/xml
-              title: XML schema for Acme Corporation data
-        collections:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/collectionInfo'
-    collectionInfo:
-      type: object
-      required:
-        - id
-        - links
-      properties:
-        id:
-          type: string
-          example: buildings
-        title:
-          type: string
-          nullable: true
-          example: Buildings in the area
-        description:
-          type: string
-          nullable: true
-          example: This collection contains buildings.
-        keywords:
-          type: array
-          items:
-            $ref: '#/components/schemas/keyword'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
-          example:
-            - href: 'http://example.com/collections/buildings?f=json'
-              rel: 'self'
-              type: 'application/json'
-              title: This document
-            - href: http://example.com/concepts/buildings.html
-              rel: describedBy
-              type: text/html
-        extent:
-          $ref: '#/components/schemas/extent'
-        crs:
-          description: |-
-            The list of coordinate reference systems supported by the service.
-            The first item is the default coordinate reference system.
-          type: array
-          nullable: true
-          items:
-            type: string
-          default:
-            - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-          example:
-            - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-            - 'http://www.opengis.net/def/crs/EPSG/0/4326'
-    extent:
-      description: |-
-        The extent of the features in the collection. In the Core only spatial and temporal
-        extents are specified. Extensions may add additional members to represent other
-        extents, for example, thermal or pressure ranges.
-      type: object
-      nullable: true
-      properties:
-        spatial:
-          $ref: '#/components/schemas/spatial'
-        temporal:
-          $ref: '#/components/schemas/temporal'
-    spatial:
-      description: |-
-        The spatial extent of the features in the collection.
-      type: object
-      nullable: true
-      properties:
-        bbox:
-          $ref: '#/components/schemas/bbox'
-        crs:
-          $ref: '#/components/schemas/crs'
+  parameters:
     bbox:
+      name: bbox
+      in: query
       description: |-
-        One or more bounding boxes that describe the spatial extent of the dataset.
-        In the Core only a single bounding box is supported. Extensions may support
-        additional areas. If multiple areas are provided, the union of the bounding
-        boxes describes the spatial extent.
-      type: array
-      nullable: true
-      minItems: 1
-      items:
-        description: |-
-          West, south, east, north edges of the bounding box. The coordinates
-          are in the coordinate reference system specified in `crs`. By default
-          this is WGS 84 longitude/latitude.
+        Only features that have a geometry that intersects the bounding box are selected.
+        The bounding box is provided as four or six numbers, depending on whether the
+        coordinate reference system includes a vertical axis (elevation or depth):
+
+        * Lower left corner, coordinate axis 1
+        * Lower left corner, coordinate axis 2
+        * Lower left corner, coordinate axis 3 (optional)
+        * Upper right corner, coordinate axis 1
+        * Upper right corner, coordinate axis 2
+        * Upper right corner, coordinate axis 3 (optional)
+
+        The coordinate reference system of the values is WGS 84 longitude/latitude
+        (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a different coordinate
+        reference system is specified by another parameter in the API (e.g 'bbox-crs').
+
+        For WGS 84 longitude/latitude the values are in most cases the sequence of
+        minimum longitude, minimum latitude, maximum longitude and maximum latitude.
+        However, in cases where the box spans the antimeridian the first value
+        (west-most box edge) is larger than the third value (east-most box edge).
+
+        If a feature has multiple spatial geometry properties, it is the decision of the
+        server whether only a single spatial geometry property is used to determine
+        the extent or all relevant geometries.
+      required: false
+      schema:
         type: array
         minItems: 4
         maxItems: 6
         items:
           type: number
-        example:
-          - -180
-          - -90
-          - 180
-          - 90
-    crs:
+      style: form
+      explode: false
+    collectionId:
+      name: collectionId
+      in: path
+      description: local identifier of a collection
+      required: true
+      schema:
+        type: string
+    datetime:
+      name: datetime
+      in: query
       description: |-
-        Coordinate reference system of the coordinates in the spatial extent
-        (property `bbox`). The default reference system is WGS 84 longitude/latitude.
-        In the Core this is the only supported coordinate reference system.
-        Extensions may support additional coordinate reference systems and add
-        additional enum values.
-      type: string
-      nullable: true
-      enum:
-        - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-      default: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-    temporal:
-      description: |-
-        The temporal extent of the features in the collection.
-      type: object
-      nullable: true
-      properties:
-        interval:
-          $ref: '#/components/schemas/interval'
-        trs:
-          $ref: '#/components/schemas/trs'
-    interval:
-      description: |-
-        One or more time intervals that describe the temporal extent of the dataset.
-        The value `null` is supported and indicates an open time intervall.
-        In the Core only a single time interval is supported. Extensions may support
-        multiple intervals. If multiple intervals are provided, the union of the
-        intervals describes the temporal extent.
-      type: array
-      nullable: true
-      minItems: 1
-      items:
-        description: |-
-          Begin and end times of the time interval. The timestamps
-          are in the coordinate reference system specified in `trs`. By default
-          this is the Gregorian calendar.
-        type: array
-        minItems: 2
-        maxItems: 2
-        items:
-          type: string
-          format: date-time
-          nullable: true
-        example:
-          - '2011-11-11T12:22:11Z'
-          - null
-    trs:
-      description: |-
-        Coordinate reference system of the coordinates in the temporal extent
-        (property `interval`). The default reference system is the Gregorian calendar.
-        In the Core this is the only supported temporal reference system.
-        Extensions may support additional temporal reference systems and add
-        additional enum values.
-      type: string
-      nullable: true
-      enum:
-        - 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
-      default: 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
+        Either a date-time or an interval, open or closed. Date and time expressions
+        adhere to RFC 3339. Open intervals are expressed using double-dots.
 
+        Examples:
 
-    exception:
-      type: object
-      required:
-        - code
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-      example:
-        code: '500'
-        description: 'An internal server error occured. Incident ID: 1234567. Please contact admin@example.org.'
+        * A date-time: "2018-02-12T23:20:50Z"
+        * A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
+        * Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
 
-  ####################
-  # Common parameters
-  ####################
-  parameters:
+        Only features that have a temporal property that intersects the value of
+        `datetime` are selected.
+
+        If a feature has multiple temporal properties, it is the decision of the
+        server whether only a single temporal property is used to determine
+        the extent or all relevant temporal properties.
+      required: false
+      schema:
+        type: string
+      style: form
+      explode: false
     limit:
       name: limit
       in: query
       description: |-
-        The optional limit parameter limits the number of items that are presented
-        in the response document.
+        The optional limit parameter limits the number of items that are presented in the response document.
 
         Only items are counted that are on the first level of the collection in the response document.
         Nested objects contained within the explicitly requested items shall not be counted.
 
         Minimum = 1. Maximum = 10000. Default = 10.
-
-        Defined in [OGC API - Features - Part 1:Core](http://docs.opengeospatial.org/DRAFTS/17-069.html).
       required: false
       schema:
         type: integer
@@ -359,66 +131,6 @@ components:
         type: integer
         default: 0
       example: 0
-    bbox:
-      name: bbox
-      in: query
-      description: |-
-        Only features that have a geometry that intersects the bounding box are selected.
-        The bounding box is provided as four or six numbers, depending on whether the
-        coordinate reference system includes a vertical axis (elevation or depth):
-
-        * Lower left corner, coordinate axis 1
-        * Lower left corner, coordinate axis 2
-        * Lower left corner, coordinate axis 3 (optional)
-        * Upper right corner, coordinate axis 1
-        * Upper right corner, coordinate axis 2
-        * Upper right corner, coordinate axis 3 (optional)
-
-        The coordinate reference system of the values is WGS 84 longitude/latitude
-        (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a different coordinate
-        reference system is specified by another parameter in the API.
-
-        For WGS 84 longitude/latitude the values are in most cases the sequence of
-        minimum longitude, minimum latitude, maximum longitude and maximum latitude.
-        However, in cases where the box spans the antimeridian the first value
-        (west-most box edge) is larger than the third value (east-most box edge).
-
-        If a feature has multiple spatial geometry properties, it is the decision of the
-        server whether only a single spatial geometry property is used to determine
-        the extent or all relevant geometries.
-      required: false
-      schema:
-        type: array
-        minItems: 4
-        maxItems: 6
-        items:
-          type: number
-      style: form
-      explode: false
-    datetime:
-      name: datetime
-      in: query
-      description: |-
-        Either a date-time or an interval, open or closed. Date and time expressions
-        adhere to RFC 3339. Open intervals are expressed using double-dots.
-
-        Examples:
-
-        * A date-time: "2018-02-12T23:20:50Z"
-        * A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
-        * Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
-
-        Only features that have a temporal property that intersects the value of
-        `datetime` are selected.
-
-        If a feature has multiple temporal properties, it is the decision of the
-        server whether only a single temporal property is used to determine
-        the extent or all relevant temporal properties.
-      required: false
-      schema:
-        type: string
-      style: form
-      explode: false
     resultType:
       name: resultType
       in: query
@@ -452,15 +164,6 @@ components:
           - hits
           - results
       example: results
-    collectionId:
-      name: collectionId
-      in: path
-      description: |-
-        local identifier of a collection
-      required: true
-      schema:
-        type: string
-      example: buildings
     f-json-html:
       name: f
       in: query
@@ -496,51 +199,499 @@ components:
         enum:
           - json
       example: json
-  #######################
-  # Common request bodies
-  #######################
-  requestBodies: {}
+  schemas:
+    collection:
+      type: object
+      required:
+        - id
+        - links
+      properties:
+        id:
+          description: identifier of the collection used, for example, in URIs
+          type: string
+          example: buildings
+        title:
+          description: human readable title of the collection
+          type: string
+          example: Buildings in the area
+        description:
+          description: a description of the collection
+          type: string
+          example: This collection contains buildings.
+        keywords:
+          description: keywords about the elements in the collection
+          type: array
+          items:
+            $ref: '#/components/schemas/keyword'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example:
+            - href: 'http://example.com/collections/buildings?f=json'
+              rel: 'self'
+              type: 'application/json'
+              title: This document
+            - href: http://example.com/concepts/buildings.html
+              rel: describedBy
+              type: text/html
+        extent:
+          $ref: '#/components/schemas/extent'
+        itemType:
+          description: indicator about the type of the items in the collection (the default value is 'feature'; alternative values are 'coverage', 'image', etc).
+          type: string
+          default: feature
+        crs:
+          description: the list of coordinate reference systems supported by the service. The first item is the default coordinate reference system.
+          type: array
+          items:
+            type: string
+          default:
+            - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+          example:
+            - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+            - 'http://www.opengis.net/def/crs/EPSG/0/4326'
+    collections:
+      type: object
+      required:
+        - links
+        - collections
+      properties:
+        links:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/link'
+          example:
+            - href: 'http://data.example.org/collections?f=json'
+              rel: self
+              type: application/json
+              title: this document
+            - href: 'http://data.example.org/collections?f=html'
+              rel: alternate
+              type: text/html
+              title: this document as HTML
+            - href: 'http://schemas.example.org/1.0/foobar.xsd'
+              rel: describedBy
+              type: application/xml
+              title: XML schema for Acme Corporation data
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/collection'
+    confClasses:
+      type: object
+      required:
+        - conformsTo
+      properties:
+        conformsTo:
+          type: array
+          items:
+            type: string
+          example:
+            - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core'
+    exception:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+      example:
+        code: '500'
+        description: 'An internal server error occured. Incident ID: 1234567. Please contact admin@example.org.'
+    extent:
+      description: |-
+        The extent of the the collection. In the Core only spatial and temporal
+        extents are specified. Extensions may add additional members to represent other
+        extents, for example, thermal or pressure ranges.
+      type: object
+      properties:
+        spatial:
+          $ref: '#/components/schemas/spatialExtent'
+        temporal:
+          $ref: '#/components/schemas/temporalExtent'
+    spatialExtent:
+      description: |-
+        The spatial extent of the features in the collection.
+      type: object
+      properties:
+        bbox:
+          $ref: '#/components/schemas/bbox'
+        crs:
+          $ref: '#/components/schemas/crs'
+    bbox:
+      description: |-
+        One or more bounding boxes that describe the spatial extent of the dataset.
+        In the Core only a single bounding box is supported. Extensions may support
+        additional areas. If multiple areas are provided, the union of the bounding
+        boxes describes the spatial extent.
+      type: array
+      minItems: 1
+      items:
+        description: |-
+          West, south, east, north edges of the bounding box. The coordinates
+          are in the coordinate reference system specified in `crs`. By default
+          this is WGS 84 longitude/latitude.
+        type: array
+        minItems: 4
+        maxItems: 6
+        items:
+          type: number
+        example:
+          - -180
+          - -90
+          - 180
+          - 90
+    crs:
+      description: |-
+        Coordinate reference system of the coordinates in the spatial extent
+        (property `bbox`). The default reference system is WGS 84 longitude/latitude.
+        In the Core this is the only supported coordinate reference system.
+        Extensions may support additional coordinate reference systems and add
+        additional enum values.
+      type: string
+      enum:
+        - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+      default: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+    temporalExtent:
+      description: |-
+        The temporal extent of the features in the collection.
+      type: object
+      nullable: true
+      properties:
+        interval:
+          $ref: '#/components/schemas/temporalInterval'
+        trs:
+          $ref: '#/components/schemas/trs'
+    temporalInterval:
+      description: |-
+        One or more time intervals that describe the temporal extent of the dataset.
+        The value `null` is supported and indicates an open time intervall.
+        In the Core only a single time interval is supported. Extensions may support
+        multiple intervals. If multiple intervals are provided, the union of the
+        intervals describes the temporal extent.
+      type: array
+      nullable: true
+      minItems: 1
+      items:
+        description: |-
+          Begin and end times of the time interval. The timestamps
+          are in the coordinate reference system specified in `trs`. By default
+          this is the Gregorian calendar.
+        type: array
+        minItems: 2
+        maxItems: 2
+        items:
+          type: string
+          format: date-time
+          nullable: true
+        example:
+          - '2011-11-11T12:22:11Z'
+          - null
+    trs:
+      description: |-
+        Coordinate reference system of the coordinates in the temporal extent
+        (property `interval`). The default reference system is the Gregorian calendar.
+        In the Core this is the only supported temporal reference system.
+        Extensions may support additional temporal reference systems and add
+        additional enum values.
+      type: string
+      enum:
+        - 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
+      default: 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
+    landingPage:
+      type: object
+      required:
+        - links
+      properties:
+        title:
+          type: string
+          example: Buildings in Bonn
+        description:
+          type: string
+          example: Access to data about buildings in the city of Bonn via a Web API that conforms to the OGC API Features specification.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+		  ##Example may vary among different services.
+		  example:
+			- href: 'http://data.example.org/?f=json'
+			  rel: self
+			  type: application/json
+			  title: this document
+			- href: 'http://data.example.org/?f=html'
+			  rel: alternate
+			  type: text/html
+			  title: this document in HTML
+			- href: 'http://data.example.org/api?f=json'
+			  rel: service
+			  type: application/vnd.oai.openapi+json;version=3.0
+			  title: the API definition in OpenAPI 3.0 JSON
+			- href: 'http://data.example.org/api?f=html'
+			  rel: service
+			  type: text/html
+			  title: the API definition in HTML
+			- href: 'http://data.example.org/conformance?f=json'
+			  rel: conformance
+			  type: application/json
+			  title: the list of conformance classes implemented by this API
+			- href: 'http://data.example.org/collections?f=json'
+			  rel: data
+			  type: application/json
+			  title: The feature collections in the dataset in JSON
+			- href: 'http://data.example.org/collections?f=html'
+			  rel: data
+			  type: text/html
+			  title: The feature collections in the dataset in HTML
+    link:
+      type: object
+      required:
+        - href
+      properties:
+        href:
+          type: string
+          example: 'http://data.example.com/buildings/123'
+        rel:
+          type: string
+          example: alternate
+        type:
+          type: string
+          example: application/geo+json
+        hreflang:
+          type: string
+          example: en
+        title:
+          type: string
+          example: Trierer Strasse 70, 53115 Bonn
+        length:
+          type: integer
+    keyword:
+      required:
+        - keyword
+      type: object
+      nullable: true
+      properties:
+        keyword:
+          type: string
+          example: land cover
+        code:
+          type: string
+          example: '4612'
+        codeSpace:
+          type: string
+          example: https://www.eionet.europa.eu/gemet/en/concept/
+    numberMatched:
+      description: |-
+        The number of features of the feature type that match the selection
+        parameters like `bbox`.
+      type: integer
+      minimum: 0
+      example: 127
+    numberReturned:
+      description: |-
+        The number of features in the feature collection.
 
-  ####################
-  # Common responses. These responses are samples and you will copy them and extend them (e.g. with examples) into your API document instead of $ref them.
-  ####################
+        A server may omit this information in a response, if the information
+        about the number of features is not known or difficult to compute.
+
+        If the value is provided, the value shall be identical to the number
+        of items in the "features" array.
+      type: integer
+      minimum: 0
+      example: 10
+    timeStamp:  
+      description: This property indicates the time and date when the response was generated.
+      type: string
+      format: date-time
+      example: '2017-08-17T08:05:32Z'
   responses:
     LandingPage:
       description: |-
-        Links to top leve resources (API definition, conformance, resources...)
+        The landing page provides links to the API definition 
+        (link relations `service-desc` and `service-doc`), 
+        the Conformance declaration (path `/conformance`, 
+        link relation `conformance`), and the Feature 
+        Collections (path `/collections`, link relation 
+        `data`).
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/landing-page'
+            $ref: '#/components/schemas/landingPage'
+          example:
+            title: Buildings in Bonn
+            description: Access to data about buildings in the city of Bonn via a Web API that conforms to the OGC API specification.
+            links:
+              - href: 'http://data.example.org/'
+                rel: self
+                type: application/json
+                title: this document
+              - href: 'http://data.example.org/api'
+                rel: service-desc
+                type: application/vnd.oai.openapi+json;version=3.0
+                title: the API definition
+              - href: 'http://data.example.org/api.html'
+                rel: service-doc
+                type: text/html
+                title: the API documentation
+              - href: 'http://data.example.org/conformance'
+                rel: conformance
+                type: application/json
+                title: OGC API conformance classes implemented by this server
+              - href: 'http://data.example.org/collections'
+                rel: data
+                type: application/json
+                title: Information about the collections
         text/html:
           schema:
             type: string
     ConformanceDeclaration:
-      summary: |-
-        This element is pro
       description: |-
-        The URIs of all requirements classes supported by the server.
+        The URIs of all conformance classes supported by the server.
+
+        To support "generic" clients that want to access multiple 
+        OGC API implementations - and not "just" a specific 
+        API / server, the server declares the conformance 
+        classes it implements and conforms to.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/req-classes'
+            $ref: '#/components/schemas/confClasses'
+          example:
+            conformsTo:
+              - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core'
+        text/html:
+          schema:
+            type: string
     Collections:
       description: |-
-        The feature collections shared by this API.
+        The collections shared by this API.
+
+        The dataset is organized as one or more collections. This resource 
+        provides information about and access to the collections. 
+        
+        The response contains the list of collections. For each collection, a link 
+        to other resources is present (e.g. the items in the collection; path `/collections/{collectionId}/items`, 
+        link relation `items`) as well as key information about the collection. 
+        This information includes:
+        
+        * A local identifier for the collection that is unique for the dataset;
+        * A list of coordinate reference systems (CRS) in which geometries may be returned by the server. The first CRS is the default coordinate reference system (the default is always WGS 84 with axis order longitude/latitude);
+        * An optional title and description for the collection;
+        * An optional extent that can be used to provide an indication of the spatial and temporal extent of the collection - typically derived from the data;
+        * An optional indicator about the type of elements in the collection (the default value, if the indicator is not provided, is 'feature').
+
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/collections'
+          example:
+            links:
+              - href: 'http://data.example.org/collections.json'
+                rel: self
+                type: application/json
+                title: this document
+              - href: 'http://data.example.org/collections.html'
+                rel: alternate
+                type: text/html
+                title: this document as HTML
+              - href: 'http://schemas.example.org/1.0/buildings.xsd'
+                rel: describedBy
+                type: application/xml
+                title: GML application schema for Acme Corporation building data
+              - href: 'http://download.example.org/buildings.gpkg'
+                rel: enclosure
+                type: application/geopackage+sqlite3
+                title: Bulk download (GeoPackage)
+                length: 472546
+            collections:
+              - id: buildings
+                title: Buildings
+                description: Buildings in the city of Bonn.
+                extent:
+                  spatial:
+                    bbox:
+                      - - 7.01
+                        - 50.63
+                        - 7.22
+                        - 50.78
+                  temporal:
+                    interval:
+                      - - '2010-02-15T12:34:56Z'
+                        - null
+                links:
+                  - href: 'http://data.example.org/collections/buildings/items'
+                    rel: items
+                    type: application/geo+json
+                    title: Buildings
+                  - href: 'http://data.example.org/collections/buildings/items.html'
+                    rel: items
+                    type: text/html
+                    title: Buildings
+                  - href: 'https://creativecommons.org/publicdomain/zero/1.0/'
+                    rel: license
+                    type: text/html
+                    title: CC0-1.0
+                  - href: 'https://creativecommons.org/publicdomain/zero/1.0/rdf'
+                    rel: license
+                    type: application/rdf+xml
+                    title: CC0-1.0
         text/html:
           schema:
             type: string
-    CollectionInfo:
+    Collection:
       description: |-
-        Metadata about the feature collection with id `collectionId`.
+        Information about the collection with id `collectionId`.
+        
+        The response might also contain a linkto the elements in the collection 
+        (e.g. path `/collections/{collectionId}/items`,link relation `items`) 
+        as well as key information about the collection. This information 
+        includes:
+        
+        * A local identifier for the collection that is unique for the dataset;
+        * A list of coordinate reference systems (CRS) in which geometries may be returned by the server. The first CRS is the default coordinate reference system (the default is always WGS 84 with axis order longitude/latitude);
+        * An optional title and description for the collection;
+        * An optional extent that can be used to provide an indication of the spatial and temporal extent of the collection - typically derived from the data;
+        * An optional indicator about the type of the items in the collection (the default value, if the indicator is not provided, is 'feature').
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/collectionInfo'
+            $ref: '#/components/schemas/collection'
+          example:
+            id: buildings
+            title: Buildings
+            description: Buildings in the city of Bonn.
+            extent:
+              spatial:
+                bbox:
+                  - - 7.01
+                    - 50.63
+                    - 7.22
+                    - 50.78
+              temporal:
+                interval:
+                  - - '2010-02-15T12:34:56Z'
+                    - null
+            links:
+              - href: 'http://data.example.org/collections/buildings/items'
+                rel: items
+                type: application/geo+json
+                title: Buildings
+              - href: 'http://data.example.org/collections/buildings/items.html'
+                rel: items
+                type: text/html
+                title: Buildings
+              - href: 'https://creativecommons.org/publicdomain/zero/1.0/'
+                rel: license
+                type: text/html
+                title: CC0-1.0
+              - href: 'https://creativecommons.org/publicdomain/zero/1.0/rdf'
+                rel: license
+                type: application/rdf+xml
+                title: CC0-1.0
         text/html:
           schema:
             type: string
@@ -578,9 +729,6 @@ components:
         text/html:
           schema:
             type: string
-  #########################
-  # Common response headers
-  #########################
   headers:
     Location:
       schema:
@@ -594,23 +742,3 @@ components:
       schema:
         type: string
       example: "Link: <http://data.example.org/collections/buildings/items.json>; rel=\"self\"; type=\"application/geo+json\""
-
-  #######################
-  # Common path items
-  # NOTE: Referencing pathitems does not seem to work, so I have stopped defining/using them
-  #######################
-
-  ######################################
-  # Common examples of input/output data
-  ######################################
-  examples: {}
-
-  #########################
-  # Common link definitions
-  #########################
-  links: {}
-
-  #########################
-  # Common callback definitions
-  #########################
-  callbacks: {}
