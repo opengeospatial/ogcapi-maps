@@ -1,12 +1,4 @@
 openapi: 3.0.2
-# Revisions:
-# 2019-05-09 initial version
-# 2019-05-11 added nullable values to support patch
-# 2019-05-17 TileRow and TileCol are now 'numbers' (not strings)
-# 2019-05-17 "unless a different coordinate reference system is specified in the parameter `bbox-crs`." has been removed and instead we have added "unless a different coordinate         reference system is specified by another parameter in the API."
-# 2019-05-21 "The default Tiling Scheme is the Google Maps Tiling Scheme" is changed to "The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme)"
-# 2019-05-21 "CRSId" has been added
-#
 info:
   title: OGC API Features Building Blocks
   description: |-
@@ -22,12 +14,33 @@ info:
   license:
     name: OGC License
     url: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/LICENSE'
+  parameters:
+    featureId:
+      name: featureId
+      in: path
+      description: local identifier of a feature
+      required: true
+      schema:
+        type: string
 
 components:
   schemas:
+    collection:
+      type: object
+      properties:
+        items:
+          properties:
+            links:
+              type: array
+              items:
+                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+              example:
+                - href: 'http://data.example.com/collections/buildings/items'
+                  rel: items
+                  title: Retrieve the items of the buildings collection
+                  type: 'application/geo+json'
     queryables:
       type: array
-      nullable: true
       items:
         oneOf:
           - $ref: '#/components/schemas/queryable-string'
@@ -38,30 +51,22 @@ components:
           - $ref: '#/components/schemas/queryable-dateTime'
     queryable:
       type: object
-      nullable: true
       required:
         - id
         - type
       properties:
         id:
           type: string
-          nullable: true
-          description: |-
-            the property name for use in expressions
+          description: the property name for use in expressions
         description:
           type: string
-          nullable: true
-          description: |-
-            a description of the property
+          description: a description of the property
         required:
           type: boolean
-          nullable: true
           default: false
-          description: |-
-            indicator whether the property is always present in features
+          description: indicator whether the property is always present in features
         mediaTypes:
           type: array
-          nullable: true
           description: |-
             In cases where a property is available only in a subset of the
             supported feature encodings, the list of the media types of the
@@ -78,9 +83,7 @@ components:
             type: string
         type:
           type: string
-          nullable: true
-          description: |-
-            the data type of the property
+          description: the data type of the property
           enum:
             - string
             - uri
@@ -109,7 +112,6 @@ components:
         properties:
           pattern:
             type: string
-            nullable: true
             description: a regular expression to validate the values of the property
       example:
         id: name
@@ -121,7 +123,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/queryable'
       - type: object
-        nullable: true
         required:
           - values
         properties:
@@ -167,7 +168,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/queryable'
       - type: object
-        nullable: true
         properties:
           range:
             type: array
@@ -188,7 +188,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/queryable'
       - type: object
-        nullable: true
         properties:
           range:
             type: array
@@ -206,10 +205,10 @@ components:
         type: dateTime
         range: [ '2018-01-01T00:00:00Z', null ]
     featureCollectionGeoJSON:
-      required:
-        - features
-        - type
       type: object
+      required:
+        - type
+        - features
       properties:
         type:
           type: string
@@ -221,27 +220,22 @@ components:
             $ref: '#/components/schemas/featureGeoJSON'
         links:
           type: array
-          nullable: true
           items:
             $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
         timeStamp:
-          type: string
-          nullable: true
-          format: dateTime
+          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/timeStamp'
         numberMatched:
-          minimum: 0
           type: integer
-          nullable: true
+          minimum: 0
         numberReturned:
-          minimum: 0
           type: integer
-          nullable: true
+          minimum: 0
     featureGeoJSON:
+      type: object
       required:
+        - type
         - geometry
         - properties
-        - type
-      type: object
       properties:
         type:
           type: string
@@ -256,90 +250,157 @@ components:
           oneOf:
             - type: string
             - type: integer
-          nullable: true
         links:
           type: array
-          nullable: true
           items:
             $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
     geometryGeoJSON:
+      oneOf:
+      - $ref: "#/components/schemas/pointGeoJSON"
+      - $ref: "#/components/schemas/multipointGeoJSON"
+      - $ref: "#/components/schemas/linestringGeoJSON"
+      - $ref: "#/components/schemas/multilinestringGeoJSON"
+      - $ref: "#/components/schemas/polygonGeoJSON"
+      - $ref: "#/components/schemas/multipolygonGeoJSON"
+      - $ref: "#/components/schemas/geometrycollectionGeoJSON"
+    geometrycollectionGeoJSON:
       type: object
       required:
         - type
-      nullable: true
+        - geometries
+      properties:
+        type:
+          type: string
+          enum:
+            - GeometryCollection
+        geometries:
+          type: array
+          items:
+            $ref: "#/components/schemas/geometryGeoJSON"
+    landingPage:
+      type: object
+      required:
+        - links
+      properties:
+        title:
+          type: string
+          example: Buildings in Bonn
+        description:
+          type: string
+          example: Access to data about buildings in the city of Bonn via a Web API that conforms to the OGC API Features specification.
+        links:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+    linestringGeoJSON:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+            - LineString
+        coordinates:
+          type: array
+          minItems: 2
+          items:
+            type: array
+            minItems: 2
+            items:
+              type: number
+    multilinestringGeoJSON:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+            - MultiLineString
+        coordinates:
+          type: array
+          items:
+            type: array
+            minItems: 2
+            items:
+              type: array
+              minItems: 2
+              items:
+                type: number
+    multipointGeoJSON:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+            - MultiPoint
+        coordinates:
+          type: array
+          items:
+            type: array
+            minItems: 2
+            items:
+              type: number
+    multipolygonGeoJSON:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+            - MultiPolygon
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              minItems: 4
+              items:
+                type: array
+                minItems: 2
+                items:
+                  type: number            
+    pointGeoJSON:
+      type: object
+      required:
+        - type
+        - coordinates
       properties:
         type:
           type: string
           enum:
             - Point
-            - MultiPoint
-            - LineString
-            - MultiLineString
-            - Polygon
-            - MultiPolygon
-            - GeometryCollection
-  ####################
-  # Common parameters
-  ####################
-  parameters:
-    #######################
-    # From OGC API Features
-    #######################
-    featureId:
-      name: featureId
-      in: path
-      description: |-
-        local identifier of a feature
-      required: true
-      schema:
-        type: string
-    properties:
-      name: properties
-      in: query
-      description: |-
-        The properties that should be included for each feature. The parameter
-        value is a comma-separated list of property names.
-      required: false
-      style: form
-      explode: false
-      schema:
-        type: array
-        items:
+        coordinates:
+          type: array
+          minItems: 2
+          items:
+            type: number
+    polygonGeoJSON:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
           type: string
-
-  #######################
-  # Common request bodies
-  #######################
-  requestBodies: {}
-
-  ####################
-  # Common responses
-  ####################
-  responses:
-    {}
-
-  #########################
-  # Common response headers
-  #########################
-  headers:
-    {}
-
-  #######################
-  # Common path items
-  # NOTE: Referencing pathitems does not seem to work, so I have stopped defining/using them
-  #######################
-
-  ######################################
-  # Common examples of input/output data
-  ######################################
-  examples: {}
-
-  #########################
-  # Common link definitions
-  #########################
-  links: {}
-
-  #########################
-  # Common callback definitions
-  #########################
-  callbacks: {}
+          enum:
+            - Polygon
+        coordinates:
+          type: array
+          items:
+            type: array
+            minItems: 4
+            items:
+              type: array
+              minItems: 2
+              items:
+                type: number

@@ -148,7 +148,7 @@ paths:
         server conforms to.
       operationId: getConformanceDeclaration
       parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yam#/components/parameters/f-json'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json'
       tags:
         - OGC API Common
       responses:
@@ -321,7 +321,7 @@ paths:
       summary: fetch all available tile matrix sets (tiling schemes)
       operationId: getTileMatrixSets
       parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yam#/components/parameters/f-json'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json'
       responses:
         '200':
           description: |-
@@ -340,7 +340,7 @@ paths:
       operationId: getTileMatrixSetDescription
       parameters:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/parameters/tileMatrixSetId'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yam#/components/parameters/f-json'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json'
       responses:
         '200':
           description: tile matrix sets (a tiling scheme).
