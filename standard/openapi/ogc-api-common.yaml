@@ -694,32 +694,48 @@ components:
           schema:
             type: string
     Created:
+      # Response associated to 201
       description: |-
-        Resource created. Response associated to 201
+        Resource created
       headers:
         Location:
           $ref: '#/components/headers/Location'
     Updated:
+      # Response associated to 204
       description: |-
-        The resource has been updated or created. Response associated to 204
+        The resource has been updated or created
     Deleted:
+      # Response associated to 204
       description: |-
-        The resource has been deleted. Response associated to 204
+        The resource has been deleted
     Invalid:
+      # Response associated to 400
       description: |-
-        The resource is an invalid input. Response associated to 400
+        The resource is an invalid input
+    InvalidParam:
+      # Response associated to 400
+      description: |-
+        invalid or unknown query parameters
     UnauthorizedAccess:
+      # Response associated to 401
       description: |-
-        Unauthorized access. Response associated to 401
+        Access not unauthorized
     NotFound:
+      # Response associated to 404
       description: |-
-        The requested URI was not found. Response associated to 404
+        The requested URI was not found
+    UnsupportedFormat:
+      # Response associated to 406
+      description: |-
+        The media types accepted by the client are not supported for this resource
     AlreadyExist:
+      # Response associated to 409
       description: |-
-        Resource with that id already exists. Response associated to 409
+        Resource with that id already exists
     ServerError:
+      # Response associated to 500
       description: |-
-        A server error occurred. Response associated to 500
+        A server error occurred
       content:
         application/json:
           schema:
@@ -733,7 +749,7 @@ components:
           type: string
           format: uri
       description: |-
-        URI of the new resource.
+        URI of the new resource
     Link:
       description: |-
         link header according to RFC 8288

@@ -131,12 +131,9 @@ paths:
                 - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/multitile'
                 - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/info'
         '400':
-          description: |-
-            invalid or unknown query parameters
+          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/InvalidParam'
         '406':
-          description: |-
-            The media types accepted by the client are not
-            supported for this resource
+          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/UnsupportedFormat'
         '500':
           $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
   '/collections':
