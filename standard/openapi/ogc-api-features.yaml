@@ -14,6 +14,7 @@ info:
   license:
     name: OGC License
     url: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/LICENSE'
+components:
   parameters:
     featureId:
       name: featureId
@@ -22,8 +23,6 @@ info:
       required: true
       schema:
         type: string
-
-components:
   schemas:
     collection:
       type: object
@@ -368,7 +367,7 @@ components:
                 type: array
                 minItems: 2
                 items:
-                  type: number            
+                  type: number
     pointGeoJSON:
       type: object
       required:
