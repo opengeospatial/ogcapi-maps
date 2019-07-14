@@ -15,9 +15,8 @@ info:
 
     This document is also available in [GitHub](https://github.com/opengeospatial/oapi_common/tree/master/OAPI-Common/openapi).
 
-    This document copies or is inspired in 
-    [GitHub](https://github.com/opengeospatial/WFS_FES/blob/master/core/openapi/bbox/ogcapi-features-1.yaml).
-	from Clemens Portele
+    This document copies or is inspired in
+    [GitHub](https://github.com/opengeospatial/WFS_FES/blob/master/core/openapi/bbox/ogcapi-features-1.yaml) 	from Clemens Portele
 
   version: '1.0.0'
   contact:
@@ -417,36 +416,36 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/link'
-		  ##Example may vary among different services.
-		  example:
-			- href: 'http://data.example.org/?f=json'
-			  rel: self
-			  type: application/json
-			  title: this document
-			- href: 'http://data.example.org/?f=html'
-			  rel: alternate
-			  type: text/html
-			  title: this document in HTML
-			- href: 'http://data.example.org/api?f=json'
-			  rel: service
-			  type: application/vnd.oai.openapi+json;version=3.0
-			  title: the API definition in OpenAPI 3.0 JSON
-			- href: 'http://data.example.org/api?f=html'
-			  rel: service
-			  type: text/html
-			  title: the API definition in HTML
-			- href: 'http://data.example.org/conformance?f=json'
-			  rel: conformance
-			  type: application/json
-			  title: the list of conformance classes implemented by this API
-			- href: 'http://data.example.org/collections?f=json'
-			  rel: data
-			  type: application/json
-			  title: The feature collections in the dataset in JSON
-			- href: 'http://data.example.org/collections?f=html'
-			  rel: data
-			  type: text/html
-			  title: The feature collections in the dataset in HTML
+      ##Example may vary among different services.
+      example:
+        - href: 'http://data.example.org/?f=json'
+          rel: self
+          type: application/json
+          title: this document
+        - href: 'http://data.example.org/?f=html'
+          rel: alternate
+          type: text/html
+          title: this document in HTML
+        - href: 'http://data.example.org/api?f=json'
+          rel: service
+          type: application/vnd.oai.openapi+json;version=3.0
+          title: the API definition in OpenAPI 3.0 JSON
+        - href: 'http://data.example.org/api?f=html'
+          rel: service
+          type: text/html
+          title: the API definition in HTML
+        - href: 'http://data.example.org/conformance?f=json'
+          rel: conformance
+          type: application/json
+          title: the list of conformance classes implemented by this API
+        - href: 'http://data.example.org/collections?f=json'
+          rel: data
+          type: application/json
+          title: The feature collections in the dataset in JSON
+        - href: 'http://data.example.org/collections?f=html'
+          rel: data
+          type: text/html
+          title: The feature collections in the dataset in HTML
     link:
       type: object
       required:
@@ -503,7 +502,7 @@ components:
       type: integer
       minimum: 0
       example: 10
-    timeStamp:  
+    timeStamp:
       description: This property indicates the time and date when the response was generated.
       type: string
       format: date-time
@@ -511,11 +510,11 @@ components:
   responses:
     LandingPage:
       description: |-
-        The landing page provides links to the API definition 
-        (link relations `service-desc` and `service-doc`), 
-        the Conformance declaration (path `/conformance`, 
-        link relation `conformance`), and the Feature 
-        Collections (path `/collections`, link relation 
+        The landing page provides links to the API definition
+        (link relations `service-desc` and `service-doc`),
+        the Conformance declaration (path `/conformance`,
+        link relation `conformance`), and the Feature
+        Collections (path `/collections`, link relation
         `data`).
       content:
         application/json:
@@ -552,9 +551,9 @@ components:
       description: |-
         The URIs of all conformance classes supported by the server.
 
-        To support "generic" clients that want to access multiple 
-        OGC API implementations - and not "just" a specific 
-        API / server, the server declares the conformance 
+        To support "generic" clients that want to access multiple
+        OGC API implementations - and not "just" a specific
+        API / server, the server declares the conformance
         classes it implements and conforms to.
       content:
         application/json:
@@ -570,14 +569,14 @@ components:
       description: |-
         The collections shared by this API.
 
-        The dataset is organized as one or more collections. This resource 
-        provides information about and access to the collections. 
-        
-        The response contains the list of collections. For each collection, a link 
-        to other resources is present (e.g. the items in the collection; path `/collections/{collectionId}/items`, 
-        link relation `items`) as well as key information about the collection. 
+        The dataset is organized as one or more collections. This resource
+        provides information about and access to the collections.
+
+        The response contains the list of collections. For each collection, a link
+        to other resources is present (e.g. the items in the collection; path `/collections/{collectionId}/items`,
+        link relation `items`) as well as key information about the collection.
         This information includes:
-        
+
         * A local identifier for the collection that is unique for the dataset;
         * A list of coordinate reference systems (CRS) in which geometries may be returned by the server. The first CRS is the default coordinate reference system (the default is always WGS 84 with axis order longitude/latitude);
         * An optional title and description for the collection;
@@ -645,12 +644,12 @@ components:
     Collection:
       description: |-
         Information about the collection with id `collectionId`.
-        
-        The response might also contain a linkto the elements in the collection 
-        (e.g. path `/collections/{collectionId}/items`,link relation `items`) 
-        as well as key information about the collection. This information 
+
+        The response might also contain a linkto the elements in the collection
+        (e.g. path `/collections/{collectionId}/items`,link relation `items`)
+        as well as key information about the collection. This information
         includes:
-        
+
         * A local identifier for the collection that is unique for the dataset;
         * A list of coordinate reference systems (CRS) in which geometries may be returned by the server. The first CRS is the default coordinate reference system (the default is always WGS 84 with axis order longitude/latitude);
         * An optional title and description for the collection;
@@ -741,4 +740,4 @@ components:
         link header according to RFC 8288
       schema:
         type: string
-      example: "Link: <http://data.example.org/collections/buildings/items.json>; rel=\"self\"; type=\"application/geo+json\""
+      example: 'Link: <http://data.example.org/collections/buildings/items.json>; rel=\"self\"; type=\"application/geo+json\"'
