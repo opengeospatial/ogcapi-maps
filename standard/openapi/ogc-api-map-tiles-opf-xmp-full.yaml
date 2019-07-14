@@ -53,30 +53,30 @@ tags:
   - name: OGC API Coverages
     description: |-
       access to data (coverages)
-  - name: Maps with one layer
+  - name: Maps from one collection
     description: |-
-      Access to map renderizations of a layer.
-  - name: Tiles with one layer
+      Access to map renderizations of a collection.
+  - name: Tiled data from one collection
     description: |-
-      Data partitioned into a hierarchy of tiles of a layer
-  - name: Map Tiles with one layer
+      Data partitioned into a hierarchy of tiles of a collection
+  - name: Tiled maps from one collection
     description: |-
-      map (renderizations or vector tiles) partitioned into a hierarchy of tiles  of a layer
-  - name: Maps with more that one layer
+      map (renderizations or vector tiles) partitioned into a hierarchy of tiles  of a collection
+  - name: Maps from more that one collection
     description: |-
-      Access to map renderizations of more thatn one layer.
-  - name: Tiles with more than one layer
+      Access to map renderizations of more thatn one collection.
+  - name: Tiled data from more than one collection
     description: |-
-      access to data representations, partitioned into a hierarchy of tiles (renderizations or vector tiles) of more that one layer.
-  - name:   Map tiles with more that one layer
+      access to data representations, partitioned into a hierarchy of tiles (renderizations or vector tiles) of more that one collection.
+  - name: Tiled maps from more that one collection
     description: |-
-      access to maps, partitioned into a hierarchy of tiles of more that one layer.
+      access to maps, partitioned into a hierarchy of tiles of more that one collection.
   - name: Complex Maps
     description: |-
-      access to map renderizations of more that one layer.
+      access to map renderizations of more that one collection.
   - name: Manage Complex Maps
     description: |-
-      manage to map renderizations of more that one layer.
+      manage to map renderizations of more that one collection.
   - name: MultiTiles
     description: |-
       access to information about retriving multiple tiles in a single request.
@@ -520,7 +520,7 @@ paths:
   '/collections/{collectionId}/map/{styleId}':
     get:
       tags:
-        - Maps with one layer
+        - Maps from one collection
       summary: fetch a map from a collection
       description: |-
         Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -564,7 +564,7 @@ paths:
   '/collections/{collectionId}/map/{styleId}/info':
     get:
       tags:
-        - Maps with one layer
+        - Maps from one collection
       summary: fetch information about a point on a map from a collection
       description: |-
         Retrieves a getFeatureInfo in map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -601,7 +601,7 @@ paths:
   /collections/{collectionId}/coverages/{coverageId}/map/{styleId}:
     get:
       tags:
-      - Maps with one layer
+      - Maps from one collection
       summary: retrieve a coverage; use content negotiation to request either a multipart
         response or the coverages rangeType in the specified format
       operationId: getMapCoverageId
@@ -633,7 +633,7 @@ paths:
   /collections/{collectionId}/coverages/{coverageId}/map/{styleId}/info:
     get:
       tags:
-      - Maps with one layer
+      - Maps from one collection
       summary: retrieve a coverage; use content negotiation to request either a multipart
         response or the coverages rangeType in the specified format
       operationId: getFeatureInfoCoverageId
@@ -669,7 +669,7 @@ paths:
   '/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
-        - Tiles with one layer
+        - Tiled data from one collection
       summary: fetch a tile from a collection
       description: |-
         Retrieves the tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -711,7 +711,7 @@ paths:
   '/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
-        - Tiles with one layer
+        - Tiled data from one collection
       summary: fetch information about a point on a tile from a collection
       description: |-
         Retrieves inforamtion on a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -742,7 +742,7 @@ paths:
   '/collections/{collectionId}/coverages/{coverageId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
-      - Tiles with one layer
+      - Tiled data from one collection
       summary: retrieve a coverage; use content negotiation to request either a multipart
         response or the coverages rangeType in the specified format
       operationId: getTileCoverageId
@@ -771,7 +771,7 @@ paths:
   '/collections/{collectionId}/coverages/{coverageId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
-      - Tiles with one layer
+      - Tiled data from one collection
       summary: retrieve a coverage; use content negotiation to request either a multipart
         response or the coverages rangeType in the specified format
       operationId: getFeatureInfoTileCoverageId
@@ -805,7 +805,7 @@ paths:
   '/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
-        - Tiles with more than one layer
+        - Tiled data from more than one collection
       summary: fetch a tile from one or more collections
       description: |-
         The tile in the requested tiling scheme, on the requested zoom level in
@@ -826,7 +826,7 @@ paths:
       responses:
         '200':
           description: |-
-            A multi-layer tile of the dataset.
+            A multi-collection tile of the dataset.
           content:
             image/jpeg:
               schema:
@@ -853,7 +853,7 @@ paths:
   '/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
-        - Tiles with more than one layer
+        - Tiled data from more than one collection
       summary: fetch information about a point in a tile from one or more collections
       description: |-
         Retrieves information about a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -885,7 +885,7 @@ paths:
   '/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
-        - Map Tiles with one layer
+        - Tiled Map from one collection
       summary: fetch a tile from a collection
       description: |-
         Retrieves the tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -930,7 +930,7 @@ paths:
   '/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
-        - Map Tiles with one layer
+        - Tiled maps from one collection
       summary: fetch information about a point on a tile from a collection
       description: |-
         Retrieves inforamtion on a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -963,7 +963,7 @@ paths:
   '/collections/{collectionId}/coverages/{coverageId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
-      - Map Tiles with one layer
+      - Tiled maps from one collection
       summary: retrieve a coverage; use content negotiation to request either a multipart
         response or the coverages rangeType in the specified format
       operationId: getMapTileCoverageId
@@ -993,7 +993,7 @@ paths:
   '/collections/{collectionId}/coverages/{coverageId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
-      - Map Tiles with one layer
+      - Tiled maps from one collection
       summary: retrieve a coverage; use content negotiation to request either a multipart
         response or the coverages rangeType in the specified format
       operationId: getFeatureInfoMapTileCoverageId
@@ -1027,7 +1027,7 @@ paths:
   '/map':
     get:
       tags:
-        - Maps with more that one layer
+        - Maps from more that one collection
       summary: retrieves a map composed by one or more collections
       description: |-
         Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -1070,7 +1070,7 @@ paths:
           $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
     post:
       tags:
-        - Maps with more that one layer
+        - Maps from more that one collection
       summary: fetch a map from one or more collections
       description: |-
         Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -1111,7 +1111,7 @@ paths:
   '/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
-        - Map tiles with more that one layer
+        - Tiled maps from more that one collection
       summary: retrieves a map composed by one or more collections
       description: |-
         Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -1156,7 +1156,7 @@ paths:
           $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
     post:
       tags:
-        - Map tiles with more that one layer
+        - Tiled maps from more that one collection
       summary: fetch a map from one or more collections
       description: |-
         Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.

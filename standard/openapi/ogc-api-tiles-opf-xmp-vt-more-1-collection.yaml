@@ -1,34 +1,18 @@
 openapi: 3.0.0
 # Revisions:
-# 2019-05-11 initial version deeply based on https://app.swaggerhub.com/apis/cportele/opf-features-api/1.0.0
-# 2019-05-15 Extending the example of the landing page
-# 2019-05-15 Extending the example of the conformace page
-# 2019-05-15 Extending the schema for CollectionInfo to include TileMatrixSetLink (with a link to the TileMatrixSet description and a link to the Tiles)
-# 2019-05-15 Extending the schema for CollectionInfo to include a link to maps
-# 2019-05-17 /tiles and /collections/{collectionId}/tile are removed as they seem reduntant with checking the metadata in the /collections/{collectionId}. Returning tiles from deveral tileMatrixSetIds seems too much.
-# 2019-05-17 removed the word "feature" from the summary if /collections
-# 2019-05-17 /TileMatrixSet and derivates are considered "metadata" so are moved to the capabilities section.
-# 2019-06-14
+# 2019-06-14 Created from a more complex example
 servers:
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/joanma747/opf-map-tiles-api/1.0.0
 info:
   title: |-
-    OGC API Maps and Tiles OpenAPI document example
+    Tiled feature data service example. Part of the OGC API Maps and Tiles OpenAPI work.
   description: |-
-    This is a draft of an example (and imaginary instance) of a service following the OGC API maps and tiles produced in the Testbed-15 Open Portrayal Framework in collaboration with the WMS.SWG. The Map Tile API is a Web API for fetching and managing maps and tiles.
+    This is a draft of an example of a service following the OGC API maps and tiles that produces tiled feature data.
 
-    The extensions are the following.
-    * There are
-    * The feature collection metadata (path `/collections/{collectionId}`) has been extended by the set of applicable styles (member `styles`, same
-    value as in `/styles` in the Style API) and a default style
-    (member `defaultStyle`, the style id).
-    * The PATCH operation on the feature collection metadata
-    (path `/collections/{collectionId}`) has been added. Only `styles` and
-    `defaultStyle` may be updated.
-    * The queryables resource (path `/collections/{collectionId}/queryables`)
-    has been added to support clients like visual style editors to construct
-    expressions for selection criteria in queries on features in the collection.
+    It is elaborated in the Testbed-15 Open Portrayal Framework in collaboration with the WMS.SWG. The Map Tile API is a Web API for fetching and managing maps and tiles.
+
+    It illustrated how to request tiled feature data (sometimes refered as vector tiles) from one or more than one collections
 
     For more background information see [the Vector Tiles Pilot Extension Engineering
     Report](https://github.com/opengeospatial/OGC-API-Map-Tiles/tree/master/standard/openapi).
@@ -47,12 +31,12 @@ tags:
   - name: TileMatrixSet
     description: |-
       TileMatrixSet used in this API
-  - name: Tiles with one layer
+  - name: Tiled features from one collection
     description: |-
-      Data partitioned into a hierarchy of tiles of a layer
-  - name: Tiles with more than one layer
+      Data partitioned into a hierarchy of tiles of a collection
+  - name: Tiled features from more than one collection
     description: |-
-      access to data representations, partitioned into a hierarchy of tiles (renderizations or vector tiles) of more that one layer.
+      Access to data representations, partitioned into a hierarchy of tiles of more that one collection.
 
 paths:
   '/':
@@ -231,7 +215,7 @@ paths:
   '/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
-        - Tiles with one layer
+        - Tiled features from one collection
       summary: fetch a tile from a collection
       description: |-
         Retrieves the tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -273,7 +257,7 @@ paths:
   '/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
-        - Tiles with one layer
+        - Tiled features from one collection
       summary: fetch information about a point on a tile from a collection
       description: |-
         Retrieves inforamtion on a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -305,7 +289,7 @@ paths:
   '/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
-        - Tiles with more than one layer
+        - Tiled features from more than one collection
       summary: fetch a tile from one or more collections
       description: |-
         The tile in the requested tiling scheme, on the requested zoom level in
@@ -326,7 +310,7 @@ paths:
       responses:
         '200':
           description: |-
-            A multi-layer tile of the dataset.
+            A tile representing elements of a single collection of the dataset.
           content:
             image/jpeg:
               schema:
@@ -353,7 +337,7 @@ paths:
   '/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
-        - Tiles with more than one layer
+        - Tiled features from more than one collection
       summary: fetch information about a point in a tile from one or more collections
       description: |-
         Retrieves information about a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.

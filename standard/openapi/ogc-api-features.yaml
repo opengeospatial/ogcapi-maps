@@ -1,9 +1,12 @@
 openapi: 3.0.2
+# 2019-07-05 Separated from more complete other examples previously done. It relays on OGC API Common example. Common components used in the OGC API family of standards. Deeply inspired in Clemens Portele work.
+# 2019-07-10 "Collection" has a items object to describe the items link and eventually other properties. This makes this diferent form the original WFS3 examples
+# 2019-07-14 Updated with the last WFS3 draft https://github.com/opengeospatial/WFS_FES/blob/master/core/openapi/bbox/ogcapi-features-1.yaml
 info:
   title: OGC API Features Building Blocks
   description: |-
     Common components used in the OGC API features standards.
-    Deeply inspired in Clemens Portele WFS3 work.
+    Deeply inspired in Clemens Portele WFS3 work but depending on a OGC API Common document
 
     This document is also available in [GitHub](https://github.com/opengeospatial/OGC-API-Map-Tiles/tree/master/standard/openapi).
 

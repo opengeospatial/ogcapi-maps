@@ -1,11 +1,6 @@
 openapi: 3.0.2
 # Revisions:
-# 2019-05-09 initial version
-# 2019-05-11 added nullable values to support patch
-# 2019-05-17 TileRow and TileCol are now 'numbers' (not strings)
-# 2019-05-17 "unless a different coordinate reference system is specified in the parameter `bbox-crs`." has been removed and instead we have added "unless a different coordinate         reference system is specified by another parameter in the API."
-# 2019-05-21 "The default Tiling Scheme is the Google Maps Tiling Scheme" is changed to "The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme)"
-# 2019-05-21 "CRSId" has been added
+# 2019-07-14 Reparated from a more complex domains document
 #
 info:
   title: OGC API Building Blocks
