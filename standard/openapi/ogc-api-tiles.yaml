@@ -410,6 +410,7 @@ components:
       in: query
       description: |-
          A range of scale denominators (that can be used to generate a list of tileMatrix names. Note that scale denominators have several significant digits. To prevent mistakes apply tolerances to intervals. Even if you want to specify a single scale denominator use an interval with tolerance
+      required: false
       style: form
       explode: false
       schema:
@@ -418,8 +419,7 @@ components:
         maxItems: 2
         items:
           type: number
-      required: false
-      default: 0
+          default: 0
     embedded:
       name: embedded
       in: query
