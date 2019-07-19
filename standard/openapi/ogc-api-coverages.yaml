@@ -25,13 +25,25 @@ info:
     url: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/LICENSE'
 
 components:
-  ####################
-  # Common data models
-  ####################
   schemas:
-    ########################
-    # From OGC API Coverages
-    ########################
+    collection:
+      type: object
+      properties:
+        items:
+          properties:
+            links:
+              type: array
+              items:
+                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+              example:
+                - href: 'http://data.example.com/collections/satellite/coverages/sentinel2/rangeType'
+                  rel: rangeType
+                  title: Retrieve the semantincs of the data in the coverage
+                  type: 'application/json'
+                - href: 'http://data.example.com/collections/satellite/coverages/sentinel2/domainSet'
+                  rel: domainSet
+                  title: Retrieve the dimensions of the coverage
+                  type: 'application/json'
     domainSetJSON:
       description: TBD
       required:
