@@ -26,15 +26,6 @@ tags:
   - name: OGC API Common
     description: |-
       Common characteristics of this API
-  - name: TileMatrixSet
-    description: |-
-      TileMatrixSet used in this API
-  - name: OGC API Features
-    description: |-
-      access to data (features)
-  - name: OGC API Coverages
-    description: |-
-      access to data (coverages)
   - name: Maps from one collection
     description: |-
       Access to map renderizations of a collection.

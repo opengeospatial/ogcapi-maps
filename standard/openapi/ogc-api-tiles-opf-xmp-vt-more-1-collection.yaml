@@ -34,9 +34,9 @@ tags:
   - name: Tiled features from one collection
     description: |-
       Data partitioned into a hierarchy of tiles of a collection
-  - name: Tiled features from more than one collection
+  - name: Tiled data from more than one collection
     description: |-
-      Access to data representations, partitioned into a hierarchy of tiles of more that one collection.
+      Data representations, partitioned into a hierarchy of tiles of more that one collection.
 
 paths:
   '/':

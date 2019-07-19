@@ -29,36 +29,12 @@ tags:
   - name: TileMatrixSet
     description: |-
       TileMatrixSet used in this API
-  - name: OGC API Features
-    description: |-
-      access to data (features)
-  - name: OGC API Coverages
-    description: |-
-      access to data (coverages)
-  - name: Maps from one collection
-    description: |-
-      Access to map renderizations of a collection.
-  - name: Map Tiles with one collection
+  - name: Tiled maps from one collection
     description: |-
       map (renderizations or vector tiles) partitioned into a hierarchy of tiles  of a collection
-  - name: Maps with more that one collection
-    description: |-
-      Access to map renderizations of more thatn one collection.
-  - name: Tiles with more than one collection
-    description: |-
-      access to data representations, partitioned into a hierarchy of tiles (renderizations or vector tiles) of more that one collection.
-  - name:   Map tiles with more that one collectioncollection
+  - name: Tiled maps from more that one collection
     description: |-
       access to maps, partitioned into a hierarchy of tiles of more that one collection.
-  - name: Complex Maps
-    description: |-
-      access to map renderizations of more that one collection.
-  - name: Manage Complex Maps
-    description: |-
-      manage to map renderizations of more that one collection.
-  - name: MultiTiles
-    description: |-
-      access to information about retriving multiple tiles in a single request.
 paths:
   '/':
     get:
