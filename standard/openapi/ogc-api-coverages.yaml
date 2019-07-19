@@ -29,7 +29,7 @@ components:
     collection:
       type: object
       properties:
-        items:
+        coverages:
           properties:
             links:
               type: array
@@ -71,40 +71,3 @@ components:
       explode: false
       schema:
         type: string
-
-  #######################
-  # Common request bodies
-  #######################
-  requestBodies: {}
-
-  ####################
-  # Common responses
-  ####################
-  responses:
-    {}
-
-  #########################
-  # Common response headers
-  #########################
-  headers:
-    {}
-
-  #######################
-  # Common path items
-  # NOTE: Referencing pathitems does not seem to work, so I have stopped defining/using them
-  #######################
-
-  ######################################
-  # Common examples of input/output data
-  ######################################
-  examples: {}
-
-  #########################
-  # Common link definitions
-  #########################
-  links: {}
-
-  #########################
-  # Common callback definitions
-  #########################
-  callbacks: {}

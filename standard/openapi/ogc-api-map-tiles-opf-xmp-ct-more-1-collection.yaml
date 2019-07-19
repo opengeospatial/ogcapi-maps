@@ -474,6 +474,6 @@ components:
         type: string
         enum:
           - geotiff
-      default: geotiff
+        default: geotiff
 
   responses: {}
