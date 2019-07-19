@@ -48,7 +48,7 @@ paths:
         - OGC API Common
       summary: landing page
       description: |-
-        The landing page provides links to the API definition, the conformance statements and to the feature collections in this dataset.
+        The landing page provides links to the API definition, the conformance statements and to the feature collections in this dataset. It is conformant to - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core'
       operationId: getLandingPage
       parameters:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json-html'
@@ -106,7 +106,7 @@ paths:
     get:
       description: |-
         A list of all requirements classes specified in a standard that the
-        server conforms to.
+        server conforms to. It is conformant to - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core'
       operationId: getConformanceDeclaration
       parameters:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json'
@@ -121,15 +121,20 @@ paths:
               schema:
                 $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/confClasses'
               example:
-                - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/core'
-                - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/oas30'
-                - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/html'
-                - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/geojson'
+                # OGC API Common core consists on the landingPage, conformance
+                - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core'
+                # OGC API Common collections consists adds the capability to have collections
+                - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections'
+                # OGC API Maps core consists on the capability to serve a collection as a map in the default CRS
                 - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core'
+                # OGC API Maps core consists on the capability to serve a collection as a map in any CRS
+                - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs'
+                # OGC API Maps root consists on the capability to create a map of several collections
+                - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/root'
+                # OGC API Maps root consists on the capability to query a map by location
                 - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
-                - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core'
-                - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/multitile'
-                - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/info'
+                # OGC API Maps dimensions consists on the capability to add extra dimensions to a map (time, elevation, etc)
+                #- 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dimensions'
         '400':
           $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/InvalidParam'
         '406':
@@ -141,6 +146,8 @@ paths:
       tags:
         - OGC API Common
       summary: the collections in the dataset
+      description: |-
+        A list of all collection in this dataset. Some collections might not be downloadable as features or coverages. It is conformant to - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections'
       operationId: getCollections
       parameters:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json-html'
@@ -153,7 +160,9 @@ paths:
     get:
       tags:
         - OGC API Common
-      summary: describe a collection
+      summary: describes a collection
+      description: |-
+        Description of a collection in this dataset. It defines what is possible to do with it to generate a map. Some collections might not be downloadable as features or coverages. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core'
       operationId: describeCollection
       parameters:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/collectionId'
@@ -272,51 +281,13 @@ paths:
             the request.
         '500':
           $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
-  '/tileMatrixSets':
-    get:
-      tags:
-        - TileMatrixSet
-      summary: fetch all available tile matrix sets (tiling schemes)
-      operationId: getTileMatrixSets
-      parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json'
-      responses:
-        '200':
-          description: |-
-            An array of tile matrix sets (tiling schemes).
-          content:
-            application/json:
-              schema:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/schemas/tileMatrixSets'
-        '500':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
-  '/tileMatrixSets/{tileMatrixSetId}':
-    get:
-      tags:
-        - TileMatrixSet
-      summary: fetch a tile matrix sets (tiling scheme) by id
-      operationId: getTileMatrixSetDescription
-      parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/parameters/tileMatrixSetId'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json'
-      responses:
-        '200':
-          description: tile matrix sets (a tiling scheme).
-          content:
-            application/json:
-              schema:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/schemas/tileMatrixSet'
-        '404':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/NotFound'
-        '500':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
   '/collections/{collectionId}/map/{styleId}':
     get:
       tags:
         - Maps from one collection
       summary: fetch a map from a collection
       description: |-
-        Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
+        Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core'
       operationId: getMapCollectionId
       parameters:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/collectionId'
@@ -329,7 +300,7 @@ paths:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/parameters/bgcolor'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/datetime'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/elevation'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json'
+        - $ref: '#/components/parameters/f-png-jpeg'
       responses:
         '200':
           description: |-
@@ -360,7 +331,7 @@ paths:
         - Maps from one collection
       summary: fetch information about a point on a map from a collection
       description: |-
-        Retrieves a getFeatureInfo in map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
+        Retrieves a getFeatureInfo in map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
       operationId: getFeatureInfoCollectionId
       parameters:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/collectionId'
@@ -376,7 +347,7 @@ paths:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/coord_i'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/coord_j'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/infoTemplate'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/parameters/mapFormat'
+        - $ref: '#/components/parameters/f-map'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json-html'
       responses:
         '200':
@@ -395,8 +366,8 @@ paths:
     get:
       tags:
       - Maps from one collection
-      summary: retrieve a coverage; use content negotiation to request either a multipart
-        response or the coverages rangeType in the specified format
+      description: |-
+        Retrieves a map of a coverage in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core'
       operationId: getMapCoverageId
       parameters:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/collectionId'
@@ -410,7 +381,7 @@ paths:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/parameters/bgcolor'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/datetime'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/elevation'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json-html'
+        - $ref: '#/components/parameters/f-png-jpeg'
       responses:
         200:
           description: A coverage.
@@ -427,8 +398,9 @@ paths:
     get:
       tags:
       - Maps from one collection
-      summary: retrieve a coverage; use content negotiation to request either a multipart
-        response or the coverages rangeType in the specified format
+      summary: fetch information about a point on a map from a collection
+      description: |-
+        Retrieves a getFeatureInfo in map for a coverage in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
       operationId: getFeatureInfoCoverageId
       parameters:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/collectionId'
@@ -445,7 +417,8 @@ paths:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/coord_i'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/coord_j'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/infoTemplate'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/parameters/mapFormat'
+        - $ref: '#/components/parameters/f-map'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json-html'
       responses:
         200:
           description: A coverage.
@@ -458,15 +431,13 @@ paths:
                 type: string
         default:
           $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
-
-
   '/map':
     get:
       tags:
         - Maps from more that one collection
       summary: retrieves a map composed by one or more collections
       description: |-
-        Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
+        Retrieves a map in the requested crs, on the requested bbox designed to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/root'
       operationId: GetMapCollections
       parameters:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/collections'
@@ -479,7 +450,7 @@ paths:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/parameters/bgcolor'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/datetime'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/elevation'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json'
+        - $ref: '#/components/parameters/f-png-jpeg'
       responses:
         '200':
           description: |-
@@ -544,7 +515,94 @@ paths:
           application/se+json:
             schema:
               $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/simbologyEncoding'
-
+  '/map/info':
+    get:
+      tags:
+        - Maps from more that one collection
+      summary: fetch information about a point on a map from one or more collections
+      description: |-
+        Retrieves a getFeatureInfo in map for collections in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
+      operationId: GetFeatureInfoCollections
+      parameters:
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/collections'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/parameters/styles'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/parameters/map-crs'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/bbox'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/parameters/width'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/parameters/height'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/parameters/transparent'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/parameters/bgcolor'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/datetime'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/elevation'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/coord_i'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/coord_j'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/infoTemplate'
+        - $ref: '#/components/parameters/f-map'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json-html'
+      responses:
+        '200':
+          description: |-
+            Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/gif:
+              schema:
+                type: string
+                format: binary
+            application/geo+json:
+              schema:
+                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-features.yaml#/components/schemas/featureCollectionGeoJSON'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/NotFound'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
+    post:
+      tags:
+        - Maps from more that one collection
+      summary: fetch a map from one or more collections
+      description: |-
+        Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
+      operationId: GetFeatureInfoCollectionsBody
+      responses:
+        '200':
+          description: |-
+            Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/gif:
+              schema:
+                type: string
+                format: binary
+            application/geo+json:
+              schema:
+                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-features.yaml#/components/schemas/featureCollectionGeoJSON'
+        '400':
+          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/Invalid'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/NotFound'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
+      requestBody:
+        description: |-
+          descriptions of the map an style in a SDL-SE encoding
+        content:
+          application/se+json:
+            schema:
+              $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/simbologyEncoding'
 components:
   schemas:
     collection:
@@ -553,31 +611,13 @@ components:
       - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-coverages.yaml#/components/schemas/collection'
       - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/collection'
   parameters:
-    f-json-zip:
-      name: f
-      in: query
-      description: |-
-        The format of the response. If no value is provided, the standard http
-        rules apply, i.e., the accept header is used to determine the format.
-
-        The only pre-defined value is "json". The response to other values is
-        determined by the server.
-      required: false
-      style: form
-      explode: false
-      schema:
-        type: string
-        enum:
-          - json
-          - zip
-      example: json
-    f-png-jpeg-vector:
+    f-png-jpeg:
       name: f
       in: query
       description: |-
         The format of the response. If no value is provided, the standard http rules apply, i.e., the accept header is used to determine the format.
 
-        Pre-defined values are "mvt" for a Mapbox Vector Tile, "json" for a GeoJSON tiled feature collection and jpeg, png or gif for image based tiles
+        Pre-defined values are jpeg, png or gif for image based tiles
         The response to other values is determined by the server.
       required: false
       style: form
@@ -588,7 +628,21 @@ components:
           - png
           - jpeg
           - gif
-          - mvt
-          - json
       example: png
+    f-map:
+      name: f-map
+      in: query
+      description: |-
+        Internal format of the maps referenced by a getFeatureInfo.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+        enum:
+          - png
+          - jpeg
+          - gif
+      example: png
+
   responses: {}

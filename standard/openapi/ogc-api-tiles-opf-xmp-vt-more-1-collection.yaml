@@ -268,7 +268,7 @@ paths:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/coord_i'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/coord_j'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/infoTemplate'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/parameters/tileFormat'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/parameters/f-tile'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/datetime'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json-html'
       responses:
@@ -286,7 +286,7 @@ paths:
   '/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
-        - Tiled features from more than one collection
+        - Tiled data from more than one collection
       summary: fetch a tile from one or more collections
       description: |-
         The tile in the requested tiling scheme, on the requested zoom level in
@@ -302,12 +302,13 @@ paths:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/parameters/tileMatrix'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/parameters/tileRow'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/parameters/tileCol'
-        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/datetime'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/datetime'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/elevation'
         - $ref: '#/components/parameters/f-png-jpeg-vector'
       responses:
         '200':
           description: |-
-            A tile representing elements of a single collection of the dataset.
+            A multi-collection tile of the dataset.
           content:
             image/jpeg:
               schema:
@@ -334,7 +335,7 @@ paths:
   '/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
-        - Tiled features from more than one collection
+        - Tiled data from more than one collection
       summary: fetch information about a point in a tile from one or more collections
       description: |-
         Retrieves information about a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -349,8 +350,9 @@ paths:
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/coord_i'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/coord_j'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/infoTemplate'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/parameters/tileFormat'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/parameters/f-tile'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/datetime'
+        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/elevation'
         - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json-html'
       responses:
         '200':
@@ -363,8 +365,6 @@ paths:
           $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/NotFound'
         '500':
           $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
-
-
 components:
   schemas:
     collection:
@@ -372,24 +372,6 @@ components:
       - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/collection'
       - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/schemas/collection'
   parameters:
-    f-json-zip:
-      name: f
-      in: query
-      description: |-
-        The format of the response. If no value is provided, the standard http
-        rules apply, i.e., the accept header is used to determine the format.
-
-        The only pre-defined value is "json". The response to other values is
-        determined by the server.
-      required: false
-      style: form
-      explode: false
-      schema:
-        type: string
-        enum:
-          - json
-          - zip
-      example: json
     f-png-jpeg-vector:
       name: f
       in: query
@@ -410,4 +392,25 @@ components:
           - mvt
           - json
       example: png
+    f-tile:
+      name: f
+      in: query
+      description: |-
+        The format of the response. If no value is provided, the standard http rules apply, i.e., the accept header is used to determine the format.
+
+        Pre-defined values are "mvt" for a Mapbox Vector Tile, "json" for a GeoJSON tiled feature collection and jpeg, png or gif for image based tiles
+        The response to other values is determined by the server.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+        enum:
+          - png
+          - jpeg
+          - gif
+          - mvt
+          - json
+      example: png
+
   responses: {}

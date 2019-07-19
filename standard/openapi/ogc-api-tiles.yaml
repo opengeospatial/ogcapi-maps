@@ -410,7 +410,6 @@ components:
       in: query
       description: |-
          A range of scale denominators (that can be used to generate a list of tileMatrix names. Note that scale denominators have several significant digits. To prevent mistakes apply tolerances to intervals. Even if you want to specify a single scale denominator use an interval with tolerance
-      required: false
       style: form
       explode: false
       schema:
@@ -419,58 +418,15 @@ components:
         maxItems: 2
         items:
           type: number
-    tileFormat:
-      name: tileFormat
-      in: query
-      description: |-
-        Internal format of the multi-tiles referenced or embedded for the info request on a tile
       required: false
-      style: form
-      schema:
-        type: string
+      default: 0
     embedded:
       name: embedded
       in: query
       description: |-
         Are the tiles embedded. If false they are only referenced.
-      required: false
       style: form
       schema:
         type: boolean
-
-  #######################
-  # Common request bodies
-  #######################
-  requestBodies: {}
-
-  ####################
-  # Common responses
-  ####################
-  responses:
-    {}
-
-  #########################
-  # Common response headers
-  #########################
-  headers:
-    {}
-
-  #######################
-  # Common path items
-  # NOTE: Referencing pathitems does not seem to work, so I have stopped defining/using them
-  #######################
-
-  ######################################
-  # Common examples of input/output data
-  ######################################
-  examples: {}
-
-  #########################
-  # Common link definitions
-  #########################
-  links: {}
-
-  #########################
-  # Common callback definitions
-  #########################
-  callbacks: {}
+      required: false
+      dafault: true
