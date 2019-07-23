@@ -3,6 +3,9 @@ openapi: 3.0.0
 # 2019-06-14 Created from a more complex example
 #
 servers:
+# Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/UAB-CREAF/ogc-api-map-tiles-opf-xmp-ct-more-1-collection/1.0.0
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/joanma747/opf-map-tiles-api/1.0.0
 info:
@@ -437,8 +440,34 @@ components:
     collection:
       allOf:
       - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/collection'
-      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-coverages.yaml#/components/schemas/collection'
+      - $ref: '#/components/schemas/collection-link'
       - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/schemas/collection'
+    collection-link:
+      #This element is a duplicate of the one in OGC API common but it is enriched with more examples for maps and other resource types.
+      type: object
+      required:
+        - links
+      properties:
+        links:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+          example:
+            - href: 'http://data.example.com/collections/satellite?f=json'
+              rel: self
+              type: 'application/json'
+              title: This document
+            - href: 'http://data.example.com/collections/satellite.html'
+              rel: describedBy
+              type: text/html
+            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-coverages.yaml#/components/examples/link-collection-rangeType'
+            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-coverages.yaml#/components/examples/link-collection-domainSet'
+            - href: 'http://data.example.com/collections/satellite/coverages/sentinel2/tiles/WorldMercatorWGS84Quad/0/0/0'
+              rel: tiles
+              type: 'image/png'
+            - href: 'http://data.example.com/collections/satellite/coverages/sentinel2/tiles/WorldMercatorWGS84Quad/0/0/0/info'
+              rel: info
+              type: 'text/html'
   parameters:
     f-json-zip:
       name: f
@@ -475,5 +504,4 @@ components:
         enum:
           - geotiff
         default: geotiff
-
   responses: {}

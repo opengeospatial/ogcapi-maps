@@ -1,11 +1,16 @@
 openapi: 3.0.2
 # Revisions:
-# 2019-07-14 Reparated from a more complex domains document
+# 2019-05-09 initial version
+# 2019-05-11 added nullable values to support patch
+# 2019-05-17 TileRow and TileCol are now 'numbers' (not strings)
+# 2019-05-17 "unless a different coordinate reference system is specified in the parameter `bbox-crs`." has been removed and instead we have added "unless a different coordinate         reference system is specified by another parameter in the API."
+# 2019-05-21 "The default Tiling Scheme is the Google Maps Tiling Scheme" is changed to "The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme)"
+# 2019-05-21 "CRSId" has been added
 #
 info:
-  title: OGC API Building Blocks
+  title: OGC API Tiles Building Blocks
   description: |-
-    Common components used in the OGC API maps and tiles standards.
+    Common components used in the OGC API tiles standards.
 
     This document is also available in [GitHub](https://github.com/opengeospatial/OGC-API-Map-Tiles/tree/master/standard/openapi).
 
@@ -18,10 +23,331 @@ info:
     url: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/LICENSE'
 
 components:
-  ####################
-  # Common data models
-  ####################
-  schemas: {}
+  schemas:
+    collection-link:
+      #This element is not directly linkable by other APIs because they probably will need to add other links to other resource types. Instead, it would be copied and enriched with more examples.
+      type: object
+      required:
+        - links
+      properties:
+        links:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+          example:
+            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-this'
+            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-describedBy'
+            - $ref: '#/components/examples/link-collection-tiles'
+            - $ref: '#/components/examples/link-collection-info'
+    collection:
+      # This object does not include the links element that should be added as and additional element using collection-link
+      type: object
+      properties:
+        tiles:
+          type: object
+          required:
+            - links
+          properties:
+            # A WMTS layer definition has id, title, description, keyword that are already defined in OWS Common
+            # wgs84Bounding is the 'extent' that is already defined in OWS Common
+            spatialExtent:
+              type: array
+              description: |-
+                Minimum spatial extent surrounding the layer for each CRS available
+              items:
+                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/spatialExtent'
+              example:
+                - bbox:
+                    - -180
+                    - -90
+                    - 180
+                    - 90
+                  crs: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+                - bbox:
+                    - -20037508.3427892
+                    - -20037508.3427892
+                    - 20037508.3427892
+                    - 20037508.3427892
+                  crs: 'http://www.opengis.net/def/crs/EPSG/0/3395'
+            attribution:
+              type: string
+              description: |-
+                The provider of the source data for the collection. Map Browsers are supposed to make this information visible to the user.
+              example: OpenStreetMap
+            formats:
+              type: array
+              description: |-
+                Supported valid output formats for a tile resource
+              items:
+                type: string
+                example:
+                  - 'image/jpeg'
+                  - 'image/png'
+            infoFormats:
+              type: array
+              description: |-
+                Supported valid output formats for a tile resource
+              items:
+                type: string
+                example:
+                  - 'application/geo+json'
+                  - 'text/html'
+            tileMatrixSetLink:
+              $ref: '#/components/schemas/tileMatrixSetLink-set'
+
+    tileMatrix:
+      type: object
+      nullable: true
+      required:
+        - type
+        - identifier
+        - scaleDenominator
+        - topLeftCorner
+        - tileWidth
+        - tileHeight
+        - matrixWidth
+        - matrixHeight
+      properties:
+        type:
+          description: Type of the Tile Matrix
+          type: string
+          enum:
+            - TileMatrix
+        title:
+          description: Title of this tile matrix set, normally used for display to a human
+          type: string
+          nullable: true
+          example: Google Maps Compatible for the World
+        abstract:
+          description: Brief narrative description of this tile matrix, normally available for display to a human
+          type: string
+        keywords:
+          description: Unordered list of one or more commonly used or formalized word(s) or phrase(s) used to describe this dataset
+          type: array
+          items:
+            type: string
+        identifier:
+          description: Tile matrix identifier,
+          type: string
+          example: '0'
+        scaleDenominator:
+          description: Scale denominator level of this tile matrix
+          type: number
+          example: 559082264.028717
+        topLeftCorner:
+          description: Position in CRS coordinates of the top-left corner of this tile matrix
+          type: array
+          nullable: true
+          items:
+            type: number
+          example:
+            - -20037508.3427892
+            - 20037508.3427892
+        tileWidth:
+          description: Width of each tile of this tile matrix in pixels
+          type: number
+          minimum: 1
+          multipleOf: 1
+          example: 256
+        tileHeight:
+          description: Height of each tile of this tile matrix in pixels
+          type: number
+          minimum: 1
+          multipleOf: 1
+          example: 256
+        matrixHeight:
+          description: Width of the matrix (number of tiles in width)
+          type: number
+          minimum: 1
+          example: 3
+        matrixWidth:
+          description: Height of the matrix (number of tiles in height)
+          type: number
+          minimum: 1
+          example: 4
+    tileMatrixSets:
+      type: array
+      items:
+        $ref: '#/components/schemas/tileMatrixSet'
+    tileMatrixSet:
+      required:
+        - identifier
+        - type
+      type: object
+      nullable: true
+      properties:
+        type:
+          description: Type of the Tile Matrix Set
+          type: string
+          enum:
+            - TileMatrixSet
+        title:
+          description: Title of this tile matrix set, normally used for display to a human
+          type: string
+          nullable: true
+          example: Google Maps Compatible for the World
+        abstract:
+          description: Brief narrative description of this tile matrix set, normally available for display to a human
+          type: string
+        keywords:
+          description: Unordered list of one or more commonly used or formalized word(s) or phrase(s) used to describe this dataset
+          type: array
+          items:
+            type: string
+        identifier:
+          description: Tile matrix set identifier,
+          type: string
+          example: default
+        supportedCRS:
+          description: Reference to one coordinate reference system (CRS)
+          type: string
+          format: uri
+          nullable: true
+          example: 'http://www.opengis.net/def/crs/EPSG/0/3857'
+        wellKnownScaleSet:
+          description: Reference to a well-known scale set
+          type: string
+          nullable: true
+          example: 'http://www.opengis.net/def/wkss/OGC/1.0/GoogleMapsCompatible'
+        tileMatrix:
+          description: Describes a scale level and its tile matrix
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/tileMatrix'
+    mapbox-vector-tile:
+      type: string
+      format: binary
+    tileMatrixSetLink-set:
+      description: |-
+        This list tileMatrixSetLink as defined in OGC 17-083r2 supported by this collectionId.
+        The presence of this property indicates that the collection is available as tiles
+      type: array
+      nullable: true
+      items:
+        $ref: '#/components/schemas/tileMatrixSetLink-entry'
+      example:
+        - id: 'WebMercatorQuad'
+          links:
+          - href: 'https://example.com/api/1.0/tileMatrixSet/WebMercatorQuad?f=ogc-tms-1-0'
+            type: 'application/vnd.ogc-tms-1-0.tms+json'
+            rel: 'tileMatrixSet'
+    tileMatrixSetLink-entry:
+      type: object
+      nullable: true
+      required:
+        - id
+        - links
+      properties:
+        id:
+          type: string
+          nullable: true
+        links:
+          type: array
+          nullable: true
+          minItems: 1
+          items:
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+        tileMatrixSetLimits:
+          type: array
+          nullable: true
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/tileMatrixSetLimits-entry'
+    tileMatrixSetLimits-entry:
+      type: object
+      nullable: true
+      required:
+        - tileMatrix
+        - minTileRow
+        - maxTileRow
+        - minTileCol
+        - maxTileCol
+      properties:
+        tileMatrix:
+          type: string
+        minTileRow:
+          type: number
+          nullable: true
+          minItems: 0
+          items:
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+        tileMatrixSetLimits:
+          type: array
+          nullable: true
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/tileMatrixSetLimits-entry'
+    crs-entry:
+      type: object
+      nullable: true
+      required:
+        - id
+        - links
+      properties:
+        id:
+          type: string
+          nullable: false
+        title:
+          type: string
+          nullable: true
+        links:
+          type: array
+          nullable: false
+          minItems: 1
+          items:
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+    tileSet:
+      description: |-
+        This is the response for a multiple tiles request.
+      required:
+        - type
+      type: array
+      items:
+        $ref: '#/components/schemas/tileSetEntry'
+    tileSetEntry:
+      description: |-
+        This is an entry on a multiple tiles request.
+      type: object
+      required:
+        - tileURL
+        - tileMatrix
+        - tileRow
+        - tileCol
+      properties:
+        tileURL:
+          type: string
+          format: anyURI
+          nullable: false
+        tileMatrix:
+          type: string
+          nullable: false
+        tileRow:
+          type: number
+          nullable: false
+        tileCol:
+          type: number
+          nullable: false
+        width:
+          type: number
+          description: |-
+            The width of the tile in rendering device pixels. If it exceeds the visual display area be should cut when displayed
+          nullable: true
+        height:
+          type: number
+          description: |-
+            The height of the tile in rendering device pixels. If it exceeds the visual display area be should cut when displayed
+          nullable: true
+        top:
+          type: number
+          description: |-
+            Vertical position from the top of the visual display area in pixels. Negative value means that the left side of the tile is outside the top-left corner of the display and should be cut when displayed
+          nullable: true
+        left:
+          type: number
+          description: |-
+            Horizontal position from the left of the visual display area in pixels. Negative value means that the left side of the tile is outside the top-left corner of the display and should be cut when displayed
+          nullable: true
   ####################
   # Common parameters
   ####################
@@ -29,105 +355,87 @@ components:
     #############################
     # From OGC API Maps and Tiles
     #############################
-    collections:
-      name: collections
+    tileMatrixSetId:
+      name: tileMatrixSetId
+      in: path
+      description: |-
+        Local identifier of a specific tiling scheme. A list of all available tileMatrixSetIds can be found under the /tiles path or below. The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme).
+      required: true
+      schema:
+        type: string
+      example: WebMercatorQuad
+    tileMatrix:
+      name: tileMatrix
+      in: path
+      description: |-
+        scaleDenominator of the tile.
+
+        If the Google Maps Tiling Scheme is used see
+        http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
+        for more information about `tileMatrix`, `tileRow` and `tileCol`. For example,
+        Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+      required: true
+      schema:
+        type: string
+      example: '11'
+    tileRow:
+      name: tileRow
+      in: path
+      description: |-
+        Row index of the tile on the selected zoom level.
+
+        If the Google Maps Tiling Scheme is used see
+        http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
+        for more information about `tileMatrix`, `tileRow` and `tileCol`. For example,
+        Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+      required: true
+      schema:
+        type: number
+      example: '827'
+    tileCol:
+      name: tileCol
+      in: path
+      description: |-
+        Column index of the tile on the selected zoom level.
+
+        http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
+        for more information about `tileMatrix`, `tileRow` and `tileCol`. For example,
+        Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+      required: true
+      schema:
+        type: number
+      example: 1231
+    scaleDenominator:
+      name: scaleDenominator
       in: query
       description: |-
-        The collections that should be included in the response. The parameter value
-        is a comma-separated list of collection identifiers.
+         A range of scale denominators (that can be used to generate a list of tileMatrix names. Note that scale denominators have several significant digits. To prevent mistakes apply tolerances to intervals. Even if you want to specify a single scale denominator use an interval with tolerance
       required: false
       style: form
       explode: false
       schema:
         type: array
+        minItems: 2
+        maxItems: 2
         items:
-          type: string
-    infoCollections:
-      name: infoCollections
+          type: number
+          default: 0
+    embedded:
+      name: embedded
       in: query
       description: |-
-        The collections that are used in a response of a information request. The parameter value is a comma-separated list of collection identifiers.
+        Are the tiles embedded. If false they are only referenced.
+      style: form
+      schema:
+        type: boolean
       required: false
-      style: form
-      explode: false
-      schema:
-        type: array
-        items:
-          type: string
-    coord_i:
-      name: i
-      in: query
-      description: |-
-        Horizontal (x) coordinate within a map or tile.
-      required: true
-      style: form
-      explode: false
-      schema:
-        type: number
-    coord_j:
-      name: j
-      in: query
-      description: |-
-        Vertical (y) coordinate within a map or tile.
-      required: true
-      style: form
-      explode: false
-      schema:
-        type: number
-    infoTemplate:
-      name: infoTemplate
-      in: query
-      description: |-
-        template used for the information response. This parameter can be used to select among GML application schemas or JSON schemas and provide alternative presentations for the same information
-      required: false
-      style: form
-      explode: false
-      schema:
-        type: number
-    elevation:
-      name: elevation
-      in: query
-      description: |-
-        Elevation value
-      required: false
-      style: form
-      explode: false
-      schema:
-        type: number
-
-  #######################
-  # Common request bodies
-  #######################
-  requestBodies: {}
-
-  ####################
-  # Common responses
-  ####################
-  responses:
-    {}
-
-  #########################
-  # Common response headers
-  #########################
-  headers:
-    {}
-
-  #######################
-  # Common path items
-  # NOTE: Referencing pathitems does not seem to work, so I have stopped defining/using them
-  #######################
-
-  ######################################
-  # Common examples of input/output data
-  ######################################
-  examples: {}
-
-  #########################
-  # Common link definitions
-  #########################
-  links: {}
-
-  #########################
-  # Common callback definitions
-  #########################
-  callbacks: {}
+      dafault: true
+  examples:
+    link-collection-tiles:
+      href: 'http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0'
+      rel: tiles
+      type: 'image/png'
+    link-collection-info:
+      href: 'http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0/info'
+      rel: info
+      type: 'text/html'

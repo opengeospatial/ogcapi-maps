@@ -17,7 +17,7 @@ info:
     This document is also available in [GitHub](https://github.com/opengeospatial/oapi_common/tree/master/OAPI-Common/openapi).
 
     This document copies or is inspired in
-    [GitHub](https://github.com/opengeospatial/WFS_FES/blob/master/core/openapi/bbox/ogcapi-features-1.yaml) 	from Clemens Portele
+    [GitHub](https://github.com/opengeospatial/WFS_FES/blob/master/core/openapi/bbox/ogcapi-features-1.yaml)   from Clemens Portele
 
   version: '1.0.0'
   contact:
@@ -201,10 +201,10 @@ components:
       example: json
   schemas:
     collection:
+      # This object does not include the links element that should be added as and additional element using collection-link
       type: object
       required:
         - id
-        - links
       properties:
         id:
           description: identifier of the collection used, for example, in URIs
@@ -223,18 +223,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/keyword'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
-          example:
-            - href: 'http://example.com/collections/buildings?f=json'
-              rel: 'self'
-              type: 'application/json'
-              title: This document
-            - href: http://example.com/concepts/buildings.html
-              rel: describedBy
-              type: text/html
         extent:
           $ref: '#/components/schemas/extent'
         itemType:
@@ -251,6 +239,19 @@ components:
           example:
             - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
             - 'http://www.opengis.net/def/crs/EPSG/0/4326'
+    collection-link:
+      # This element is not directly linkable by other APIs because they probably will need to add other links to other resource types. Instead, it would be copied and enriched with more examples.
+      type: object
+      required:
+        - links
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example:
+            - $ref: '#/components/examples/link-collection-this'
+            - $ref: '#/components/examples/link-collection-describedBy'
     collections:
       type: object
       required:
@@ -466,7 +467,7 @@ components:
           example: en
         title:
           type: string
-          example: Trierer Strasse 70, 53115 Bonn
+          example: 'Trierer Strasse 70, 53115 Bonn'
         length:
           type: integer
     keyword:
@@ -748,3 +749,13 @@ components:
       schema:
         type: string
       example: 'Link: <http://data.example.org/collections/buildings/items.json>; rel=\"self\"; type=\"application/geo+json\"'
+  examples:
+    link-collection-this:
+      href: 'http://example.com/collections/buildings?f=json'
+      rel: self
+      type: 'application/json'
+      title: This document
+    link-collection-describedBy:
+      href: 'http://example.com/concepts/buildings.html'
+      rel: describedBy
+      type: text/html

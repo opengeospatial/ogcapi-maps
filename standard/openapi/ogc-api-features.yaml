@@ -40,20 +40,20 @@ components:
         items:
           type: string
   schemas:
-    collection:
+    collection-link:
+      #This element is not directly linkable by other APIs because they probably will need to add other links to other resource types. Instead, it would be copied and enriched with more examples.
       type: object
+      required:
+        - links
       properties:
-        items:
-          properties:
-            links:
-              type: array
-              items:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
-              example:
-                - href: 'http://data.example.com/collections/buildings/items'
-                  rel: items
-                  title: Retrieve the items of the buildings collection
-                  type: 'application/geo+json'
+        links:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+          example:
+            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-this'
+            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-describedBy'
+            - $ref: '#/components/examples/link-collection-items'
     queryables:
       type: array
       items:
@@ -419,3 +419,9 @@ components:
               minItems: 2
               items:
                 type: number
+  examples:
+    link-collection-items:
+      href: 'http://data.example.com/collections/buildings/items'
+      rel: items
+      title: Retrieve the items of the buildings collection
+      type: 'application/geo+json'

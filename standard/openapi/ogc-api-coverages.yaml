@@ -26,24 +26,21 @@ info:
 
 components:
   schemas:
-    collection:
+    collection-link:
+      #This element is not directly linkable by other APIs because they probably will need to add other links to other resource types. Instead, it would be copied and enriched with more examples.
       type: object
+      required:
+        - links
       properties:
-        coverages:
-          properties:
-            links:
-              type: array
-              items:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
-              example:
-                - href: 'http://data.example.com/collections/satellite/coverages/sentinel2/rangeType'
-                  rel: rangeType
-                  title: Retrieve the semantincs of the data in the coverage
-                  type: 'application/json'
-                - href: 'http://data.example.com/collections/satellite/coverages/sentinel2/domainSet'
-                  rel: domainSet
-                  title: Retrieve the dimensions of the coverage
-                  type: 'application/json'
+        links:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+          example:
+            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-this'
+            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-describedBy'
+            - $ref: '#/components/examples/link-collection-rangeType'
+            - $ref: '#/components/examples/link-collection-domainSet'
     domainSetJSON:
       description: TBD
       required:
@@ -71,3 +68,14 @@ components:
       explode: false
       schema:
         type: string
+  examples:
+    link-collection-rangeType:
+      href: 'http://data.example.com/collections/satellite/coverages/sentinel2/rangeType'
+      rel: rangeType
+      title: Retrieve the semantincs of the data in the coverage
+      type: 'application/json'
+    link-collection-domainSet:
+      href: 'http://data.example.com/collections/satellite/coverages/sentinel2/domainSet'
+      rel: domainSet
+      title: Retrieve the dimensions of the coverage
+      type: 'application/json'

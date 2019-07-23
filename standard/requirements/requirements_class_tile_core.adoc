@@ -1,11 +1,12 @@
-[[rc_core]]
+[[rc_tile_core]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class*
-2+|http://www.opengis.net/spec/ogc-api-map-tiles/1.0/req/core
+2+|http://www.opengis.net/spec/ogc-api-map-tiles/1.0/req/tile/core
 |Target type |Web API
 |Dependency |<<rfc2616,RFC 2616 (HTTP/1.1)>>
 |Dependency |<<rfc2818,RFC 2818 (HTTP over TLS)>>
 |Dependency |<<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>>
 |Dependency |<<rfc8288,RFC 8288 (Web Linking)>>
+|Dependency |http://www.opengis.net/spec/ogc-api-common/1.0/req/core
 |===

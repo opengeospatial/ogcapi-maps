@@ -90,7 +90,7 @@ include::clause_5_conventions.adoc[]
 
 include::clause_6_overview.adoc[]
 
-include::clause_7_core.adoc[]
+include::clause_7_tile_core.adoc[]
 
 include::clause_7_maps.adoc[]
 

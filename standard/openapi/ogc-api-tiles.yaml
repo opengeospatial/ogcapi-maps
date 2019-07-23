@@ -23,11 +23,24 @@ info:
     url: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/LICENSE'
 
 components:
-  ####################
-  # Common data models
-  ####################
   schemas:
+    collection-link:
+      #This element is not directly linkable by other APIs because they probably will need to add other links to other resource types. Instead, it would be copied and enriched with more examples.
+      type: object
+      required:
+        - links
+      properties:
+        links:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+          example:
+            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-this'
+            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-describedBy'
+            - $ref: '#/components/examples/link-collection-tiles'
+            - $ref: '#/components/examples/link-collection-info'
     collection:
+      # This object does not include the links element that should be added as and additional element using collection-link
       type: object
       properties:
         tiles:
@@ -35,18 +48,7 @@ components:
           required:
             - links
           properties:
-            links:
-              type: array
-              items:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
-              example:
-                - href: 'http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0'
-                  rel: tiles
-                  type: 'image/png'
-                - href: 'http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0/info'
-                  rel: info
-                  type: 'text/html'
-            # A WMS layer definition has id, title, description, keyword that are already defined in OWS Common
+            # A WMTS layer definition has id, title, description, keyword that are already defined in OWS Common
             # wgs84Bounding is the 'extent' that is already defined in OWS Common
             spatialExtent:
               type: array
@@ -92,9 +94,7 @@ components:
                   - 'text/html'
             tileMatrixSetLink:
               $ref: '#/components/schemas/tileMatrixSetLink-set'
-    #############################
-    # From OGC API Maps and Tiles
-    #############################
+
     tileMatrix:
       type: object
       nullable: true
@@ -430,3 +430,12 @@ components:
         type: boolean
       required: false
       dafault: true
+  examples:
+    link-collection-tiles:
+      href: 'http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0'
+      rel: tiles
+      type: 'image/png'
+    link-collection-info:
+      href: 'http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0/info'
+      rel: info
+      type: 'text/html'
