@@ -2,10 +2,59 @@
 
 This GitHub repository contains the new revision of the [OGC](http://opengeospatial.org)'s Web Map Service and Web Map Tile Service standards for requesting maps and tiles of geospatial information on the web. It is a complete rewrite of previous versions, focusing on a simple RESTful core specified as reusable [OpenAPI](http://openapis.org) components.
 
-This work encompasses two standards that will be developed simultaneously. In the end, must people believe at least 2 standards will emerge or even more when the core and extension model is applied.
+This work encompasses two standards that will be developed simultaneously. In the end, must people believe at least 2 standards will emerge or even more when the core and extension model is applied. I'm not so sure.
+
+## Standards
+After a while getting familiar ad playing with the OpenAPI definition files (explained just below in the "Exemples section"), we have finally started to write the standard. We have decided an aggressive path to modularization having 2 cores, one for tiles and another for maps that can be combined as needed. Several extension for tiles and maps will emerge in the process.
+
+### Tiles
+#### Core
+For the moment we have focus out efforts on defining the "tile core" that you can find [here](standard/clause_7_tile_core.adoc).
+
+The core is:
+* Only one collection
+* Only support for WebMercatorQuad
+* No TileMatrixSet definition
+* No TileMatrixSet Link
+* No featureInfo
+* Can only retrieve one tile at a time
+* Has no information about updates
+
+#### Extensions
+We foresee the following extensions (some of them can end into OGC standards and some might not)
+* Other TileMatrixSets  (started in: standard/clause_7_tile_tms.adoc)
+* Info (featureInfo) (started in: standard/clause_7_tile_info.adoc)
+* Collections (more than one) (started in: standard/clause_7_tile_collections.adoc)
+* Collections-info (with feautureInfo) (pending)
+* Multi-tile (retrieve a ZIP with many tiles) (pending, necessary for the update workflow)
+* Delta-updates (using checkpoints) (pending, necessary for the update workflow)
+
+### Maps
+#### Core
+The definition of the maps core is the immediate next step that will be done [here](standard/clause_8_map_core.adoc).
+
+The maps core would be something that allows to create a map that cannot be necessarily retrievable (yet). The reason: We need to support /maps/{styleID}/tiles/…
+* It has no resolution
+** No parameters related with width, height, bbox, crs… etc.
+* Actually, it is map that can only be retrieved by extending it to (one of):
+** a tile
+** a map+resolution
+* It will not have styles (because this forces a dependency to the styles API that I would like to avoid): {styleID}=“default”.
+
+#### Extensions
+We foresee the following extensions (some of them can end into OGC standards and some might not).
+None of them has been started yet.
+
+* StyleIds (Pending. In collaboration with the styles API. The only one necessary for the delta updates use cases)
+* Map+resolution
+* Info
+* Collections (more than one)
+* Collections-info
+* Maps with styles on the fly (involving collections)
 
 ## Examples
-For the moment this work is focused on providing OpenAPI services description examples and domains (libraries)
+Until mid July 2019, the work was focused on providing OpenAPI services description examples and domains (libraries). Now we believe this work is finalized, but each time that we take a look we still find gaps, mistakes and things that can be improved.
+We expect that during the effort of extracting the knowledge accumulated (hopefully) in these files to create the standard, we will keep fixing, perfecting and evolving things.
 
 IMPORTANT NOTE: We are now using the Swagger HUB again and should be considered the "gold copy". The Swagger account is:
 * [Domain documents](https://app.swaggerhub.com/search?owner=UAB-CREAF&type=DOMAIN)
