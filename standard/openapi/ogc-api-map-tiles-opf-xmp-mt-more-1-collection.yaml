@@ -58,42 +58,14 @@ paths:
               schema:
                 $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/landingPage'
               example:
-                - href: 'http://data.example.org/?f=json'
-                  rel: self
-                  type: application/json
-                  title: this document
-                - href: 'http://data.example.org/?f=html'
-                  rel: alternate
-                  type: text/html
-                  title: this document in HTML
-                - href: 'http://data.example.org/api?f=json'
-                  rel: service
-                  type: application/vnd.oai.openapi+json;version=3.0
-                  title: the API definition in OpenAPI 3.0 JSON
-                - href: 'http://data.example.org/api?f=html'
-                  rel: service
-                  type: text/html
-                  title: the API definition in HTML
-                - href: 'http://data.example.org/conformance?f=json'
-                  rel: conformance
-                  type: application/json
-                  title: the list of conformance classes implemented by this API
-                - href: 'http://data.example.org/collections?f=json'
-                  rel: data
-                  type: application/json
-                  title: The collections in the dataset in JSON
-                - href: 'http://data.example.org/collections?f=html'
-                  rel: data
-                  type: text/html
-                  title: The collections in the dataset in HTML
-                - href: 'http://data.example.org/tileMatrixSet?f=json'
-                  rel: tileMatrixSets
-                  type: application/json
-                  title: the list of tileMatrixSets implemented by this API in JSON
-                - href: 'http://data.example.org/tileMatrixSet?f=html'
-                  rel: tileMatrixSets
-                  type: text/html
-                  title: the list of tileMatrixSets implemented by this API in HTML
+                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-landingPage-this'
+                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-landingPage-alternate'
+                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-landingPage-service-json'
+                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-landingPage-service-html'
+                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-landingPage-conformance'
+                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-landingPage-collections-json'
+                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-landingPage-collections-html'
+                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/examples/link-landingPage-tms-json'
             text/html:
               schema:
                 type: string
@@ -598,6 +570,8 @@ components:
           example:
             - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-this'
             - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-describedBy'
+            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-license-html'
+            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-license-rdf'
             - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-features.yaml#/components/examples/link-collection-items'
             - href: 'http://data.example.com/collections/buildings/maps/brown/tiles/WorldMercatorWGS84Quad/0/0/0'
               rel: tiles

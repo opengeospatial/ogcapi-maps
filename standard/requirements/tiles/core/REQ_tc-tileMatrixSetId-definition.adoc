@@ -1,0 +1,17 @@
+[[req_core_tileMatrixSetId-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/core/tileMatrixSetId-definition*
+^|A |The operation SHALL support a parameter `tileMatrixSetId` with the following characteristics (using an OpenAPI Specification 3.0 fragment):
+
+[source,YAML]
+----
+  name: tileMatrixSetId
+  in: path
+  description: Local identifier of a specific tiling scheme. A list of all available tileMatrixSetIds can be found under the /tiles path or below. The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme).
+  required: true
+  schema:
+    type: string
+  example: WebMercatorQuad
+----
+|===

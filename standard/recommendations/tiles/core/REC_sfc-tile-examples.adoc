@@ -1,0 +1,6 @@
+[[rec_core_sfc-tile-examples]]
+[width="90%",cols="2,6a"]
+|===
+^|*Recommendation {counter:rec-id}* |*/rec/core/sfc-tile-examples*
+^|A |If the feature collection can be retrieved as tiles, a `200`-response SHOULD include links to examples of tile URIs (relation: `tiles`).
+|===

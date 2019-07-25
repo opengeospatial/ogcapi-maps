@@ -1,0 +1,22 @@
+[[req_core_tileCol-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/core/tileCol-definition*
+^|A |The operation SHALL support a parameter `tileCol` with the following characteristics (using an OpenAPI Specification 3.0 fragment):
+
+[source,YAML]
+----
+  name: tileCol
+  in: path
+  description:
+    Column index of the tile on the selected zoom level.
+
+    http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
+    for more information about `tileMatrix`, `tileRow` and `tileCol`. For example,
+    Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+  required: true
+  schema:
+    type: number
+  example: 1231
+----
+|===

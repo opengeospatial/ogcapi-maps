@@ -1,5 +1,7 @@
 === Tiles
 
+NOTE: THIS SECTION REQUIERES A CAREFUL REVIEW. PLEASE IGNORE IT
+
 The tile resource is generally a rectangular image containing cartographic data. Alternatively, this resource might be a non-image representation of the tile such as a description of the tile or a link to the actual image. For example, the tile resource could be a KML document used in a superoverlay, or a tile metadata document. When returning an image tile, a full single tile SHALL always be returned. Also, the background pixels of a tile SHOULD be transparent when possible so that the client can overlay the tiles on top of other map data (possibly other tiles).
 
 ==== Tile of a collectionId

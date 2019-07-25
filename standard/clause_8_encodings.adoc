@@ -1,5 +1,7 @@
 == Requirements classes for encodings
 
+NOTE: THIS SECTION REQUIRES A CAREFUL REVIEW. PLEASE IGNORE IT
+
 [NOTE]
 ========
 The following content is from the OAPI Common specification and should be modified for Map Tile APIs. Keep in mind that both Map Tiles and metadata are supplied by the API. So HTML and GeoJSON encoding may be retained for the metadata responses.

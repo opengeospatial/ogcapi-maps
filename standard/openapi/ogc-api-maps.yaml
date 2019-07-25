@@ -67,11 +67,6 @@ components:
               description: |-
                 Reference to a CRS library giving support to a comprehensive list of CRSs that are not advertised but supported anyway.
               example: PROJ4G
-            attribution:
-              type: string
-              description: |-
-                The provider of the source data for the collection. Map Browsers are supposed to make this information visible to the user.
-              example: OpenStreetMap
             minScaleDenominador:
               type: number
               description: |-
@@ -132,6 +127,7 @@ components:
             the style id of a recommended default style to use for this collection
           example: 'topographic'
     style-set:
+      #this is a direct copy of the CPortele Styles API
       type: array
       nullable: true
       items:
@@ -163,7 +159,6 @@ components:
             rel: 'describedBy'
     style-set-entry:
       type: object
-      nullable: true
       required:
         - id
         - links
@@ -229,6 +224,7 @@ components:
         type: string
       example: WGS84
     styleId:
+      #This is the same parameter as in CPortele Styles API but the description is different.
       name: styleId
       in: path
       description: |-

@@ -1,0 +1,6 @@
+[[req_tms_sfc-formats.adoc]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/tms/sfc-formats*
+^|A |the _tiles_ object of a successful execution SHALL contain a property called _tileMatrixSetLinks_ that specifies the TileMatrixSets supported by the tiles of this collection and possible limitations in the area available.
+|===

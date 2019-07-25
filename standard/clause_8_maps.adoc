@@ -1,0 +1,7 @@
+== Requirement Class "Maps Core"
+
+A map distribution of a dataset as a pictorial representation of a dataset or the collections it has been divided in. To create a pictorial representation a style need to be added to the collections. A map can be retrieved by specifying a set of parameters that will determine its resolution (width, height, boundingbox and CRS) or can be retrieved as tiles.
+
+This clause defines the core part of the OGC API Maps that allows defining a representation in the form of a map that cannot be retrieved by itself but by combining it to a tiles extension or a map extension.
+
+To keep it simple it will introduce a mechanism to select styles but it will not develop it by assuming that the service is capable of dealing with a default style.

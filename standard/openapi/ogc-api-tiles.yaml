@@ -5,8 +5,7 @@ openapi: 3.0.2
 # 2019-05-17 TileRow and TileCol are now 'numbers' (not strings)
 # 2019-05-17 "unless a different coordinate reference system is specified in the parameter `bbox-crs`." has been removed and instead we have added "unless a different coordinate         reference system is specified by another parameter in the API."
 # 2019-05-21 "The default Tiling Scheme is the Google Maps Tiling Scheme" is changed to "The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme)"
-# 2019-05-21 "CRSId" has been added
-#
+
 info:
   title: OGC API Tiles Building Blocks
   description: |-
@@ -23,338 +22,15 @@ info:
     url: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/LICENSE'
 
 components:
-  schemas:
-    collection-link:
-      #This element is not directly linkable by other APIs because they probably will need to add other links to other resource types. Instead, it would be copied and enriched with more examples.
-      type: object
-      required:
-        - links
-      properties:
-        links:
-          type: array
-          items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
-          example:
-            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-this'
-            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-describedBy'
-            - $ref: '#/components/examples/link-collection-tiles'
-            - $ref: '#/components/examples/link-collection-info'
-    collection:
-      # This object does not include the links element that should be added as and additional element using collection-link
-      type: object
-      properties:
-        tiles:
-          type: object
-          required:
-            - links
-          properties:
-            # A WMTS layer definition has id, title, description, keyword that are already defined in OWS Common
-            # wgs84Bounding is the 'extent' that is already defined in OWS Common
-            spatialExtent:
-              type: array
-              description: |-
-                Minimum spatial extent surrounding the layer for each CRS available
-              items:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/spatialExtent'
-              example:
-                - bbox:
-                    - -180
-                    - -90
-                    - 180
-                    - 90
-                  crs: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-                - bbox:
-                    - -20037508.3427892
-                    - -20037508.3427892
-                    - 20037508.3427892
-                    - 20037508.3427892
-                  crs: 'http://www.opengis.net/def/crs/EPSG/0/3395'
-            attribution:
-              type: string
-              description: |-
-                The provider of the source data for the collection. Map Browsers are supposed to make this information visible to the user.
-              example: OpenStreetMap
-            formats:
-              type: array
-              description: |-
-                Supported valid output formats for a tile resource
-              items:
-                type: string
-                example:
-                  - 'image/jpeg'
-                  - 'image/png'
-            infoFormats:
-              type: array
-              description: |-
-                Supported valid output formats for a tile resource
-              items:
-                type: string
-                example:
-                  - 'application/geo+json'
-                  - 'text/html'
-            tileMatrixSetLink:
-              $ref: '#/components/schemas/tileMatrixSetLink-set'
-
-    tileMatrix:
-      type: object
-      nullable: true
-      required:
-        - type
-        - identifier
-        - scaleDenominator
-        - topLeftCorner
-        - tileWidth
-        - tileHeight
-        - matrixWidth
-        - matrixHeight
-      properties:
-        type:
-          description: Type of the Tile Matrix
-          type: string
-          enum:
-            - TileMatrix
-        title:
-          description: Title of this tile matrix set, normally used for display to a human
-          type: string
-          nullable: true
-          example: Google Maps Compatible for the World
-        abstract:
-          description: Brief narrative description of this tile matrix, normally available for display to a human
-          type: string
-        keywords:
-          description: Unordered list of one or more commonly used or formalized word(s) or phrase(s) used to describe this dataset
-          type: array
-          items:
-            type: string
-        identifier:
-          description: Tile matrix identifier,
-          type: string
-          example: '0'
-        scaleDenominator:
-          description: Scale denominator level of this tile matrix
-          type: number
-          example: 559082264.028717
-        topLeftCorner:
-          description: Position in CRS coordinates of the top-left corner of this tile matrix
-          type: array
-          nullable: true
-          items:
-            type: number
-          example:
-            - -20037508.3427892
-            - 20037508.3427892
-        tileWidth:
-          description: Width of each tile of this tile matrix in pixels
-          type: number
-          minimum: 1
-          multipleOf: 1
-          example: 256
-        tileHeight:
-          description: Height of each tile of this tile matrix in pixels
-          type: number
-          minimum: 1
-          multipleOf: 1
-          example: 256
-        matrixHeight:
-          description: Width of the matrix (number of tiles in width)
-          type: number
-          minimum: 1
-          example: 3
-        matrixWidth:
-          description: Height of the matrix (number of tiles in height)
-          type: number
-          minimum: 1
-          example: 4
-    tileMatrixSets:
-      type: array
-      items:
-        $ref: '#/components/schemas/tileMatrixSet'
-    tileMatrixSet:
-      required:
-        - identifier
-        - type
-      type: object
-      nullable: true
-      properties:
-        type:
-          description: Type of the Tile Matrix Set
-          type: string
-          enum:
-            - TileMatrixSet
-        title:
-          description: Title of this tile matrix set, normally used for display to a human
-          type: string
-          nullable: true
-          example: Google Maps Compatible for the World
-        abstract:
-          description: Brief narrative description of this tile matrix set, normally available for display to a human
-          type: string
-        keywords:
-          description: Unordered list of one or more commonly used or formalized word(s) or phrase(s) used to describe this dataset
-          type: array
-          items:
-            type: string
-        identifier:
-          description: Tile matrix set identifier,
-          type: string
-          example: default
-        supportedCRS:
-          description: Reference to one coordinate reference system (CRS)
-          type: string
-          format: uri
-          nullable: true
-          example: 'http://www.opengis.net/def/crs/EPSG/0/3857'
-        wellKnownScaleSet:
-          description: Reference to a well-known scale set
-          type: string
-          nullable: true
-          example: 'http://www.opengis.net/def/wkss/OGC/1.0/GoogleMapsCompatible'
-        tileMatrix:
-          description: Describes a scale level and its tile matrix
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/tileMatrix'
-    mapbox-vector-tile:
-      type: string
-      format: binary
-    tileMatrixSetLink-set:
+  responses:
+    TileMatrixSets:
       description: |-
-        This list tileMatrixSetLink as defined in OGC 17-083r2 supported by this collectionId.
-        The presence of this property indicates that the collection is available as tiles
-      type: array
-      nullable: true
-      items:
-        $ref: '#/components/schemas/tileMatrixSetLink-entry'
-      example:
-        - id: 'WebMercatorQuad'
-          links:
-          - href: 'https://example.com/api/1.0/tileMatrixSet/WebMercatorQuad?f=ogc-tms-1-0'
-            type: 'application/vnd.ogc-tms-1-0.tms+json'
-            rel: 'tileMatrixSet'
-    tileMatrixSetLink-entry:
-      type: object
-      nullable: true
-      required:
-        - id
-        - links
-      properties:
-        id:
-          type: string
-          nullable: true
-        links:
-          type: array
-          nullable: true
-          minItems: 1
-          items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
-        tileMatrixSetLimits:
-          type: array
-          nullable: true
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/tileMatrixSetLimits-entry'
-    tileMatrixSetLimits-entry:
-      type: object
-      nullable: true
-      required:
-        - tileMatrix
-        - minTileRow
-        - maxTileRow
-        - minTileCol
-        - maxTileCol
-      properties:
-        tileMatrix:
-          type: string
-        minTileRow:
-          type: number
-          nullable: true
-          minItems: 0
-          items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
-        tileMatrixSetLimits:
-          type: array
-          nullable: true
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/tileMatrixSetLimits-entry'
-    crs-entry:
-      type: object
-      nullable: true
-      required:
-        - id
-        - links
-      properties:
-        id:
-          type: string
-          nullable: false
-        title:
-          type: string
-          nullable: true
-        links:
-          type: array
-          nullable: false
-          minItems: 1
-          items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
-    tileSet:
-      description: |-
-        This is the response for a multiple tiles request.
-      required:
-        - type
-      type: array
-      items:
-        $ref: '#/components/schemas/tileSetEntry'
-    tileSetEntry:
-      description: |-
-        This is an entry on a multiple tiles request.
-      type: object
-      required:
-        - tileURL
-        - tileMatrix
-        - tileRow
-        - tileCol
-      properties:
-        tileURL:
-          type: string
-          format: anyURI
-          nullable: false
-        tileMatrix:
-          type: string
-          nullable: false
-        tileRow:
-          type: number
-          nullable: false
-        tileCol:
-          type: number
-          nullable: false
-        width:
-          type: number
-          description: |-
-            The width of the tile in rendering device pixels. If it exceeds the visual display area be should cut when displayed
-          nullable: true
-        height:
-          type: number
-          description: |-
-            The height of the tile in rendering device pixels. If it exceeds the visual display area be should cut when displayed
-          nullable: true
-        top:
-          type: number
-          description: |-
-            Vertical position from the top of the visual display area in pixels. Negative value means that the left side of the tile is outside the top-left corner of the display and should be cut when displayed
-          nullable: true
-        left:
-          type: number
-          description: |-
-            Horizontal position from the left of the visual display area in pixels. Negative value means that the left side of the tile is outside the top-left corner of the display and should be cut when displayed
-          nullable: true
-  ####################
-  # Common parameters
-  ####################
+        An array of tile matrix sets (tiling schemes).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/tileMatrixSets'
   parameters:
-    #############################
-    # From OGC API Maps and Tiles
-    #############################
     tileMatrixSetId:
       name: tileMatrixSetId
       in: path
@@ -368,7 +44,7 @@ components:
       name: tileMatrix
       in: path
       description: |-
-        scaleDenominator of the tile.
+        identifier representing the scaleDenominator of the tile.
 
         If the Google Maps Tiling Scheme is used see
         http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
@@ -439,3 +115,301 @@ components:
       href: 'http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0/info'
       rel: info
       type: 'text/html'
+    link-landingPage-tms-json:
+      href: 'http://data.example.org/tileMatrixSet?f=json'
+      rel: tileMatrixSets
+      type: application/json
+      title: List of tileMatrixSets implemented by this API in JSON
+    link-landingPage-tms-html:
+      href: 'http://data.example.org/tileMatrixSet?f=html'
+      rel: tileMatrixSets
+      type: text/html
+      title: List of tileMatrixSets implemented by this API in HTML
+  schemas:
+    collection-link:
+      #This element is not directly linkable by other APIs because they probably will need to add other links to other resource types. Instead, it would be copied and enriched with more examples.
+      type: object
+      required:
+        - links
+      properties:
+        links:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+          example:
+            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-this'
+            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-describedBy'
+            - $ref: '#/components/examples/link-collection-tiles'
+            - $ref: '#/components/examples/link-collection-info'
+    collection:
+      # This object does not include the links element that should be added as and additional element using collection-link
+      type: object
+      properties:
+        tiles:
+          type: object
+          required:
+            - formats
+            - tileMatrixSetLink
+          properties:
+            # A WMTS layer definition has id, title, description, keyword that are already defined in OWS Common
+            # wgs84BoundingBox is the 'extent' that is already defined in OWS Common
+            # boundingBox
+            formats:
+              type: array
+              description: |-
+                Supported valid output formats for a tile resource
+              items:
+                type: string
+                pattern: '^(?=[-a-z]{1,127}/[-\.a-z0-9]{1,127}$)[a-z]+(-[a-z]+)*/[a-z0-9]+([-\.][a-z0-9]+)*$'
+                example:
+                  - 'image/jpeg'
+                  - 'image/png'
+            infoFormats:
+              type: array
+              description: |-
+                Supported valid output formats for a tile resource
+              items:
+                type: string
+                pattern: '^(?=[-a-z]{1,127}/[-\.a-z0-9]{1,127}$)[a-z]+(-[a-z]+)*/[a-z0-9]+([-\.][a-z0-9]+)*$'
+                example:
+                  - 'application/geo+json'
+                  - 'text/html'
+            tileMatrixSetLink:
+              $ref: '#/components/schemas/tileMatrixSetLink-set'
+    tileMatrixSets:
+      type: array
+      items:
+        $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/id-link'
+      example:
+        - id: WebMercatorQuad
+          title: Google Maps Compatible for the World
+          links:
+            - href: 'https://data.example.org/tileMatrixSet/WebMercatorQuad'
+              rel: tileMatrixSet
+              type: 'application/json'
+    tileMatrixSet:
+      required:
+        - type
+        - identifier
+      type: object
+      properties:
+        type:
+          description: Type of the Tile Matrix Set
+          type: string
+          enum:
+            - TileMatrixSetType
+          example: TileMatrixSetType
+        title:
+          description: Title of this tile matrix set, normally used for display to a human
+          type: string
+          example: Google Maps Compatible for the World
+        abstract:
+          description: Brief narrative description of this tile matrix set, normally available for display to a human
+          type: string
+          example: The most common TileMatrixSet, used in most of the main IT map browsers. It was initially popularized by Google Maps
+        keywords:
+          description: Unordered list of one or more commonly used or formalized word(s) or phrase(s) used to describe this dataset
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/keyword'
+        identifier:
+          description: Tile matrix set identifier,
+          type: string
+          example: WebMercatorQuad
+        supportedCRS:
+          description: Reference to one coordinate reference system (CRS)
+          type: string
+          format: uri
+          example: 'http://www.opengis.net/def/crs/EPSG/0/3857'
+        wellKnownScaleSet:
+          description: Reference to a well-known scale set
+          type: string
+          example: 'http://www.opengis.net/def/wkss/OGC/1.0/GoogleMapsCompatible'
+        tileMatrix:
+          description: Describes a scale level and its tile matrix
+          type: array
+          items:
+            $ref: '#/components/schemas/tileMatrix'
+    tileMatrix:
+      type: object
+      required:
+        - type
+        - identifier
+        - scaleDenominator
+        - topLeftCorner
+        - tileWidth
+        - tileHeight
+        - matrixWidth
+        - matrixHeight
+      properties:
+        type:
+          description: Type of the Tile Matrix
+          type: string
+          enum:
+            - TileMatrixType
+          example: TileMatrixType
+        title:
+          description: Title of this tile matrix, normally used for display to a human
+          type: string
+          example: Google Maps Compatible for the World zoom level 3
+        abstract:
+          description: Brief narrative description of this tile matrix, normally available for display to a human
+          type: string
+          example: 'Google Maps Compatible zoom level 3 that is equivalent to a scale of 1:69885283.00358972 and has 19567.87924100512 meters of pixel size in the equator'
+        keywords:
+          description: keywords about the elements in the collection
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/keyword'
+        identifier:
+          description: Tile matrix identifier,
+          type: string
+          example: '3'
+        scaleDenominator:
+          description: Scale denominator level of this tile matrix
+          type: number
+          example: 69885283.00358972
+        topLeftCorner:
+          description: Position in CRS coordinates of the top-left corner of this tile matrix
+          type: array
+          items:
+            type: number
+            format: double
+          example:
+            - -20037508.3427892
+            - 20037508.3427892
+        tileWidth:
+          description: Width of each tile of this tile matrix in pixels
+          type: number
+          format: integer
+          minimum: 1
+          example: 256
+        tileHeight:
+          description: Height of each tile of this tile matrix in pixels
+          type: number
+          format: integer
+          minimum: 1
+          example: 256
+        matrixHeight:
+          description: Width of the matrix (number of tiles in width)
+          type: number
+          format: integer
+          minimum: 1
+          example: 8
+        matrixWidth:
+          description: Height of the matrix (number of tiles in height)
+          type: number
+          format: integer
+          minimum: 1
+          example: 8
+    mapbox-vector-tile:
+      type: string
+      format: binary
+    tileMatrixSetLink-set:
+      description: |-
+        This list tileMatrixSetLink as defined in OGC 17-083r2 supported by this collectionId.
+      type: array
+      items:
+        $ref: '#/components/schemas/tileMatrixSetLink-entry'
+    tileMatrixSetLink-entry:
+      type: object
+      required:
+        - type
+        - tileMatrixSet
+      properties:
+        type:
+          type: string
+          enum:
+            - TileMatrixSetLink
+          example: tileMatrixSetLink
+        tileMatrixSet:
+          type: string
+          format: uri
+          example: 'http://www.opengis.net/def/tilematrixset/OGC/1.0/WebMercatorQuad'
+        tileMatrixSetLimits:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/tileMatrixSetLimits-entry'
+    tileMatrixSetLimits-entry:
+      type: object
+      required:
+        - type
+        - tileMatrix
+        - minTileRow
+        - maxTileRow
+        - minTileCol
+        - maxTileCol
+      properties:
+        type:
+          type: string
+          enum:
+            - TileMatrixSetLimits
+          example: tileMatrixSetLimits
+        tileMatrix:
+          type: string
+          format: uri
+          example: '5'
+        minTileRow:
+          type: number
+          format: integer
+          minimun: 0
+          example: 0
+        maxTileRow:
+          type: number
+          format: integer
+          minimun: 0
+          example: 1
+        minTileCol:
+          type: number
+          format: integer
+          minimun: 0
+          example: 3
+        maxTileCol:
+          type: number
+          format: integer
+          minimun: 0
+          example: 4
+    tileSet:
+      description: |-
+        This is the response for a multiple tiles request.
+      required:
+        - type
+      type: array
+      items:
+        $ref: '#/components/schemas/tileSetEntry'
+    tileSetEntry:
+      description: |-
+        This is an entry on a multiple tiles request.
+      type: object
+      required:
+        - tileURL
+        - tileMatrix
+        - tileRow
+        - tileCol
+      properties:
+        tileURL:
+          type: string
+          format: uri
+        tileMatrix:
+          type: string
+        tileRow:
+          type: number
+        tileCol:
+          type: number
+        width:
+          type: number
+          description: |-
+            The width of the tile in rendering device pixels. If it exceeds the visual display area be should cut when displayed
+        height:
+          type: number
+          description: |-
+            The height of the tile in rendering device pixels. If it exceeds the visual display area be should cut when displayed
+        top:
+          type: number
+          description: |-
+            Vertical position from the top of the visual display area in pixels. Negative value means that the left side of the tile is outside the top-left corner of the display and should be cut when displayed
+        left:
+          type: number
+          description: |-
+            Horizontal position from the left of the visual display area in pixels. Negative value means that the left side of the tile is outside the top-left corner of the display and should be cut when displayed
