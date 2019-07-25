@@ -22,9 +22,9 @@ The core is:
 
 #### Extensions
 We foresee the following extensions (some of them can end into OGC standards and some might not)
-* Other TileMatrixSets  (started in: standard/clause_7_tile_tms.adoc)
-* Info (featureInfo) (started in: standard/clause_7_tile_info.adoc)
-* Collections (more than one) (started in: standard/clause_7_tile_collections.adoc)
+* Other TileMatrixSets  (started in: standard/clause_7_tile_tms.adoc )
+* Info (featureInfo) (started in: standard/clause_7_tile_info.adoc )
+* Collections (more than one) (started in: standard/clause_7_tile_collections.adoc )
 * Collections-info (with feautureInfo) (pending)
 * Multi-tile (retrieve a ZIP with many tiles) (pending, necessary for the update workflow)
 * Delta-updates (using checkpoints) (pending, necessary for the update workflow)
