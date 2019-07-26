@@ -1,0 +1,6 @@
+[[rec_maps_core_sfc-map-examples]]
+[width="90%",cols="2,6a"]
+|===
+^|*Recommendation {counter:rec-id}* |*/rec/maps/core/sfc-map-examples*
+^|A |If the feature collection can be retrieved as maps, a `200`-response SHOULD include links to examples of map URIs (relation: `maps`).
+|===

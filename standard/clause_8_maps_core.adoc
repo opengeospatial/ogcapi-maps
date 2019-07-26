@@ -1,0 +1,84 @@
+== Requirement Class "Maps Core"
+
+A map distribution of a dataset as a pictorial representation of a dataset or the collections it has been divided in. To create a pictorial representation a style need to be added to the collections. A map can be retrieved by specifying a set of parameters that will determine its resolution (width, height, boundingbox and CRS) or can be retrieved as tiles.
+
+This clause defines the core part of the OGC API Maps that allows defining a representation in the form of a map that cannot be retrieved by itself but by combining it to a tiles extension or a map extension.
+
+To keep it simple it will introduce a mechanism to select styles but it will not develop it by assuming that the service is capable of dealing with a default style.
+
+=== General
+include::requirements/maps/core/REQ_api-common.adoc[]
+
+In practice, this means that the landing page and the conformance page follows OGC API Common core requirements (STILL TBD but mostly equivalent to the more general parts of WFS3.0 requirements but with the text generalized to other resource types). This standard provides extra additions to the OWS common requirements that are particular of tiles.
+
+=== API landing page
+
+The landing page provides links to start exploring the resources offered by the API. It mainly consists in a list of links. OWS Common already requires some common links that are enough for this core.
+
+==== Response
+No variations are required in the landing page.
+With a /collections successful response it is possible to retrieve the list of collectionId and links to the /collections/{collectionId}.
+With a /collections/{collectionId} successful response, it is possible to discover the links to retrieve some maps.
+Note that other resources can also be retrieved as collections (e.g. coverages)
+
+=== Declaration of conformance classes
+
+To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the requirements classes it implements and conforms to.
+
+==== Response
+
+The conformance page mainly consists in a list of links. OWS Commmon already requires some links.
+
+include::requirements/maps/core/REQ_conformance-success.adoc[]
+
+In the conformance page (commonly in JSON format) the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API tiles conformance information page
+
+[[ConformancePage]]
+.Conformance Information Page fragment
+=================
+[source,JSON]
+[
+  "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
+  "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
+  "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core"
+]
+=================
+
+=== Collections
+TBD: What will happen with collections of coverages?
+
+This standard includes dependencies on OWS Common collections. Collections are mandatory in the core of this standard because collections are the object that will be included in a tile.
+
+Collections will enumerate the collectionId available in this API as well as basic information about each collectionId: id, title, description, extent, crs and links. This common response is considered enough for a general
+description of the collection. to retrieve more information, you should use /collections/{collectionId}
+
+NOTE: The collectionId substitutes the concept of "layer" in WMS.
+
+=== Collection
+This standard includes dependencies on OWS Common collection. The response of the operation is extended with the necessary information to formulate a map response for this collection.
+
+==== Collection Links
+
+include::recommendations/tiles/core/REC_sfc-map-examples.adoc[]
+
+.API collection response fragment
+=================
+[source,JSON]
+links:
+[
+    {
+      "href": "http://data.example.com/collections/buildings/map/default",
+      "rel": "maps",
+      "type": "image/png",
+    },
+    {
+      "href": "http://data.example.com/collections/buildings/maps/default/info",
+      "rel": "maps",
+      "type": "text/html",
+    }
+]
+=================
+
+==== Collection extra properties
+
+No extra parameters are need as respon

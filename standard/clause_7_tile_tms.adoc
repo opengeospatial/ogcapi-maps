@@ -72,6 +72,8 @@ In the conformance page (commonly in JSON format) the links are following the li
 
 === Collection
 
+==== Collection extra properties
+
 include::requirements/tiles/tms/REQ_sfc-formats.adoc[]
 
 =================

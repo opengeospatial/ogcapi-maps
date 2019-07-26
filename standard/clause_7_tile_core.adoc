@@ -74,6 +74,8 @@ In the conformance page (commonly in JSON format) the links are following the li
 =================
 
 === Collections
+TBD: What will happen with collections of coverages?
+
 This standard includes dependencies on OWS Common collections. Collections are mandatory in the core of this standard because collections are the object that will be included in a tile.
 
 Collections will enumerate the collectionId available in this API as well as basic information about each collectionId: id, title, description, extent, crs and links. This common response is considered enough for a general
@@ -97,16 +99,11 @@ links:
       "href": "http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0",
       "rel": "tiles",
       "type": "image/png",
-    },
-    {
-      "href": "http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0/info",
-      "rel": "info",
-      "type": "text/html",
     }
 ]
 =================
 
-==== Collection extra parameters
+==== Collection extra properties
 
 A collection that can be retrieved as tiles will add specific object in the collection information about that will contain specific information necessary to get tiles in the resource collection response. In the core, the _tiles_ section only informs about the formats the tiles can be retrieved.
 

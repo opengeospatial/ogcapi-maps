@@ -1,4 +1,4 @@
-== Requirement Class "Tiles Core"
+== Requirement Class "Tiles Info"
 
 === Overview
 
@@ -31,6 +31,34 @@ In the conformance page (commonly in JSON format) the links are following the li
 
 === Collection
 
+=== Collection
+This standard includes dependencies on OWS Common collection. The response of the operation is extended with the necessary information to formulate a tile response for this collection.
+
+==== Collection Links
+
+include::recommendations/tiles/core/REC_sfc-tile-examples.adoc[]
+
+.API collection response fragment
+=================
+[source,JSON]
+links:
+[
+    {
+      "href": "http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0",
+      "rel": "tiles",
+      "type": "image/png",
+    },
+    {
+      "href": "http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0/info",
+      "rel": "info",
+      "type": "text/html",
+    }
+]
+=================
+
+==== Collection extra properties
+
+.Example of a tiles property in the collection response.
 =================
 [source,JSON]
   "tiles": {
