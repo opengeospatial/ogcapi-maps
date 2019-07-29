@@ -1,5 +1,7 @@
 == Requirement Class "Tiles Info"
 
+NOTE: TBD by the WMS.SWG. Here there are some initial thoughts to be elaborated
+
 === Overview
 
 [[core-overview]]
@@ -20,12 +22,14 @@ In the conformance page (commonly in JSON format) the links are following the li
 .Conformance Information Page fragment
 =================
 [source,JSON]
-[
-  "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
-  "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
-  "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core"
-  "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/info"
-]
+{
+  "conformsTo": [
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
+    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core"
+    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/info"
+  ]
+}
 =================
 
 

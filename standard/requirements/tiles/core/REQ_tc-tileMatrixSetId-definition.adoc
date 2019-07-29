@@ -8,7 +8,7 @@
 ----
   name: tileMatrixSetId
   in: path
-  description: Local identifier of a specific tiling scheme. A list of all available tileMatrixSetIds can be found under the /tiles path or below. The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme).
+  description: Identifier of a specific tiling scheme. It can be one of the specified in Annex D.1 of the OGC 17-083r2 standard or one defined in this service.
   required: true
   schema:
     type: string

@@ -8,13 +8,7 @@
 ----
   name: tileMatrix
   in: path
-  description:
-    identifier representing the scaleDenominator of the tile.
-
-    If the Google Maps Tiling Scheme is used see
-    http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
-    for more information about `tileMatrix`, `tileRow` and `tileCol`. For example,
-    Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+  description: Identifier selecting one of the scales defined in the TileMatrixSet and representing the scaleDenominator the tile.
   required: true
   schema:
     type: string

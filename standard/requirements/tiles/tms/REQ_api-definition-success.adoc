@@ -2,5 +2,5 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/tiles/core/api-definition-success*
-^|A | The API SHALL advertise the TileMatrixSets defined by this service as links to the descriptions paths with rel=tileMatrixSets.
+^|A | The API SHALL advertise a URI to retrieve the list of TileMatrixSets defined by this service as links to the descriptions paths with rel=tileMatrixSets..
 |===

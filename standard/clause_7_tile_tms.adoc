@@ -1,8 +1,16 @@
 == Requirement Class "Tiles Tile Matrix Set"
 
-The tiles core clause states that if there is no information on TileMatrixSet, the service can behave as a service that only supports WebMercatorQuad. This extension adds all necessary elements to support other TileMatrixSets.
+The _tiles core_ clause states that if there is no information on TileMatrixSet, the service can behave as a service that supports the eight TileMatrixSets defined in the Annex D.1 of the OGC 17-083r2 standard. This extension adds all necessary elements to support other TileMatrixSets.
 
 === Overview
+The entry point is a `Landing page` (path `/`).
+
+The `Landing page` provides links to
+* the `API definition` (path `/api`, link relation `service`),
+* the `Conformance declaration` (path `/conformance`, link relation `conformance`), and
+* the `Collections` (path `/collections`, link relation `data`).
+* the `TileMatrixSets` (path `/tileMatrixSets`, link relation `tileMatrixSet`).
+
 
 [[core-overview]]
 
@@ -10,7 +18,7 @@ include::requirements/tiles/requirements_class_tms.adoc[]
 
 === API landing page
 
-The landing page provides links to start exploring the resources offered by the API. It mainly consists in a list of links. The core of this standard does not add anything to the links required by OWS Common. This extension for TileMatrixSet requires new ones on top of the common ones.
+The landing page provides links to start exploring the resources offered by the API. It mainly consists in a list of links. The core of this standard does not add anything to the links required by OWS Common. This extension for TileMatrixSet requires new ones for TileMatrixSets on top of the common ones.
 
 ==== Response
 
@@ -58,12 +66,14 @@ In the conformance page (commonly in JSON format) the links are following the li
 .Conformance Information Page fragment
 =================
 [source,JSON]
-[
-  "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
-  "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
-  "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core"
-  "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/tms"
-]
+{
+  "conformsTo": [
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
+    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core"
+    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/tms"
+  ]
+}
 =================
 
 === TileMatrixSets

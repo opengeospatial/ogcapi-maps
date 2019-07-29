@@ -8,15 +8,11 @@
 ----
   name: tileCol
   in: path
-  description:
-    Column index of the tile on the selected zoom level.
-
-    http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
-    for more information about `tileMatrix`, `tileRow` and `tileCol`. For example,
-    Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+  description: Column index of the tile on the selected TileMatrix. It cannot exceed the MatrixHeight-1 for the selected TileMatrix.
   required: true
   schema:
-    type: number
+    type: integer
+    minimum: 0
   example: 1231
 ----
 |===

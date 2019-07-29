@@ -1,0 +1,7 @@
+[[req_tiles_core_sfc-formats.adoc]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/tiles/core/sfc-formats*
+^|A |the _tiles_ object SHALL contain a property called _tileMatrixSetLink_ specifying a list of references to the supported TileMatrixSets for the tiles of this collection.
+^|C |This core does not provide any mechanism to defined TileMatrixSets so if this mechanism is not provided in an extension, the tileMatrixSet reference should point to one of the 8 URIs defined in the OGC 17-083r2 Annex D.
+|===

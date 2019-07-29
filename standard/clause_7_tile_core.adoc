@@ -11,17 +11,17 @@ An API that implements this conformance class provides access to tiled resources
 The entry point is a `Landing page` (path `/`).
 
 The `Landing page` provides links to
-
 * the `API definition` (path `/api`, link relation `service`),
 * the `Conformance declaration` (path `/conformance`, link relation `conformance`), and
 * the `Collections` (path `/collections`, link relation `data`).
-* the `TileMatrixSets` (path `/tileMatrixSets`, link relation `tileMatrixSet`).
 
 The `API definition` describes the capabilities of the API that can be used by clients to retrieve resources from the API or by development tools to support the implementation of API servers and clients. Accessing the `API definition` using HTTP GET returns a description of the API.
 
 The `Conformance declaration` states the requirements classes from standards or community specifications, identified by a URI, that the API conforms to. Clients can, but are not required to, use this information. Accessing the `Conformance declaration` using HTTP GET returns the list of URIs of requirements classes implemented by the API.
 
-This standards assumes that data is organized into one or more collections. `Collections` provides information about and access to the collections.
+The tiles core does not mandate the inclusion of an explicit definition of any TileMatrixSet. The standard assumes that clients and services know about the eight TileMatrixSets defined in OGC 17-083r2 annex D and there is no need to communicate these definitions. An extension to the core provides the capability to include definitions of flexible TileMatrixSets.
+
+This standard assumes that data is organized into one or more collections. `Collections` provides information about and access to the collections.
 
 This document does not specify requirements for collections and they can consist on features, coverages, a resource that does not represent data per-se (e.g. an annotation) any other resource that can be represented in a tile. collectionId replaces the concept of layer in WMS and WMTS. Maps or tiles can be generated from one collection (or a combination of collections as an extension).
 
@@ -66,11 +66,13 @@ In the conformance page (commonly in JSON format) the links are following the li
 .Conformance Information Page fragment
 =================
 [source,JSON]
-[
-  "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
-  "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
-  "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core"
-]
+{
+  "conformsTo": [
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
+    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core"
+  ]
+}
 =================
 
 === Collections
@@ -105,9 +107,11 @@ links:
 
 ==== Collection extra properties
 
-A collection that can be retrieved as tiles will add specific object in the collection information about that will contain specific information necessary to get tiles in the resource collection response. In the core, the _tiles_ section only informs about the formats the tiles can be retrieved.
+A collection that can be retrieved as tiles will add an specific object in the collection information that will contain specific information necessary to get tiles representing the resource collection. In this core, the _tiles_ section only informs about the formats the tiles can be retrieved and in width tile matrix sets they can be retrieved.
 
 include::requirements/tiles/core/REQ_sfc-formats.adoc[]
+
+include::requirements/tiles/core/REQ_sfc-tmslink.adoc[]
 
 .Example of a tiles property in the collection response.
 =================
@@ -119,18 +123,24 @@ include::requirements/tiles/core/REQ_sfc-formats.adoc[]
         "image/png"
       ]
     ]
+    "tileMatrixSetLink": [
+      {
+        "type": "tileMatrixSetLink",
+        "tileMatrixSet": "http://www.opengis.net/def/tilematrixset/OGC/1.0/WebMercatorQuad"
+      }
+    ]
   }
 =================
 
 === Tiled data from one collection
 
-In the absence of any other information, the client and service will assume support for Web Mercator Quad TileMatrixSet (http://www.opengis.net/def/tilematrixset/OGC/1.0/WebMercatorQuad) as defined in the Annex D.1 of the OGC 17-083r2 standard with no restriction in zoom level or area.
+The core provides a mechanism to select and retrieve a tile from a TileMatrixSet. If the service does not advertise any other TileMatrixSet (this core does not provide any mechanism to do that, but extensions can do it) only the TileMatrixSet identifiers specified in the Annex D.1 of the OGC 17-083r2 standard can be used.
 
 ==== Operation
 
 include::requirements/tiles/core/REQ_tc-op.adoc[]
 
-Typical resources that can be retrieved as tiles are: features (/collections/{collectionId}), coverages (/collections/{collectionId}/coverage/{coverageId} or /coverage/{coverageId}) or maps (/collections/{collectionId}/map/styleId})
+Typical resources that can be retrieved as tiles are: features (/collections/{collectionId}), coverages (/collections/{collectionId}/coverage/{coverageId} or /coverage/{coverageId}) or maps (/collections/{collectionId}/map/styleId}).
 
 ==== Parameter tileMatrixSetId
 include::requirements/tiles/core/REQ_tc-tileMatrixSetId-definition.adoc[]
@@ -146,7 +156,7 @@ include::requirements/tiles/core/REQ_tc-tileCol-definition.adoc[]
 
 ==== Response
 
-A successful response of a tile request will be consistent with the type of resource requested. For features can be geojson of Mapbox vector tiles; coverages it my be a geotiff and for maps it can be a jpeg or a png.
+A successful response of a tile request will be consistent with the media type of resource requested. This standard does not impose any media type. For features can be geojson of Mapbox vector tiles; coverages it my be a geotiff and for maps it can be a jpeg or a png.
 
 include::requirements/tiles/core/REQ_tc-success.adoc[]
 
