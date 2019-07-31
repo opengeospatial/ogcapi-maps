@@ -1,7 +1,7 @@
-[[req_core_sfc-formats.adoc]]
+[[req_tiles_core_stc-formats.adoc]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/core/sfc-formats*
+^|*Requirement {counter:req-id}* |*/req/tiles/core/stc-formats*
 ^|A |The content of the response of a successful execution SHALL contain a _tiles_ object in addition to other information present in the collection in the `/collections` response.
 ^|B |the _tiles_ object SHALL contain a property called _formats_ specifying a list of supported formats for the tiles of this collection.
 ^|C |the first format SHALL be considered the recommended format and SHALL be the one used if no format is specified in the request for a tile.

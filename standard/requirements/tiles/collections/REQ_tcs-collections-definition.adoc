@@ -1,0 +1,25 @@
+[[req_tiles_collections_collections-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/tiles/collections/collections-definition*
+^|A |The operation SHALL support an optional parameter `collections` with the following characteristics (using an OpenAPI Specification 3.0 fragment below)
+^|B |`collections` SHALL contain a comma-separated list of collection identifiers.
+^|C |Only the collections that advertise a link type=tiles in the /collections/{collectionId} SHALL be included.
+^|D |Only the collections that support the TileMatrixSetId parameter value SHALL be included
+^|C |If `collections` is missing, all collections supporting the TileMatrixSetId parameter value will be considered.
+
+[source,YAML]
+----
+  name: collections
+  in: query
+  description: |-
+    The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, all collections will be included.
+  required: false
+  style: form
+  explode: false
+  schema:
+    type: array
+    items:
+      type: string
+----
+|===

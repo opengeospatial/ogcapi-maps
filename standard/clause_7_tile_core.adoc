@@ -90,7 +90,7 @@ This standard includes dependencies on OWS Common collection. The response of th
 
 ==== Collection Links
 
-include::recommendations/tiles/core/REC_sfc-tile-examples.adoc[]
+include::recommendations/tiles/core/REC_stc-tile-examples.adoc[]
 
 .API collection response fragment
 =================
@@ -109,9 +109,9 @@ links:
 
 A collection that can be retrieved as tiles will add an specific object in the collection information that will contain specific information necessary to get tiles representing the resource collection. In this core, the _tiles_ section only informs about the formats the tiles can be retrieved and in width tile matrix sets they can be retrieved.
 
-include::requirements/tiles/core/REQ_sfc-formats.adoc[]
+include::requirements/tiles/core/REQ_stc-formats.adoc[]
 
-include::requirements/tiles/core/REQ_sfc-tmslink.adoc[]
+include::requirements/tiles/core/REQ_stc-tmslink.adoc[]
 
 .Example of a tiles property in the collection response.
 =================
@@ -123,7 +123,7 @@ include::requirements/tiles/core/REQ_sfc-tmslink.adoc[]
         "image/png"
       ]
     ]
-    "tileMatrixSetLink": [
+    "tileMatrixSetLinks": [
       {
         "type": "tileMatrixSetLink",
         "tileMatrixSet": "http://www.opengis.net/def/tilematrixset/OGC/1.0/WebMercatorQuad"
@@ -156,7 +156,7 @@ include::requirements/tiles/core/REQ_tc-tileCol-definition.adoc[]
 
 ==== Response
 
-A successful response of a tile request will be consistent with the media type of resource requested. This standard does not impose any media type. For features can be geojson of Mapbox vector tiles; coverages it my be a geotiff and for maps it can be a jpeg or a png.
+A successful response of a tile request will be consistent with the media type of resource requested. This standard does not impose any media type. For example; for features can be geojson of Mapbox vector tiles; coverages it my be a geotiff and for maps it can be a jpeg or a png.
 
 include::requirements/tiles/core/REQ_tc-success.adoc[]
 
@@ -164,4 +164,4 @@ include::requirements/tiles/core/REQ_tc-success.adoc[]
 
 A general summary of the HTTP status codes can be found in OWS Common.
 
-If the parameter tileMatrixSetId is not available by the server for this resource or the parameters  tileMatrix, tileRow, tileCol are out-of-range, the status code of the response will be 404.
+If the parameter value `tileMatrixSetId` is not available by the server for this resource or the parameters values `tileMatrix`, `tileRow`, `tileCol` are out-of-range, the status code of the response will be 404.

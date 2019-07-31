@@ -72,19 +72,101 @@ In the conformance page (commonly in JSON format) the links are following the li
     "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
     "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core"
     "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/tms"
+    "http://www.opengis.net/spec/tilematrixset/1.0/req/tilematrixset2d"
+    "http://www.opengis.net/spec/tilematrixset/1.0/req/json-tilematrixset2d"
+    "http://www.opengis.net/spec/tilematrixset/1.0/req/tilematrixsetlimits2d"
+    "http://www.opengis.net/spec/tilematrixset/1.0/req/json-tilematrixsetlimits2d"
   ]
 }
 =================
 
 === TileMatrixSets
 
+==== Operation
+include::requirements/tiles/tms/REQ_tilematrixsets-op.adoc[]
+
+==== Response
+include::requirements/tiles/tms/REQ_tilematrixsets-success.adoc[]
+
+[[TileMatrixSetsResponseSchema]]
+.Schema for the TileMatrixSets resource
+=================
+[source,YAML]
+tileMatrixSets
+  type: object
+  required:
+    - id
+    - links
+  properties:
+    id:
+      type: string
+    title:
+      type: string
+    links:
+      type: array
+      minItems: 1
+      items:
+        $ref: '#/components/schemas/link'
+link:
+  type: object
+  required:
+    - href
+  properties:
+    href:
+      type: string
+      example: 'http://data.example.com/buildings/123'
+    rel:
+      type: string
+      example: alternate
+    type:
+      type: string
+      pattern: '^(?=[-a-z]{1,127}/[-\.a-z0-9]{1,127}$)[a-z]+(-[a-z]+)*/[a-z0-9]+([-\.][a-z0-9]+)*$'
+      example: application/geo+json
+    hreflang:
+      type: string
+      example: en
+    title:
+      type: string
+      example: 'Trierer Strasse 70, 53115 Bonn'
+    length:
+      type: integer
+=================
+
+[[TileMatrixSetsResponseExample]]
+.Example for the TileMatrixSets resource
+=================
+[source,JSON]
+[
+  {
+    "id": "MyWebMercatorQuad",
+    "title": "My Google Maps Compatible for the World",
+    "links": [
+      {
+        "href": "https://data.example.org/tileMatrixSet/MyWebMercatorQuad",
+        "rel": "tileMatrixSet",
+        "type": "application/json"
+      }
+    ]
+  }
+]
+=================
+
 === TileMatrixSet
 
+==== Operation
+include::requirements/tiles/tms/REQ_tilematrixset-op.adoc[]
+
+==== Response
+include::requirements/tiles/tms/REQ_tilematrixset-success.adoc[]
+
+include::requirements/tiles/tms/REQ_REC_tilematrixset-response.adoc[]
+
 === Collection
+This extension modifies the content of the collection description returned by a successful \collection\{collectionId} request.
 
 ==== Collection extra properties
 
-include::requirements/tiles/tms/REQ_sfc-formats.adoc[]
+include::requirements/tiles/tms/REQ_stc-limits.adoc[]
 
 =================
 [source,JSON]
@@ -96,7 +178,7 @@ include::requirements/tiles/tms/REQ_sfc-formats.adoc[]
         "image/png"
       ]
     ],
-    "tileMatrixSetLink": [
+    "tileMatrixSetLinks": [
       {
         "type": "tileMatrixSetLink",
         "tileMatrixSet": "http://www.opengis.net/def/tilematrixset/OGC/1.0/WebMercatorQuad",
