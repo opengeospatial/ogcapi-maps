@@ -1,0 +1,41 @@
+== Requirement Class "Mapped data from more than one collection"
+
+In previous clauses we have been discussion about maps that are produced form one and only one resource. This is achieved by concatenating the map path to a resource (e.g. a feature collection). This extension discusses about the possibility to combine more than one resource to create a map. This is achieved by using by adding the map path to the root of the service.
+
+=== Declaration of conformance classes
+
+==== Response
+
+The conformance page mainly consists in a list of links. OWS Commmon already requires some links.
+
+include::requirements/maps/collections/REQ_conformance-success.adoc[]
+
+In the conformance page (commonly in JSON format) the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API tiles conformance information page
+
+[[ConformancePage]]
+.Conformance Information Page fragment
+=================
+[source,JSON]
+{
+  "conformsTo": [
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core"
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections"
+  ]
+}
+=================
+
+=== Maps from more than one collection
+
+==== Operation
+include::requirements/maps/collections/REQ_mcs-op.adoc[]
+
+==== Parameter styles
+include::requirements/maps/collections/REQ_mcs-styles-definition.adoc[]
+
+==== Parameter Collections
+include::requirements/maps/collections/REQ_mcs-collections-definition.adoc[]
+
+==== Response
+To retrieve the map as a map or a a tile another extension is needed. No requirements are provided here.

@@ -1,7 +1,7 @@
-[[req_tiles_collections_tileCol-definition]]
+[[req_tiles_collections_tcs-tileCol-definition]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/tiles/collections/tileCol-definition*
+^|*Requirement {counter:req-id}* |*/req/tiles/collections/tcs-tileCol-definition*
 ^|A |The operation SHALL support a parameter `tileCol` with the following characteristics (using an OpenAPI Specification 3.0 fragment):
 
 [source,YAML]

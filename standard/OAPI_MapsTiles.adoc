@@ -92,11 +92,17 @@ include::clause_6_overview.adoc[]
 
 include::clause_7_tile_core.adoc[]
 
-include::clause_7_maps.adoc[]
+include::clause_7_tile_collections.adoc[]
 
-include::clause_7_tiles.adoc[]
+include::clause_7_tile_tms.adoc[]
 
-include::clause_7_multitiles.adoc[]
+include::clause_7_tile_info.adoc[]
+
+include::clause_7_tile_multitiles.adoc[]
+
+include::clause_8_map_core.adoc[]
+
+include::clause_8_map_collections.adoc[]
 
 include::clause_8_encodings.adoc[]
 

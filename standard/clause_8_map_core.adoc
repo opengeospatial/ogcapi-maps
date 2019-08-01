@@ -87,4 +87,7 @@ include::recommendations/maps/core/REC_sfc-opaque.adoc[]
 include::recommendations/maps/core/REC_sfc-cascaded.adoc[]
 
 === Maps
-include::requirements/maps/core/REQ_map-op.adoc[]
+include::requirements/maps/core/REQ_mc-map-op.adoc[]
+
+==== Parameter tileMatrixSetId
+include::requirements/tiles/core/REQ_mc-styleId-definition.adoc[]

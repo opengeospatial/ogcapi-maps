@@ -29,27 +29,27 @@ In the conformance page (commonly in JSON format) the links are following the li
 === Tiles from more than one collection
 
 ==== Operation
-include::requirements/tiles/tms/REQ_tcs-op.adoc[]
+include::requirements/tiles/collections/REQ_tcs-op.adoc[]
 
 ==== Parameter tileMatrixSetId
-include::requirements/tiles/core/REQ_tcs-tileMatrixSetId-definition.adoc[]
+include::requirements/tiles/collections/REQ_tcs-tileMatrixSetId-definition.adoc[]
 
 ==== Parameter tileMatrix
-include::requirements/tiles/core/REQ_tcs-tileMatrix-definition.adoc[]
+include::requirements/tiles/collections/REQ_tcs-tileMatrix-definition.adoc[]
 
 ==== Parameter tileRow
-include::requirements/tiles/core/REQ_tcs-tileRow-definition.adoc[]
+include::requirements/tiles/collections/REQ_tcs-tileRow-definition.adoc[]
 
 ==== Parameter tileCol
-include::requirements/tiles/core/REQ_tcs-tileCol-definition.adoc[]
+include::requirements/tiles/collections/REQ_tcs-tileCol-definition.adoc[]
 
 ==== Parameter Collections
-include::requirements/tiles/core/REQ_tcs-tileMatrixSetId-definition.adoc[]
+include::requirements/tiles/collections/REQ_tcs-collections-definition.adoc[]
 
 ==== Response
 A successful response of a tile request will be consistent with the media type of resource requested. This standard does not impose any media type. For example; for features can be geojson of Mapbox vector tiles; coverages it my be a geotiff and for maps it can be a jpeg or a png.
 
-include::requirements/tiles/tms/REQ_tcs-success.adoc[]
+include::requirements/tiles/collections/REQ_tcs-success.adoc[]
 
 ==== Error situations
 If the parameter value `tileMatrixSetId` is not available by the server for this resource or the parameters values `tileMatrix`, `tileRow`, `tileCol` are out-of-range, the status code of the response will be 404.
