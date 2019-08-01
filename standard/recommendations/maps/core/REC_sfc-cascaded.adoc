@@ -1,0 +1,8 @@
+[[rec_maps_core-sfc-cascaded]]
+[width="90%",cols="2,6a"]
+|===
+^|*Recommendation {counter:rec-id}* |*/rec/maps/core/sfc-cascaded*
+^|A |The server may include a object property `maps` in the collection description response that contains a boolean property `cascaded`.
+^|B | 0 means that the collection maps have not been retransmitted another map service or API. A positive number indicates how many times the collection map has been retransmitted. 
+^|C | If the property is not provided, it should be interpreted as 0 (the default value)
+|===

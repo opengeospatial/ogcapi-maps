@@ -1,0 +1,7 @@
+[[req_tiles_core_stc-tile-examples]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:rec-id}* |*/req/tiles/core/stc-tile-examples*
+^|A |If the feature collection can be retrieved as tiles, a `200`-response SHALL include links to examples of tile URIs (relation: `tiles`).
+^|B |The link SHALL follow and illustrate the result of applying the .../tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}... pattern
+|===

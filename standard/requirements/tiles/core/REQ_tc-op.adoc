@@ -2,7 +2,6 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/tiles/core/tc-op*
-^|A |Every resource or collection that will be available as tiles SHALL advertise one of more links with type=tiles and shall include a tiles object as part of its description.
+^|A |Only the resources or collection that advertise one of more links with type=tiles SHALL be requested as tiles.
 ^|B |Every tile SHALL be available as a HTTP GET request to a URI that will be composed by two parts: a initial part is the URI of a resource that can be represented as tiles and the final part follows the pattern /tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}
-^|C |Resources that can be returned as tiles SHALL also be advertised as one of the URI templates in the API definition.
 |===

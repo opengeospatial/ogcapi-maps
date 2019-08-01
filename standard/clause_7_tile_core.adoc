@@ -38,7 +38,7 @@ The `Collection` resource is available at path `/collections/{collectionId}`, of
 === General
 include::requirements/tiles/core/REQ_api-common.adoc[]
 
-In practice, this means that the landing page and the conformance page follows OGC API Common core requirements (STILL TBD but mostly equivalent to the more general parts of WFS3.0 requirements but with the text generalized to other resource types). This standard provides extra additions to the OWS common requirements that are particular of tiles.
+In practice, this means that the landing page and the conformance page follows OGC API Common core and collections requirements (STILL TBD but mostly equivalent to the more general parts of WFS3.0 requirements but with the text generalized to other resource types). This standard provides extra additions to the OWS common requirements that are particular to tiles.
 
 === API landing page
 
@@ -90,7 +90,7 @@ This standard includes dependencies on OWS Common collection. The response of th
 
 ==== Collection Links
 
-include::recommendations/tiles/core/REC_stc-tile-examples.adoc[]
+include::requirements/tiles/core/REQ_stc-tile-examples.adoc[]
 
 .API collection response fragment
 =================
