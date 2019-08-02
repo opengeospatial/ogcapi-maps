@@ -1,7 +1,7 @@
-[[rec_maps_core-sfc-opaque]]
+[[rec_maps_core-smc-opaque]]
 [width="90%",cols="2,6a"]
 |===
-^|*Recommendation {counter:rec-id}* |*/rec/maps/core/sfc-opaque*
+^|*Recommendation {counter:rec-id}* |*/rec/maps/core/smc-opaque*
 ^|A |The server may include a object property `maps` in the collection description response that contains a boolean property `opaque`.
 ^|B | false means that map data represents vector features that probably do not
 completely fill space. true means map data are mostly or completely opaque.

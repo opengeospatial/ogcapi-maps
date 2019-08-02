@@ -60,7 +60,7 @@ This standard includes dependencies on OWS Common collection. The response of th
 
 ==== Collection Links
 
-include::requirements/maps/core/REQ_sfc-map-examples.adoc[]
+include::requirements/maps/core/REQ_smc-map-examples.adoc[]
 
 In practice, since the map core alone does not specify how to retrieve a map, it is not possible to exemplify completely how the link looks like without considering other extensions. If the server also conforms to an extension to distribute the map as maps, the example will look like this.
 
@@ -82,9 +82,9 @@ This core does not mandate and extra property in the collection description resp
 
 In here, two parameters inherit from WMS are recommended: cascade and opaque.
 
-include::recommendations/maps/core/REC_sfc-opaque.adoc[]
+include::recommendations/maps/core/REC_smc-opaque.adoc[]
 
-include::recommendations/maps/core/REC_sfc-cascaded.adoc[]
+include::recommendations/maps/core/REC_smc-cascaded.adoc[]
 
 === Maps
 include::requirements/maps/core/REQ_mc-map-op.adoc[]

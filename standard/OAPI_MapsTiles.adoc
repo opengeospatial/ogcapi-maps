@@ -102,6 +102,8 @@ include::clause_7_tile_multitiles.adoc[]
 
 include::clause_8_map_core.adoc[]
 
+include::clause_8_map_styes.adoc[]
+
 include::clause_8_map_collections.adoc[]
 
 include::clause_8_encodings.adoc[]

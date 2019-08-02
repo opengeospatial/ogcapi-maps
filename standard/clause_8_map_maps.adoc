@@ -1,5 +1,7 @@
 == Requirement Class "Maps Maps"
 
+NOTE: TBD by the WMS.SWG. Here there are some initial thoughts to be elaborated
+
 This extension describes how a map can be retrieved by specifying a set of parameters that will determine its resolution (width, height, boundingbox and CRS).
 
 The map can use the default style or it can select one of the styles available if the right extension is also added to the core.
@@ -27,7 +29,7 @@ To support "generic" clients that want to access multiple OGC API standards and 
 
 The conformance page mainly consists in a list of links. OWS Commmon already requires some links.
 
-include::requirements/maps/core/REQ_conformance-success.adoc[]
+include::requirements/maps/maps/REQ_conformance-success.adoc[]
 
 In the conformance page (commonly in JSON format) the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API Maps with the maps extension conformance information page.
 
@@ -67,7 +69,7 @@ The links included by the OGS API maps core are sufficient for this standard.
 
 A collection that can be retrieved as maps will add specific object in the collection information about that will contain specific information necessary to get tiles in the resource collection response. In this extension, the _maps_ section informs about the formats the maps can be retrieved,...
 
-include::requirements/maps/core/REQ_sfc-formats.adoc[]
+include::requirements/maps/maps/REQ_sfc-formats.adoc[]
 
 .Example of a tiles property in the collection response.
 =================
@@ -88,27 +90,27 @@ This standard specifies how to get maps from a single collection.
 
 ==== Operation
 
-include::requirements/maps/core/REQ_mc-op.adoc[]
+include::requirements/maps/maps/REQ_mc-op.adoc[]
 
 Typical resources that can be retrieved as maps are: features (/collections/{collectionId}), coverages (/collections/{collectionId}/coverage/{coverageId} or /coverage/{coverageId}).
 
 ==== Parameter crs
-include::requirements/maps/core/REQ_mc-crs-definition.adoc[]
+include::requirements/maps/maps/REQ_mc-crs-definition.adoc[]
 
 ==== Parameter bbox
-include::requirements/maps/core/REQ_mc-bbox-definition.adoc[]
+include::requirements/maps/maps/REQ_mc-bbox-definition.adoc[]
 
 ==== Parameter width
-include::requirements/maps/core/REQ_mc-width-definition.adoc[]
+include::requirements/maps/maps/REQ_mc-width-definition.adoc[]
 
 ==== Parameter height
-include::requirements/maps/core/REQ_mc-height-definition.adoc[]
+include::requirements/maps/maps/REQ_mc-height-definition.adoc[]
 
 ==== Parameter transparent
-include::requirements/maps/core/REQ_mc-transparent-definition.adoc[]
+include::requirements/maps/maps/REQ_mc-transparent-definition.adoc[]
 
 ==== Parameter bgcolor
-include::requirements/maps/core/REQ_mc-bgcolor-definition.adoc[]
+include::requirements/maps/maps/REQ_mc-bgcolor-definition.adoc[]
 
 ==== Response
 

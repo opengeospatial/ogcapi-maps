@@ -1,0 +1,56 @@
+== Requirement Class "Mapped data from more than one collection"
+
+The maps core introduces the possibility to create a map by assigning an style to a resource (e.g. a collectionId) but does not specify how to declare the styles supported by each collection. The core is only capable to request the default style and the client does not know anything about it. This extension discusses about the possibility to declare style names that can be used to request maps. It is foreseen that a OGC API Styles will allow to retrieve the full information about the style or to send styles to the server.
+
+=== Declaration of conformance classes
+
+==== Response
+
+The conformance page mainly consists in a list of links. OWS Commmon already requires some links.
+
+include::requirements/maps/styles/REQ_conformance-success.adoc[]
+
+In the conformance page (commonly in JSON format) the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API tiles conformance information page
+
+[[ConformancePage]]
+.Conformance Information Page fragment
+=================
+[source,JSON]
+{
+  "conformsTo": [
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core"
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styles"
+  ]
+}
+=================
+
+=== Collection
+This standard includes dependencies on OWS Common collection. The response of the operation is extended with the necessary information to formulate a map response for this collection.
+
+==== Collection Links
+
+include::requirements/maps/styles/REQ_smc-map-examples.adoc[]
+
+In practice, since the map core alone does not specify how to retrieve a map, it is not possible to exemplify completely how the link looks like without considering other extensions. If the server also conforms to an extension to distribute the map as maps, the example will look like this.
+
+.API collection response fragment
+=================
+[source,JSON]
+links:
+[
+    {
+      "href": "http://data.example.com/collections/buildings/map/brown",
+      "rel": "maps",
+      "type": "image/png",
+    }
+]
+=================
+
+==== Collection extra properties
+This extension describes how to provide a list of styles in the collection description.
+
+include::requirements/maps/core/REQ_smc-styles.adoc[]
+
+include::recommendations/maps/core/REC_smc-default-style.adoc[]
