@@ -51,6 +51,55 @@ links:
 ==== Collection extra properties
 This extension describes how to provide a list of styles in the collection description.
 
-include::requirements/maps/core/REQ_smc-styles.adoc[]
+include::requirements/maps/styles/REQ_smc-styles.adoc[]
 
-include::recommendations/maps/core/REC_smc-default-style.adoc[]
+.API collection response fragment
+=================
+[source,JSON]
+"styles": [
+  {
+    "id": "night",
+    "title": "Topographic night style",
+    "links": [
+      {
+        "href": "https://example.com/api/1.0/styles/night?f=sld10",
+        "type": "application/vnd.ogc.sld+xml;version=1.0",
+        "rel": "stylesheet"
+      },
+      {
+        "href": "https://example.com/api/1.0/styles/night/metadata?f=json",
+        "type": "application/json",
+        "rel": "describedBy"
+      }
+    ]
+  },
+  {
+    "id": "topographic",
+    "title": "Regular topographic style",
+    "links": [
+      {
+        "href": "https://example.com/api/1.0/styles/topographic?f=sld10",
+        "type": "application/vnd.ogc.sld+xml;version=1.0",
+        "rel": "stylesheet"
+      },
+      {
+        "href": "https://example.com/api/1.0/styles/topographic/metadata?f=json",
+        "type": "application/json",
+        "rel": "describedBy"
+      }
+    ]
+  }
+]
+=================
+
+The mandatory element id can be used a a value for {styleId}. 
+
+The optional links element are useful to connect to a OGC API styles that allows to retrieve the styles description.
+
+include::recommendations/maps/styles/REC_smc-default-style.adoc[]
+
+.API collection response fragment
+=================
+[source,JSON]
+  "defaultStyle": "topographic"
+=================

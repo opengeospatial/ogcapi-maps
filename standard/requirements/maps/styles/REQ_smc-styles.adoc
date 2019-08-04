@@ -2,16 +2,26 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/maps/styles/smc-styles*
-^|A |The operation SHALL support a parameter `tileMatrix` with the following characteristics (using an OpenAPI Specification 3.0 fragment):
+^|A |A successful execution SHALL contain a property called _styles_ that enumerates a list of the styles available for the collection.
+^|B |Each style in _sytles_ is an object that SHALL conform with the following data mode (using an OpenAPI Specification 3.0 fragment):
 
 [source,YAML]
 ----
-  name: tileMatrix
-  in: path
-  description: Identifier selecting one of the scales defined in the TileMatrixSet and representing the scaleDenominator the tile.
-  required: true
-  schema:
-    type: string
-  example: '11'
+  type: object
+  required:
+    - id
+  properties:
+    id:
+      type: string
+      nullable: true
+    title:
+      type: string
+      nullable: true
+    links:
+      type: array
+      nullable: true
+      minItems: 1
+      items:
+        $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
 ----
 |===

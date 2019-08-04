@@ -2,16 +2,16 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/maps/styles/smc-default-style*
-^|A |The operation SHALL support a parameter `tileMatrix` with the following characteristics (using an OpenAPI Specification 3.0 fragment):
+^|A |A successful execution may contain a property called _defaultStyle_ points to the default style used when {styleId} is replaced by the word `default`
+^|C |The value of the default style SHOULD be one of the ids listed in the property _styles_
+^|B |Each style in _sytles_ is an object that conforms with the following data mode (using an OpenAPI Specification 3.0 fragment):
 
 [source,YAML]
 ----
-  name: tileMatrix
-  in: path
-  description: Identifier selecting one of the scales defined in the TileMatrixSet and representing the scaleDenominator the tile.
-  required: true
-  schema:
+  default-style:
     type: string
-  example: '11'
+    description: |-
+      the style id of a recommended default style to use for this collection. This is informative and optional.
+    example: 'topographic'
 ----
 |===
