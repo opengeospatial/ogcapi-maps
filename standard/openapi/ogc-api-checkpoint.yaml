@@ -1,0 +1,154 @@
+openapi: 3.0.2
+# Revisions:
+# 2019-08-02 initial version
+
+info:
+  title: OGC API Checkpoint
+  description: 'A delta update is the subset of resources that have changed between two checkpoints and as such is itself a subset of resources from the specified collection. 
+    Extracted from: https://portal.opengeospatial.org/wiki/Testbed15/DeltaUpdateApi'
+  version: '1.0.0'
+
+components:
+  schemas:
+    changeSet:
+      title: changeSet
+      description: A document containing the delta updates since a specified checkpoint
+      type: object
+      required:
+      - summaryOfChangedItems
+      properties:
+        checkPoint:
+          description: the checkpoint value
+          type: string
+          example: "cp143756"
+        summaryOfChangedItems:
+          description: a per-priority list of change counts
+          type: array
+          items:
+            description: a count of changes corresponding to a specific priority label
+            type: object
+            required:
+            - priority
+            - count
+            properties:
+              priority:
+                description: the priority label
+                type: string
+              count:
+                description: the count of changes tagged with the corresponding priority
+                  label
+                type: integer
+          example:
+            - priority: high
+              count: 2
+            - priority: medium
+              count: 4
+            - priority: low
+              count: 67        
+        numberOfReturnedItems:
+          description: the number of changed items that are presented in this response document;
+            this may be less than the total number of changes
+          type: integer
+          example: 6
+        changedItems:
+          description: a list of new or modified resources
+          type: array
+          items:
+            description: a representations of or reference to the changed resource; e.g.
+              a GeoJSON-encoded feature
+            type: object
+            required:
+            - items
+            properties:
+              priority:
+                description: a priority label
+                type: string
+              items:
+                type: array
+                items:
+                  oneOf:
+                  - type: object
+                  - "$ref": 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
+          example: 
+            - priority: high
+              items: []
+            - priority: medium
+              items: []
+        deletedItems:
+          description: a list of identifiers of deleted resources
+          type: array
+          items:
+            description: the identifier of a deleted feature
+            type: object
+            required:
+            - items
+            properties:
+              priority:
+                description: a priority label
+                type: string
+              items:
+                type: array
+                items:
+                  type: string
+          example:
+            - priority: medium
+              items:
+              - "/collections/BUILDINGS/items/F4674"
+              - "/collections/BUILDINGS/items/F37465819"
+  parameters:
+    checkPoint:
+      name: checkPoint
+      in: path
+      description: Last checkpoint the client has retrieved data. Without it, the response to accessing the delta update path would be all changes since auditing began.
+      required: false
+      schema:
+        type: string
+    checkPoint-query:
+      name: checkPoint
+      in: query
+      description: Last checkpoint the client has retrieved data. Without it, the response to accessing the delta update path would be all changes since auditing began.
+      required: false
+      schema:
+        type: string
+    resultType:
+      name: resultType
+      in: query
+      description: |-
+        'This service will respond to a query in one of two ways (excluding an exception response). It may either generate a complete response document containing resources that satisfy the operation or it may simply generate an empty response container that indicates the count of the total number of resources that the operation would return. Which of these two responses is generated is determined by the value of the optional resultType parameter.
+
+        The allowed values for this parameter are "full" and "summary".
+        If the value of the resultType parameter is set to "full" causes the server to return the complete change set.
+        If  value of the resultType parameter is set to "summary" causes the server to return a summary of the changes.
+        The default value is "full".
+        TBD: consider to unify this with https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parametres/resultType'
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+        default: full
+        enum:
+          - summary
+          - full
+      example: full
+    priority:
+      name: priority
+      in: query
+      description: |-
+        One or more priority labels used to filter a delta update response.
+
+        The allowed values for this parameter are low, medium and high.
+
+        The default value all changes.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+        default: all
+        enum:
+          - low
+          - medium
+          - high
+          - all
+      example: high

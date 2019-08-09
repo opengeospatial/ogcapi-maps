@@ -1,0 +1,160 @@
+openapi: 3.0.2
+# Revisions:
+# 2019-08-02 initial version
+
+info:
+  description: This is a sample Domain
+  version: '1.0.0'
+  title: Sample Domain
+
+components:
+  schemas:
+    stacItem:
+      title: STAC Item
+      description: |- 
+        This object represents the metadata for an item in a SpatioTemporal Asset Catalog.
+        "Stac item as described in https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md"
+      type: object
+      additionalProperties: true
+      allOf:
+      - "$ref": "https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-features/1.0.0#/components/schemas/geometryGeoJSON"
+      - type: object
+        required:
+        - id
+        - type
+        - geometry
+        - links
+        - assets
+        - bbox
+        - properties
+        properties:
+          type:
+            type: string
+            enum: 
+            - Feature
+            example: "Feature"
+          id:
+            title: Provider ID
+            description: Provider item ID
+            type: string
+            example: "LC81530252014153LGN00"
+          links:
+            title: Item links
+            description: Links to item relations
+            type: array
+            items:
+              $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
+            example:
+              - rel: self
+                href: "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00.json"
+              - rel: alternate
+                href: "https://landsatonaws.com/L8/153/025/LC81530252014153LGN00"
+                type: text/html
+              - rel: root
+                href: "http://landsat-pds.s3.amazonaws.com/L8/L1T-collection.json"
+          assets:
+            title: Asset links
+            description: Links to assets
+            type: object
+            #patternProperties:
+            #  ".+":
+            #    type: object
+            #    required:
+            #    - href
+            #    properties:
+            #      href:
+            #        title: Asset reference
+            #        type: string
+            #      title:
+            #        title: Asset title
+            #        type: string
+            #      type:
+            #        title: Asset type
+            #        type: string
+            additionalProperties: false
+            example: 
+              thumbnail:
+                href: "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_thumb_large.jpg"
+                type: image/jpeg
+              metadata:
+                href: "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_MTL.txt"
+                type: mtl
+              B1:
+                href: "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF"
+                type: image/vnd.stac.geotiff
+                eo:bands:
+                - 0
+              B2:
+                href: "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF"
+                type: image/vnd.stac.geotiff
+                eo:bands:
+                - 1
+              B3:
+                href: "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B3.TIF"
+                type: image/vnd.stac.geotiff
+                eo:bands:
+                - 2
+              B4:
+                href: "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B4.TIF"
+                type: image/vnd.stac.geotiff
+                eo:bands:
+                - 3
+              B5:
+                href: "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B5.TIF"
+                type: image/vnd.stac.geotiff
+                eo:bands:
+                - 4
+              B6:
+                href: "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B6.TIF"
+                type: image/vnd.stac.geotiff
+                eo:bands:
+                - 5
+              B7:
+                href: "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B7.TIF"
+                type: image/vnd.stac.geotiff
+                eo:bands:
+                - 6
+              B8:
+                href: "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B8.TIF"
+                type: image/vnd.stac.geotiff
+                eo:bands:
+                - 7
+              B9:
+                href: "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B9.TIF"
+                type: image/vnd.stac.geotiff
+                eo:bands:
+                - 8
+              B10:
+                href: "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B10.TIF"
+                type: image/vnd.stac.geotiff
+                eo:bands:
+                - 9
+              B11:
+                href: "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B11.TIF"
+                type: image/vnd.stac.geotiff
+                eo:bands:
+                - 10            
+          properties:
+            type: object
+            required:
+            - datetime
+            properties:
+              datetime:
+                title: Date and Time
+                description: 'The searchable date/time of the assets, in UTC (Formatted
+                  in RFC 3339) '
+                type: string
+                format: date-time
+          collection:
+            title: Collection ID
+            description: The ID of the STAC Collection this Item references to.
+            type: string
+            example: Landsat8
+  parameters:
+    imageId:
+      name: imageId
+      in: path
+      description: local identifier of a image
+      required: true
+      schema:
+        type: string
