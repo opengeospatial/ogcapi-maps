@@ -7,6 +7,8 @@ This work encompasses two standards that will be developed simultaneously. In th
 ## Standards
 After a while getting familiar ad playing with the OpenAPI definition files (explained just below in the "Exemples section"), we have finally started to write the standard. We have decided an aggressive path to modularization having 2 cores, one for tiles and another for maps that can be combined as needed. Several extension for tiles and maps will emerge in the process.
 
+The standard is written using asciidoc using many files that might be dificult to trace. Please see the standard document as a long HTML page EASY TO READ FORMAT here: https://htmlpreview.github.io/?https://github.com/opengeospatial/OGC-API-Map-Tiles/blob/master/standard/OAPI_MapsTiles.html
+
 ### Tiles
 #### Core
 For the moment we have focus out efforts on defining the "tile core" that you can find [here: clause_7_tile_core](standard/clause_7_tile_core.adoc).
