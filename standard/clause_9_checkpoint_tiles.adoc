@@ -16,7 +16,7 @@ No changes in the The landing page are required.
 
 The conformance page mainly consists in a list of links. OWS Commmon already requires some links.
 
-include::requirements/tiles/tms/REQ_conformance-success.adoc[]
+include::requirements/checkpoint/tiles/REQ_conformance-success.adoc[]
 
 In the conformance page (commonly in JSON format) the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API tiles conformance information page
 
