@@ -1,7 +1,7 @@
-[[req_tiles_collections_tcs-tileMatrixSetId-definition]]
+[[req_tiles_collections_tcs-tilematrixsetid-definition]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/tiles/collections/tcs-tileMatrixSetId-definition*
+^|*Requirement {counter:req-id}* |*/req/tiles/collections/tcs-tilematrixsetid-definition*
 ^|A |The operation SHALL support a parameter `tileMatrixSetId` with the following characteristics (using an OpenAPI Specification 3.0 fragment):
 
 [source,YAML]

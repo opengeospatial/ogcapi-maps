@@ -1,0 +1,80 @@
+[[req_checkpoint_core_cp-success]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/checkpoint/core/cp-success*
+^|A |A successful execution of the operation that has found changes SHALL be reported as a response with a HTTP status code 200.
+^|B |If the `checkPoint` property is present in the responds it SHALL contain the checkpoint value from which new changes are requested.
+^|C |The response SHALL contain a property `summaryOfChangedItems` containing a count of changes corresponding to each specific priority label.
+^|D |If the `extentOfChangedItems` property is present in the responds it SHALL contain a list with one or more of bounding boxes affected by changes produced and in which crs the coordinates of the bounding boxes are produced.
+^|E |If the `numberOfReturnedItems` property is present in the responds it SHALL contain the number of changed items that are presented in the response.
+^|F |If the `changedItems` property is present in the responds it SHALL contain a list with the new or modified resources (embedded or linked).
+^|G |If the `deletedItems` property is present in the responds it SHALL contain a list of identifiers of deleted resources.
+^|H |The content of that response SHALL contain a changeSet report be based upon the following OpenAPI 3.0 schema:
+[source,YAML]
+----
+  type: object
+  required:
+  - summaryOfChangedItems
+  properties:
+    checkPoint:
+      type: string
+      example: "cp143756"
+    summaryOfChangedItems:
+      type: array
+      items:
+        type: object
+        required:
+        - priority
+        - count
+        properties:
+          priority:
+            description: the priority label
+            type: string
+          count:
+            description: the count of changes tagged with the corresponding priority
+              label
+            type: integer
+    extentOfChangedItems:
+      type: object
+      required: bbox
+      properties:
+        bbox:
+          type: array
+          items:
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/bbox'
+        crs:
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/crs'
+    numberOfReturnedItems:
+      type: integer
+    changedItems:
+      type: array
+      items:
+        type: object
+        required:
+        - items
+        properties:
+          priority:
+            description: a priority label
+            type: string
+          items:
+            type: array
+            items:
+              oneOf:
+              - type: object
+              - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
+    deletedItems:
+      type: array
+      items:
+        type: object
+        required:
+        - items
+        properties:
+          priority:
+            description: a priority label
+            type: string
+          items:
+            type: array
+            items:
+              type: string
+----
+|===

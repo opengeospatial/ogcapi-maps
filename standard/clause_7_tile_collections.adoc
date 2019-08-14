@@ -32,16 +32,16 @@ In the conformance page (commonly in JSON format) the links are following the li
 include::requirements/tiles/collections/REQ_tcs-op.adoc[]
 
 ==== Parameter tileMatrixSetId
-include::requirements/tiles/collections/REQ_tcs-tileMatrixSetId-definition.adoc[]
+include::requirements/tiles/collections/REQ_tcs-tilematrixsetid-definition.adoc[]
 
 ==== Parameter tileMatrix
-include::requirements/tiles/collections/REQ_tcs-tileMatrix-definition.adoc[]
+include::requirements/tiles/collections/REQ_tcs-tilematrix-definition.adoc[]
 
 ==== Parameter tileRow
-include::requirements/tiles/collections/REQ_tcs-tileRow-definition.adoc[]
+include::requirements/tiles/collections/REQ_tcs-tilerow-definition.adoc[]
 
 ==== Parameter tileCol
-include::requirements/tiles/collections/REQ_tcs-tileCol-definition.adoc[]
+include::requirements/tiles/collections/REQ_tcs-tilecol-definition.adoc[]
 
 ==== Parameter Collections
 include::requirements/tiles/collections/REQ_tcs-collections-definition.adoc[]

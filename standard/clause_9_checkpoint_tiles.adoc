@@ -1,0 +1,49 @@
+== Requirement Class "Checkpoint tiles"
+
+This extension describes what is specific for tiles in checkpoints
+
+=== Overview
+
+include::requirements/checkpoint/requirements_class_tiles.adoc[]
+
+=== API landing page
+
+No changes in the The landing page are required.
+
+=== Declaration of conformance classes
+
+==== Response
+
+The conformance page mainly consists in a list of links. OWS Commmon already requires some links.
+
+include::requirements/tiles/tms/REQ_conformance-success.adoc[]
+
+In the conformance page (commonly in JSON format) the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API tiles conformance information page
+
+[[ConformancePage]]
+.Conformance Information Page fragment
+=================
+{
+  "conformsTo": [
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core",
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styles",
+    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core",
+    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/tms",
+    "http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/core",
+    "http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/tiles"
+  ]
+}
+=================
+
+=== Checkpoint extra parameters
+For requesting updates to tiles there are some restrictions in the parameters defined in the core.
+
+==== Parameter changeSetType
+include::recommendations/checkpoint/tiles/REC_cp-changesettype.adoc[]
+
+=== ChangeSet response
+The changeSet report is the one defined in the core but with the addition of a scale range.
+
+include::requirements/checkpoint/tiles/REQ_cp-success.adoc[]

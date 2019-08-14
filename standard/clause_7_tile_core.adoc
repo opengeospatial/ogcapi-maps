@@ -143,16 +143,16 @@ include::requirements/tiles/core/REQ_tc-op.adoc[]
 Typical resources that can be retrieved as tiles are: features (/collections/{collectionId}), coverages (/collections/{collectionId}/coverage/{coverageId} or /coverage/{coverageId}) or maps (/collections/{collectionId}/map/styleId}).
 
 ==== Parameter tileMatrixSetId
-include::requirements/tiles/core/REQ_tc-tileMatrixSetId-definition.adoc[]
+include::requirements/tiles/core/REQ_tc-tilematrixsetid-definition.adoc[]
 
 ==== Parameter tileMatrix
-include::requirements/tiles/core/REQ_tc-tileMatrix-definition.adoc[]
+include::requirements/tiles/core/REQ_tc-tilematrix-definition.adoc[]
 
 ==== Parameter tileRow
-include::requirements/tiles/core/REQ_tc-tileRow-definition.adoc[]
+include::requirements/tiles/core/REQ_tc-tilerow-definition.adoc[]
 
 ==== Parameter tileCol
-include::requirements/tiles/core/REQ_tc-tileCol-definition.adoc[]
+include::requirements/tiles/core/REQ_tc-tilecol-definition.adoc[]
 
 ==== Response
 

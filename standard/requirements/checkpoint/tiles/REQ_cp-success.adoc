@@ -1,0 +1,27 @@
+[[req_checkpoint_tiles_cp-success]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/checkpoint/tiles/cp-success*
+^|A |If the `scalesOfChangedItems` property is present in the responds it SHALL contain an interval of scales affected by changes. If it is not included all scales are affected
+^|H |The content of that response SHALL contain a changeSetTiles report be based upon the following OpenAPI 3.0 schema:
+
+[source,YAML]
+----
+  allOf:
+  - $ref: '#/components/schemas/changeSet'
+  - type: object
+    properties:
+      scalesOfChangedItems:
+        type: object
+        required:
+          - minScaleDenominator:
+          - maxScaleDenominator:
+        properties:
+          minScaleDenominator:
+            type: number
+            format: double
+          maxScaleDenominator:
+            type: number
+            format: double
+----
+|===

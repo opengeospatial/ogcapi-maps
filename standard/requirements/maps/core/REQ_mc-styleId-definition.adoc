@@ -2,9 +2,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/tiles/core/mc-styleId-definition*
-^|A |The operation SHALL support a parameter `styleId` with the characteristics defined below (using an OpenAPI Specification 3.0 fragment)
-^|B |A map SHALL be available with `default` as `styleId` value. It is up to the server to decide which is the default style. Other values might be defined in extensions
-
+^|A |The operation SHALL support a parameter `styleId` with the characteristics defined (using an OpenAPI Specification 3.0 fragment)
 [source,YAML]
 ----
    name: styleId
@@ -15,4 +13,7 @@
      schema:
        type: string
 ----
+
+^|B |A map SHALL be available with `default` as `styleId` value. It is up to the server to decide which is the default style. Other values might be defined in extensions
+
 |===

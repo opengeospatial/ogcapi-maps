@@ -1,7 +1,7 @@
-[[req_tiles_core_tc-tileRow-definition]]
+[[req_tiles_core_tc-tilerow-definition]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/tiles/core/tc-tileRow-definition*
+^|*Requirement {counter:req-id}* |*/req/tiles/core/tc-tilerow-definition*
 ^|A |The operation SHALL support a parameter `tileRow` with the following characteristics (using an OpenAPI Specification 3.0 fragment):
 
 [source,YAML]

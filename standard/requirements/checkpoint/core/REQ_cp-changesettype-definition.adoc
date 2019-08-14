@@ -1,0 +1,25 @@
+[[req_checkpoint_core_cp-changesettype-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/checkpoint/core/cp-changesettype-definition*
+^|A |The operation SHALL support an optional parameter `changeSetType` with the following characteristics (using an OpenAPI Specification 3.0 fragment)
+[source,YAML]
+----
+  name: changeSetType
+  in: query
+  required: false
+  style: form
+  explode: false
+  schema:
+    type: string
+    default: full
+    enum:
+      - summary
+      - full
+      - package
+  example: full
+----
+^|B |If the value of the `changeSetType` parameter is set to `full` or if the parameter is not specified in the request, the server SHALL return the complete change set report with the updated features embedded in it.
+^|C |If the value of the `changeSetType` parameter is set to `summary` the server SHALL return a summary of the changes only.
+^|D |If the value of the `changeSetType` parameter is set to `package` the server SHALL return a package (e.g. a zip file) that will include a summary of the changes and the changes themselves as separated files in the package.
+|===
