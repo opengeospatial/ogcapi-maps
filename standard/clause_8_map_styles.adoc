@@ -1,4 +1,4 @@
-== Requirement Class "Mapped data from more than one collection"
+== Requirement Class "Map Styles"
 
 The maps core introduces the possibility to create a map by assigning an style to a resource (e.g. a collectionId) but does not specify how to declare the styles supported by each collection. The core is only capable to request the default style and the client does not know anything about it. This extension discusses about the possibility to declare style names that can be used to request maps. It is foreseen that a OGC API Styles will allow to retrieve the full information about the style or to send styles to the server.
 
@@ -92,7 +92,7 @@ include::requirements/maps/styles/REQ_smc-styles.adoc[]
 ]
 =================
 
-The mandatory element id can be used a a value for {styleId}. 
+The mandatory element id can be used a a value for {styleId}.
 
 The optional links element are useful to connect to a OGC API styles that allows to retrieve the styles description.
 

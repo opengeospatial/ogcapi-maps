@@ -1,30 +1,30 @@
-=== MultiTiles
+== MultiTiles
 
 NOTE: THIS SECTION REQUIRES A CAREFUL REVIEW. PLEASE IGNORE IT
 
 In general, tiles are requested one by one but in some cases it is useful to be able to retrieve them as package.
 
-==== MultiTiles of a single collectionId
+=== MultiTiles of a single collectionId
 
 
-===== Path Template
+==== Path Template
 
 /collections/{collectionId}/tiles/{styleId}{tileMatrixSetId}
 
-===== Path Parameters
+==== Path Parameters
 
 collectionId <<collectionId>>
 styleId <<styleId>>
 tileMatrixSetId <<tileMatrixSetId>>
 
-===== Query Parameters
+==== Query Parameters
 
 TBD. See https://app.swaggerhub.com/apis/joanma747/opf-map-tiles-api/1.0.0
 
-===== Returns
+==== Returns
 Return a multitile format, consisting of a list of tiles that has links to the individual tiles or a package with all tiles embedded inside. The exact format is still TBD.
 
-===== Requirements
+==== Requirements
 
 .Get MultiTile
 include::requirements/core/REQ_tile-op.adoc[]
@@ -36,24 +36,24 @@ include::requirements/core/REQ_map-success.adoc[]
 include::requirements/core/REQ_map-error.adoc[]
 
 
-==== MultiTiles fro more than one collectionId
+=== MultiTiles fro more than one collectionId
 
-===== Path Template
+==== Path Template
 
 /tiles/{tileMatrixSetId}
 
-===== Path Parameters
+==== Path Parameters
 
 tileMatrixSetId <<tileMatrixSetId>>
 
-===== Query Parameters
+==== Query Parameters
 
 TBD. See https://app.swaggerhub.com/apis/joanma747/opf-map-tiles-api/1.0.0
 
-===== Returns
+==== Returns
 The return is the same of the last operation but instead of containing only cartographic data of a single collectionId, it represents data from more than one collectionId.
 
-===== Requirements
+==== Requirements
 
 .Get MultiTile N
 include::requirements/core/REQ_mtile-n-op.adoc[]

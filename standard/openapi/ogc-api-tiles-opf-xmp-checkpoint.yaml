@@ -4,7 +4,6 @@ openapi: 3.0.0
 
 servers:
 # Added by API Auto Mocking Plugin
-# Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/UAB-CREAF/ogc-api-tiles-opf-xmp-checkpoint/1.0.0
   - description: SwaggerHub API Auto Mocking
@@ -231,6 +230,8 @@ paths:
             text/html:
               schema:
                 type: string
+        '304':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotModified'
         '404':
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':
@@ -251,7 +252,7 @@ paths:
         - $ref: '#/components/parameters/f-tile'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/parameters/embedded'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-checkpoint/1.0.0#/components/parameters/checkPoint-query'
-        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-checkpoint/1.0.0#/components/parameters/resultType'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-checkpoint/1.0.0#/components/parameters/changeSetType'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-checkpoint/1.0.0#/components/parameters/priority'      
         - $ref: '#/components/parameters/f-json-zip'
       responses:
@@ -264,11 +265,13 @@ paths:
                 $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/schemas/tileSet'
             application/changeset+json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-checkpoint/1.0.0#/components/schemas/changeSet'
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-checkpoint/1.0.0#/components/schemas/changeSetTiles'
             application/x-zip-compressed:
               schema:
                 type: string
                 format: binary
+        '304':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotModified'
         '404':
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':

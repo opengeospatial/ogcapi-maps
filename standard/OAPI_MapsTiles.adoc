@@ -102,11 +102,15 @@ include::clause_7_tile_multitiles.adoc[]
 
 include::clause_8_map_core.adoc[]
 
-include::clause_8_map_styes.adoc[]
+include::clause_8_map_styles.adoc[]
 
 include::clause_8_map_maps.adoc[]
 
-include::clause_9_checkpoint.adoc[]
+include::clause_8_map_collections.adoc[]
+
+include::clause_9_checkpoint_core.adoc[]
+
+include::clause_9_checkpoint_tiles.adoc[]
 
 include::clause_11_encodings.adoc[]
 

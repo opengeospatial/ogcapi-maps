@@ -1,4 +1,4 @@
-== Requirement Class "Maps Core"
+== Requirement Class "Map Core"
 
 A map distribution of a dataset as a pictorial representation of a dataset or the collections it has been divided in. To create a pictorial representation a style is added to the collections. Then, a map can be retrieved by specifying a set of parameters that will determine its resolution (width, height, boundingbox and CRS) or can be retrieved as tiles.
 
@@ -89,5 +89,5 @@ include::recommendations/maps/core/REC_smc-cascaded.adoc[]
 === Maps
 include::requirements/maps/core/REQ_mc-map-op.adoc[]
 
-==== Parameter tileMatrixSetId
+==== Parameter styleId
 include::requirements/tiles/core/REQ_mc-styleId-definition.adoc[]

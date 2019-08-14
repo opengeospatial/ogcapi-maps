@@ -1,4 +1,4 @@
-== Requirement Class "Maps Maps"
+== Requirement Class "Map Maps"
 
 NOTE: TBD by the WMS.SWG. Here there are some initial thoughts to be elaborated
 

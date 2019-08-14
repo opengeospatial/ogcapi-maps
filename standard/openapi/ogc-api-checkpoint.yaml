@@ -9,16 +9,75 @@ info:
   version: '1.0.0'
 
 components:
+  parameters:
+    checkPoint:
+      name: checkPoint
+      in: path
+      description: Last checkpoint the client has retrieved data. Without it, the response to accessing the delta update path would be all changes since auditing began.
+      required: false
+      schema:
+        type: string
+    checkPoint-query:
+      name: checkPoint
+      in: query
+      description: Last checkpoint the client has retrieved data. Without it, the response to accessing the delta update path would be all changes since auditing began.
+      required: false
+      schema:
+        type: string
+    changeSetType:
+      name: changeSetType
+      in: query
+      description: |-
+        'This service will respond to a query in one of two ways (excluding an exception response). It may either generate a complete response document containing resources that satisfy the operation or it may simply generate an empty response container that indicates the count of the total number of resources that the operation would return. Which of these two responses is generated is determined by the value of the optional changeSetType parameter.
+
+        The allowed values for this parameter are `full`, `summary` and `package`.
+        If the value of the `changeSetType` parameter is set to `full` causes the server to return the complete change set file. Use this value to retrieve new features in the OGC API features as part of the change set file.
+        If the value of the `changeSetType` parameter is set to `summary` causes the server to return a summary of the changes. 
+        If the value of the `changeSetType` parameter is set to `package` causes the server to return a package (e.g. a zip file) that will include a summary of the changes and the changes themselves as separated files in the package. Use this value for requesting changes in tiled resources
+        The default value is `full`.
+        NOTE in the original Peter Vretanos design this parameter was called `resultType` but it has been changed here to avoid conflicts with https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parametres/resultType'
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+        default: full
+        enum:
+          - summary
+          - full
+          - package
+      example: full
+    priority:
+      name: priority
+      in: query
+      description: |-
+        One or more priority labels used to filter a delta update response.
+
+        The allowed values for this parameter are `low`, `medium`, `high` and `all`
+
+        The default value is `all` for retrieve all changes.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+        default: all
+        enum:
+          - low
+          - medium
+          - high
+          - all
+      example: high
   schemas:
     changeSet:
       title: changeSet
-      description: A document containing the delta updates since a specified checkpoint
+      description: A document containing the updates since a specified checkpoint
       type: object
       required:
       - summaryOfChangedItems
       properties:
         checkPoint:
-          description: the checkpoint value
+          description: the checkpoint value from which new changes are requested. This checkpoint is part of the request to get this file.
           type: string
           example: "cp143756"
         summaryOfChangedItems:
@@ -45,13 +104,23 @@ components:
               count: 4
             - priority: low
               count: 67        
+        extentOfChangedItems:
+          description: extent of the new, changed or deleted items
+          type: object
+          required: bbox
+          properties:
+            bbox:
+              type: array
+              items:
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/bbox'
+            crs:
+              $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/crs'
         numberOfReturnedItems:
-          description: the number of changed items that are presented in this response document;
-            this may be less than the total number of changes
+          description: the number of changed items that are presented in the response; this may be less than the total number of changes
           type: integer
           example: 6
         changedItems:
-          description: a list of new or modified resources
+          description: a list of new or modified resources. Useful for features. Not recommended for tiles
           type: array
           items:
             description: a representations of or reference to the changed resource; e.g.
@@ -68,14 +137,14 @@ components:
                 items:
                   oneOf:
                   - type: object
-                  - "$ref": 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
+                  - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
           example: 
             - priority: high
               items: []
             - priority: medium
               items: []
         deletedItems:
-          description: a list of identifiers of deleted resources
+          description: a list of identifiers of deleted resources. Useful for features. Not recommended for tiles.
           type: array
           items:
             description: the identifier of a deleted feature
@@ -95,60 +164,25 @@ components:
               items:
               - "/collections/BUILDINGS/items/F4674"
               - "/collections/BUILDINGS/items/F37465819"
-  parameters:
-    checkPoint:
-      name: checkPoint
-      in: path
-      description: Last checkpoint the client has retrieved data. Without it, the response to accessing the delta update path would be all changes since auditing began.
-      required: false
-      schema:
-        type: string
-    checkPoint-query:
-      name: checkPoint
-      in: query
-      description: Last checkpoint the client has retrieved data. Without it, the response to accessing the delta update path would be all changes since auditing began.
-      required: false
-      schema:
-        type: string
-    resultType:
-      name: resultType
-      in: query
-      description: |-
-        'This service will respond to a query in one of two ways (excluding an exception response). It may either generate a complete response document containing resources that satisfy the operation or it may simply generate an empty response container that indicates the count of the total number of resources that the operation would return. Which of these two responses is generated is determined by the value of the optional resultType parameter.
-
-        The allowed values for this parameter are "full" and "summary".
-        If the value of the resultType parameter is set to "full" causes the server to return the complete change set.
-        If  value of the resultType parameter is set to "summary" causes the server to return a summary of the changes.
-        The default value is "full".
-        TBD: consider to unify this with https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parametres/resultType'
-      required: false
-      style: form
-      explode: false
-      schema:
-        type: string
-        default: full
-        enum:
-          - summary
-          - full
-      example: full
-    priority:
-      name: priority
-      in: query
-      description: |-
-        One or more priority labels used to filter a delta update response.
-
-        The allowed values for this parameter are low, medium and high.
-
-        The default value all changes.
-      required: false
-      style: form
-      explode: false
-      schema:
-        type: string
-        default: all
-        enum:
-          - low
-          - medium
-          - high
-          - all
-      example: high
+    changeSetTiles:
+      title: changeSetTiles
+      description: A document containing the tiles updated since a specified checkpoint
+      allOf:
+      - $ref: '#/components/schemas/changeSet'
+      - type: object
+        properties:
+          scalesOfChangedItems:
+            type: object
+            description: Range of scales affected by the changes. If not present, all scales are affected
+            required:
+              - minScaleDenominator:
+              - maxScaleDenominator:
+            properties: 
+              minScaleDenominator:
+                type: number
+                format: double
+                example: 10000
+              maxScaleDenominator:
+                type: number
+                format: double
+                example: 10000000
