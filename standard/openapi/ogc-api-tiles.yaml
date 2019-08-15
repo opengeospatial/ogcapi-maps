@@ -7,9 +7,9 @@ openapi: 3.0.2
 # 2019-05-21 "The default Tiling Scheme is the Google Maps Tiling Scheme" is changed to "The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme)"
 
 info:
-  title: OGC API Tiles Building Blocks
+  title: OGC API Building Blocks for maps and tiles
   description: |-
-    Common components used in the OGC API tiles standards.
+    Common components used in the OGC API maps and tiles standards.
 
     This document is also available in [GitHub](https://github.com/opengeospatial/OGC-API-Map-Tiles/tree/master/standard/openapi).
 
@@ -35,8 +35,8 @@ components:
       name: tileMatrixSetId
       in: path
       description: |-
-        Local identifier of a specific tiling scheme. A list of all available tileMatrixSetIds can be found under the /tiles path or below. The default Tiling Scheme is the WebMercatorQuad (sometimes refered as Google Maps Tiling Scheme).
-      required: true
+        Identifier of a specific tiling scheme. It can be one of the specified in Annex D.1 of the OGC 17-083r2 standard or one defined in this service.
+      required: false
       schema:
         type: string
       example: WebMercatorQuad
@@ -44,11 +44,7 @@ components:
       name: tileMatrix
       in: path
       description: |-
-        identifier representing the scaleDenominator of the tile.
-
-        If the Google Maps Tiling Scheme is used see
-        http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
-        for more information about `tileMatrix`, `tileRow` and `tileCol`. For example,
+        Identifier selecting one of the scales defined in the TileMatrixSet and representing the scaleDenominator the tile. For example,
         Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
       required: true
       schema:
@@ -58,34 +54,27 @@ components:
       name: tileRow
       in: path
       description: |-
-        Row index of the tile on the selected zoom level.
-
-        If the Google Maps Tiling Scheme is used see
-        http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
-        for more information about `tileMatrix`, `tileRow` and `tileCol`. For example,
-        Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+        Row index of the tile on the selected TileMatrix. It cannot exceed the MatrixWidth-1 for the selected TileMatrix. For example, Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
       required: true
       schema:
-        type: number
+        type: integer
+        minimum: 0
       example: '827'
     tileCol:
       name: tileCol
       in: path
       description: |-
-        Column index of the tile on the selected zoom level.
-
-        http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
-        for more information about `tileMatrix`, `tileRow` and `tileCol`. For example,
-        Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+        Column index of the tile on the selected TileMatrix. It cannot exceed the MatrixHeight-1 for the selected TileMatrix. For example, Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
       required: true
       schema:
-        type: number
+        type: integer
+        minimum: 0
       example: 1231
     scaleDenominator:
       name: scaleDenominator
       in: query
       description: |-
-         A range of scale denominators (that can be used to generate a list of tileMatrix names. Note that scale denominators have several significant digits. To prevent mistakes apply tolerances to intervals. Even if you want to specify a single scale denominator use an interval with tolerance
+         A range of scale denominators (that can be used to generate a list of tileMatrix names). Note that scale denominators have several significant digits. To prevent mistakes apply tolerances to intervals. If the client wants to specify a single scale denominator, it will use an small interval with enough tolerance.
       required: false
       style: form
       explode: false
@@ -95,17 +84,27 @@ components:
         maxItems: 2
         items:
           type: number
-          default: 0
-    embedded:
-      name: embedded
+          format: double
+    multiTileType:
+      name: multiTileType
       in: query
       description: |-
-        Are the tiles embedded. If false they are only referenced.
+        When successful, the service will respond to a query in one of two ways. It can provide a file with links to each tile or or it will provide the tiles in a package. The package can still contain the description of each tile
+        
+        The allowed values for this parameter are `url`, `tiles` and `full`.
+        If the value of the `multiTileType` parameter is set to `url` causes the server to return a list of the selected tiles in a format following the `tileSet` schema.  tile description in the list will contain a URL to download the tile later.
+        If the value of the `multiTileType` parameter is set to `tiles` causes the server to return a package (e.g. a ZIP file) that will include tiles as separated parts in the package. 
+        If the value of the `multiTileType` parameter is set to `full` causes the server to return the tiles and a list of the selected tiles in a format following the `tileSet` schema as part of a package. 
+        The default value is `tiles`.
       style: form
       schema:
-        type: boolean
-      required: false
-      dafault: true
+        type: string
+        default: tiles
+        enum:
+          - url
+          - tiles
+          - full
+      example: full
   examples:
     link-collection-tiles:
       href: 'http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0'
@@ -124,7 +123,7 @@ components:
       href: 'http://data.example.org/tileMatrixSet?f=html'
       rel: tileMatrixSets
       type: text/html
-      title: List of tileMatrixSets implemented by this API in HTML
+      title: List of tileMatrixSets implemented by this API in HTML            
   schemas:
     collection-link:
       #This element is not directly linkable by other APIs because they probably will need to add other links to other resource types. Instead, it would be copied and enriched with more examples.
@@ -135,14 +134,14 @@ components:
         links:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
           example:
-            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-this'
-            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-describedBy'
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-this'
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-describedBy'
             - $ref: '#/components/examples/link-collection-tiles'
             - $ref: '#/components/examples/link-collection-info'
     collection:
-      # This object does not include the links element that should be added as and additional element using collection-link
+      # This object does not include the links element that should be added as and additional element using collection-link      
       type: object
       properties:
         tiles:
@@ -153,38 +152,39 @@ components:
           properties:
             # A WMTS layer definition has id, title, description, keyword that are already defined in OWS Common
             # wgs84BoundingBox is the 'extent' that is already defined in OWS Common
-            # boundingBox
+            # boundingBox 
             formats:
-              type: array
-              description: |-
-                Supported valid output formats for a tile resource
-              items:
-                type: string
-                pattern: '^(?=[-a-z]{1,127}/[-\.a-z0-9]{1,127}$)[a-z]+(-[a-z]+)*/[a-z0-9]+([-\.][a-z0-9]+)*$'
-                example:
-                  - 'image/jpeg'
-                  - 'image/png'
+              $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/schemas/formats'
             infoFormats:
               type: array
               description: |-
                 Supported valid output formats for a tile resource
               items:
                 type: string
-                pattern: '^(?=[-a-z]{1,127}/[-\.a-z0-9]{1,127}$)[a-z]+(-[a-z]+)*/[a-z0-9]+([-\.][a-z0-9]+)*$'
+                pattern: '^(?=[-a-z]{1,127}/[-\.a-z0-9]{1,127}$)[a-z]+(-[a-z]+)*/[a-z0-9]+([-\.][a-z0-9]+)*$'                
                 example:
                   - 'application/geo+json'
                   - 'text/html'
-            tileMatrixSetLink:
+            tileMatrixSetLinks:
               $ref: '#/components/schemas/tileMatrixSetLink-set'
+            infoTemplates:
+              type: array
+              description: |-
+                Supported valid templates for the info presentation
+              items:
+                type: string
+                example:
+                  - table
+                  - record
     tileMatrixSets:
       type: array
       items:
-        $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/id-link'
+        $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/id-link'
       example:
-        - id: WebMercatorQuad
-          title: Google Maps Compatible for the World
+        - id: MyWebMercatorQuad
+          title: My Google Maps Compatible for the World
           links:
-            - href: 'https://data.example.org/tileMatrixSet/WebMercatorQuad'
+            - href: 'https://data.example.org/tileMatrixSet/MyWebMercatorQuad'
               rel: tileMatrixSet
               type: 'application/json'
     tileMatrixSet:
@@ -211,7 +211,7 @@ components:
           description: Unordered list of one or more commonly used or formalized word(s) or phrase(s) used to describe this dataset
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/keyword'
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/keyword'
         identifier:
           description: Tile matrix set identifier,
           type: string
@@ -260,9 +260,9 @@ components:
           description: keywords about the elements in the collection
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/keyword'
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/keyword'
         identifier:
-          description: Tile matrix identifier,
+          description: Identifier selecting one of the scales defined in the TileMatrixSet and representing the scaleDenominator the tile.
           type: string
           example: '3'
         scaleDenominator:
@@ -345,7 +345,7 @@ components:
           type: string
           enum:
             - TileMatrixSetLimits
-          example: tileMatrixSetLimits
+          example: tileMatrixSetLimits      
         tileMatrix:
           type: string
           format: uri

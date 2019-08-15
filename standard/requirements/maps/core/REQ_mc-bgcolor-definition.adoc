@@ -1,0 +1,21 @@
+[[req_maps_core_mc-bgcolor-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/tiles/core/mc-bgcolor-definition*
+^|A |The operation SHALL support an optional a parameter `bgcolor` to define a background color with the characteristics defined (using an OpenAPI Specification 3.0 fragment)
+[source,YAML]
+----
+  name: bgcolor
+  in: query
+  description:
+    Hexadecimal red-green-blue[-alpha] color value for the background color. If alpha is not specified a binary opacity will be used depending on the transparent parameter.
+  required: false
+  style: form
+  explode: false
+  schema:
+    type: string
+    default: 0xFFFFFF
+----
+^|B |If `gbcolor` is not specified, the server will use 0xFFFFFF (white)
+
+|===

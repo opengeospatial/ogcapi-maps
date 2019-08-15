@@ -1,0 +1,26 @@
+[[req_tiles_multiltiles_mtc-scaledenominator-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/tiles/multitiles/mtc-scaledenominator-definition*
+^|A |The operation SHALL support an optional a parameter `scaleDenominator` to filter the scales where tiles will be retrieved with the following characteristics (using an OpenAPI Specification 3.0 fragment):
+[source,YAML]
+----
+  name: scaleDenominator
+   in: query
+   description: 
+      A range of scale denominators (that can be used to generate a list of tileMatrix names).
+   required: false
+   style: form
+   explode: false
+   schema:
+     type: array
+     minItems: 2
+     maxItems: 2
+     items:
+       type: number
+       format: double
+----
+^|B |To prevent mistakes identifying the scale denominator due to precision issues caused by lack of significant digits, the client SHALL apply a tolerance to intervals. If the client wants to specify a single scale denominator, it will use an small interval with enough tolerance.
+^|C |If the parameter is not specified, the server SHALL assume all TileMatrices (scales) SHALL be returned.
+
+|===

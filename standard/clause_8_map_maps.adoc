@@ -106,17 +106,11 @@ include::requirements/maps/maps/REQ_mc-width-definition.adoc[]
 ==== Parameter height
 include::requirements/maps/maps/REQ_mc-height-definition.adoc[]
 
-==== Parameter transparent
-include::requirements/maps/maps/REQ_mc-transparent-definition.adoc[]
-
-==== Parameter bgcolor
-include::requirements/maps/maps/REQ_mc-bgcolor-definition.adoc[]
-
 ==== Response
 
 A successful response of a tile request will be consistent with the type of resource requested. For features can be geojson of Mapbox vector tiles; coverages it my be a geotiff and for maps it can be a jpeg or a png.
 
-include::requirements/tiles/core/REQ_tc-success.adoc[]
+include::requirements/tiles/maps/REQ_tc-success.adoc[]
 
 ==== Error situations
 

@@ -9,19 +9,20 @@
 ^|E |If the `numberOfReturnedItems` property is present in the responds it SHALL contain the number of changed items that are presented in the response.
 ^|F |If the `changedItems` property is present in the responds it SHALL contain a list with the new or modified resources (embedded or linked).
 ^|G |If the `deletedItems` property is present in the responds it SHALL contain a list of identifiers of deleted resources.
-^|H |The content of that response SHALL contain a changeSet report be based upon the following OpenAPI 3.0 schema:
+^|H |If a summary of changes has been requested, the content of that response SHALL contain a changeSetSummary report be based upon the following OpenAPI 3.0 schema:
 [source,YAML]
 ----
+  title: changeSetSummary
+  description: A document containing a summary of the updates since a specified checkpoint
   type: object
   required:
   - summaryOfChangedItems
   properties:
-    checkPoint:
-      type: string
-      example: "cp143756"
     summaryOfChangedItems:
+      description: a per-priority list of change counts
       type: array
       items:
+        description: a count of changes corresponding to a specific priority label
         type: object
         required:
         - priority
@@ -34,47 +35,86 @@
             description: the count of changes tagged with the corresponding priority
               label
             type: integer
-    extentOfChangedItems:
-      type: object
-      required: bbox
-      properties:
-        bbox:
-          type: array
-          items:
-            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/bbox'
-        crs:
-          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/crs'
-    numberOfReturnedItems:
-      type: integer
-    changedItems:
-      type: array
-      items:
+      example:
+        - priority: high
+          count: 2
+        - priority: medium
+          count: 4
+        - priority: low
+          count: 67
+----
+^|I |If a changes report has been requested, the content of that response SHALL contain a changeSet report be based upon the following OpenAPI 3.0 schema:
+[source,YAML]
+----
+  title: changeSet
+  description: A document containing the updates since a specified checkpoint
+  allOf:
+  - $ref: '#/components/schemas/changeSetSummary'
+  - type: object
+    properties:
+      checkPoint:
+        description: the checkpoint value from which new changes are requested. This checkpoint is part of the request to get this file.
+        type: string
+        example: "cp143756"
+      extentOfChangedItems:
+        description: extent of the new, changed or deleted items
         type: object
-        required:
-        - items
+        required: bbox
         properties:
-          priority:
-            description: a priority label
-            type: string
-          items:
+          bbox:
             type: array
             items:
-              oneOf:
-              - type: object
-              - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
-    deletedItems:
-      type: array
-      items:
-        type: object
-        required:
-        - items
-        properties:
-          priority:
-            description: a priority label
-            type: string
-          items:
-            type: array
-            items:
+              $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/bbox'
+          crs:
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/crs'
+      numberOfReturnedItems:
+        description: the number of changed items that are presented in the response; this may be less than the total number of changes
+        type: integer
+        example: 6
+      changedItems:
+        description: a list of new or modified resources. Useful for features. Not recommended for tiles
+        type: array
+        items:
+          description: a representations of or reference to the changed resource; e.g.
+            a GeoJSON-encoded feature
+          type: object
+          required:
+          - items
+          properties:
+            priority:
+              description: a priority label
               type: string
+            items:
+              type: array
+              items:
+                oneOf:
+                - type: object
+                - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
+        example:
+          - priority: high
+            items: []
+          - priority: medium
+            items: []
+      deletedItems:
+        description: a list of identifiers of deleted resources. Useful for features. Not recommended for tiles.
+        type: array
+        items:
+          description: the identifier of a deleted feature
+          type: object
+          required:
+          - items
+          properties:
+            priority:
+              description: a priority label
+              type: string
+            items:
+              type: array
+              items:
+                type: string
+        example:
+          - priority: medium
+            items:
+            - "/collections/BUILDINGS/items/F4674"
+            - "/collections/BUILDINGS/items/F37465819"
 ----
 |===

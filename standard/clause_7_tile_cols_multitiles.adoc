@@ -1,0 +1,66 @@
+== Requirement Class "Tiles Collections Multitiles"
+In this extension, we define a mechanism to request more than one tile from more than one collection in a single request. The result can be a document listing the needed tiles to cover bounding box or a package with all tiles inside.
+
+=== Declaration of conformance classes
+
+==== Response
+
+The conformance page mainly consists in a list of links. OWS Commmon already requires some links.
+
+include::requirements/tiles/cols-multitiles/REQ_conformance-success.adoc[]
+
+In the conformance page (commonly in JSON format) the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API tiles conformance information page
+
+[[ConformancePage]]
+.Conformance Information Page fragment
+=================
+[source,JSON]
+{
+  "conformsTo": [
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
+    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core"
+    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/collections"
+    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/cols-multitiles"
+  ]
+}
+=================
+
+=== Multiple tiles from one collection
+
+This extension provides a mechanism to select and retrieve a set of tiles at once from a TileMatrixSet.
+
+==== Operation
+
+include::requirements/tiles/cols-multitiles/REQ_mtcs-op.adoc[]
+
+==== Parameter tileMatrixSetId
+include::requirements/tiles/cols-multitiles/REQ_mtcs-tilematrixsetid-definition.adoc[]
+
+==== Parameter bbox
+include::requirements/tiles/multitiles/REQ_mtcs-bbox-definition.adoc[]
+
+This definition in inherited from OGC API Common.
+
+==== Parameter scaleDenominator
+include::requirements/tiles/multitiles/REQ_mtcs-scaledenominator-definition.adoc[]
+
+==== Parameter multiTileType
+include::requirements/tiles/multitiles/REQ_mtcs-multitiletype-definition.adoc[]
+
+==== Parameter f-tile
+include::requirements/tiles/multitiles/REQ_mtcs-f-tile-definition.adoc[]
+
+==== Parameter Collections
+include::requirements/tiles/collections/REQ_mtcs-collections-definition.adoc[]
+
+==== Response
+A successful response of a set of tiles will be consistent with the media type of resource requested. This standard does not impose any media type but suggest the use of a package format.
+
+include::requirements/tiles/cols-multitiles/REQ_mtcs-success.adoc[]
+
+==== Error situations
+
+A general summary of the HTTP status codes can be found in OWS Common.
+
+If the parameter value `tileMatrixSetId` is not available by the server for this resource or the parameters values `bbox` or `scaleDenominator` are out-of-range, the status code of the response will be 404.

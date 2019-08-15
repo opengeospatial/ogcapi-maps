@@ -1,6 +1,6 @@
 == Requirement Class "Checkpoint tiles"
 
-This extension describes what is specific for tiles in checkpoints
+This extension describes what is specific for tiles in checkpoints. It extents http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/multitiles, http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/cols-multitiles" and "http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/core".
 
 === Overview
 
@@ -31,17 +31,20 @@ In the conformance page (commonly in JSON format) the links are following the li
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styles",
     "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core",
     "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/tms",
+    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/multitiles",
     "http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/core",
     "http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/tiles"
   ]
 }
 =================
 
-=== Checkpoint extra parameters
-For requesting updates to tiles there are some restrictions in the parameters defined in the core.
+=== Checkpoint operation
+This extension is applied on top of the requirements class "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/multitiles" or "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/cols-multitiles". The parameters defined in "http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/core" are added to the parameters defined for multitiles or cols-multitiles (multitiles of tiles of multiple collections). For requesting updates to tiles there are some restrictions in the parameters defined in the core that are described in this extenaions.
 
 ==== Parameter changeSetType
 include::recommendations/checkpoint/tiles/REC_cp-changesettype.adoc[]
+
+Note that the checkpoint operation has a different output than the pure multitile operation. In practice this means that the parameter changeSetType overwrites the parameter multiTileType and in case both parameters are present, changeSetType takes precedence and multiTileType should be ignored.
 
 === ChangeSet response
 The changeSet report is the one defined in the core but with the addition of a scale range.

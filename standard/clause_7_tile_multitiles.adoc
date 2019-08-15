@@ -1,112 +1,63 @@
-== MultiTiles
+== Requirement Class "Tiles Multitiles"
+In this extension, we define a mechanism to request more than one tile from a single collection in a single request. The result can be a document listing the needed tiles to cover bounding box or a package with all tiles inside.
 
-NOTE: THIS SECTION REQUIRES A CAREFUL REVIEW. PLEASE IGNORE IT
+=== Declaration of conformance classes
 
-In general, tiles are requested one by one but in some cases it is useful to be able to retrieve them as package.
+==== Response
 
-=== MultiTiles of a single collectionId
+The conformance page mainly consists in a list of links. OWS Commmon already requires some links.
 
+include::requirements/tiles/multitiles/REQ_conformance-success.adoc[]
 
-==== Path Template
+In the conformance page (commonly in JSON format) the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API tiles conformance information page
 
-/collections/{collectionId}/tiles/{styleId}{tileMatrixSetId}
+[[ConformancePage]]
+.Conformance Information Page fragment
+=================
+[source,JSON]
+{
+  "conformsTo": [
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
+    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core"
+    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/multitiles"
+  ]
+}
+=================
 
-==== Path Parameters
+=== Multiple tiles from one collection
+This extension provides a mechanism to select and retrieve a set of tiles at once following a TileMatrixSet.
 
-collectionId <<collectionId>>
-styleId <<styleId>>
-tileMatrixSetId <<tileMatrixSetId>>
+==== Operation
 
-==== Query Parameters
+include::requirements/tiles/multitiles/REQ_mtc-op.adoc[]
 
-TBD. See https://app.swaggerhub.com/apis/joanma747/opf-map-tiles-api/1.0.0
+Typical resources that can be retrieved as tiles are: features (/collections/{collectionId}), coverages (/collections/{collectionId}/coverage/{coverageId} or /coverage/{coverageId}) or maps (/collections/{collectionId}/map/styleId}).
 
-==== Returns
-Return a multitile format, consisting of a list of tiles that has links to the individual tiles or a package with all tiles embedded inside. The exact format is still TBD.
+==== Parameter tileMatrixSetId
+include::requirements/tiles/multitiles/REQ_mtc-tilematrixsetid-definition.adoc[]
 
-==== Requirements
+==== Parameter bbox
+include::requirements/tiles/multitiles/REQ_mtc-bbox-definition.adoc[]
 
-.Get MultiTile
-include::requirements/core/REQ_tile-op.adoc[]
+This definition in inherited from OGC API Common.
 
-.Get MultiTile Response
-include::requirements/core/REQ_map-success.adoc[]
+==== Parameter scaleDenominator
+include::requirements/tiles/multitiles/REQ_mtc-scaledenominator-definition.adoc[]
 
-.Get MultiTile Error
-include::requirements/core/REQ_map-error.adoc[]
+==== Parameter multiTileType
+include::requirements/tiles/multitiles/REQ_mtc-multitiletype-definition.adoc[]
 
+==== Parameter f-tile
+include::requirements/tiles/multitiles/REQ_mtc-f-tile-definition.adoc[]
 
-=== MultiTiles fro more than one collectionId
+==== Response
+A successful response of a set of tiles will be consistent with the media type of resource requested. This standard does not impose any media type for the tiles but recommends a ZIP format for the package format.
 
-==== Path Template
+include::requirements/tiles/multitiles/REQ_mtc-success.adoc[]
 
-/tiles/{tileMatrixSetId}
+==== Error situations
 
-==== Path Parameters
+A general summary of the HTTP status codes can be found in OWS Common.
 
-tileMatrixSetId <<tileMatrixSetId>>
-
-==== Query Parameters
-
-TBD. See https://app.swaggerhub.com/apis/joanma747/opf-map-tiles-api/1.0.0
-
-==== Returns
-The return is the same of the last operation but instead of containing only cartographic data of a single collectionId, it represents data from more than one collectionId.
-
-==== Requirements
-
-.Get MultiTile N
-include::requirements/core/REQ_mtile-n-op.adoc[]
-
-.Get MultiTile N Response
-include::requirements/core/REQ_mtile-n-success.adoc[]
-
-.Get MultiTile N Error
-include::requirements/core/REQ_mtile-n-error.adoc[]
-
-
-
-=== FeatureInfo
-
-Map Tile APIs may support requests for information about the features present at a particular pixel location on a map tile. Requests for feature information will specify the tile along with a pixel location on that tile. The server will provide information on the features present at or near the location specified by the client request. The server may choose what information to provide about the nearby features.
-
-==== FeatureInfo document
-
-A FeatureInfo document is the resource representation of a FeatureInfo resource in resource oriented architectural style. The FeatureInfo document SHALL be in the format specified in the request when that format has been advertised in the *ServiceMetadata document* as available for that FeatureInfo resource.
-
-For a better interoperability between servers and clients we strongly recommend GML Simple Features Profile [06-049r1] as a supported document format for FeatureInfo resources. That standard defines three levels of content in three profiles with different degrees of constraints to the GML flexibility. We strongly recommend support of the most constrained one (level 0) that results in a simpler GML document. In the context of that profile only simple XML types can be used as thematic properties and cardinality greater than one is not allowed. Servers and clients SHALL specify the MIME type "application/gml+xml; version=3.1" as an InfoFormat value and the GML application schema of the response SHOULD conform to GML Simple Features profile level 0 when that GML profile is used. In most cases, only thematic attributes of the features are intended to be included in a FeatureInfo document but the Simple Feature profiles were evidently intended to include the geometric information of the features in the GML objects. However, it is possible to generate an application schema that does not include feature geometry and only describes non-geometric feature attribute types. This can be very useful to avoid unnecessarily requesting long sequences of position values in line or polygon layers.
-
-Also, to allow easy presentation of the data, support for the HTML format (represented by an InfoFormat MIME type of "text/html") is also recommended.
-
-==== GetResourceRepresentation
-
-The ServiceMetadata document in the resource oriented architectural style may contain a list of Layer elements and each layer that is available to be retrieved in this architectural style and is queryable SHALL have one or more <ResourceURL> elements with the "resourceType" attribute set to "FeatureInfo" and a template attribute. In this RESTful approach the template attribute contains a URL template that can be converted to a URL by using a template processor and then get the expected FeatureInfo in the format specified by the attribute "format" by requesting the resource with a standard HTTP GET.
-
-include::requirements/core/REQ_grr.adoc[]
-
-===== Operation
-
-The GetResourceRepresentation request operation is defined by the following requirement:
-
-include::requirements/core/REQ_grr-op.adoc[]
-
-An example GetResourceRepresentation request
-is
-
-    http://www.maps.bob/etopo2/default/WholeWorld_CRS_84/10m/1/3/86/132.xml
-
-It corresponds to the following ResourceURL element: <ResourceURL format="application/gml+xml; version=3.1" resourceType="FeatureInfo" template="http://www.maps.bob/etopo2/default/ {TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}/{J}/{I}.xml"
-
-===== Response
-
-A successful GetResourceRepresentation response is defined by the following requirement:
-
-include::requirements/core/REQ_grr-success.adoc[]
-
-An XML document conforming GML Simple Features Profile [06-049r1] is the most typical representation but other representations and formats are also allowed.
-
-===== Error situations
-
-An unsuccessful GetResourceRepresentation reponse follows the general guidance for HTTP status codes provided in <<http_status_codes>> and the following requirement:
-
-include::requirements/core/REQ_grr-error.adoc[]
+If the parameter value `tileMatrixSetId` is not available by the server for this resource or the parameters values `bbox` or `scaleDenominator` are out-of-range, the status code of the response will be 404.

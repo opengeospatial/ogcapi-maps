@@ -28,183 +28,86 @@ components:
         links:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
           example:
-            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-this'
-            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-describedBy'
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-this'
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-describedBy'
             - $ref: '#/components/examples/link-collection-map'
             - $ref: '#/components/examples/link-collection-info'
     collection:
-      # This object does not include the links element that should be added as and additional element using collection-link
+      # This object does not include the links element that should be added as and additional element using collection-link      
       type: object
       properties:
+        styles:
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-styles/1.0.0#/components/schemas/style-set'
+        defaultStyle:
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-styles/1.0.0#/components/schemas/default-style'
         maps:
           type: object
           properties:
             # A WMS layer definition has id, title, description, keyword that are already defined in OWS Common
-            # wgs84Bounding is the 'extent' that is already defined in OWS Common
-            spatialExtent:
-              type: array
-              description: |-
-                Minimum spatial extent surrounding the layer for each CRS available
-              items:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/spatialExtent'
-              example:
-                - bbox:
-                    - -180
-                    - -90
-                    - 180
-                    - 90
-                  crs: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-                - bbox:
-                    - -20037508.3427892
-                    - -20037508.3427892
-                    - 20037508.3427892
-                    - 20037508.3427892
-                  crs: 'http://www.opengis.net/def/crs/EPSG/0/3395'
-            crsLibray:
-              type: string
-              description: |-
-                Reference to a CRS library giving support to a comprehensive list of CRSs that are not advertised but supported anyway.
-              example: PROJ4G
+            # wgs84BoundingBox is the 'extent' that is already defined in OWS Common
+            # BoundingBox is the crsSpatialExtents that is already defined in OWS Common
+            # For the moment we will assume that maps can only be produced in the crs's advertised by the collection in the common part.
             minScaleDenominador:
               type: number
               description: |-
-                Minimum scale denominator (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404
+                Minimum scale denominator (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404. If it is not present we will assume there is no limit.
               example: 10
             maxScaleDenominador:
               type: number
               description: |-
-                Maximum scale denominator (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404
+                Maximum scale denominator (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404 If it is not present we will assume there is no limit.
               example: 10000000
             #spatialResolution (resx) this should be part of the common metadata but currently is not.
+            formats:
+              $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/schemas/formats'
             recomendedFormat:
               type: string
               description: |-
                   Recommended output formats for a map request. Depending of the nature of the data, a format might be better than another. Categorical data looks better in a PNG but continuos data and pictures are smaller a JPEG. The map operation details all available formats for the OGC API maps. In contrast, this is the better one for this type of information. It would be one of the supported for the map operation
               example: 'image/jpeg'
-            #queryable is not included here because it is indicated by a link with 'rel':'info'
+            #queryable is not included here because it is indicated by a link with 'rel':'info' but I'm not sure it is the right decision.
             cascaded:
               type: number
               description: |-
-                Indicates how main times the layer has been retransmitted by another map service or API (cascading).
+                Indicates how main times the collection map has been retransmitted from another map service or API (cascading). It it is not present the collection is not cascaded.
               example: 0
               default: 0
             opaque:
               type: boolean
               description: |-
-                Indicates whether the map data represents vector features that probably do not completely fill space or the map data are mostly or completely opaque.
+                Indicates whether the map data represents features that probably do not completely fill space shows the background opaque (true) or transparent(false).
               example: false
+              default: false
             noSubsets:
+              # this is a very old paramter in WMS and I recommend to deprecate it
               type: boolean
               description: |-
                 Indicates whether the server can produce a map that is a subset of the full bounding box.
               example: false
             fixedWidth:
+              # this is a very old paramter in WMS and I recommend to deprecate it
               type: number
               description: |-
                 Indicates that the server can only produce map of a fixed width instead of an arbitrary width
             fixedHeight:
+              # this is a very old paramter in WMS and I recommend to deprecate it
               type: number
               description: |-
                 Indicates that the server can only produce map of a fixed height instead of an arbitrary height
-            styles:
-              $ref: '#/components/schemas/style-set'
-            defaultStyle:
-              type: string
-              description: |-
-                the style id of a recommended default style to use for this collection
-              example: 'topographic'
     collection-patch:
       type: object
       properties:
         styles:
-          $ref: '#/components/schemas/style-set'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-styles/1.0.0#/components/schemas/style-set'
         defaultStyle:
           type: string
           nullable: true
           description: |-
             the style id of a recommended default style to use for this collection
           example: 'topographic'
-    style-set:
-      #this is a direct copy of the CPortele Styles API
-      type: array
-      nullable: true
-      items:
-        $ref: '#/components/schemas/style-set-entry'
-      example:
-        - id: 'night'
-          title: 'Topographic night style'
-          links:
-          - href: 'https://example.com/api/1.0/styles/night?f=mapbox'
-            type: 'application/vnd.mapbox.style+json'
-            rel: 'stylesheet'
-          - href: 'https://example.com/api/1.0/styles/night?f=sld10'
-            type: 'application/vnd.ogc.sld+xml;version=1.0'
-            rel: 'stylesheet'
-          - href: 'https://example.com/api/1.0/styles/night/metadata?f=json'
-            type: 'application/json'
-            rel: 'describedBy'
-        - id: 'topographic'
-          title: 'Regular topographic style'
-          links:
-          - href: 'https://example.com/api/1.0/styles/topographic?f=mapbox'
-            type: 'application/vnd.mapbox.style+json'
-            rel: 'stylesheet'
-          - href: 'https://example.com/api/1.0/styles/topographic?f=sld10'
-            type: 'application/vnd.ogc.sld+xml;version=1.0'
-            rel: 'stylesheet'
-          - href: 'https://example.com/api/1.0/styles/topographic/metadata?f=json'
-            type: 'application/json'
-            rel: 'describedBy'
-    style-set-entry:
-      type: object
-      required:
-        - id
-        - links
-      properties:
-        id:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        links:
-          type: array
-          nullable: true
-          minItems: 1
-          items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
-    crs-entry:
-      type: object
-      nullable: true
-      required:
-        - id
-        - links
-      properties:
-        id:
-          type: string
-          nullable: false
-        title:
-          type: string
-          nullable: true
-        links:
-          type: array
-          nullable: false
-          minItems: 1
-          items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
-    simbologyEncoding:
-      description: |-
-        SE encoding to create a map.
-      type: string
-  ####################
-  # Common parameters
-  ####################
   parameters:
-    #############################
-    # From OGC API Maps and Tiles
-    #############################
     mapId:
       name: mapId
       in: path
@@ -223,27 +126,6 @@ components:
       schema:
         type: string
       example: WGS84
-    styleId:
-      #This is the same parameter as in CPortele Styles API but the description is different.
-      name: styleId
-      in: path
-      description: |-
-        The styleId that should be included in the map or tile. Each collectionId has a valid list of stylesId. To know the valid styleId values of each collectionId use /collections/{collectionId}.
-      required: true
-      schema:
-        type: string
-    styles:
-      name: styles
-      in: query
-      description: |-
-        The styleId that should be included in the map or tile. Each collectionId has a valid list of stylesId. To know the valid styleId values of each collectionId use /collections/{collectionId}.
-        The parameter value is a list of comma separated styles identifiers. If the parameter 'collections' exists, the list should be as long as 'collections' and each styleId correspons to one collectionId. If the path includes 'collections/{collectionId}' one style should be mentioned.
-      required: false
-      style: form
-      explode: false
-      schema:
-        type: string
-        default: ''
     width:
       name: width
       in: query
@@ -270,7 +152,7 @@ components:
       name: transparent
       in: query
       description: |-
-        Background transparency of map (default=FALSE).
+        Background transparency of map (default=true).
       required: false
       style: form
       explode: false
@@ -281,7 +163,7 @@ components:
       name: bgcolor
       in: query
       description: |-
-        Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF) if alpha is not specified "opaque" opacity is assumed.
+        Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). If alpha is not specified "opaque" opacity is assumed.
       required: false
       style: form
       explode: false

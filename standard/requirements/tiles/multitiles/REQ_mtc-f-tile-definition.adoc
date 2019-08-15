@@ -1,0 +1,7 @@
+[[req_tiles_multiltiles_mtc-f-tile-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/tiles/multitiles/mtc-f-tile-definition*
+^|A |The operation SHALL support an optional a parameter `f-tile` to specify the tile format that the client prefers a part the multitile response.
+^|B |The content of this parameter SHALL be specified by the server instance as an enumeration of supported media types.
+|===

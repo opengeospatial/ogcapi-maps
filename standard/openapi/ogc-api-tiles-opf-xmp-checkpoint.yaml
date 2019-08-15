@@ -104,6 +104,9 @@ paths:
                   - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styles'
                   - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core'
                   - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/tms'
+                  - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/collections'
+                  - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/multitiles'
+                  - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/cols-multitiles'
                   - 'http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/core'
                   - 'http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/features'
                   - 'http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/tiles'
@@ -246,11 +249,13 @@ paths:
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-styles/1.0.0#/components/parameters/styleId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bgcolor'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/parameters/scaleDenominator'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/bbox'
         - $ref: '#/components/parameters/f-tile'
-        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/parameters/embedded'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/parameters/multiTileType'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-checkpoint/1.0.0#/components/parameters/checkPoint-query'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-checkpoint/1.0.0#/components/parameters/changeSetType'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-checkpoint/1.0.0#/components/parameters/priority'      
@@ -260,12 +265,54 @@ paths:
           description: |-
             A tiling scheme used to partition the collection into tiles.
           content:
-            application/json:
-              schema:
-                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/schemas/tileSet'
             application/changeset+json:
               schema:
                 $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-checkpoint/1.0.0#/components/schemas/changeSetTiles'
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/schemas/tileSet'
+            application/x-zip-compressed:
+              schema:
+                type: string
+                format: binary
+        '304':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotModified'
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
+  '/map/tiles/{tileMatrixSetId}':
+    get:
+      tags:
+        - MultiTiles
+      summary: |-
+        fetch tiles of multiple collections.
+      operationId: getMapTilesCollections
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-styles/1.0.0#/components/parameters/styles'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bgcolor'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/parameters/scaleDenominator'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/bbox'
+        - $ref: '#/components/parameters/f-tile'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/parameters/multiTileType'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-checkpoint/1.0.0#/components/parameters/checkPoint-query'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-checkpoint/1.0.0#/components/parameters/changeSetType'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-checkpoint/1.0.0#/components/parameters/priority'      
+        - $ref: '#/components/parameters/f-json-zip'
+      responses:
+        '200':
+          description: |-
+            A tiling scheme used to partition the collection into tiles.
+          content:
+            application/changeset+json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-checkpoint/1.0.0#/components/schemas/changeSetTiles'
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/schemas/tileSet'
             application/x-zip-compressed:
               schema:
                 type: string
@@ -344,7 +391,7 @@ components:
           - gif
       example: png
     f-tile:
-      name: f
+      name: f-tile
       in: query
       description: |-
         The format of the response. If no value is provided, the standard http rules apply, i.e., the accept header is used to determine the format.
@@ -357,7 +404,7 @@ components:
       schema:
         type: string
         enum:
-          - png
-          - jpeg
-          - gif
-      example: png
+          - image/png
+          - image/jpeg
+          - image/gif
+      example: image/png

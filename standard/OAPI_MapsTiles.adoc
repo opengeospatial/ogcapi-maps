@@ -100,6 +100,8 @@ include::clause_7_tile_info.adoc[]
 
 include::clause_7_tile_multitiles.adoc[]
 
+include::clause_7_tile_cols_multitiles.adoc[]
+
 include::clause_8_map_core.adoc[]
 
 include::clause_8_map_styles.adoc[]
