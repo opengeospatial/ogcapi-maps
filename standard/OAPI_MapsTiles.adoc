@@ -114,7 +114,7 @@ include::clause_9_checkpoint_core.adoc[]
 
 include::clause_9_checkpoint_tiles.adoc[]
 
-include::clause_11_encodings.adoc[]
+include::clause_10_encodings.adoc[]
 
 include::clause_11_oas.adoc[]
 

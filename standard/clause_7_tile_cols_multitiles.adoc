@@ -1,5 +1,5 @@
 == Requirement Class "Tiles Collections Multitiles"
-In this extension, we define a mechanism to request more than one tile from more than one collection in a single request. The result can be a document listing the needed tiles to cover bounding box or a package with all tiles inside.
+In this extension, we define a mechanism to request more than one tile from more than one collection in a single request. The result can be a document listing the needed tiles to cover bounding box or a package with all tiles inside. This section shares most of the content with the previous one and intents to provide similar mechanism. The main difference is the capability to request tiles that include elements of multiple collections provided by the parameter 'collections'.
 
 === Declaration of conformance classes
 
@@ -26,7 +26,7 @@ In the conformance page (commonly in JSON format) the links are following the li
 }
 =================
 
-=== Multiple tiles from one collection
+=== Multiple tiles from more than one collection
 
 This extension provides a mechanism to select and retrieve a set of tiles at once from a TileMatrixSet.
 
@@ -38,21 +38,26 @@ include::requirements/tiles/cols-multitiles/REQ_mtcs-op.adoc[]
 include::requirements/tiles/cols-multitiles/REQ_mtcs-tilematrixsetid-definition.adoc[]
 
 ==== Parameter bbox
-include::requirements/tiles/multitiles/REQ_mtcs-bbox-definition.adoc[]
+include::requirements/tiles/cols-multitiles/REQ_mtcs-bbox-definition.adoc[]
 
 This definition in inherited from OGC API Common.
 
 ==== Parameter scaleDenominator
-include::requirements/tiles/multitiles/REQ_mtcs-scaledenominator-definition.adoc[]
+include::requirements/tiles/cols-multitiles/REQ_mtcs-scaledenominator-definition.adoc[]
+
+include::recommendations/tiles/cols-multitiles/REC_mtcs-scaledenominator-definition.adoc[]
 
 ==== Parameter multiTileType
-include::requirements/tiles/multitiles/REQ_mtcs-multitiletype-definition.adoc[]
+include::requirements/tiles/cols-multitiles/REQ_mtcs-multitiletype-definition.adoc[]
 
-==== Parameter f-tile
-include::requirements/tiles/multitiles/REQ_mtcs-f-tile-definition.adoc[]
+include::recommendations/tiles/cols-multitiles/PER_mtcs-multitiletype-definition.adoc[]
 
 ==== Parameter Collections
-include::requirements/tiles/collections/REQ_mtcs-collections-definition.adoc[]
+include::requirements/tiles/cols-multitiles/REQ_mtcs-collections-definition.adoc[]
+
+==== Formats
+In the cases of the multitile response, there are two formats involved. The multitile itself can be returned as a package (e.g. a zip file) that contains the tiles inside. The individual tiles also has its format. The format of the multitile if governed by the format procedure specified in the OGC API common. When the server supports multiple encoding for the individual tiles and the client has a preference for the tiles format, there is a need for communicating this preference to the server. This document does not mandate any particular approach how this is supported but provides the following recommendation.
+include::recommendations/tiles/cols-multitiles/REC_mtcs-f-tile-definition.adoc[]
 
 ==== Response
 A successful response of a set of tiles will be consistent with the media type of resource requested. This standard does not impose any media type but suggest the use of a package format.

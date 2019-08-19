@@ -103,3 +103,17 @@ include::recommendations/maps/styles/REC_smc-default-style.adoc[]
 [source,JSON]
   "defaultStyle": "topographic"
 =================
+
+=== Maps
+This extension extends the map operation by adding two parameters (`trasnparent` and `bgcolor`) to the `styleId` defined in the core.
+
+==== Parameter styleId
+A part from the `default` style, this extention introduces the values for the styleId that were presented in the `collectionId` definition.
+
+==== Parameter transparent
+include::requirements/maps/styles/REQ_mc-transparent-definition.adoc[]
+
+==== Parameter bgcolor
+include::requirements/maps/styles/REQ_mc-bgcolor-definition.adoc[]
+
+If the client want to force an opaque color, a part from defining the appropriate background color it should ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values in the map.

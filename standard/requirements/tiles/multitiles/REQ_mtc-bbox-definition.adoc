@@ -32,6 +32,6 @@
     style: form
     explode: false
 ----
-^|B |The coordinates of the bbox SHALL be in the CRS of specified in the definition of the tileMatrixSetId
+^|B |A TileMatrixSet definition points to a CRS. The coordinates of the bbox SHALL be in the CRS of specified in the definition of the the TileMatrixSet identified by the tileMatrixSetId
 ^|C |If the parameter is not specified, the server SHALL assume the whole extent of the tiles are requested.
 |===

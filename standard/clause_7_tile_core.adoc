@@ -92,13 +92,26 @@ This standard includes dependencies on OWS Common collection. The response of th
 
 include::requirements/tiles/core/REQ_stc-tile-examples.adoc[]
 
+One common order used in URL templates for tiles is .../tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol} this standard allows for other URL template dispositions.
+
+[#URL_template_tile,reftext='{table-caption} {counter:table-num}']
+.URI template variables for tiles and possible values
+[cols="30,35,70,30",options="header"]
+!===
+|URL template variable |Meaning |Possible values
+|TileMatrixSetId |tile matrix set identifier |the ones included in Annex D of OGC 17-083r2 or defined by extensions of this core.
+|TileMatrix |tile matrix identifier |identifier of the tile matrix (representing a zoom level, a.k.a. a scale) listed in the TileMatrixSet definition
+|TileRow |row index of tile matrix	|a non-negative integer between 0 and the MatrixHeight – 1. If there is a TileMatrixSetLimits the value is limited between MinTileRow and MaxTileRow
+|TileCol |column index of tile matrix	|a non-negative integer between 0 and the MatrixWidth – 1. If there is a TileMatrixSetLimits the value is limited between MinTileCol and MaxTileCol
+!===
+
 .API collection response fragment
 =================
 [source,JSON]
 links:
 [
     {
-      "href": "http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0",
+      "href": "http://data.example.com/collections/buildings/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}",
       "rel": "tiles",
       "type": "image/png",
     }
@@ -109,20 +122,12 @@ links:
 
 A collection that can be retrieved as tiles will add an specific object in the collection information that will contain specific information necessary to get tiles representing the resource collection. In this core, the _tiles_ section only informs about the formats the tiles can be retrieved and in width tile matrix sets they can be retrieved.
 
-include::requirements/tiles/core/REQ_stc-formats.adoc[]
-
 include::requirements/tiles/core/REQ_stc-tmslink.adoc[]
 
 .Example of a tiles property in the collection response.
 =================
 [source,JSON]
   "tiles": {
-    "formats": [
-      [
-        "image/jpeg",
-        "image/png"
-      ]
-    ]
     "tileMatrixSetLinks": [
       {
         "type": "tileMatrixSetLink",
@@ -159,6 +164,8 @@ include::requirements/tiles/core/REQ_tc-tilecol-definition.adoc[]
 A successful response of a tile request will be consistent with the media type of resource requested. This standard does not impose any media type. For example; for features can be geojson of Mapbox vector tiles; coverages it my be a geotiff and for maps it can be a jpeg or a png.
 
 include::requirements/tiles/core/REQ_tc-success.adoc[]
+
+include::recommendations/tiles/core/REC_tc-success-scale.adoc[]
 
 ==== Error situations
 

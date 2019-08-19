@@ -45,16 +45,92 @@ This definition in inherited from OGC API Common.
 ==== Parameter scaleDenominator
 include::requirements/tiles/multitiles/REQ_mtc-scaledenominator-definition.adoc[]
 
+include::recommendations/tiles/multitiles/REC_mtc-scaledenominator-definition.adoc[]
+
 ==== Parameter multiTileType
 include::requirements/tiles/multitiles/REQ_mtc-multitiletype-definition.adoc[]
 
-==== Parameter f-tile
-include::requirements/tiles/multitiles/REQ_mtc-f-tile-definition.adoc[]
+include::recommendations/tiles/multitiles/PER_mtc-multitiletype-definition.adoc[]
+
+==== Formats
+In the cases of the multitile response, there are two formats involved. The multitile itself can be returned as a package (e.g. a zip file) that contains the tiles inside. The individual tiles also has its format. The format of the multitile if governed by the format procedure specified in the OGC API common. When the server supports multiple encoding for the individual tiles and the client has a preference for the tiles format, there is a need for communicating this preference to the server. This document does not mandate any particular approach how this is supported but provides the following recommendation.
+include::recommendations/tiles/multitiles/REC_mtc-f-tile-definition.adoc[]
 
 ==== Response
-A successful response of a set of tiles will be consistent with the media type of resource requested. This standard does not impose any media type for the tiles but recommends a ZIP format for the package format.
-
+A successful response of a set of tiles will be consistent with the media type of resource requested.
 include::requirements/tiles/multitiles/REQ_mtc-success.adoc[]
+
+Mainly this extension suggests 3 possible alternatives for a multitile response being the last one (`full`) the combination of the first two (`url` and `package`).
+
+===== List Response
+This format assumes that the client has viewport to represent an geographic area defined by the bounding box and the scale (that defines the pixel size of the viewport). This area should be populated with tiles. The server is expected to enumerate the tiles needed to populate the viewport and optionally to provide information on how to position the tiles in the viewport.
+
+In the following example, we assume that the bounding box and scale provided implies a viewport of 336x446 pixels. The viewport it covered by 4 tiles. The client has requested a `url` type of multitile and negociated a JSON format. The URL of each tile is provided, accompanied with information on the position of the top left corner of each one in the viewport.
+
+[[ListResponseMultitile]]
+.Example of a tileSet document
+=================
+[source,JSON]
+[
+  {
+    "tileURL": "http://data.example.com/collections/buildings/tiles/WebMercatorQuad/2/0/0.png",
+    "tileMatrix": 0,
+    "tileRow": 0,
+    "tileCol": 0,
+    "width": 256,
+    "height": 256,
+    "top": -10,
+    "left": -20
+  },
+  {
+    "tileURL": "http://data.example.com/collections/buildings/tiles/WebMercatorQuad/2/0/1.png",
+    "tileMatrix": 0,
+    "tileRow": 0,
+    "tileCol": 1,
+    "width": 100,
+    "height": 256,
+    "top": -10,
+    "left": 236
+  },
+  {
+    "tileURL": "http://data.example.com/collections/buildings/tiles/WebMercatorQuad/2/1/0.png",
+    "tileMatrix": 0,
+    "tileRow": 1,
+    "tileCol": 0,
+    "width": 256,
+    "height": 200,
+    "top": 246,
+    "left": -20
+  },
+  {
+    "tileURL": "http://data.example.com/collections/buildings/tiles/WebMercatorQuad/2/1/1.png",
+    "tileMatrix": 0,
+    "tileRow": 1,
+    "tileCol": 1,
+    "width": 100,
+    "height": 200,
+    "top": 246,
+    "left": 236
+  }
+]
+=================
+
+===== Package Response
+
+This format assumes that the client is interested in the tiles that cover a geographic area defined by the bounding box and the scale (or scales). The client knows what to do with the tiles and it is able to identify the tiles by their path using the URI template of the server as a pattern to extract the TileMatrix, TileRow and TileCol of each one.
+
+Assuming that the client has requested a scale that fits with TileMatrix "2" and a bounding box that requires 2x2 tiles and that he client has requested a `package` type of multitile and negociated a ZIP format, a ZIP file is produced and sent by the server with the following files and paths:
+
+[#PackageResponseMultitile,reftext='{table-caption} {counter:table-num}']
+.Content of a package containing 4 tiles
+[cols="25,45,10,10,10",options="header"]
+!===
+|File |Path |TileMatrix |TileRow |TileCol
+|0.png |WebMercatorQuad/2/0 |2 |0 |0
+|1.png |WebMercatorQuad/2/0 |2 |0 |1
+|0.png |WebMercatorQuad/2/1 |2 |1 |0
+|1.png |WebMercatorQuad/2/1 |2 |1 |1
+!===
 
 ==== Error situations
 

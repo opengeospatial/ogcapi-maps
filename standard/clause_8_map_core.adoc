@@ -90,12 +90,4 @@ include::recommendations/maps/core/REC_smc-cascaded.adoc[]
 include::requirements/maps/core/REQ_mc-map-op.adoc[]
 
 ==== Parameter styleId
-include::requirements/tiles/core/REQ_mc-styleId-definition.adoc[]
-
-==== Parameter transparent
-include::requirements/maps/core/REQ_mc-transparent-definition.adoc[]
-
-==== Parameter bgcolor
-include::requirements/maps/core/REQ_mc-bgcolor-definition.adoc[]
-
-If the client want to force an opaque color, a part from defining the appropriate background color it should ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values in the map.
+include::requirements/maps/core/REQ_mc-styleId-definition.adoc[]

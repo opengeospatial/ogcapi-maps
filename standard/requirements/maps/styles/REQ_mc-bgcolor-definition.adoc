@@ -1,7 +1,7 @@
-[[req_maps_core_mc-bgcolor-definition]]
+[[req_maps_styles_mc-bgcolor-definition]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/tiles/core/mc-bgcolor-definition*
+^|*Requirement {counter:req-id}* |*/req/maps/styles/mc-bgcolor-definition*
 ^|A |The operation SHALL support an optional a parameter `bgcolor` to define a background color with the characteristics defined (using an OpenAPI Specification 3.0 fragment)
 [source,YAML]
 ----

@@ -92,8 +92,20 @@ include::requirements/tiles/tms/REQ_tilematrixsets-success.adoc[]
 .Schema for the TileMatrixSets resource
 =================
 [source,YAML]
-tileMatrixSets
+tileMatrixSets:
+  type: array
+  items:
+    $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/id-link'
+=================
+
+[[TileMatrixSetsResponseCommonSchema]]
+.Schema for id-link from OGC API Common used in TileMatrixSets resource and reproduced here for completeness.
+=================
+id-link:
   type: object
+  description: |-
+    Reusable object that contains an id to a resource and links where the object is described or a representation retrieved. Typically it is useful for paths like `\resources` and `\resources\{resourceId}`.   `\resources` will respond an array of id-link listing the `resourceId` and the links to get it. \collections and \collections\{collectionId} is an exception to this pattern.
+    The fact that `links` is an array can be used to advertise the same object representation in different formats.
   required:
     - id
     - links
@@ -107,29 +119,6 @@ tileMatrixSets
       minItems: 1
       items:
         $ref: '#/components/schemas/link'
-link:
-  type: object
-  required:
-    - href
-  properties:
-    href:
-      type: string
-      example: 'http://data.example.com/buildings/123'
-    rel:
-      type: string
-      example: alternate
-    type:
-      type: string
-      pattern: '^(?=[-a-z]{1,127}/[-\.a-z0-9]{1,127}$)[a-z]+(-[a-z]+)*/[a-z0-9]+([-\.][a-z0-9]+)*$'
-      example: application/geo+json
-    hreflang:
-      type: string
-      example: en
-    title:
-      type: string
-      example: 'Trierer Strasse 70, 53115 Bonn'
-    length:
-      type: integer
 =================
 
 [[TileMatrixSetsResponseExample]]
@@ -159,7 +148,7 @@ include::requirements/tiles/tms/REQ_tilematrixset-op.adoc[]
 ==== Response
 include::requirements/tiles/tms/REQ_tilematrixset-success.adoc[]
 
-include::requirements/tiles/tms/REQ_REC_tilematrixset-response.adoc[]
+include::recommendations/tiles/tms/REC_tilematrixset-response.adoc[]
 
 === Collection
 This extension modifies the content of the collection description returned by a successful \collection\{collectionId} request.
@@ -172,12 +161,6 @@ include::requirements/tiles/tms/REQ_stc-limits.adoc[]
 [source,JSON]
 ----
   "tiles": {
-    "formats": [
-      [
-        "image/jpeg",
-        "image/png"
-      ]
-    ],
     "tileMatrixSetLinks": [
       {
         "type": "tileMatrixSetLink",

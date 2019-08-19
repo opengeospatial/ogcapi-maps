@@ -1,9 +1,5 @@
 == Scope
-
-This International Standard specifies the behaviour of an API that provides access to Maps and Tiles in a manner independent of the underlying data store. This standard specifies discovery and query operations.
-
-== Scope
-This [OGC API Coverages](https://github.com/opengeospatial/ogc_api_coverages[https://github.com/opengeospatial/ogc_api_coverages]) specification establishes how to access maps and tiles in a manner independent of the underlying data store through [OpenAPI](https://www.openapis.org/[https://www.openapis.org/]). This standard specifies discovery and query operations.
+This International Standard specifies how to access maps and tiles in a manner independent of the underlying data store through [OpenAPI](https://www.openapis.org/[https://www.openapis.org/]). This standard specifies discovery and query operations.
 
 === Current scope:
 

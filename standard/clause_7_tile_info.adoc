@@ -1,5 +1,9 @@
 == Requirement Class "Tiles Info"
 
+This extension makes tiles a little more informative than just "nice pictures" by allowing clients to implement a click user event. By clicking on a tile, the user will receive some textual information describing what is shown in that pixel. For example, by clicking on a tile representing elevation the user will get the elevation value.
+
+When full completed, the new OGC API architecture should be able to integrate several representations of the same resource. This way a digital elevation model could be accessible as a tile and also as a coverage. The coverage part should be able to provide elevation values to the client. When that day arrives, this info extension will no longer be needed as the coverage functionality will provide client with enough data to emulate this extension and some other extra interactions such us the capability to create vertical profiles.
+
 NOTE: TBD by the WMS.SWG. Here there are some initial thoughts to be elaborated
 
 === Overview
@@ -40,6 +44,7 @@ This standard includes dependencies on OWS Common collection. The response of th
 
 ==== Collection Links
 
+
 include::recommendations/tiles/core/REC_sfc-tile-examples.adoc[]
 
 .API collection response fragment
@@ -61,6 +66,8 @@ links:
 =================
 
 ==== Collection extra properties
+
+TBD. REMOVE FORMATS AS THEY ARE PROVIDED AS LINKS.
 
 .Example of a tiles property in the collection response.
 =================

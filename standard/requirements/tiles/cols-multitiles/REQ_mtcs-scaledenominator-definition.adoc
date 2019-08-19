@@ -20,7 +20,6 @@
        type: number
        format: double
 ----
-^|B |To prevent mistakes identifying the scale denominator due to precision issues caused by lack of significant digits, the client SHALL apply a tolerance to intervals. If the client wants to specify a single scale denominator, it will use an small interval with enough tolerance.
-^|C |If the parameter is not specified, the server SHALL assume all TileMatrices (scales) SHALL be returned.
+^|B |If the parameter is not specified, the server SHALL assume all TileMatrices (scales) SHALL be returned.
 
 |===
