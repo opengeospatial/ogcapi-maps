@@ -1,5 +1,11 @@
 == Requirement Class "Map Styles"
 
+=== Overview
+
+[[maps-styles-overview]]
+
+include::requirements/maps/requirements_class_styles.adoc[]
+
 The maps core introduces the possibility to create a map by assigning an style to a resource (e.g. a collectionId) but does not specify how to declare the styles supported by each collection. The core is only capable to request the default style and the client does not know anything about it. This extension discusses about the possibility to declare style names that can be used to request maps. It is foreseen that a OGC API Styles will allow to retrieve the full information about the style or to send styles to the server.
 
 === Declaration of conformance classes

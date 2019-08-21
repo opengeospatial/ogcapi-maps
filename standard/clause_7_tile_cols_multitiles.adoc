@@ -1,4 +1,10 @@
 == Requirement Class "Tiles Collections Multitiles"
+
+=== Overview
+
+[[tiles-cols-multitiles-overview]]
+include::requirements/tiles/requirements_class_cols-multitiles.adoc[]
+
 In this extension, we define a mechanism to request more than one tile from more than one collection in a single request. The result can be a document listing the needed tiles to cover bounding box or a package with all tiles inside. This section shares most of the content with the previous one and intents to provide similar mechanism. The main difference is the capability to request tiles that include elements of multiple collections provided by the parameter 'collections'.
 
 === Declaration of conformance classes

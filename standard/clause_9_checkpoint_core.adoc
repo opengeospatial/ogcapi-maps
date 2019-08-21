@@ -1,14 +1,16 @@
 == Requirement Class "Checkpoint core"
 
+=== Overview
+
+[[checkpoint-core-overview]]
+
+include::requirements/checkpoint/requirements_class_core.adoc[]
+
 This extension is a building block a prior applicable to any data resource that add a mechanism to request for server changes in a resource collection since a previous checkpoint. It should be implemented as a GET but it will be a _partial_ GET.
 
 In order to implement it the service needs to keep an audit of every change in the resources and assign a checkpoint to it. At some point in time the client will request a resource collection and receive it with a checkpoint identifier. After a while, the client will send a request for updates and notify the server about the checkpoint the client received. The server will inform the client about the changes in the resources up to a current checkpoint and the client will update its copy of the resources.
 
 While dealing with atomic resources, implementors can consider to use e-tags to detect changes on cached version of them as defined in https://tools.ietf.org/html/rfc7232. The e-tag mechanism permits the client to  provide a fast "not modified" response in case the resource has not changed. In case the resource has been modified it is completely downloaded. In contrast, this requirement class adds the capability for partial update of a collection and the server will only retrieve the resource completely if all its parts has changed.
-
-=== Overview
-
-include::requirements/checkpoint/requirements_class_core.adoc[]
 
 === General
 include::requirements/checkpoint/core/REQ_api-common.adoc[]
@@ -42,7 +44,6 @@ In the conformance page (commonly in JSON format) the links are following the li
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core",
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styles",
     "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core",
-    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/tms",
     "http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/core",
   ]
 }

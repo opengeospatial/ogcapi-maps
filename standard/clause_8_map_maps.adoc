@@ -2,6 +2,12 @@
 
 NOTE: TBD by the WMS.SWG. Here there are some initial thoughts to be elaborated
 
+=== Overview
+
+[[maps-maps-overview]]
+
+include::requirements/maps/requirements_class_maps.adoc[]
+
 This extension describes how a map can be retrieved by specifying a set of parameters that will determine its resolution (width, height, boundingbox and CRS).
 
 The map can use the default style or it can select one of the styles available if the right extension is also added to the core.

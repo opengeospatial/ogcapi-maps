@@ -1,4 +1,4 @@
-[[rc_core]]
+[[rc_checkpoint-core]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class*

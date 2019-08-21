@@ -1,10 +1,15 @@
 == Requirement Class "Tiles Info"
 
+=== Overview
+
+NOTE: TBD by the WMS.SWG. Here there are some initial thoughts to be elaborated. Please ignore this section.
+
+[[tiles-info-overview]]
+include::requirements/tiles/requirements_class_info.adoc[]
+
 This extension makes tiles a little more informative than just "nice pictures" by allowing clients to implement a click user event. By clicking on a tile, the user will receive some textual information describing what is shown in that pixel. For example, by clicking on a tile representing elevation the user will get the elevation value.
 
 When full completed, the new OGC API architecture should be able to integrate several representations of the same resource. This way a digital elevation model could be accessible as a tile and also as a coverage. The coverage part should be able to provide elevation values to the client. When that day arrives, this info extension will no longer be needed as the coverage functionality will provide client with enough data to emulate this extension and some other extra interactions such us the capability to create vertical profiles.
-
-NOTE: TBD by the WMS.SWG. Here there are some initial thoughts to be elaborated
 
 === Overview
 
@@ -94,6 +99,8 @@ Map Tile APIs may support requests for information about the features present at
 ==== FeatureInfo document
 
 A FeatureInfo document is the resource representation of a FeatureInfo resource in resource oriented architectural style. The FeatureInfo document SHALL be in the format specified in the request when that format has been advertised in the *ServiceMetadata document* as available for that FeatureInfo resource.
+
+TBD recommend GeoJSON instead.
 
 For a better interoperability between servers and clients we strongly recommend GML Simple Features Profile [06-049r1] as a supported document format for FeatureInfo resources. That standard defines three levels of content in three profiles with different degrees of constraints to the GML flexibility. We strongly recommend support of the most constrained one (level 0) that results in a simpler GML document. In the context of that profile only simple XML types can be used as thematic properties and cardinality greater than one is not allowed. Servers and clients SHALL specify the MIME type "application/gml+xml; version=3.1" as an InfoFormat value and the GML application schema of the response SHOULD conform to GML Simple Features profile level 0 when that GML profile is used. In most cases, only thematic attributes of the features are intended to be included in a FeatureInfo document but the Simple Feature profiles were evidently intended to include the geometric information of the features in the GML objects. However, it is possible to generate an application schema that does not include feature geometry and only describes non-geometric feature attribute types. This can be very useful to avoid unnecessarily requesting long sequences of position values in line or polygon layers.
 

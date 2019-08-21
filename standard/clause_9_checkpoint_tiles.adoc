@@ -1,10 +1,12 @@
 == Requirement Class "Checkpoint tiles"
 
-This extension describes what is specific for tiles in checkpoints. It extents http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/multitiles, http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/cols-multitiles" and "http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/core".
-
 === Overview
 
+[[checkpoint-tiles-overview]]
+
 include::requirements/checkpoint/requirements_class_tiles.adoc[]
+
+This extension describes what is specific for tiles in checkpoints. It extents http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/multitiles, http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/cols-multitiles" and "http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/core".
 
 === API landing page
 
@@ -30,7 +32,7 @@ In the conformance page (commonly in JSON format) the links are following the li
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core",
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styles",
     "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core",
-    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/tms",
+    "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/tmxs",
     "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/multitiles",
     "http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/core",
     "http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/tiles"

@@ -2,11 +2,11 @@
 
 === Overview
 
-[[core-overview]]
+[[tiles-core-overview]]
 
 include::requirements/tiles/requirements_class_core.adoc[]
 
-An API that implements this conformance class provides access to tiled resources of a link:https://www.w3.org/TR/vocab-dcat/#class-dataset[dataset]. In other words, the API is a link:https://www.w3.org/TR/vocab-dcat/#class-distribution[distribution] of that dataset. A file folder that contains a tiled structure of files, for example, would be another distribution.
+An API that implements this conformance class provides access to tiled resources of a link:https://www.w3.org/TR/vocab-dcat/#class-dataset[dataset]. In other words, the API is a link:https://www.w3.org/TR/vocab-dcat/#class-distribution[distribution] of that dataset. The OGC API features, for example, would be another distribution.
 
 The entry point is a `Landing page` (path `/`).
 
@@ -28,10 +28,9 @@ This document does not specify requirements for collections and they can consist
 Accessing `Collections` using HTTP GET returns a response that contains at least the list of collections. Accessing `Collections/{collectionId}` using HTTP GET returns a description of a collection with an indication if the collection can be retrieved as a map or a tile or both. Accessing the items of a collections is out of the scope of this standard and you need to refer to other document standard describing OGC APIs for features or coverages. For each `Collection`, a link to metadata about the collection is available (path `/collections/{collectionId}`) with key information about the collection. This information includes:
 
 * A local identifier for the collection that is unique for the dataset;
-* A list of coordinate reference systems (CRS) in which geometries may be returned by the API. The first CRS is the default coordinate reference system (in the _Core_, the default is always WGS 84 with axis order longitude/latitude);
 * An optional title and description for the collection;
 * An optional extent that can be used to provide an indication of the spatial and temporal extent of the collection - typically derived from the data;
-* The TileMatrixSetLinks to the available supported tiling schemas.
+* A list of TileMatrixSetLink to the available tiling schemas supported by the collection (From the linked TileMatrixSet member the client can determine the coordinate reference systems (CRS) in which tiles may be returned by the API)
 
 The `Collection` resource is available at path `/collections/{collectionId}`, often with more details than included in the `Collections` response.
 
@@ -120,9 +119,9 @@ links:
 
 ==== Collection extra properties
 
-A collection that can be retrieved as tiles will add an specific object in the collection information that will contain specific information necessary to get tiles representing the resource collection. In this core, the _tiles_ section only informs about the formats the tiles can be retrieved and in width tile matrix sets they can be retrieved.
+A collection that can be retrieved as tiles will add an specific object in the collection information that will contain specific information necessary to get tiles representing the resource collection. In this core, the _tiles_ section only informs about in width tile matrix sets they can be retrieved.
 
-include::requirements/tiles/core/REQ_stc-tmslink.adoc[]
+include::requirements/tiles/core/REQ_stc-tmxslink.adoc[]
 
 .Example of a tiles property in the collection response.
 =================
@@ -164,6 +163,8 @@ include::requirements/tiles/core/REQ_tc-tilecol-definition.adoc[]
 A successful response of a tile request will be consistent with the media type of resource requested. This standard does not impose any media type. For example; for features can be geojson of Mapbox vector tiles; coverages it my be a geotiff and for maps it can be a jpeg or a png.
 
 include::requirements/tiles/core/REQ_tc-success.adoc[]
+
+Normally, the content partially outside the tile bounding box will be clipped and this is particularly true when tiles are in raster format. Nevertheless, tiles containing features in vector format may not clip the features partially outside.
 
 include::recommendations/tiles/core/REC_tc-success-scale.adoc[]
 

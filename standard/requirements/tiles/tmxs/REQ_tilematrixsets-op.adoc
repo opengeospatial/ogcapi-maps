@@ -1,6 +1,6 @@
-[[req_tiles-tms-tilematrixsets-op.adoc]]
+[[req_tiles-tmxs-tilematrixsets-op.adoc]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/tiles/tms/tms-tilematrixsets-op*
+^|*Requirement {counter:req-id}* |*/req/tiles/tmxs/tmxs-tilematrixsets-op*
 ^|A |The server SHALL support the HTTP GET operation at the path /tileMatrixSets.
 |===

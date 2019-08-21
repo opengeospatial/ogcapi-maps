@@ -94,7 +94,7 @@ include::clause_7_tile_core.adoc[]
 
 include::clause_7_tile_collections.adoc[]
 
-include::clause_7_tile_tms.adoc[]
+include::clause_7_tile_tmxs.adoc[]
 
 include::clause_7_tile_info.adoc[]
 

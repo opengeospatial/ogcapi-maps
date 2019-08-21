@@ -1,5 +1,11 @@
 == Requirement Class "Map Core"
 
+=== Overview
+
+[[maps-core-overview]]
+
+include::requirements/maps/requirements_class_core.adoc[]
+
 A map distribution of a dataset as a pictorial representation of a dataset or the collections it has been divided in. To create a pictorial representation a style is added to the collections. Then, a map can be retrieved by specifying a set of parameters that will determine its resolution (width, height, boundingbox and CRS) or can be retrieved as tiles.
 
 This clause defines the core part of the OGC API Maps that allows defining a map representation of a collection. To retrieve a fragment of the map, this clause need to be combined with a tiles extension or a map extension.

@@ -1,5 +1,11 @@
 == Requirement Class "Map from more than one collection"
 
+=== Overview
+
+[[maps-collections-overview]]
+
+include::requirements/maps/requirements_class_collections.adoc[]
+
 In previous clauses we have been discussion about maps that are produced form one and only one resource. This is achieved by concatenating the map path to a resource (e.g. a feature collection). This extension discusses about the possibility to combine more than one resource to create a map. This is achieved by using by adding the map path to the root of the service.
 
 === Declaration of conformance classes

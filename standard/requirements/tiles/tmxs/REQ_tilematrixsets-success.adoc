@@ -1,7 +1,7 @@
-[[req_tiles-tms-tilematrixsets-success.adoc]]
+[[req_tiles-tmxs-tilematrixsets-success.adoc]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/tiles/tms/tms-tilematrixsets-op*
+^|*Requirement {counter:req-id}* |*/req/tiles/tmxs/tmxs-tilematrixsets-success*
 ^|A |A successful execution of the operation SHALL be reported as a response with a HTTP status code 200.
 ^|B |The body of the response SHALL enumerate the list of tilematrixsets supported by this server other than the eight ones defined in the Annex D of OGC 17-083r2 standard.
 ^|C |For each TileMatrixSet the response SHALL contain a TileMatrixSet id and a link to request the TileMatrixSet description. An optional may can be added

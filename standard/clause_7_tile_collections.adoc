@@ -1,5 +1,11 @@
 == Requirement Class "Tiles from more than one collection"
 
+=== Overview
+
+[[tiles-collections-overview]]
+
+include::requirements/tiles/requirements_class_collections.adoc[]
+
 In previous clauses we have been discussion about tiles that are produced form one and only one resource. This is achieved by concatenating the tile path to a resource (e.g. a feature collection). This extension discusses about the possibility to combine more than one resource to create a tile. This is achieved by using by adding the tile path to the root of the service.
 
 === Declaration of conformance classes

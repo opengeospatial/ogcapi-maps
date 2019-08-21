@@ -1,7 +1,7 @@
-[[req_tiles-tms_stc-limits.adoc]]
+[[req_tiles-tmxs_stc-limits.adoc]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/tiles/tms/stc-limits*
+^|*Requirement {counter:req-id}* |*/req/tiles/tmxs/stc-limits*
 ^|A |If the extent of the available tiles in the server is smaller than the extent of the TileMatrixSet, the object _tileMatrixSetLinks_ in the _tiles_ object of a successful execution SHALL contain a property called _tileMatrixSetLimits_ that specifies the limitations in the area available for this collection. _tileMatrixSetLink_ object follows a data model defined in the clause 7.3 of OGC 17-083r2 that can be encoded in the following schema (expressed in OpenAPI Specification 3.0 fragment):
 [source,YAML]
 ----
