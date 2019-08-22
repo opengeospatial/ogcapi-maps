@@ -78,48 +78,50 @@ In the following example, we assume that the bounding box and scale provided imp
 .Example of a tileSet document
 =================
 [source,JSON]
-[
-  {
-    "tileURL": "http://data.example.com/collections/buildings/tiles/WebMercatorQuad/2/0/0.png",
-    "tileMatrix": 0,
-    "tileRow": 0,
-    "tileCol": 0,
-    "width": 256,
-    "height": 256,
-    "top": -10,
-    "left": -20
-  },
-  {
-    "tileURL": "http://data.example.com/collections/buildings/tiles/WebMercatorQuad/2/0/1.png",
-    "tileMatrix": 0,
-    "tileRow": 0,
-    "tileCol": 1,
-    "width": 100,
-    "height": 256,
-    "top": -10,
-    "left": 236
-  },
-  {
-    "tileURL": "http://data.example.com/collections/buildings/tiles/WebMercatorQuad/2/1/0.png",
-    "tileMatrix": 0,
-    "tileRow": 1,
-    "tileCol": 0,
-    "width": 256,
-    "height": 200,
-    "top": 246,
-    "left": -20
-  },
-  {
-    "tileURL": "http://data.example.com/collections/buildings/tiles/WebMercatorQuad/2/1/1.png",
-    "tileMatrix": 0,
-    "tileRow": 1,
-    "tileCol": 1,
-    "width": 100,
-    "height": 200,
-    "top": 246,
-    "left": 236
-  }
-]
+{
+  "tileSet": [
+    {
+      "tileURL": "http://data.example.com/collections/buildings/tiles/WebMercatorQuad/2/0/0.png",
+      "tileMatrix": 0,
+      "tileRow": 0,
+      "tileCol": 0,
+      "width": 256,
+      "height": 256,
+      "top": -10,
+      "left": -20
+    },
+    {
+      "tileURL": "http://data.example.com/collections/buildings/tiles/WebMercatorQuad/2/0/1.png",
+      "tileMatrix": 0,
+      "tileRow": 0,
+      "tileCol": 1,
+      "width": 100,
+      "height": 256,
+      "top": -10,
+      "left": 236
+    },
+    {
+      "tileURL": "http://data.example.com/collections/buildings/tiles/WebMercatorQuad/2/1/0.png",
+      "tileMatrix": 0,
+      "tileRow": 1,
+      "tileCol": 0,
+      "width": 256,
+      "height": 200,
+      "top": 246,
+      "left": -20
+    },
+    {
+      "tileURL": "http://data.example.com/collections/buildings/tiles/WebMercatorQuad/2/1/1.png",
+      "tileMatrix": 0,
+      "tileRow": 1,
+      "tileCol": 1,
+      "width": 100,
+      "height": 200,
+      "top": 246,
+      "left": 236
+    }
+  ]
+}
 =================
 
 ===== Package Response

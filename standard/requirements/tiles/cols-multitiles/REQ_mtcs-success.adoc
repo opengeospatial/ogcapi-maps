@@ -1,20 +1,21 @@
-[[req_tiles_core_mtcs-success]]
+[[req_tiles_cols-multitiles_mtcs-success]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/tiles/core/mtcs-success*
+^|*Requirement {counter:req-id}* |*/req/tiles/cols-multitiles/mtcs-success*
 ^|A |A successful execution of the operation SHALL be reported as a response with a HTTP status code `200`.
 ^|B |The content of that response SHALL be consistent with the format requested and be inside or intersect with the spatial extent of the geographical area represented by the 'bbox' and `scaleDenominator`.
 ^|C |If list of the tiles has been requested, the content of that response SHALL contain a tileSet document be based upon the following OpenAPI 3.0 schema:
 [source,YAML]
 ----
   tileSet:
-    description:
-      This is the response for a multiple tiles request.
-    required:
-      - type
-    type: array
-    items:
-      $ref: '#/components/schemas/tileSetEntry'
+    description: This is the response for a multiple tiles request.
+    type: object
+    required: tileSet
+    properties:
+      tileSet:
+        type: array
+        items:
+          $ref: '#/components/schemas/tileSetEntry'
   tileSetEntry:
     description:
       This is an entry on a multiple tiles request.

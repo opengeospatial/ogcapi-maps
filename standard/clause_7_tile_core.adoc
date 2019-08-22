@@ -129,8 +129,8 @@ include::requirements/tiles/core/REQ_stc-tmxslink.adoc[]
   "tiles": {
     "tileMatrixSetLinks": [
       {
-        "type": "tileMatrixSetLink",
-        "tileMatrixSet": "http://www.opengis.net/def/tilematrixset/OGC/1.0/WebMercatorQuad"
+        "tileMatrixSet": "WebMercatorQuad",
+        "tileMatrixSetURI": "http://www.opengis.net/def/tilematrixset/OGC/1.0/WebMercatorQuad"
       }
     ]
   }
