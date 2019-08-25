@@ -10,7 +10,7 @@ A map distribution of a dataset as a pictorial representation of a dataset or th
 
 This clause defines the core part of the OGC API Maps that allows defining a map representation of a collection. To retrieve a fragment of the map, this clause need to be combined with a tiles extension or a map extension.
 
-To keep the core simple, it will introduce a mechanism to select the default style but it will not introduce any mechanism to define or select other stiles. The core only assumes that the service is capable of dealing with a default style.
+To keep the core simple, it will introduce a mechanism to select the default style but it will not introduce any mechanism to define or select other styles. The core only assumes that the service is capable of dealing with a default style.
 
 === General
 include::requirements/maps/core/REQ_api-common.adoc[]
@@ -35,7 +35,7 @@ The conformance page mainly consists in a list of links. OWS Commmon already req
 
 include::requirements/maps/core/REQ_conformance-success.adoc[]
 
-In the conformance page (commonly in JSON format) the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API tiles conformance information page
+In the conformance page (commonly in JSON format) the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API maps conformance information page
 
 [[ConformancePage]]
 .Conformance Information Page fragment
@@ -57,7 +57,11 @@ TBD: What will happen with collections of coverages?
 This standard includes dependencies on OWS Common collections. Collections are mandatory in the core of this standard because collections are the object that will be included in a map.
 
 Collections will enumerate the collectionId available in this API as well as basic information about each collectionId: id, title, description, extent, crs and links. This common response is considered enough for a general
-description of the collection. to retrieve more information, you should use /collections/{collectionId}
+description of the collection.
+
+include::requirements/maps/core/REQ_mc-md-collection-links.adoc[]
+
+More specific details about the collection can be found following the link to the individual collections that follow the pattern /collections/{collectionId}
 
 NOTE: The collectionId substitutes the concept of "layer" in WMS.
 

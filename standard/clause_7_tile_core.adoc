@@ -80,7 +80,11 @@ TBD: What will happen with collections of coverages?
 This standard includes dependencies on OWS Common collections. Collections are mandatory in the core of this standard because collections are the object that will be included in a tile.
 
 Collections will enumerate the collectionId available in this API as well as basic information about each collectionId: id, title, description, extent, crs and links. This common response is considered enough for a general
-description of the collection. to retrieve more information, you should use /collections/{collectionId}
+description of the collection.
+
+include::requirements/tiles/core/REQ_tc-md-collection-links.adoc[]
+
+More specific details about the collection can be found following the link to the individual collections that follow the pattern /collections/{collectionId}
 
 NOTE: The collectionId substitutes the concept of "layer" in WMTS.
 

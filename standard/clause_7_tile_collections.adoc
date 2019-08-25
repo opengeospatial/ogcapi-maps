@@ -52,6 +52,10 @@ include::requirements/tiles/collections/REQ_tcs-tilecol-definition.adoc[]
 ==== Parameter Collections
 include::requirements/tiles/collections/REQ_tcs-collections-definition.adoc[]
 
+include::recommendations/tiles/collections/REC_tcs-collections-definition.adoc[]
+
+include::recommendations/tiles/collections/PER_tcs-collections-definition.adoc[]
+
 ==== Response
 A successful response of a tile request will be consistent with the media type of resource requested. This standard does not impose any media type. For example; for features can be geojson of Mapbox vector tiles; coverages it my be a geotiff and for maps it can be a jpeg or a png.
 

@@ -18,6 +18,5 @@
 ^|B |`collections` SHALL contain a comma-separated list of collection identifiers.
 ^|C |Only the collections that advertise a link type=tiles in the /collections/{collectionId} SHALL be included.
 ^|D |Only the collections that support the same TileMatrixSetId parameter value SHALL be included
-^|C |If `collections` is missing, all collections supporting the TileMatrixSetId parameter value will be considered.
-
+^|E |If `collections` is missing, the service SHALL create a representation based collections on all or some of the collections supporting the TileMatrixSetId parameter value.
 |===
