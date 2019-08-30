@@ -2,8 +2,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/tiles/core/stc-tmxslink*
-^|A |The content of the response of a successful execution SHALL contain a _tiles_ object in addition to other information present in the collection in the `/collections` response.
-^|B |the _tiles_ object SHALL contain a property called _tileMatrixSetLinks_ with a list of _tileMatrixSetLink_ objects following a data model defined in the clause 7.3 of OGC 17-083r2. In the core _tileMatrixSetLink_ is only used for referencing the supported TileMatrixSets for the tiles limiting it to the following schema (expressed in OpenAPI Specification 3.0 fragment):
+^|A |The content of the response of a successful execution SHALL contain a property called _tileMatrixSetLinks_ with a list of _tileMatrixSetLink_ objects following a data model defined in the clause 7.3 of OGC 17-083r2. In the core _tileMatrixSetLink_ is only used for referencing the supported TileMatrixSets for the tiles limiting it to the following schema (expressed in OpenAPI Specification 3.0 fragment):
 [source,YAML]
 ----
   tileMatrixSetLink-set:

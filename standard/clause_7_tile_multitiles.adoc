@@ -32,6 +32,37 @@ In the conformance page (commonly in JSON format) the links are following the li
 }
 =================
 
+=== Tiles description
+The response of this operation contains the necessary information to later formulate a tile or a multitile request for a collection.
+
+==== Response
+A successful response of a tiles request for a collection that can be retrieved as tiles will respond with a data structure with specific information necessary to get tiles or map-tiles representing the resource collection. In this extension, adds the URL template to a multitile.
+
+include::requirements/tiles/multitiles/REQ_mtc-multitiles-examples.adoc[]
+
+One common order used in URL templates for tiles is .../tiles/{tileMatrixSetId} this standard allows for other URL template dispositions.
+
+[#URL_template_multitile,reftext='{table-caption} {counter:table-num}']
+.URI template variables for tiles and possible values
+[cols="30,35,70,30",options="header"]
+!===
+|URL template variable |Meaning |Possible values
+|TileMatrixSetId |tile matrix set identifier |the ones included in Annex D of OGC 17-083r2 or defined by extensions of this core.
+!===
+
+.API tiles response fragment
+=================
+[source,JSON]
+links:
+[
+    {
+      "href": "http://data.example.com/collections/buildings/tiles/{tileMatrixSetId}",
+      "rel": "multitiles",
+      "type": "image/png",
+    }
+]
+=================
+
 === Multiple tiles from one collection
 This extension provides a mechanism to select and retrieve a set of tiles at once following a TileMatrixSet.
 
@@ -39,7 +70,7 @@ This extension provides a mechanism to select and retrieve a set of tiles at onc
 
 include::requirements/tiles/multitiles/REQ_mtc-op.adoc[]
 
-Typical resources that can be retrieved as tiles are: features (/collections/{collectionId}), coverages (/collections/{collectionId}/coverage/{coverageId} or /coverage/{coverageId}) or maps (/collections/{collectionId}/map/styleId}).
+Typical resources that can be retrieved as tiles are: features (/collections/{collectionId}), coverages (/collections/{collectionId}/coverages/{coverageId} or /coverages/{coverageId}) or maps (/collections/{collectionId}/map/styleId}).
 
 ==== Parameter tileMatrixSetId
 include::requirements/tiles/multitiles/REQ_mtc-tilematrixsetid-definition.adoc[]

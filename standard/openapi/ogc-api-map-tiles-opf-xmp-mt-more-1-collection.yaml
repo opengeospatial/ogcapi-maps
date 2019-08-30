@@ -29,9 +29,9 @@ tags:
   - name: OGC API Common
     description: |-
       Common characteristics of this API
-  - name: TileMatrixSet
+  - name: Map tiles metadata
     description: |-
-      TileMatrixSet used in this API
+      Metadata about tiles and tileMatrixSets
   - name: Tiled maps from one collection
     description: |-
       map (renderizations or vector tiles) partitioned into a hierarchy of tiles  of a collection
@@ -58,6 +58,9 @@ paths:
               schema:
                 $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/landingPage'
               example:
+                title: Map tiles data service example.
+                description: Map tiles data service example. Part of the OGC API Maps and Tiles OpenAPI work
+                links:              
                 - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-this'
                 - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-alternate'
                 - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-service-json'
@@ -66,6 +69,7 @@ paths:
                 - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-collections-json'
                 - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-collections-html'
                 - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/examples/link-landingPage-tms-json'
+                - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/examples/link-landingPage-map-tiles'
             text/html:
               schema:
                 type: string
@@ -150,109 +154,10 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
-    patch:
-      tags:
-        - OGC API Common
-      summary: |-
-        update parts of the style metadata
-      description: |-
-        IMPORTANT: This operation is defined by Clemens P. in the Testbed 15. It is included here for INFORMATION ONLY But is OUT OF SCOPE for Maps and Tiles.
-
-        Update selected elements of the metadata for
-        the collection with the id `collectionId`.
-
-        The only members that may be updated at this
-        time are `styles` and `defaultStyle`.
-
-        The PATCH semantics in this operation are defined by
-        RFC 7396 (JSON Merge Patch). From the specification:
-
-        _"A JSON merge patch document describes changes to be
-        made to a target JSON document using a syntax that
-        closely mimics the document being modified. Recipients
-        of a merge patch document determine the exact set of
-        changes being requested by comparing the content of
-        the provided patch against the current content of the
-        target document. If the provided merge patch contains
-        members that do not appear within the target, those
-        members are added. If the target does contain the
-        member, the value is replaced. Null values in the
-        merge patch are given special meaning to indicate
-        the removal of existing values in the target."_
-
-        Some examples:
-
-        To add or update the default style, just send
-
-        ```
-        {
-          "defaultStyle": "night"
-        }
-        ```
-
-        To remove the default style, send
-
-        ```
-        {
-          "defaultStyle": null
-        }
-        ```
-
-        For arrays the complete array needs to be sent. I.e., to
-        update the list of styles, send the complete new array value.
-
-        To remove all styles, send
-
-        ```
-        {
-          "styles": null
-        }
-        ```
-
-        This operation is only available to registered
-        users.
-      operationId: patchCollectionMetadata
-      security:
-        - BasicAuth: []
-      parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
-      requestBody:
-        description: |-
-          The updated style information for the collection.
-        content:
-          application/merge-patch+json:
-            schema:
-              $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/schemas/collection-patch'
-      responses:
-        '204':
-          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/Updated'
-        '400':
-          description: |-
-            Malformed patch document.
-        '401':
-          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/UnauthorizedAccess'
-        '404':
-          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
-        '415':
-          description: |-
-            Unsupported patch document.
-          headers:
-            Accept-Patch:
-              description: |-
-                supported patch document media types
-              schema:
-                type: string
-        '422':
-          description: |-
-            Unprocessable request. The patch document appears
-            to be valid, but the server is incapable of processing
-            the request.
-        '500':
-          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/tileMatrixSets':
     get:
       tags:
-        - TileMatrixSet
+        - Map tiles metadata
       summary: fetch all available tile matrix sets (tiling schemes)
       operationId: getTileMatrixSets
       parameters:
@@ -270,7 +175,7 @@ paths:
   '/tileMatrixSets/{tileMatrixSetId}':
     get:
       tags:
-        - TileMatrixSet
+        - Map tiles metadata
       summary: fetch a tile matrix sets (tiling scheme) by id
       operationId: getTileMatrixSetDescription
       parameters:
@@ -287,7 +192,56 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
-
+  '/collections/{collectionId}/map/tiles':
+    get:
+      tags:
+        - Map tiles metadata
+      summary: fetch a tiles description
+      description: |-
+        Retrieves the tiles description for this collection including the `links` to get a `tile`, the `TileMatrixSetLink` and the `infoTemplate`
+      operationId: describeMapTiles
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: |-
+            Description of the map tiles.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/map-tiles'
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'          
+  '/map/tiles':
+    get:
+      tags:
+        - Map tiles metadata
+      summary: fetch a map tiles description
+      description: |-
+        Retrieves the map tiles description for this collection including the `links` to get a `maps`
+      operationId: describeMapTilesCollections
+      responses:
+        '200':
+          description: |-
+            Links to the map tiles.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - links
+                properties:
+                  links:
+                    type: array
+                    items:
+                      $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
+                    example:
+                      - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/examples/link-map-tiles-col-this'
+                      - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/examples/link-map-tiles-col-tile'
+                      - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/examples/link-map-tiles-col-info'
+                      - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/examples/link-map-tiles-col-multitile'
   '/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
@@ -567,8 +521,6 @@ components:
       allOf:
       - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/collection'
       - $ref: '#/components/schemas/collection-link'
-      - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/schemas/collection'
-      - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/schemas/collection'
     collection-link:
       #This element is a duplicate of the one in OGC API common but it is enriched with more examples for maps and other resource types.
       type: object
@@ -585,12 +537,25 @@ components:
             - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-license-html'
             - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-license-rdf'            
             - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-features/1.0.0#/components/examples/link-collection-items'
-            - href: 'http://data.example.com/collections/buildings/maps/brown/tiles/WorldMercatorWGS84Quad/0/0/0'
-              rel: tiles
-              type: 'image/png'
-            - href: 'http://data.example.com/collections/buildings/maps/brown/tiles/WorldMercatorWGS84Quad/0/0/0/info'
-              rel: info
-              type: 'text/html'
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/examples/link-collection-map-tiles'        
+    map-tiles:
+      allOf:
+      - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/schemas/tiles'
+      - $ref: '#/components/schemas/map-tiles-link'
+    map-tiles-link:
+      #This element is a duplicate of the one in OGC API common but it is enriched with more examples for maps and other resource types.
+      type: object
+      required:
+        - links
+      properties:
+        links:
+          type: array
+          items:
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
+          example:
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/examples/link-map-tiles-this'
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/examples/link-map-tiles-tile'
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/examples/link-map-tiles-info'
   parameters:
     f-json-zip:
       name: f

@@ -49,10 +49,10 @@ components:
         links:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
           example:
-            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-this'
-            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-describedBy'
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-this'
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-describedBy'
             - $ref: '#/components/examples/link-collection-items'
     queryables:
       type: array
@@ -236,9 +236,9 @@ components:
         links:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
         timeStamp:
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/timeStamp'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/timeStamp'
         numberMatched:
           type: integer
           minimum: 0
@@ -268,7 +268,7 @@ components:
         links:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
     geometryGeoJSON:
       oneOf:
       - $ref: "#/components/schemas/pointGeoJSON"
@@ -278,6 +278,16 @@ components:
       - $ref: "#/components/schemas/polygonGeoJSON"
       - $ref: "#/components/schemas/multipolygonGeoJSON"
       - $ref: "#/components/schemas/geometrycollectionGeoJSON"
+    geometryGeoJSONNoCollection:
+      #This element should not exist (and use geometryGeoJSON) but has been created to avoid a stack overflow in the SwaggerHUB due to a circular reference.
+      oneOf:
+      - $ref: "#/components/schemas/pointGeoJSON"
+      - $ref: "#/components/schemas/multipointGeoJSON"
+      - $ref: "#/components/schemas/linestringGeoJSON"
+      - $ref: "#/components/schemas/multilinestringGeoJSON"
+      - $ref: "#/components/schemas/polygonGeoJSON"
+      - $ref: "#/components/schemas/multipolygonGeoJSON"
+      #- $ref: "#/components/schemas/geometrycollectionGeoJSON"
     geometrycollectionGeoJSON:
       type: object
       required:
@@ -291,7 +301,7 @@ components:
         geometries:
           type: array
           items:
-            $ref: "#/components/schemas/geometryGeoJSON"
+            $ref: "#/components/schemas/geometryGeoJSONNoCollection"
     landingPage:
       type: object
       required:
@@ -306,7 +316,7 @@ components:
         links:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
     linestringGeoJSON:
       type: object
       required:
@@ -409,6 +419,7 @@ components:
           type: string
           enum:
             - Polygon
+          example: Polygon
         coordinates:
           type: array
           items:
@@ -419,6 +430,17 @@ components:
               minItems: 2
               items:
                 type: number
+          example:      
+          - - - 35.99601746
+              - 32.50426061
+            - - 36.08110064
+              - 32.50426061
+            - - 36.08110064
+              - 32.57551892
+            - - 35.99601746
+              - 32.57551892
+            - - 35.99601746
+              - 32.50426061
   examples:
     link-collection-items:
       href: 'http://data.example.com/collections/buildings/items'

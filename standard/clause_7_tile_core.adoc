@@ -89,13 +89,44 @@ More specific details about the collection can be found following the link to th
 NOTE: The collectionId substitutes the concept of "layer" in WMTS.
 
 === Collection
-This standard includes dependencies on OWS Common collection. The response of the operation is extended with the necessary information to formulate a tile response for this collection.
+This standard includes dependencies on OWS Common collection. The response of the operation is extended with a new link for the tiles description.
 
 ==== Collection Links
 
-include::requirements/tiles/core/REQ_stc-tile-examples.adoc[]
+include::requirements/tiles/core/REQ_stc-tiles-example.adoc[]
 
-One common order used in URL templates for tiles is .../tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol} this standard allows for other URL template dispositions.
+=== Tiles description
+The response of this operation contains the necessary information to later formulate a tile request for a collection.
+
+==== Operation
+
+include::requirements/tiles/core/REQ_sct-op.adoc[]
+
+The request of this operation has no parameters.
+
+==== Response
+
+A successful response of a tiles request for a collection that can be retrieved as tiles will respond with a data structure with specific information necessary to get tiles representing the resource collection. In this core, the response only informs about in which tile matrix sets tiles can be retrieved and the URL template to a tile.
+
+include::requirements/tiles/core/REQ_sct-tmxslink.adoc[]
+
+.Example of a tiles property in the tiles response.
+=================
+[source,JSON]
+{
+  "tileMatrixSetLinks": [
+    {
+      "tileMatrixSet": "WebMercatorQuad",
+      "tileMatrixSetURI": "http://www.opengis.net/def/tilematrixset/OGC/1.0/WebMercatorQuad"
+    }
+  ]
+  ...
+}
+=================
+
+include::requirements/tiles/core/REQ_sct-tile-examples.adoc[]
+
+One common order used in URL templates for tiles is .../tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}, but this standard allows for other URL template dispositions.
 
 [#URL_template_tile,reftext='{table-caption} {counter:table-num}']
 .URI template variables for tiles and possible values
@@ -108,7 +139,7 @@ One common order used in URL templates for tiles is .../tiles/{tileMatrixSetId}/
 |TileCol |column index of tile matrix	|a non-negative integer between 0 and the MatrixWidth – 1. If there is a TileMatrixSetLimits the value is limited between MinTileCol and MaxTileCol
 !===
 
-.API collection response fragment
+.API tiles response fragment
 =================
 [source,JSON]
 links:
@@ -119,25 +150,6 @@ links:
       "type": "image/png",
     }
 ]
-=================
-
-==== Collection extra properties
-
-A collection that can be retrieved as tiles will add an specific object in the collection information that will contain specific information necessary to get tiles representing the resource collection. In this core, the _tiles_ section only informs about in width tile matrix sets they can be retrieved.
-
-include::requirements/tiles/core/REQ_stc-tmxslink.adoc[]
-
-.Example of a tiles property in the collection response.
-=================
-[source,JSON]
-  "tiles": {
-    "tileMatrixSetLinks": [
-      {
-        "tileMatrixSet": "WebMercatorQuad",
-        "tileMatrixSetURI": "http://www.opengis.net/def/tilematrixset/OGC/1.0/WebMercatorQuad"
-      }
-    ]
-  }
 =================
 
 === Tiled data from one collection

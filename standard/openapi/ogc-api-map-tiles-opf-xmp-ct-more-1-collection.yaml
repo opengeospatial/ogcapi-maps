@@ -10,7 +10,7 @@ servers:
     url: https://virtserver.swaggerhub.com/joanma747/opf-map-tiles-api/1.0.0
 info:
   title: |-
-    Tiled coverage data service example. Part of the OGC API Maps and Tiles OpenAPI work.
+    OLD EXAMPLE NO LONGER MAINTAINED!! Tiled coverage data service example. Part of the OGC API Maps and Tiles OpenAPI work.
   description: |-
     This is a draft of an example of a service following the OGC API maps and tiles that produces tiled feature data.
 
@@ -50,7 +50,7 @@ paths:
         The landing page provides links to the API definition, the conformance statements and to the feature collections in this dataset.
       operationId: getLandingPage
       parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json-html'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/f-json-html'
       responses:
         '200':
           description: |-
@@ -58,21 +58,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/landingPage'
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/landingPage'
               example:
-                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-landingPage-this'
-                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-landingPage-alternate'
-                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-landingPage-service-json'
-                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-landingPage-service-html'
-                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-landingPage-conformance'
-                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-landingPage-collections-json'
-                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-landingPage-collections-html'
-                - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/examples/link-landingPage-tms-json'
+                title: Tiled coverages data service example.
+                description: Tiled coverages data service example. Part of the OGC API Maps and Tiles OpenAPI work
+                links:
+                - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-this'
+                - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-alternate'
+                - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-service-json'
+                - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-service-html'
+                - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-conformance'
+                - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-collections-json'
+                - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-collections-html'
+                - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/examples/link-landingPage-tms-json'
             text/html:
               schema:
                 type: string
         '500':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/conformance':
     get:
       description: |-
@@ -80,7 +83,7 @@ paths:
         server conforms to.
       operationId: getConformanceDeclaration
       parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json-html'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/f-json-html'
       tags:
         - OGC API Common
       responses:
@@ -90,33 +93,34 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/confClasses'
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/confClasses'
               example:
-                # OGC API Common core consists on the landingPage, conformance
-                - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core'
-                # OGC API Common collections consists adds the capability to have collections
-                - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections'
-                # OGC API Coverages. It is unclear what will exactly contain
-                - 'http://www.opengis.net/spec/ogcapi-coverages-1/1.0/req/core'
-                # OGC API Maps core consists on the capability to serve a collection as a map in the default CRS
-                - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core'
-                # OGC API Maps core consists on the capability to serve a collection as a map in any CRS
-                - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs'
-                # OGC API Maps root consists on the capability to create a map of several collections
-                - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/root'
-                # OGC API Maps root consists on the capability to query a map by location
-                - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
-                # OGC API Maps dimensions consists on the capability to add extra dimensions to a map (time, elevation, etc)
-                #- 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dimensions'
-                - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core'
-                - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/multitile'
-                - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/info'
+                conformsTo:
+                  # OGC API Common core consists on the landingPage, conformance
+                  - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core'
+                  # OGC API Common collections consists adds the capability to have collections
+                  - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections'
+                  # OGC API Coverages. It is unclear what will exactly contain
+                  - 'http://www.opengis.net/spec/ogcapi-coverages-1/1.0/req/core'                
+                  # OGC API Maps core consists on the capability to serve a collection as a map in the default CRS
+                  - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core'
+                  # OGC API Maps core consists on the capability to serve a collection as a map in any CRS
+                  - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs'
+                  # OGC API Maps root consists on the capability to create a map of several collections
+                  - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/root'
+                  # OGC API Maps root consists on the capability to query a map by location
+                  - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
+                  # OGC API Maps dimensions consists on the capability to add extra dimensions to a map (time, elevation, etc)
+                  #- 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dimensions'
+                  - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core'
+                  - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/multitile'
+                  - 'http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/info'
         '400':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/InvalidParam'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/InvalidParam'
         '406':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/UnsupportedFormat'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/UnsupportedFormat'
         '500':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/collections':
     get:
       tags:
@@ -124,12 +128,12 @@ paths:
       summary: the collections in the dataset
       operationId: getCollections
       parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json-html'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/f-json-html'
       responses:
         '200':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/Collections'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/Collections'
         '500':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}':
     get:
       tags:
@@ -137,8 +141,8 @@ paths:
       summary: describe a collection
       operationId: describeCollection
       parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/collectionId'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json-html'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/f-json-html'
       responses:
         '200':
           description: |-
@@ -151,9 +155,9 @@ paths:
               schema:
                 type: string
         '404':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
     patch:
       tags:
         - OGC API Common
@@ -219,24 +223,24 @@ paths:
       security:
         - BasicAuth: []
       parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
       requestBody:
         description: |-
           The updated style information for the collection.
         content:
           application/merge-patch+json:
             schema:
-              $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-maps.yaml#/components/schemas/collection-patch'
+              $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/schemas/collection-patch'
       responses:
         '204':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/Updated'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/Updated'
         '400':
           description: |-
             Malformed patch document.
         '401':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/UnauthorizedAccess'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/UnauthorizedAccess'
         '404':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
         '415':
           description: |-
             Unsupported patch document.
@@ -252,7 +256,7 @@ paths:
             to be valid, but the server is incapable of processing
             the request.
         '500':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/tileMatrixSets':
     get:
       tags:
@@ -260,7 +264,7 @@ paths:
       summary: fetch all available tile matrix sets (tiling schemes)
       operationId: getTileMatrixSets
       parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/f-json'
       responses:
         '200':
           description: |-
@@ -268,9 +272,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/schemas/tileMatrixSets'
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/schemas/tileMatrixSets'
         '500':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/tileMatrixSets/{tileMatrixSetId}':
     get:
       tags:
@@ -278,19 +282,19 @@ paths:
       summary: fetch a tile matrix sets (tiling scheme) by id
       operationId: getTileMatrixSetDescription
       parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/parameters/tileMatrixSetId'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/f-json'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/f-json'
       responses:
         '200':
           description: tile matrix sets (a tiling scheme).
           content:
             application/json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/schemas/tileMatrixSet'
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/schemas/tileMatrixSet'
         '404':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
 
   /collections/{collectionId}/coverages:
     get:
@@ -302,11 +306,11 @@ paths:
         Use content negotiation to request HTML or GeoJSON.
       operationId: getCoverages
       parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/collectionId'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/limit'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/offset'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/bbox'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/datetime'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/limit'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/offset'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/datetime'
       responses:
         200:
           description: Information about the feature collection plus the first features
@@ -314,12 +318,12 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-features.yaml#/components/schemas/featureCollectionGeoJSON'
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-features/1.0.0#/components/schemas/featureCollectionGeoJSON'
             text/html:
               schema:
                 type: string
         default:
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
   /collections/{collectionId}/coverages/{coverageId}:
     get:
       tags:
@@ -328,20 +332,20 @@ paths:
         response or the coverages rangeType in the specified format
       operationId: getCoverage
       parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/collectionId'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-coverages.yaml#/components/parameters/coverageId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-coverages/1.0.0#/components/parameters/coverageId'
       responses:
         200:
           description: A coverage.
           content:
             application/multipart+related:
               schema:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-features.yaml#/components/schemas/featureGeoJSON'
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-features/1.0.0#/components/schemas/featureGeoJSON'
             text/html:
               schema:
                 type: string
         default:
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
   /collections/{collectionId}/coverages/{coverageId}/domainset:
     get:
       tags:
@@ -350,20 +354,20 @@ paths:
         HTML or GeoJSON
       operationId: getCoverageDomainSet
       parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/collectionId'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-coverages.yaml#/components/parameters/coverageId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-coverages/1.0.0#/components/parameters/coverageId'
       responses:
         200:
           description: A coverages domainset.
           content:
             application/geo+json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-coverages.yaml#/components/schemas/domainSetJSON'
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-coverages/1.0.0#/components/schemas/domainSetJSON'
             text/html:
               schema:
                 type: string
         default:
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
   /collections/{collectionId}/coverages/{coverageId}/rangetype:
     get:
       tags:
@@ -372,20 +376,20 @@ paths:
         HTML or GeoJSON
       operationId: getCoverageRangeType
       parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/collectionId'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-coverages.yaml#/components/parameters/coverageId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-coverages/1.0.0#/components/parameters/coverageId'
       responses:
         200:
           description: A coverages rangetype.
           content:
             application/geo+json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-coverages.yaml#/components/schemas/rangeTypeJSON'
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-coverages/1.0.0#/components/schemas/rangeTypeJSON'
             text/html:
               schema:
                 type: string
         default:
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
 
   '/collections/{collectionId}/coverages/{coverageId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
@@ -395,14 +399,14 @@ paths:
         response or the coverages rangeType in the specified format
       operationId: getTileCoverageId
       parameters:
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/collectionId'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-coverages.yaml#/components/parameters/coverageId'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/parameters/datetime'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-map-tiles.yaml#/components/parameters/elevation'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/parameters/tileMatrixSetId'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/parameters/tileMatrix'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/parameters/tileRow'
-        - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/parameters/tileCol'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-coverages/1.0.0#/components/parameters/coverageId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/datetime'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/parameters/tileMatrix'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/parameters/tileRow'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/parameters/tileCol'
         - $ref: '#/components/parameters/f-geotiff'
       responses:
         200:
@@ -410,20 +414,20 @@ paths:
           content:
             application/multipart+related:
               schema:
-                $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-features.yaml#/components/schemas/featureGeoJSON'
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-features/1.0.0#/components/schemas/featureGeoJSON'
             text/html:
               schema:
                 type: string
         default:
-          $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
 
 components:
   schemas:
     collection:
       allOf:
-      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/collection'
-      - $ref: '#/components/schemas/collection-link'
-      - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-tiles.yaml#/components/schemas/collection'
+      - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/collection'
+      - $ref: '#/components/schemas/collection-link'      
+      - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0#/components/schemas/collection'
     collection-link:
       #This element is a duplicate of the one in OGC API common but it is enriched with more examples for maps and other resource types.
       type: object
@@ -433,7 +437,7 @@ components:
         links:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
           example:
             - href: 'http://data.example.com/collections/satellite?f=json'
               rel: self
@@ -441,11 +445,11 @@ components:
               title: This document
             - href: 'http://data.example.com/collections/satellite.html'
               rel: describedBy
-              type: text/html
-            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-license-html'
-            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-license-rdf'
-            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-coverages.yaml#/components/examples/link-collection-rangeType'
-            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-coverages.yaml#/components/examples/link-collection-domainSet'
+              type: text/html     
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-license-html'
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-license-rdf'
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-coverages/1.0.0#/components/examples/link-collection-rangeType'
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-coverages/1.0.0#/components/examples/link-collection-domainSet'
             - href: 'http://data.example.com/collections/satellite/coverages/sentinel2/tiles/WorldMercatorWGS84Quad/0/0/0'
               rel: tiles
               type: 'image/png'

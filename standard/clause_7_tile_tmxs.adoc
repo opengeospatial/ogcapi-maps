@@ -22,7 +22,7 @@ The landing page provides links to start exploring the resources offered by the 
 
 ==== Response
 
-include::requirements/tiles/tmxs/REQ_api-definition-success.adoc[]
+include::requirements/tiles/tmxs/REQ_root-success.adoc[]
 
 In the landing page, in JSON format, the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API tiles landing page
 
@@ -31,21 +31,23 @@ In the landing page, in JSON format, the links are following the link schema def
 =================
 [source,JSON]
 ----
-[
-  [...],
-  {
-    "href": "http://data.example.org/tileMatrixSet?f=json",
-    "rel": "tileMatrixSets",
-    "type": "application/json",
-    "title": "List of tileMatrixSets implemented by this API in JSON",
-  },
-  {
-    "href": "http://data.example.org/tileMatrixSet?f=html",
-    "rel": "tileMatrixSets",
-    "type": "text/html",
-    "title": "List of tileMatrixSets implemented by this API in HTML",
-  }
-]
+{
+  links: [
+    ...,
+    {
+      "href": "http://data.example.org/tileMatrixSet?f=json",
+      "rel": "tileMatrixSets",
+      "type": "application/json",
+      "title": "List of tileMatrixSets implemented by this API in JSON",
+    },
+    {
+      "href": "http://data.example.org/tileMatrixSet?f=html",
+      "rel": "tileMatrixSets",
+      "type": "text/html",
+      "title": "List of tileMatrixSets implemented by this API in HTML",
+    }
+  ]
+}
 ----
 =================
 
@@ -150,8 +152,8 @@ include::requirements/tiles/tmxs/REQ_tilematrixset-success.adoc[]
 
 include::recommendations/tiles/tmxs/REC_tilematrixset-response.adoc[]
 
-=== Collection
-This extension modifies the content of the collection description returned by a successful \collection\{collectionId} request.
+=== Tiles
+This extension modifies the content of the tiles description returned by a successful \collection\{collectionId}\tiles request.
 
 ==== Collection extra properties
 
@@ -160,23 +162,23 @@ include::requirements/tiles/tmxs/REQ_stc-limits.adoc[]
 =================
 [source,JSON]
 ----
-  "tiles": {
-    "tileMatrixSetLinks": [
-      {
-        "type": "tileMatrixSetLink",
-        "tileMatrixSet": "http://www.opengis.net/def/tilematrixset/OGC/1.0/WebMercatorQuad",
-        "tileMatrixSetLimits": [
-          {
-            "type": "tileMatrixSetLimits",
-            "tileMatrix": "5",
-            "minTileRow": 0,
-            "maxTileRow": 1,
-            "minTileCol": 3,
-            "maxTileCol": 4
-          }
-        ]
-      }
-    ]
-  }
+{
+  "tileMatrixSetLinks": [
+    {
+      "type": "tileMatrixSetLink",
+      "tileMatrixSet": "http://www.opengis.net/def/tilematrixset/OGC/1.0/WebMercatorQuad",
+      "tileMatrixSetLimits": [
+        {
+          "type": "tileMatrixSetLimits",
+          "tileMatrix": "5",
+          "minTileRow": 0,
+          "maxTileRow": 1,
+          "minTileCol": 3,
+          "maxTileCol": 4
+        }
+      ]
+    }
+  ]
+}
 ----
 =================

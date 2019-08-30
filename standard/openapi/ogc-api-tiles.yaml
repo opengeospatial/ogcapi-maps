@@ -30,6 +30,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/tileMatrixSets'
+    tiles:
+      description: |-
+        Description of the tiles.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/tiles'
   parameters:
     tileMatrixSetId:
       name: tileMatrixSetId
@@ -106,14 +113,6 @@ components:
           - full
       example: full
   examples:
-    link-collection-tiles:
-      href: 'http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0'
-      rel: tiles
-      type: 'image/png'
-    link-collection-info:
-      href: 'http://data.example.com/collections/buildings/tiles/WorldMercatorWGS84Quad/0/0/0/info'
-      rel: info
-      type: 'text/html'
     link-landingPage-tms-json:
       href: 'http://data.example.org/tileMatrixSet?f=json'
       rel: tileMatrixSets
@@ -123,7 +122,40 @@ components:
       href: 'http://data.example.org/tileMatrixSet?f=html'
       rel: tileMatrixSets
       type: text/html
-      title: List of tileMatrixSets implemented by this API in HTML            
+      title: List of tileMatrixSets implemented by this API in HTML
+    link-landingPage-tiles:
+      href: 'http://data.example.org/tiles'
+      rel: tiles
+      type: application/json
+      title: Link to information on tiles combining more than one collection
+    link-collection-tiles:
+      href: 'http://data.example.com/collections/buildings/tiles'
+      rel: tiles
+      type: 'application/json'
+    link-tiles-this:
+      href: 'http://data.example.com/collections/buildings/tiles'
+      rel: self
+      type: 'application/json'
+    link-tiles-tile:
+      href: 'http://data.example.com/collections/buildings/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}.png'
+      rel: tile
+      type: 'image/png'
+    link-tiles-info:
+      href: 'http://data.example.com/collections/buildings/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info'
+      rel: info
+      type: 'text/html'
+    link-tiles-col-this:
+      href: 'http://data.example.com/tiles'
+      rel: self
+      type: 'application/json'
+    link-tiles-col-tile:
+      href: 'http://data.example.com/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}.png'
+      rel: tile
+      type: 'image/png'
+    link-tiles-col-info:
+      href: 'http://data.example.com/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info'
+      rel: info
+      type: 'text/html'      
   schemas:
     collection-link:
       #This element is not directly linkable by other APIs because they probably will need to add other links to other resource types. Instead, it would be copied and enriched with more examples.
@@ -139,43 +171,26 @@ components:
             - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-this'
             - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-describedBy'
             - $ref: '#/components/examples/link-collection-tiles'
-            - $ref: '#/components/examples/link-collection-info'
-    collection:
-      # This object does not include the links element that should be added as and additional element using collection-link      
+    tiles:
+      # This object does not include the links element that should be added as and additional element using tiles-link      
       type: object
+      required:
+        - tileMatrixSetLink
       properties:
-        tiles:
-          type: object
-          required:
-            - formats
-            - tileMatrixSetLink
-          properties:
-            # A WMTS layer definition has id, title, description, keyword that are already defined in OWS Common
-            # wgs84BoundingBox is the 'extent' that is already defined in OWS Common
-            # boundingBox 
-            formats:
-              $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/schemas/formats'
-            infoFormats:
-              type: array
-              description: |-
-                Supported valid output formats for a tile resource
-              items:
-                type: string
-                pattern: '^(?=[-a-z]{1,127}/[-\.a-z0-9]{1,127}$)[a-z]+(-[a-z]+)*/[a-z0-9]+([-\.][a-z0-9]+)*$'                
-                example:
-                  - 'application/geo+json'
-                  - 'text/html'
-            tileMatrixSetLinks:
-              $ref: '#/components/schemas/tileMatrixSetLink-set'
-            infoTemplates:
-              type: array
-              description: |-
-                Supported valid templates for the info presentation
-              items:
-                type: string
-                example:
-                  - table
-                  - record
+        # A WMTS layer definition has id, title, description, keyword that are already defined in OWS Common
+        # wgs84BoundingBox is the 'extent' that is already defined in OWS Common
+        # boundingBox
+        tileMatrixSetLinks:
+          $ref: '#/components/schemas/tileMatrixSetLink-set'
+        infoTemplates:
+          type: array
+          description: |-
+            Supported valid templates for the info presentation
+          items:
+            type: string
+            example:
+              - table
+              - record
     tileMatrixSets:
       type: array
       items:
@@ -189,16 +204,9 @@ components:
               type: 'application/json'
     tileMatrixSet:
       required:
-        - type
         - identifier
       type: object
       properties:
-        type:
-          description: Type of the Tile Matrix Set
-          type: string
-          enum:
-            - TileMatrixSetType
-          example: TileMatrixSetType
         title:
           description: Title of this tile matrix set, normally used for display to a human
           type: string
@@ -233,7 +241,6 @@ components:
     tileMatrix:
       type: object
       required:
-        - type
         - identifier
         - scaleDenominator
         - topLeftCorner
@@ -242,12 +249,6 @@ components:
         - matrixWidth
         - matrixHeight
       properties:
-        type:
-          description: Type of the Tile Matrix
-          type: string
-          enum:
-            - TileMatrixType
-          example: TileMatrixType
         title:
           description: Title of this tile matrix, normally used for display to a human
           type: string
@@ -314,15 +315,12 @@ components:
     tileMatrixSetLink-entry:
       type: object
       required:
-        - type
         - tileMatrixSet
       properties:
-        type:
-          type: string
-          enum:
-            - TileMatrixSetLink
-          example: tileMatrixSetLink
         tileMatrixSet:
+          type: string
+          example: 'WebMercatorQuad'
+        tileMatrixSetURI:
           type: string
           format: uri
           example: 'http://www.opengis.net/def/tilematrixset/OGC/1.0/WebMercatorQuad'
@@ -334,18 +332,12 @@ components:
     tileMatrixSetLimits-entry:
       type: object
       required:
-        - type
         - tileMatrix
         - minTileRow
         - maxTileRow
         - minTileCol
         - maxTileCol
       properties:
-        type:
-          type: string
-          enum:
-            - TileMatrixSetLimits
-          example: tileMatrixSetLimits      
         tileMatrix:
           type: string
           format: uri
@@ -373,11 +365,13 @@ components:
     tileSet:
       description: |-
         This is the response for a multiple tiles request.
-      required:
-        - type
-      type: array
-      items:
-        $ref: '#/components/schemas/tileSetEntry'
+      type: object
+      required: tileSet
+      properties:
+        tileSet:
+          type: array
+          items:
+            $ref: '#/components/schemas/tileSetEntry'
     tileSetEntry:
       description: |-
         This is an entry on a multiple tiles request.
@@ -385,31 +379,37 @@ components:
       required:
         - tileURL
         - tileMatrix
-        - tileRow
-        - tileCol
       properties:
         tileURL:
           type: string
           format: uri
+          example: 'http://data.example.com/collections/buildings/tiles/WebMercatorQuad/0/0/0.png'
         tileMatrix:
           type: string
+          example: 0
         tileRow:
           type: number
+          example: 0
         tileCol:
           type: number
+          example: 0
         width:
           type: number
           description: |-
             The width of the tile in rendering device pixels. If it exceeds the visual display area be should cut when displayed
+          example: 256
         height:
           type: number
           description: |-
             The height of the tile in rendering device pixels. If it exceeds the visual display area be should cut when displayed
+          example: 256
         top:
           type: number
           description: |-
             Vertical position from the top of the visual display area in pixels. Negative value means that the left side of the tile is outside the top-left corner of the display and should be cut when displayed
+          example: -10
         left:
           type: number
           description: |-
             Horizontal position from the left of the visual display area in pixels. Negative value means that the left side of the tile is outside the top-left corner of the display and should be cut when displayed
+          example: -20

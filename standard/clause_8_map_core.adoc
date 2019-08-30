@@ -65,32 +65,14 @@ More specific details about the collection can be found following the link to th
 
 NOTE: The collectionId substitutes the concept of "layer" in WMS.
 
-=== Collection
-This standard includes dependencies on OWS Common collection. The response of the operation is extended with the necessary information to formulate a map response for this collection.
+=== Maps description resource
 
-==== Collection Links
+The maps core defines a `maps` resource that is associated to an operation contains the necessary information to later formulate a map request for a collection. Nevertheless, the core does not require an information mandatory since the map core alone does not specify how to retrieve a map. It is not possible to exemplify completely how this maps description looks like without considering other extensions.
 
-include::requirements/maps/core/REQ_smc-map-examples.adoc[]
+==== Map description response
+This core does not mandate a map description operation. Nevertheless, if it is defined by an extension, it introduces the need to have a specific properties.
 
-In practice, since the map core alone does not specify how to retrieve a map, it is not possible to exemplify completely how the link looks like without considering other extensions. If the server also conforms to an extension to distribute the map as maps, the example will look like this.
-
-.API collection response fragment
-=================
-[source,JSON]
-links:
-[
-    {
-      "href": "http://data.example.com/collections/buildings/map/default",
-      "rel": "maps",
-      "type": "image/png",
-    }
-]
-=================
-
-==== Collection extra properties
-This core does not mandate and extra property in the collection description response. Nevertheless, it introduces the need to have a `maps` property with some specific parameters that apply to maps.
-
-In here, two parameters inherit from WMS are recommended: cascade and opaque.
+In here, two properties inherit from WMS that are recommended here: cascade and opaque.
 
 include::recommendations/maps/core/REC_smc-opaque.adoc[]
 

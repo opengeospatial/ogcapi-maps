@@ -47,6 +47,9 @@ paths:
               schema:
                 $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/landingPage'
               example:
+                title: Image API service example.
+                description: Image API service example. Part of the Testbed 15 OpenAPI work
+                links:              
                 - href: 'http://data.example.org/?f=json'
                   rel: self
                   type: application/json
@@ -164,21 +167,20 @@ paths:
       operationId: getImages
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
-        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/f-json-html'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/limit'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/offset'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/bbox'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/datetime'
-        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/resultType'
+        - $ref: '#/components/parameters/f-stac-html'
       responses:
         '200':
           description: |-
             Information about the feature collection plus the first features
             matching the selection parameters.
           content:
-            application/geo+json:
+            application/stac.collection+json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-features/1.0.0#/components/schemas/featureCollectionGeoJSON'
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-images/1.0.0#/components/schemas/stacCollection'
             text/html:
               schema:
                 type: string
@@ -194,8 +196,8 @@ paths:
       operationId: addImage
       description: |- 
         Adds an image to the image collection
-        The URI of the new style is returned in the header `Location`.
-        This operation is only available to registered style authors.
+        The URI of the new image is returned in the header `Location`.
+        This operation is only available to registered image authors.
       security:
         - BasicAuth: []
       parameters:
@@ -213,13 +215,18 @@ paths:
         description: |-
           image to be added in the form of a STAC document
         content:
-          application/stac.item+json:
-            schema:
-              $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-images/1.0.0#/components/schemas/stacItem'
-          text/html:
+          image/geo+tiff:
             schema:
               type: string
-          
+              format: binary
+          application/vnd.ogc.multipart;container=application/x-zip-compressed;images=geo+tiff:
+            schema:
+              type: string
+              format: binary
+          application/vnd.ogc.multipart;container=application/x-zip-compressed;images=geo+tiff;description=application/stac.item+json:
+            schema:
+              type: string
+              format: binary
   '/collections/{collectionId}/images/{imageId}':
     get:
       tags:
@@ -229,7 +236,7 @@ paths:
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-images/1.0.0#/components/parameters/imageId'
-        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/f-json-html'
+        - $ref: '#/components/parameters/f-stac-html'
       responses:
         '200':
           description: |-
@@ -237,7 +244,7 @@ paths:
           content:
             application/stac.item+json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-images/1.0.0#/components/schemas/stacItem'
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-images/1.0.0#/components/schemas/stacItemImage'
             text/html:
               schema:
                 type: string
@@ -268,6 +275,18 @@ paths:
           application/stac.item+json:
             schema:
               $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-images/1.0.0#/components/schemas/stacItem'
+          image/geo+tiff:
+            schema:
+              type: string
+              format: binary
+          application/vnd.ogc.multipart;container=application/x-zip-compressed;images=geo+tiff:
+            schema:
+              type: string
+              format: binary
+          application/vnd.ogc.multipart;container=application/x-zip-compressed;images=geo+tiff;description=application/stac.item+json:
+            schema:
+              type: string
+              format: binary              
       responses:
         '204':
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/Updated'
@@ -319,3 +338,20 @@ components:
             - href: 'http://data.example.com/collections/buildings/images'
               rel: image
               type: 'image/geotiff'
+  parameters:
+    f-stac-html:
+      name: f
+      in: query
+      description: |-
+        The format of the response. If no value is provided, the standard http rules apply, i.e., the accept header is used to determine the format.
+
+        Pre-defined values are "application/stac+json" and "test/html".
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+        enum:
+          - application/stac.collection+json
+          - text/html
+      example: application/stac.collection+json

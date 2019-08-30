@@ -7,6 +7,10 @@ include::requirements/tiles/requirements_class_cols-multitiles.adoc[]
 
 In this extension, we define a mechanism to request more than one tile from more than one collection in a single request. The result can be a document listing the needed tiles to cover bounding box or a package with all tiles inside. This section shares most of the content with the previous one and intents to provide similar mechanism. The main difference is the capability to request tiles that include elements of multiple collections provided by the parameter 'collections'.
 
+=== API landing page
+
+The landing page provides links to start exploring the resources offered by the API. It mainly consists in a list of links. The core of this standard does not add anything to the links required by OWS Common. The collections extension requires new link for the description of the tiles from more than one collection on top of the common ones that is inherited and needed by this extension.
+
 === Declaration of conformance classes
 
 ==== Response
@@ -31,6 +35,38 @@ In the conformance page (commonly in JSON format) the links are following the li
   ]
 }
 =================
+
+=== Tiles description
+The response of this operation contains the necessary information to later formulate a tile request from more than one collection as described in the `collections` extension. This extension add an extra link for the multitiles
+
+==== Response
+A successful response of a tiles request for more than on collection will respond with a data structure with specific information necessary to get tiles representing the resource collection. In this extension, the response informs about the URL template to retrieve multitiles.
+
+include::requirements/tiles/cols-multitiles/REQ_mtcs-multitiles-examples.adoc[]
+
+One common order used in URL templates for tiles is .../tiles/{tileMatrixSetId}, but this standard allows for other URL template dispositions.
+
+[#URL_template_tile,reftext='{table-caption} {counter:table-num}']
+.URI template variables for tiles and possible values
+[cols="30,35,70,30",options="header"]
+!===
+|URL template variable |Meaning |Possible values
+|TileMatrixSetId |tile matrix set identifier |the ones included in Annex D of OGC 17-083r2 or defined by extensions of this core.
+!===
+
+.API tiles response fragment
+=================
+[source,JSON]
+links:
+[
+    {
+      "href": "http://data.example.com/tiles/{tileMatrixSetId}",
+      "rel": "tiles",
+      "type": "image/png",
+    }
+]
+=================
+
 
 === Multiple tiles from more than one collection
 

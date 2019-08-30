@@ -65,11 +65,15 @@ description of the collection. to retrieve more information, you should use /col
 NOTE: The collectionId substitutes the concept of "layer" in WMS.
 
 === Collection
-This standard includes dependencies on OWS Common collection. The response of the operation is extended with the necessary information to formulate a map response for this collection.
+
+This standard includes dependencies on OWS Common collection. The response of the operation is extended with a new link for the maps description.
 
 ==== Collection Links
 
-The links included by the OGS API maps core are sufficient for this standard.
+include::requirements/maps/core/REQ_smc-maps-example.adoc[]
+
+
+
 
 ==== Collection extra parameters
 

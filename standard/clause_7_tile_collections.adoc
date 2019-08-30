@@ -8,6 +8,36 @@ include::requirements/tiles/requirements_class_collections.adoc[]
 
 In previous clauses we have been discussion about tiles that are produced form one and only one resource. This is achieved by concatenating the tile path to a resource (e.g. a feature collection). This extension discusses about the possibility to combine more than one resource to create a tile. This is achieved by using by adding the tile path to the root of the service.
 
+=== API landing page
+
+The landing page provides links to start exploring the resources offered by the API. It mainly consists in a list of links. The core of this standard does not add anything to the links required by OWS Common.
+This extension for TileMatrixSet requires new one for the description of the tiles from more than one collection on top of the common ones.
+
+==== Response
+
+include::requirements/tiles/collections/REQ_root-success.adoc[]
+
+In the landing page, in JSON format, the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API tiles landing page
+
+[[landingPage]]
+.API Landing Page fragment
+=================
+[source,JSON]
+----
+{
+  links: [
+    ...,
+    {
+       "href": "http://data.example.org/tiles",
+       "rel": "tiles",
+       "type": "application/json",
+       "title": "Link to information on map tiles combining more than one collection",
+    }
+  ]
+}
+----
+=================
+
 === Declaration of conformance classes
 
 ==== Response
@@ -31,6 +61,48 @@ In the conformance page (commonly in JSON format) the links are following the li
   ]
 }
 =================
+
+=== Tiles description
+The response of this operation contains the necessary information to later formulate a tile request from more than one collection.
+
+==== Operation
+
+include::requirements/tiles/collections/REQ_ts-op.adoc[]
+
+The request of this operation has no parameters.
+
+==== Response
+A successful response of a tiles request for more than on collection will respond with a data structure with specific information necessary to get tiles representing the resource collection. In this extension, the response only informs about the URL template to retrieve a tile.
+
+include::requirements/tiles/collections/REQ_ts-tile-examples.adoc[]
+
+One common order used in URL templates for tiles is .../tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}, but this standard allows for other URL template dispositions.
+
+[#URL_template_tile,reftext='{table-caption} {counter:table-num}']
+.URI template variables for tiles and possible values
+[cols="30,35,70,30",options="header"]
+!===
+|URL template variable |Meaning |Possible values
+|TileMatrixSetId |tile matrix set identifier |the ones included in Annex D of OGC 17-083r2 or defined by extensions of this core.
+|TileMatrix |tile matrix identifier |identifier of the tile matrix (representing a zoom level, a.k.a. a scale) listed in the TileMatrixSet definition
+|TileRow |row index of tile matrix	|a non-negative integer between 0 and the MatrixHeight – 1. If there is a TileMatrixSetLimits the value is limited between MinTileRow and MaxTileRow
+|TileCol |column index of tile matrix	|a non-negative integer between 0 and the MatrixWidth – 1. If there is a TileMatrixSetLimits the value is limited between MinTileCol and MaxTileCol
+!===
+
+.API tiles response fragment
+=================
+[source,JSON]
+links:
+[
+    {
+      "href": "http://data.example.com/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}",
+      "rel": "tiles",
+      "type": "image/png",
+    }
+]
+=================
+
+In general, the `tileMatrixSetLinks` and the `tileMatrixSetLimits` can be determined by examine this information in the individual collections. In some cases the server could also include the `tileMatrixSetLinks` data structure as part of the response of this operation. Clients should be prepared to determined by examine the tileMatrixSet values and limits from the information in the individual collections if a `tileMatrixSetLinks` data structure is not provided as a response here.
 
 === Tiles from more than one collection
 

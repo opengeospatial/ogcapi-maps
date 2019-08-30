@@ -1,0 +1,100 @@
+openapi: 3.0.2
+# Revisions:
+# 2019-08-02 initial version based on cportele work
+
+info:
+  title: OGC API Building Blocks for map styes
+  description: |-
+    Common components used in the OGC API map styles standards.
+
+    This document is also available in [GitHub](https://github.com/opengeospatial/OGC-API-Map-Tiles/tree/master/standard/openapi).
+
+  version: "1.0.0"
+  contact:
+    name: Joan Maso
+    email: joan.maso@uab.cat
+  license:
+    name: OGC License
+    url: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/LICENSE'
+
+components:
+  parameters:
+    styleId:
+      #This is the same parameter as in CPortele Styles API but the description is different.
+      name: styleId
+      in: path
+      description: |-
+        The styleId that should be included in the map or tile. Each collectionId has a valid list of stylesId. To know the valid styleId values of each collectionId use /collections/{collectionId}.
+      required: true
+      schema:
+        type: string
+    styles:
+      name: styles
+      in: query
+      description: |-
+        The styleId that should be included in the map or tile. Each collectionId has a valid list of stylesId. To know the valid styleId values of each collectionId use /collections/{collectionId}.
+        The parameter value is a list of comma separated styles identifiers. If the parameter 'collections' exists, the list should be as long as 'collections' and each style identifier corresponds to one collection identifier. Default style can be represented as a blank name or with the `default` word.
+        If the parameter is missing, the default style is assumed for all collections.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+  schemas:
+    style-set:
+      #this is a direct copy of the CPortele Styles API
+      type: array
+      nullable: true
+      items:
+        $ref: '#/components/schemas/style-set-entry'
+      example:
+        - id: 'night'
+          title: 'Topographic night style'
+          links:
+          - href: 'https://example.com/api/1.0/styles/night?f=mapbox'
+            type: 'application/vnd.mapbox.style+json'
+            rel: 'stylesheet'
+          - href: 'https://example.com/api/1.0/styles/night?f=sld10'
+            type: 'application/vnd.ogc.sld+xml;version=1.0'
+            rel: 'stylesheet'
+          - href: 'https://example.com/api/1.0/styles/night/metadata?f=json'
+            type: 'application/json'
+            rel: 'describedBy'
+        - id: 'topographic'
+          title: 'Regular topographic style'
+          links:
+          - href: 'https://example.com/api/1.0/styles/topographic?f=mapbox'
+            type: 'application/vnd.mapbox.style+json'
+            rel: 'stylesheet'
+          - href: 'https://example.com/api/1.0/styles/topographic?f=sld10'
+            type: 'application/vnd.ogc.sld+xml;version=1.0'
+            rel: 'stylesheet'
+          - href: 'https://example.com/api/1.0/styles/topographic/metadata?f=json'
+            type: 'application/json'
+            rel: 'describedBy'
+    style-set-entry:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        links:
+          type: array
+          nullable: true
+          minItems: 1
+          items:
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
+    default-style:
+      type: string
+      description: |-
+        the style id of a recommended default style to use for this collection. This is informative and optional.
+      example: 'topographic'                  
+    simbologyEncoding:
+      description: |-
+        SE encoding to create a map.
+      type: string

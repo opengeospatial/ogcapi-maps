@@ -1,4 +1,4 @@
-openapi: 3.0.2
+﻿openapi: 3.0.2
 # Revisions:
 # 2019-05-09 initial version
 # 2019-05-11 added nullable values to support patch
@@ -35,12 +35,12 @@ components:
         links:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/schemas/link'
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
           example:
-            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-this'
-            - $ref: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-common.yaml#/components/examples/link-collection-describedBy'
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-this'
+            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-describedBy'
             - $ref: '#/components/examples/link-collection-rangeType'
-            - $ref: '#/components/examples/link-collection-domainSet'
+            - $ref: '#/components/examples/link-collection-domainSet'              
     domainSetJSON:
       description: TBD
       required:
