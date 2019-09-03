@@ -2,10 +2,10 @@
 
 This GitHub repository contains the new revision of the [OGC](http://opengeospatial.org)'s Web Map Service and Web Map Tile Service standards for requesting maps and tiles of geospatial information on the web. It is a complete rewrite of previous versions, focusing on a simple RESTful core specified as reusable [OpenAPI](http://openapis.org) components.
 
-This work encompasses two standards that will be developed simultaneously. In the end, must people believe at least 2 standards will emerge or even more when the core and extension model is applied. I'm not so sure.
+This work encompasses two standards that will be developed simultaneously. In the end, most people believe at least 2 standards will emerge or even more when the core and extension model is applied. I'm not so sure.
 
 ## Standards
-After a while getting familiar ad playing with the OpenAPI definition files (explained just below in the "Exemples section"), we have finally started to write the standard. We have decided an aggressive path to modularization having 2 cores, one for tiles and another for maps that can be combined as needed. Several extension for tiles and maps will emerge in the process.
+After a while getting familiar and playing with the OpenAPI definition files (explained just below in the "Examples section"), we have finally started to write the standard. We have decided an aggressive path to modularization having 2 cores, one for tiles and another for maps that can be combined as needed. Several extension for tiles and maps will emerge in the process.
 
 The standard is written using asciidoc using many files that might be dificult to trace. Please see the standard document as a long HTML page EASY TO READ FORMAT here: https://htmlpreview.github.io/?https://github.com/opengeospatial/OGC-API-Map-Tiles/blob/master/standard/OAPI_MapsTiles.html
 
@@ -62,7 +62,7 @@ IMPORTANT NOTE: We are now using the Swagger HUB again and should be considered 
 * [Domain documents](https://app.swaggerhub.com/search?owner=UAB-CREAF&type=DOMAIN)
 * [API example documents](https://app.swaggerhub.com/search?owner=UAB-CREAF&type=API)
 
-The material in the [standards folder](standard/openapi) takes precedence to the text of the standard and the Swagger HUB takes precedence to the material in GitHub. The [standards folder](standard/openapi) examples are intended to be identical to the Swagger HUB ones except for the path names. To go from  Swagger HUB to gitHub do the following substitutions:
+The material in the [standards folder](standard/openapi) takes precedence to the text of the standard and the Swagger HUB takes precedence to the material in GitHub. The [standards folder](standard/openapi) examples are intended to be identical to the Swagger HUB ones except for the path names. To go from  Swagger HUB to GitHub do the following substitutions:
 * Replace "https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-" by "https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/standard/openapi/ogc-api-"
 * Replace "/1.0.0#/" by ".yaml#/"
 
@@ -72,7 +72,7 @@ The files in the [standards folder](standard/openapi) are structured in several 
 
 A [OGC API maps and tiles OPF FULL example in Swagger](https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles-opf-xmp-full/1.0.0) or in [GitHub](standard/openapi/ogc-api-map-tiles-opf-xmp-full.yaml) that contains full example of server with some features and coverages that are served as maps and/or tiles.
 
-The later is normally it is too long to be analyzed. The following are more easy to understand.
+The latter is normally too long to be analyzed. The following are easier to understand.
 
 Examples:
 * A [OGC API OPF example for vector tiles in Swagger](https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles-opf-xmp-vt-more-1-collection/1.0.0) or in [GitHub](standard/openapi/ogc-api-tiles-opf-xmp-vt-more-1-collection.yaml) that describes a service that can serve only tiled features (vector tiles) of one or more collections.
@@ -140,7 +140,7 @@ OpenAPI definitions in this folder (please paste one of them in the Swagger Edit
 
 Join the WMS mailing list
 
-Most all work on the specification takes place in [GitHub issues](https://github.com/opengeospatial/OGC-API-Map-Tiles/issues),
+Most work on the specification takes place in [GitHub issues](https://github.com/opengeospatial/OGC-API-Map-Tiles/issues),
 so browse there to get a good idea of what is happening, as well as past decisions.
 
 ## Contributing
