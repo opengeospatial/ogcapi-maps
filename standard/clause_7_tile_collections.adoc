@@ -6,11 +6,11 @@
 
 include::requirements/tiles/requirements_class_collections.adoc[]
 
-In previous clauses we have been discussion about tiles that are produced form one and only one resource. This is achieved by concatenating the tile path to a resource (e.g. a feature collection). This extension discusses about the possibility to combine more than one resource to create a tile. This is achieved by using by adding the tile path to the root of the service.
+In previous clauses we have been discussion about tiles that are produced from one and only one resource. This is achieved by concatenating the tile path to a resource (e.g. a feature collection). This extension discusses the combination of more than one resource to create a tile. This is achieved by adding the tile path to the root of the service.
 
 === API landing page
 
-The landing page provides links to start exploring the resources offered by the API. It mainly consists in a list of links. The core of this standard does not add anything to the links required by OWS Common.
+The landing page provides links to start exploring the resources offered by the API. It mainly consists of a list of links. The core of this standard does not add anything to the links required by OWS Common.
 This extension for TileMatrixSet requires new one for the description of the tiles from more than one collection on top of the common ones.
 
 ==== Response
@@ -72,7 +72,7 @@ include::requirements/tiles/collections/REQ_ts-op.adoc[]
 The request of this operation has no parameters.
 
 ==== Response
-A successful response of a tiles request for more than on collection will respond with a data structure with specific information necessary to get tiles representing the resource collection. In this extension, the response only informs about the URL template to retrieve a tile.
+A successful response of a tiles request for more than one collection will respond with a data structure with specific information necessary to get tiles representing the resource collection. In this extension, the response only provides the URL template to retrieve a tile.
 
 include::requirements/tiles/collections/REQ_ts-tile-examples.adoc[]
 
@@ -129,7 +129,7 @@ include::recommendations/tiles/collections/REC_tcs-collections-definition.adoc[]
 include::recommendations/tiles/collections/PER_tcs-collections-definition.adoc[]
 
 ==== Response
-A successful response of a tile request will be consistent with the media type of resource requested. This standard does not impose any media type. For example; for features can be geojson of Mapbox vector tiles; coverages it my be a geotiff and for maps it can be a jpeg or a png.
+A successful response of a tile request will be consistent with the media type of resource requested. This standard does not impose any media type. For example; for features can be geojson of Mapbox vector tiles; coverages it may be a geotiff and for maps it can be a jpeg or a png.
 
 include::requirements/tiles/collections/REQ_tcs-success.adoc[]
 
