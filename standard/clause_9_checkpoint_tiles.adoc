@@ -25,6 +25,7 @@ In the conformance page (commonly in JSON format) the links are following the li
 [[ConformancePage]]
 .Conformance Information Page fragment
 =================
+[source,JSON]
 {
   "conformsTo": [
     "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",

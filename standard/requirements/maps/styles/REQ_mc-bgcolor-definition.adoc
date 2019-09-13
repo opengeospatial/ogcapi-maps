@@ -16,6 +16,5 @@
     type: string
     default: 0xFFFFFF
 ----
-^|B |If `gbcolor` is not specified, the server will use 0xFFFFFF (white)
-
+^|B |If `bgcolor` is not specified, the server is free to choose a background color that's appropriate for the requested style, or 0xFFFFFF (white) if no such information is available.
 |===
