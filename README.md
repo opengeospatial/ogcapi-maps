@@ -2,6 +2,14 @@
 
 This GitHub repository contains the new revision of the [OGC](http://opengeospatial.org)'s Web Map Service and Web Map Tile Service standards for requesting maps and tiles of geospatial information on the web. It is a complete rewrite of previous versions, focusing on a simple RESTful core specified as reusable [OpenAPI](http://openapis.org) components.
 
+IMPORTANT: Current work has been moved to the deliverables in Testbed-15 that contain the LAST VERSION of the materials. See:
+
+https://github.com/opengeospatial/T-15-D014-WMTS_draft_specification
+
+many examples of OpenAPI document can be found here:
+
+https://app.swaggerhub.com/apis/UAB-CREAF
+
 This work encompasses two standards that will be developed simultaneously. In the end, most people believe at least 2 standards will emerge or even more when the core and extension model is applied. I'm not so sure.
 
 ## Standards
