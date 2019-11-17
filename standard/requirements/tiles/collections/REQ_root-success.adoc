@@ -1,6 +1,0 @@
-[[req_tiles_collections_root-success]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/tiles/collections/root-success*
-^|A | The API SHALL advertise a URI to retrieve tiles definitions defined by this service as links to the descriptions paths with rel=tiles.
-|===

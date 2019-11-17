@@ -1,7 +1,0 @@
-[[rec_tiles_collections_tcs-collections-definition]]
-[width="90%",cols="2,6a"]
-|===
-^|*Recommendation {counter:rec-id}* |*/req/tiles/collections/tcs-collections-definition*
-^|A |If `collections` is missing and when it is possible and sensible, all collections SHOULD be represented in the tiles
-^|B |If `collections` is missing, the collections present in the tiles SHOULD be listed in the description of the parameter in the API definition
-|===

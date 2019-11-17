@@ -1,6 +1,0 @@
-[[rec_tiles_multiltiles_mtcs-scaledenominator-definition]]
-[width="90%",cols="2,6a"]
-|===
-^|*Recommendation {counter:rec-id}* |*/rec/tiles/multitiles/mtcs-scaledenominator-definition*
-^|A |To prevent mistakes identifying the scale denominator due to precision issues caused by lack of significant digits, the client should apply a tolerance to intervals. If the client wants to specify a single scale denominator, it will use an small interval with enough tolerance.
-|===

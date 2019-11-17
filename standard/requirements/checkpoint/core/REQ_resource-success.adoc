@@ -1,6 +1,0 @@
-[[req_checkpoint_core_resource-success]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/checkpoint/core/resource-success*
-^|A |The body of a successful response SHALL include a header x-checkpoint with the value of the current server checkpoint. 
-|===

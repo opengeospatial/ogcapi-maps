@@ -1,7 +1,0 @@
-[[req_tiles-tmxs-tilematrixset-op.adoc]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/tiles/tmxs/tmxs-tilematrixset-op*
-^|A |The server SHALL support the HTTP GET operation at the path /tileMatrixSet/{tileMatrixSetId}.
-^|A |The parameter tileMatrixSetId is each id property in the tileMatrixSets response.
-|===

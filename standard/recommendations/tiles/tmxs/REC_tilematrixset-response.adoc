@@ -1,6 +1,0 @@
-[[rec_tiles_tmxs-tilematrixset-response]]
-[width="90%",cols="2,6a"]
-|===
-^|*Recommendation {counter:rec-id}* |*/rec/tiles/tmxs/tilematrixset-response*
-^|A |The server may support that the tileMatrixSetId contains one of the eight TileMatrixSets defined in the Anned D of OGC 17-083r2 and return a successfull response with the description of it.
-|===

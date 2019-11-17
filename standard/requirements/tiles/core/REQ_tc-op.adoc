@@ -1,6 +1,0 @@
-[[req_tiles_core_tc-op]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/tiles/core/tc-op*
-^|A |Every tile SHALL be available as a HTTP GET request to a URI that will be composed by two parts: a initial part is the URI of a resource that can be represented as tiles and the final part follows the pattern /tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}
-|===

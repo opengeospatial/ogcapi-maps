@@ -1,6 +1,0 @@
-[[req_checkpoint_tiles_cp-not-modified]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/checkpoint/tiles/cp-not-modified*
-^|A |A successful execution of the operation that has NOT found changes SHALL be reported as a response with a HTTP status code 304.
-|===

@@ -1,7 +1,0 @@
-[[req_maps_core_mc-map-op]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/maps/core/mc-map-op*
-^|A |Every map SHALL be available as a HTTP GET request to a URI that will be composed by three parts: a initial part is the URI of a resource that can be represented as a map, a middle part following the pattern /map/{styleId} and a final part completing the retrieve parameters
-^|B |Only the resources or collection that advertise one of more links following the pattern .../map/{styleId}... can be retrieved as maps.
-|===

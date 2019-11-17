@@ -1,6 +1,0 @@
-[[rec_checkpoint_tiles-cp-changesettiles]]
-[width="90%",cols="2,6a"]
-|===
-^|*Recommendation {counter:rec-id}* |*/rec/checkpoint/core/cp-changesettiles*
-^|A | The parameter `changeSetType` SHOULD use `summary` or `package`
-|===

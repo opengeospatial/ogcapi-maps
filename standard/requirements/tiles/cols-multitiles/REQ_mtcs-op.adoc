@@ -1,7 +1,0 @@
-[[req_tiles_multitiles_mtcs-op]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/tiles/multitiles/mtcs-op*
-^|A |Tiles SHALL be available as HTTP GET requests to a URI that will be composed by two parts: a initial part is the URI of a resource that can be represented as tiles and the final part follows the pattern /tiles/{tileMatrixSetId}
-^|B |Only the resources or collections that advertise one of more links with type=tiles SHALL be requested as multiple tiles.
-|===

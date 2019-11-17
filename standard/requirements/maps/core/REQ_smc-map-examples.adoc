@@ -1,7 +1,0 @@
-[[req_maps_core_smc-map-examples]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:rec-id}* |*/req/maps/core/smc-map-examples*
-^|A |If the collection can be represented as maps, a `200`-response SHALL include at least one link to an example of map URI. This example can be a distribution of the map as tiles or as maps.
-^|B |The link SHALL follow and illustrate the result of applying the .../map/{styleId}... pattern
-|===

@@ -1,8 +1,0 @@
-[[rec_maps_core-smc-cascaded]]
-[width="90%",cols="2,6a"]
-|===
-^|*Recommendation {counter:rec-id}* |*/rec/maps/core/smc-cascaded*
-^|A |The server may include a numeric property in the map description response with the name `cascaded`.
-^|B | 0 means that the collection maps have not been retransmitted another map service or API. A positive number indicates how many times the collection map has been retransmitted.
-^|C | If the property is not provided, it should be interpreted as 0 (the default value)
-|===

@@ -1,9 +1,0 @@
-[[rec_maps_core-smc-opaque]]
-[width="90%",cols="2,6a"]
-|===
-^|*Recommendation {counter:rec-id}* |*/rec/maps/core/smc-opaque*
-^|A |The server may include a boolean property in the maps description response that contains a boolean property `opaque`.
-^|B | false means that map data represents vector features that probably do not
-completely fill space. true means map data are mostly or completely opaque.
-^|C | If the property is not provided, it should be interpreted as false (the default value)
-|===

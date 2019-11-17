@@ -1,6 +1,0 @@
-[[req_tiles_core_conformance-success]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/tiles/core/conformance-success*
-^|A |The API conformance path SHALL advertise the tiles core conformance class as links to http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/core.
-|===

@@ -1,6 +1,0 @@
-[[req_tiles_collections_tcs-op]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/tiles/collections/tcs-op*
-^|A |The server SHALL support the HTTP GET operation at the path /tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}
-|===

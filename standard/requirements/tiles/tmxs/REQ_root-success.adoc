@@ -1,6 +1,0 @@
-[[req_tiles_tmxs_root-success]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/tiles/tmxs/root-success*
-^|A | The API SHALL advertise a URI to retrieve the list of TileMatrixSets defined by this service as links to the descriptions paths with rel=tileMatrixSets..
-|===

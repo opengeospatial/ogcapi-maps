@@ -1,6 +1,0 @@
-[[req_tiles_core_tc-md-collection-links]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/tiles/core/tc-md-collection-links*
-^|A |For each collection included in the response, a `links` property of the collection SHALL include a link to the description of the individual collection (relation: `item`) (in addition to other links specified in OGC API Commons).
-|===

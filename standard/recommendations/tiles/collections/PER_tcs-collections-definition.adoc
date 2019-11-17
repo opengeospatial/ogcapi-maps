@@ -1,6 +1,0 @@
-[[per_tiles_collections_tcs-collections-definition]]
-[width="90%",cols="2,6a"]
-|===
-^|*Permission {counter:per-id}* |*/per/tiles/collections/tcs-collections-definition*
-^|A |If `collections` is missing and if it is not possible and sensible to represent all collections in tiles (e.g. it compromises performance or tiles are become packed with too much elements), the server is allowed to select a subset of the collections for simplification purposes
-|===

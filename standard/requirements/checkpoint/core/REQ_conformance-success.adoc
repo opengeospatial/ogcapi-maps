@@ -1,6 +1,0 @@
-[[req_checkpoint_core_conformance-success]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/checkpoint/core/conformance-success*
-^|A |The API conformance path SHALL advertise the checkpoint core conformance class as links to http://www.opengis.net/spec/ogcapi-checkpoint-1/1.0/req/core.
-|===

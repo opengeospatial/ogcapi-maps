@@ -1,6 +1,0 @@
-[[req_maps_styles_conformance-success]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/maps/styles/conformance-success*
-^|A |The API conformance path SHALL advertise the capability of declaring styles by adding the conformance class for this capability as a link to http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styles.
-|===

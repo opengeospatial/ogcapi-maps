@@ -1,8 +1,0 @@
-[[req_tiles_multitiles_mtc-multitiles-examples]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/tiles/multitiles/mtc-multitiles-examples*
-^|A |The content of the response of a successful execution SHALL include at least a link to a multitiles URI template (relation: `multitiles`).
-^|B |These links SHALL provide a URL template with the fragment `/tiles` followed by the variables {tileMatrixSetId}. Once the variables are substituted by their respective valid values, a URL to a multitiles is obtained.
-^|C |There SHALL be a link to a multitile URI template for each format that the server supports (the format is indicates in the `type` attribute of the link)
-|===

@@ -1,8 +1,0 @@
-[[req_tiles_collections_ts-tile-examples]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/tiles/collections/ts-tile-examples*
-^|A |The content of the response of a successful execution SHALL include at least a link to a tile URI template (relation: `tiles`).
-^|B |These links SHALL provide a URL template with the fragment `/tiles` followed by the variables {tileMatrixSetId}, {tileMatrix}, {tileRow} and {tileCol}. Once the variables are substituted by their respective valid values, a URL to a tile is obtained.
-^|C |There SHALL be a link to a tile URI template for each format that the server supports (the format is indicates in the 'type' attribute of the link)
-|===

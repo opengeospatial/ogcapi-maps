@@ -1,8 +1,0 @@
-[[rec_tiles_multiltiles_mtc-f-tile-definition]]
-[width="90%",cols="2,6a"]
-|===
-^|*Recommendation {counter:rec-id}* |*/rec/tiles/multitiles/mtc-f-tile-definition*
-^|A |When the web interaction allows for HTTP format negotiation `Accept:` header is preferable to specify the required formats. In the case of multitype a composed format is recommended following the pattern application/vnd.ogc.multipart;container={multitile-media-type};tiles={tile-media-type}} (example: application/vnd.ogc.multipart;container=application/x-zip-compressed;tiles=image/png)
-^|A |When the web interaction does not allow for controlling the HTTP format negotiation (e.g. URL in a HTML link), the operation MAY support an optional a parameter `f-tile` to specify the tile media type that the client prefers and a parameter `f` for the media type of the multitile response.
-^|B |The content of these parameters should be specified by the server instance as an enumeration of supported media types in the API description.
-|===

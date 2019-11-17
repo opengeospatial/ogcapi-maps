@@ -1,6 +1,0 @@
-[[req_tiles_tmxs_conformance-success]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/tiles/tmxs/conformance-success*
-^|A |The API conformance path SHALL advertise the capability of generating tiles from multiple collections adding the conformance class for this capability as a link to http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/tmxs.
-|===

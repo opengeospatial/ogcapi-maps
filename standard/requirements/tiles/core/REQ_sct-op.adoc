@@ -1,6 +1,0 @@
-[[req_tiles_core_sct-op]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/tiles/core/sct-op*
-^|A |Every resource available as tiles SHALL support an operation to retrieve the description of the tiles it can provide, available as a HTTP GET request to a URI that will be composed by two parts: a initial part is the URI of a resource that can be represented as tiles and the final part follows the pattern /tiles. Only the resources or collection that supports this operation can be retrieved as tiles.
-|===

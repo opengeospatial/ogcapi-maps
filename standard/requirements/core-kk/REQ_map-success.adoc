@@ -1,7 +1,0 @@
-[[req_core_c-m-success]] 
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/core/map-success* 
-^|A |A successful execution of the operation SHALL be reported as a response with a HTTP status code `200`.
-^|B |The body of a successful response SHALL be a map styled in accordance with the style identified by the `styleId` request path parameter. 
-|===

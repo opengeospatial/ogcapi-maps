@@ -1,6 +1,0 @@
-[[req_tiles_collections_ts-op]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/tiles/collections/ts-op*
-^|A |The server SHALL support an operation to retrieve the description of the tiles from more than one collection, available as a HTTP GET request to a URI that will be composed by two parts: a initial part is the URI of a resource that can be represented as tiles (e.g. `/map` or simply `/`) and the final part follows the pattern `/tiles`.
-|===

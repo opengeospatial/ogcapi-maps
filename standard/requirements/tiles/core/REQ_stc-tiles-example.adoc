@@ -1,7 +1,0 @@
-[[req_tiles_core_stc-tiles-example]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/tiles/core/stc-tiles-example*
-^|A |If the resource can be retrieved as tiles, a `200`-response SHALL include at least a link to a tiles description for this resource.
-^|B |These links SHALL provide a URL template with the fragment `/tiles`.
-|===

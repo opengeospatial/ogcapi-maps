@@ -1,6 +1,0 @@
-[[rec_tiles_core_tc-success-scale]]
-[width="90%",cols="2,6a"]
-|===
-^|*Recommendation {counter:rec-id}* |*/rec/tiles/core/tc-success-scale*
-^|A |The content of that response should be simplified to comply with the scale denominator represented by the TileMatrix identified. Full resolution geographical elements will only be provided for the lower values of scale denominators.
-|===

@@ -1,7 +1,0 @@
-[[req_core_crs84-common]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/core/crs84-common*  
-2+|The API SHALL comply with the following requirements specified in the http://www.opengis.net/spec/OAPI_Common/1.0/req/core Requirements Class of the OGC API-Common version 1.0 Standard.
-^|A |/req/core/crs84
-|===

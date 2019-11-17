@@ -1,7 +1,0 @@
-[[rec_tiles_multiltiles_mtcs-f-tile-definition]]
-[width="90%",cols="2,6a"]
-|===
-^|*Recommendation {counter:rec-id}* |*/rec/tiles/multitiles/mtcs-f-tile-definition*
-^|A |The operation MAY support an optional a parameter `f-tile` to specify the tile format that the client prefers as parts of the multitile response.
-^|B |The content of this parameter should be specified by the server instance as an enumeration of supported media types.
-|===

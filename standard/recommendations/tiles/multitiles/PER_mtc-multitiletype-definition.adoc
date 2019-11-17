@@ -1,6 +1,0 @@
-[[per_tiles_multiltiles_mtc-multitiletype-definition]]
-[width="90%",cols="2,6a"]
-|===
-^|*Permission {counter:per-id}* |*/per/tiles/multitiles/mtc-multitiletype-definition*
-^|A |Server MAY only implement a subset of the enumerated values (url, tiles, full) for the parameter `multitileType` and in this case it will only enumerate this subset in its schema.
-|===

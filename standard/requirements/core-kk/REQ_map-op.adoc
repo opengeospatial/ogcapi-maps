@@ -1,7 +1,0 @@
-[[req_core_c-m-op]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/core/map-op*
-^|A |For every map (path `/collections/{collectionId}/map/{styleId}`), the server SHALL return a map styled in accordance with the style identified by the `styleId` parameter. 
-^|B |The parameter `collectionId` is the `id` property in the collections response (JSONPath: `$.collections[*].id`). `styleId` is a local identifier of the map style to be used.
-|===
