@@ -8,7 +8,11 @@
 :toclevels: 3
 :numbered:
 :sectanchors:
-:source-highlighter: pygments
+//:source-highlighter: pygments
+:source-highlighter: coderay
+// set media to output format print or screen for pdf export
+:media: print
+:bibtex-file: resources/bibtex-file.bib
 
 = {title}
 
