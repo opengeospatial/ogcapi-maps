@@ -98,16 +98,16 @@ include::clause_8_map_maps.adoc[]
 
 include::clause_8_map_collections.adoc[]
 
-include::clause_10_encodings.adoc[]
+//include::clause_10_encodings.adoc[]
 
-include::clause_11_oas.adoc[]
+//include::clause_11_oas.adoc[]
 
-include::clause_11_media_types.adoc[]
+//include::clause_11_media_types.adoc[]
 
 include::annex-ats.adoc[]
 
 include::annex_history.adoc[]
 
-include::annex_bibliography.adoc[]
+//include::annex_bibliography.adoc[]
 
 <<<

@@ -6,19 +6,19 @@
 
 include::requirements/maps/requirements_class_collections.adoc[]
 
-In previous clauses we have been discussion about maps that are produced form one and only one resource. This is achieved by concatenating the map path to a resource (e.g. a feature collection). This extension discusses about the possibility to combine more than one resource to create a map. This is achieved by using by adding the map path to the root of the service.
+In previous clauses maps that are produced form one and only one resource is discussed. This is achieved by concatenating the map path to a resource (e.g. a feature collection). This extension discusses the possibility of combining more than one resource to create a map. This is achieved by using by adding the map path to the root of the service.
 
 === Declaration of conformance classes
 
 ==== Response
 
-The conformance page mainly consists in a list of links. OWS Commmon already requires some links.
+The conformance page mainly consists of a list of links. OGC API - Common already requires some links.
 
 include::requirements/maps/collections/REQ_conformance-success.adoc[]
 
-In the conformance page (commonly in JSON format) the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API tiles conformance information page
+In the conformance page (typically in JSON format) the links follow the link schema defined in the OGC API - Common. The following is an example fragment of the response of an OGC API - Maps conformance information page
 
-[[ConformancePage]]
+[[ConformancePageMapsCollection]]
 .Conformance Information Page fragment
 =================
 [source,JSON]
@@ -44,4 +44,4 @@ include::requirements/maps/collections/REQ_mcs-styles-definition.adoc[]
 include::requirements/maps/collections/REQ_mcs-collections-definition.adoc[]
 
 ==== Response
-To retrieve the map as a map or a a tile another extension is needed. No requirements are provided here.
+To retrieve the map as a map or a tile another extension is needed. No requirements are provided here.

@@ -6,19 +6,19 @@
 
 include::requirements/maps/requirements_class_styles.adoc[]
 
-The maps core introduces the possibility to create a map by assigning an style to a resource (e.g. a collectionId) but does not specify how to declare the styles supported by each collection. The core is only capable to request the default style and the client does not know anything about it. This extension discusses about the possibility to declare style names that can be used to request maps. It is foreseen that a OGC API Styles will allow to retrieve the full information about the style or to send styles to the server.
+The core of the OGC API - Maps draft specification introduces the possibility of creating a map by assigning a style to a resource (e.g. a collectionId) but does not specify how to declare the styles supported by each collection. Only with the core specification an API instance is only capable to request the `default` style and the client does not know anything about it. This requirement class extents the core requirements by specifying how to declare style names other than `default` that can be used to request maps. The  OGC API - Styles draft specification (also elaborated in Testbed-15) will allow for the retrieval of the complete information about the style or to send new styles to the server.
 
 === Declaration of conformance classes
 
 ==== Response
 
-The conformance page mainly consists in a list of links. OWS Commmon already requires some links.
+The conformance page mainly consists of a list of links. OGC API - Common already requires some links.
 
 include::requirements/maps/styles/REQ_conformance-success.adoc[]
 
-In the conformance page (commonly in JSON format) the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API tiles conformance information page
+In the conformance page (typically in JSON format) the links follow the link schema defined in the OGC API - Common. The following is an example fragment of the response of an OGC API - Maps conformance information page that declares support for the core and the styles extension.
 
-[[ConformancePage]]
+[[ConformancePageMapsStyles]]
 .Conformance Information Page fragment
 =================
 [source,JSON]
@@ -33,28 +33,10 @@ In the conformance page (commonly in JSON format) the links are following the li
 =================
 
 === Collection
-This standard includes dependencies on OWS Common collection. The response of the operation is extended with the necessary information to formulate a map response for this collection.
+This draft specification includes dependencies on OGC API - Common collection. The response to the operation is extended with the necessary information to formulate a map response for this collection.
 
-==== Collection Links
+==== Collection Links to styles
 
-include::requirements/maps/styles/REQ_smc-map-examples.adoc[]
-
-In practice, since the map core alone does not specify how to retrieve a map, it is not possible to exemplify completely how the link looks like without considering other extensions. If the server also conforms to an extension to distribute the map as maps, the example will look like this.
-
-.API collection response fragment
-=================
-[source,JSON]
-links:
-[
-    {
-      "href": "http://data.example.com/collections/buildings/map/brown",
-      "rel": "maps",
-      "type": "image/png",
-    }
-]
-=================
-
-==== Collection extra properties
 This extension describes how to provide a list of styles in the collection description.
 
 include::requirements/maps/styles/REQ_smc-styles.adoc[]
@@ -62,7 +44,7 @@ include::requirements/maps/styles/REQ_smc-styles.adoc[]
 .API collection response fragment
 =================
 [source,JSON]
-"styles": [
+  "styles": [
   {
     "id": "night",
     "title": "Topographic night style",
@@ -98,9 +80,9 @@ include::requirements/maps/styles/REQ_smc-styles.adoc[]
 ]
 =================
 
-The mandatory element id can be used a a value for {styleId}.
+The mandatory element id can be used as a value for {styleId}.
 
-The optional links element are useful to connect to a OGC API styles that allows to retrieve the styles description.
+The optional links element is useful for connecting to an OGC API – Styles implementation that allows for retrieving the styles description.
 
 include::recommendations/maps/styles/REC_smc-default-style.adoc[]
 
@@ -110,11 +92,16 @@ include::recommendations/maps/styles/REC_smc-default-style.adoc[]
   "defaultStyle": "topographic"
 =================
 
+=== Maps description
+The core of the OGC API - Maps draft specification defines `maps` resource that is associated with an operation that contains the necessary information to later formulate a map request for a collection. Nevertheless, the core does not require any mandatory information.This requirement class does not require any mandatory information, but the response of the operation is conditioned by the availability of more than one style per collection.
+
 === Maps
-This extension extends the map operation by adding two parameters (`trasnparent` and `bgcolor`) to the `styleId` defined in the core.
+This OGC API - Maps style draft specification extension does not specify how to retrieve a map, but it does specify two parameters (`transparent` and `bgcolor`) in addition to the `styleId` defined in the core.
+
+==== Operation
 
 ==== Parameter styleId
-A part from the `default` style, this extention introduces the values for the styleId that were presented in the `collectionId` definition.
+A part from the `default` style value, this extension introduces the values for the styleId that were presented in the `collectionId` definition.
 
 ==== Parameter transparent
 include::requirements/maps/styles/REQ_mc-transparent-definition.adoc[]
@@ -122,4 +109,4 @@ include::requirements/maps/styles/REQ_mc-transparent-definition.adoc[]
 ==== Parameter bgcolor
 include::requirements/maps/styles/REQ_mc-bgcolor-definition.adoc[]
 
-If the client want to force an opaque color, a part from defining the appropriate background color it should ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values in the map.
+If the client wants to force an opaque color, apart from defining the appropriate background color it should ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency, it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values and colors in the map.

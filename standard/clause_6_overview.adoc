@@ -3,41 +3,78 @@
 
 === Evolution from OGC Web Services
 
-OGC Web Service (OWS) standards implemented a Remote-Procedure-Call-over-HTTP architectural style using XML for payloads. This was the state-of-the-art when OGC Web Services were originally designed in the late 1990s and early 2000s. This architectural style has fallen out of favor. It has been replaces by a RESTful API style which is resource oriented instead of service oriented. This Map Tiles API standard specifies an API that follows this Web architecture and in particular the <<SDWBP,W3C/OGC best practices for sharing Spatial Data on the Web>> as well as the <<DWBP,W3C best practices for sharing Data on the Web>>.
+OGC Web Service (OWS) standards have historically implemented a Remote-Procedure-Call-over-HTTP architectural style using Extensible Markup Language (XML) for payloads. This was the state-of-the-art when some of the initial versions of OGC Web Services were originally designed in the late 1990s and early 2000s. This architectural style has now a competing RESTful API style that is proposed as an alternative to RPC pattern. A RESTful API style is resource-oriented instead of service-oriented. This OGC API - Maps and Tiles draft specification specifies an API that follows this Web architecture and in particular the W3C/OGC best practices for sharing Spatial Data on the Web as well as the W3C best practices for sharing Data on the Web.
 
-The OGC API (OAPI) Common specifies the common kernel of an API approach to services that follows current resource-oriented architecture practices. OAPI Common is the foundation upon which OGC APIs will be built. This common API is to be extended by resource-specific API standards. This specification extends OAPI Common to support Map Tile resources.
+The OGC API – Common draft specification specifies the common kernel of an API approach to services that follows current resource-oriented architecture practices. The draft OGC API - Common specification is the foundation upon which OGC APIs will be built. This common API is to be extended by resource-specific API standards. This draft specification extends OGC API - Common to support Map and Tile resources.
 
 Beside the general alignment with the architecture of the Web (e.g., consistency with HTTP/HTTPS, hypermedia controls), another goal for OGC API standards is modularization. This goal has several facets:
 
-* Clear separation between core requirements and more advanced capabilities. This document specifies the requirements that are relevant for almost everyone who wants to share or use Map Tiles on a fine-grained level. Additional capabilities that several communities are using today will be specified as extensions to the Core API.
+* Clear separation between core requirements and more advanced capabilities. This OGC API – Maps and Tiles draft specification presents the requirements that are relevant for almost everyone who wants to share or use Tiled Map Data on a fine-grained level. Additional capabilities that several communities are using today will be specified as extensions to the Core API.
 * Technologies that change more frequently are decoupled and specified in separate modules ("requirements classes" in OGC terminology). This enables, for example, the use/re-use of new encodings for spatial data or API descriptions.
-* Modularization is not just about a single "service". OGC APIs will provide building blocks that can be reused in APIs in general. In other words, a server supporting the Map Tiles API should not be seen as a standalone service.  Rather it should be viewed as a collection of API building blocks which together implement Map Tile capabilities. A corollary of this is that it should be possible to implement an API that simultaneously conforms to conformance classes from the Feature, Coverage, Map Tiles, and other OGC Web API standards.
+* Modularization is not just about a single "service". OGC APIs will provide building blocks that can be reused in APIs in general. In other words, a server supporting the OGC API - Tiles should not be seen as a standalone service. Rather it should be viewed as a collection of API building blocks which together implement Map and Tile capabilities. A corollary for this is that it should be possible to implement an API that simultaneously conforms to conformance classes from the Feature, Coverage, Map, Tiles, and other future OGC Web API standards.
 
 This approach intends to support two types of client developers:
 
-* Those that have never heard about OGC. Developers should be able to create a client using the API definition without the need to read an OGC standard (they may need to learn a little bit about geometry, etc.);
-* Those that want to write a "generic" client that can access OGC APIs, i.e. are not specific for a particular API.
+* Those that have never heard about OGC. Developers should be able to create a client using the API definition without the need to adopt a specific OGC approach (they no longer need to read how to implement a GetCapabilities, allowing them to focus on the geospatial aspects).
+* Those that want to write a "generic" client that can access OGC APIs. In other words, they are not specific for a particular API.
 
-As a result of this modernization, OGC API implementations are not backwards compatible with OWS implementations per se. However, a design goal is to define OGC APIs in a way so that an OAPI interface can be mapped to a OWS implementation. OGC APIs are intended to be simpler and more modern, but still an evolution from the previous versions and their implementations.
+As a result of following a RESTful approach, OGC API implementations are not backwards compatible with OWS implementations per se. However, a design goal is to define OGC APIs in a way that an OGC API interface can be mapped to an OWS implementation (where appropriate). OGC APIs are intended to be simpler and more modern, but still an evolution from the previous versions and their implementations making the transition easy (e.g. by initially implementing facades in front of the current OWS services).
 
-=== Encodings
+This document provides simple examples throughout the document. The examples are based on a dataset that contains buildings and the API provides access to the datasets via a single feature collection ("buildings") and two encodings: JSON and Hypertext Markup Language (HTML).
 
-[NOTE]
-========
-Discuss if different encodings of map tiles are anticipated.
-========
+=== Tiles and maps
 
+WMS and WMTS share the concept of a map and the capability to create and distribute maps at a limited resolution and size. In WMS the number of rows and columns can be selected by the user within limits and in WMTS the number of rows and columns of the response is predefined in the tile matrix set.
 
+With time, the concept of a tile has been generalized to other data models such as feature data (some vendors use the expression _vector tiles_) and even to coverage data. This draft specification presents an approach to tiles that can be applied to almost every resource type that returns data representations. If applied in conjunction with the OGC API - Features standard and on top of a feature collection, the expected result is tiled feature data. If applied in conjunction with the OGC API - Maps draft specification and on top of a collection that is transformed into a map by applying a style, the result should be map tiles (usually in PNG or JPEG format).
 
-=== Examples
+In this draft specification the OGC API - Tiles is almost fully described. It includes the a core and extensions for defining tile matrix sets, tiles from more that one collection, multi-tiles and multitiles from more than one collection. And info extension is foreseen but not fully developed. In contrast, OGC API - Maps is only partially described based on Testbed-15 requirements. The Maps API is described only to the extent to allow for map tiles to be created on top of a map created by selecting a collection with style or multiple collections with styles. This draft specification contains a section for retrieving a map of an arbitrary number of rows and columns but is not fully formulated. Other extensions for maps are also foreseen. In the future, the WMS SWG could take this document and complete the missing capabilities.
 
-[NOTE]
-========
-Update the following content once a Map Tile example has been agreed on.
-========
+[#img_CoreAndExtension,reftext='{figure-caption} {counter:figure-num}']
+.Modular approach in the Maps and Tiles draft specification
+image::images/CoreAndExtension.png[width=600,align="center"]
 
-This document uses a simple example throughout the document: The dataset contains buildings and the API provides access to them through a single feature collection ("buildings") and two encodings, GeoJSON and HTML.
+=== How to approach an OGC API
+There are two ways to approach an OGC API.
 
-The buildings have a few (optional) properties: the polygon geometry of the building footprint, a name, the function of the building (residential, commercial or public use), the floor count and the timestamp of the last update of the building feature in the dataset.
+* Read the landing page, look for links, follow them and discover new links until the desired resource is found
+* Read and API definition document that will specify a list of paths to resources.
 
-This example serves to illustrate the concepts underlying OGC APIs. It does not indicate that OGC APIs are always feature based. Other resource types can and will be implemented as well. But the basic capapablities described in this specification will apply to all.
+For the first approach, many resources in the API include links with rel properties to know the reason for this relation. The following figure illustrates does links.
+
+[#img_relMapTiles,reftext='{figure-caption} {counter:figure-num}']
+.Resources and relations to them via links
+image::images/relMapTiles.png[width=600,align="center"]
+
+For the second approach, the section <<OpenAPIExamples>> will provide some examples of OpenAPI definition documents that enumerate the paths to get to the necessary resources directly.
+
+[#table_resources,reftext='{table-caption} {counter:table-num}']
+.Overview of resources and common direct links defined in the API
+[cols="33,66",options="header"]
+!===
+|Resource name |Common path
+|Landing page |`/`
+|Conformance declaration |`/conformance`
+|Collections |`/collections`
+|Collection |`/collections/{collectionId}`
+|Tiling Schemas |`/tileMatrixSets`
+|Tiling Schema |`/tileMatrixSets/{tileMatrixSetId}`
+2+|Tiles
+|Vector Tiles description |`/collections/{collectionId}/tiles`
+|Vector Tiles description from collections |`/tiles`
+|Vector Tile |`/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}`
+|Vector tile collections^1^ |`/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}`
+|Vector Multi-tiles |`/collections/{collectionId}/tiles/{tileMatrixSetId}`
+|Vector Multi-tiles collections^1^ |`/tiles/{tileMatrixSetId}`
+2+|Map tiles
+|Map tiles description |`/collections/{collectionId}/map/`
+|Map tiles description collections^1^ |`/map/tiles`
+|Map tile |`/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}`
+|Map tile collections^1^ |`/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}`
+|Map tile multi-tiles |`/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}`
+|Map tile multi-tiles collections^1^ | `/map/tiles/{tileMatrixSetId}`
+2+|Maps
+|Maps description |`/collections/{collectionId}/map`
+|Maps description collections^1^ |`/map`
+!===
+^1^: In first column of the table, the word "collections" means "from more than one collection"

@@ -6,38 +6,35 @@
 
 include::requirements/maps/requirements_class_core.adoc[]
 
-A map distribution of a dataset as a pictorial representation of a dataset or the collections it has been divided in. To create a pictorial representation a style is added to the collections. Then, a map can be retrieved by specifying a set of parameters that will determine its resolution (width, height, boundingbox and CRS) or can be retrieved as tiles.
+A map distribution of a dataset is a pictorial representation of the dataset or the collections it has been divided in. To create a pictorial representation a style is added to the data in the collections. Styles are defined internally and have a identifier. New styles can be added or modified if the OGC API - Maps draft specification works in combination with the OGC API - Styles draft specification (also developed in the Testbed-15). After associating collections to styles, a map can be retrieved by specifying a set of parameters that will determine its resolution (width, height, bounding  box and CRS) or can be retrieved as tiles.
 
-This clause defines the core part of the OGC API Maps that allows defining a map representation of a collection. To retrieve a fragment of the map, this clause need to be combined with a tiles extension or a map extension.
+This section defines the core part of the OGC API - Maps draft specification that allows defining a map representation for a collection. To retrieve a fragment of the map, this section needs to be combined with an OGC API - Tiles draft specification or with the OGC API - Maps - Map extension draft specification.
 
-To keep the core simple, it will introduce a mechanism to select the default style but it will not introduce any mechanism to define or select other styles. The core only assumes that the service is capable of dealing with a default style.
+To keep the core of the OGC API - Maps draft specification simple, only includes a mechanism to select the default style but it does not define any mechanism to define or select a style other than the default one. The core specification only assumes that the service is capable of knowing which is the default style while the client ignores all the details about it (including its name).
 
 === General
 include::requirements/maps/core/REQ_api-common.adoc[]
 
-In practice, this means that the landing page and the conformance page follows OGC API Common core and collections requirements (STILL TBD but mostly equivalent to the more general parts of WFS3.0 requirements but with the text generalized to other resource types). This standard provides extra additions to the OWS common requirements that are particular to maps.
+In practice, this means that the landing page and the conformance page follow OGC API - Common core and collections requirements. This draft specification provides additions to the OGC API - Common requirements that are particular to maps use case.
 
 === API landing page
 
-The landing page provides links to start exploring the resources offered by the API. It mainly consists in a list of links. OWS Common already requires some common links that are enough for this core.
+The landing page provides links to start exploring the resources offered by the API instance. It mainly consists of a list of links. OGC API - Common already requires some common links that are enough for this core.
 
 ==== Response
-No variations are required in the landing page.
-With a /collections successful response it is possible to retrieve the list of collectionId and links to the /collections/{collectionId}.
-With a /collections/{collectionId} successful response, it is possible to discover the links to retrieve some maps.
-Note that other resources can also be retrieved as collections (e.g. coverages)
+There are no required variations to the landing page.
 
 === Declaration of conformance classes
 To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the requirements classes it implements and conforms to.
 
 ==== Response
-The conformance page mainly consists in a list of links. OWS Commmon already requires some links.
+The conformance page mainly consists of a list of links. OGC API - Common already requires some links.
 
 include::requirements/maps/core/REQ_conformance-success.adoc[]
 
-In the conformance page (commonly in JSON format) the links are following the link schema defined in the OGC API Common. The following is an example fragment of the response of a OGC API maps conformance information page
+In the conformance page (typically in JSON format) the links follow the link schema defined in the OGC API - Common. The following is an example fragment of the response of an OGC API maps conformance information page.
 
-[[ConformancePage]]
+[[ConformancePageMapsCore]]
 .Conformance Information Page fragment
 =================
 [source,JSON]
@@ -52,12 +49,9 @@ In the conformance page (commonly in JSON format) the links are following the li
 =================
 
 === Collections
-TBD: What will happen with collections of coverages?
+This draft specification includes dependencies on OGC API - Common collections. Collections are mandatory in the core of this draft specification because collections are the object that can eventually be included in a map.
 
-This standard includes dependencies on OWS Common collections. Collections are mandatory in the core of this standard because collections are the object that will be included in a map.
-
-Collections will enumerate the collectionId available in this API as well as basic information about each collectionId: id, title, description, extent, crs and links. This common response is considered enough for a general
-description of the collection.
+Collections enumerate the collectionId identifiers available in this API as well as basic information about each collectionId: id, title, description, extent, crs and links. This common response is considered enough for a general description of the collection.
 
 include::requirements/maps/core/REQ_mc-md-collection-links.adoc[]
 
@@ -65,20 +59,23 @@ More specific details about the collection can be found following the link to th
 
 NOTE: The collectionId substitutes the concept of "layer" in WMS.
 
-=== Maps description resource
+NOTE: In WMS layers have a hierarchical dependency. The authors believe it is the responsibility of OGC API - Common to provide this functionally. At the time of writing this draft specification the OWS Common SWG has not consider his possibility yet.
 
-The maps core defines a `maps` resource that is associated to an operation contains the necessary information to later formulate a map request for a collection. Nevertheless, the core does not require an information mandatory since the map core alone does not specify how to retrieve a map. It is not possible to exemplify completely how this maps description looks like without considering other extensions.
+=== Maps description
+The maps core defines a `maps` resource that is associated with an operation that contains the necessary information to later formulate a map request for a collection. Nevertheless, the core does not require any mandatory information since the map core alone does not specify how to retrieve a map. This core does not mandate a map description operation. The map description cannot be described without considering other OGC API - Maps extensions.
 
 ==== Map description response
-This core does not mandate a map description operation. Nevertheless, if it is defined by an extension, it introduces the need to have a specific properties.
-
-In here, two properties inherit from WMS that are recommended here: cascade and opaque.
+This core does not mandate a map description operation. Nevertheless, if it is defined by an OGC API - Maps extension, the core introduces recommendations for having two specific properties in the response of a map description that are inherited from WMS: cascade and opaque.
 
 include::recommendations/maps/core/REC_smc-opaque.adoc[]
 
 include::recommendations/maps/core/REC_smc-cascaded.adoc[]
 
 === Maps
+This OGC API - Maps core draft specification does not specify how to retrieve a map but it does specify that in order for a map to be retrievable a parameter styleId should be added to any operation that retrieves a map as maps or as tiles.
+
+==== Operation
+
 include::requirements/maps/core/REQ_mc-map-op.adoc[]
 
 ==== Parameter styleId
