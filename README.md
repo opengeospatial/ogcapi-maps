@@ -1,16 +1,13 @@
-# OGC-API-Map-Tiles
+# OGC-API-Maps
 
-This GitHub repository contains the new revision of the [OGC](http://opengeospatial.org)'s Web Map Service and Web Map Tile Service standards for requesting maps and tiles of geospatial information on the web. It is a complete rewrite of previous versions, focusing on a simple RESTful core specified as reusable [OpenAPI](http://openapis.org) components.
+This GitHub repository contains the new revision of the [OGC](http://opengeospatial.org)'s Web Map Service for requesting maps of geospatial information on the web. It is a complete rewrite of previous versions, focusing on a simple RESTful core specified as reusable [OpenAPI](http://openapis.org) components.
 
-IMPORTANT: Current work has been moved to the deliverables in Testbed-15 that contain the LAST VERSION of the materials. See:
+This is the CURRENT working version of this initiative (Old version work has been moved to the deliverables in Testbed-15 that contain the LAST VERSION of the materials. See: https://github.com/opengeospatial/T-15-D014-WMTS_draft_specification)
 
-https://github.com/opengeospatial/T-15-D014-WMTS_draft_specification
-
-many examples of OpenAPI document can be found here:
-
+IMPORTANT: Many examples of OpenAPI documents that are used as inspiration and test of this work is here:
 https://app.swaggerhub.com/apis/UAB-CREAF
 
-This work encompasses two standards that will be developed simultaneously. In the end, most people believe at least 2 standards will emerge or even more when the core and extension model is applied. I'm not so sure.
+There is some level of overlap with the OGC API - Tiles. OGC API - Tiles will be elaborated first.
 
 ## Standards
 After a while getting familiar and playing with the OpenAPI definition files (explained just below in the "Examples section"), we have finally started to write the standard. We have decided an aggressive path to modularization having 2 cores, one for tiles and another for maps that can be combined as needed. Several extension for tiles and maps will emerge in the process.
