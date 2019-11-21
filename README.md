@@ -14,28 +14,6 @@ After a while getting familiar and playing with the OpenAPI definition files (ex
 
 The standard is written using asciidoc using many files that might be dificult to trace. Please see the standard document as a long HTML page EASY TO READ FORMAT here: https://htmlpreview.github.io/?https://github.com/opengeospatial/OGC-API-Map-Tiles/blob/master/standard/OAPI_MapsTiles.html
 
-### Tiles
-#### Core
-For the moment we have focus out efforts on defining the "tile core" that you can find [here: clause_7_tile_core](standard/clause_7_tile_core.adoc).
-
-The core is:
-* Only one collection
-* Only support for WebMercatorQuad
-* No TileMatrixSet definition
-* No TileMatrixSet Link
-* No featureInfo
-* Can only retrieve one tile at a time
-* Has no information about updates
-
-#### Extensions
-We foresee the following extensions (some of them can end into OGC standards and some might not)
-* Other TileMatrixSets  (started in: [clause_7_tile_tms](standard/clause_7_tile_tms.adoc) )
-* Info (featureInfo) (started in: [clause_7_tile_info](standard/clause_7_tile_info.adoc) )
-* Collections (more than one) (started in: [clause_7_tile_collections](standard/clause_7_tile_collections.adoc) )
-* Collections-info (with feautureInfo) (pending)
-* Multi-tile (retrieve a ZIP with many tiles) (pending, necessary for the update workflow)
-* Delta-updates (using checkpoints) (pending, necessary for the update workflow)
-
 ### Maps
 #### Core
 The definition of the maps core is the immediate next step that will be done [here: clause_8_map_core](standard/clause_8_map_core.adoc).
@@ -60,6 +38,9 @@ None of them has been started yet.
 * Maps with styles on the fly (involving collections)
 
 ## Examples
+
+WARNING: This section need to be updated.
+
 Until mid July 2019, the work was focused on providing OpenAPI services description examples and domains (libraries). Now we believe this work is finalized, but each time that we take a look we still find gaps, mistakes and things that can be improved.
 We expect that during the effort of extracting the knowledge accumulated (hopefully) in these files to create the standard, we will keep fixing, perfecting and evolving things.
 
@@ -110,29 +91,6 @@ Maps can be requested in any available CRS and can be subset by bbox width and h
 GET /.../.../map/{styleId}?crs=CRS84&bbox=160.6,-55.95,-170,-25.89&width=600&height=400
 ```
 Returns a map - a representation of real-world elements at a given resolution. {styleId} is optional.
-
-
-### Tiles
-
-A "OGC API - Tiles" is a standard API that provides tiles of maps representing geospatial data.
-
-```
-GET /.../.../tile/{styleId}/{tileMatrixSetId}/{tileMatrixId}/{tileRow}/{tileCol}
-```
-
-Returns a tile - a representation of real-world elements at a given resolution restricted by the selected Tile Matrix Set. {styleId} is optional.
-
-The identifier of the "layer" is replaced by "{collectionId}" or "coverage"...
-
-Tiles are available at some TileMatrixSetId and styles that need to be enumerated in:
-```
-GET /.../.../tiles
-```
-
-There is a need for describing the TileMatrixSet available
-```
-GET /tileMatrixSet/{tileMatrixSetId}
-```
 
 ## Using the standard
 
