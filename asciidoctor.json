@@ -3,7 +3,7 @@
                 "OGC_doc_number": "19-zzz",
                 "urn":"http://www.opengis.net/doc/DRAFT/ogc_api_map_tiles",
                 "title":"OGC API Map Tiles",
-                "path":"standard/OAPI_MapsTiles.adoc",
+                "path":"core/standard/OAPI_MapsTiles.adoc",
                 "options": ["--trace"],
                 "a":[
                         "data-uri"
