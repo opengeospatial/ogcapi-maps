@@ -94,13 +94,7 @@ include::clause_5_conventions.adoc[]
 
 include::clause_6_overview.adoc[]
 
-include::clause_8_map_core.adoc[]
-
-include::clause_8_map_styles.adoc[]
-
-include::clause_8_map_maps.adoc[]
-
-include::clause_8_map_collections.adoc[]
+include::clause_8_map_bbox.adoc[]
 
 //include::clause_10_encodings.adoc[]
 

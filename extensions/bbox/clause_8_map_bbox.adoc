@@ -1,4 +1,4 @@
-== Requirement Class "Map Maps"
+== Requirement Class "Map BBox"
 
 NOTE: This section should be elaborated by a SWG and only some hints are provided in this Engineering Report. This section is out of the scope of the Testbed-15.
 
@@ -6,16 +6,16 @@ WARNING: Some subsections are intentionally left blank.
 
 === Overview
 
-[[maps-maps-overview]]
+[[maps-bbox-overview]]
 
-//include::requirements/maps/requirements_class_maps.adoc[]
+include::requirements/maps/requirements_class_bbox.adoc[]
 
 This extension describes how a map can be retrieved by specifying a set of parameters that will determine its resolution (width, height, boundingbox and CRS).
 
 The map can use the default style or it can select one of the styles available if the right extension is also added to the core.
 
 === General
-//include::requirements/maps/core/REQ_api-common.adoc[]
+//include::requirements/maps/bbox/REQ_api-common.adoc[]
 
 In practice, this means that the landing page and the conformance page follow OGC API - Common core requirements. More is still TBD but mostly equivalent to the general parts of OGC API - Features requirements, though with the text generalized to other resource types. This draft specification provides extra additions to the OGC API - Common requirements that are particular of tiles.
 
@@ -38,7 +38,7 @@ To support "generic" clients that want to access multiple OGC API standards and 
 
 The conformance page mainly consists of a list of links. OGC API - Common already requires some links.
 
-//include::requirements/maps/maps/REQ_conformance-success.adoc[]
+//include::requirements/maps/bbox/REQ_conformance-success.adoc[]
 
 In the conformance page (typically in JSON format) the links follow the link schema defined in the OGC API - Common. The following is an example fragment of the response of an implementation of the OGC API – Maps draft specification with the maps extension conformance information page.
 
@@ -52,7 +52,7 @@ In the conformance page (typically in JSON format) the links follow the link sch
     "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
     "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core"
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/maps"
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/bbox"
   ]
 }
 =================
@@ -72,7 +72,7 @@ This draft specification includes dependencies on OGC API - Common collection. T
 ==== Collection Links
 
 TBD
-//include::requirements/maps/core/REQ_smc-maps-desc-links.adoc[]
+//include::requirements/maps/bbox/REQ_smc-maps-desc-links.adoc[]
 
 ==== Maps metadata
 The core of the OGC API - Maps draft specification defines a `maps` resource that is associated to an operation contains the necessary information to later formulate a map request for a collection. Neither the core, nor the styles extension requires any mandatory information. This requirement class does require this operation to be able to retrieve a map as maps (this resource will not be present if the map is only available as tiles).
