@@ -1,0 +1,14 @@
+== References
+The following normative documents contain provisions that, through reference in this text, constitute provisions of this document. For dated references, subsequent amendments to, or revisions of, any of these publications do not apply. For undated references, the latest edition of the normative document referred to applies.
+
+OGC: OGC API (OAPI) Common Specification https://github.com/opengeospatial/oapi_common (in the process of elaboration)
+
+OGC: OGC 17-083r2, OGC Two Dimensional Tile Matrix Set Standard (2019)
+
+In addition, this standard is deeply inspired in concepts defined in the following documents. This standard offers and alternative interface to fulfill similar tasks included in these references.
+
+OGC and ISO: OGC 06-042 1.3.0	OpenGIS Web Map Service (WMS) Implementation Specification
+
+OGC: OGC 07-057, OpenGIS® Web Map Tile Service Implementation Standard (2010)
+
+OGC: OGC 13-082, OGC® Web Map Tile Service (WMTS) Simple Profile (2016)

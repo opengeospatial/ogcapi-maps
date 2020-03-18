@@ -216,20 +216,56 @@
 </li>
 </ul>
 </li>
-<li><a href="#_requirement_class_map_from_more_than_one_collection">9. Requirement Class "Map from more than one collection"</a>
+<li><a href="#_requirement_class_map_maps">9. Requirement Class "Map Maps"</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_3">9.1. Overview</a></li>
-<li><a href="#_declaration_of_conformance_classes_3">9.2. Declaration of conformance classes</a>
+<li><a href="#_general_2">9.2. General</a></li>
+<li><a href="#_api_landing_page_2">9.3. API landing page</a>
 <ul class="sectlevel3">
-<li><a href="#_response_4">9.2.1. Response</a></li>
+<li><a href="#_response_4">9.3.1. Response</a></li>
 </ul>
 </li>
-<li><a href="#_maps_from_more_than_one_collection">9.3. Maps from more than one collection</a>
+<li><a href="#_declaration_of_conformance_classes_3">9.4. Declaration of conformance classes</a>
 <ul class="sectlevel3">
-<li><a href="#_operation_3">9.3.1. Operation</a></li>
-<li><a href="#_parameter_styles">9.3.2. Parameter styles</a></li>
-<li><a href="#_parameter_collections">9.3.3. Parameter Collections</a></li>
-<li><a href="#_response_5">9.3.4. Response</a></li>
+<li><a href="#_response_5">9.4.1. Response</a></li>
+</ul>
+</li>
+<li><a href="#_collections_2">9.5. Collections</a></li>
+<li><a href="#_collection_2">9.6. Collection</a>
+<ul class="sectlevel3">
+<li><a href="#_collection_links">9.6.1. Collection Links</a></li>
+<li><a href="#_maps_metadata">9.6.2. Maps metadata</a></li>
+<li><a href="#_operation_3">9.6.3. Operation</a></li>
+<li><a href="#_response_6">9.6.4. Response</a></li>
+</ul>
+</li>
+<li><a href="#_maps_from_one_collection">9.7. Maps from one collection</a>
+<ul class="sectlevel3">
+<li><a href="#_operation_4">9.7.1. Operation</a></li>
+<li><a href="#_parameter_crs">9.7.2. Parameter crs</a></li>
+<li><a href="#_parameter_bbox">9.7.3. Parameter bbox</a></li>
+<li><a href="#_parameter_width">9.7.4. Parameter width</a></li>
+<li><a href="#_parameter_height">9.7.5. Parameter height</a></li>
+<li><a href="#_response_7">9.7.6. Response</a></li>
+<li><a href="#_error_conditions">9.7.7. Error conditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_requirement_class_map_from_more_than_one_collection">10. Requirement Class "Map from more than one collection"</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_4">10.1. Overview</a></li>
+<li><a href="#_declaration_of_conformance_classes_4">10.2. Declaration of conformance classes</a>
+<ul class="sectlevel3">
+<li><a href="#_response_8">10.2.1. Response</a></li>
+</ul>
+</li>
+<li><a href="#_maps_from_more_than_one_collection">10.3. Maps from more than one collection</a>
+<ul class="sectlevel3">
+<li><a href="#_operation_5">10.3.1. Operation</a></li>
+<li><a href="#_parameter_styles">10.3.2. Parameter styles</a></li>
+<li><a href="#_parameter_collections">10.3.3. Parameter Collections</a></li>
+<li><a href="#_response_9">10.3.4. Response</a></li>
 </ul>
 </li>
 </ul>
@@ -768,11 +804,11 @@
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="JSON">{
-  "conformsTo": [
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">conformsTo</span><span class="delimiter">&quot;</span></span>: [
   [
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core"
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core</span><span class="delimiter">&quot;</span></span>,
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections</span><span class="delimiter">&quot;</span></span>,
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core</span><span class="delimiter">&quot;</span></span>
   ]
 }</code></pre>
 </div>
@@ -969,13 +1005,13 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="YAML">   name: styleId
+<pre class="CodeRay highlight"><code data-lang="YAML">   <span class="key">name</span>: <span class="string"><span class="content">styleId</span><span class="content">
      in: path
      description:
        'The styleId that should be included in the map or tile. Each collectionId has a valid list of stylesId. To know the valid styleId values of each collectionId use /collections/{collectionId}.'
      required: true
      schema:
-       type: string</code></pre>
+       type: string</span></span></code></pre>
 </div>
 </div></div></td>
 </tr>
@@ -1058,11 +1094,11 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="JSON">{
-  "conformsTo": [
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core"
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styles"
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">conformsTo</span><span class="delimiter">&quot;</span></span>: [
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core</span><span class="delimiter">&quot;</span></span>,
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections</span><span class="delimiter">&quot;</span></span>,
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core</span><span class="delimiter">&quot;</span></span>
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styles</span><span class="delimiter">&quot;</span></span>
   ]
 }</code></pre>
 </div>
@@ -1106,22 +1142,22 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="YAML">  type: object
-  required:
-    - id
-  properties:
-    id:
-      type: string
-      nullable: true
-    title:
-      type: string
-      nullable: true
-    links:
-      type: array
-      nullable: true
-      minItems: 1
-      items:
-        $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'</code></pre>
+<pre class="CodeRay highlight"><code data-lang="YAML">  <span class="key">type</span>: <span class="string"><span class="content">object</span></span>
+  <span class="key">required</span>:
+    - <span class="string"><span class="content">id</span></span>
+  <span class="key">properties</span>:
+    <span class="key">id</span>:
+      <span class="key">type</span>: <span class="string"><span class="content">string</span></span>
+      <span class="key">nullable</span>: <span class="string"><span class="content">true</span></span>
+    <span class="key">title</span>:
+      <span class="key">type</span>: <span class="string"><span class="content">string</span></span>
+      <span class="key">nullable</span>: <span class="string"><span class="content">true</span></span>
+    <span class="key">links</span>:
+      <span class="key">type</span>: <span class="string"><span class="content">array</span></span>
+      <span class="key">nullable</span>: <span class="string"><span class="content">true</span></span>
+      <span class="key">minItems</span>: <span class="string"><span class="content">1</span></span>
+      <span class="key">items</span>:
+        <span class="error">$ref</span>: <span class="error">'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'</span></code></pre>
 </div>
 </div></div></td>
 </tr>
@@ -1132,36 +1168,36 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="JSON">  "styles": [
+<pre class="CodeRay highlight"><code data-lang="JSON">  <span class="key"><span class="delimiter">&quot;</span><span class="content">styles</span><span class="delimiter">&quot;</span></span>: [
   {
-    "id": "night",
-    "title": "Topographic night style",
-    "links": [
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">night</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Topographic night style</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">links</span><span class="delimiter">&quot;</span></span>: [
       {
-        "href": "https://example.com/api/1.0/styles/night?f=sld10",
-        "type": "application/vnd.ogc.sld+xml;version=1.0",
-        "rel": "stylesheet"
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">href</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">https://example.com/api/1.0/styles/night?f=sld10</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">type</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">application/vnd.ogc.sld+xml;version=1.0</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">rel</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">stylesheet</span><span class="delimiter">&quot;</span></span>
       },
       {
-        "href": "https://example.com/api/1.0/styles/night/metadata?f=json",
-        "type": "application/json",
-        "rel": "describedBy"
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">href</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">https://example.com/api/1.0/styles/night/metadata?f=json</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">type</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">application/json</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">rel</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">describedBy</span><span class="delimiter">&quot;</span></span>
       }
     ]
   },
   {
-    "id": "topographic",
-    "title": "Regular topographic style",
-    "links": [
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">topographic</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Regular topographic style</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">links</span><span class="delimiter">&quot;</span></span>: [
       {
-        "href": "https://example.com/api/1.0/styles/topographic?f=sld10",
-        "type": "application/vnd.ogc.sld+xml;version=1.0",
-        "rel": "stylesheet"
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">href</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">https://example.com/api/1.0/styles/topographic?f=sld10</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">type</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">application/vnd.ogc.sld+xml;version=1.0</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">rel</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">stylesheet</span><span class="delimiter">&quot;</span></span>
       },
       {
-        "href": "https://example.com/api/1.0/styles/topographic/metadata?f=json",
-        "type": "application/json",
-        "rel": "describedBy"
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">href</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">https://example.com/api/1.0/styles/topographic/metadata?f=json</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">type</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">application/json</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">rel</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">describedBy</span><span class="delimiter">&quot;</span></span>
       }
     ]
   }
@@ -1207,10 +1243,10 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="YAML">  default-style:
-    type: string
-    description: the style id of a recommended default style to use for this collection. This is informative and optional.
-    example: 'topographic'</code></pre>
+<pre class="CodeRay highlight"><code data-lang="YAML">  <span class="key">default-style</span>:
+    <span class="key">type</span>: <span class="string"><span class="content">string</span></span>
+    <span class="key">description</span>: <span class="string"><span class="content">the style id of a recommended default style to use for this collection. This is informative and optional.</span></span>
+    <span class="key">example</span>: <span class="string"><span class="content">'topographic'</span></span></code></pre>
 </div>
 </div></div></td>
 </tr>
@@ -1221,7 +1257,7 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="JSON">  "defaultStyle": "topographic"</code></pre>
+<pre class="CodeRay highlight"><code data-lang="JSON">  <span class="key"><span class="delimiter">&quot;</span><span class="content">defaultStyle</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">topographic</span><span class="delimiter">&quot;</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1270,16 +1306,16 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="YAML">  name: transparent
-  in: query
-  description:
-    'Background transparency of map (default=true).'
-  required: false
-  style: form
-  explode: false
-  schema:
-    type: boolean
-    default: true</code></pre>
+<pre class="CodeRay highlight"><code data-lang="YAML">  <span class="key">name</span>: <span class="string"><span class="content">transparent</span></span>
+  <span class="key">in</span>: <span class="string"><span class="content">query</span></span>
+  <span class="key">description</span>:
+    <span class="error">'Background transparency of map (default=true).'</span>
+  <span class="key">required</span>: <span class="string"><span class="content">false</span></span>
+  <span class="key">style</span>: <span class="string"><span class="content">form</span></span>
+  <span class="key">explode</span>: <span class="string"><span class="content">false</span></span>
+  <span class="key">schema</span>:
+    <span class="key">type</span>: <span class="string"><span class="content">boolean</span></span>
+    <span class="key">default</span>: <span class="string"><span class="content">true</span></span></code></pre>
 </div>
 </div></div></td>
 </tr>
@@ -1313,16 +1349,16 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="YAML">  name: bgcolor
-  in: query
-  description:
-    Hexadecimal red-green-blue[-alpha] color value for the background color. If alpha is not specified a binary opacity will be used depending on the transparent parameter.
-  required: false
-  style: form
-  explode: false
-  schema:
-    type: string
-    default: 0xFFFFFF</code></pre>
+<pre class="CodeRay highlight"><code data-lang="YAML">  <span class="key">name</span>: <span class="string"><span class="content">bgcolor</span></span>
+  <span class="key">in</span>: <span class="string"><span class="content">query</span></span>
+  <span class="key">description</span>:
+    <span class="error">Hexadecimal red-green-blue[-alpha] color value for the background color. If alpha is not specified a binary opacity will be used depending on the transparent parameter.</span>
+  <span class="key">required</span>: <span class="string"><span class="content">false</span></span>
+  <span class="key">style</span>: <span class="string"><span class="content">form</span></span>
+  <span class="key">explode</span>: <span class="string"><span class="content">false</span></span>
+  <span class="key">schema</span>:
+    <span class="key">type</span>: <span class="string"><span class="content">string</span></span>
+    <span class="key">default</span>: <span class="string"><span class="content">0xFFFFFF</span></span></code></pre>
 </div>
 </div></div></td>
 </tr>
@@ -1342,10 +1378,227 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 </div>
 </div>
 <div class="sect1">
-<h2 id="_requirement_class_map_from_more_than_one_collection"><a class="anchor" href="#_requirement_class_map_from_more_than_one_collection"></a>9. Requirement Class "Map from more than one collection"</h2>
+<h2 id="_requirement_class_map_maps"><a class="anchor" href="#_requirement_class_map_maps"></a>9. Requirement Class "Map Maps"</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+This section should be elaborated by a SWG and only some hints are provided in this Engineering Report. This section is out of the scope of the Testbed-15.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Some subsections are intentionally left blank.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>9.1. Overview</h3>
+<div id="maps-maps-overview" class="paragraph">
+<p>This extension describes how a map can be retrieved by specifying a set of parameters that will determine its resolution (width, height, boundingbox and CRS).</p>
+</div>
+<div class="paragraph">
+<p>The map can use the default style or it can select one of the styles available if the right extension is also added to the core.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_general_2"><a class="anchor" href="#_general_2"></a>9.2. General</h3>
+<div class="paragraph">
+<p>In practice, this means that the landing page and the conformance page follow OGC API - Common core requirements. More is still TBD but mostly equivalent to the general parts of OGC API - Features requirements, though with the text generalized to other resource types. This draft specification provides extra additions to the OGC API - Common requirements that are particular of tiles.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_api_landing_page_2"><a class="anchor" href="#_api_landing_page_2"></a>9.3. API landing page</h3>
+<div class="paragraph">
+<p>The landing page provides links to start exploring the resources offered by the API. It mainly consists of a list of links. OGC API - Common already requires some common links that are enough for this core.</p>
+</div>
+<div class="sect3">
+<h4 id="_response_4"><a class="anchor" href="#_response_4"></a>9.3.1. Response</h4>
+<div class="paragraph">
+<p>There are no required variations to the landing page.</p>
+</div>
+<div class="paragraph">
+<p>With a /collections successful response it is possible to retrieve the list of collectionId and links to the /collections/{collectionId}.
+With a /collections/{collectionId} successful response, it is possible to discover the links to retrieve some maps.
+Note that other resources can also be retrieved as collections (e.g. coverages).</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_declaration_of_conformance_classes_3"><a class="anchor" href="#_declaration_of_conformance_classes_3"></a>9.4. Declaration of conformance classes</h3>
+<div class="paragraph">
+<p>To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the requirements classes it implements and conforms to.</p>
+</div>
+<div class="sect3">
+<h4 id="_response_5"><a class="anchor" href="#_response_5"></a>9.4.1. Response</h4>
+<div class="paragraph">
+<p>The conformance page mainly consists of a list of links. OGC API - Common already requires some links.</p>
+</div>
+<div class="paragraph">
+<p>In the conformance page (typically in JSON format) the links follow the link schema defined in the OGC API - Common. The following is an example fragment of the response of an implementation of the OGC API – Maps draft specification with the maps extension conformance information page.</p>
+</div>
+<div id="ConformancePageMapsMaps" class="exampleblock">
+<div class="title">Example 5. Conformance Information Page fragment</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="JSON">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">conformsTo</span><span class="delimiter">&quot;</span></span>: [
+  [
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core</span><span class="delimiter">&quot;</span></span>,
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections</span><span class="delimiter">&quot;</span></span>,
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core</span><span class="delimiter">&quot;</span></span>
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/maps</span><span class="delimiter">&quot;</span></span>
+  ]
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_collections_2"><a class="anchor" href="#_collections_2"></a>9.5. Collections</h3>
+<div class="paragraph">
+<p>This draft specification includes dependencies on OGC API - Common collections. Collections are mandatory in the core of this draft specification because collections are the object that will be included in a tile.</p>
+</div>
+<div class="paragraph">
+<p>Collections will enumerate the collectionId available in this API as well as basic information about each collectionId: id, title, description, extent, crs and links. This common response is considered enough for a general
+description of the collection. To retrieve more information, you should use /collections/{collectionId}</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The collectionId substitutes the concept of "layer" in WMS.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_collection_2"><a class="anchor" href="#_collection_2"></a>9.6. Collection</h3>
+<div class="paragraph">
+<p>This draft specification includes dependencies on OGC API - Common collection. The response to the operation is extended with a new link for the maps description.</p>
+</div>
+<div class="sect3">
+<h4 id="_collection_links"><a class="anchor" href="#_collection_links"></a>9.6.1. Collection Links</h4>
+<div class="paragraph">
+<p>TBD</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_maps_metadata"><a class="anchor" href="#_maps_metadata"></a>9.6.2. Maps metadata</h4>
+<div class="paragraph">
+<p>The core of the OGC API - Maps draft specification defines a <code>maps</code> resource that is associated to an operation contains the necessary information to later formulate a map request for a collection. Neither the core, nor the styles extension requires any mandatory information. This requirement class does require this operation to be able to retrieve a map as maps (this resource will not be present if the map is only available as tiles).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_operation_3"><a class="anchor" href="#_operation_3"></a>9.6.3. Operation</h4>
+<div class="paragraph">
+<p>The request of this operation has no parameters.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_response_6"><a class="anchor" href="#_response_6"></a>9.6.4. Response</h4>
+<div class="paragraph">
+<p>A successful response to a map request for a collection that can be retrieved as a map responds with a data structure with specific information necessary to get a fragment of the map representing the resource collection. In this extension, the response is only required to inform about the URL templates styles it supports.</p>
+</div>
+<div class="paragraph">
+<p>In practice, since the map core alone does not specify how to retrieve a map, it is not possible to exemplify completely how the link looks like without considering other extensions. If the server also conforms to an extension to distribute the map as maps, the example will look like this.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 6. API collection response fragment</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="JSON"><span class="error">l</span><span class="error">i</span><span class="error">n</span><span class="error">k</span><span class="error">s</span>:
+[
+    {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">href</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">http://data.example.com/collections/buildings/map/brown</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">rel</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">item</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">type</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">image/png</span><span class="delimiter">&quot;</span></span>,
+    }
+]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_maps_from_one_collection"><a class="anchor" href="#_maps_from_one_collection"></a>9.7. Maps from one collection</h3>
+<div class="paragraph">
+<p>This draft specification specifies how to get maps from a single collection.</p>
+</div>
+<div class="sect3">
+<h4 id="_operation_4"><a class="anchor" href="#_operation_4"></a>9.7.1. Operation</h4>
+<div class="paragraph">
+<p>Typical resources that can be retrieved as maps are: features (/collections/{collectionId}), coverages (/collections/{collectionId}/coverage/{coverageId} or /coverage/{coverageId}).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameter_crs"><a class="anchor" href="#_parameter_crs"></a>9.7.2. Parameter crs</h4>
+<div class="paragraph">
+<p>TBD</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameter_bbox"><a class="anchor" href="#_parameter_bbox"></a>9.7.3. Parameter bbox</h4>
+<div class="paragraph">
+<p>TBD</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameter_width"><a class="anchor" href="#_parameter_width"></a>9.7.4. Parameter width</h4>
+<div class="paragraph">
+<p>TBD</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameter_height"><a class="anchor" href="#_parameter_height"></a>9.7.5. Parameter height</h4>
+<div class="paragraph">
+<p>TBD</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_response_7"><a class="anchor" href="#_response_7"></a>9.7.6. Response</h4>
+<div class="paragraph">
+<p>A successful response of a tile request will be consistent with the media type of the resource requested. For features the media type can be geojson or Mapbox vector tiles, for coverages it may be a GeoTIFF, and for maps it can be a JPEG or a PNG.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_error_conditions"><a class="anchor" href="#_error_conditions"></a>9.7.7. Error conditions</h4>
+<div class="paragraph">
+<p>A general summary of the HTTP status codes can be found in OGC API - Common.</p>
+</div>
+<div class="paragraph">
+<p>If the parameter crs is not available by the server for this resource or the parameters bbox, width, height are out-of-range, the status code of the response will be 404.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_requirement_class_map_from_more_than_one_collection"><a class="anchor" href="#_requirement_class_map_from_more_than_one_collection"></a>10. Requirement Class "Map from more than one collection"</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>10.1. Overview</h3>
 <table id="rc_maps-collections" class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 20%;">
@@ -1373,9 +1626,9 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="_declaration_of_conformance_classes_3"><a class="anchor" href="#_declaration_of_conformance_classes_3"></a>9.2. Declaration of conformance classes</h3>
+<h3 id="_declaration_of_conformance_classes_4"><a class="anchor" href="#_declaration_of_conformance_classes_4"></a>10.2. Declaration of conformance classes</h3>
 <div class="sect3">
-<h4 id="_response_4"><a class="anchor" href="#_response_4"></a>9.2.1. Response</h4>
+<h4 id="_response_8"><a class="anchor" href="#_response_8"></a>10.2.1. Response</h4>
 <div class="paragraph">
 <p>The conformance page mainly consists of a list of links. OGC API - Common already requires some links.</p>
 </div>
@@ -1403,16 +1656,16 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 <p>In the conformance page (typically in JSON format) the links follow the link schema defined in the OGC API - Common. The following is an example fragment of the response of an OGC API - Maps conformance information page</p>
 </div>
 <div id="ConformancePageMapsCollection" class="exampleblock">
-<div class="title">Example 5. Conformance Information Page fragment</div>
+<div class="title">Example 7. Conformance Information Page fragment</div>
 <div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="JSON">{
-  "conformsTo": [
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core"
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections"
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">conformsTo</span><span class="delimiter">&quot;</span></span>: [
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core</span><span class="delimiter">&quot;</span></span>,
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections</span><span class="delimiter">&quot;</span></span>,
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core</span><span class="delimiter">&quot;</span></span>
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections</span><span class="delimiter">&quot;</span></span>
   ]
 }</code></pre>
 </div>
@@ -1422,9 +1675,9 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="_maps_from_more_than_one_collection"><a class="anchor" href="#_maps_from_more_than_one_collection"></a>9.3. Maps from more than one collection</h3>
+<h3 id="_maps_from_more_than_one_collection"><a class="anchor" href="#_maps_from_more_than_one_collection"></a>10.3. Maps from more than one collection</h3>
 <div class="sect3">
-<h4 id="_operation_3"><a class="anchor" href="#_operation_3"></a>9.3.1. Operation</h4>
+<h4 id="_operation_5"><a class="anchor" href="#_operation_5"></a>10.3.1. Operation</h4>
 <table id="req_maps_collections_mcs-op" class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 25%;">
@@ -1447,7 +1700,7 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameter_styles"><a class="anchor" href="#_parameter_styles"></a>9.3.2. Parameter styles</h4>
+<h4 id="_parameter_styles"><a class="anchor" href="#_parameter_styles"></a>10.3.2. Parameter styles</h4>
 <table id="req_maps_collections_mcs-styles-definition" class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 25%;">
@@ -1467,13 +1720,13 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="YAML">  name: styles
-  in: query
-  required: false
-  style: form
-  explode: false
-  schema:
-    type: string</code></pre>
+<pre class="CodeRay highlight"><code data-lang="YAML">  <span class="key">name</span>: <span class="string"><span class="content">styles</span></span>
+  <span class="key">in</span>: <span class="string"><span class="content">query</span></span>
+  <span class="key">required</span>: <span class="string"><span class="content">false</span></span>
+  <span class="key">style</span>: <span class="string"><span class="content">form</span></span>
+  <span class="key">explode</span>: <span class="string"><span class="content">false</span></span>
+  <span class="key">schema</span>:
+    <span class="key">type</span>: <span class="string"><span class="content">string</span></span></code></pre>
 </div>
 </div></div></td>
 </tr>
@@ -1493,7 +1746,7 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameter_collections"><a class="anchor" href="#_parameter_collections"></a>9.3.3. Parameter Collections</h4>
+<h4 id="_parameter_collections"><a class="anchor" href="#_parameter_collections"></a>10.3.3. Parameter Collections</h4>
 <table id="req_maps_mcs-collections_collections-definition" class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 25%;">
@@ -1513,15 +1766,15 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="YAML">  name: collections
-  in: query
-  required: false
-  style: form
-  explode: false
-  schema:
-    type: array
-    items:
-      type: string</code></pre>
+<pre class="CodeRay highlight"><code data-lang="YAML">  <span class="key">name</span>: <span class="string"><span class="content">collections</span></span>
+  <span class="key">in</span>: <span class="string"><span class="content">query</span></span>
+  <span class="key">required</span>: <span class="string"><span class="content">false</span></span>
+  <span class="key">style</span>: <span class="string"><span class="content">form</span></span>
+  <span class="key">explode</span>: <span class="string"><span class="content">false</span></span>
+  <span class="key">schema</span>:
+    <span class="key">type</span>: <span class="string"><span class="content">array</span></span>
+    <span class="key">items</span>:
+      <span class="key">type</span>: <span class="string"><span class="content">string</span></span></code></pre>
 </div>
 </div></div></td>
 </tr>
@@ -1553,7 +1806,7 @@ completely fill space. 'true' means map data are mostly or completely opaque.</p
 </table>
 </div>
 <div class="sect3">
-<h4 id="_response_5"><a class="anchor" href="#_response_5"></a>9.3.4. Response</h4>
+<h4 id="_response_9"><a class="anchor" href="#_response_9"></a>10.3.4. Response</h4>
 <div class="paragraph">
 <p>To retrieve the map as a map or a tile another extension is needed. No requirements are provided here.</p>
 </div>
@@ -1648,8 +1901,9 @@ Ensure that there is a conformance class for each requirements class and a test 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-03-18 13:30:09 +0100
+Last updated 2019-11-17 22:47:47 +0100
 </div>
 </div>
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css">
 </body>
 </html>
