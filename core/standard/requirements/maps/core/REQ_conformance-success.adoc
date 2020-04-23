@@ -2,5 +2,5 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/maps/core/conformance-success*
-^|A |The API conformance path SHALL advertise the maps core conformance class as links to http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core.
+^|A |If the API has a mechanism to advertise conformance classes, the API SHALL advertise the maps core conformance class with a link to  http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core.
 |===

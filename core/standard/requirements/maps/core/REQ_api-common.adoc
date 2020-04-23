@@ -1,6 +1,0 @@
-[[req_maps_core_api-common]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/maps/core/api-common*
-^|A |The OGC API SHALL comply with the requirements specified in the http://www.opengis.net/spec/OAPI_Common/1.0/req/core and collections Requirements Classes of the OGC API-Common version 1.0 Standard.
-|===
