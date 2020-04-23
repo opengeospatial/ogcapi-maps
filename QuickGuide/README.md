@@ -2,7 +2,7 @@
 
 What do you what to do?
 * Tiles
-  - [Vector tiles](/opengeospatial/OGC-API-Tiles/QuickGuide/VectorTiles.md)
-  - [Map tiles](/opengeospatial/OGC-API-Tiles/QuickGuide/MapTiles.md)
+  - [Vector tiles](https://github.com/opengeospatial/OGC-API-Tiles/blob/master/QuickGuide/VectorTiles.md)
+  - [Map tiles](https://github.com/opengeospatial/OGC-API-Tiles/blob/master/QuickGuide/MapTiles.md)
 * maps
   - [Maps](Maps.md)
