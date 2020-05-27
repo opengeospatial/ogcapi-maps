@@ -78,8 +78,6 @@ The {swgname} SWG will develop a {shortname} candidate standard which is informe
 
 * Reuse: The use of unique {shortname} resources or components will be minimized and, where available, existing industry-standards or patterns that are commonly used by developers will be used instead. The most important example for this is the use of an OpenAPI definition instead of OGC-specific "Capabilities" documents and the use of OGC API - Common components to the maximum extent practicable.
 
-{swgname} - Part 1: Core will define a basic set of capabilities organized in multiple conformance classes building on each other. The minimal conformance class will specify a simple interface to access metadata from {resource} resources that is sufficient for interfaces to exchange and perform basic web functions with the {resource} resources. Additional conformance classes will define additional capabilities based on the requirements and requirements classes defined in the core to meet the needs of use cases that require such capabilities.
-
 Extensions may be proposed and addressed in revisions to this charter. The primary goal of the {shortname} SWG is to develop the core of "{swgname}" as quickly as possible and work on extensions after that, driven by community interest. An important aspect is to ensure that implementing the standard will lead to efficient implementations, happy developers of both server and client components, and satisfied users of such components.
 
 
