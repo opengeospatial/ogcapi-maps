@@ -8,7 +8,7 @@
 :resource: map
 :relevant_spec: OGC Web Map Service (WMS) standard
 :relevant_spec_docnum:  06-042
-:githubrepo: https://github.com/opengeospatial/OGC-API-Tiles
+:githubrepo: https://github.com/opengeospatial/OGC-API-Maps
 :base_swg: Web Map Service (WMS) SWG
 :target_start_date: July 2020
 :target_end_date: December 2020
