@@ -1,5 +1,5 @@
 :authors: Joan Maso
-:authors_email: a@a.com, b@b.com
+:authors_email: TBA
 :date: YYYY-MM-DD
 :title: OGC API - Maps
 :swgname: OGC API - Maps
