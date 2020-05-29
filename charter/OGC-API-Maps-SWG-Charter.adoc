@@ -1,4 +1,4 @@
-:authors: FirstName1 LastName1,FirstName2 LastName2
+:authors: Joan Maso
 :authors_email: a@a.com, b@b.com
 :date: YYYY-MM-DD
 :title: OGC API - Maps
@@ -185,12 +185,11 @@ The following people support this proposal and are committed to the Charter and 
 [cols=",",width="75%",options="header",align="center"]
 |===
 |Name| Organization
-|FirstName1 LastName1 | OrganizationName1
-|FirstName2 LastName2 | OrganizationName2
-|FirstName3 LastName3 | OrganizationName3
+|Joan Maso | UAB-CREAF
+|Stan Tillman | Hexagon
+|Satish Sankaran | Esri
 |FirstName4 LastName4 | OrganizationName4
 |===
-
 
 
 [loweralpha, start=5]
