@@ -1,12 +1,15 @@
 {
         "1": {
-                "OGC_doc_number": "19-zzz",
+                "OGC_doc_number": "20-058",
                 "urn":"http://www.opengis.net/doc/DRAFT/ogc_api_map_tiles",
                 "title":"OGC API Map Tiles",
                 "path":"core/standard/OAPI_MapsTiles.adoc",
                 "options": ["--trace"],
                 "a":[
                         "data-uri"
+                ],
+                "r":[
+                        "asciidoctor-bibtex"
                 ]
         }
 }
