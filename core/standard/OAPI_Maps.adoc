@@ -1,5 +1,5 @@
-:Title: OGC API-MapsTiles
-:titletext: OGC API Maps Tiles
+:Title: OGC API - Maps
+:titletext: OGC API Maps
 :doctype: book
 :encoding: utf-8
 :lang: en
@@ -25,10 +25,10 @@
 |Approval Date:   <yyyy-mm-dd>
 |Publication Date:   2019-03-06
 |External identifier of this OGC(R) document: http://www.opengis.net/doc/{doc-type}/{standard}/{m.n}
-|Internal reference number of this OGC(R) document:    YY-nnnrx
+|Internal reference number of this OGC(R) document:    20-058
 |Version: 0.0.1
 |Category: OGC(R) Implementation Specification
-|Editor:   Charles Heazel
+|Editor:   Joan Masó
 |===
 
 [cols = "^", frame = "none"]
