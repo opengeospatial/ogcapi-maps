@@ -57,7 +57,7 @@ The formal proposed name of the new multi-part standard is "{swgname}". The shor
 
 === Business Value Proposition
 
-TBA
+In October 2019, the Programmable Web https://www.programmableweb.com/news/which-are-developers-favorite-apis/research/2019/10/24[reported] that a web mapping product was amongst the top-two tracked APIs on the Programmable Web API directory. The presence of a web mapping product amongst the top-two tracked APIs on Programmable Web is evidence of the wide interest across both the geospatial community and the general public. However, further evidence of the popularity and adoption of web mapping can be seen from the uptake of the Web Map Service (WMS) standard which is listed - as of May 2020 - as having the most number of implementations on the OGC https://www.ogc.org/resource/products/stats[Implementation Statistics] webpage.
 
 === Scope of Work
 
