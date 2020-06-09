@@ -29,7 +29,7 @@
 
 To: OGC members & interested parties
 
-A new OGC Standards Working Group (SWG) is being formed. The OGC members listed below have proposed the "{swgname} SWG". The SWG proposal provided in this document meets the requirements of the OGC Technical Committee (TC) Policies and Procedures.
+The OGC members listed below have proposed the re-chartering of the Web Mapping Service (WMS) Standards Working Group (SWG) as the "OGC API - Maps SWG". The OGC members listed below have proposed the "{swgname} SWG". The SWG proposal provided in this document meets the requirements of the OGC Technical Committee (TC) Policies and Procedures.
 The SWG name, statement of purpose, scope, list of deliverables, audience, and language specified in the proposal will constitute the SWG’s official charter. Technical discussions may occur no sooner than the SWG’s first meeting.
 This SWG will operate under the OGC IPR Policy. The eligibility requirements for becoming a participant in the SWG at the first meeting (see details below) are that:
 
@@ -49,8 +49,9 @@ Please feel free to forward this announcement to any other appropriate lists. Th
 
 The purpose of this Standards Working Group is to:
 
-•	Develop and maintain an {swgname} core standard.
-•	Develop and maintain extensions of the {swgname} standard as identified in section 4 (Scope).
+*	Develop and maintain an {swgname} core standard.
+*	Develop and maintain extensions of the {swgname} standard as identified in section 4 (Scope).
+* Maintain the WMS standard.
 
 The formal proposed name of the new multi-part standard is "{swgname}". The short name “{shortname}” may also be used to refer to this effort in the charter and work products.
 
@@ -102,7 +103,7 @@ The basic resource described in {swgname} are {resources}. The {shortname} descr
 
 ==== Specific Contribution of Existing Work as a Starting Point
 
-The starting point for the work will be the draft document that is currently on the proposed SWG's repository ({githubrepo}). This charter recognises the prior work done by the {base_swg}. Upon approval of this Charter, responsibility for {swgname} shall be transferred to the proposed {swgname} SWG.
+The starting point for the work will be the draft document that is currently on the proposed SWG's repository ({githubrepo}). This charter recognises the prior work done by the {base_swg}. Upon approval of this Charter, responsibility for {swgname} and WMS standards shall be transferred to the proposed {swgname} SWG. The OGC API - Maps SWG will meet with the OGC API - Tiles SWG on a regular basis.
 
 The work shall also be informed by the following specifications and by recommendations found in:
 
