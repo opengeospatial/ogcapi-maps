@@ -101,7 +101,11 @@ Returns a map - a representation of real-world elements at a given resolution. {
 Those who want to just see the endpoints and responses can explore generic
 OpenAPI definitions in this folder (please paste one of them in the Swagger Editor):
 
-* OGC-API-Map-Tiles/standard/openapi/
+* [OGC-API-Maps/openapi/](https://github.com/opengeospatial/OGC-API-Maps/tree/master/openapi)
+
+Several implementations of the draft standard exist:
+
+[Implementations of the draft specification / demo services](./implementations.adoc)
 
 ## Communication
 

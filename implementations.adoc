@@ -1,0 +1,32 @@
+== Implementations
+
+=== Services
+
+[#table_implementation,reftext='{table-caption} {counter:table-num}']
+.Service implementations
+[cols=",,",width="75%",options="header",align="center"]
+|===
+|Implementation | Type | Contact
+
+| TBA
+| OGC API - Maps
+| TBA
+
+| TBA
+| TBA
+| TBA
+|===
+
+
+=== Clients
+
+[#table_implementation,reftext='{table-caption} {counter:table-num}']
+.Client implementations
+[cols=",,",width="75%",options="header",align="center"]
+|===
+|Implementation | Type | Contact
+
+| TBA
+| TBA
+| TBA
+|===
