@@ -12,17 +12,17 @@ The Core specifies requirements that all Web APIs have to implement.
 
 Additional requirements classes include:
 
-<<rc_styles, STYLES>>,
+* <<rc_styles, Styles>>,
 
-<<rc_box,BBOX>>.
+* <<rc_box,BBOX>>.
 
 The Core does not mandate a specific encoding or format for representing maps. TBD requirements classes depend on the Core and specify representations for resources in commonly used encodings for maps on the web:
 
-<<rc_html,HTML>>,
+* <<rc_html,HTML>>,
 
-<<rc_jpeg,JPEG>> and
+* <<rc_jpeg,JPEG>> and
 
-<<rc_png,PNG>>.
+* <<rc_png,PNG>>.
 
 None of these encodings are mandatory and an implementation of the Core may also decide to implement none of them, but to implement another encoding instead.
 
@@ -30,7 +30,7 @@ That said, the Core requirements class includes recommendations to support, wher
 
 The Core does not mandate any encoding or format for the formal definition of the API either. One option is the OpenAPI 3.0 specification and a requirements class has been specified for OpenAPI 3.0, which depends on the Core:
 
-<<rc_oas30,OpenAPI specification 3.0>>.
+* <<rc_oas30,OpenAPI specification 3.0>>.
 
 An implementation of the Core requirements class may also decide to use other API definition representations in addition or instead of an OpenAPI 3.0 definition. Examples for alternative API definitions: OpenAPI 2.0 (Swagger), future versions of the OpenAPI specification, or an OWS Common 2.0 capabilities document.
 
