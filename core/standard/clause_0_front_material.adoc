@@ -1,18 +1,16 @@
 [big]*i.     Abstract*
 
-The OGC has started a focused effort to extend their service standards into the Resource Oriented Architecture world. As part of this effort, this standard defines an API for Map Tiles.
-
-The Map Tile API described in this standard builds on the Web Map Tile Service (WMTS) OGC standard.  WMTS provides a scalable, high performance services for web based distribution of cartographic maps. WMTS, in turn, complements earlier efforts to develop services for the web based distribution of cartographic maps. In particular, it compliments the OGC Web Map Service (WMS). WMS focuses on rendering custom maps and is an ideal solution for dynamic data or custom styled maps (combined with the OGC Style Layer Descriptor (SLD) standard). WMTS trades the flexibility of custom map rendering for the scalability possible by serving of static data (base maps) where the bounding box and scales have been constrained to discrete tiles. Note that an API version of WMS is also under development. 
+The draft OGC API - Maps - Part 1: Core specification defines a Web API for requesting map images over the Internet. OGC API - Maps makes it easy for a client to request images, changing parameters such as size and coordinate reference systems at the time of request. A server that implements OGC API - Maps provides information about what maps it offers, as well as producing a map and answering queries about the content of the maps. OGC API - Maps addresses use cases similar to those addressed by the http://portal.opengeospatial.org/files/?artifact_id=14416[Web Map Service (WMS)] standard.
 
 [big]*ii.    Keywords*
 
 The following are keywords to be used by search engines and document catalogues.
 
-ogcdoc, OGC document, tiling, WMTS
+ogcdoc, OGC document, maps, API, OpenAPI, OGC API
 
 [big]*iii.   Preface*
 
-This document defines an OGC standard for a Web Map Tile API standard. A Map Tile enabled API can serve map tiles of spatially referenced data using tile images with predefined content, extent, and resolution. Suggested additions, changes and comments on this standard are welcome and encouraged. Such suggestions may be submitted using the online change request form on OGC web site: http://portal.opengeospatial.org/public_ogc/change_request.php
+This document defines the draft OGC API - Maps - Part 1: Core specification. A 'map' is portrayal of geographic information as a digital image file suitable for display on a computer screen (http://portal.opengeospatial.org/files/?artifact_id=14416[OGC 06-042]). Suggested additions, changes and comments on this standard are welcome and encouraged. Such suggestions may be submitted using the online change request form on OGC web site: http://portal.opengeospatial.org/public_ogc/change_request.php
 
 Attention is drawn to the possibility that some of the elements of this document may be the subject of patent rights. The Open Geospatial Consortium shall not be held responsible for identifying any or all such patent rights.
 
@@ -28,4 +26,12 @@ Organization name(s)
 
 All questions regarding this submission should be directed to the editor or the submitters:
 
-Name  Affiliation
+[cols=",",options="header",]
+|===
+|Name |Affiliation
+|Joan Masó | UAB-CREAF
+|TBA | TBA
+|TBA | TBA
+|TBA | TBA
+|TBA | TBA
+|===

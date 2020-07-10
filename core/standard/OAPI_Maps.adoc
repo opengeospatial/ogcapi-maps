@@ -1,5 +1,5 @@
-:Title: OGC API - Maps
-:titletext: OGC API Maps
+:Title: OGC API - Maps - Part 1: Core
+:titletext: OGC API - Maps - Part 1: Core
 :doctype: book
 :encoding: utf-8
 :lang: en
