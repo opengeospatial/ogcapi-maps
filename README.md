@@ -37,11 +37,22 @@ None of them has been started yet.
 * Collections-info
 * Maps with styles on the fly (involving collections)
 
+## Using the standard
+
+Those who want to just see the endpoints and responses can explore generic
+OpenAPI definitions in this folder (please paste one of them in the Swagger Editor):
+
+* [OGC-API-Maps/openapi/](https://github.com/opengeospatial/OGC-API-Maps/tree/master/openapi)
+
+Several implementations of the draft standard exist:
+
+[Implementations of the draft specification / demo services](./implementations.adoc)
+
 ## Relation to other OGC standards and previous works
 
 OGC API - Maps follows on the footsteps of the [OGC](http://opengeospatial.org)'s Web Map Service (WMS) by enabling client applications to request maps of geospatial information on the web. However, OGC API - Maps is completely different from WMS, as OGC API - Maps focuses on a simple RESTful core specified as reusable [OpenAPI](http://openapis.org) components.
 
-This is the CURRENT working version of this initiative (Old version work has been moved to the deliverables in Testbed-15 that contain the LAST VERSION of the materials. See: https://github.com/opengeospatial/T-15-D014-WMTS_draft_specification)
+This is the [CURRENT](https://htmlpreview.github.io/?https://github.com/opengeospatial/OGC-API-Maps/blob/master/core/standard/OAPI_Maps.html) working version of this initiative. An [Old](http://docs.opengeospatial.org/per/19-069.html) version of the specification was a deliverable in [Testbed-15](https://www.ogc.org/projects/initiatives/testbed15).
 
 IMPORTANT: Some examples of OpenAPI documents that are used as inspiration and test of this work are at: https://app.swaggerhub.com/apis/UAB-CREAF
 
@@ -100,16 +111,6 @@ GET /.../.../map/{styleId}?crs=CRS84&bbox=160.6,-55.95,-170,-25.89&width=600&hei
 ```
 Returns a map - a representation of real-world elements at a given resolution. {styleId} is optional.
 
-## Using the standard
-
-Those who want to just see the endpoints and responses can explore generic
-OpenAPI definitions in this folder (please paste one of them in the Swagger Editor):
-
-* [OGC-API-Maps/openapi/](https://github.com/opengeospatial/OGC-API-Maps/tree/master/openapi)
-
-Several implementations of the draft standard exist:
-
-[Implementations of the draft specification / demo services](./implementations.adoc)
 
 ## Communication
 
