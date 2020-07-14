@@ -590,7 +590,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#overview">6. Overview</a>
 <ul class="sectlevel2">
 <li><a href="#_evolution_from_ogc_web_services">6.1. Evolution from OGC Web Services</a></li>
-<li><a href="#_tiles_and_maps">6.2. Tiles and maps</a></li>
+<li><a href="#_relationship_to_ogc_api_tiles">6.2. Relationship to OGC API - Tiles</a></li>
 <li><a href="#_how_to_approach_an_ogc_api">6.3. How to approach an OGC API</a></li>
 </ul>
 </li>
@@ -1050,10 +1050,10 @@ See <a href="https://www.w3.org/TR/dwbp/#accessAPIs">Best Practice 24: Use Web S
 <div class="sect2">
 <h3 id="_evolution_from_ogc_web_services"><a class="anchor" href="#_evolution_from_ogc_web_services"></a>6.1. Evolution from OGC Web Services</h3>
 <div class="paragraph">
-<p>OGC Web Service (OWS) standards have historically implemented a Remote-Procedure-Call-over-HTTP architectural style using Extensible Markup Language (XML) for payloads. This was the state-of-the-art when some of the initial versions of OGC Web Services were originally designed in the late 1990s and early 2000s. This architectural style has now a competing RESTful API style that is proposed as an alternative to RPC pattern. A RESTful API style is resource-oriented instead of service-oriented. This OGC API - Maps and Tiles draft specification specifies an API that follows this Web architecture and in particular the W3C/OGC best practices for sharing Spatial Data on the Web as well as the W3C best practices for sharing Data on the Web.</p>
+<p>OGC Web Service (OWS) standards have historically implemented a Remote-Procedure-Call (RPC) architectural style using Extensible Markup Language (XML) for payloads over HTTP. This was the state-of-the-art when some of the initial versions of OGC Web Services were originally designed in the late 1990s and early 2000s. This architectural style has now a competing RESTful API style that is proposed as an alternative to RPC pattern. A RESTful API style is resource-oriented instead of service-oriented. This draft OGC API - Maps specification defines a Web API that follows this resource-oriented architecture and in particular the W3C/OGC best practices for sharing Spatial Data on the Web, as well as the W3C best practices for sharing Data on the Web.</p>
 </div>
 <div class="paragraph">
-<p>The OGC API – Common draft specification specifies the common kernel of an API approach to services that follows current resource-oriented architecture practices. The draft OGC API - Common specification is the foundation upon which OGC APIs will be built. This common API is to be extended by resource-specific API standards. This draft specification extends OGC API - Common to support Map and Tile resources.</p>
+<p>The draft OGC API - Common specification is the foundation upon which OGC APIs will be built, including this draft OGC API - Maps specification. The draft OGC API – Common specification specifies the common kernel of an API approach to services that follows current resource-oriented architecture practices. This common API is to be extended by resource-specific API standards. This draft specification therefore extends OGC API - Common to support Map resources.</p>
 </div>
 <div class="paragraph">
 <p>Beside the general alignment with the architecture of the Web (e.g., consistency with HTTP/HTTPS, hypermedia controls), another goal for OGC API standards is modularization. This goal has several facets:</p>
@@ -1061,13 +1061,13 @@ See <a href="https://www.w3.org/TR/dwbp/#accessAPIs">Best Practice 24: Use Web S
 <div class="ulist">
 <ul>
 <li>
-<p>Clear separation between core requirements and more advanced capabilities. This OGC API – Maps and Tiles draft specification presents the requirements that are relevant for almost everyone who wants to share or use Tiled Map Data on a fine-grained level. Additional capabilities that several communities are using today will be specified as extensions to the Core API.</p>
+<p>Clear separation between Core requirements and more advanced capabilities. The draft OGC API – Maps - Part 1: Core specification presents the requirements that are relevant for almost everyone who wants to share or use maps at a fine-grained level. Additional capabilities that several communities are using today will be specified as extensions to the Core API.</p>
 </li>
 <li>
 <p>Technologies that change more frequently are decoupled and specified in separate modules ("requirements classes" in OGC terminology). This enables, for example, the use/re-use of new encodings for spatial data or API descriptions.</p>
 </li>
 <li>
-<p>Modularization is not just about a single "service". OGC APIs will provide building blocks that can be reused in APIs in general. In other words, a server supporting the OGC API - Tiles should not be seen as a standalone service. Rather it should be viewed as a collection of API building blocks which together implement Map and Tile capabilities. A corollary for this is that it should be possible to implement an API that simultaneously conforms to conformance classes from the Feature, Coverage, Map, Tiles, and other future OGC Web API standards.</p>
+<p>Modularization is not just about a single "service". OGC APIs will provide building blocks that can be reused in APIs in general. In other words, a server supporting the OGC API - Maps draft specification should not be seen as a standalone service. Rather it should be viewed as a collection of API building blocks that together implement OGC API - Maps capabilities. A corollary for this is that it should be possible to implement an API that simultaneously conforms to conformance classes from the Features, Coverages, Maps, Tiles, and other future OGC API standards.</p>
 </li>
 </ul>
 </div>
@@ -1080,7 +1080,7 @@ See <a href="https://www.w3.org/TR/dwbp/#accessAPIs">Best Practice 24: Use Web S
 <p>Those that have never heard about OGC. Developers should be able to create a client using the API definition without the need to adopt a specific OGC approach (they no longer need to read how to implement a GetCapabilities, allowing them to focus on the geospatial aspects).</p>
 </li>
 <li>
-<p>Those that want to write a "generic" client that can access OGC APIs. In other words, they are not specific for a particular API.</p>
+<p>Those that want to write a "generic" client that can access OGC APIs. In other words, they are not specific to a particular API.</p>
 </li>
 </ul>
 </div>
@@ -1092,15 +1092,24 @@ See <a href="https://www.w3.org/TR/dwbp/#accessAPIs">Best Practice 24: Use Web S
 </div>
 </div>
 <div class="sect2">
-<h3 id="_tiles_and_maps"><a class="anchor" href="#_tiles_and_maps"></a>6.2. Tiles and maps</h3>
+<h3 id="_relationship_to_ogc_api_tiles"><a class="anchor" href="#_relationship_to_ogc_api_tiles"></a>6.2. Relationship to OGC API - Tiles</h3>
 <div class="paragraph">
 <p>WMS and WMTS share the concept of a map and the capability to create and distribute maps at a limited resolution and size. In WMS the number of rows and columns can be selected by the user within limits and in WMTS the number of rows and columns of the response is predefined in the tile matrix set.</p>
 </div>
 <div class="paragraph">
-<p>With time, the concept of a tile has been generalized to other data models such as feature data (some vendors use the expression <em>vector tiles</em>) and even to coverage data. This draft specification presents an approach to tiles that can be applied to almost every resource type that returns data representations. If applied in conjunction with the OGC API - Features standard and on top of a feature collection, the expected result is tiled feature data. If applied in conjunction with the OGC API - Maps draft specification and on top of a collection that is transformed into a map by applying a style, the result should be map tiles (usually in PNG or JPEG format).</p>
+<p>With time, the concept of a tile has been generalized to other data models such as feature data (some vendors use the expression <em>vector tiles</em>) and even to coverage data. This draft specification presents an approach to tiles that can be applied to almost every resource type that returns data representations. If applied in conjunction with the OGC API - Features standard and on top of a feature collection, the expected result is tiled feature data. If applied in conjunction with the OGC API - Maps draft specification and on top of a collection that is transformed into a map by applying a style, the result should be map tiles (usually in PNG or JPEG format). The relationship between the Maps and Tiles capabilities of OGC API - Maps and OGC API - Tiles was illustrated by the OGC Testbed-15 initiative as shown in <a href="#img_CoreAndExtension">Figure 1</a>.</p>
 </div>
-<div class="paragraph">
-<p>In this draft specification the OGC API - Tiles is almost fully described. It includes the a core and extensions for defining tile matrix sets, tiles from more that one collection, multi-tiles and multitiles from more than one collection. And info extension is foreseen but not fully developed. In contrast, OGC API - Maps is only partially described based on Testbed-15 requirements. The Maps API is described only to the extent to allow for map tiles to be created on top of a map created by selecting a collection with style or multiple collections with styles. This draft specification contains a section for retrieving a map of an arbitrary number of rows and columns but is not fully formulated. Other extensions for maps are also foreseen. In the future, the WMS SWG could take this document and complete the missing capabilities.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+OGC API - Tiles includes a core specification and extensions for defining tile matrix sets, tiles from more that one collection, multi-tiles and multitiles from more than one collection. An info extension is foreseen but not fully developed. In contrast, OGC API - Maps is only partially described based on Testbed-15 requirements. The Maps API is described only to the extent to allow for map tiles to be created on top of a map created by selecting a collection with style or multiple collections with styles. This draft specification contains a section for retrieving a map of an arbitrary number of rows and columns but is not fully formulated. Other extensions for maps are also foreseen. In the future, the WMS SWG could take this document and complete the missing capabilities.
+</td>
+</tr>
+</table>
 </div>
 <div id="img_CoreAndExtension" class="imageblock text-center">
 <div class="content">
@@ -1120,12 +1129,12 @@ See <a href="https://www.w3.org/TR/dwbp/#accessAPIs">Best Practice 24: Use Web S
 <p>Read the landing page, look for links, follow them and discover new links until the desired resource is found</p>
 </li>
 <li>
-<p>Read and API definition document that will specify a list of paths to resources.</p>
+<p>Read an API definition document that will specify a list of paths to resources.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For the first approach, many resources in the API include links with rel properties to know the reason for this relation. The following figure illustrates does links.</p>
+<p>For the first approach, 'rel' properties identifying link relation types are used to determine the meaning of a relation represented by a link. The following figure illustrates those the links, including others from OGC API - Tiles.</p>
 </div>
 <div id="img_relMapTiles" class="imageblock text-center">
 <div class="content">
@@ -1134,10 +1143,10 @@ See <a href="https://www.w3.org/TR/dwbp/#accessAPIs">Best Practice 24: Use Web S
 <div class="title">Figure 2. Resources and relations to them via links</div>
 </div>
 <div class="paragraph">
-<p>For the second approach, the section <a href="#OpenAPIExamples">[OpenAPIExamples]</a> will provide some examples of OpenAPI definition documents that enumerate the paths to get to the necessary resources directly.</p>
+<p>For the second approach, the section <a href="#OpenAPIExamples">[OpenAPIExamples]</a> provides some examples of OpenAPI definition documents that enumerate the paths to the necessary resources.</p>
 </div>
 <table id="table_resources" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Overview of resources and common direct links defined in the API</caption>
+<caption class="title">Table 1. Overview of resources and common direct links defined in OGC API - Maps</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -1166,42 +1175,38 @@ See <a href="https://www.w3.org/TR/dwbp/#accessAPIs">Best Practice 24: Use Web S
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/collections/{collectionId}</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Maps description</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/collections/{collectionId}/map</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Maps description collections<sup>1</sup></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/map</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>When OGC API - Maps is used along with the OGC API - Tiles specification, the resources listed in <a href="#table_resources_with_tiles">Table 2</a> become available.</p>
+</div>
+<table id="table_resources_with_tiles" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Overview of map tile resources and common direct links defined in OGC API - Tiles</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top" style="background-color: #FFFFFF;">Resource name</th>
+<th class="tableblock halign-left valign-top" style="background-color: #FFFFFF;">Common path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Tiling Schemas</p></td>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/tileMatrixSets</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Tiling Schema</p></td>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/tileMatrixSets/{tileMatrixSetId}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" colspan="2" style="background-color: #FFFFFF;"><p class="tableblock">Tiles</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Vector Tiles description</p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/collections/{collectionId}/tiles</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Vector Tiles description from collections</p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/tiles</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Vector Tile</p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Vector tile collections<sup>1</sup></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Vector Multi-tiles</p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/collections/{collectionId}/tiles/{tileMatrixSetId}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Vector Multi-tiles collections<sup>1</sup></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/tiles/{tileMatrixSetId}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" colspan="2" style="background-color: #FFFFFF;"><p class="tableblock">Map tiles</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Map tiles description</p></td>
@@ -1212,31 +1217,12 @@ See <a href="https://www.w3.org/TR/dwbp/#accessAPIs">Best Practice 24: Use Web S
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/map/tiles</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Map tile</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Map tile with style</p></td>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Map tile collections<sup>1</sup></p></td>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Map tile multi-tiles</p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Map tile multi-tiles collections<sup>1</sup></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/map/tiles/{tileMatrixSetId}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" colspan="2" style="background-color: #FFFFFF;"><p class="tableblock">Maps</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Maps description</p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/collections/{collectionId}/map</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Maps description collections<sup>1</sup></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>/map</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -2233,7 +2219,7 @@ Ensure that there is a conformance class for each requirements class and a test 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-10 08:11:16 +0100
+Last updated 2020-07-13 09:39:13 +0100
 </div>
 </div>
 <style>

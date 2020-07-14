@@ -49,9 +49,9 @@ image::images/relMapTiles.png[width=600,align="center"]
 For the second approach, the section <<OpenAPIExamples>> provides some examples of OpenAPI definition documents that enumerate the paths to the necessary resources.
 
 [#table_resources,reftext='{table-caption} {counter:table-num}']
-.Overview of resources and common direct links defined in the API
+.Overview of resources and common direct links defined in OGC API - Maps
 [cols="33,66",options="header"]
-!===
+|===
 |Resource name |Common path
 |Landing page |`/`
 |Conformance declaration |`/conformance`
@@ -59,5 +59,21 @@ For the second approach, the section <<OpenAPIExamples>> provides some examples 
 |Collection |`/collections/{collectionId}`
 |Maps description |`/collections/{collectionId}/map`
 |Maps description collections^1^ |`/map`
-!===
+|===
+
+When OGC API - Maps is used along with the OGC API - Tiles specification, the resources listed in <<table_resources_with_tiles>> become available.
+
+[#table_resources_with_tiles,reftext='{table-caption} {counter:table-num}']
+.Overview of map tile resources and common direct links defined in OGC API - Tiles
+[cols="33,66",options="header"]
+|===
+|Resource name |Common path
+|Tiling Schemas |`/tileMatrixSets`
+|Tiling Schema |`/tileMatrixSets/{tileMatrixSetId}`
+|Map tiles description |`/collections/{collectionId}/map/`
+|Map tiles description collections^1^ |`/map/tiles`
+|Map tile with style |`/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}`
+|Map tile collections^1^ |`/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}`
+|===
+
 ^1^: In first column of the table, the word "collections" means "from more than one collection"
