@@ -3,14 +3,7 @@ This standard defines *TBD* requirements / conformance classes.
 
 The standardization targets of all conformance classes are "Web APIs."
 
-
-The main requirements class is:
-
-* <<rc_core,Core>>.
-
-The Core specifies requirements that all Web APIs have to implement.
-
-Additional requirements classes include:
+The requirements classes specified in this draft specification include:
 
 * <<rc_map_resource,Map resource>>,
 
@@ -22,7 +15,7 @@ Additional requirements classes include:
 
 * <<rc_geo_data_resource_map,Geospatial Data Resource Map>>.
 
-The Core does not mandate a specific encoding or format for representing maps. TBD requirements classes depend on the Core and specify representations for resources in commonly used encodings for maps on the web:
+This draft specification does not mandate a specific encoding or format for representing maps. TBD requirements classes specify options for representations of resources in commonly used encodings for maps on the web:
 
 * <<rc_html,HTML>>,
 
@@ -30,18 +23,16 @@ The Core does not mandate a specific encoding or format for representing maps. T
 
 * <<rc_png,PNG>>.
 
-None of these encodings are mandatory and an implementation of the Core may also decide to implement none of them, but to implement another encoding instead.
+None of these encodings are mandatory and an implementation of this draft specification may also decide to implement none of them, but to implement another encoding instead.
 
-That said, the Core requirements class includes recommendations to support, where practical, HTML.
+That said, this draft specification includes recommendations to support, where practical, HTML.
 
-The Core does not mandate any encoding or format for the formal definition of the API either. One option is the OpenAPI 3.0 specification and a requirements class has been specified for OpenAPI 3.0, which depends on the Core:
+The draft specification does not mandate any encoding or format for the formal definition of the API either. One option is the OpenAPI 3.0 specification as described in the following requirements class:
 
 * <<rc_oas30,OpenAPI specification 3.0>>.
 
-An implementation of the Core requirements class may also decide to use other API definition representations in addition or instead of an OpenAPI 3.0 definition. Examples for alternative API definitions: OpenAPI 2.0 (Swagger), future versions of the OpenAPI specification, or an OWS Common 2.0 capabilities document.
+An implementation of the draft specification may also decide to use other API definition representations in addition or instead of an OpenAPI 3.0 definition. Examples for alternative API definitions: OpenAPI 2.0 (Swagger), future versions of the OpenAPI specification, or an OWS Common 2.0 capabilities document.
 
-The Core is intended to be a minimal useful API for fine-grained read-access to maps that are referenced to the coordinate reference system WGS 84 with axis order longitude/latitude.
-
-Additional capabilities may be specified in future parts of the OGC API - Maps series or as vendor-specific extensions.
+The draft specification is intended to be a minimal useful API for fine-grained read-access to maps. Additional capabilities may be specified in future parts of the OGC API - Maps series or as vendor-specific extensions.
 
 Conformance with this standard shall be checked using all the relevant tests specified in Annex A (normative) of this document. The framework, concepts, and methodology for testing, and the criteria to be achieved to claim conformance are specified in the OGC Compliance Testing Policies and Procedures and the OGC Compliance Testing web site.
