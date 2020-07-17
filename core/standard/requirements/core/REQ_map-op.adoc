@@ -1,0 +1,7 @@
+[[req_core_map-op]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/core/map-op*
+^|A |Every map SHALL be available as a HTTP GET request to a URI that will be composed by three parts: the first part is the URI of a resource that can be represented as a map, the second part follows the pattern /map/{styleId} and the third part completing the retrieval parameters if needed
+^|B |Only the resources (e.g. collection) that advertise one of more links following the pattern .../map/{styleId}... in the maps metadata can be retrieved as maps.
+|===

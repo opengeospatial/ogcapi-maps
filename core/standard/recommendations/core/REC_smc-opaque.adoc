@@ -1,0 +1,9 @@
+[[rec_core-opaque]]
+[width="90%",cols="2,6a"]
+|===
+^|*Recommendation {counter:rec-id}* |*/rec/core/opaque*
+^|A | The maps description response may include a boolean property `opaque`.
+^|B | 'false' means that map data represents geometries or observations that probably do not
+completely fill space and the resulting map should mark those parts as `no data. 'true' means map data are mostly or completely opaque.
+^|C | If the property is not provided, it should be interpreted as false (the default value)
+|===

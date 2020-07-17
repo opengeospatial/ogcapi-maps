@@ -1,0 +1,6 @@
+[[per_core_map-op]]
+[width="90%",cols="2,6a"]
+|===
+^|*Permission {counter:per-id}* |*/per/core/map-op*
+^|A |A map resources SHOULD be retrieved subsetted as maps or as tiles. This standard does recommend to retrieve the whole map.
+|===

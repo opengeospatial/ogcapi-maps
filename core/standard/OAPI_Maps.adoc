@@ -96,9 +96,9 @@ include::clause_6_overview.adoc[]
 
 include::clause_8_map_core.adoc[]
 
-include::clause_8_map_styles.adoc[]
+include::clause_8_map_geodata.adoc[]
 
-include::clause_8_map_collections.adoc[]
+include::clause_8_map_dataset.adoc[]
 
 //include::clause_10_encodings.adoc[]
 

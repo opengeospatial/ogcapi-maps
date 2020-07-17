@@ -1,0 +1,81 @@
+== Requirement Class "Map Core"
+
+=== Overview
+
+[[maps-core-overview]]
+
+include::requirements/maps/requirements_class_core.adoc[]
+
+It specifies a map resource: a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution).
+It also specifies how to apply a style to a map resources to get a styled map.
+
+**TBD**
+
+A map distribution of a dataset is a pictorial representation of geospatial resources. To create a pictorial representation a style is added to the data in the geospatial resource. Styles are defined internally and have a identifier. New styles can be added or modified if the OGC API - Maps draft specification works in combination with the OGC API - Styles draft specification. After associating styles to geospatial resources, a map can be retrieved by specifying a set of parameters that will determine its resolution (width, height, bounding  box and CRS) or can be retrieved as tiles.
+
+This section defines the core part of the OGC API - Maps standard that allows defining a map representation for a geospatial resources. To retrieve a fragment of the map, this core needs to be combined with an OGC API - Tiles core standard or with the OGC API - Maps - Bbox extension standard.
+
+To keep the core of the OGC API - Maps standard simple, the core only includes a mechanism to select the default style but it does not define any mechanism to declare, define or select a style other than the default one. The core only assumes that the service is capable of knowing which is the default style while the client ignores all the details about it (including its name).
+
+**End of TBD**
+
+=== General
+include::recommendations/geodata/REC_api-common.adoc[]
+
+This building block stays flexible and does not require to implement OWS Common, allowing for other API architectures outside the OGC API framework to adopt it. However, a server under the OGC APIs is expected to implement OGC API Common. If so, in practice, this means that the landing page and the conformance page follow OGC API - Common core and collections requirement classes will be used. Temporarily, it is also possible to combine this building block with OGC API features v1 that is not tied to OWS Common.
+
+=== Declaration of conformance classes
+To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the conformance classes it implements and conforms to.
+
+==== Response
+The conformance page mainly consists of a list of links.
+
+include::requirements/geodata/REQ_conformance-success.adoc[]
+
+If the server declares also conformity to OGC API - Common or to OGC API - Features v1, then it has to consider the OGC API - Common requirements for declaring conformance, i.e. the use of a the conformance page. In the JSON format the conformance page is an array of links following the link schema defined in the OGC API - Common or in OGC API - Features v1. Below is an example fragment of a conformance information page of an API conformant to OGC API - Common and OGC API - Maps.
+
+[[ConformancePageMapsCore]]
+.Conformance Information Page fragment
+=================
+[source,JSON]
+{
+  "conformsTo": [
+  [
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/collections",
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/geodata"
+  ]
+}
+=================
+
+=== Geospatial resources
+This standard does not specify how geospatial resources are exposed in the API and if they have the possibility to be retrievable as geospatial data (e.g. feature items). For example OGC API features v1 includes the definition of collections and each collection is available in the /collections/{collectionId} path. OGC API common will provide a similar mechanism. Other paths in the API could also give access to geospatial resources.
+
+NOTE: The concept of geospatial resource path substitutes the concept of "layer" in WMS but it intended to give a better integration between data visualization and data access.
+
+include::requirements/maps/core/REQ_mc-md-collection-links.adoc[]
+
+NOTE: In WMS layers have a hierarchical dependency. At the time of writing this draft specification neither OGC API - Features nor OGC API - Common do not consider his possibility.
+
+=== Map description
+A map description contains the necessary metadata to enable a client application to formulate a map request from a single geospatial resource.
+
+The maps core defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map request for a collection. Nevertheless, the core does not require any mandatory information since the map core alone does not specify how to retrieve a map. This core does not mandate a map description operation. The map description cannot be described without considering other OGC API - Maps extensions.
+
+==== Map description response
+This core does not mandate a map description operation. Nevertheless, if it is defined by an OGC API - Maps extension, the core introduces recommendations for having two specific properties in the response of a map description that are inherited from WMS: cascade and opaque.
+
+include::recommendations/maps/core/REC_smc-opaque.adoc[]
+
+include::recommendations/maps/core/REC_smc-cascaded.adoc[]
+
+=== Maps
+This OGC API - Maps core draft specification does not specify how to retrieve a map but it does specify that in order for a map to be retrievable a parameter styleId should be added to any operation that retrieves a map as maps or as tiles.
+
+==== Operation
+
+include::requirements/maps/core/REQ_mc-map-op.adoc[]
+
+==== Parameter styleId
+include::requirements/maps/core/REQ_mc-styleId-definition.adoc[]
