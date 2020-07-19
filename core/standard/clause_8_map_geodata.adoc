@@ -4,7 +4,7 @@
 
 [[maps-core-overview]]
 
-include::requirements/maps/requirements_class_core.adoc[]
+include::requirements/requirements_class_geodata.adoc[]
 
 It specifies a map resource: a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution).
 It also specifies how to apply a style to a map resources to get a styled map.

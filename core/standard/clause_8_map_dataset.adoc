@@ -4,7 +4,7 @@
 
 [[maps-collections-overview]]
 
-include::requirements/maps/requirements_class_collections.adoc[]
+include::requirements/requirements_class_dataset.adoc[]
 
 In previous clauses maps that are produced form one and only one resource is discussed. This is achieved by concatenating the map path to a resource (e.g. a feature collection). This extension discusses the possibility of combining more than one resource to create a map. This is achieved by using by adding the map path to the root of the service.
 

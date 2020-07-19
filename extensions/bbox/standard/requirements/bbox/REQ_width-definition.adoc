@@ -1,0 +1,22 @@
+[[req_bbox_width-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/bbox/width-definition*
+^|A |The map operation SHALL support a parameter `width` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+[source,YAML]
+----
+  width:
+    name: width
+    in: query
+    description:
+      Width  of the viewport to present the response (the map subset).
+    required: false
+    style: form
+    explode: false
+    schema:
+      type: number
+      default: 256
+----
+^|B |`width` SHALL be a positive integer number indicating the horizontal size (columns) of the viewport where the response will be presented.
+^|C |The value of the `width` SHALL no excide the capabilities of the server provided in the map description document under the `maxWidth` property.
+|===

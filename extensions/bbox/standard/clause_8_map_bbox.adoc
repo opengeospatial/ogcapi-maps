@@ -1,34 +1,12 @@
 == Requirement Class "Map BBox"
 
-NOTE: This section should be elaborated by a SWG and only some hints are provided in this Engineering Report. This section is out of the scope of the Testbed-15.
-
-WARNING: Some subsections are intentionally left blank.
-
 === Overview
 
 [[maps-bbox-overview]]
 
-include::requirements/maps/requirements_class_bbox.adoc[]
+include::requirements/requirements_class_bbox.adoc[]
 
-This extension describes how a map can be retrieved by specifying a set of parameters that will determine its resolution (width, height, boundingbox and CRS).
-
-The map can use the default style or it can select one of the styles available if the right extension is also added to the core.
-
-=== General
-//include::requirements/maps/bbox/REQ_api-common.adoc[]
-
-In practice, this means that the landing page and the conformance page follow OGC API - Common core requirements. More is still TBD but mostly equivalent to the general parts of OGC API - Features requirements, though with the text generalized to other resource types. This draft specification provides extra additions to the OGC API - Common requirements that are particular of tiles.
-
-=== API landing page
-
-The landing page provides links to start exploring the resources offered by the API. It mainly consists of a list of links. OGC API - Common already requires some common links that are enough for this core.
-
-==== Response
-There are no required variations to the landing page.
-
-With a /collections successful response it is possible to retrieve the list of collectionId and links to the /collections/{collectionId}.
-With a /collections/{collectionId} successful response, it is possible to discover the links to retrieve some maps.
-Note that other resources can also be retrieved as collections (e.g. coverages).
+This extension describes how to subset a map by specifying a set of parameters that will determine its resolution (width, height, boundingbox and CRS).
 
 === Declaration of conformance classes
 
@@ -38,7 +16,7 @@ To support "generic" clients that want to access multiple OGC API standards and 
 
 The conformance page mainly consists of a list of links. OGC API - Common already requires some links.
 
-//include::requirements/maps/bbox/REQ_conformance-success.adoc[]
+include::requirements/bbox/REQ_conformance-success.adoc[]
 
 In the conformance page (typically in JSON format) the links follow the link schema defined in the OGC API - Common. The following is an example fragment of the response of an implementation of the OGC API – Maps draft specification with the maps extension conformance information page.
 
@@ -57,82 +35,32 @@ In the conformance page (typically in JSON format) the links follow the link sch
 }
 =================
 
-=== Collections
-This draft specification includes dependencies on OGC API - Common collections. Collections are mandatory in the core of this draft specification because collections are the object that will be included in a tile.
-
-Collections will enumerate the collectionId available in this API as well as basic information about each collectionId: id, title, description, extent, crs and links. This common response is considered enough for a general
-description of the collection. To retrieve more information, you should use /collections/{collectionId}
-
-NOTE: The collectionId substitutes the concept of "layer" in WMS.
-
-=== Collection
-
-This draft specification includes dependencies on OGC API - Common collection. The response to the operation is extended with a new link for the maps description.
-
-==== Collection Links
-
-TBD
-//include::requirements/maps/bbox/REQ_smc-maps-desc-links.adoc[]
-
-==== Maps metadata
-The core of the OGC API - Maps draft specification defines a `maps` resource that is associated to an operation contains the necessary information to later formulate a map request for a collection. Neither the core, nor the styles extension requires any mandatory information. This requirement class does require this operation to be able to retrieve a map as maps (this resource will not be present if the map is only available as tiles).
+=== Map Bbox
 
 ==== Operation
 
-//include::requirements/maps/styles/REQ_scm-op.adoc[]
+The core of this standard defines how to add a {styleId} parameter to a map to make retrievable as a subset. This standard specifies the parameters needed to subset a map an retrieve fragments of it.
 
-The request of this operation has no parameters.
+An example of a resource that can be retrieved as map subsets is a feature collection (/collections/{collectionId}/map/{styleId}).
 
-==== Response
-
-A successful response to a map request for a collection that can be retrieved as a map responds with a data structure with specific information necessary to get a fragment of the map representing the resource collection. In this extension, the response is only required to inform about the URL templates styles it supports.
-
-//include::requirements/maps/styles/REQ_smc-map-examples.adoc[]
-
-In practice, since the map core alone does not specify how to retrieve a map, it is not possible to exemplify completely how the link looks like without considering other extensions. If the server also conforms to an extension to distribute the map as maps, the example will look like this.
-
-.API collection response fragment
-=================
-[source,JSON]
-links:
-[
-    {
-      "href": "http://data.example.com/collections/buildings/map/brown",
-      "rel": "item",
-      "type": "image/png",
-    }
-]
-=================
-
-=== Maps from one collection
-
-This draft specification specifies how to get maps from a single collection.
-
-==== Operation
-
-//include::requirements/maps/maps/REQ_mc-op.adoc[]
-
-Typical resources that can be retrieved as maps are: features (/collections/{collectionId}), coverages (/collections/{collectionId}/coverage/{coverageId} or /coverage/{coverageId}).
-
-==== Parameter crs
-TBD
-//include::requirements/maps/maps/REQ_mc-crs-definition.adoc[]
+==== Parameter crsId
+This parameter indicates the CRS of the data rendered in the map as well as the CRS used by the parameter bbox.
+include::requirements/bbox/REQ_crsid-definition.adoc[]
 
 ==== Parameter bbox
-TBD
-//include::requirements/maps/maps/REQ_mc-bbox-definition.adoc[]
+This parameter indicates the size of the bbox of the subset of the data (in the crsId coordinates).
+include::requirements/bbox/REQ_bbox-definition.adoc[]
 
 ==== Parameter width
-TBD
-//include::requirements/maps/maps/REQ_mc-width-definition.adoc[]
+The subset of the map will specify the size of the viewport in rows and columns. If the format of the response is a raster image, the size of the image will match the requested width and height.
+include::requirements/bbox/REQ_width-definition.adoc[]
 
 ==== Parameter height
-TBD
-//include::requirements/maps/maps/REQ_mc-height-definition.adoc[]
+include::requirements/bbox/REQ_height-definition.adoc[]
 
 ==== Response
 
-A successful response of a tile request will be consistent with the media type of the resource requested. For features the media type can be geojson or Mapbox vector tiles, for coverages it may be a GeoTIFF, and for maps it can be a JPEG or a PNG.
+A successful response of a map request will be consistent with the media type of the resource requested. Common formats are JPEG or a PNG.
 
 //include::requirements/tiles/maps/REQ_tc-success.adoc[]
 

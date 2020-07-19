@@ -4,7 +4,7 @@
 
 [[maps-core-overview]]
 
-include::requirements/maps/requirements_class_core.adoc[]
+include::requirements/requirements_class_core.adoc[]
 
 It specifies a map resource: a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution).
 It also specifies how to apply a style to a map resources to get a styled map.
@@ -110,13 +110,20 @@ include::recommendations/core/REC_smc-opaque.adoc[]
 include::recommendations/core/REC_smc-cascaded.adoc[]
 
 === Maps
-This OGC API - Maps core standard does not specify how to retrieve a map but it does specify that in order for a map to be retrievable a parameter styleId should be added to any operation that retrieves a map as map bounding boxes or as tiles.
+This OGC API - Maps core standard does not specify how to retrieve a subset of a map. However, it does specify that in order for a map to be retrievable a parameter styleId should be added to a map resource in order to be ready to subset it. A map can be subset with bounding boxes or retrieved as tiles.
 
 ==== Operation
-
 include::requirements/core/REQ_map-op.adoc[]
 
 include::recommendations/core/PER_map-op.adoc[]
 
 ==== Parameter styleId
 include::requirements/core/REQ_styleId-definition.adoc[]
+
+==== Parameter transparent
+include::requirements/core/REQ_mc-transparent-definition.adoc[]
+
+==== Parameter bgcolor
+include::requirements/core/REQ_mc-bgcolor-definition.adoc[]
+
+If the client wants to force an opaque color, apart from defining the appropriate background color it should ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency, it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values and colors in the map.

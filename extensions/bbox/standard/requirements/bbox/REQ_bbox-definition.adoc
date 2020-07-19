@@ -1,0 +1,33 @@
+[[req_bbox_bbox-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/bbox/width-definition*
+^|A |The map operation SHALL support a parameter `bbox` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+[source,YAML]
+----
+  bbox:
+    name: bbox
+    in: query
+    description:
+      Bounding box of the rendered map.The bounding box is provided as four coordinates
+
+      * Lower left corner, coordinate axis 1
+      * Lower left corner, coordinate axis 2
+      * Upper right corner, coordinate axis 1
+      * Upper right corner, coordinate axis 2
+
+      The coordinate reference system of the values is the one indicated in the crsId. The axis order is defined by the crsId.
+    required: false
+    schema:
+      type: array
+      minItems: 4
+      maxItems: 6
+      items:
+        type: number
+        format: double
+    style: form
+    explode: false
+----
+^|B |`bbox` SHALL be a coma separated list of floating point numbers. The first two numbers are the coordinates of the lower left corner. The last tow are the coordinates of the upper right corner. The axis order is determined by the `crsId`. For example in CRS84 the order is long_min, lat_min, long_max, lat_max.
+^|C |The values of the `bbox` SHALL no excide the optional resource limits provided in the map description document under the crsSpatialExtent element that corresponds to the crsId.
+|===

@@ -1,6 +1,0 @@
-[[req_maps_styles_scm-op]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/maps/styles/scm-op*
-^|A |Every resource available as maps SHALL support an operation to retrieve the description of the maps it can provide, available as a HTTP GET request to a URI that will be composed by two parts: the   first part is the URI of a resource that can be represented as a map and the second part follows the pattern /maps. Only the resources or collection that supports this operation can be retrieved as maps.
-|===
