@@ -1,0 +1,6 @@
+[[per_dataset_geodata-selection]]
+[width="90%",cols="2,6a"]
+|===
+^|*Permission {counter:per-id}* |*/per/dataset/geodata-selection*
+^|A |If it is not possible and sensible to represent all geospatial data resources in a map (e.g. it compromises performance or tiles are become packed with too many elements), the server is allowed to select only the most significant geospatial data resources.
+|===

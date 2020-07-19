@@ -1,12 +1,52 @@
-== Requirement Class "Map from more than one collection"
+== Requirement Class "Dataset Maps"
 
 === Overview
 
-[[maps-collections-overview]]
+[[dataset-maps-overview]]
 
 include::requirements/requirements_class_dataset.adoc[]
 
+Defines how to get a map resource from the dataset (or datasets) represented by the services. it will tell the path to get a map resources
+
+**TBD**
+
 In previous clauses maps that are produced form one and only one resource is discussed. This is achieved by concatenating the map path to a resource (e.g. a feature collection). This extension discusses the possibility of combining more than one resource to create a map. This is achieved by using by adding the map path to the root of the service.
+
+**End of TBD**
+
+=== General
+include::recommendations/dataset-tilesets/REC_api-common.adoc[]
+
+This building block stays flexible and does not require implementation OGC API - Common, allowing for other API architectures outside the OGC API framework to adopt it. However, a server under the OGC APIs is expected to implement OGC API - Common. If so, in practice, this means that the landing page and the conformance page follow OGC API - Common core and collections requirement classes when used. Temporarily, it is also possible to combine this building block with http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] that is not tied to OGC API - Common.
+
+=== API landing page
+
+The landing page provides links to start exploring the resources offered by the API. It mainly consists of a list of links to root resources. This standard extension requires a new link in the landing page for getting a description of the URL that allows for retrieving tiles of the resources in the dataset
+
+==== Response
+
+include::requirements/dataset/REQ_landingpage.adoc[]
+
+In the landing page, in JSON format, the links follow the link schema defined in the OGC API - Common or in OGC API - Features v1. Below you can find an example fragment of the response to an OGC API - Maps landing page showing the link to root tiles.
+
+[[landingPageTilesRoot]]
+.API Landing Page fragment that advertises dataset mps
+=================
+[source,JSON]
+----
+{
+  links: [
+    ...,
+    {
+       "href": "http://data.example.org/tiles",
+       "rel": "tiles",
+       "type": "application/json",
+       "title": "Link to information on map tilesets from the dataset",
+    }
+  ]
+}
+----
+=================
 
 === Declaration of conformance classes
 
@@ -14,7 +54,7 @@ In previous clauses maps that are produced form one and only one resource is dis
 
 The conformance page mainly consists of a list of links. OGC API - Common already requires some links.
 
-include::requirements/maps/collections/REQ_conformance-success.adoc[]
+include::requirements/dataset/REQ_conformance-success.adoc[]
 
 In the conformance page (typically in JSON format) the links follow the link schema defined in the OGC API - Common. The following is an example fragment of the response of an OGC API - Maps conformance information page
 
@@ -25,23 +65,32 @@ In the conformance page (typically in JSON format) the links follow the link sch
 {
   "conformsTo": [
     "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core"
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections"
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset"
   ]
 }
 =================
 
-=== Maps from more than one collection
+=== Dataset maps
+
+The response to the dataset map operation is a map description that contains the necessary information to later formulate a map subset request from the dataset.
 
 ==== Operation
-include::requirements/maps/collections/REQ_mcs-op.adoc[]
 
-==== Parameter styles
-include::requirements/maps/collections/REQ_mcs-styles-definition.adoc[]
+include::requirements/dataset/REQ_operation.adoc[]
 
-==== Parameter Collections
-include::requirements/maps/collections/REQ_mcs-collections-definition.adoc[]
+The request of this operation has no parameters.
 
 ==== Response
-To retrieve the map as a map or a tile another extension is needed. No requirements are provided here.
+A successful response to a map request is a data structure defined by the core class
+
+=== Dataset Map subset
+The bbox extension have information on how to retrieve a subset of the map representing a piece of information in the dataset in the way explained in the bbox class. The OGC API - Tiles also contain classes that allow to retrieve a tile representation of a subset of the map.
+
+==== Response
+include::recommendations/dataset/REC_geodata-selection.adoc[]
+
+include::recommendations/dataset/PER_geodata-selection.adoc[]
+
+==== Response
+To retrieve a subset of the map as a map or a tile another extension is needed. No requirements are provided here.

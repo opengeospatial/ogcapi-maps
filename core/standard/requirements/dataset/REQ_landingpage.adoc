@@ -1,0 +1,6 @@
+[[req_dataset-landingpage]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/dataset/landingpage*
+^|A | If the API has mechanism to expose root resources (e.g. a landing page), the API SHALL advertise a URI to retrieve maps defined by this service as links to the descriptions paths with rel: `map`.
+|===
