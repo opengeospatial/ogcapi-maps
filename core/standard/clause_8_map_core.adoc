@@ -109,8 +109,8 @@ include::recommendations/core/REC_smc-opaque.adoc[]
 
 include::recommendations/core/REC_smc-cascaded.adoc[]
 
-=== Maps
-This OGC API - Maps core standard does not specify how to retrieve a subset of a map. However, it does specify that in order for a map to be retrievable a parameter styleId should be added to a map resource in order to be ready to subset it. A map can be subset with bounding boxes or retrieved as tiles.
+=== Map
+This OGC API - Maps core standard does not specify how to retrieve a subset of a map. However, it does specify that in order for a map to be retrievable a parameter styleId should be added to a map resource in order to be ready to subset it other parameters may condition the style of the map. A map can be subset with bounding boxes or retrieved as tiles.
 
 ==== Operation
 include::requirements/core/REQ_map-op.adoc[]
@@ -127,3 +127,6 @@ include::requirements/core/REQ_mc-transparent-definition.adoc[]
 include::requirements/core/REQ_mc-bgcolor-definition.adoc[]
 
 If the client wants to force an opaque color, apart from defining the appropriate background color it should ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency, it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values and colors in the map.
+
+==== Response
+The response of a GET request to this resource is not completely specified by this core. Without extra parameters, the response could results in a map representing the whole geospatial data resource at maximum resolution that could be too difficult to generate by the server or too big to be efficinetly retrieved by the client. Instead, it is expected that other path and query parameters are added by other extensions of this core to complete define the response. 

@@ -1,0 +1,6 @@
+[[rec_bbox_map-success-scale]]
+[width="90%",cols="2,6a"]
+|===
+^|*Recommendation {counter:rec-id}* |*/rec/bbox/map-success-scale*
+^|A |The resolution of the content represented in the map SHOULD be consistent with the width and height of the viewport indicated. In case of vector data (e.g. KML or SVG) the geometries should be simplified to match the resolution of the viewport (raster responses are simplified to match the width and height).
+|===
