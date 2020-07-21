@@ -15,7 +15,7 @@ In previous clauses maps that are produced form one and only one resource is dis
 **End of TBD**
 
 === General
-include::recommendations/dataset-tilesets/REC_api-common.adoc[]
+include::recommendations/dataset/REC_api-common.adoc[]
 
 This building block stays flexible and does not require implementation OGC API - Common, allowing for other API architectures outside the OGC API framework to adopt it. However, a server under the OGC APIs is expected to implement OGC API - Common. If so, in practice, this means that the landing page and the conformance page follow OGC API - Common core and collections requirement classes when used. Temporarily, it is also possible to combine this building block with http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] that is not tied to OGC API - Common.
 

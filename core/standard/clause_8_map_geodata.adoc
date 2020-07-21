@@ -49,33 +49,46 @@ If the server declares also conformity to OGC API - Common or to OGC API - Featu
 }
 =================
 
-=== Geospatial resources
+=== Geospatial data resources
 This standard does not specify how geospatial resources are exposed in the API and if they have the possibility to be retrievable as geospatial data (e.g. feature items). For example OGC API features v1 includes the definition of collections and each collection is available in the /collections/{collectionId} path. OGC API common will provide a similar mechanism. Other paths in the API could also give access to geospatial resources.
 
 NOTE: The concept of geospatial resource path substitutes the concept of "layer" in WMS but it intended to give a better integration between data visualization and data access.
 
-include::requirements/maps/core/REQ_mc-md-collection-links.adoc[]
+include::requirements/geodata/REQ_desc-links.adoc[]
 
-NOTE: In WMS layers have a hierarchical dependency. At the time of writing this draft specification neither OGC API - Features nor OGC API - Common do not consider his possibility.
+NOTE: In WMS layers have a hierarchical dependency. At the time of writing this standard neither OGC API - Features nor OGC API - Common do not consider his possibility.
+
+.Fragment of a collection with a links array with one item of the array pointing to a map.
+=================
+[source,JSON]
+
+  "id": "buildings",
+  "title": "Buildings in the city of Bonn",
+  "description": "This collection contains buildings",
+  "attribution": "OpenStreetMap",
+  "extent": {
+    ...
+  }
+  "links": [
+    ...
+    {
+      "href": "http://data.example.com/collections/buildings/map",
+      "rel": "map",
+      "type": "application/json",
+    }
+  ]
+}
+=================
 
 === Map description
-A map description contains the necessary metadata to enable a client application to formulate a map request from a single geospatial resource.
+The maps core defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map subset request. Nevertheless, the core does not require any mandatory information since the map core alone does not specify how to retrieve a map.
 
-The maps core defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map request for a collection. Nevertheless, the core does not require any mandatory information since the map core alone does not specify how to retrieve a map. This core does not mandate a map description operation. The map description cannot be described without considering other OGC API - Maps extensions.
+==== Map path
 
-==== Map description response
-This core does not mandate a map description operation. Nevertheless, if it is defined by an OGC API - Maps extension, the core introduces recommendations for having two specific properties in the response of a map description that are inherited from WMS: cascade and opaque.
+include::requirements/geodata/REQ_operation.adoc[]
 
-include::recommendations/maps/core/REC_smc-opaque.adoc[]
+This standard does not specify the need for any additional query parameter in the GET request.
 
-include::recommendations/maps/core/REC_smc-cascaded.adoc[]
+==== Response
 
-=== Maps
-This OGC API - Maps core draft specification does not specify how to retrieve a map but it does specify that in order for a map to be retrievable a parameter styleId should be added to any operation that retrieves a map as maps or as tiles.
-
-==== Operation
-
-include::requirements/maps/core/REQ_mc-map-op.adoc[]
-
-==== Parameter styleId
-include::requirements/maps/core/REQ_mc-styleId-definition.adoc[]
+A successful GET response is described in the core class
