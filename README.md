@@ -14,14 +14,13 @@ At this moment in time we are working on doing this separation by moving files a
 ### OGC API - Maps - Part 1: Core
 The definition of OGC API - Maps - Part 1: Core is the immediate next step. The Standards Working Group (SWG) [agreed](https://github.com/opengeospatial/OGC-API-Maps/issues/32) on the structure shown below.
 
-1. Map resource: It specifies a map resource, which is a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution).
-It also specifies how to apply a style to a map resources to get a styled map.
+1. Map resource: It specifies a map resource, which is a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution). It also specifies how to apply a style to a map resources to get a styled map.
 
-2. BBoxSubset: It specifies how to include a query parameter to subset a styled map using a BBOX, WIDTH, HEIGHT etc as a query parameters. This is a partition that can be input for OGC API Common. Is the OGC API Features BBOX useful here?. Could we have a instant time here?. Clip versus intersect could be problematic in Common (in maps it was "almost" always clipping).
+2. BBoxSubset: It specifies how to include a query parameter to subset a styled map using a BBOX, WIDTH, HEIGHT etc as a query parameters. This is a partition that could be input for OGC API Common. Some considerations include OGC API - Features BBOX, representation of Time instances, and Clip versus Intersect.
 
 3. DatasetMap - OGC API Common - Part 1 (dataset, /map resource at the root): Defines how to get a map resource from the dataset (or datasets) represented by the services. it will tell the path to get a map resources.
 
-4. GeoDataResourceSelection - together with 3, collections= query parameters: This is identical from the OGC API Tiles GeoDataResourceSelection and if done adequately, we could share this conformance class with OGC API tiles (or the other way around). (Is this OGC API Common? Part 2)
+4. GeoDataResourceSelection - together with 3, collections= query parameters: This is identical to the GeoDataResourceSelection conformance class of OGC API - Common and if done adequately, the conformance class could be shared with OGC API - Tiles (or the other way around).
 
 5. GeoDataResourceMap - OGC API Common - Part 2 / OGC Feature - Part 1 (collection connection, /maps resource after {collectionID}): It will define how to specify the a link to a map resource containing a representation of this geospatial data resource (path).
 
@@ -60,36 +59,15 @@ The OGC API - Maps and [OGC API - Tiles](https://github.com/opengeospatial/OGC-A
 
 ## Examples
 
-WARNING: This section needs to be updated.
+An example OpenAPI definition, that describes a service that can serve only maps of one or more collections, is available at https://app.swaggerhub.com/apis/UAB-CREAF/ogc-api-maps-opf-xmp-more-1-collection/1.0.0
 
-Until mid July 2019, the work was focused on providing OpenAPI services description examples and domains (libraries). Now we believe this work is finalized, but each time that we take a look we still find gaps, mistakes and things that can be improved.
-We expect that during the effort of extracting the knowledge accumulated (hopefully) in these files to create the standard, we will keep fixing, perfecting and evolving things.
+Another example OpenAPI definition, that describes a service that can serve only map (raster) tiles of one or more collections, is available at https://app.swaggerhub.com/apis/UAB-CREAF/ogc-api-map-tiles-opf-xmp-mt-more-1-collection/1.0.0
 
-IMPORTANT NOTE: We are now using the Swagger HUB again and the following should be considered the "gold copy". The Swagger account is:
-* [Domain documents](https://app.swaggerhub.com/search?owner=UAB-CREAF&type=DOMAIN)
-* [API example documents](https://app.swaggerhub.com/search?owner=UAB-CREAF&type=API)
-
-The material in the [standards folder](core/standard/openapi) takes precedence to the text of the standard and the Swagger HUB takes precedence to the material in GitHub. The [standards folder](core/standard/openapi) examples are intended to be identical to the Swagger HUB ones except for the path names. To go from  Swagger HUB to GitHub do the following substitutions:
-* Replace "https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-" with "https://raw.githubusercontent.com/opengeospatial/OGC-API-Maps/master/standard/openapi/ogc-api-"
-* Replace "/1.0.0#/" by ".yaml#/"
+Several more examples are in the [openapi folder](core/standard/openapi).
 
 The files in the [standards folder](core/standard/openapi) are structured in several parts that can be combined together.
 
-A [OGC API maps and tiles OPF FULL example in Swagger](https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles-opf-xmp-full/1.0.0) or in [GitHub](core/standard/openapi/ogc-api-map-tiles-opf-xmp-full.yaml) that contains full example of server with some features and coverages that are served as maps and/or tiles.
-
-The latter is normally too long to be analyzed. The following are easier to understand.
-
-Examples:
-* A [OGC API OPF example for vector tiles in Swagger](https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles-opf-xmp-vt-more-1-collection/1.0.0) or in [GitHub](core/standard/openapi/ogc-api-tiles-opf-xmp-vt-more-1-collection.yaml) that describes a service that can serve only tiled features (vector tiles) of one or more collections.
-* A [OGC API OPF example for tiled map in Swagger](https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles-opf-xmp-mt-more-1-collection/1.0.0) or in [GitHub](core/standard/openapi/ogc-api-map-tiles-opf-xmp-mt-more-1-collection.yaml) that describes a service that can serve only map (raster) tiles of one or more collections.
-* A [OGC API OPF example for maps in Swagger](core/standard/openapi/ogc-api-maps-opf-xmp-ore-1-collection.yaml) that describes a service that can serve only maps of one or more collections.
-* A [OGC API OPF example for tiled coverages in Swagger](https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles-opf-xmp-vt-more-1-collection/1.0.0) or in [GitHub](core/standard/openapi/ogc-api-tiles-opf-xmp-vt-more-1-collection.yaml) that describes a service that can serve tiled coverages of one or more collections. This example was not initially needed by the sponsors but is motivated by the elevation map in a GeoPackage example.
-
-Libraries:
-* A [OGC API common DOMAIN document in Swagger](https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0) or in [GitHub](core/standard/openapi/ogc-api-common.yaml). It contains fragments that can be reference in api document instances or other domain document. It could become part of a future OGC API common standard additional material.
-* A [OGC API maps DOMAIN document in Swagger](https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0) or in [GitHub](core/standard/openapi/ogc-api-maps.yaml). It contains fragments that can be reference in api document instances or other domain document. It could become part of a future OGC API maps standard additional material.
-* A [OGC API maps and tiles DOMAIN document in Swagger](https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0) or in [GitHub](core/standard/openapi/ogc-api-map-tiles.yaml). It contains fragments that can be reference in api document instances or other domain document. It will be included by OGC API maps standard and tiles standard.
-* A [OGC API tiles DOMAIN document in Swagger](https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-tiles/1.0.0) or in [GitHub](core/standard/openapi/ogc-api-tiles.yaml). It contains fragments that can be reference in api document instances or other domain document. It could become part of a future OGC API tiles standard additional material.
+Previous examples, some no longer accessible, are at [previous_examples.md](previous_examples.md).
 
 ## Overview
 
