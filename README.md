@@ -63,9 +63,7 @@ An example OpenAPI definition, that describes a service that can serve only maps
 
 Another example OpenAPI definition, that describes a service that can serve only map (raster) tiles of one or more collections, is available at https://app.swaggerhub.com/apis/UAB-CREAF/ogc-api-map-tiles-opf-xmp-mt-more-1-collection/1.0.0
 
-Several more examples are in the [openapi folder](core/standard/openapi).
-
-The files in the [standards folder](openapi) are structured in several parts that can be combined together.
+Several more examples are in the [openapi folder](openapi). The files are structured such that they can be combined together.
 
 Previous examples, some no longer accessible, are at [previous_examples.md](previous_examples.md).
 
