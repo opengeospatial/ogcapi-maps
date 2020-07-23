@@ -128,4 +128,4 @@ The WMS Standards Working Group (SWG) is the group at OGC that is responsible fo
 * [Open issues](https://github.com/opengeospatial/OGC-API-Maps/issues)
 * [Copy of License Language](https://raw.githubusercontent.com/opengeospatial/OGC-API-Maps/master/LICENSE)
 
-Pull Requests from contributors are welcome. However, please note that by sending a Pull Request or Commit to this GitHub repository, you are agreeing to the terms in the Observer Agreement https://portal.ogc.org/files/?artifact_id=92169
+Pull Requests from contributors are welcomed. However, please note that by sending a Pull Request or Commit to this GitHub repository, you are agreeing to the terms in the Observer Agreement https://portal.ogc.org/files/?artifact_id=92169
