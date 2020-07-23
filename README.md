@@ -65,7 +65,7 @@ Another example OpenAPI definition, that describes a service that can serve only
 
 Several more examples are in the [openapi folder](core/standard/openapi).
 
-The files in the [standards folder](core/standard/openapi) are structured in several parts that can be combined together.
+The files in the [standards folder](openapi) are structured in several parts that can be combined together.
 
 Previous examples, some no longer accessible, are at [previous_examples.md](previous_examples.md).
 
