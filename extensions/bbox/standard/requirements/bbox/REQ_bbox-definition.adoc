@@ -16,7 +16,7 @@
       * Upper right corner, coordinate axis 1
       * Upper right corner, coordinate axis 2
 
-      The coordinate reference system of the values is the one indicated in the crsId. The axis order is defined by the crsId.
+      The coordinate reference system and axis order of the values are indicated in the `crs` parameter.
     required: false
     schema:
       type: array
@@ -28,6 +28,6 @@
     style: form
     explode: false
 ----
-^|B |`bbox` SHALL be a coma separated list of floating point numbers. The first two numbers are the coordinates of the lower left corner. The last tow are the coordinates of the upper right corner. The axis order is determined by the `crsId`. For example in CRS84 the order is long_min, lat_min, long_max, lat_max.
-^|C |The values of the `bbox` SHALL no excide the optional resource limits provided in the map description document under the crsSpatialExtent element that corresponds to the crsId.
+^|B |`bbox` SHALL be a comma separated list of floating point numbers. The first two numbers are the coordinates of the lower left corner. The last two are the coordinates of the upper right corner. The axis order is determined by the `crs` parameter value. For example in CRS84 the order is long_min, lat_min, long_max, lat_max.
+^|C |The `bbox` parameter values SHALL not exceed the optional resource limits provided in the map description document under the `crsSpatialExtent` element that corresponds to the `crs` parameter value.
 |===
