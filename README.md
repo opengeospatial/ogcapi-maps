@@ -16,16 +16,18 @@ The definition of OGC API - Maps - Part 1: Core is the immediate next step. The 
 
 1. Map resource: It specifies a map resource, which is a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution). It also specifies how to apply a style to a map resources to get a styled map.
 
-2. BBoxSubset: It specifies how to include a query parameter to subset a styled map using a BBOX, WIDTH, HEIGHT etc as a query parameters. This is a partition that could be input for OGC API Common. Some considerations include OGC API - Features BBOX, representation of Time instances, and Clip versus Intersect.
+2. DatasetMap - OGC API Common - Part 1 (dataset, /map resource at the root): Defines how to get a map resource from the dataset (or datasets) represented by the services. it will tell the path to get a map resources.
 
-3. DatasetMap - OGC API Common - Part 1 (dataset, /map resource at the root): Defines how to get a map resource from the dataset (or datasets) represented by the services. it will tell the path to get a map resources.
+3. GeoDataResourceMap - OGC API Common - Part 2 / OGC Feature - Part 1 (collection connection, /maps resource after {collectionID}): It will define how to specify the a link to a map resource containing a representation of this geospatial data resource (path).
 
-4. GeoDataResourceSelection - together with 3, collections= query parameters: This is identical to the GeoDataResourceSelection conformance class of OGC API - Common and if done adequately, the conformance class could be shared with OGC API - Tiles (or the other way around).
-
-5. GeoDataResourceMap - OGC API Common - Part 2 / OGC Feature - Part 1 (collection connection, /maps resource after {collectionID}): It will define how to specify the a link to a map resource containing a representation of this geospatial data resource (path).
-
+NOTE: GeoDataResourceSelection - together with 3, geodata= query parameters: This is identical to the GeoDataResourceSelection conformance class of OGC API - Common and if done adequately, the conformance class is shared with OGC API - Tiles (or the other way around) and is not repeated here.
 
 ### Extensions
+
+1. BBoxSubset: It specifies how to include a query parameter to subset a styled map using a BBOX, WIDTH, HEIGHT etc as a query parameters. This is a partition that could be input for OGC API Common. Some considerations include OGC API - Features BBOX, representation of Time instances, and Clip versus Intersect.
+
+
+
 We foresee the following extensions (some of them may eventually become OGC standards and others might not).
 None of them has been started yet.
 
@@ -59,7 +61,8 @@ The OGC API - Maps and [OGC API - Tiles](https://github.com/opengeospatial/OGC-A
 
 ## Examples
 
-An example OpenAPI definition, that describes a service that can serve only maps of one or more collections, is available at https://app.swaggerhub.com/apis/UAB-CREAF/ogc-api-maps-opf-xmp-more-1-collection/1.0.0
+An example OpenAPI definition, that describes hypothetical WebAPI conformat to this standard is available at https://app.swaggerhub.com/apis/UAB-CREAF/ogc-api-maps-opf-xmp-more-1-collection/1.0.0
+A resolved (almost without dependencies with other files) YAML file, synchronized with the previous working document, is available in this github repository at: [openapi/swagger/maps.yaml](openapi/swagger/maps.yaml)
 
 Another example OpenAPI definition, that describes a service that can serve only map (raster) tiles of one or more collections, is available at https://app.swaggerhub.com/apis/UAB-CREAF/ogc-api-map-tiles-opf-xmp-mt-more-1-collection/1.0.0
 
