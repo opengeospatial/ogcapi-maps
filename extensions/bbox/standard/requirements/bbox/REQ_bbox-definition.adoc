@@ -16,7 +16,7 @@
       * Upper right corner, coordinate axis 1
       * Upper right corner, coordinate axis 2
 
-      The coordinate reference system and axis order of the values is indicated in the `crs` parameter.
+      The coordinate reference system and axis order of the values are indicated in the `crs` parameter.
     required: false
     schema:
       type: array
