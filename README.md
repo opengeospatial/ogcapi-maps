@@ -62,7 +62,7 @@ The OGC API - Maps and [OGC API - Tiles](https://github.com/opengeospatial/OGC-A
 ## Examples
 
 An example OpenAPI definition, that describes hypothetical WebAPI conformat to this standard is available at https://app.swaggerhub.com/apis/UAB-CREAF/ogc-api-maps-opf-xmp-more-1-collection/1.0.0
-A resolved (almost without dependencies with other files) YAML file, synchronized with the previous working document, is available in this github repository at: [openapi/swagger/maps.yaml](openapi/swagger/maps.yaml)
+A resolved (almost without dependencies with other files) YAML file, synchronized with the previous working document, is available in this github repository at: https://github.com/opengeospatial/OGC-API-Maps/tree/master/openapi/swaggerhub/maps.yaml
 
 Another example OpenAPI definition, that describes a service that can serve only map (raster) tiles of one or more collections, is available at https://app.swaggerhub.com/apis/UAB-CREAF/ogc-api-map-tiles-opf-xmp-mt-more-1-collection/1.0.0
 
