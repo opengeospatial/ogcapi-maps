@@ -1,5 +1,5 @@
-:Title: OGC API-MapsTiles
-:titletext: OGC API Maps Tiles
+:Title: OGC API - Maps - Part 2: Subsetting by Bounding Box
+:titletext: OGC API - Maps - Part 2: Subsetting by Bounding Box
 :doctype: book
 :encoding: utf-8
 :lang: en
@@ -28,7 +28,7 @@
 |Internal reference number of this OGC(R) document:    YY-nnnrx
 |Version: 0.0.1
 |Category: OGC(R) Implementation Specification
-|Editor:   Charles Heazel
+|Editor: Joan Maso
 |===
 
 [cols = "^", frame = "none"]

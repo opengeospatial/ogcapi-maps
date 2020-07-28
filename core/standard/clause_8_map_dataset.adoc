@@ -19,7 +19,7 @@ include::recommendations/dataset/REC_api-common.adoc[]
 
 This building block stays flexible and does not require implementation OGC API - Common, allowing for other API architectures outside the OGC API framework to adopt it. However, a server under the OGC APIs is expected to implement OGC API - Common. If so, in practice, this means that the landing page and the conformance page follow OGC API - Common core and collections requirement classes when used. Temporarily, it is also possible to combine this building block with http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] that is not tied to OGC API - Common.
 
-=== API landing page
+=== Dataset API landing page
 
 The landing page provides links to start exploring the resources offered by the API. It mainly consists of a list of links to root resources. This standard extension requires a new link in the landing page for getting a description of the URL that allows for retrieving tiles of the resources in the dataset
 
@@ -64,21 +64,19 @@ In the conformance page (typically in JSON format) the links follow the link sch
 [source,JSON]
 {
   "conformsTo": [
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core"
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset"
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset"
   ]
 }
 =================
 
 === Dataset maps
+The maps core defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map subset request. Nevertheless, the core does not does not specify how to retrieve a map resource description. This section offers one possible path to do that from the dataset represented by the API.
 
-The response to the dataset map operation is a map description that contains the necessary information to later formulate a map subset request from the dataset.
-
-==== Operation
+==== Map path
 
 include::requirements/dataset/REQ_operation.adoc[]
-
 The request of this operation has no parameters.
 
 ==== Response
@@ -88,6 +86,8 @@ A successful response to a map request is a data structure defined by the core c
 The bbox extension have information on how to retrieve a subset of the map representing a piece of information in the dataset in the way explained in the bbox class. The OGC API - Tiles also contain classes that allow to retrieve a tile representation of a subset of the map.
 
 ==== Response
+The response is expected to represent the dataset as a whole. In a Web API providing access to  a complex dataset formed by several geospatial data resources, there are reasons for being selective in the amount of information included. This can be achieved by applying a manual filter currently described in a OGC API - Tiles - Part 1 or as an automatic decision by the server side.
+
 include::recommendations/dataset/REC_geodata-selection.adoc[]
 
 include::recommendations/dataset/PER_geodata-selection.adoc[]

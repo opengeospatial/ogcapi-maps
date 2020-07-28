@@ -50,8 +50,11 @@ This parameter indicates the CRS of the data rendered in the map as well as the 
 include::requirements/bbox/REQ_crs-definition.adoc[]
 
 ==== Parameter bbox
-This parameter indicates the size of the bbox of the subset of the data (in the crsId coordinates).
+This parameter indicates the size of the bbox of the subset of the data (in the crsId coordinates). In this OPC API extension the bbox parameter values are defined considering the exterior edges of the pixels of the viewport defined by the width and height. In other words, the relation of the Bounding Box to the map pixel matrix is that the bounding box goes around the "outside" of the pixels of the map rather than through the centers of the map's border pixels (as many times done in coverages). In this context, individual pixels represent a cell area on the ground.
+
 include::requirements/bbox/REQ_bbox-definition.adoc[]
+
+NOTE: This parameter use the comma (",") as the separator between the coordinates. Additional white space will not be used to delimit list items. The comma character should not be escaped (IETF RFC 2396).
 
 ==== Parameter width
 The subset of the map will specify the size of the viewport in rows and columns. If the format of the response is a raster image, the size of the image will match the requested width and height.

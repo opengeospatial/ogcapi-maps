@@ -1,4 +1,4 @@
-== Requirement Class "Geospatial Dataset Map"
+== Requirement Class "Geospatial Data Map"
 
 === Overview
 
@@ -7,7 +7,6 @@
 include::requirements/requirements_class_geodata.adoc[]
 
 It specifies a map resource: a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution).
-It also specifies how to apply a style to a map resources to get a styled map.
 
 **TBD**
 
@@ -42,7 +41,7 @@ If the server declares also conformity to OGC API - Common or to OGC API - Featu
   "conformsTo": [
   [
     "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/collections",
+    "http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections",
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/geodata"
   ]
@@ -80,8 +79,8 @@ NOTE: In WMS layers have a hierarchical dependency. At the time of writing this 
 }
 =================
 
-=== Map description
-The maps core defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map subset request. Nevertheless, the core does not require any mandatory information since the map core alone does not specify how to retrieve a map.
+=== Geospatial Data Resource Map description
+The maps core defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map subset request. Nevertheless, the core does not does not specify how to retrieve a map resource description. This section offers one possible path to do that from a geospatial data resource offered by the API
 
 ==== Map path
 
@@ -92,3 +91,6 @@ This standard does not specify the need for any additional query parameter in th
 ==== Response
 
 A successful GET response is described in the core class
+
+=== Geospatial Data Resource subset
+The bbox extension have information on how to retrieve a subset of the map representing a piece of information in the dataset in the way explained in the bbox class. The OGC API - Tiles also contain classes that allow to retrieve a tile representation of a subset of the map.

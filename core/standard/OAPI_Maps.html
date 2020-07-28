@@ -190,7 +190,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#_requirement_class_geospatial_dataset_map">8. Requirement Class "Geospatial Dataset Map"</a>
+<li><a href="#_requirement_class_geospatial_data_map">8. Requirement Class "Geospatial Data Map"</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_2">8.1. Overview</a></li>
 <li><a href="#_general">8.2. General</a></li>
@@ -200,19 +200,20 @@
 </ul>
 </li>
 <li><a href="#_geospatial_data_resources">8.4. Geospatial data resources</a></li>
-<li><a href="#_map_description">8.5. Map description</a>
+<li><a href="#_geospatial_data_resource_map_description">8.5. Geospatial Data Resource Map description</a>
 <ul class="sectlevel3">
 <li><a href="#_map_path">8.5.1. Map path</a></li>
 <li><a href="#_response_4">8.5.2. Response</a></li>
 </ul>
 </li>
+<li><a href="#_geospatial_data_resource_subset">8.6. Geospatial Data Resource subset</a></li>
 </ul>
 </li>
 <li><a href="#_requirement_class_dataset_maps">9. Requirement Class "Dataset Maps"</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_3">9.1. Overview</a></li>
 <li><a href="#_general_2">9.2. General</a></li>
-<li><a href="#_api_landing_page">9.3. API landing page</a>
+<li><a href="#_dataset_api_landing_page">9.3. Dataset API landing page</a>
 <ul class="sectlevel3">
 <li><a href="#_response_5">9.3.1. Response</a></li>
 </ul>
@@ -224,7 +225,7 @@
 </li>
 <li><a href="#_dataset_maps">9.5. Dataset maps</a>
 <ul class="sectlevel3">
-<li><a href="#_operation_2">9.5.1. Operation</a></li>
+<li><a href="#_map_path_2">9.5.1. Map path</a></li>
 <li><a href="#_response_7">9.5.2. Response</a></li>
 </ul>
 </li>
@@ -775,7 +776,7 @@ OGC API - Tiles includes a core specification and extensions for defining tile m
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Map tiles description collections<sup>1</sup></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">/map/tiles</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">/map/{styleId}/tiles</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Map tile with style</p></td>
@@ -829,8 +830,7 @@ OGC API - Tiles includes a core specification and extensions for defining tile m
 </tbody>
 </table>
 <div class="paragraph">
-<p>It specifies a map resource: a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution).
-It also specifies how to apply a style to a map resources to get a styled map.</p>
+<p>It specifies a map resource: a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution). It also specifies how to apply a style to a map resources to get a styled map.</p>
 </div>
 <div class="paragraph">
 <p><strong>TBD</strong></p>
@@ -879,7 +879,7 @@ It also specifies how to apply a style to a map resources to get a styled map.</
 </tbody>
 </table>
 <div class="paragraph">
-<p>If the server declares also conformity to OGC API - Common or to OGC API - Features v1, then it has to consider the OGC API - Common requirements for declaring conformance, i.e. the use of a the conformance page. In the JSON format the conformance page is an array of links following the link schema defined in the OGC API - Common or in OGC API - Features v1. Below is an example fragment of a conformance information page of an API conformant to OGC API - Common and OGC API - Maps.</p>
+<p>If the server declares also conformity to OGC API - Common or to OGC API - Features - Part 1 v1, then it has to consider the OGC API - Common requirements for declaring conformance, i.e. the use of a the conformance page. In the JSON format the conformance page is an array of links following the link schema defined in the OGC API - Common or in OGC API - Features - Part 1 v1. Below is an example fragment of a conformance information page of an API conformant to OGC API - Common and OGC API - Maps.</p>
 </div>
 <div id="ConformancePageMapsCore" class="exampleblock">
 <div class="title">Example 1. Conformance Information Page fragment</div>
@@ -888,9 +888,8 @@ It also specifies how to apply a style to a map resources to get a styled map.</
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="JSON">{
   "conformsTo": [
-  [
     "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/collections",
+    "http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections",
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
   ]
 }</code></pre>
@@ -903,15 +902,15 @@ It also specifies how to apply a style to a map resources to get a styled map.</
 <div class="sect2">
 <h3 id="_map_resource"><a class="anchor" href="#_map_resource"></a>7.3. Map resource</h3>
 <div class="paragraph">
-<p>A map resources is defined by a map description document that contains the necessary metadata to enable a client application to formulate a map request from a single geospatial resource, some geospatial resources for from the entire dataset.</p>
+<p>A map resource is defined by a map description document that contains the necessary metadata to enable a client application to formulate a map request from a single geospatial resource, some geospatial resources for from the entire dataset.</p>
 </div>
 <div class="paragraph">
-<p>The core class does not specify how to retrieve a map description. It can be link to more that one resource and there are extensions indicating how to get the map.</p>
+<p>The core class does not specify how to retrieve a map description. It can provide a link to more that one resource and there are extensions indicating how to get the map.</p>
 </div>
 <div class="sect3">
 <h4 id="_map_description_document"><a class="anchor" href="#_map_description_document"></a>7.3.1. Map description document</h4>
 <div class="paragraph">
-<p>The core introduces the way data will be combined with styles to create a map. The only mandatory element in the map description document is the list of styles that are used to transform a resource into a map</p>
+<p>The core introduces the way data will be combined with styles to create a map. The only mandatory element in the map description document is the list of styles that are used to transform a resource into a map.</p>
 </div>
 <table id="req_core_styles" class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
@@ -957,7 +956,6 @@ It also specifies how to apply a style to a map resources to get a styled map.</
     links:
       type: array
       nullable: true
-      minItems: 1
       items:
         $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'</code></pre>
 </div>
@@ -1182,7 +1180,7 @@ completely fill space and the resulting map should mark those parts as `no data.
 <tr>
 <td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">A</p></td>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
-<p>A map resources SHOULD be retrieved subsetted as maps or as tiles. This standard does recommend to retrieve the whole map.</p>
+<p>A map resources SHOULD be retrieved subsetted as maps or as tiles. This standard does not recommend to retrieve the whole map.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1333,7 +1331,7 @@ completely fill space and the resulting map should mark those parts as `no data.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_requirement_class_geospatial_dataset_map"><a class="anchor" href="#_requirement_class_geospatial_dataset_map"></a>8. Requirement Class "Geospatial Dataset Map"</h2>
+<h2 id="_requirement_class_geospatial_data_map"><a class="anchor" href="#_requirement_class_geospatial_data_map"></a>8. Requirement Class "Geospatial Data Map"</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>8.1. Overview</h3>
@@ -1360,8 +1358,7 @@ completely fill space and the resulting map should mark those parts as `no data.
 </tbody>
 </table>
 <div class="paragraph">
-<p>It specifies a map resource: a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution).
-It also specifies how to apply a style to a map resources to get a styled map.</p>
+<p>It specifies a map resource: a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution).</p>
 </div>
 <div class="paragraph">
 <p><strong>TBD</strong></p>
@@ -1447,7 +1444,7 @@ It also specifies how to apply a style to a map resources to get a styled map.</
   "conformsTo": [
   [
     "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/collections",
+    "http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections",
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/geodata"
   ]
@@ -1534,9 +1531,9 @@ In WMS layers have a hierarchical dependency. At the time of writing this standa
 </div>
 </div>
 <div class="sect2">
-<h3 id="_map_description"><a class="anchor" href="#_map_description"></a>8.5. Map description</h3>
+<h3 id="_geospatial_data_resource_map_description"><a class="anchor" href="#_geospatial_data_resource_map_description"></a>8.5. Geospatial Data Resource Map description</h3>
 <div class="paragraph">
-<p>The maps core defines a <code>map</code> resource that is associated with an operation that contains the necessary information to later formulate a map subset request. Nevertheless, the core does not require any mandatory information since the map core alone does not specify how to retrieve a map.</p>
+<p>The maps core defines a <code>map</code> resource that is associated with an operation that contains the necessary information to later formulate a map subset request. Nevertheless, the core does not does not specify how to retrieve a map resource description. This section offers one possible path to do that from a geospatial data resource offered by the API</p>
 </div>
 <div class="sect3">
 <h4 id="_map_path"><a class="anchor" href="#_map_path"></a>8.5.1. Map path</h4>
@@ -1575,6 +1572,12 @@ In WMS layers have a hierarchical dependency. At the time of writing this standa
 <div class="paragraph">
 <p>A successful GET response is described in the core class</p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_geospatial_data_resource_subset"><a class="anchor" href="#_geospatial_data_resource_subset"></a>8.6. Geospatial Data Resource subset</h3>
+<div class="paragraph">
+<p>The bbox extension have information on how to retrieve a subset of the map representing a piece of information in the dataset in the way explained in the bbox class. The OGC API - Tiles also contain classes that allow to retrieve a tile representation of a subset of the map.</p>
 </div>
 </div>
 </div>
@@ -1646,7 +1649,7 @@ In WMS layers have a hierarchical dependency. At the time of writing this standa
 </div>
 </div>
 <div class="sect2">
-<h3 id="_api_landing_page"><a class="anchor" href="#_api_landing_page"></a>9.3. API landing page</h3>
+<h3 id="_dataset_api_landing_page"><a class="anchor" href="#_dataset_api_landing_page"></a>9.3. Dataset API landing page</h3>
 <div class="paragraph">
 <p>The landing page provides links to start exploring the resources offered by the API. It mainly consists of a list of links to root resources. This standard extension requires a new link in the landing page for getting a description of the URL that allows for retrieving tiles of the resources in the dataset</p>
 </div>
@@ -1734,9 +1737,9 @@ In WMS layers have a hierarchical dependency. At the time of writing this standa
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="JSON">{
   "conformsTo": [
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core"
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset"
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset"
   ]
 }</code></pre>
 </div>
@@ -1748,10 +1751,10 @@ In WMS layers have a hierarchical dependency. At the time of writing this standa
 <div class="sect2">
 <h3 id="_dataset_maps"><a class="anchor" href="#_dataset_maps"></a>9.5. Dataset maps</h3>
 <div class="paragraph">
-<p>The response to the dataset map operation is a map description that contains the necessary information to later formulate a map subset request from the dataset.</p>
+<p>The maps core defines a <code>map</code> resource that is associated with an operation that contains the necessary information to later formulate a map subset request. Nevertheless, the core does not does not specify how to retrieve a map resource description. This section offers one possible path to do that from the dataset represented by the API.</p>
 </div>
 <div class="sect3">
-<h4 id="_operation_2"><a class="anchor" href="#_operation_2"></a>9.5.1. Operation</h4>
+<h4 id="_map_path_2"><a class="anchor" href="#_map_path_2"></a>9.5.1. Map path</h4>
 <table id="req_dataset_operation" class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 25%;">
@@ -1796,6 +1799,9 @@ In WMS layers have a hierarchical dependency. At the time of writing this standa
 </div>
 <div class="sect3">
 <h4 id="_response_8"><a class="anchor" href="#_response_8"></a>9.6.1. Response</h4>
+<div class="paragraph">
+<p>The response is expected to represent the dataset as a whole. In a Web API providing access to  a complex dataset formed by several geospatial data resources, there are reasons for being selective in the amount of information included. This can be achieved by applying a manual filter currently described in a OGC API - Tiles - Part 1 or as an automatic decision by the server side.</p>
+</div>
 <table id="rec_dataset_geodata-selection" class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 25%;">
@@ -1811,7 +1817,7 @@ In WMS layers have a hierarchical dependency. At the time of writing this standa
 <tr>
 <td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">A</p></td>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
-<p>When it is possible and sensible, all geospatial data resources supporting the crsId parameter value SHOULD be represented in the tiles.</p>
+<p>When it is possible and sensible, all geospatial data resources supporting the crs parameter value SHOULD be represented in the map.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1831,7 +1837,7 @@ In WMS layers have a hierarchical dependency. At the time of writing this standa
 <tr>
 <td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">A</p></td>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
-<p>If it is not possible and sensible to represent all geospatial data resources in a map (e.g. it compromises performance or tiles are become packed with too many elements), the server is allowed to select only the most significant geospatial data resources.</p>
+<p>If it is not possible and sensible to represent all geospatial data resources in a map (e.g. it compromises performance or maps are become packed with too many elements), the server is allowed to select only the most significant geospatial data resources.</p>
 </div></div></td>
 </tr>
 </tbody>

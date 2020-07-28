@@ -6,8 +6,7 @@
 
 include::requirements/requirements_class_core.adoc[]
 
-It specifies a map resource: a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution).
-It also specifies how to apply a style to a map resources to get a styled map.
+It specifies a map resource: a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution). It also specifies how to apply a style to a map resources to get a styled map.
 
 **TBD**
 
@@ -27,7 +26,7 @@ The conformance page mainly consists of a list of links.
 
 include::requirements/core/REQ_conformance-success.adoc[]
 
-If the server declares also conformity to OGC API - Common or to OGC API - Features v1, then it has to consider the OGC API - Common requirements for declaring conformance, i.e. the use of a the conformance page. In the JSON format the conformance page is an array of links following the link schema defined in the OGC API - Common or in OGC API - Features v1. Below is an example fragment of a conformance information page of an API conformant to OGC API - Common and OGC API - Maps.
+If the server declares also conformity to OGC API - Common or to OGC API - Features - Part 1 v1, then it has to consider the OGC API - Common requirements for declaring conformance, i.e. the use of a the conformance page. In the JSON format the conformance page is an array of links following the link schema defined in the OGC API - Common or in OGC API - Features - Part 1 v1. Below is an example fragment of a conformance information page of an API conformant to OGC API - Common and OGC API - Maps.
 
 [[ConformancePageMapsCore]]
 .Conformance Information Page fragment
@@ -35,21 +34,20 @@ If the server declares also conformity to OGC API - Common or to OGC API - Featu
 [source,JSON]
 {
   "conformsTo": [
-  [
     "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/collections",
+    "http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections",
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
   ]
 }
 =================
 
 === Map resource
-A map resources is defined by a map description document that contains the necessary metadata to enable a client application to formulate a map request from a single geospatial resource, some geospatial resources for from the entire dataset.
+A map resource is defined by a map description document that contains the necessary metadata to enable a client application to formulate a map request from a single geospatial resource, some geospatial resources for from the entire dataset.
 
-The core class does not specify how to retrieve a map description. It can be link to more that one resource and there are extensions indicating how to get the map.
+The core class does not specify how to retrieve a map description. It can provide a link to more that one resource and there are extensions indicating how to get the map.
 
 ==== Map description document
-The core introduces the way data will be combined with styles to create a map. The only mandatory element in the map description document is the list of styles that are used to transform a resource into a map
+The core introduces the way data will be combined with styles to create a map. The only mandatory element in the map description document is the list of styles that are used to transform a resource into a map.
 
 include::requirements/core/REQ_styles.adoc[]
 
