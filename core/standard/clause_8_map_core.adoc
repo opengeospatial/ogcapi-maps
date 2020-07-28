@@ -43,10 +43,10 @@ If the server declares also conformity to OGC API - Common or to OGC API - Featu
 }
 =================
 
-=== Map
-A map is defined by a map description document that contains the necessary metadata to enable a client application to formulate a map request from a single geospatial resource, some geospatial resources for from the entire dataset.
+=== Map resource
+A map resources is defined by a map description document that contains the necessary metadata to enable a client application to formulate a map request from a single geospatial resource, some geospatial resources for from the entire dataset.
 
-Nevertheless, the core class does not specify how to retrieve a map description.
+The core class does not specify how to retrieve a map description. It can be link to more that one resource and there are extensions indicating how to get the map.
 
 ==== Map description document
 The core introduces the way data will be combined with styles to create a map. The only mandatory element in the map description document is the list of styles that are used to transform a resource into a map
@@ -129,4 +129,4 @@ include::requirements/core/REQ_mc-bgcolor-definition.adoc[]
 If the client wants to force an opaque color, apart from defining the appropriate background color it should ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency, it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values and colors in the map.
 
 ==== Response
-The response of a GET request to this resource is not completely specified by this core. Without extra parameters, the response could results in a map representing the whole geospatial data resource at maximum resolution that could be too difficult to generate by the server or too big to be efficinetly retrieved by the client. Instead, it is expected that other path and query parameters are added by other extensions of this core to complete define the response. 
+The response of a GET request to this resource is not completely specified by this core. Without extra parameters, the response could results in a map representing the whole geospatial data resource at maximum resolution that could be too difficult to generate by the server or too big to be efficinetly retrieved by the client. Instead, it is expected that other path and query parameters are added by other extensions of this core to complete define the response.

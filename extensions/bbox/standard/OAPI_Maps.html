@@ -167,35 +167,20 @@
 <li><a href="#_requirement_class_map_bbox">7. Requirement Class "Map BBox"</a>
 <ul class="sectlevel2">
 <li><a href="#_overview">7.1. Overview</a></li>
-<li><a href="#_general">7.2. General</a></li>
-<li><a href="#_api_landing_page">7.3. API landing page</a>
+<li><a href="#_declaration_of_conformance_classes">7.2. Declaration of conformance classes</a>
 <ul class="sectlevel3">
-<li><a href="#_response">7.3.1. Response</a></li>
+<li><a href="#_response">7.2.1. Response</a></li>
 </ul>
 </li>
-<li><a href="#_declaration_of_conformance_classes">7.4. Declaration of conformance classes</a>
+<li><a href="#_map_subset_by_bounding_box">7.3. Map subset by bounding box</a>
 <ul class="sectlevel3">
-<li><a href="#_response_2">7.4.1. Response</a></li>
-</ul>
-</li>
-<li><a href="#_collections">7.5. Collections</a></li>
-<li><a href="#_collection">7.6. Collection</a>
-<ul class="sectlevel3">
-<li><a href="#_collection_links">7.6.1. Collection Links</a></li>
-<li><a href="#_maps_metadata">7.6.2. Maps metadata</a></li>
-<li><a href="#_operation">7.6.3. Operation</a></li>
-<li><a href="#_response_3">7.6.4. Response</a></li>
-</ul>
-</li>
-<li><a href="#_maps_from_one_collection">7.7. Maps from one collection</a>
-<ul class="sectlevel3">
-<li><a href="#_operation_2">7.7.1. Operation</a></li>
-<li><a href="#_parameter_crs">7.7.2. Parameter crs</a></li>
-<li><a href="#_parameter_bbox">7.7.3. Parameter bbox</a></li>
-<li><a href="#_parameter_width">7.7.4. Parameter width</a></li>
-<li><a href="#_parameter_height">7.7.5. Parameter height</a></li>
-<li><a href="#_response_4">7.7.6. Response</a></li>
-<li><a href="#_error_conditions">7.7.7. Error conditions</a></li>
+<li><a href="#_operation">7.3.1. Operation</a></li>
+<li><a href="#_parameter_crs">7.3.2. Parameter crs</a></li>
+<li><a href="#_parameter_bbox">7.3.3. Parameter bbox</a></li>
+<li><a href="#_parameter_width">7.3.4. Parameter width</a></li>
+<li><a href="#_parameter_height">7.3.5. Parameter height</a></li>
+<li><a href="#_response_2">7.3.6. Response</a></li>
+<li><a href="#_error_conditions">7.3.7. Error conditions</a></li>
 </ul>
 </li>
 </ul>
@@ -603,30 +588,6 @@
 <div class="sect1">
 <h2 id="_requirement_class_map_bbox"><a class="anchor" href="#_requirement_class_map_bbox"></a>7. Requirement Class "Map BBox"</h2>
 <div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-This section should be elaborated by a SWG and only some hints are provided in this Engineering Report. This section is out of the scope of the Testbed-15.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Warning</div>
-</td>
-<td class="content">
-Some subsections are intentionally left blank.
-</td>
-</tr>
-</table>
-</div>
 <div class="sect2">
 <h3 id="_overview"><a class="anchor" href="#_overview"></a>7.1. Overview</h3>
 <table id="rc_maps-bbox" class="tableblock frame-all grid-all" style="width: 90%;">
@@ -652,45 +613,39 @@ Some subsections are intentionally left blank.
 </tbody>
 </table>
 <div class="paragraph">
-<p>This extension describes how a map can be retrieved by specifying a set of parameters that will determine its resolution (width, height, boundingbox and CRS).</p>
-</div>
-<div class="paragraph">
-<p>The map can use the default style or it can select one of the styles available if the right extension is also added to the core.</p>
+<p>This extension describes how to subset a map by specifying a set of parameters that will determine its resolution (width, height, boundingbox and CRS).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_general"><a class="anchor" href="#_general"></a>7.2. General</h3>
-<div class="paragraph">
-<p>In practice, this means that the landing page and the conformance page follow OGC API - Common core requirements. More is still TBD but mostly equivalent to the general parts of OGC API - Features requirements, though with the text generalized to other resource types. This draft specification provides extra additions to the OGC API - Common requirements that are particular of tiles.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_api_landing_page"><a class="anchor" href="#_api_landing_page"></a>7.3. API landing page</h3>
-<div class="paragraph">
-<p>The landing page provides links to start exploring the resources offered by the API. It mainly consists of a list of links. OGC API - Common already requires some common links that are enough for this core.</p>
-</div>
-<div class="sect3">
-<h4 id="_response"><a class="anchor" href="#_response"></a>7.3.1. Response</h4>
-<div class="paragraph">
-<p>There are no required variations to the landing page.</p>
-</div>
-<div class="paragraph">
-<p>With a /collections successful response it is possible to retrieve the list of collectionId and links to the /collections/{collectionId}.
-With a /collections/{collectionId} successful response, it is possible to discover the links to retrieve some maps.
-Note that other resources can also be retrieved as collections (e.g. coverages).</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_declaration_of_conformance_classes"><a class="anchor" href="#_declaration_of_conformance_classes"></a>7.4. Declaration of conformance classes</h3>
+<h3 id="_declaration_of_conformance_classes"><a class="anchor" href="#_declaration_of_conformance_classes"></a>7.2. Declaration of conformance classes</h3>
 <div class="paragraph">
 <p>To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the requirements classes it implements and conforms to.</p>
 </div>
 <div class="sect3">
-<h4 id="_response_2"><a class="anchor" href="#_response_2"></a>7.4.1. Response</h4>
+<h4 id="_response"><a class="anchor" href="#_response"></a>7.2.1. Response</h4>
 <div class="paragraph">
 <p>The conformance page mainly consists of a list of links. OGC API - Common already requires some links.</p>
 </div>
+<table id="req_core_conformance-success" class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><strong>Requirement 7</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p><strong>/req/core/conformance-success</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p>If the API has a mechanism to advertise conformance classes, the API SHALL advertise the maps bbox conformance class with a link to  <a href="http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/bbox" class="bare">http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/bbox</a>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>In the conformance page (typically in JSON format) the links follow the link schema defined in the OGC API - Common. The following is an example fragment of the response of an implementation of the OGC API – Maps draft specification with the maps extension conformance information page.</p>
 </div>
@@ -715,125 +670,312 @@ Note that other resources can also be retrieved as collections (e.g. coverages).
 </div>
 </div>
 <div class="sect2">
-<h3 id="_collections"><a class="anchor" href="#_collections"></a>7.5. Collections</h3>
+<h3 id="_map_subset_by_bounding_box"><a class="anchor" href="#_map_subset_by_bounding_box"></a>7.3. Map subset by bounding box</h3>
+<div class="sect3">
+<h4 id="_operation"><a class="anchor" href="#_operation"></a>7.3.1. Operation</h4>
 <div class="paragraph">
-<p>This draft specification includes dependencies on OGC API - Common collections. Collections are mandatory in the core of this draft specification because collections are the object that will be included in a tile.</p>
+<p>The core of this standard defines how to add a {styleId} parameter to a map to make retrievable as a subset. This standard specifies the parameters needed to subset a map an retrieve fragments of it.</p>
 </div>
 <div class="paragraph">
-<p>Collections will enumerate the collectionId available in this API as well as basic information about each collectionId: id, title, description, extent, crs and links. This common response is considered enough for a general
-description of the collection. To retrieve more information, you should use /collections/{collectionId}</p>
+<p>An example of a resource that can be retrieved as map subsets is a feature collection (/collections/{collectionId}/map/{styleId}).</p>
 </div>
-<div class="admonitionblock note">
-<table>
+<div class="paragraph">
+<p>The supported encodings, or more precisely the media types of the supported encodings, can be determined from the API definition. The desired encoding is selected using HTTP content negotiation. In addition the parameters specified by the core, other parameters should be added.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameter_crs"><a class="anchor" href="#_parameter_crs"></a>7.3.2. Parameter crs</h4>
+<div class="paragraph">
+<p>This parameter indicates the CRS of the data rendered in the map as well as the CRS used by the parameter bbox.</p>
+</div>
+<table id="req_bbox_crs-definition" class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
 <tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-The collectionId substitutes the concept of "layer" in WMS.
-</td>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><strong>Requirement 8</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p><strong>/req/bbox/crs-definition</strong></p>
+</div></div></td>
 </tr>
-</table>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p>The map operation SHALL support a parameter <code>crs</code> with the characteristics defined in the OpenAPI Specification 3.0 fragment</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_collection"><a class="anchor" href="#_collection"></a>7.6. Collection</h3>
-<div class="paragraph">
-<p>This draft specification includes dependencies on OGC API - Common collection. The response to the operation is extended with a new link for the maps description.</p>
-</div>
-<div class="sect3">
-<h4 id="_collection_links"><a class="anchor" href="#_collection_links"></a>7.6.1. Collection Links</h4>
-<div class="paragraph">
-<p>TBD</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_maps_metadata"><a class="anchor" href="#_maps_metadata"></a>7.6.2. Maps metadata</h4>
-<div class="paragraph">
-<p>The core of the OGC API - Maps draft specification defines a <code>maps</code> resource that is associated to an operation contains the necessary information to later formulate a map request for a collection. Neither the core, nor the styles extension requires any mandatory information. This requirement class does require this operation to be able to retrieve a map as maps (this resource will not be present if the map is only available as tiles).</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_operation"><a class="anchor" href="#_operation"></a>7.6.3. Operation</h4>
-<div class="paragraph">
-<p>The request of this operation has no parameters.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_response_3"><a class="anchor" href="#_response_3"></a>7.6.4. Response</h4>
-<div class="paragraph">
-<p>A successful response to a map request for a collection that can be retrieved as a map responds with a data structure with specific information necessary to get a fragment of the map representing the resource collection. In this extension, the response is only required to inform about the URL templates styles it supports.</p>
-</div>
-<div class="paragraph">
-<p>In practice, since the map core alone does not specify how to retrieve a map, it is not possible to exemplify completely how the link looks like without considering other extensions. If the server also conforms to an extension to distribute the map as maps, the example will look like this.</p>
-</div>
-<div class="exampleblock">
-<div class="title">Example 2. API collection response fragment</div>
-<div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="JSON">links:
-[
-    {
-      "href": "http://data.example.com/collections/buildings/map/brown",
-      "rel": "item",
-      "type": "image/png",
-    }
-]</code></pre>
+<pre class="CodeRay highlight"><code data-lang="YAML">  crsId:
+    name: crs
+    in: query
+    description: A URI of the coordinate reference system of the bbox and the map subset response. A list of all available CRS values can be found under the map description resource.
+    required: true
+    schema:
+      type: string
+    example: http://www.opengis.net/def/crs/OGC/1.3/CRS84</code></pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_maps_from_one_collection"><a class="anchor" href="#_maps_from_one_collection"></a>7.7. Maps from one collection</h3>
-<div class="paragraph">
-<p>This draft specification specifies how to get maps from a single collection.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
-<h4 id="_operation_2"><a class="anchor" href="#_operation_2"></a>7.7.1. Operation</h4>
+<h4 id="_parameter_bbox"><a class="anchor" href="#_parameter_bbox"></a>7.3.3. Parameter bbox</h4>
 <div class="paragraph">
-<p>Typical resources that can be retrieved as maps are: features (/collections/{collectionId}), coverages (/collections/{collectionId}/coverage/{coverageId} or /coverage/{coverageId}).</p>
+<p>This parameter indicates the size of the bbox of the subset of the data (in the crsId coordinates).</p>
 </div>
+<table id="req_bbox_bbox-definition" class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><strong>Requirement 9</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p><strong>/req/bbox/width-definition</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p>The map operation SHALL support a parameter <code>bbox</code> with the characteristics defined in the OpenAPI Specification 3.0 fragment</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="YAML">  bbox:
+    name: bbox
+    in: query
+    description:
+      Bounding box of the rendered map.The bounding box is provided as four coordinates
+
+      * Lower left corner, coordinate axis 1
+      * Lower left corner, coordinate axis 2
+      * Upper right corner, coordinate axis 1
+      * Upper right corner, coordinate axis 2
+
+      The coordinate reference system and axis order of the values are indicated in the `crs` parameter.
+    required: false
+    schema:
+      type: array
+      minItems: 4
+      maxItems: 6
+      items:
+        type: number
+        format: double
+    style: form
+    explode: false</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">B</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p><code>bbox</code> SHALL be a comma separated list of floating point numbers. The first two numbers are the coordinates of the lower left corner. The last two are the coordinates of the upper right corner. The axis order is determined by the <code>crs</code> parameter value. For example in CRS84 the order is long_min, lat_min, long_max, lat_max.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">C</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p>The <code>bbox</code> parameter values SHALL not exceed the optional resource limits provided in the map description document under the <code>crsSpatialExtent</code> element that corresponds to the <code>crs</code> parameter value.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
-<h4 id="_parameter_crs"><a class="anchor" href="#_parameter_crs"></a>7.7.2. Parameter crs</h4>
+<h4 id="_parameter_width"><a class="anchor" href="#_parameter_width"></a>7.3.4. Parameter width</h4>
 <div class="paragraph">
-<p>TBD</p>
+<p>The subset of the map will specify the size of the viewport in rows and columns. If the format of the response is a raster image, the size of the image will match the requested width and height.</p>
 </div>
+<table id="req_bbox_width-definition" class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><strong>Requirement 10</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p><strong>/req/bbox/width-definition</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p>The map operation SHALL support a parameter <code>width</code> with the characteristics defined in the OpenAPI Specification 3.0 fragment</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="YAML">  width:
+    name: width
+    in: query
+    description:
+      Width  of the viewport to present the response (the map subset).
+    required: false
+    style: form
+    explode: false
+    schema:
+      type: number
+      default: 256</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">B</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p><code>width</code> SHALL be a positive integer number indicating the horizontal size (columns) of the viewport where the response will be presented.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">C</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p>The value of the <code>width</code> SHALL no excide the capabilities of the server provided in the map description document under the <code>maxWidth</code> property.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
-<h4 id="_parameter_bbox"><a class="anchor" href="#_parameter_bbox"></a>7.7.3. Parameter bbox</h4>
-<div class="paragraph">
-<p>TBD</p>
+<h4 id="_parameter_height"><a class="anchor" href="#_parameter_height"></a>7.3.5. Parameter height</h4>
+<table id="req_bbox_height-definition" class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><strong>Requirement 11</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p><strong>/req/bbox/heigth-definition</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p>The map operation SHALL support a parameter <code>height</code> with the characteristics defined in the OpenAPI Specification 3.0 fragment</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="YAML">  height:
+    name: height
+    in: query
+    description:
+      Height in pixels of the viewport to present the response (the map subset).
+    required: false
+    style: form
+    explode: false
+    schema:
+      type: number
+      default: 256</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">B</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p><code>height</code> SHALL be a positive integer number indicating the vertical size (rows) of the viewport where the response will be presented.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">C</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p>The value of the <code>height</code> SHALL no excide the capabilities of the server provided in the map description document under the <code>maxHeight</code> property.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
-<h4 id="_parameter_width"><a class="anchor" href="#_parameter_width"></a>7.7.4. Parameter width</h4>
+<h4 id="_response_2"><a class="anchor" href="#_response_2"></a>7.3.6. Response</h4>
 <div class="paragraph">
-<p>TBD</p>
+<p>A successful response to a map bbox GET operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and maps response may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG).</p>
 </div>
+<table id="req_tileset_core_tc-success" class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><strong>Requirement 12</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p><strong>/req/tileset/tc-success</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p>A successful execution of the maps subset by bbox operation SHALL be reported as a response with a HTTP status code <code>200</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">B</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p>The content of that response SHALL be consistent with the format requested and the crsId requested and represent elements inside or intersecting with the spatial extent of the geographical area of the map identified by bbox.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">C</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p>In the case of raster image media type (e.g. image/jpeg or image/png) the number of columns and rows SHALL be exactly the ones specified in the width and height parameters respectively.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table id="per_bbox_map-encoding" class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><strong>Permission 2</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p><strong>/per/bbox/map-encoding</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p>This draft specification does not impose any media type on the encoding of a map response. For raster maps it MAY be a JPEG, PNG or other format. For vector formats it could by KML or SVG.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Normally, the content partially outside the map bounding box will be clipped at the extent of the bounding box. This can be done efficiently when map subsets are in raster format (e.g. map tiles). However, maps containing features in vector format may not clip features that are partially outside to ensure continuity of features or for performance.</p>
+</div>
+<table id="rec_bbox_map-success-scale" class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><strong>Recommendation 2</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p><strong>/rec/bbox/map-success-scale</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><div class="content"><div class="paragraph">
+<p>The resolution of the content represented in the map SHOULD be consistent with the width and height of the viewport indicated. In case of vector data (e.g. KML or SVG) the geometries should be simplified to match the resolution of the viewport (raster responses are simplified to match the width and height).</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
-<h4 id="_parameter_height"><a class="anchor" href="#_parameter_height"></a>7.7.5. Parameter height</h4>
+<h4 id="_error_conditions"><a class="anchor" href="#_error_conditions"></a>7.3.7. Error conditions</h4>
 <div class="paragraph">
-<p>TBD</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_response_4"><a class="anchor" href="#_response_4"></a>7.7.6. Response</h4>
-<div class="paragraph">
-<p>A successful response of a tile request will be consistent with the media type of the resource requested. For features the media type can be geojson or Mapbox vector tiles, for coverages it may be a GeoTIFF, and for maps it can be a JPEG or a PNG.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_error_conditions"><a class="anchor" href="#_error_conditions"></a>7.7.7. Error conditions</h4>
-<div class="paragraph">
-<p>A general summary of the HTTP status codes can be found in OGC API - Common.</p>
+<p>A general summary of the HTTP status codes can be found in <a href="http://www.opengis.net/doc/IS/ogcapi-features-1/1.0">OGC API - Features - Part 1: Core, version 1.0</a> as well as in OGC API - Common.</p>
 </div>
 <div class="paragraph">
-<p>If the parameter crs is not available by the server for this resource or the parameters bbox, width, height are out-of-range, the status code of the response will be 404.</p>
+<p>If the parameter value <code>crsId</code> is not available by the server for this resource or the parameters values <code>bbox</code>, <code>width</code>, <code>height</code> are out-of-range, or the map is not provided due to lack of data in the area, the status code of the response will be <code>404</code>.</p>
 </div>
 </div>
 </div>

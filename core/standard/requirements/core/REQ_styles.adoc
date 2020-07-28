@@ -1,7 +1,7 @@
-[[req_core_smc-styles]]
+[[req_core_styles]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/core/smc-styles*
+^|*Requirement {counter:req-id}* |*/req/core/styles*
 ^|A |A successful execution will of a map request will return a map document that SHALL contain a property called _styles_ that enumerates a list of the styles available for the resource.
 ^|B |Each style in the _styles_ array SHALL contain a property called _id_ that identifies the style as well as one link pointing to the styled map (that can be later retrieved subsetting it by tiles or by bounding box). The link relation for this link shall be `map`.
 ^|C |Each style in _styles_ is an object that SHALL conform with the following data mode (shown as OpenAPI Specification 3.0 fragment):
