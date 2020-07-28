@@ -23,12 +23,12 @@ servers:
 tags:
 - name: OGC API Common
   description: Common characteristics of this API
-- name: Maps metadata
-  description: Metadata about maps
-- name: Geospatial Resource Maps
-  description: Access to map renderizations of a collection.
+- name: Map resources
+  description: Map resources and descriptions
+- name: Geospatial Data Resource Maps
+  description: Access to map subsets for geospatial data resources
 - name: Dataset Maps
-  description: Access to map renderizations of one or more geospatial data resources.
+  description: Access to map subsets the dataset.
 paths:
   /:
     get:
@@ -251,11 +251,11 @@ paths:
   /collections/{collectionId}/map:
     get:
       tags:
-      - Maps metadata
-      summary: fetch a maps description
+      - Map resources
+      summary: Fetch a maps description
       description: Retrieves the maps description for this collection including the
         `links` to get a `map`, and the `infoTemplate`
-      operationId: describeMaps
+      operationId: describeGeoDataMaps
       parameters:
       - name: collectionId
         in: path
@@ -284,10 +284,39 @@ paths:
             text/html:
               schema:
                 type: string
+  /map:
+    get:
+      tags:
+      - Map resources
+      summary: Fetch a maps description
+      description: Retrieves the maps description for this collection including the
+        `links` to get a `map`, and the `infoTemplate`
+      operationId: describeDataSetMaps
+      responses:
+        "200":
+          description: Metadata about the maps.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/maps'
+            text/html:
+              schema:
+                type: string
+        "404":
+          description: The requested URI was not found
+        "500":
+          description: A server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
   /collections/{collectionId}/map/{styleId}:
     get:
       tags:
-      - Geospatial Resource Maps
+      - Geospatial Data Resource Maps
       summary: fetch a map from a collection
       description: Retrieves a map in the requested crs, on the requested bbox desigend
         to be shown in a rendering device of a width and a height. Some formats require
@@ -472,7 +501,7 @@ paths:
   /collections/{collectionId}/map/{styleId}/info:
     get:
       tags:
-      - Geospatial Resource Maps
+      - Geospatial Data Resource Maps
       summary: fetch information about a point on a map from a collection
       description: Retrieves a getFeatureInfo in map in the requested crs, on the
         requested bbox desigend to be shown in a rendering device of a width and a
@@ -673,7 +702,7 @@ paths:
             text/html:
               schema:
                 type: string
-  /map:
+  /map/{styleId}:
     get:
       tags:
       - Dataset Maps
@@ -698,15 +727,12 @@ paths:
           type: array
           items:
             type: string
-      - name: styles
-        in: query
-        description: |-
-          The styleId that should be included in the map or tile. Each collectionId has a valid list of stylesId. To know the valid styleId values of each collectionId use /collections/{collectionId}.
-          The parameter value is a list of comma separated styles identifiers. If the parameter 'collections' exists, the list should be as long as 'collections' and each style identifier corresponds to one collection identifier. Default style can be represented as a blank name or with the `default` word.
-          If the parameter is missing, the default style is assumed for all collections.
-        required: false
-        style: form
-        explode: false
+      - name: styleId
+        in: path
+        description: The styleId that should be included in the map or tile. Each
+          collectionId has a valid list of stylesId. To know the valid styleId values
+          of each collectionId use /collections/{collectionId}.
+        required: true
         schema:
           type: string
       - name: crs
@@ -867,7 +893,7 @@ paths:
             text/html:
               schema:
                 type: string
-  /map/info:
+  /map/{styleId}/info:
     get:
       tags:
       - Dataset Maps
@@ -893,15 +919,12 @@ paths:
           type: array
           items:
             type: string
-      - name: styles
-        in: query
-        description: |-
-          The styleId that should be included in the map or tile. Each collectionId has a valid list of stylesId. To know the valid styleId values of each collectionId use /collections/{collectionId}.
-          The parameter value is a list of comma separated styles identifiers. If the parameter 'collections' exists, the list should be as long as 'collections' and each style identifier corresponds to one collection identifier. Default style can be represented as a blank name or with the `default` word.
-          If the parameter is missing, the default style is assumed for all collections.
-        required: false
-        style: form
-        explode: false
+      - name: styleId
+        in: path
+        description: The styleId that should be included in the map or tile. Each
+          collectionId has a valid list of stylesId. To know the valid styleId values
+          of each collectionId use /collections/{collectionId}.
+        required: true
         schema:
           type: string
       - name: crs
@@ -1295,25 +1318,6 @@ components:
             type: string
           default:
           - http://www.opengis.net/def/crs/OGC/1.3/CRS84
-        crsSpatialExtents:
-          type: array
-          description: Minimum spatial extent surrounding the spatial resource for
-            each CRS available
-          example:
-          - bbox:
-            - -180
-            - -90
-            - 180
-            - 90
-            crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-          - bbox:
-            - -2.00375083427892E7
-            - -2.00375083427892E7
-            - 2.00375083427892E7
-            - 2.00375083427892E7
-            crs: http://www.opengis.net/def/crs/EPSG/0/3395
-          items:
-            $ref: '#/components/schemas/spatialExtent'
     keyword:
       required:
       - keyword
@@ -1701,6 +1705,10 @@ components:
     maps_2:
       type: object
       properties:
+        crs:
+          $ref: '#/components/schemas/crs'
+        crsSpatialExtents:
+          $ref: '#/components/schemas/crsSpatialExtents'
         minScaleDenominador:
           type: number
           description: Minimum scale denominator (inclusive) for which it is appropriate
@@ -1722,32 +1730,107 @@ components:
             maps. In contrast, this is the better one for this type of information.
             It would be one of the supported for the map operation
           example: image/jpeg
-        cascaded:
-          type: number
-          description: Indicates how main times the collection map has been retransmitted
-            from another map service or API (cascading). It it is not present the
-            collection is not cascaded.
-          example: 0
-          default: 0
+        styles:
+          $ref: '#/components/schemas/style-set'
+        defaultStyle:
+          $ref: '#/components/schemas/default-style'
         opaque:
           type: boolean
           description: Indicates whether the map data represents features that probably
             do not completely fill space shows the background opaque (true) or transparent(false).
           example: false
           default: false
-        noSubsets:
-          type: boolean
-          description: Indicates whether the server can produce a map that is a subset
-            of the full bounding box.
-          example: false
         fixedWidth:
           type: number
           description: Indicates that the server can only produce map of a fixed width
-            instead of an arbitrary width
+            instead of an arbitrary width. This is al old parameter in WMS. Deprecated.
         fixedHeight:
           type: number
           description: Indicates that the server can only produce map of a fixed height
-            instead of an arbitrary height
+            instead of an arbitrary height. This is al old parameter in WMS. Deprecated.
+        maxWidth:
+          type: number
+          description: Maximum width and height values that a client is permitted
+            to include in bbox subset operation.  If absent the server imposes no
+            limit.
+          example: 2048
+        maxHeight:
+          type: number
+          description: Maximum width and height values that a client is permitted
+            to include in bbox subset operation.  If absent the server imposes no
+            limit.
+          example: 2048
+    crsSpatialExtents:
+      type: array
+      description: Minimum spatial extent surrounding the spatial resource for each
+        CRS available
+      example:
+      - bbox:
+        - -180
+        - -90
+        - 180
+        - 90
+        crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+      - bbox:
+        - -2.00375083427892E7
+        - -2.00375083427892E7
+        - 2.00375083427892E7
+        - 2.00375083427892E7
+        crs: http://www.opengis.net/def/crs/EPSG/0/3395
+      items:
+        $ref: '#/components/schemas/spatialExtent'
+    style-set:
+      type: array
+      nullable: true
+      example:
+      - id: night
+        title: Topographic night style
+        links:
+        - href: https://example.com/api/1.0/styles/night?f=mapbox
+          type: application/vnd.mapbox.style+json
+          rel: stylesheet
+        - href: https://example.com/api/1.0/styles/night?f=sld10
+          type: application/vnd.ogc.sld+xml;version=1.0
+          rel: stylesheet
+        - href: https://example.com/api/1.0/styles/night/metadata?f=json
+          type: application/json
+          rel: describedBy
+      - id: topographic
+        title: Regular topographic style
+        links:
+        - href: https://example.com/api/1.0/styles/topographic?f=mapbox
+          type: application/vnd.mapbox.style+json
+          rel: stylesheet
+        - href: https://example.com/api/1.0/styles/topographic?f=sld10
+          type: application/vnd.ogc.sld+xml;version=1.0
+          rel: stylesheet
+        - href: https://example.com/api/1.0/styles/topographic/metadata?f=json
+          type: application/json
+          rel: describedBy
+      items:
+        $ref: '#/components/schemas/style-set-entry'
+    style-set-entry:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        links:
+          minItems: 1
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/link'
+    default-style:
+      type: string
+      description: the style id of a recommended default style to use for this collection.
+        This is informative and optional.
+      example: topographic
   responses: {}
   parameters:
     f-png-jpeg:
