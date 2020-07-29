@@ -112,7 +112,7 @@ paths:
               example:
                 conformsTo:
                 - http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core
-                - http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/collections
+                - http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections
                 - http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core
                 - http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/bbox
                 - http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/geodata
@@ -137,8 +137,9 @@ paths:
       tags:
       - OGC API Common
       summary: the collections in the dataset
-      description: A list of all collection in this dataset. Some collections might
-        not be downloadable as features or coverages. It is conformant to - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections'
+      description: A list of all collection in this dataset. Some collections may
+        have a link with relation type `map` that point to a map resource created
+        with data form this collection
       operationId: getCollections
       parameters:
       - name: f
@@ -161,23 +162,22 @@ paths:
       responses:
         "200":
           description: |-
-            The collections shared by this API.
+            The collections (geospatial data resources) shared by this API.
 
             This response can be references directly for every service that wants only essential information at the collections level. /collections/collectionId might return more information.
 
-            The dataset is organized as one or more collections. This resource
-            provides information about and access to the collections.
+            The dataset is organized as one or more collections. This resource provides information about and how to access the collections.
 
             The response contains the list of collections. For each collection, a link
-            to other resources is present (e.g. the items in the collection; path `/collections/{collectionId}/items`,
-            link relation `items`) as well as key information about the collection.
-            This information includes:
+            to other resources present (e.g. the items in the collection, path `/collections/{collectionId}/items`,
+            link relation `items`, a map created with data from  collection, path `/collections/{collectionId}/map`,
+            link relation `map`) as well as key information about the collection.
+            This information includes, but is not limited to:
 
             * A local identifier for the collection that is unique for the dataset;
-            * A list of coordinate reference systems (CRS) in which geometries may be returned by the server. The first CRS is the default coordinate reference system (the default is always WGS 84 with axis order longitude/latitude);
+            * A list of coordinate reference systems (CRS) in which geometries may be returned by the server. The first CRS is the default coordinate reference system (the default is always WGS84 with axis order longitude/latitude);
             * An optional title and description for the collection;
             * An optional extent that can be used to provide an indication of the spatial and temporal extent of the collection - typically derived from the data;
-            * An optional indicator about the type of elements in the collection (the default value, if the indicator is not provided, is 'feature').
           content:
             application/json:
               schema:
@@ -199,9 +199,9 @@ paths:
       tags:
       - OGC API Common
       summary: describes a collection
-      description: Description of a collection in this dataset. It defines what is
-        possible to do with it to generate a map. Some collections might not be downloadable
-        as features or coverages. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core'
+      description: Description of a collection (geospatial data resource) in this
+        dataset. If it has a link with relation type `map`, the `href` points to a
+        map resource created with data form this collection.
       operationId: describeCollection
       parameters:
       - name: collectionId
@@ -229,7 +229,7 @@ paths:
         example: application/json
       responses:
         "200":
-          description: Metadata about the collection including style information.
+          description: Metadata about the collection including a link to the map.
           content:
             application/json:
               schema:
@@ -269,7 +269,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/maps'
+                $ref: '#/components/schemas/geodata-map'
             text/html:
               schema:
                 type: string
@@ -298,7 +298,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/maps'
+                $ref: '#/components/schemas/dataset-map'
             text/html:
               schema:
                 type: string
@@ -334,9 +334,8 @@ paths:
           type: string
       - name: styleId
         in: path
-        description: The styleId that should be included in the map or tile. Each
-          collectionId has a valid list of stylesId. To know the valid styleId values
-          of each collectionId use /collections/{collectionId}.
+        description: The styleId that should be included in the map. Each maps description
+          includes a valid list of stylesIds.
         required: true
         schema:
           type: string
@@ -519,9 +518,8 @@ paths:
           type: string
       - name: styleId
         in: path
-        description: The styleId that should be included in the map or tile. Each
-          collectionId has a valid list of stylesId. To know the valid styleId values
-          of each collectionId use /collections/{collectionId}.
+        description: The styleId that should be included in the map. Each maps description
+          includes a valid list of stylesIds.
         required: true
         schema:
           type: string
@@ -729,9 +727,8 @@ paths:
             type: string
       - name: styleId
         in: path
-        description: The styleId that should be included in the map or tile. Each
-          collectionId has a valid list of stylesId. To know the valid styleId values
-          of each collectionId use /collections/{collectionId}.
+        description: The styleId that should be included in the map. Each maps description
+          includes a valid list of stylesIds.
         required: true
         schema:
           type: string
@@ -921,9 +918,8 @@ paths:
             type: string
       - name: styleId
         in: path
-        description: The styleId that should be included in the map or tile. Each
-          collectionId has a valid list of stylesId. To know the valid styleId values
-          of each collectionId use /collections/{collectionId}.
+        description: The styleId that should be included in the map. Each maps description
+          includes a valid list of stylesIds.
         required: true
         schema:
           type: string
@@ -1177,11 +1173,11 @@ components:
           - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/examples/link-collection-maps
           items:
             $ref: '#/components/schemas/link'
-    maps:
+    geodata-map:
       allOf:
-      - $ref: '#/components/schemas/maps_2'
-      - $ref: '#/components/schemas/maps-link'
-    maps-link:
+      - $ref: '#/components/schemas/geodata-map_2'
+      - $ref: '#/components/schemas/geodata-map-link'
+    geodata-map-link:
       required:
       - links
       type: object
@@ -1189,9 +1185,26 @@ components:
         links:
           type: array
           example:
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/examples/link-maps-this
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/examples/link-maps-map
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/examples/link-maps-info
+          - href: http://data.example.com/collections/buildings/map
+            rel: self
+            type: application/json
+          items:
+            $ref: '#/components/schemas/link'
+    dataset-map:
+      allOf:
+      - $ref: '#/components/schemas/dataset-map_2'
+      - $ref: '#/components/schemas/dataset-map-link'
+    dataset-map-link:
+      required:
+      - links
+      type: object
+      properties:
+        links:
+          type: array
+          example:
+          - href: http://data.example.com/map
+            rel: self
+            type: application/json
           items:
             $ref: '#/components/schemas/link'
     exception:
@@ -1702,9 +1715,68 @@ components:
         rel: data
         type: text/html
         title: The collections in the dataset in HTML
-    maps_2:
+    geodata-map_2:
+      allOf:
+      - $ref: '#/components/schemas/geodata-styles'
+      - $ref: '#/components/schemas/map'
+    geodata-styles:
       type: object
       properties:
+        styles:
+          $ref: '#/components/schemas/geodata-style-set'
+    geodata-style-set:
+      type: array
+      nullable: true
+      example:
+      - id: brown
+        title: Topographic brown style
+        links:
+        - href: http://data.example.com/api/1.0/styles/brown?f  =mapbox
+          type: application/vnd.mapbox.style+json
+          rel: stylesheet
+        - href: http://data.example.com/api/1.0/styles/brown?f=sld10
+          type: application/vnd.ogc.sld+xml;version=1.0
+          rel: stylesheet
+        - href: http://data.example.com/api/1.0/styles/brown/metadata ?f=json
+          type: application/json
+          rel: describedby
+        - href: http://data.example.com/api/1.0/styles/brown/legend?f=png
+          type: image/png
+          rel: icon
+        - href: collections/buildings/map/brown/thumnail?f=png
+          type: image/png
+          rel: preview
+        - href: http://data.example.com/collections/buildings/map/brown
+          rel: subset
+          type: image/png
+          types: image/png, image/jpeg, image/tiff
+        - href: http://data.example.com/collections/buildings/map/brown/info
+          rel: info
+          type: text/html
+      items:
+        $ref: '#/components/schemas/style-set-entry'
+    style-set-entry:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        links:
+          minItems: 1
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/link'
+    map:
+      type: object
+      properties:
+        defaultStyle:
+          $ref: '#/components/schemas/default-style'
         crs:
           $ref: '#/components/schemas/crs'
         crsSpatialExtents:
@@ -1730,24 +1802,6 @@ components:
             maps. In contrast, this is the better one for this type of information.
             It would be one of the supported for the map operation
           example: image/jpeg
-        styles:
-          $ref: '#/components/schemas/style-set'
-        defaultStyle:
-          $ref: '#/components/schemas/default-style'
-        opaque:
-          type: boolean
-          description: Indicates whether the map data represents features that probably
-            do not completely fill space shows the background opaque (true) or transparent(false).
-          example: false
-          default: false
-        fixedWidth:
-          type: number
-          description: Indicates that the server can only produce map of a fixed width
-            instead of an arbitrary width. This is al old parameter in WMS. Deprecated.
-        fixedHeight:
-          type: number
-          description: Indicates that the server can only produce map of a fixed height
-            instead of an arbitrary height. This is al old parameter in WMS. Deprecated.
         maxWidth:
           type: number
           description: Maximum width and height values that a client is permitted
@@ -1760,6 +1814,11 @@ components:
             to include in bbox subset operation.  If absent the server imposes no
             limit.
           example: 2048
+    default-style:
+      type: string
+      description: the style id of a recommended default style to use for this collection.
+        This is informative and optional.
+      example: topographic
     crsSpatialExtents:
       type: array
       description: Minimum spatial extent surrounding the spatial resource for each
@@ -1779,58 +1838,46 @@ components:
         crs: http://www.opengis.net/def/crs/EPSG/0/3395
       items:
         $ref: '#/components/schemas/spatialExtent'
-    style-set:
+    dataset-map_2:
+      allOf:
+      - $ref: '#/components/schemas/dataset-styles'
+      - $ref: '#/components/schemas/map'
+    dataset-styles:
+      type: object
+      properties:
+        styles:
+          $ref: '#/components/schemas/dataset-style-set'
+    dataset-style-set:
       type: array
       nullable: true
       example:
-      - id: night
-        title: Topographic night style
+      - id: brown
+        title: Topographic brown style
         links:
-        - href: https://example.com/api/1.0/styles/night?f=mapbox
+        - href: http://data.example.com/api/1.0/styles/brown?f=mapbox
           type: application/vnd.mapbox.style+json
           rel: stylesheet
-        - href: https://example.com/api/1.0/styles/night?f=sld10
+        - href: http://data.example.com/api/1.0/styles/brown?f=sld10
           type: application/vnd.ogc.sld+xml;version=1.0
           rel: stylesheet
-        - href: https://example.com/api/1.0/styles/night/metadata?f=json
+        - href: http://data.example.com/api/1.0/styles/brown/metadata?f=json
           type: application/json
-          rel: describedBy
-      - id: topographic
-        title: Regular topographic style
-        links:
-        - href: https://example.com/api/1.0/styles/topographic?f=mapbox
-          type: application/vnd.mapbox.style+json
-          rel: stylesheet
-        - href: https://example.com/api/1.0/styles/topographic?f=sld10
-          type: application/vnd.ogc.sld+xml;version=1.0
-          rel: stylesheet
-        - href: https://example.com/api/1.0/styles/topographic/metadata?f=json
-          type: application/json
-          rel: describedBy
+          rel: describedby
+        - href: http://data.example.com/api/1.0/styles/brown/legend?f=png
+          type: image/png
+          rel: icon
+        - href: http://data.example.com/api/1.0/styles/brown/thumnail?f=png
+          type: image/png
+          rel: preview
+        - href: http://data.example.com/map/brown
+          rel: subset
+          type: image/png
+          types: image/png, image/jpeg, image/tiff
+        - href: http://data.example.com/map/brown/info
+          rel: info
+          type: text/html
       items:
         $ref: '#/components/schemas/style-set-entry'
-    style-set-entry:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        links:
-          minItems: 1
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/link'
-    default-style:
-      type: string
-      description: the style id of a recommended default style to use for this collection.
-        This is informative and optional.
-      example: topographic
   responses: {}
   parameters:
     f-png-jpeg:
