@@ -39,7 +39,6 @@ If the server declares also conformity to OGC API - Common or to OGC API - Featu
 [source,JSON]
 {
   "conformsTo": [
-  [
     "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
     "http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections",
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"

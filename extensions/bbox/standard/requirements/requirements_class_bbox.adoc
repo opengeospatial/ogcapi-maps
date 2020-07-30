@@ -4,5 +4,5 @@
 2+|*Requirements Class*
 2+|http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/bbox
 |Target type |Web API
-|Dependency |http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+|Dependency |http://www.opengis.net/spec/ogcapi-maps-2/1.0/req/core
 |===

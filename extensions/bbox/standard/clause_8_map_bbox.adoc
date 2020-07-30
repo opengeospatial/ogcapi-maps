@@ -28,40 +28,84 @@ In the conformance page (typically in JSON format) the links follow the link sch
   "conformsTo": [
   [
     "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/collections",
+    "http://www.opengis.net/spec/ogcapi-common-2/1.0/req/collections",
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core"
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/bbox"
+    "http://www.opengis.net/spec/ogcapi-maps-2/1.0/req/bbox"
   ]
 }
 =================
+
+=== Map resource
+The OGC API - Maps - Part 1: Core defines the map resource and the map description document. The core contains a minimum set of metadata to enable a client application to formulate a map request.
+
+This class defines the extension to the core map description document needed to formulate a bounding box subset.
+
+==== Map description document
+include::requirements/core/REQ_link-relation.adoc[]
+
+.API collection response fragment
+=================
+[source,JSON]
+  "styles": [
+  {
+    "id": "night",
+    "title": "Topographic night style",
+    "links": [
+      {
+        "href": "https://example.com/api/1.0/styles/night?f=sld10",
+        "type": "application/vnd.ogc.sld+xml;version=1.0",
+        "rel": "stylesheet"
+      },
+      ...
+      {
+        "href": "https://example.com/api/1.0/maps/night?f=png",
+        "type": "image/png",
+        "rel": "subset"
+        "title": "Maps subset access"
+      }
+    ]
+  }
+]
+=================
+
+
 
 === Map subset by bounding box
 
 ==== Operation
 
-The core of this standard defines how to add a {styleId} parameter to a map to make retrievable as a subset. This standard specifies the parameters needed to subset a map an retrieve fragments of it.
+The core of Part 1 defines how to add a {styleId} parameter to a map to make it retrievable as a subset. This standard specifies the parameters needed to subset a map an retrieve fragments of it.
 
 An example of a resource that can be retrieved as map subsets is a feature collection (/collections/{collectionId}/map/{styleId}).
 
 The supported encodings, or more precisely the media types of the supported encodings, can be determined from the API definition. The desired encoding is selected using HTTP content negotiation. In addition the parameters specified by the core, other parameters should be added.
 
 ==== Parameter crs
-This parameter indicates the CRS of the data rendered in the map as well as the CRS used by the parameter bbox.
+This parameter indicates the CRS of the data rendered in the map as well as the CRS used by the bbox parameter.
 include::requirements/bbox/REQ_crs-definition.adoc[]
 
 ==== Parameter bbox
-This parameter indicates the size of the bbox of the subset of the data (in the crsId coordinates). In this OPC API extension the bbox parameter values are defined considering the exterior edges of the pixels of the viewport defined by the width and height. In other words, the relation of the Bounding Box to the map pixel matrix is that the bounding box goes around the "outside" of the pixels of the map rather than through the centers of the map's border pixels (as many times done in coverages). In this context, individual pixels represent a cell area on the ground.
+This parameter indicates the bounding box of the subset of the map to retrieved (in the crs coordinates). In this OPC API extension the bbox parameter values are defined considering the exterior edges of the pixels of the viewport defined by the width and height. In other words, the relation of the Bounding Box to the map pixel matrix is that the bounding box goes around the "outside" of the pixels of the map rather than through the centers of the map's border pixels (as many times done in coverages). In this context, individual pixels represent a cell area on the ground.
 
 include::requirements/bbox/REQ_bbox-definition.adoc[]
 
 NOTE: This parameter use the comma (",") as the separator between the coordinates. Additional white space will not be used to delimit list items. The comma character should not be escaped (IETF RFC 2396).
 
 ==== Parameter width
-The subset of the map will specify the size of the viewport in rows and columns. If the format of the response is a raster image, the size of the image will match the requested width and height.
+The subset of the map will specify the size of the viewport in rows and columns. If the format of the response is a raster image, the size of the image will match the requested width or height.
 include::requirements/bbox/REQ_width-definition.adoc[]
 
 ==== Parameter height
 include::requirements/bbox/REQ_height-definition.adoc[]
+
+==== Aspect ratio considerations
+If a client prodides both ...
+
+Recomendation to respect aspect ration
+
+If the client prodides only one
+
+If the client prodides non of them. this a permision.
 
 ==== Response
 
@@ -79,4 +123,4 @@ include::recommendations/bbox/REC_map-success-scale.adoc[]
 
 A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
 
-If the parameter value `crsId` is not available by the server for this resource or the parameters values `bbox`, `width`, `height` are out-of-range, or the map is not provided due to lack of data in the area, the status code of the response will be `404`.
+If the parameter value `crs` is not available by the server for this resource or the parameters values `bbox`, `width`, `height` are out-of-range, or the map is not provided due to lack of data in the area, the status code of the response will be `404`.

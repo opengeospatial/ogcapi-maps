@@ -42,12 +42,12 @@ If the server declares also conformity to OGC API - Common or to OGC API - Featu
 =================
 
 === Map resource
-A map resource is defined by a map description document that contains the necessary metadata to enable a client application to formulate a map request from a single geospatial resource, some geospatial resources for from the entire dataset.
+A map resource is defined by a map description document that contains the necessary metadata to enable a client application to formulate a map request from a single geospatial resource, some geospatial resources or for the entire dataset.
 
 The core class does not specify how to retrieve a map description. It can provide a link to more that one resource and there are extensions indicating how to get the map.
 
 ==== Map description document
-The core introduces the way data will be combined with styles to create a map. The only mandatory element in the map description document is the list of styles that are used to transform a resource into a map.
+The core introduces the way data will be combined with styles to create a styled map. The only mandatory element in the map description document is the list of styles that are used to transform a resource into a map.
 
 include::requirements/core/REQ_styles.adoc[]
 
@@ -67,7 +67,19 @@ include::requirements/core/REQ_styles.adoc[]
       {
         "href": "https://example.com/api/1.0/styles/night/metadata?f=json",
         "type": "application/json",
-        "rel": "describedBy"
+        "rel": "describedby"
+      },
+      {
+        "href": "https://example.com/api/1.0/styles/night/legend?f=png",
+        "type": "image/png",
+        "rel": "icon"
+        "title": "Image representing the legend of the map"
+      },
+      {
+        "href": "https://example.com/api/1.0/styles/night/thumbnail?f=png",
+        "type": "image/png",
+        "rel": "preview"
+        "title": "Image showing a small view of a fragment of the map"
       }
     ]
   },
@@ -79,19 +91,16 @@ include::requirements/core/REQ_styles.adoc[]
         "href": "https://example.com/api/1.0/styles/topographic?f=sld10",
         "type": "application/vnd.ogc.sld+xml;version=1.0",
         "rel": "stylesheet"
-      },
-      {
-        "href": "https://example.com/api/1.0/styles/topographic/metadata?f=json",
-        "type": "application/json",
-        "rel": "describedBy"
       }
     ]
   }
 ]
 =================
-The mandatory element `id` designates the id of the style. The work "default" is reserved to designate the default style.
+Only the property `id` is mandatory designates the id of the style. The word `default` is reserved to designate the default style. However, the default style does not need to be called `default` (see the following recommendation about defaultStyle)
 
-The optional links element is useful for retrieving a styles description document. The format of a style description document is out of scope of this document. A possible encoding is the OGC Symbology Encoding.
+include::recommendations/core/REC_link-relation-type.adoc[]
+
+The optional links element is useful for retrieving a styles description document. However this is not required for the map API to function and can be left blank. The format of a style description document is out of scope of this document. A possible encoding is the OGC Symbology Encoding.
 
 include::recommendations/core/REC_smc-default-style.adoc[]
 
@@ -101,11 +110,7 @@ include::recommendations/core/REC_smc-default-style.adoc[]
   "defaultStyle": "topographic"
 =================
 
-Two following two recommendations for having two specific properties in a map description are inherited from WMS: cascade and opaque.
-
-include::recommendations/core/REC_smc-opaque.adoc[]
-
-include::recommendations/core/REC_smc-cascaded.adoc[]
+Depending on the subseting approach selected, other link objects and properties will be added by extensions to this core.
 
 === Map
 This OGC API - Maps core standard does not specify how to retrieve a subset of a map. However, it does specify that in order for a map to be retrievable a parameter styleId should be added to a map resource in order to be ready to subset it other parameters may condition the style of the map. A map can be subset with bounding boxes or retrieved as tiles.
@@ -127,4 +132,4 @@ include::requirements/core/REQ_mc-bgcolor-definition.adoc[]
 If the client wants to force an opaque color, apart from defining the appropriate background color it should ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency, it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values and colors in the map.
 
 ==== Response
-The response of a GET request to this resource is not completely specified by this core. Without extra parameters, the response could results in a map representing the whole geospatial data resource at maximum resolution that could be too difficult to generate by the server or too big to be efficinetly retrieved by the client. Instead, it is expected that other path and query parameters are added by other extensions of this core to complete define the response.
+The response of a GET request to this resource is not completely specified by this core. Without extra parameters, the response could results in a map representing the whole geospatial data resource at maximum resolution that could be too difficult to generate by the server or too big to be efficiently retrieved by the client. Instead, it is expected that other path and query parameters are added by other extensions of this core to complete define the response.
