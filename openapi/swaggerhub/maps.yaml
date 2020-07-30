@@ -114,7 +114,7 @@ paths:
                 - http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core
                 - http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections
                 - http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core
-                - http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/bbox
+                - http://www.opengis.net/spec/ogcapi-maps-2/1.0/conf/bbox
                 - http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/geodata
                 - http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset
                 - http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/info
@@ -344,6 +344,7 @@ paths:
         description: A URI of the coordinate reference system of the bbox and the
           map subset response. A list of all available CRS values can be found under
           the map description resource.
+        required: false
         schema:
           type: string
         example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
@@ -362,7 +363,7 @@ paths:
           coordinate
           reference system is specified by another parameter in the API ('crs').
 
-          For WGS 84 longitude/latitude the values are in most cases the sequence of
+          For WGS 84 longitude/latitude (CRS84) the values are in most cases the sequence of
           minimum longitude, minimum latitude, maximum longitude and maximum latitude.
           However, in cases where the box spans the antimeridian the first value
           (west-most box edge) is larger than the third value (east-most box edge).
@@ -384,7 +385,6 @@ paths:
         explode: false
         schema:
           type: number
-          default: 256
       - name: height
         in: query
         description: Height in pixels of map picture.
@@ -393,7 +393,6 @@ paths:
         explode: false
         schema:
           type: number
-          default: 256
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
@@ -528,6 +527,7 @@ paths:
         description: A URI of the coordinate reference system of the bbox and the
           map subset response. A list of all available CRS values can be found under
           the map description resource.
+        required: false
         schema:
           type: string
         example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
@@ -546,7 +546,7 @@ paths:
           coordinate
           reference system is specified by another parameter in the API ('crs').
 
-          For WGS 84 longitude/latitude the values are in most cases the sequence of
+          For WGS 84 longitude/latitude (CRS84) the values are in most cases the sequence of
           minimum longitude, minimum latitude, maximum longitude and maximum latitude.
           However, in cases where the box spans the antimeridian the first value
           (west-most box edge) is larger than the third value (east-most box edge).
@@ -568,7 +568,6 @@ paths:
         explode: false
         schema:
           type: number
-          default: 256
       - name: height
         in: query
         description: Height in pixels of map picture.
@@ -577,7 +576,6 @@ paths:
         explode: false
         schema:
           type: number
-          default: 256
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
@@ -737,6 +735,7 @@ paths:
         description: A URI of the coordinate reference system of the bbox and the
           map subset response. A list of all available CRS values can be found under
           the map description resource.
+        required: false
         schema:
           type: string
         example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
@@ -755,7 +754,7 @@ paths:
           coordinate
           reference system is specified by another parameter in the API ('crs').
 
-          For WGS 84 longitude/latitude the values are in most cases the sequence of
+          For WGS 84 longitude/latitude (CRS84) the values are in most cases the sequence of
           minimum longitude, minimum latitude, maximum longitude and maximum latitude.
           However, in cases where the box spans the antimeridian the first value
           (west-most box edge) is larger than the third value (east-most box edge).
@@ -777,7 +776,6 @@ paths:
         explode: false
         schema:
           type: number
-          default: 256
       - name: height
         in: query
         description: Height in pixels of map picture.
@@ -786,7 +784,6 @@ paths:
         explode: false
         schema:
           type: number
-          default: 256
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
@@ -928,6 +925,7 @@ paths:
         description: A URI of the coordinate reference system of the bbox and the
           map subset response. A list of all available CRS values can be found under
           the map description resource.
+        required: false
         schema:
           type: string
         example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
@@ -946,7 +944,7 @@ paths:
           coordinate
           reference system is specified by another parameter in the API ('crs').
 
-          For WGS 84 longitude/latitude the values are in most cases the sequence of
+          For WGS 84 longitude/latitude (CRS84) the values are in most cases the sequence of
           minimum longitude, minimum latitude, maximum longitude and maximum latitude.
           However, in cases where the box spans the antimeridian the first value
           (west-most box edge) is larger than the third value (east-most box edge).
@@ -968,7 +966,6 @@ paths:
         explode: false
         schema:
           type: number
-          default: 256
       - name: height
         in: query
         description: Height in pixels of map picture.
@@ -977,7 +974,6 @@ paths:
         explode: false
         schema:
           type: number
-          default: 256
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
@@ -1141,14 +1137,38 @@ components:
         links:
           type: array
           example:
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-this
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-alternate
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-service-json
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-service-html
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-conformance
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-collections-json
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-collections-html
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/examples/link-landingPage-maps
+          - href: http://data.example.org/?f=json
+            rel: self
+            type: application/json
+            title: this document
+          - href: http://data.example.org/?f=html
+            rel: alternate
+            type: text/html
+            title: this document in HTML
+          - href: http://data.example.org/api?f=json
+            rel: service
+            type: application/vnd.oai.openapi+json;version=3.0
+            title: the API definition in OpenAPI 3.0 JSON
+          - href: http://data.example.org/api?f=html
+            rel: service
+            type: text/html
+            title: the API definition in HTML
+          - href: http://data.example.org/conformance?f=json
+            rel: conformance
+            type: application/json
+            title: the list of conformance classes implemented by this API
+          - href: http://data.example.org/collections?f=json
+            rel: data
+            type: application/json
+            title: The collections in the dataset in JSON
+          - href: http://data.example.org/collections?f=html
+            rel: data
+            type: text/html
+            title: The collections in the dataset in HTML
+          - href: http://data.example.org/map
+            rel: map
+            type: application/json
+            title: Link to information on maps combining more than one collection
           items:
             $ref: '#/components/schemas/link'
     collection:
@@ -1163,14 +1183,28 @@ components:
         links:
           type: array
           example:
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-this
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-describedBy
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-license-html
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-license-rdf
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-features/1.0.0#/components/examples/link-collection-items
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-coverages/1.0.0#/components/examples/link-collection-rangeType
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-coverages/1.0.0#/components/examples/link-collection-domainSet
-          - $ref: https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/examples/link-collection-maps
+          - href: http://example.com/collections/buildings?f=json
+            rel: self
+            type: application/json
+            title: This document
+          - href: http://example.com/concepts/buildings.html
+            rel: describedby
+            type: text/html'
+          - href: https://creativecommons.org/publicdomain/zero/1.0/
+            rel: license
+            type: text/html
+            title: CC0-1.0
+          - href: https://creativecommons.org/publicdomain/zero/1.0/rdf
+            rel: license
+            type: application/rdf+xml
+            title: CC0-1.0
+          - href: http://data.example.com/collections/buildings/items
+            rel: items
+            title: Retrieve the items of the buildings collection
+            type: application/geo+json
+          - href: http://data.example.com/collections/buildings/map
+            rel: map
+            type: application/json
           items:
             $ref: '#/components/schemas/link'
     geodata-map:
@@ -1453,10 +1487,21 @@ components:
         links:
           type: array
           example:
-          - $ref: '#/components/examples/link-collection-from-collections'
-          - $ref: '#/components/examples/link-collection-describedBy'
-          - $ref: '#/components/examples/link-collection-license-html'
-          - $ref: '#/components/examples/link-collection-license-rdf'
+          - href: http://example.com/collections/buildings?f=json
+            rel: item
+            type: application/json
+            title: CollectionId path description in the OpenAPI
+          - href: http://example.com/concepts/buildings.html
+            rel: describedby
+            type: text/html'
+          - href: https://creativecommons.org/publicdomain/zero/1.0/
+            rel: license
+            type: text/html
+            title: CC0-1.0
+          - href: https://creativecommons.org/publicdomain/zero/1.0/rdf
+            rel: license
+            type: application/rdf+xml
+            title: CC0-1.0
           items:
             $ref: '#/components/schemas/link'
     featureCollectionGeoJSON:
@@ -1778,7 +1823,9 @@ components:
         defaultStyle:
           $ref: '#/components/schemas/default-style'
         crs:
-          $ref: '#/components/schemas/crs'
+          type: array
+          items:
+            $ref: '#/components/schemas/crs'
         crsSpatialExtents:
           $ref: '#/components/schemas/crsSpatialExtents'
         minScaleDenominador:
