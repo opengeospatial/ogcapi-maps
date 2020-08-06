@@ -2,7 +2,13 @@
 
 This GitHub repository contains the draft OGC API - Maps specification that defines a Web API for requesting map images over the Internet. OGC API - Maps makes it easy for a client to request images, changing parameters such as size and coordinate reference systems at the time of request. A server that implements OGC API - Maps provides information about what maps it offers, as well as producing a map and answering queries about the content of the maps. OGC API - Maps is expected to address use cases similar to those addressed by the Web Map Service (WMS) standard.
 
+
 ## Standards
+
+[OGC API standards](https://ogcapi.ogc.org) define modular API building blocks to spatially enable Web APIs
+in a consistent way. [OpenAPI](http://openapis.org) is used to define the reusable
+API building blocks.
+
 After a while getting familiar and playing with the OpenAPI definition files (explained just below in the "Examples section"), we have finally started to write the standard. We have decided on an aggressive path towards a modular specification with a simple core and multiple extensions. The extensions are yet to be determined.
 
 The standard is written using asciidoc using many files that might be difficult to trace. Please see the standard document as a single HTML page that is EASY TO READ here: https://htmlpreview.github.io/?https://github.com/opengeospatial/OGC-API-Maps/blob/master/core/standard/OAPI_Maps.html
