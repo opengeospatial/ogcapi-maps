@@ -1,0 +1,23 @@
+
+[[req_bbox_bgcolor-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/bbox/bgcolor-definition*
+^|A |The map operation SHALL support a parameter `bgcolor` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+[source,YAML]
+----
+  bgcolor:
+    name: bgcolor
+    in: query
+    description: |-
+      Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque.
+    required: false
+    style: form
+    explode: false
+    schema:
+      type: string
+      default: 0xFFFFFF
+----
+^|B |`bgcolor` SHALL be an hexadecimal red-green-blue[-alpha] color value for the background color of the map (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque.
+^|C |if `bgcolor` has an alpha channel, the `transparent` parameter is ignored. It the `bgcolor` does not have an alpha channel, the `transparent` parameter indicates the opacity of the background of the map.
+|===

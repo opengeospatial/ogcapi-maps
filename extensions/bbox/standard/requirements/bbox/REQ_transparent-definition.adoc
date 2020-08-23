@@ -1,0 +1,22 @@
+
+[[req_bbox_transparent-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/bbox/transparent-definition*
+^|A |The map operation SHALL support a parameter `transparent` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+[source,YAML]
+----
+  transparent:
+    name: transparent
+    in: query
+    description: |-
+      Background transparency of map (default=true).
+    required: false
+    style: form
+    explode: false
+    schema:
+      type: boolean
+      default: true
+----
+^|B |`transparent` SHALL be a boolean indicating if the background of the map should be transparent.
+|===

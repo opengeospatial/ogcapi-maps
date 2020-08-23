@@ -91,25 +91,31 @@ include::requirements/bbox/REQ_bbox-definition.adoc[]
 
 NOTE: This parameter use the comma (",") as the separator between the coordinates. Additional white space will not be used to delimit list items. The comma character should not be escaped (IETF RFC 2396).
 
-==== Parameter width
-The subset of the map will specify the size of the viewport in rows and columns. If the format of the response is a raster image, the size of the image will match the requested width or height.
+==== Parameters width and height
+These parameters indicate the size of the viewport in rows and columns where the map is going to be shown. If the format of the response is a raster image, the number of columns and rows of the image will match the requested width and height respectively.
 include::requirements/bbox/REQ_width-definition.adoc[]
 
-==== Parameter height
 include::requirements/bbox/REQ_height-definition.adoc[]
 
 ==== Aspect ratio considerations
-If a client prodides both ...
+If a client provides both width and height the server will adopt them even if the aspect ratio between (maxx-minx)/(maxy-miny) and w/h are different (resulting in a non square pixel). However, in general circumstances, the client should make an effort to preserve the aspect ratio. The client is allowed to provide only one of the values in width and height and the server should figure out the other one to maintain the aspect ratio.
 
-Recomendation to respect aspect ration
+include::recommendations/bbox/REC_width-definition.adoc[]
 
-If the client prodides only one
+include::recommendations/bbox/REC_height-definition.adoc[]
 
-If the client prodides non of them. this a permision.
+include::recommendations/bbox/REC_no-width-height-definition.adoc[]
+
+==== Parameters transparency and bgcolor
+These parameters indicate how the absence of data will be represented. The parameter `transparent` is deprecated and the use of the 'alpha channel' in `bgcolor` is recommended instead.d
+
+include::requirements/bbox/REQ_transparent-definition.adoc[]
+
+include::requirements/bbox/REQ_bgcolor-definition.adoc[]
 
 ==== Response
 
-A successful response to a map bbox GET operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and maps response may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG).
+A successful response to a map bbox GET operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG).
 
 include::requirements/bbox/REQ_map-success.adoc[]
 
