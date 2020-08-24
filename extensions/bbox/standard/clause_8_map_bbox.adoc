@@ -43,7 +43,7 @@ This class defines the extension to the core map description document needed to 
 ==== Map description document
 include::requirements/core/REQ_link-relation.adoc[]
 
-.API collection response fragment
+.API map description response fragment
 =================
 [source,JSON]
   "styles": [
@@ -58,17 +58,18 @@ include::requirements/core/REQ_link-relation.adoc[]
       },
       ...
       {
-        "href": "https://example.com/api/1.0/maps/night?f=png",
+        "href": "http://data.example.com/collections/buildings/map/brown",
+        "rel": "subset",
         "type": "image/png",
-        "rel": "subset"
-        "title": "Maps subset access"
+        "types": "image/png, image/jpeg, image/tiff"
+        "title": "Access to a nice maps subsets"
       }
     ]
   }
 ]
 =================
 
-
+include::recommendations/core/REC_link-relation.adoc[]
 
 === Map subset by bounding box
 

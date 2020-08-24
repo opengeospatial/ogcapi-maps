@@ -6,7 +6,9 @@
 
 include::requirements/requirements_class_core.adoc[]
 
-It specifies a map resource: a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution). It also specifies how to apply a style to a map resources to get a styled map.
+This core specifies a map resource: a resource that represents the geospatial data as a rendered map. The map resource, as defined in this core can not be retreived as a graphical representation. Instead, it is represented as a document that contains information on how to requests a subset of the map. The document includes the CRSs and styles supported and other metadata. This core also specifies how to apply a style to a map resources to get a styled map.
+
+NOTE: There is no mandatory dependency of this core on OGC API - Commons. This allows for non-OGC APIs to implement this core without the need to comply to the OGC API common structure (landing page, conformance, API description). It expected that main implementations will specify the dependency on OGC API - Commons in the conformance page.
 
 **TBD**
 
@@ -26,7 +28,7 @@ The conformance page mainly consists of a list of links.
 
 include::requirements/core/REQ_conformance-success.adoc[]
 
-If the server declares also conformity to OGC API - Common or to OGC API - Features - Part 1 v1, then it has to consider the OGC API - Common requirements for declaring conformance, i.e. the use of a the conformance page. In the JSON format the conformance page is an array of links following the link schema defined in the OGC API - Common or in OGC API - Features - Part 1 v1. Below is an example fragment of a conformance information page of an API conformant to OGC API - Common and OGC API - Maps.
+If the server declares also conformity to OGC API - Common - Part 1: Core or to OGC API - Features - Part 1: Core, then it has to consider the OGC API requirements for declaring conformance, i.e. the use of a the conformance page. In the JSON format the conformance page is an array of links following the link schema defined in the OGC API - Common - Part 1: Core or in OGC API - Features - Part 1: Core. Below is an example fragment of a conformance information page of an API conformant to OGC API - Common and OGC API - Maps.
 
 [[ConformancePageMapsCore]]
 .Conformance Information Page fragment
@@ -51,52 +53,70 @@ The core introduces the way data will be combined with styles to create a styled
 
 include::requirements/core/REQ_styles.adoc[]
 
-.API collection response fragment
+.API map description response fragment
 =================
 [source,JSON]
   "styles": [
-  {
-    "id": "night",
-    "title": "Topographic night style",
-    "links": [
-      {
-        "href": "https://example.com/api/1.0/styles/night?f=sld10",
-        "type": "application/vnd.ogc.sld+xml;version=1.0",
-        "rel": "stylesheet"
-      },
-      {
-        "href": "https://example.com/api/1.0/styles/night/metadata?f=json",
-        "type": "application/json",
-        "rel": "describedby"
-      },
-      {
-        "href": "https://example.com/api/1.0/styles/night/legend?f=png",
-        "type": "image/png",
-        "rel": "icon"
-        "title": "Image representing the legend of the map"
-      },
-      {
-        "href": "https://example.com/api/1.0/styles/night/thumbnail?f=png",
-        "type": "image/png",
-        "rel": "preview"
-        "title": "Image showing a small view of a fragment of the map"
-      }
-    ]
-  },
-  {
-    "id": "topographic",
-    "title": "Regular topographic style",
-    "links": [
-      {
-        "href": "https://example.com/api/1.0/styles/topographic?f=sld10",
-        "type": "application/vnd.ogc.sld+xml;version=1.0",
-        "rel": "stylesheet"
-      }
-    ]
-  }
+    {
+      "id": "brown",
+      "title": "Topographic brown style",
+      "links": [
+        {
+          "href": "http://data.example.com/api/1.0/styles/brown?f =mapbox",
+          "type": "application/vnd.mapbox.style+json",
+          "rel": "stylesheet"
+        },
+        {
+          "href": "http://data.example.com/api/1.0/styles/brown?f=sld10",
+          "type": "application/vnd.ogc.sld+xml;version=1.0",
+          "rel": "stylesheet"
+        },
+        {
+          "href": "http://data.example.com/api/1.0/styles/brown/metadata?f=json",
+          "type": "application/json",
+          "rel": "describedby"
+        },
+        {
+          "href": "http://data.example.com/api/1.0/styles/brown/legend-small?f=png",
+          "type": "image/png",
+          "rel": "icon",
+          "minScaleDenominator": 10000
+        },
+        {
+          "href": "http://data.example.com/api/1.0/styles/brown/legend-big?f=png",
+          "type": "image/png",
+          "rel": "icon",
+          "maxScaleDenominator": 10000
+        },
+        {
+          "href": "http://data.example.com/collections/buildings/map/brown/thumnail?f=png",
+          "type": "image/png",
+          "rel": "preview"
+        },
+        {
+          "href": "http://data.example.com/collections/buildings/map/brown",
+          "rel": "subset",
+          "type": "image/png",
+          "types": "image/png, image/jpeg, image/tiff"
+        }
+      ]
+    },
+    {
+      "id": "topographic",
+      "title": "Regular topographic style",
+      "links": [
+        {
+          "href": "https://example.com/api/1.0/styles/topographic?f=sld10",
+          "type": "application/vnd.ogc.sld+xml;version=1.0",
+          "rel": "stylesheet"
+        },
+        ...
+      ]
+   }
 ]
 =================
-Only the property `id` is mandatory designates the id of the style. The word `default` is reserved to designate the default style. However, the default style does not need to be called `default` (see the following recommendation about defaultStyle)
+
+A property `id` is mandatory and designates the id of the style. The word `default` is reserved to designate the default style. However, the default style does not need to be called `default` (see the following recommendation about defaultStyle)
 
 include::recommendations/core/REC_link-relation-type.adoc[]
 
