@@ -89,7 +89,7 @@ This standard does not specify the need for any additional query parameter in th
 
 ==== Response
 
-A successful GET response is described in the core class
+A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
 
 === Geospatial Data Resource subset
-The bbox extension have information on how to retrieve a subset of the map representing a piece of information in the dataset in the way explained in the bbox class. The OGC API - Tiles also contain classes that allow to retrieve a tile representation of a subset of the map.
+The bbox extension of this core have information on how to retrieve a subset of the map representing a piece of information in the dataset in the way explained in the bbox class. The OGC API - Tiles also contain classes that allow to retrieve a tile representation of a subset of the map.

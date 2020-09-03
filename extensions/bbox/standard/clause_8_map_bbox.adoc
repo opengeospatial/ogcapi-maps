@@ -71,6 +71,8 @@ include::requirements/bbox/REQ_link-relation.adoc[]
 
 include::recommendations/bbox/REC_link-relation.adoc[]
 
+The geospatial resource may expose a geospatial extent. This does not precluded that the map resource presents its own extent that will be similar or smaller to the geospatial extent resource (the API may opt to expose only a part of the geospatial resource as a map subsets)
+
 include::requirements/bbox/REQ_extent-in-WGS84.adoc[]
 
 include::requirements/bbox/REQ_crs-and-extent.adoc[]
@@ -107,7 +109,8 @@ include::requirements/bbox/REQ_bbox-definition.adoc[]
 NOTE: This parameter use the comma (",") as the separator between the coordinates. Additional white space will not be used to delimit list items. The comma character should not be escaped (IETF RFC 2396).
 
 ==== Parameters width and height
-These parameters indicate the size of the viewport in rows and columns where the map is going to be shown. If the format of the response is a raster image, the number of columns and rows of the image will match the requested width and height respectively.
+These parameters indicate the size of the viewport in rows and columns where the map is going to be shown. If the format of the response is a raster image, the number of columns and rows of the image will match the requested width and height respectively (if the parameters are present.
+
 include::requirements/bbox/REQ_width-definition.adoc[]
 
 include::requirements/bbox/REQ_height-definition.adoc[]
@@ -121,12 +124,14 @@ include::recommendations/bbox/REC_height-definition.adoc[]
 
 include::recommendations/bbox/REC_no-width-height-definition.adoc[]
 
+include::recommendations/bbox/PER_map-op.adoc[]
+
 ==== Parameters style, transparency and bgcolor
 These parameters are defined at the OGC API - maps; core and are not modified by this extension
 
 ==== Response
 
-A successful response to a map bbox GET operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG).
+A successful response to a map bbox GET operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG). It is also possible to respond an HTML page with the image embedded and, eventually, with additional controls.
 
 include::requirements/bbox/REQ_map-success.adoc[]
 

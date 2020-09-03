@@ -2,6 +2,6 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/dataset/operation*
-^|A |If the dataset is exposed a a map, the web API SHALL support an path URL and a HTTP GET operation to retrieve the description of the map the API implementation can provide
+^|A |If the dataset is exposed a  map, the web API SHALL support an path URL and a HTTP GET operation to retrieve the description of the map the API implementation can provide
 ^|B |The URI shall be `/map`
 |===
