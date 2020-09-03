@@ -2,13 +2,13 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/core/mc-bgcolor-definition*
-^|A |The map operation SHALL support a parameter `bgcolor` to define a background color with the characteristics defined in the OpenAPI Specification 3.0 fragment  |   |
+^|A |The map operation SHALL support a parameter `bgcolor` to define a background color with the characteristics defined in the OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----
   bgcolor:
     name: bgcolor
     in: query
-    description: |-
+    description:
       Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque.
     required: false
     style: form

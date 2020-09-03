@@ -8,7 +8,7 @@
   wgs84SpatialExtent:
     minItems: 1
     type: array
-    description: |-
+    description:
       One or more bounding boxes that describe the spatial extent of the dataset.
       In the Core only a single bounding box is supported. Extensions may support
       additional areas. If multiple areas are provided, the union of the bounding
@@ -17,7 +17,7 @@
       maxItems: 6
       minItems: 4
       type: array
-      description: |-
+      description:
         West, south, east, north edges of the bounding box. The coordinates
         are in the coordinate reference system specified in `crs`. By default
         this is WGS 84 longitude/latitude.

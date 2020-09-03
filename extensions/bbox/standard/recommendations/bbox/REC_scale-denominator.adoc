@@ -7,12 +7,12 @@
 ----
   minScaleDenominador:
     type: number
-    description: |-
+    description:
       Minimum scale denominator (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404. If it is not present we will assume there is no limit.
     example: 10
   maxScaleDenominador:
     type: number
-    description: |-
+    description: 
       Maximum scale denominator (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404 If it is not present we will assume there is no limit.
     example: 10000000
 ----

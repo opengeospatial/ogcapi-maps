@@ -7,12 +7,12 @@
 ----
   maxWidth:
     type: number
-    description: |-
+    description:
       Maximum width and height values that a client is permitted to include in bbox subset operation.  If absent the server imposes no limit.
     example: 2048
   maxHeight:
     type: number
-    description: |-
+    description: 
       Maximum width and height values that a client is permitted to include in bbox subset operation.  If absent the server imposes no limit.
     example: 2048
 ----
