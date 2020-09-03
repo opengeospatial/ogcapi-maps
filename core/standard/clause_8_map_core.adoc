@@ -92,12 +92,6 @@ include::requirements/core/REQ_styles.adoc[]
           "href": "http://data.example.com/collections/buildings/map/brown/thumnail?f=png",
           "type": "image/png",
           "rel": "preview"
-        },
-        {
-          "href": "http://data.example.com/collections/buildings/map/brown",
-          "rel": "subset",
-          "type": "image/png",
-          "types": "image/png, image/jpeg, image/tiff"
         }
       ]
     },
@@ -130,7 +124,9 @@ include::recommendations/core/REC_smc-default-style.adoc[]
   "defaultStyle": "topographic"
 =================
 
-Depending on the subseting approach selected, other link objects and properties will be added by extensions to this core.
+Depending on the subsetting approach selected, other link objects and properties will be added by extensions to this core.
+
+NOTE: The parameters `opaque` and `cascaded` present in the WMS has been deprecated and removed form this API.
 
 === Map
 This OGC API - Maps core standard does not specify how to retrieve a subset of a map. However, it does specify that in order for a map to be retrievable a parameter styleId should be added to a map resource in order to be ready to subset it other parameters may condition the style of the map. A map can be subset with bounding boxes or retrieved as tiles.
@@ -143,13 +139,14 @@ include::recommendations/core/PER_map-op.adoc[]
 ==== Parameter styleId
 include::requirements/core/REQ_styleId-definition.adoc[]
 
-==== Parameter transparent
+==== Parameters transparent and bgcolor
+These parameters indicate how the absence of data will be represented and allow for the map to be overlayed with others without completely cover the lower layers. The parameter `transparent` is deprecated and the use of the 'alpha channel' in `bgcolor` is recommended instead.
+
 include::requirements/core/REQ_mc-transparent-definition.adoc[]
 
-==== Parameter bgcolor
 include::requirements/core/REQ_mc-bgcolor-definition.adoc[]
 
-If the client wants to force an opaque color, apart from defining the appropriate background color it should ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency, it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values and colors in the map.
+NOTE: If the client wants to force an opaque color, apart from defining the appropriate background color it should ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency, it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values and colors in the map.
 
 ==== Response
 The response of a GET request to this resource is not completely specified by this core. Without extra parameters, the response could results in a map representing the whole geospatial data resource at maximum resolution that could be too difficult to generate by the server or too big to be efficiently retrieved by the client. Instead, it is expected that other path and query parameters are added by other extensions of this core to complete define the response.
