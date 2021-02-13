@@ -11,14 +11,14 @@ API building blocks.
 
 After a while getting familiar and playing with the OpenAPI definition files (explained just below in the "Examples section"), we have finally started to write the standard. We have decided on an aggressive path towards a modular specification with a simple core and multiple extensions. The extensions are yet to be determined.
 
-The standard is written using asciidoc using many files that might be difficult to trace. Please see the standard document as a single HTML page that is EASY TO READ here: https://htmlpreview.github.io/?https://github.com/opengeospatial/OGC-API-Maps/blob/master/core/standard/OAPI_Maps.html
+The standard is written using asciidoc using many files that might be difficult to trace. Please see the standard document as a single HTML page that is EASY TO READ here: https://htmlpreview.github.io/?https://github.com/opengeospatial/ogcapi-maps/blob/master/core/standard/OAPI_Maps.html
 
 We received several recommendations to separate the specifications into a core and extensions. In March 2020, we decided to restructure the GitHub repository to separate the core and the extensions into different documents that might be elaborated at different speeds.
 
 At this moment in time we are working on doing this separation by moving files around.
 
 ### OGC API - Maps - Part 1: Core
-The definition of OGC API - Maps - Part 1: Core is the immediate next step. The Standards Working Group (SWG) [agreed](https://github.com/opengeospatial/OGC-API-Maps/issues/32) on the structure shown below.
+The definition of OGC API - Maps - Part 1: Core is the immediate next step. The Standards Working Group (SWG) [agreed](https://github.com/opengeospatial/ogcapi-maps/issues/32) on the structure shown below.
 
 1. Map resource: It specifies a map resource, which is a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution). It also specifies how to apply a style to a map resources to get a styled map.
 
@@ -49,7 +49,7 @@ None of them has been started yet.
 Those who want to just see the endpoints and responses can explore generic
 OpenAPI definitions in this folder (please paste one of them in the Swagger Editor):
 
-* [OGC-API-Maps/openapi/](https://github.com/opengeospatial/OGC-API-Maps/tree/master/openapi)
+* [ogcapi-maps/openapi/](https://github.com/opengeospatial/ogcapi-maps/tree/master/openapi)
 
 Several implementations of the draft standard exist:
 
@@ -59,16 +59,16 @@ Several implementations of the draft standard exist:
 
 OGC API - Maps follows on the footsteps of the [OGC](http://opengeospatial.org)'s Web Map Service (WMS) by enabling client applications to request maps of geospatial information on the web. However, OGC API - Maps is completely different from WMS, as OGC API - Maps focuses on a simple RESTful core specified as reusable [OpenAPI](http://openapis.org) components.
 
-This is the [CURRENT](https://htmlpreview.github.io/?https://github.com/opengeospatial/OGC-API-Maps/blob/master/core/standard/OAPI_Maps.html) working version of this initiative. An [Old](http://docs.opengeospatial.org/per/19-069.html) version of the specification was a deliverable in [Testbed-15](https://www.ogc.org/projects/initiatives/testbed15).
+This is the [CURRENT](http://docs.opengeospatial.org/DRAFTS/18-062.html) working version of this initiative. An [Old](http://docs.opengeospatial.org/per/19-069.html) version of the specification was a deliverable in [Testbed-15](https://www.ogc.org/projects/initiatives/testbed15).
 
 IMPORTANT: Some examples of OpenAPI documents that are used as inspiration and test of this work are at: https://app.swaggerhub.com/apis/UAB-CREAF
 
-The OGC API - Maps and [OGC API - Tiles](https://github.com/opengeospatial/OGC-API-Tiles) specifications are closely related and should be considered complementary.
+The OGC API - Maps and [OGC API - Tiles](https://github.com/opengeospatial/ogcapi-tiles) specifications are closely related and should be considered complementary.
 
 ## Examples
 
 An example OpenAPI definition, that describes hypothetical WebAPI conformat to this standard is available at https://app.swaggerhub.com/apis/UAB-CREAF/ogc-api-maps-opf-xmp-more-1-collection/1.0.0
-A resolved (almost without dependencies with other files) YAML file, synchronized with the previous working document, is available in this github repository at: https://github.com/opengeospatial/OGC-API-Maps/tree/master/openapi/swaggerhub/maps.yaml
+A resolved (almost without dependencies with other files) YAML file, synchronized with the previous working document, is available in this github repository at: https://github.com/opengeospatial/ogcapi-maps/tree/master/openapi/swaggerhub/maps.yaml
 
 Another example OpenAPI definition, that describes a service that can serve only map (raster) tiles of one or more collections, is available at https://app.swaggerhub.com/apis/UAB-CREAF/ogc-api-map-tiles-opf-xmp-mt-more-1-collection/1.0.0
 
@@ -101,7 +101,7 @@ Returns a map - a representation of real-world elements at a given resolution. {
 
 Join the WMS mailing list
 
-Most work on the specification takes place in [GitHub issues](https://github.com/opengeospatial/OGC-API-Maps/issues),
+Most work on the specification takes place in [GitHub issues](https://github.com/opengeospatial/ogcapi-maps/issues),
 so browse there to get a good idea of what is happening, as well as past decisions.
 
 ## Contributing
@@ -110,7 +110,7 @@ The contributor understands that any contributions, if accepted by the OGC Membe
 
 The WMS Standards Working Group (SWG) is the group at OGC that is responsible for the stewardship of the standard being developed in this GitHub repository, but is working to do as much work in public as possible.
 
-* [Open issues](https://github.com/opengeospatial/OGC-API-Maps/issues)
-* [Copy of License Language](https://raw.githubusercontent.com/opengeospatial/OGC-API-Maps/master/LICENSE)
+* [Open issues](https://github.com/opengeospatial/ogcapi-maps/issues)
+* [Copy of License Language](https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/LICENSE)
 
 Pull Requests from contributors are welcomed. However, please note that by sending a Pull Request or Commit to this GitHub repository, you are agreeing to the terms in the Observer Agreement https://portal.ogc.org/files/?artifact_id=92169

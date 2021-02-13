@@ -1,12 +1,14 @@
 {
         "1": {
                 "OGC_doc_number": "20-058",
-                "urn":"http://www.opengis.net/doc/DRAFT/ogc_api_maps",
+                "urn":"http://www.opengis.net/doc/IS/ogcapi-maps-1/20-058.adoc",
                 "title":"OGC API - Maps - Part 1: Core",
-                "path":"core/standard/OAPI_Maps.adoc",
+                "path":"core/standard/20-058.adoc",
                 "options": ["--trace"],
                 "a":[
-                        "data-uri"
+                        "data-uri",
+                        "stylesdir=./resources/stylesheets",
+                        "dot=/usr/bin/dot"
                 ],
                 "r":[
                         "asciidoctor-bibtex"
