@@ -11,7 +11,7 @@ API building blocks.
 
 After a while getting familiar and playing with the OpenAPI definition files (explained just below in the "Examples section"), we have finally started to write the standard. We have decided on an aggressive path towards a modular specification with a simple core and multiple extensions. The extensions are yet to be determined.
 
-The standard is written using asciidoc using many files that might be difficult to trace. Please see the standard document as a single HTML page that is EASY TO READ here: https://htmlpreview.github.io/?https://github.com/opengeospatial/ogcapi-maps/blob/master/core/standard/OAPI_Maps.html
+The standard is written using asciidoc using many files that might be difficult to trace. Please see the standard document as a single HTML page that is EASY TO READ here: http://docs.opengeospatial.org/DRAFTS/20-058.html
 
 We received several recommendations to separate the specifications into a core and extensions. In March 2020, we decided to restructure the GitHub repository to separate the core and the extensions into different documents that might be elaborated at different speeds.
 
@@ -59,7 +59,7 @@ Several implementations of the draft standard exist:
 
 OGC API - Maps follows on the footsteps of the [OGC](http://opengeospatial.org)'s Web Map Service (WMS) by enabling client applications to request maps of geospatial information on the web. However, OGC API - Maps is completely different from WMS, as OGC API - Maps focuses on a simple RESTful core specified as reusable [OpenAPI](http://openapis.org) components.
 
-This is the [CURRENT](http://docs.opengeospatial.org/DRAFTS/18-062.html) working version of this initiative. An [Old](http://docs.opengeospatial.org/per/19-069.html) version of the specification was a deliverable in [Testbed-15](https://www.ogc.org/projects/initiatives/testbed15).
+This is the [CURRENT](http://docs.opengeospatial.org/DRAFTS/20-058.html) working version of this initiative. An [Old](http://docs.opengeospatial.org/per/19-069.html) version of the specification was a deliverable in [Testbed-15](https://www.ogc.org/projects/initiatives/testbed15).
 
 IMPORTANT: Some examples of OpenAPI documents that are used as inspiration and test of this work are at: https://app.swaggerhub.com/apis/UAB-CREAF
 
