@@ -11,7 +11,7 @@
                         "dot=/usr/bin/dot"
                 ],
                 "r":[
-                        "asciidoctor-bibtex"
+                        "asciidoctor-diagram"
                 ]
         }
 }
