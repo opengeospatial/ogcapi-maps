@@ -4,5 +4,4 @@
 ^|*Requirement {counter:req-id}* |*/req/bbox/map-success*
 ^|A |A successful execution of the maps subset by bbox operation SHALL be reported as a response with a HTTP status code `200`.
 ^|B |The content of that response SHALL be consistent with the format requested and the `crs` requested and represent elements inside or intersecting with the spatial extent of the geographical area of the map identified by `bbox`.
-^|C |In the case of raster image media type (e.g. image/jpeg or image/png) the number of columns and rows SHALL be exactly the ones specified in the `width` and `height` parameters respectively.
 |===

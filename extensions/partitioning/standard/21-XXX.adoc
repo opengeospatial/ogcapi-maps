@@ -1,5 +1,5 @@
-:Title: OGC API - Maps - Part 2: Subsetting by Bounding Box
-:titletext: OGC API - Maps - Part 2: Subsetting by Bounding Box
+:Title: OGC API - Maps - Part 2: Scaling and partitioning
+:titletext: OGC API - Maps - Part 2: Scaling and partitioning
 :doctype: book
 :encoding: utf-8
 :lang: en
@@ -94,7 +94,13 @@ include::clause_5_conventions.adoc[]
 
 include::clause_6_overview.adoc[]
 
+include::clause_7_scaling.adoc[]
+
 include::clause_8_map_bbox.adoc[]
+
+include::clause_9_map_tilesets.adoc[]
+
+include::clause_10_crs.adoc[]
 
 //include::clause_10_encodings.adoc[]
 

@@ -13,5 +13,20 @@
                 "r":[
                         "asciidoctor-diagram"
                 ]
+        },
+        "2": {
+                "OGC_doc_number": "21-XXX",
+                "urn":"http://www.opengis.net/doc/IS/ogcapi-maps-2/21-XXX.adoc",
+                "title":"OGC API - Maps - Part 2: Partitioning",
+                "path":"core/standard/21-XXX.adoc",
+                "options": ["--trace"],
+                "a":[
+                        "data-uri",
+                        "stylesdir=./resources/stylesheets",
+                        "dot=/usr/bin/dot"
+                ],
+                "r":[
+                        "asciidoctor-bibtex"
+                ]
         }
 }
