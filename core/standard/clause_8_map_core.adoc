@@ -126,7 +126,7 @@ include::recommendations/core/REC_smc-default-style.adoc[]
 
 Depending on the subsetting approach selected, other link objects and properties will be added by extensions to this core.
 
-NOTE: The parameters `opaque` and `cascaded` present in the WMS has been deprecated and removed form this API.
+NOTE: The `opaque` and `cascaded` parameters present in the WMS have been deprecated and are not provided in this API.
 
 === Map
 This OGC API - Maps core standard does not specify how to retrieve a subset of a map. However, it does specify that in order for a map to be retrievable a parameter styleId should be added to a map resource in order to be ready to subset it other parameters may condition the style of the map. A map can be subset with bounding boxes or retrieved as tiles.
