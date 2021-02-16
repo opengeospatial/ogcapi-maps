@@ -1722,13 +1722,6 @@ components:
             maps. In contrast, this is the better one for this type of information.
             It would be one of the supported for the map operation
           example: image/jpeg
-        cascaded:
-          type: number
-          description: Indicates how main times the collection map has been retransmitted
-            from another map service or API (cascading). It it is not present the
-            collection is not cascaded.
-          example: 0
-          default: 0
         opaque:
           type: boolean
           description: Indicates whether the map data represents features that probably
