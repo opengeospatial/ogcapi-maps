@@ -1,0 +1,7 @@
+[[rec_map-tilesets_desc-links]]
+[width="90%",cols="2,6a"]
+|===
+^|*Recommendation {counter:rec-id}* |*/rec/map-tilesets/desc-links*
+^|A |If the API has a mechanism for their map resources to expose links to geospatial aspects (e.g. feature items, metadata...), the API SHALL include a `link` with the `href` pointing to a tilesets that presents a tile aspect of this geospatial data resource and with `rel: "tilesets"`.
+^|B | The URI will be composed be the path of the map resources followed by '/tiles'
+|===

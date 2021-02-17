@@ -1,0 +1,19 @@
+[[req_map-tilesets_operation]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/map-tilesets/operation*
+
+^|A |Each default map available as tiles SHALL have an associated list of at least one map tilesets accessible at +
+ `.../map/tiles`, conforming to OGC API - Tiles - Part 1: Core
+^|B |The default map's collection description document at `.../{collectionId}` (for a map of a specific collection) or the dataset's landing page (for a dataset map)
+ SHALL include a link with relation type http://www.opengis.net/def/rel/ogc/1.0/tilesets-map linking to that resource listing available map tilesets.
+^|C |This list of default map tilesets SHALL include a link to the full description of these tilesets accessible at +
+ `.../map/tiles/{tileMatrixSetId}`
+^|D |The tiles making up the tilesets SHALL be accessible from +
+ `.../map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}`
+^|E |If the map is available in alternate styles, the list of those map tilesets for those styles SHALL be available at
+ `.../styles/{styleId}/map/tiles, with links to those tilesets available as part of the links included in the list of styles at `.../styles`,
+ using relation type http://www.opengis.net/def/rel/ogc/1.0/tilesets-map, individual tilesets available as +
+ `.../styles/{styleId}/map/tiles/{tileMatrixSetId}`, and individual tiles at +
+ `.../styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}`
+|===

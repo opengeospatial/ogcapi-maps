@@ -1,0 +1,67 @@
+== Requirement Class "CRS"
+
+=== Overview
+
+[[maps-crs-overview]]
+
+include::requirements/requirements_class_crs.adoc[]
+
+This extension describes how to retrieve a map in a CRS other than the default.
+
+=== Declaration of conformance classes
+
+To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the requirements classes it implements and conforms to.
+
+==== Response
+
+The conformance page mainly consists of a list of links. OGC API - Common already requires some links.
+
+include::requirements/crs/REQ_conformance-success.adoc[]
+
+In the conformance page (typically in JSON format) the links follow the link schema defined in the OGC API - Common. The following is an example fragment of the response of an implementation of the OGC API – Maps draft specification with the maps extension conformance information page.
+
+[[ConformancePageMapsMaps]]
+.Conformance Information Page fragment
+=================
+[source,JSON]
+{
+  "conformsTo": [
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core"
+    "http://www.opengis.net/spec/ogcapi-maps-2/1.0/req/crs"
+  ]
+}
+=================
+
+=== Map resource
+The OGC API - Maps - Part 1: Core defines the map resource. The core contains a minimum set of metadata to enable a client application to formulate a map request.
+
+This class defines the extension to the core needed to request an alternate CRS.
+
+The geospatial resource may expose a geospatial extent. This does not precluded that the map resource presents its own extent that will be similar or smaller to the geospatial extent resource (the API may opt to expose only a part of the geospatial resource as a map subsets)
+
+include::requirements/bbox/REQ_crs-and-extent.adoc[]
+
+=== Map request for specific CRS
+
+==== Operation
+
+An example of a resource that can be retrieved with a specific CRS is a geospatial data collection (/collections/{collectionId}/map).
+
+The supported encodings, or more precisely the media types of the supported encodings, can be determined from the API definition. The desired encoding is selected using HTTP content negotiation. In addition the parameters specified by the core, other parameters should be added.
+
+==== Parameter crs
+This parameter indicates the CRS of the data rendered in the map as well as the CRS used by the bbox parameter.
+include::requirements/bbox/REQ_crs-definition.adoc[]
+
+==== Response
+
+A successful response to a map CRS GET operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG). It is also possible to respond an HTML page with the image embedded and, eventually, with additional controls.
+
+include::requirements/crs/REQ_map-success.adoc[]
+
+==== Error conditions
+
+A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
+
+If the parameter value `crs` is not available by the server for this resource, the status code of the response will be `400`.

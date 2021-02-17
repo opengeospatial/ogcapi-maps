@@ -1,0 +1,89 @@
+== Requirement Class "Scaling"
+
+=== Overview
+
+[[maps-scaling-overview]]
+
+include::requirements/requirements_class_scaling.adoc[]
+
+This extension describes how to scale a map by specifying a set of parameters that will change its resolution (width and height).
+
+=== Declaration of conformance classes
+
+To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the requirements classes it implements and conforms to.
+
+==== Response
+
+The conformance page mainly consists of a list of links. OGC API - Common already requires some links.
+
+include::requirements/bbox/REQ_conformance-success.adoc[]
+
+In the conformance page (typically in JSON format) the links follow the link schema defined in the OGC API - Common. The following is an example fragment of the response of an implementation of the OGC API – Maps draft specification with the maps extension conformance information page.
+
+[[ConformancePageMapsMaps]]
+.Conformance Information Page fragment
+=================
+[source,JSON]
+{
+  "conformsTo": [
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core",
+    "http://www.opengis.net/spec/ogcapi-maps-2/1.0/req/scaling"
+  ]
+}
+=================
+
+=== Map resource
+The OGC API - Maps - Part 1: Core defines the map resource. The core contains a minimum set of metadata to enable a client application to formulate a map request.
+
+This class defines the extension to the core needed to formulate a bounding box subset.
+
+The geospatial resource may expose a geospatial extent. This does not precluded that the map resource presents its own extent that will be similar or smaller to the geospatial extent resource (the API may opt to expose only a part of the geospatial resource as a map subsets)
+
+NOTE: The parameters `noSubsets` `fixedWidth` and `fixedHeight` present in the WMS has been deprecated and removed form this API. To get a similar functionality as `fixedWidth` and `fixedHeight` use the OGC API - Tiles.
+
+NOTE: These parameters reflect limitation in the cartography. A too detailed product does not look good in low resolution and the server my decide not to serve it. In some APIs it is common that there is another geospatial resource in the API that is more appropriate out of these scale range.
+
+include::recommendations/scaling/REC_max-width-height.adoc[]
+
+NOTE: These are indented to limit the work load of the server by providing limitations in size of the outputs of the subset. If you width and height parameters are related with the size of the device screen, please consider that new devices are being build with more and more pixels and a reasonable limit last year may be too restrictive with the emerging devices.
+
+=== Map subset by bounding box
+
+==== Operation
+
+The core of Part 1 defines how to add a {styleId} parameter to a map to make it retrievable as a subset. This standard specifies the parameters needed to subset a map an retrieve fragments of it.
+
+An example of a resource that can be retrieved as map subsets is a feature collection (/collections/{collectionId}/map/{styleId}).
+
+The supported encodings, or more precisely the media types of the supported encodings, can be determined from the API definition. The desired encoding is selected using HTTP content negotiation. In addition the parameters specified by the core, other parameters should be added.
+
+==== Parameters width and height
+These parameters indicate the size of the viewport in rows and columns where the map is going to be shown. If the format of the response is a raster image, the number of columns and rows of the image will match the requested width and height respectively (if the parameters are present.
+
+include::requirements/scaling/REQ_width-definition.adoc[]
+
+include::requirements/scaling/REQ_height-definition.adoc[]
+
+==== Aspect ratio considerations
+If a client provides both width and height the server will adopt them even if the aspect ratio between (maxx-minx)/(maxy-miny) and w/h are different (resulting in a non square pixel). However, in general circumstances, the client should make an effort to preserve the aspect ratio. The client is allowed to provide only one of the values in width and height and the server should figure out the other one to maintain the aspect ratio.
+
+include::recommendations/scaling/REC_width-definition.adoc[]
+
+include::recommendations/scaling/REC_height-definition.adoc[]
+
+include::recommendations/scaling/REC_no-width-height-definition.adoc[]
+
+==== Response
+
+A successful response to a scaed map GET operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG). It is also possible to respond an HTML page with the image embedded and, eventually, with additional controls.
+
+include::requirements/scaling/REQ_map-success.adoc[]
+
+include::recommendations/scaling/REC_map-success-scale.adoc[]
+
+==== Error conditions
+
+A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
+
+If the parameters values for `width` or `height` are out-of-range, the status code of the response will be `400`.
+If map is not provided due to lack of data in the area, the status code of the response will be `204`.

@@ -1,6 +1,0 @@
-[[req_core_conformance-success]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/core/conformance-success*
-^|A |If the API has a mechanism to advertise conformance classes, the API SHALL advertise the maps bbox conformance class with a link to  http://www.opengis.net/spec/ogcapi-maps-2/1.0/conf/bbox.
-|===
