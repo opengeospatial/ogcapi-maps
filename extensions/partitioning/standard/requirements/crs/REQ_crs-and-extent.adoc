@@ -1,7 +1,7 @@
-[[req_map-bbox_crs-and-extent]]
+[[req_crs_crs-and-extent]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/map-bbox/crs-and-extent*
+^|*Requirement {counter:req-id}* |*/req/crs/crs-and-extent*
 ^|A |The collection description document or dataset landing page SHALL enumerate the CRSs supported by the map resource as defined by
  OGC API - Common - Part 2: Geospatial data.
 |===

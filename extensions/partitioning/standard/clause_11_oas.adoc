@@ -1,12 +1,12 @@
 == Requirements class "OpenAPI 3.0"
 
-NOTE: THIS SECTION REQUIERES A CAREFUL REVIEW. PLEASE IGNORE IT
+NOTE: THIS SECTION REQUIRES A CAREFUL REVIEW. PLEASE IGNORE IT
 
 [NOTE]
 ========
 The OAS requirements class should be limited to OpenAPI 3.0 requirements that specific to Map Tile resources. These requirements are an extension to the OpenAPI requirements in OAPI Common.
 
-What follows is from OAPI common.  It should be replaced with approapriate Map Tile centered requirements.
+What follows is from OAPI common.  It should be replaced with appropriate Map Tile centered requirements.
 ========
 
 === Basic requirements

@@ -26,9 +26,9 @@ In the conformance page (typically in JSON format) the links follow the link sch
 [source,JSON]
 {
   "conformsTo": [
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core"
-    "http://www.opengis.net/spec/ogcapi-maps-2/1.0/req/crs"
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
+    "http://www.opengis.net/spec/ogcapi-maps-2/1.0/conf/crs"
   ]
 }
 =================
@@ -40,7 +40,7 @@ This class defines the extension to the core needed to request an alternate CRS.
 
 The geospatial resource may expose a geospatial extent. This does not precluded that the map resource presents its own extent that will be similar or smaller to the geospatial extent resource (the API may opt to expose only a part of the geospatial resource as a map subsets)
 
-include::requirements/bbox/REQ_crs-and-extent.adoc[]
+include::requirements/crs/REQ_crs-and-extent.adoc[]
 
 === Map request for specific CRS
 
@@ -52,7 +52,7 @@ The supported encodings, or more precisely the media types of the supported enco
 
 ==== Parameter crs
 This parameter indicates the CRS of the data rendered in the map as well as the CRS used by the bbox parameter.
-include::requirements/bbox/REQ_crs-definition.adoc[]
+include::requirements/crs/REQ_crs-definition.adoc[]
 
 ==== Response
 

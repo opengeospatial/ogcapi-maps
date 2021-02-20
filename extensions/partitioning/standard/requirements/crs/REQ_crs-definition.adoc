@@ -1,14 +1,14 @@
-[[req_bbox_crs-definition]]
+[[req_crs-definition]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/bbox/crs-definition*
+^|*Requirement {counter:req-id}* |*/req/crs/crs-definition*
 ^|A |The map operation SHALL support a parameter `crs` with the characteristics defined in the OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----
   crs:
     name: crs
     in: query
-    description: A URI of the coordinate reference system of the bbox and the map subset response. A list of all available CRS values can be found under the collection description or dataset landing page resource.
+    description: A URI of the coordinate reference system of the map operation response. A list of all available CRS values can be found under the collection description or dataset landing page resource.
     required: false
     schema:
       type: string

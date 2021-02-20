@@ -1,3 +1,4 @@
+[[scaling]]
 == Requirement Class "Scaling"
 
 === Overview

@@ -26,10 +26,10 @@ In the conformance page (typically in JSON format) the links follow the link sch
 [source,JSON]
 {
   "conformsTo": [
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core",
-    "http://www.opengis.net/spec/ogcapi-common-2/1.0/req/collections",
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core"
-    "http://www.opengis.net/spec/ogcapi-maps-2/1.0/req/bbox"
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
+    "http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections",
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
+    "http://www.opengis.net/spec/ogcapi-maps-2/1.0/conf/bbox"
   ]
 }
 =================
@@ -45,11 +45,11 @@ include::requirements/bbox/REQ_extent-in-WGS84.adoc[]
 
 include::requirements/bbox/REQ_crs-and-extent.adoc[]
 
-NOTE: The parameters `noSubsets` `fixedWidth` and `fixedHeight` present in the WMS has been deprecated and removed form this API. To get a similar functionality as `fixedWidth` and `fixedHeight` use the OGC API - Tiles.
+NOTE: The parameters `noSubsets` `fixedWidth` and `fixedHeight` present in the WMS have been deprecated and removed form this API. To get a similar functionality as `fixedWidth` and `fixedHeight` use the OGC API - Tiles.
 
-NOTE: These parameters reflect limitation in the cartography. A too detailed product does not look good in low resolution and the server my decide not to serve it. In some APIs it is common that there is another geospatial resource in the API that is more appropriate out of these scale range.
+NOTE: These parameters reflect limitations in the cartography. A too detailed product does not look good in low resolution and the server my decide not to serve it. In some APIs it is common that there is another geospatial resource in the API that is more appropriate out of these scale range.
 
-NOTE: These are indented to limit the work load of the server by providing limitations in size of the outputs of the subset. If you width and height parameters are related with the size of the device screen, please consider that new devices are being build with more and more pixels and a reasonable limit last year may be too restrictive with the emerging devices.
+NOTE: These are indented to limit the work load of the server by providing limitations in size of the outputs of the subset. If your width and height parameters are related to the size of the device screen, please consider that new devices are being build with more and more pixels and a reasonable limit last year may be too restrictive with the emerging devices.
 
 === Map subset by bounding box
 
@@ -66,11 +66,11 @@ This parameter indicates the CRS of the data rendered in the map as well as the 
 include::requirements/bbox/REQ_crs-definition.adoc[]
 
 ==== Parameter bbox
-This parameter indicates the bounding box of the subset of the map to retrieved (in the crs coordinates). In this OPC API extension the bbox parameter values are defined considering the exterior edges of the pixels of the viewport defined by the width and height. In other words, the relation of the Bounding Box to the map pixel matrix is that the bounding box goes around the "outside" of the pixels of the map rather than through the centers of the map's border pixels (as many times done in coverages). In this context, individual pixels represent a cell area on the ground.
+This parameter indicates the bounding box of the subset of the map to retrieved (in the crs coordinates). In this OPC API extension the bbox parameter values are defined considering the exterior edges of the pixels of the viewport defined by the width and height. In other words, the relation of the Bounding Box to the map pixel matrix is that the bounding box goes around the "outside" of the pixels of the map rather than through the centers of the map's border pixels (which is the usual case for coverages). In this context, individual pixels represent a cell area on the ground.
 
 include::requirements/bbox/REQ_bbox-definition.adoc[]
 
-NOTE: This parameter use the comma (",") as the separator between the coordinates. Additional white space will not be used to delimit list items. The comma character should not be escaped (IETF RFC 2396).
+NOTE: This parameter uses the comma (",") as the separator between the coordinates. Additional white space will not be used to delimit list items. The comma character should not be escaped (IETF RFC 2396).
 
 include::recommendations/bbox/PER_map-op.adoc[]
 

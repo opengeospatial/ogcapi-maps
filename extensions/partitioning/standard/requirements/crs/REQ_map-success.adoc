@@ -1,7 +1,7 @@
-[[req_bbox_map-success]]
+[[req_crs_map-success]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/bbox/map-success*
-^|A |A successful execution of the maps subset by bbox operation SHALL be reported as a response with a HTTP status code `200`.
-^|B |The content of that response SHALL be consistent with the format requested and the `crs` requested and represent elements inside or intersecting with the spatial extent of the geographical area of the map identified by `bbox`.
+^|*Requirement {counter:req-id}* |*/req/crs/map-success*
+^|A |A successful execution of the map operation in a CRS other than the default SHALL be reported as a response with a HTTP status code `200`.
+^|B |The content of that response SHALL be consistent with the format requested and the `crs` requested.
 |===
