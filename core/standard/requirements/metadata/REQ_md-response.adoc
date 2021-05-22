@@ -1,0 +1,7 @@
+[[req_core_md-response]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/core/md-response*
+^|A |A successful execution of a map metadata operation SHALL be reported as a response with a HTTP status code 200.
+^|B |The content of a response of a successful operation SHALL be the map metadata format as specified in the following table
+|===

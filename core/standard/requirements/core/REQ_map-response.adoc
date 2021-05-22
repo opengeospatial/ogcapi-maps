@@ -1,0 +1,7 @@
+[[req_core_map-response]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/core/map-response*
+^|A |A successful execution of a map operation SHALL be reported as a response with a HTTP status code 200.
+^|B |The content of a response of a successful operation SHALL be a map format
+|===
