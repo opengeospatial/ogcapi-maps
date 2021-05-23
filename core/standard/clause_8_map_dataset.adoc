@@ -6,13 +6,7 @@
 
 include::requirements/requirements_class_dataset.adoc[]
 
-Defines how to get a map resource from the dataset (or datasets) represented by the services. it will tell the path to get a map resources
-
-**TBD**
-
-In previous clauses maps that are produced form one and only one resource is discussed. This is achieved by concatenating the map path to a resource (e.g. a feature collection). This extension discusses the possibility of combining more than one resource to create a map. This is achieved by using by adding the map path to the root of the service.
-
-**End of TBD**
+The map core and the map metadata, define how to get a map from a resource but they do nor detail which resources can be "mapped". This requirements class defines how to get a map resource from the dataset (or datasets) represented by the services. In other words it provides the path to get a map resource from the dataset behind the API. This is achieved by using by adding the map path to the root (a.k.a. the landing page) of the service.
 
 === General
 include::recommendations/dataset/REC_api-common.adoc[]
@@ -21,7 +15,7 @@ This building block stays flexible and does not require implementation OGC API -
 
 === Dataset API landing page
 
-The landing page provides links to start exploring the resources offered by the API. It mainly consists of a list of links to root resources. This standard extension requires a new link in the landing page for getting a description of the URL that allows for retrieving tiles of the resources in the dataset
+The landing page provides links to start exploring the resources offered by the API. It mainly consists of a list of links to `root` resources. This standard extension requires a new link in the landing page for getting a dataset map
 
 ==== Response
 
@@ -30,7 +24,7 @@ include::requirements/dataset/REQ_landingpage.adoc[]
 In the landing page, in JSON format, the links follow the link schema defined in the OGC API - Common or in OGC API - Features v1. Below you can find an example fragment of the response to an OGC API - Maps landing page showing the link to root tiles.
 
 [[landingPageTilesRoot]]
-.API Landing Page fragment that advertises dataset mps
+.API Landing Page fragment that advertises dataset maps
 =================
 [source,JSON]
 ----
@@ -72,25 +66,18 @@ In the conformance page (typically in JSON format) the links follow the link sch
 =================
 
 === Dataset maps
-The maps core defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map subset request. Nevertheless, the core does not does not specify how to retrieve a map resource description. This section offers one possible path to do that from the dataset represented by the API.
+The maps core defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map request. Nevertheless, the core does not does not specify how to retrieve a map resource description. This section offers one possible path to do that from the dataset represented by the API.
 
 ==== Map path
 
 include::requirements/dataset/REQ_operation.adoc[]
+
 The request of this operation has no parameters.
 
 ==== Response
-A successful response to a map request is a data structure defined by the core class
-
-=== Dataset Map subset
-The bbox extension have information on how to retrieve a subset of the map representing a piece of information in the dataset in the way explained in the bbox class. The OGC API - Tiles also contain classes that allow to retrieve a tile representation of a subset of the map.
-
-==== Response
+A successful response to a map request is a map.
 The response is expected to represent the dataset as a whole. In a Web API providing access to  a complex dataset formed by several geospatial data resources, there are reasons for being selective in the amount of information included. This can be achieved by applying a manual filter currently described in a OGC API - Tiles - Part 1 or as an automatic decision by the server side.
 
 include::recommendations/dataset/REC_geodata-selection.adoc[]
 
 include::recommendations/dataset/PER_geodata-selection.adoc[]
-
-==== Response
-To retrieve a subset of the map as a map or a tile another extension is needed. No requirements are provided here.

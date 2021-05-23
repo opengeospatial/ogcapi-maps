@@ -115,6 +115,16 @@ image::images/MapMetadata.png[TileMatrixSet UML model]
 
 NOTE: In WMS this metadata was present in the <layer> section of a GetCapabilities document. Some common metadata such as title, abstract, attribution, etc are not provided by this model. The client is expected to get this information directly from the parent resource that is converted into map (e.g. from the response to \collections\{collectionId}).
 
+NOTE: The `cascaded` parameter in WMS is removed because no practical use has been seen in past
+
+NOTE: The `opaque` parameter in WMS was rarely useful and has bee removed. It indicated whether the map data represents features that probably do not completely fill space shows the background opaque (true) or transparent(false).
+
+NOTE: The `noSubsets` parameter in WMS has no use. The client will know if the server is no able to generate subsets if there is no subset extension suported in the server.
+
+NOTE: The `fixedWidth` parameter in WMS has no use. The client will know if the server is no able to generate different widths if there is no extension supported in the server describing the use of a width parameter.
+
+NOTE: The `fixedHeight` parameter in WMS has no use. The client will know if the server is no able to generate different widths if there is no extension supported in the server describing the use of a height parameter.
+
 ==== Operation
 include::requirements/metadata/REQ_md-op.adoc[]
 
@@ -122,3 +132,98 @@ include::requirements/metadata/REQ_md-op.adoc[]
 The response of a GET request to a map metadata resource will be a text documenIf it is not present we will assume there is no limit.t describing the map resource.
 
 include::requirements/metadata/REQ_md-response.adoc[]
+
+If the API has a OpenAPI document describing the schema fro the response, the following JSON Schema can be used to defined the response.
+
+[[MapMetadataJSONSchema]]
+.Map metadata JSON Schema
+=================
+[source,JSON]
+----
+{
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "",
+      "description": "",
+	"type": "object",
+	"properties":
+	{
+		"wgs84SpatialExtent":
+		{
+			"$ref": "#/definitions/bbox"
+		},
+		"crsSpatialExtents":
+		{
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/crsSpatialExtent"
+			}
+		},
+		"minScaleDenominador":
+		{
+			"type": "number",
+			"description": "Minimum scale denominator (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404. If it is not present we will assume there is no limit"
+		},
+		"minCellSize":
+		{
+			"type": "number",
+			"description": "Minimum cell size (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404. If it is not present we will assume there is no limit"
+		},
+		"maxScaleDenominador":
+		{
+			"type": "number",
+			"description": "Maximum scale denominator (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404 If it is not present we will assume there is no limit"
+		},
+		"maxCellSize":
+		{
+			"type": "number",
+			"description": "Maximum cell size (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404. If it is not present we will assume there is no limit"
+		},
+		"recomendedFormat":
+		{
+			"type": "string",
+			"description": "Recommended output formats for a map request. Depending of the nature of the data, a format might be better than another. Categorical data looks better in a PNG but continuos data and pictures are smaller a JPEG. The map operation details all available formats for the OGC API maps. In contrast, this is the better one for this type of information. It would be one of the supported for the map operation"
+		},
+		"maxWidth":
+		{
+			"type": "number",
+			"description": "Maximum width and height values that a client is permitted to include in bbox subset operation.  If absent the server imposes no limit"
+		},
+		"maxHeight":
+		{
+			"type": "number",
+			"description": "Maximum width and height values that a client is permitted to include in bbox subset operation.  If absent the server imposes no limit."
+		}
+	},
+	"definitions":
+	{
+		"bbox":
+		{
+			"description": "West, south, east, north edges of the bounding box. The coordinates are in the coordinate reference system specified in `crs`. By default this is WGS 84 longitude/latitude (CRS84).",
+			"type": "array",
+			"minItems": 4,
+			"maxItems": 6,
+			"items":
+			{
+				"type": "number"
+			}
+		},
+		"crsSpatialExtent":
+		{
+			"description": "The spatial extent of the resource",
+			"type": "object",
+			"properties":
+			 {
+				"crs":
+				{
+					"type": "string"
+				},
+				"bbox":
+				{
+					"$ref": "#/definitions/bbox"
+				}
+			}
+		}
+	}
+}
+----
+=================
