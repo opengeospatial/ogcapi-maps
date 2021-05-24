@@ -6,17 +6,7 @@
 
 include::requirements/requirements_class_geodata.adoc[]
 
-It specifies a map resource: a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution).
-
-**TBD**
-
-A map distribution of a dataset is a pictorial representation of geospatial resources. To create a pictorial representation a style is added to the data in the geospatial resource. Styles are defined internally and have a identifier. New styles can be added or modified if the OGC API - Maps draft specification works in combination with the OGC API - Styles draft specification. After associating styles to geospatial resources, a map can be retrieved by specifying a set of parameters that will determine its resolution (width, height, bounding  box and CRS) or can be retrieved as tiles.
-
-This section defines the core part of the OGC API - Maps standard that allows defining a map representation for a geospatial resources. To retrieve a fragment of the map, this core needs to be combined with an OGC API - Tiles core standard or with the OGC API - Maps - Bbox extension standard.
-
-To keep the core of the OGC API - Maps standard simple, the core only includes a mechanism to select the default style but it does not define any mechanism to declare, define or select a style other than the default one. The core only assumes that the service is capable of knowing which is the default style while the client ignores all the details about it (including its name).
-
-**End of TBD**
+This requirements class specifies how to get maps from particular resources that contains geodata. Common resources that can contain geodata are the ones at the endpoint /collections/{collectionId} defined by OGC API - Common or OGC API - Features 1.0.
 
 === General
 include::recommendations/geodata/REC_api-common.adoc[]
@@ -31,7 +21,7 @@ The conformance page mainly consists of a list of links.
 
 include::requirements/geodata/REQ_conformance-success.adoc[]
 
-If the server declares also conformity to OGC API - Common or to OGC API - Features v1, then it has to consider the OGC API - Common requirements for declaring conformance, i.e. the use of a the conformance page. In the JSON format the conformance page is an array of links following the link schema defined in the OGC API - Common or in OGC API - Features v1. Below is an example fragment of a conformance information page of an API conformant to OGC API - Common and OGC API - Maps.
+If the server declares also conformity to OGC API - Common or to OGC API - Features v1, then it has to consider the OGC API - Common requirements for declaring conformance, i.e. the use of a the conformance page. In the JSON format the conformance page is an array of links following the link schema defined in the OGC API - Common or in OGC API - Features v1. Below is an example fragment of a conformance information page of an API conformant to OGC API - Common and OGC API - Maps.the ones at the endpoint  defined by OGC API - Common or OGC API - Features 1.0.
 
 [[ConformancePageMapsGeoData]]
 .Conformance Information Page fragment
@@ -48,13 +38,12 @@ If the server declares also conformity to OGC API - Common or to OGC API - Featu
 =================
 
 === Geospatial data resources
-This standard does not specify how geospatial resources are exposed in the API and if they have the possibility to be retrievable as geospatial data (e.g. feature items). For example OGC API features v1 includes the definition of collections and each collection is available in the /collections/{collectionId} path. OGC API common will provide a similar mechanism. Other paths in the API could also give access to geospatial resources.
+This standard does not specify how geospatial resources are exposed in the API and if they have the possibility to be retrievable as geospatial data (e.g. feature items). For example OGC API - Features v1 includes the definition of collections and each collection is available in the /collections/{collectionId} path. OGC API - Common collections extension provides a similar mechanism. Other paths in the API could also give access to geospatial resources.
 
-NOTE: The concept of geospatial resource path substitutes the concept of "layer" in WMS but it intended to give a better integration between data visualization and data access.
+NOTE: The concept of geospatial resource path substitutes the concept of "layer" in WMS but it intends to give a better integration between data visualization and data access.
 
 include::requirements/geodata/REQ_desc-links.adoc[]
 
-NOTE: In WMS layers have a hierarchical dependency. At the time of writing this standard neither OGC API - Features nor OGC API - Common do not consider his possibility.
 
 .Fragment of a collection with a links array with one item of the array pointing to a map.
 =================
@@ -78,18 +67,22 @@ NOTE: In WMS layers have a hierarchical dependency. At the time of writing this 
 }
 =================
 
+NOTE: In WMS layers have a hierarchical dependency. At the time of writing this standard neither OGC API - Features v1 nor OGC API - Common do not consider this possibility.
+
 === Geospatial Data Resource Map description
-The maps core defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map subset request. Nevertheless, the core does not does not specify how to retrieve a map resource description. This section offers one possible path to do that from a geospatial data resource offered by the API
+The maps core defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map request. Nevertheless, the core does not  specify how to retrieve a map resource representing another resource. This section offers one possible path to do that from a geospatial data resource offered by the API.
 
 ==== Map path
 
 include::requirements/geodata/REQ_operation.adoc[]
 
-This standard does not specify the need for any additional query parameter in the GET request.
+This standard does not specify any additional query parameter in the GET request. Other extensions of this map standards will define how to get a subset of a map resource.
 
 ==== Response
 
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
+
+A successful response is map that is expected to represent the geodata resource
 
 === Geospatial Data Resource subset
 The bbox extension of this core have information on how to retrieve a subset of the map representing a piece of information in the dataset in the way explained in the bbox class. The OGC API - Tiles also contain classes that allow to retrieve a tile representation of a subset of the map.

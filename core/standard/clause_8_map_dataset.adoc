@@ -72,11 +72,12 @@ The maps core defines a `map` resource that is associated with an operation that
 
 include::requirements/dataset/REQ_operation.adoc[]
 
-The request of this operation has no parameters.
+The request of this operation does not define extra parameters. Servers can advertise the requirements class http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/geodata-selection to add a `geodata` parameter that can be used to include only parts of the dataset in the map representation. Other extensions of this map standards will define how to get a subset of a map resource.
 
 ==== Response
-A successful response to a map request is a map.
-The response is expected to represent the dataset as a whole. In a Web API providing access to  a complex dataset formed by several geospatial data resources, there are reasons for being selective in the amount of information included. This can be achieved by applying a manual filter currently described in a OGC API - Tiles - Part 1 or as an automatic decision by the server side.
+A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
+
+A successful response is map that is expected to represent the dataset as a whole. In a Web API providing access to  a complex dataset formed by several geospatial data resources, there are reasons for being selective in the amount of information included. This can be achieved by applying a manual filter currently described in a OGC API - Tiles - Part 1 or as an automatic decision by the server side.
 
 include::recommendations/dataset/REC_geodata-selection.adoc[]
 
