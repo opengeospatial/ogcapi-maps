@@ -1,6 +1,0 @@
-[[per_bbox_map-encoding]]
-[width="90%",cols="2,6a"]
-|===
-^|*Permission {counter:per-id}* |*/per/bbox/map-encoding*
-^|A |This draft specification does not impose any media type on the encoding of a map response. For raster maps it MAY be a JPEG, PNG or other format. For vector formats it could be KML or SVG. An alternative format could be HTML with and image embedded. 
-|===

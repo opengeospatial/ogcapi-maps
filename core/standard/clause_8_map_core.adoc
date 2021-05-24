@@ -58,6 +58,8 @@ include::requirements/core/REQ_map-op.adoc[]
 
 include::recommendations/core/PER_map-op.adoc[]
 
+NOTE: The desired encoding is selected using HTTP content negotiation. In addition the parameters specified by the core, other parameters should be added.
+
 ==== Parameters transparent and bgcolor
 These parameters indicate how the absence of data will be represented in the map and allow for the map to be overlaid with other maps without completely obscuring the lower layers. The parameter `transparent` is maintained for backwards compatibility; the use of the 'alpha channel' in `bgcolor` is recommended instead.
 
@@ -70,9 +72,11 @@ NOTE: If the client wants to force an opaque color, apart from defining the appr
 NOTE: The `opaque` and `cascaded` parameters present in the WMS have been deprecated and are not provided in this API.
 
 ==== Response
-The response of a GET request to a map resource will be a map representing the geospatial data in the resource. Without any extra parameters, the server coulf respond with a maps representing the whole geospatial data resource at maximum resolution that could be too difficult to generate by the server or too big to be efficiently retrieved by the client. It is expected that other query parameters are added by other extensions of this core to personalize the response.
+The response of a GET request to a map resource will be a map representing the geospatial data in the resource. Without any extra parameters, the server could respond with a maps representing the whole geospatial data resource at maximum resolution that could be too difficult to generate by the server or too big to be efficiently retrieved by the client. It is expected that other query parameters are added by other extensions of this core to personalize the response.
 
 include::requirements/core/REQ_map-response.adoc[]
+
+A successful response to a map GET operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG). It is also possible to respond an HTML page with the image embedded and, eventually, with additional controls.
 
 == Requirement Class "Map Metadata"
 === Overview
@@ -115,6 +119,8 @@ image::images/MapMetadata.png[TileMatrixSet UML model]
 
 NOTE: In WMS this metadata was present in the <layer> section of a GetCapabilities document. Some common metadata such as title, abstract, attribution, etc are not provided by this model. The client is expected to get this information directly from the parent resource that is converted into map (e.g. from the response to \collections\{collectionId}).
 
+NOTE: The supported formats for map resources, or more precisely the media types of the supported encodings, can be also be determined from the API definition. The desired encoding is selected using HTTP content negotiation. In addition the parameters specified by the core, other parameters should be added.
+
 NOTE: The `cascaded` parameter in WMS is removed because no practical use has been seen in past
 
 NOTE: The `opaque` parameter in WMS was rarely useful and has bee removed. It indicated whether the map data represents features that probably do not completely fill space shows the background opaque (true) or transparent(false).
@@ -125,8 +131,12 @@ NOTE: The `fixedWidth` parameter in WMS has no use. The client will know if the 
 
 NOTE: The `fixedHeight` parameter in WMS has no use. The client will know if the server is no able to generate different widths if there is no extension supported in the server describing the use of a height parameter.
 
+NOTE: `maxWidth` and `maxHeight` are indented to control the work load of the server by providing limitations in size of the outputs of the subset. `width` and `height` parameters are commonly related with the size of the device screen, please consider that new devices are being build with more and more pixels and a reasonable limit in the server size may become too restrictive with the emerging devices.
+
 ==== Operation
 include::requirements/metadata/REQ_md-op.adoc[]
+
+NOTE: The desired encoding is selected using HTTP content negotiation. In addition the parameters specified by the core, other parameters should be added.
 
 ==== Response
 The response of a GET request to a map metadata resource will be a text documenIf it is not present we will assume there is no limit.t describing the map resource.
@@ -141,9 +151,7 @@ If the API has a OpenAPI document describing the schema fro the response, the fo
 [source,JSON]
 ----
 {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "",
-      "description": "",
+	"$schema": "http://json-schema.org/draft-07/schema#",
 	"type": "object",
 	"properties":
 	{
@@ -157,6 +165,13 @@ If the API has a OpenAPI document describing the schema fro the response, the fo
 			"items": {
 				"$ref": "#/definitions/crsSpatialExtent"
 			}
+		},
+    "supportedCRSs":
+		{
+      "type": "array",
+			"items": {
+			     "$ref": "crs.json"
+      }
 		},
 		"minScaleDenominador":
 		{
@@ -181,7 +196,15 @@ If the API has a OpenAPI document describing the schema fro the response, the fo
 		"recomendedFormat":
 		{
 			"type": "string",
-			"description": "Recommended output formats for a map request. Depending of the nature of the data, a format might be better than another. Categorical data looks better in a PNG but continuos data and pictures are smaller a JPEG. The map operation details all available formats for the OGC API maps. In contrast, this is the better one for this type of information. It would be one of the supported for the map operation"
+			"description": "Recommended output formats for a map request. Depending of the nature of the data, a format might be better than another. Categorical data looks better in a PNG but continuous data and pictures are smaller a JPEG. The map operation details all available formats for the OGC API maps. In contrast, this is the better one for this type of information. It would be one of the supported for the map operation"
+		},
+    "supportedFormats":
+		{
+      "type": "array",
+      "description": "Supported output formats for a map request",
+      "items": {
+			     "type": "string"
+			}
 		},
 		"maxWidth":
 		{

@@ -16,6 +16,13 @@
 				"$ref": "#/definitions/crsSpatialExtent"
 			}
 		},
+		"supportedCRSs":
+		{
+			"type": "array",
+			"items": {
+				"$ref": "crs.json"
+			}
+		},
 		"minScaleDenominador":
 		{
 			"type": "number",
@@ -40,6 +47,14 @@
 		{
 			"type": "string",
 			"description": "Recommended output formats for a map request. Depending of the nature of the data, a format might be better than another. Categorical data looks better in a PNG but continuos data and pictures are smaller a JPEG. The map operation details all available formats for the OGC API maps. In contrast, this is the better one for this type of information. It would be one of the supported for the map operation"
+		},
+		"supportedFormats":
+		{
+			"type": "array",
+			"description": "Supported output formats for a map request",
+			"items": {
+			     "type": "string"
+			}        
 		},
 		"maxWidth":
 		{

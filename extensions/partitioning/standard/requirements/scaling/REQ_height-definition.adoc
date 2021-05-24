@@ -1,7 +1,7 @@
-[[req_bbox_height-definition]]
+[[req_scaling_height-definition]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/bbox/heigth-definition*
+^|*Requirement {counter:req-id}* |*/req/scaling/heigth-definition*
 ^|A |The map operation SHALL support a parameter `height` with the characteristics defined in the OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----
@@ -16,6 +16,6 @@
     schema:
       type: number
 ----
-^|B |`height` SHALL be a positive integer number indicating the vertical size (rows) of the viewport where the response will be presented.
+^|B |`height` SHALL be a positive integer number indicating the vertical size (rows) of the viewport where the response will be presented in pixel units (number of pixels).
 ^|C |The value of the `height` SHALL no excide the capabilities of the server provided in the map description document under the `maxHeight` property.
 |===

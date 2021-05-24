@@ -5,29 +5,11 @@
 
 [[maps-tilesets-overview]]
 
-include::requirements/requirements_class_map-tilesets.adoc[]
+include::requirements/requirements_class_tilesets.adoc[]
 
-It will define how to specify the a link to tilesets as a subset mechanism for a map.
+This extension describes how to subset a map by making it accessible as tiles. Another way to subset a map is provided by another requirements class is to provide a bounding box (in a CRS).
 
 NOTE: The concept of map tiles substitutes the WMTS 1.0 concept of tiles. Tiles can be data tiles (e.g. vector tiles) or map tiles (tiles that are rendered using an style)
-
-**TBD**
-
-This is a building block for the an OGC API that is able to provide geospatial data resources. When applying the building block to a geospatial data resource, it becomes available as tiles. The server can select which resources are available as tiles and will advertise which resources are available as tiles.
-
-This building block does not specify how to get an API definition, the conformance class list or the geospatial data resources lists. The standard assumes that the first two are defined by an API specification (e.g. OGC API Common) and the later by an OGC API for geospatial data resource (e.g. OGC API - Features).
-
-The core of the OGC API - Tiles core draft specification does not mandate the inclusion of an explicit definition of any TileMatrixSet. This draft specification assumes that clients and services know about the eight TileMatrixSets defined in OGC 17-083r2 annex D (or compatible future update of it) and there is no need to define new TileMatrixSets. An extension to the core provides the capability to include definitions of flexible TileMatrixSets that are explicitly defined.
-
-This draft specification assumes that data is organized into one or more geospatial data resources (e.g. the "collections" in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core]). Geospatial data resources are referenced using URIs.
-
-This document does not specify any requirements for the type of geospatial data resource that should be supported. Provided that the geospatial data resources can be organized into tiles, they can be supported regardless of whether they are features, coverages, a resource that does not represent data per-se (e.g. an annotation) and so forth. The resource path replaces the concept of layer in WMS and WMTS. In this core tiles can be generated from only one geospatial data resource (tiles that are generated as a combination of geospatial data resources will be defined as an extension).
-
-Accessing the geospatial data resource content (other than as tiles) or its descriptions is out of the scope of this draft specification. If a description of the geospatial data resource exists and it has a mechanism to add links to it, this specification will indicate the need to add a link to the tile description.
-
-The tile description will include metadata about tiles as well as links to other resources including at least one with a template to get individual tiles.
-
-**End of TBD**
 
 === Declaration of conformance classes
 
@@ -51,7 +33,7 @@ If the server declares also conformity to OGC API - Common or to http://www.open
     "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/conf/tileset"
     "http://www.opengis.net/spec/ogcapi-tiles-1/1.0/conf/tilesets-list"
     "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core",
-    "http://www.opengis.net/spec/ogcapi-maps-2/1.0/conf/map-tilesets"
+    "http://www.opengis.net/spec/ogcapi-maps-2/1.0/conf/tilesets"
   ]
 }
 =================
@@ -59,7 +41,7 @@ If the server declares also conformity to OGC API - Common or to http://www.open
 === Map
 This standard does not specify how maps are exposed in the API. Refer to the _OGC API - Maps - Part 1: Core_, classes dataset or geodata for examples on how to generate maps.
 
-include::requirements/map-tilesets/REQ_desc-links.adoc[]
+include::requirements/tilesets/REQ_desc-links.adoc[]
 
 .Fragment of a collection description document with a links array with one item of the array pointing to a tilesets.
 =================
@@ -70,27 +52,24 @@ include::requirements/map-tilesets/REQ_desc-links.adoc[]
     ...
     {
       "href": "http://data.example.com/collections/buildings/map/tiles",
-      "rel": "http://www.opengis.net/def/rel/ogc/1.0/tilesets-map",
+      "rel": "http://www.opengis.net/def/rel/ogc/1.0/tileset",
       "type": "application/json",
     }
   ]
 }
 =================
 
-include::recommendations/map-tilesets/REC_desc-links.adoc[]
+include::recommendations/tilesets/REC_desc-links.adoc[]
 
 === Map Tileset
 A tileset contains the necessary metadata to enable a client application to formulate a tile request from a single geospatial data resource.
 
-==== Tilesets path
+==== Operation
 
-include::requirements/map-tilesets/REQ_operation.adoc[]
+The tileset operation is described in the tileset class of the OGC API - Tiles
 
 This standard does not specify the need for any additional query parameter in the GET request.
 
 ==== Response
 
-A successful GET response is described in the tileset class
-
-=== A tile from a geospatial data resource
-A tile resource is a geospatial data resource of a fragment of a more bigger map that is spatially constrained at the boundaries of the selected tile in a tile matrix set. Details of the operation are described in the tileset class.
+A successful GET response is described in the tileset class of the OGC API - Tiles

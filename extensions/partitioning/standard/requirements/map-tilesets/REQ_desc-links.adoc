@@ -1,7 +1,0 @@
-[[req_map-tilesets_desc-links]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/map-tilesets/desc-links*
-^|A |If the API has a mechanism for their maps to expose links to geospatial aspects (e.g. feature items, metadata...), the API SHALL include a `link` with the `href` pointing to every tileset supported by the geospatial data resource that presents a tile aspect of this geospatial data resource and with `rel: "tiles"`.
-^|B |The tileset SHALL be available as a URI that will be composed by three parts: The first part is the URL of the styled map resource (e.g. '.../map/{styleId}' followed by the word '/tiles/', and finally followed by the id of the tile matrix set supported.
-|===

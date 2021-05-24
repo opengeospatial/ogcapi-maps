@@ -28,7 +28,7 @@
     style: form
     explode: false
 ----
-^|B |`bbox` SHALL be a comma separated list of floating point numbers. The first two numbers are the coordinates of the lower left corner. The last two are the coordinates of the upper right corner. The axis order is determined by the `crs` parameter value. For example in CRS84 the order is long_min, lat_min, long_max, lat_max.
-^|C |If the `bbox` parameter values exceeds the limits of the extent as defined in the collection description document or dataset landing page for that particular CRS, the exceeding portion shall be filled with the background color or transparent values based on the relevant query parameters specified.
-*|D |If the 'bbox' is absent, the full extent that corresponds to the 'crs' parameter value that is documented in the collection description or dataset landing page will be used.
+^|B |`bbox` SHALL be a comma separated list of floating point numbers. The first two numbers are the coordinates of the lower left corner. The last two are the coordinates of the upper right corner. The axis order is determined by the `crs` parameter value. For example in CRS84 the order is left_long, lower_lat, right_long, upper_lat.
+^|C |If the `bbox` parameter values exceeds the limits of the extent available, the exceeding portion shall be filled with the background color or transparent values based on the relevant query parameters specified.
+^|D |If the 'bbox' is absent, the full extent that corresponds to the 'crs' parameter value that is documented in the collection description or dataset landing page will be used.
 |===

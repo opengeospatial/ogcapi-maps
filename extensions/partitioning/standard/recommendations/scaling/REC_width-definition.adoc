@@ -1,6 +1,6 @@
-[[rec_bbox_width-definition]]
+[[rec_scaling_width-definition]]
 [width="90%",cols="2,6a"]
 |===
-^|*Recommendation {counter:rec-id}* |*/rec/bbox/width-definition*
+^|*Recommendation {counter:rec-id}* |*/rec/scaling/width-definition*
 ^|A |If the parameter `height` is present and the value of the `width` is not provided, the `width` should be calculated from the `bbox` and the `height` in a way that the cell size of the map is squared (w=h*(maxx-minx)/(maxy-miny)).
 |===

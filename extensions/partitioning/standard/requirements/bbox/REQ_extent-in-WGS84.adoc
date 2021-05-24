@@ -1,8 +1,0 @@
-[[req_map-bbox_extent-in-WGS84]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/map-bbox/extent-in-WGS84*
-^|A |The collection description document or dataset landing page available as a map SHALL include an envelope (geospatial extent) in the WGS84 CRS,
- as defined by OGC API - Common - Part 2: Geospatial data.
-----
-|===

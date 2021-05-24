@@ -1,10 +1,10 @@
-[[req_map-tileset_conformance-success]]
+[[req_tileset_conformance-success]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/map-tileset/conformance-success*
+^|*Requirement {counter:req-id}* |*/req/tileset/conformance-success*
 2+|If the API has a mechanism to advertise conformance classes, the list of Conformance Classes advertised by the API SHALL include:
 ^|A |http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core
-^|B |http://www.opengis.net/spec/ogcapi-maps-2/1.0/conf/map-tileset
+^|B |http://www.opengis.net/spec/ogcapi-maps-2/1.0/conf/tileset
 ^|C |http://www.opengis.net/spec/ogcapi-tiles-1/1.0/conf/tileset
 ^|D |http://www.opengis.net/spec/ogcapi-tiles-1/1.0/conf/tilesets-list
 |===
