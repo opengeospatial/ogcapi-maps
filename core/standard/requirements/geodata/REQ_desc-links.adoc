@@ -2,5 +2,6 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/geodata/desc-links*
-^|A |If the API has a mechanism for their geospatial data resources to expose links to geospatial aspects (e.g. feature items, metadata...), the API SHALL include a `link` with and with `rel`: "map" and the `href` pointing to a map resource that presents this geospatial data resource as a map.
+^|A |If the API has a mechanism for their geospatial data resources to expose links to geospatial aspects (e.g. feature items, metadata...), the API SHALL include a link with and with rel: `map` and the href pointing to a the map resource that presents this geospatial data resource.
+^|B |If the API has a mechanism for their geospatial data resources to expose links to geospatial aspects (e.g. feature items, metadata...), the API SHALL include a link with and with rel: `map-meta` and the href pointing to a the metadata of the map resource that will present this geospatial data resource.
 |===

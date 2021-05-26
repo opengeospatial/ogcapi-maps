@@ -1,14 +1,14 @@
 ---
 openapi: 3.0.0
 info:
-  title: Map data service example. Part of the OGC API Maps OpenAPI work.
+  title: Map Tiles service example.
   description: |-
-    Maps of more than one collection.
-    This is a draft of an example of a service following the OGC API maps that produces maps.
+    Map tiles of more that one collection.
+    This is a draft of an example of a service following the OGC API maps and tiles that produces tiled map data.
 
     It is elaborated in the Testbed-15 Open Portrayal Framework in collaboration with the WMS.SWG. The Map Tile API is a Web API for fetching and managing maps and tiles.
 
-    It illustrated how to request a map from one or more than one collections
+    It illustrated how to request tiled maps from one or more than one collections
   contact:
     name: Joan Maso
     email: joan.maso@uab.cat
@@ -17,7 +17,7 @@ info:
     url: https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/LICENSE
   version: 1.0.0
 servers:
-- url: https://virtserver.swaggerhub.com/UAB-CREAF/ogc-api-maps-opf-xmp-more-1-collection/1.0.0
+- url: https://virtserver.swaggerhub.com/UAB-CREAF/ogc-api-map-tiles-opf-xmp-mt-more-1-collection/1.0.0
   description: SwaggerHub API Auto Mocking
 - url: http://data.example.org
   description: Server examples
@@ -26,17 +26,23 @@ tags:
   description: Common characteristics of this API
 - name: Map resources
   description: Map resources and descriptions
-- name: Geospatial Data Resource Maps
-  description: Access to map subsets for geospatial data resources
-- name: Dataset Maps
-  description: Access to map subsets the dataset.
+- name: Tileset resources
+  description: Tileset resources and descriptions
+- name: Tilesets resources
+  description: Tilesets resources and descriptions
+- name: Tile Matrix Set Resources
+  description: Metadata about tiles and tileMatrixSets
+- name: Geospatial Resource Tiled Maps
+  description: map (renderizations or vector tiles) partitioned into a hierarchy of tiles  of a collection
+- name: Dataset tiled Maps
+  description: access to maps, partitioned into a hierarchy of tiles of one or more geospatial data resources
 paths:
   /:
     get:
       tags:
       - OGC API Common
       summary: landing page
-      description: The landing page provides links to the API definition, the conformance statements and to the feature collections in this dataset. It is conformant to - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core'
+      description: The landing page provides links to the API definition, the conformance statements and to the feature collections in this dataset.
       operationId: getLandingPage
       parameters:
       - name: f
@@ -81,7 +87,7 @@ paths:
       - OGC API Common
       description: |-
         A list of all requirements classes specified in a standard that the
-        server conforms to. It is conformant to - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core'
+        server conforms to.
       operationId: getConformanceDeclaration
       parameters:
       - name: f
@@ -112,10 +118,14 @@ paths:
                 - http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core
                 - http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections
                 - http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core
-                - http://www.opengis.net/spec/ogcapi-maps-2/1.0/conf/bbox
-                - http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/geodata
                 - http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset
-                - http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/info
+                - http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/geodata
+                - http://www.opengis.net/spec/ogcapi-tiles-1/1.0/conf/tileset
+                - http://www.opengis.net/spec/ogcapi-tiles-1/1.0/conf/geodata
+                - http://www.opengis.net/spec/ogcapi-tiles-1/1.0/conf/dataset
+                - http://www.opengis.net/spec/ogcapi-tiles-1/1.0/conf/maptiles
+                - http://www.opengis.net/spec/ogcapi-tiles-2/1.0/conf/tmxs
+                - http://www.opengis.net/spec/ogcapi-tiles-2/1.0/conf/info
         "400":
           description: Invalid or unknown query parameters
         "406":
@@ -193,8 +203,7 @@ paths:
     get:
       tags:
       - OGC API Common
-      summary: describes a collection
-      description: Description of a collection (geospatial data resource) in this dataset. If it has a link with relation type `map`, the `href` points to a map resource created with data form this collection.
+      summary: describe a collection
       operationId: describeCollection
       parameters:
       - name: collectionId
@@ -222,7 +231,7 @@ paths:
         example: application/json
       responses:
         "200":
-          description: Metadata about the collection including a link to the map.
+          description: Metadata about the collection including style information.
           content:
             application/json:
               schema:
@@ -230,6 +239,93 @@ paths:
             text/html:
               schema:
                 type: string
+        "404":
+          description: The requested URI was not found
+        "500":
+          description: A server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+  /tileMatrixSets:
+    get:
+      tags:
+      - Tile Matrix Set Resources
+      summary: fetch all available tile matrix sets (tiling schemes)
+      operationId: getTileMatrixSets
+      parameters:
+      - name: f
+        in: query
+        description: |-
+          The format of the response. If no value is provided, the standard http
+          rules apply, i.e., the accept header is used to determine the format.
+
+          The only pre-defined value is "json". The response to other values is
+          determined by the server.
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: string
+          enum:
+          - application/json
+        example: application/json
+      responses:
+        "200":
+          description: An array of tile matrix sets (tiling schemes).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tileMatrixSets'
+        "500":
+          description: A server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+  /tileMatrixSets/{tileMatrixSetId}:
+    get:
+      tags:
+      - Tile Matrix Set Resources
+      summary: fetch a tile matrix sets (tiling scheme) by id
+      operationId: getTileMatrixSetDescription
+      parameters:
+      - name: tileMatrixSetId
+        in: path
+        description: Identifier of a specific tiling scheme. It can be one of those specified in Annex D.1 of the OGC 17-083r2 standard or one defined in this service.
+        required: true
+        schema:
+          type: string
+        example: WebMercatorQuad
+      - name: f
+        in: query
+        description: |-
+          The format of the response. If no value is provided, the standard http
+          rules apply, i.e., the accept header is used to determine the format.
+
+          The only pre-defined value is "json". The response to other values is
+          determined by the server.
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: string
+          enum:
+          - application/json
+        example: application/json
+      responses:
+        "200":
+          description: tile matrix sets (a tiling scheme).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tileMatrixSet'
         "404":
           description: The requested URI was not found
         "500":
@@ -276,6 +372,92 @@ paths:
             text/html:
               schema:
                 type: string
+  /collections/{collectionId}/styles/{styleId}/map/tiles:
+    get:
+      tags:
+      - Tilesets resources
+      summary: fetch a tiles description
+      description: Retrieves the tiles description for this collection including the `links` to get a `tile`, the `TileMatrixSetLink` and the `infoTemplate`
+      operationId: describeMapTiles
+      parameters:
+      - name: styleId
+        in: path
+        description: The styleId that should be included in the map. Each maps description includes a valid list of stylesIds.
+        required: true
+        schema:
+          type: string
+      - name: collectionId
+        in: path
+        description: local identifier of a collection
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Description of the map tiles.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/map-tiles'
+        "404":
+          description: The requested URI was not found
+        "500":
+          description: A server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+  /collections/{collectionId}/styles/{styleId}/map/tiles/{tileMatrixSetId}:
+    get:
+      tags:
+      - Tileset resources
+      summary: fetch a tiles description
+      description: Retrieves the tiles description for this collection including the `links` to get a `tile`, the `TileMatrixSetLink` and the `infoTemplate`
+      operationId: describeMapTilesets
+      parameters:
+      - name: styleId
+        in: path
+        description: The styleId that should be included in the map. Each maps description includes a valid list of stylesIds.
+        required: true
+        schema:
+          type: string
+      - name: collectionId
+        in: path
+        description: local identifier of a collection
+        required: true
+        schema:
+          type: string
+      - name: tileMatrixSetId
+        in: path
+        description: Identifier of a specific tiling scheme. It can be one of those specified in Annex D.1 of the OGC 17-083r2 standard or one defined in this service.
+        required: true
+        schema:
+          type: string
+        example: WebMercatorQuad
+      responses:
+        "200":
+          description: Description of the map tiles.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/map-tiles'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/mapml'
+        "404":
+          description: The requested URI was not found
+        "500":
+          description: A server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
   /map/metadata:
     get:
       tags:
@@ -304,13 +486,62 @@ paths:
             text/html:
               schema:
                 type: string
-  /collections/{collectionId}/styles/{styleId}/map:
+  /styles/{styleId}/map/tiles:
     get:
       tags:
-      - Geospatial Data Resource Maps
-      summary: fetch a map from a collection
-      description: Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core'
-      operationId: getMapStyleIdCollectionId
+      - Tilesets resources
+      summary: fetch a map tiles description
+      description: Retrieves the map tiles description including the `links` to get a `map`
+      operationId: describeMapTilesCollections
+      parameters:
+      - name: styleId
+        in: path
+        description: The styleId that should be included in the map. Each maps description includes a valid list of stylesIds.
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Links to the map tiles.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+  /styles/{styleId}/map/tiles/{tileMatrixSetId}:
+    get:
+      tags:
+      - Tileset resources
+      summary: fetch a map tiles description
+      description: Retrieves the map tiles description including the `links` to get a `map`
+      operationId: describeMapTilesetsCollections
+      parameters:
+      - name: styleId
+        in: path
+        description: The styleId that should be included in the map. Each maps description includes a valid list of stylesIds.
+        required: true
+        schema:
+          type: string
+      - name: tileMatrixSetId
+        in: path
+        description: Identifier of a specific tiling scheme. It can be one of those specified in Annex D.1 of the OGC 17-083r2 standard or one defined in this service.
+        required: true
+        schema:
+          type: string
+        example: WebMercatorQuad
+      responses:
+        "200":
+          description: Links to the map tiles.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+  /collections/{collectionId}/styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}:
+    get:
+      tags:
+      - Geospatial Resource Tiled Maps
+      summary: fetch a tile from a geospatial resource
+      description: Retrieves the tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
+      operationId: getMapTileOfCollectionId
       parameters:
       - name: collectionId
         in: path
@@ -324,60 +555,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: crs
-        in: query
-        description: A URI of the coordinate reference system of the bbox and the map subset response. A list of all available CRS values can be found under the map description resource.
-        required: false
-        schema:
-          type: string
-          default: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-        example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-      - name: bbox
-        in: query
-        description: |-
-          Bounding box of the rendered map. The bounding box is provided as four numbers.
-
-          * Lower left corner, coordinate axis 1
-          * Lower left corner, coordinate axis 2
-          * Upper right corner, coordinate axis 1
-          * Upper right corner, coordinate axis 2
-
-          coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
-          However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-        required: false
-        style: form
-        explode: false
-        schema:
-          maxItems: 4
-          minItems: 4
-          type: array
-          items:
-            type: number
-            format: double
-      - name: width
-        in: query
-        description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: height
-        in: query
-        description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: cell-size
-        in: query
-        description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
@@ -396,6 +573,38 @@ paths:
         schema:
           type: string
           default: 0xFFFFFF
+      - name: tileMatrixSetId
+        in: path
+        description: Identifier of a specific tiling scheme. It can be one of those specified in Annex D.1 of the OGC 17-083r2 standard or one defined in this service.
+        required: true
+        schema:
+          type: string
+        example: WebMercatorQuad
+      - name: tileMatrix
+        in: path
+        description: |-
+          Identifier selecting one of the scales defined in the TileMatrixSet and representing the scaleDenominator the tile. For example,
+          Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+        required: true
+        schema:
+          type: string
+        example: "11"
+      - name: tileRow
+        in: path
+        description: Row index of the tile on the selected TileMatrix. It cannot exceed the MatrixWidth-1 for the selected TileMatrix. For example, Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+        required: true
+        schema:
+          minimum: 0
+          type: integer
+        example: "827"
+      - name: tileCol
+        in: path
+        description: Column index of the tile on the selected TileMatrix. It cannot exceed the MatrixHeight-1 for the selected TileMatrix. For example, Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+        required: true
+        schema:
+          minimum: 0
+          type: integer
+        example: 1231
       - name: datetime
         in: query
         description: |-
@@ -432,7 +641,7 @@ paths:
         description: |-
           The format of the response. If no value is provided, the standard http rules apply, i.e., the accept header is used to determine the format.
 
-          Pre-defined values are jpeg, png or gif for image based tiles
+          Pre-defined values jpeg, png or gif for image based tiles
           The response to other values is determined by the server.
         required: false
         style: form
@@ -446,7 +655,7 @@ paths:
         example: image/png
       responses:
         "200":
-          description: Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
+          description: A tile of the collection.
           content:
             image/jpeg:
               schema:
@@ -463,6 +672,10 @@ paths:
                 type: string
                 format: binary
               example: GIF image
+            image/mvt:
+              schema:
+                type: string
+              example: MVT tile
             application/geo+json:
               schema:
                 $ref: '#/components/schemas/featureCollectionGeoJSON'
@@ -477,13 +690,13 @@ paths:
             text/html:
               schema:
                 type: string
-  /collections/{collectionId}/styles/{styleId}/map/info:
+  /collections/{collectionId}/styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info:
     get:
       tags:
-      - Geospatial Data Resource Maps
-      summary: fetch information about a point on a map from a collection
-      description: Retrieves a getFeatureInfo in map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
-      operationId: getFeatureInfoStyleIdCollectionId
+      - Geospatial Resource Tiled Maps
+      summary: fetch information about a point on a tile from a collection
+      description: Retrieves inforamtion on a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
+      operationId: getFeatureInfoMapTileOfCollectionId
       parameters:
       - name: collectionId
         in: path
@@ -497,78 +710,69 @@ paths:
         required: true
         schema:
           type: string
-      - name: crs
-        in: query
-        description: A URI of the coordinate reference system of the bbox and the map subset response. A list of all available CRS values can be found under the map description resource.
-        required: false
+      - name: tileMatrixSetId
+        in: path
+        description: Identifier of a specific tiling scheme. It can be one of those specified in Annex D.1 of the OGC 17-083r2 standard or one defined in this service.
+        required: true
         schema:
           type: string
-          default: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-        example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-      - name: bbox
-        in: query
+        example: WebMercatorQuad
+      - name: tileMatrix
+        in: path
         description: |-
-          Bounding box of the rendered map. The bounding box is provided as four numbers.
-
-          * Lower left corner, coordinate axis 1
-          * Lower left corner, coordinate axis 2
-          * Upper right corner, coordinate axis 1
-          * Upper right corner, coordinate axis 2
-
-          coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
-          However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-        required: false
-        style: form
-        explode: false
+          Identifier selecting one of the scales defined in the TileMatrixSet and representing the scaleDenominator the tile. For example,
+          Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+        required: true
         schema:
-          maxItems: 4
-          minItems: 4
-          type: array
-          items:
-            type: number
-            format: double
-      - name: width
-        in: query
-        description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+          type: string
+        example: "11"
+      - name: tileRow
+        in: path
+        description: Row index of the tile on the selected TileMatrix. It cannot exceed the MatrixWidth-1 for the selected TileMatrix. For example, Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+        required: true
         schema:
-          type: number
-      - name: height
+          minimum: 0
+          type: integer
+        example: "827"
+      - name: tileCol
+        in: path
+        description: Column index of the tile on the selected TileMatrix. It cannot exceed the MatrixHeight-1 for the selected TileMatrix. For example, Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+        required: true
+        schema:
+          minimum: 0
+          type: integer
+        example: 1231
+      - name: i
         in: query
-        description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        description: Horizontal (x) coordinate within a map or tile.
+        required: true
         schema:
           type: number
-      - name: cell-size
+      - name: j
         in: query
-        description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
+        description: Vertical (y) coordinate within a map or tile.
+        required: true
         schema:
           type: number
-      - name: transparent
+      - name: infoTemplate
         in: query
-        description: Background transparency of map (default=true).
-        required: false
-        style: form
+        description: Template used for the information response. This parameter can be used to select among GML application schemas or JSON schemas and provide alternative presentations for the same information. If the parameter is missing, the server will select the first template available.
         explode: false
         schema:
-          type: boolean
-          default: true
-      - name: bgcolor
+          type: string
+      - name: fTile
         in: query
-        description: Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque. If opacity is not specified "opaque" opacity is assumed.
+        description: "The format of the response. \nPre-defined values are jpeg, png or gif for image based tiles\nThe response to other values is determined by the server."
         required: false
         style: form
         explode: false
         schema:
           type: string
-          default: 0xFFFFFF
+          enum:
+          - image/png
+          - image/jpeg
+          - image/gif
+        example: image/png
       - name: datetime
         in: query
         description: |-
@@ -600,37 +804,6 @@ paths:
         explode: false
         schema:
           type: number
-      - name: i
-        in: query
-        description: Horizontal (x) coordinate within a map or tile.
-        required: true
-        schema:
-          type: number
-      - name: j
-        in: query
-        description: Vertical (y) coordinate within a map or tile.
-        required: true
-        schema:
-          type: number
-      - name: infoTemplate
-        in: query
-        description: Template used for the information response. This parameter can be used to select among GML application schemas or JSON schemas and provide alternative presentations for the same information. If the parameter is missing, the server will select the first template available.
-        explode: false
-        schema:
-          type: string
-      - name: fMap
-        in: query
-        description: Internal format of the maps referenced by a getFeatureInfo.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - image/png
-          - image/jpeg
-          - image/gif
-        example: image/png
       - name: f
         in: query
         description: |-
@@ -666,74 +839,30 @@ paths:
             text/html:
               schema:
                 type: string
-  /collections/{collectionId}/map:
+  /styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}:
     get:
       tags:
-      - Geospatial Data Resource Maps
-      summary: fetch a map from a collection
-      description: Retrieves a map in the default style, in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.  The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core'
-      operationId: getMapCollectionId
+      - Dataset tiled Maps
+      summary: retrieves a map composed by one or more geospatial data resources
+      description: Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
+      operationId: GetMapTileCollections
       parameters:
-      - name: collectionId
+      - name: styleId
         in: path
-        description: local identifier of a collection
+        description: The styleId that should be included in the map. Each maps description includes a valid list of stylesIds.
         required: true
         schema:
           type: string
-      - name: crs
+      - name: geodata
         in: query
-        description: A URI of the coordinate reference system of the bbox and the map subset response. A list of all available CRS values can be found under the map description resource.
-        required: false
-        schema:
-          type: string
-          default: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-        example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-      - name: bbox
-        in: query
-        description: |-
-          Bounding box of the rendered map. The bounding box is provided as four numbers.
-
-          * Lower left corner, coordinate axis 1
-          * Lower left corner, coordinate axis 2
-          * Upper right corner, coordinate axis 1
-          * Upper right corner, coordinate axis 2
-
-          coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
-          However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
+        description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
         required: false
         style: form
         explode: false
         schema:
-          maxItems: 4
-          minItems: 4
           type: array
           items:
-            type: number
-            format: double
-      - name: width
-        in: query
-        description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: height
-        in: query
-        description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: cell-size
-        in: query
-        description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
+            type: string
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
@@ -752,6 +881,38 @@ paths:
         schema:
           type: string
           default: 0xFFFFFF
+      - name: tileMatrixSetId
+        in: path
+        description: Identifier of a specific tiling scheme. It can be one of those specified in Annex D.1 of the OGC 17-083r2 standard or one defined in this service.
+        required: true
+        schema:
+          type: string
+        example: WebMercatorQuad
+      - name: tileMatrix
+        in: path
+        description: |-
+          Identifier selecting one of the scales defined in the TileMatrixSet and representing the scaleDenominator the tile. For example,
+          Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+        required: true
+        schema:
+          type: string
+        example: "11"
+      - name: tileRow
+        in: path
+        description: Row index of the tile on the selected TileMatrix. It cannot exceed the MatrixWidth-1 for the selected TileMatrix. For example, Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+        required: true
+        schema:
+          minimum: 0
+          type: integer
+        example: "827"
+      - name: tileCol
+        in: path
+        description: Column index of the tile on the selected TileMatrix. It cannot exceed the MatrixHeight-1 for the selected TileMatrix. For example, Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+        required: true
+        schema:
+          minimum: 0
+          type: integer
+        example: 1231
       - name: datetime
         in: query
         description: |-
@@ -788,7 +949,7 @@ paths:
         description: |-
           The format of the response. If no value is provided, the standard http rules apply, i.e., the accept header is used to determine the format.
 
-          Pre-defined values are jpeg, png or gif for image based tiles
+          Pre-defined values jpeg, png or gif for image based tiles
           The response to other values is determined by the server.
         required: false
         style: form
@@ -802,7 +963,7 @@ paths:
         example: image/png
       responses:
         "200":
-          description: Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
+          description: A multi-collection tile of the dataset.
           content:
             image/jpeg:
               schema:
@@ -819,6 +980,10 @@ paths:
                 type: string
                 format: binary
               example: GIF image
+            image/mvt:
+              schema:
+                type: string
+              example: MVT tile
             application/geo+json:
               schema:
                 $ref: '#/components/schemas/featureCollectionGeoJSON'
@@ -833,267 +998,41 @@ paths:
             text/html:
               schema:
                 type: string
-  /collections/{collectionId}/map/info:
+  /styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info:
     get:
       tags:
-      - Geospatial Data Resource Maps
-      summary: fetch information about a point on a map from a collection
-      description: Retrieves a getFeatureInfo in map in the default style, in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
-      operationId: getFeatureInfoCollectionId
+      - Dataset tiled Maps
+      summary: retrieves a map composed by one or more geospatial resource
+      description: Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
+      operationId: GetFeatureInfoTileCollections
       parameters:
-      - name: collectionId
-        in: path
-        description: local identifier of a collection
-        required: true
-        schema:
-          type: string
-      - name: crs
-        in: query
-        description: A URI of the coordinate reference system of the bbox and the map subset response. A list of all available CRS values can be found under the map description resource.
-        required: false
-        schema:
-          type: string
-          default: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-        example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-      - name: bbox
-        in: query
-        description: |-
-          Bounding box of the rendered map. The bounding box is provided as four numbers.
-
-          * Lower left corner, coordinate axis 1
-          * Lower left corner, coordinate axis 2
-          * Upper right corner, coordinate axis 1
-          * Upper right corner, coordinate axis 2
-
-          coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
-          However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-        required: false
-        style: form
-        explode: false
-        schema:
-          maxItems: 4
-          minItems: 4
-          type: array
-          items:
-            type: number
-            format: double
-      - name: width
-        in: query
-        description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: height
-        in: query
-        description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: cell-size
-        in: query
-        description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: transparent
-        in: query
-        description: Background transparency of map (default=true).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: boolean
-          default: true
-      - name: bgcolor
-        in: query
-        description: Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque. If opacity is not specified "opaque" opacity is assumed.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          default: 0xFFFFFF
-      - name: datetime
-        in: query
-        description: |-
-          Either a date-time or an interval, open or closed. Date and time expressions
-          adhere to RFC 3339. Open intervals are expressed using double-dots.
-
-          Examples:
-
-          * A date-time: "2018-02-12T23:20:50Z"
-          * A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
-          * Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
-
-          Only elemenets that have a temporal property that intersects the value of
-          `datetime` are selected.
-
-          If a element has multiple temporal properties, it is the decision of the
-          server whether only a single temporal property is used to determine
-          the extent or all relevant temporal properties.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-      - name: elevation
-        in: query
-        description: Elevation value
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: i
-        in: query
-        description: Horizontal (x) coordinate within a map or tile.
-        required: true
-        schema:
-          type: number
-      - name: j
-        in: query
-        description: Vertical (y) coordinate within a map or tile.
-        required: true
-        schema:
-          type: number
-      - name: infoTemplate
-        in: query
-        description: Template used for the information response. This parameter can be used to select among GML application schemas or JSON schemas and provide alternative presentations for the same information. If the parameter is missing, the server will select the first template available.
-        explode: false
-        schema:
-          type: string
-      - name: fMap
-        in: query
-        description: Internal format of the maps referenced by a getFeatureInfo.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - image/png
-          - image/jpeg
-          - image/gif
-        example: image/png
-      - name: f
-        in: query
-        description: |-
-          The format of the response. If no value is provided, the standard http
-          rules apply, i.e., the accept header is used to determine the format.
-
-          Pre-defined values are "json" and "html". The response to other
-          values is determined by the server.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - application/json
-          - text/html
-        example: application/json
-      responses:
-        "200":
-          description: Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
-          content:
-            application/geo+json:
-              schema:
-                $ref: '#/components/schemas/featureCollectionGeoJSON'
-        "404":
-          description: The requested URI was not found
-        "500":
-          description: A server error occurred
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
-  /styles/{styleId}/map/:
-    get:
-      tags:
-      - Dataset Maps
-      summary: retrieves a map composed by one or more collections
-      description: Retrieves a map in the requested crs, on the requested bbox designed to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/root'
-      operationId: GetMapStyleIdCollections
-      parameters:
-      - name: geodata
-        in: query
-        description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: array
-          items:
-            type: string
       - name: styleId
         in: path
         description: The styleId that should be included in the map. Each maps description includes a valid list of stylesIds.
         required: true
         schema:
           type: string
-      - name: crs
+      - name: geodata
         in: query
-        description: A URI of the coordinate reference system of the bbox and the map subset response. A list of all available CRS values can be found under the map description resource.
-        required: false
-        schema:
-          type: string
-          default: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-        example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-      - name: bbox
-        in: query
-        description: |-
-          Bounding box of the rendered map. The bounding box is provided as four numbers.
-
-          * Lower left corner, coordinate axis 1
-          * Lower left corner, coordinate axis 2
-          * Upper right corner, coordinate axis 1
-          * Upper right corner, coordinate axis 2
-
-          coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
-          However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
+        description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
         required: false
         style: form
         explode: false
         schema:
-          maxItems: 4
-          minItems: 4
           type: array
           items:
-            type: number
-            format: double
-      - name: width
+            type: string
+      - name: styles
         in: query
-        description: Width of the viewport to present the response (the map subset).
+        description: |-
+          The styleId that should be included in the map or tile. Each collectionId has a valid list of stylesId. To know the valid styleId values of each collectionId use /collections/{collectionId}.
+          The parameter value is a list of comma separated styles identifiers. If the parameter 'collections' exists, the list should be as long as 'collections' and each style identifier corresponds to one collection identifier. Default style can be represented as a blank name or with the `default` word.
+          If the parameter is missing, the default style is assumed for all collections.
         required: false
         style: form
         explode: false
         schema:
-          type: number
-      - name: height
-        in: query
-        description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: cell-size
-        in: query
-        description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
+          type: string
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
@@ -1112,183 +1051,38 @@ paths:
         schema:
           type: string
           default: 0xFFFFFF
-      - name: datetime
-        in: query
-        description: |-
-          Either a date-time or an interval, open or closed. Date and time expressions
-          adhere to RFC 3339. Open intervals are expressed using double-dots.
-
-          Examples:
-
-          * A date-time: "2018-02-12T23:20:50Z"
-          * A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
-          * Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
-
-          Only elemenets that have a temporal property that intersects the value of
-          `datetime` are selected.
-
-          If a element has multiple temporal properties, it is the decision of the
-          server whether only a single temporal property is used to determine
-          the extent or all relevant temporal properties.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-      - name: elevation
-        in: query
-        description: Elevation value
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: f
-        in: query
-        description: |-
-          The format of the response. If no value is provided, the standard http rules apply, i.e., the accept header is used to determine the format.
-
-          Pre-defined values are jpeg, png or gif for image based tiles
-          The response to other values is determined by the server.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - image/png
-          - image/jpeg
-          - image/gif
-        example: image/png
-      responses:
-        "200":
-          description: Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
-          content:
-            image/jpeg:
-              schema:
-                type: string
-                format: binary
-              example: JPEG image
-            image/png:
-              schema:
-                type: string
-                format: binary
-              example: PNG image
-            image/gif:
-              schema:
-                type: string
-                format: binary
-              example: GIF image
-            application/geo+json:
-              schema:
-                $ref: '#/components/schemas/featureCollectionGeoJSON'
-        "404":
-          description: The requested URI was not found
-        "500":
-          description: A server error occurred
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
-  /styles/{styleId}/map/info:
-    get:
-      tags:
-      - Dataset Maps
-      summary: fetch information about a point on a map from one or more collections
-      description: Retrieves a getFeatureInfo in map for collections in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
-      operationId: GetFeatureInfoStyleIdCollections
-      parameters:
-      - name: geodata
-        in: query
-        description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: array
-          items:
-            type: string
-      - name: styleId
+      - name: tileMatrixSetId
         in: path
-        description: The styleId that should be included in the map. Each maps description includes a valid list of stylesIds.
+        description: Identifier of a specific tiling scheme. It can be one of those specified in Annex D.1 of the OGC 17-083r2 standard or one defined in this service.
         required: true
         schema:
           type: string
-      - name: crs
-        in: query
-        description: A URI of the coordinate reference system of the bbox and the map subset response. A list of all available CRS values can be found under the map description resource.
-        required: false
-        schema:
-          type: string
-          default: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-        example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-      - name: bbox
-        in: query
+        example: WebMercatorQuad
+      - name: tileMatrix
+        in: path
         description: |-
-          Bounding box of the rendered map. The bounding box is provided as four numbers.
-
-          * Lower left corner, coordinate axis 1
-          * Lower left corner, coordinate axis 2
-          * Upper right corner, coordinate axis 1
-          * Upper right corner, coordinate axis 2
-
-          coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
-          However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-        required: false
-        style: form
-        explode: false
-        schema:
-          maxItems: 4
-          minItems: 4
-          type: array
-          items:
-            type: number
-            format: double
-      - name: width
-        in: query
-        description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: height
-        in: query
-        description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: cell-size
-        in: query
-        description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: transparent
-        in: query
-        description: Background transparency of map (default=true).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: boolean
-          default: true
-      - name: bgcolor
-        in: query
-        description: Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque. If opacity is not specified "opaque" opacity is assumed.
-        required: false
-        style: form
-        explode: false
+          Identifier selecting one of the scales defined in the TileMatrixSet and representing the scaleDenominator the tile. For example,
+          Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+        required: true
         schema:
           type: string
-          default: 0xFFFFFF
+        example: "11"
+      - name: tileRow
+        in: path
+        description: Row index of the tile on the selected TileMatrix. It cannot exceed the MatrixWidth-1 for the selected TileMatrix. For example, Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+        required: true
+        schema:
+          minimum: 0
+          type: integer
+        example: "827"
+      - name: tileCol
+        in: path
+        description: Column index of the tile on the selected TileMatrix. It cannot exceed the MatrixHeight-1 for the selected TileMatrix. For example, Ireland is fully within the Tile at tileMatrix=5, tileRow=10 and tileCol=15.
+        required: true
+        schema:
+          minimum: 0
+          type: integer
+        example: 1231
       - name: datetime
         in: query
         description: |-
@@ -1320,6 +1114,19 @@ paths:
         explode: false
         schema:
           type: number
+      - name: fTile
+        in: query
+        description: "The format of the response. \nPre-defined values are jpeg, png or gif for image based tiles\nThe response to other values is determined by the server."
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: string
+          enum:
+          - image/png
+          - image/jpeg
+          - image/gif
+        example: image/png
       - name: i
         in: query
         description: Horizontal (x) coordinate within a map or tile.
@@ -1338,29 +1145,6 @@ paths:
         explode: false
         schema:
           type: string
-      - name: infoGeodada
-        in: query
-        description: The collections that are used in a response of a information request. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, all collections will be included.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: array
-          items:
-            type: string
-      - name: fMap
-        in: query
-        description: Internal format of the maps referenced by a getFeatureInfo.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - image/png
-          - image/jpeg
-          - image/gif
-        example: image/png
       - name: f
         in: query
         description: |-
@@ -1382,404 +1166,6 @@ paths:
         "200":
           description: Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
           content:
-            image/jpeg:
-              schema:
-                type: string
-                format: binary
-              example: JPEG image
-            image/png:
-              schema:
-                type: string
-                format: binary
-              example: PNG image
-            image/gif:
-              schema:
-                type: string
-                format: binary
-              example: GIF image
-            application/geo+json:
-              schema:
-                $ref: '#/components/schemas/featureCollectionGeoJSON'
-        "404":
-          description: The requested URI was not found
-        "500":
-          description: A server error occurred
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
-  /map/:
-    get:
-      tags:
-      - Dataset Maps
-      summary: retrieves a map composed by one or more collections
-      description: Retrieves a map int the default style, in the requested crs, on the requested bbox designed to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/root'
-      operationId: GetMapCollections
-      parameters:
-      - name: geodata
-        in: query
-        description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: array
-          items:
-            type: string
-      - name: crs
-        in: query
-        description: A URI of the coordinate reference system of the bbox and the map subset response. A list of all available CRS values can be found under the map description resource.
-        required: false
-        schema:
-          type: string
-          default: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-        example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-      - name: bbox
-        in: query
-        description: |-
-          Bounding box of the rendered map. The bounding box is provided as four numbers.
-
-          * Lower left corner, coordinate axis 1
-          * Lower left corner, coordinate axis 2
-          * Upper right corner, coordinate axis 1
-          * Upper right corner, coordinate axis 2
-
-          coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
-          However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-        required: false
-        style: form
-        explode: false
-        schema:
-          maxItems: 4
-          minItems: 4
-          type: array
-          items:
-            type: number
-            format: double
-      - name: width
-        in: query
-        description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: height
-        in: query
-        description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: cell-size
-        in: query
-        description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: transparent
-        in: query
-        description: Background transparency of map (default=true).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: boolean
-          default: true
-      - name: bgcolor
-        in: query
-        description: Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque. If opacity is not specified "opaque" opacity is assumed.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          default: 0xFFFFFF
-      - name: datetime
-        in: query
-        description: |-
-          Either a date-time or an interval, open or closed. Date and time expressions
-          adhere to RFC 3339. Open intervals are expressed using double-dots.
-
-          Examples:
-
-          * A date-time: "2018-02-12T23:20:50Z"
-          * A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
-          * Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
-
-          Only elemenets that have a temporal property that intersects the value of
-          `datetime` are selected.
-
-          If a element has multiple temporal properties, it is the decision of the
-          server whether only a single temporal property is used to determine
-          the extent or all relevant temporal properties.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-      - name: elevation
-        in: query
-        description: Elevation value
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: f
-        in: query
-        description: |-
-          The format of the response. If no value is provided, the standard http rules apply, i.e., the accept header is used to determine the format.
-
-          Pre-defined values are jpeg, png or gif for image based tiles
-          The response to other values is determined by the server.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - image/png
-          - image/jpeg
-          - image/gif
-        example: image/png
-      responses:
-        "200":
-          description: Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
-          content:
-            image/jpeg:
-              schema:
-                type: string
-                format: binary
-              example: JPEG image
-            image/png:
-              schema:
-                type: string
-                format: binary
-              example: PNG image
-            image/gif:
-              schema:
-                type: string
-                format: binary
-              example: GIF image
-            application/geo+json:
-              schema:
-                $ref: '#/components/schemas/featureCollectionGeoJSON'
-        "404":
-          description: The requested URI was not found
-        "500":
-          description: A server error occurred
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
-  /map/info:
-    get:
-      tags:
-      - Dataset Maps
-      summary: fetch information about a point on a map from one or more collections
-      description: Retrieves a getFeatureInfo in map in the default style for collections in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
-      operationId: GetFeatureInfoCollections
-      parameters:
-      - name: geodata
-        in: query
-        description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: array
-          items:
-            type: string
-      - name: crs
-        in: query
-        description: A URI of the coordinate reference system of the bbox and the map subset response. A list of all available CRS values can be found under the map description resource.
-        required: false
-        schema:
-          type: string
-          default: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-        example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-      - name: bbox
-        in: query
-        description: |-
-          Bounding box of the rendered map. The bounding box is provided as four numbers.
-
-          * Lower left corner, coordinate axis 1
-          * Lower left corner, coordinate axis 2
-          * Upper right corner, coordinate axis 1
-          * Upper right corner, coordinate axis 2
-
-          coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
-          However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-        required: false
-        style: form
-        explode: false
-        schema:
-          maxItems: 4
-          minItems: 4
-          type: array
-          items:
-            type: number
-            format: double
-      - name: width
-        in: query
-        description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: height
-        in: query
-        description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: cell-size
-        in: query
-        description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: transparent
-        in: query
-        description: Background transparency of map (default=true).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: boolean
-          default: true
-      - name: bgcolor
-        in: query
-        description: Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque. If opacity is not specified "opaque" opacity is assumed.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          default: 0xFFFFFF
-      - name: datetime
-        in: query
-        description: |-
-          Either a date-time or an interval, open or closed. Date and time expressions
-          adhere to RFC 3339. Open intervals are expressed using double-dots.
-
-          Examples:
-
-          * A date-time: "2018-02-12T23:20:50Z"
-          * A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
-          * Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
-
-          Only elemenets that have a temporal property that intersects the value of
-          `datetime` are selected.
-
-          If a element has multiple temporal properties, it is the decision of the
-          server whether only a single temporal property is used to determine
-          the extent or all relevant temporal properties.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-      - name: elevation
-        in: query
-        description: Elevation value
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: number
-      - name: i
-        in: query
-        description: Horizontal (x) coordinate within a map or tile.
-        required: true
-        schema:
-          type: number
-      - name: j
-        in: query
-        description: Vertical (y) coordinate within a map or tile.
-        required: true
-        schema:
-          type: number
-      - name: infoTemplate
-        in: query
-        description: Template used for the information response. This parameter can be used to select among GML application schemas or JSON schemas and provide alternative presentations for the same information. If the parameter is missing, the server will select the first template available.
-        explode: false
-        schema:
-          type: string
-      - name: infoGeodada
-        in: query
-        description: The collections that are used in a response of a information request. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, all collections will be included.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: array
-          items:
-            type: string
-      - name: fMap
-        in: query
-        description: Internal format of the maps referenced by a getFeatureInfo.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - image/png
-          - image/jpeg
-          - image/gif
-        example: image/png
-      - name: f
-        in: query
-        description: |-
-          The format of the response. If no value is provided, the standard http
-          rules apply, i.e., the accept header is used to determine the format.
-
-          Pre-defined values are "json" and "html". The response to other
-          values is determined by the server.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - application/json
-          - text/html
-        example: application/json
-      responses:
-        "200":
-          description: Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
-          content:
-            image/jpeg:
-              schema:
-                type: string
-                format: binary
-              example: JPEG image
-            image/png:
-              schema:
-                type: string
-                format: binary
-              example: PNG image
-            image/gif:
-              schema:
-                type: string
-                format: binary
-              example: GIF image
             application/geo+json:
               schema:
                 $ref: '#/components/schemas/featureCollectionGeoJSON'
@@ -1811,37 +1197,54 @@ components:
           - href: http://data.example.org/?f=json
             rel: self
             type: application/json
-            title: This document
+            title: this document
           - href: http://data.example.org/?f=html
             rel: alternate
             type: text/html
-            title: This document in HTML
+            title: this document in HTML
           - href: http://data.example.org/api?f=json
-            rel: service-desc
+            rel: service
             type: application/vnd.oai.openapi+json;version=3.0
-            title: API definition in OpenAPI 3.0 JSON
+            title: the API definition in OpenAPI 3.0 JSON
           - href: http://data.example.org/api?f=html
-            rel: service-desc
+            rel: service
             type: text/html
-            title: API definition in HTML
+            title: the API definition in HTML
           - href: http://data.example.org/conformance?f=json
             rel: conformance
             type: application/json
-            title: List of conformance classes implemented by this API
+            title: the list of conformance classes implemented by this API
           - href: http://data.example.org/collections?f=json
             rel: data
             type: application/json
-            title: Collections in the dataset in JSON
+            title: The collections in the dataset in JSON
           - href: http://data.example.org/collections?f=html
             rel: data
             type: text/html
-            title: Collections in the dataset in HTML
+            title: The collections in the dataset in HTML
+          - href: http://data.example.org/tileMatrixSets?f=json
+            rel: tiling-schema
+            type: application/json
+            title: List of tileMatrixSets implemented by this API in JSON
+          - href: http://data.example.org/tileMatrixSets?f=html
+            rel: tiling-schema
+            type: text/html
+            title: List of tileMatrixSets implemented by this API in HTML
+          - href: http://data.example.org/styles
+            rel: styles
+            type: application/json
+            title: The set of available styles
           - href: http://data.example.org/map
             rel: map
-            title: Map combining collections in the dataset
+            title: A map combining more than one collection
           - href: http://data.example.org/map/metadata
-            rel: map-meta
-            title: Metadata of the map combining collections in the dataset
+            rel: describedby
+            type: application/json
+            title: Link to information on map combining more than one collection
+          - href: http://data.example.org/map/tiles
+            rel: tiles
+            type: application/json
+            title: Link to information on map tiles combining more than one collection
           items:
             $ref: '#/components/schemas/link'
     collection:
@@ -1856,11 +1259,11 @@ components:
         links:
           type: array
           example:
-          - href: http://example.com/collections/buildings?f=json
+          - href: http://data.example.com/collections/buildings?f=json
             rel: self
             type: application/json
             title: This document
-          - href: http://example.com/concepts/buildings.html
+          - href: http://data.example.com/concepts/buildings.html
             rel: describedby
             type: text/html'
           - href: https://creativecommons.org/publicdomain/zero/1.0/
@@ -1877,15 +1280,37 @@ components:
             type: application/geo+json
           - href: http://data.example.com/collections/buildings/map
             rel: map
-            title: A map of this collection
           - href: http://data.example.com/collections/buildings/map/metadata
-            rel: describedby
+            rel: describedBy
+          - href: http://data.example.com/collections/buildings/map/tiles
+            rel: tiles
             type: application/json
-            title: A metadata of a map of this collection
-          - href: http://data.example.com/collections/buildings/styles
-            rel: styles
+          - href: http://data.example.com/collections/buildings/tileSets
+            rel: describedBy
             type: application/json
-            title: The set of available styles for this collection
+          items:
+            $ref: '#/components/schemas/link'
+    map-tiles:
+      allOf:
+      - $ref: '#/components/schemas/tiles'
+      - $ref: '#/components/schemas/map-tiles-link'
+    map-tiles-link:
+      required:
+      - links
+      type: object
+      properties:
+        links:
+          type: array
+          example:
+          - href: http://data.example.com/collections/buildings/map/tiles
+            rel: self
+            type: application/json
+          - href: http://data.example.com/collections/buildings/styles/{styleId}/tiles/map/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}.png
+            rel: tile
+            type: image/png
+          - href: http://data.example.com/collections/buildings/styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info
+            rel: info
+            type: text/html
           items:
             $ref: '#/components/schemas/link'
     geodata-map-metadata:
@@ -1922,6 +1347,11 @@ components:
             type: application/json
           items:
             $ref: '#/components/schemas/link'
+    mapml:
+      type: object
+      properties:
+        extent:
+          $ref: '#/components/schemas/mapml_extent'
     exception:
       required:
       - code
@@ -2193,6 +1623,159 @@ components:
             title: CC0-1.0
           items:
             $ref: '#/components/schemas/link'
+    tileMatrixSets:
+      required:
+      - tileMatrixSets
+      type: object
+      properties:
+        tileMatrixSets:
+          type: array
+          example:
+          - id: MyWebMercatorQuad
+            title: My Google Maps Compatible for the World
+            links:
+            - href: https://data.example.org/tileMatrixSet/MyWebMercatorQuad
+              rel: item
+              type: application/json
+          items:
+            $ref: '#/components/schemas/id-link'
+    id-link:
+      required:
+      - id
+      - links
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        links:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+      description: |-
+        Reusable object that contains an id to a resource and links where the object is described or a representation retrieved. Typically it is useful for paths like `\resources` and `\resources\{resourceId}`.   `\resources` will respond an array of id-link listing the `resourceId` and the links to get it. \collections and \collections\{collectionId} is an exception to this pattern.
+        The fact that `links` is an array can be used to advertise the same object representation in different formats.
+      example:
+        id: night
+        title: Topographic night style
+        links:
+        - href: https://example.com/api/1.0/styles/night?f=mapbox
+          rel: stylesheet
+          type: application/vnd.mapbox.style+json
+        - href: https://example.com/api/1.0/styles/night?f=sld10
+          rel: stylesheet
+          type: application/vnd.ogc.sld+xml;version=1.0
+    tileMatrixSet:
+      required:
+      - identifier
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of this tile matrix set, normally used for display to a human
+          example: Google Maps Compatible for the World
+        abstract:
+          type: string
+          description: Brief narrative description of this tile matrix set, normally available for display to a human
+          example: The most common TileMatrixSet, used in most of the main IT map browsers. It was initially popularized by Google Maps
+        keywords:
+          type: array
+          description: Unordered list of one or more commonly used or formalized word(s) or phrase(s) used to describe this dataset
+          items:
+            $ref: '#/components/schemas/keyword'
+        identifier:
+          type: string
+          description: Tile matrix set identifier,
+          example: WebMercatorQuad
+        supportedCRS:
+          type: string
+          description: Reference to one coordinate reference system (CRS)
+          format: uri
+          example: http://www.opengis.net/def/crs/EPSG/0/3857
+        wellKnownScaleSet:
+          type: string
+          description: Reference to a well-known scale set
+          example: http://www.opengis.net/def/wkss/OGC/1.0/GoogleMapsCompatible
+        tileMatrix:
+          type: array
+          description: Describes a scale level and its tile matrix
+          items:
+            $ref: '#/components/schemas/tileMatrix'
+    tileMatrix:
+      required:
+      - identifier
+      - matrixHeight
+      - matrixWidth
+      - pointOfOrigin
+      - scaleDenominator
+      - tileHeight
+      - tileWidth
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of this tile matrix, normally used for display to a human
+          example: Google Maps Compatible for the World zoom level 3
+        abstract:
+          type: string
+          description: Brief narrative description of this tile matrix, normally available for display to a human
+          example: Google Maps Compatible zoom level 3 that is equivalent to a scale of 1:69885283.00358972 and has 19567.87924100512 meters of pixel size in the equator
+        keywords:
+          type: array
+          description: keywords about the elements in the collection
+          items:
+            $ref: '#/components/schemas/keyword'
+        identifier:
+          type: string
+          description: Identifier selecting one of the scales defined in the TileMatrixSet and representing the scaleDenominator the tile.
+          example: "3"
+        scaleDenominator:
+          type: number
+          description: Scale denominator level of this tile matrix
+          example: 69885283.00358972
+        cornerOfOrigin:
+          type: string
+          description: Position of the corner of origin with respect of the tiles of this tile matrix
+          example: topLeft
+          default: topLeft
+          enum:
+          - topLeft
+          - bottonLeft
+        pointOfOrigin:
+          type: array
+          description: Position in CRS coordinates of the corner of origin of this tile matrix. In previous version was `topLeftCorner` and `cornerOfOrigin` did not exist.
+          example:
+          - -2.00375083427892E7
+          - 2.00375083427892E7
+          items:
+            type: number
+            format: double
+        tileWidth:
+          minimum: 1
+          type: number
+          description: Width of each tile of this tile matrix in pixels
+          format: integer
+          example: 256
+        tileHeight:
+          minimum: 1
+          type: number
+          description: Height of each tile of this tile matrix in pixels
+          format: integer
+          example: 256
+        matrixHeight:
+          minimum: 1
+          type: number
+          description: Width of the matrix (number of tiles in width)
+          format: integer
+          example: 8
+        matrixWidth:
+          minimum: 1
+          type: number
+          description: Height of the matrix (number of tiles in height)
+          format: integer
+          example: 8
     featureCollectionGeoJSON:
       required:
       - features
@@ -2418,6 +2001,101 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/link'
+      example:
+      - href: http://data.example.org/?f=json
+        rel: self
+        type: application/json
+        title: this document
+      - href: http://data.example.org/?f=html
+        rel: alternate
+        type: text/html
+        title: this document in HTML
+      - href: http://data.example.org/api?f=json
+        rel: service
+        type: application/vnd.oai.openapi+json;version=3.0
+        title: the API definition in OpenAPI 3.0 JSON
+      - href: http://data.example.org/api?f=html
+        rel: service
+        type: text/html
+        title: the API definition in HTML
+      - href: http://data.example.org/conformance?f=json
+        rel: conformance
+        type: application/json
+        title: the list of conformance classes implemented by this API
+      - href: http://data.example.org/collections?f=json
+        rel: data
+        type: application/json
+        title: The collections in the dataset in JSON
+      - href: http://data.example.org/collections?f=html
+        rel: data
+        type: text/html
+        title: The collections in the dataset in HTML
+    tiles:
+      required:
+      - tileMatrixSetLink
+      type: object
+      properties:
+        tileMatrixSetLinks:
+          $ref: '#/components/schemas/tileMatrixSetLink-set'
+        infoTemplates:
+          $ref: '#/components/schemas/infoTemplates'
+    tileMatrixSetLink-set:
+      type: array
+      description: This list of tileMatrixSetLink objects, as defined in OGC 17-083r2, supported by this collectionId.
+      items:
+        $ref: '#/components/schemas/tileMatrixSetLink-entry'
+    tileMatrixSetLink-entry:
+      required:
+      - tileMatrixSet
+      type: object
+      properties:
+        tileMatrixSet:
+          type: string
+          example: WorldMercatorWGS84Quad
+        tileMatrixSetURI:
+          type: string
+          format: uri
+          example: http://schemas.opengis.net/tms/1.0/json/examples/WorldMercatorWGS84Quad.json
+        tileMatrixSetLimits:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/tileMatrixSetLimits-entry'
+    tileMatrixSetLimits-entry:
+      required:
+      - maxTileCol
+      - maxTileRow
+      - minTileCol
+      - minTileRow
+      - tileMatrix
+      type: object
+      properties:
+        tileMatrix:
+          type: string
+          format: uri
+          example: "5"
+        minTileRow:
+          type: number
+          format: integer
+          example: 0
+        maxTileRow:
+          type: number
+          format: integer
+          example: 1
+        minTileCol:
+          type: number
+          format: integer
+          example: 3
+        maxTileCol:
+          type: number
+          format: integer
+          example: 4
+    infoTemplates:
+      type: array
+      example:
+      - summary
+      items:
+        type: string
     geodata-map-metadata_1:
       allOf:
       - $ref: '#/components/schemas/geodata-styles'
@@ -2587,15 +2265,96 @@ components:
           type: text/html
       items:
         $ref: '#/components/schemas/style-set-entry'
+    inline_response_200:
+      required:
+      - links
+      type: object
+      properties:
+        links:
+          type: array
+          example:
+          - href: http://data.example.com/styles/{styleId}/map/tiles
+            rel: self
+            type: application/json
+          - href: http://data.example.com/styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}.png
+            rel: tile
+            type: image/png
+          - href: http://data.example.com/styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info
+            rel: info
+            type: text/html
+          items:
+            $ref: '#/components/schemas/link'
+    mapml_extent_input:
+      type: object
+      properties:
+        name:
+          type: string
+          xml:
+            attribute: true
+        type:
+          type: string
+          xml:
+            attribute: true
+        units:
+          type: string
+          xml:
+            attribute: true
+        axis:
+          type: string
+          xml:
+            attribute: true
+      example: '{"name":"tileCol","type":"location","units":"tilematrix","axis":"column"}'
+    mapml_extent_link:
+      type: object
+      properties:
+        rel:
+          type: string
+          xml:
+            attribute: true
+        tref:
+          type: string
+          xml:
+            attribute: true
+      example: '{"rel":"tile","tref":"https://.../tiles/WebMercatorQuad/{tileMatrix}/{tileRow}/{tileCol}/"}'
+    mapml_extent:
+      type: object
+      properties:
+        units:
+          type: string
+          example: OSMTILE
+          xml:
+            attribute: true
+        input:
+          $ref: '#/components/schemas/mapml_extent_input'
+        link:
+          $ref: '#/components/schemas/mapml_extent_link'
   responses: {}
   parameters:
+    f-json-zip:
+      name: f
+      in: query
+      description: |-
+        The format of the response. If no value is provided, the standard http
+        rules apply, i.e., the accept header is used to determine the format.
+
+        The only pre-defined value is "json". The response to other values is
+        determined by the server.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+        enum:
+        - image/json
+        - application/zip
+      example: image/json
     f-png-jpeg:
       name: f
       in: query
       description: |-
         The format of the response. If no value is provided, the standard http rules apply, i.e., the accept header is used to determine the format.
 
-        Pre-defined values are jpeg, png or gif for image based tiles
+        Pre-defined values jpeg, png or gif for image based tiles
         The response to other values is determined by the server.
       required: false
       style: form
@@ -2607,10 +2366,10 @@ components:
         - image/jpeg
         - image/gif
       example: image/png
-    fMap:
-      name: fMap
+    f-tile:
+      name: fTile
       in: query
-      description: Internal format of the maps referenced by a getFeatureInfo.
+      description: "The format of the response. \nPre-defined values are jpeg, png or gif for image based tiles\nThe response to other values is determined by the server."
       required: false
       style: form
       explode: false
