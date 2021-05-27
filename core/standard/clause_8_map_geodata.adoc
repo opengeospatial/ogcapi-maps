@@ -60,7 +60,12 @@ include::requirements/geodata/REQ_desc-links.adoc[]
     ...
     {
       "href": "http://data.example.com/collections/buildings/map",
-      "rel": "http://www.opengis.net/def/rel/OGC/1.0/map",
+      "rel": "http://www.opengis.net/def/rel/ogc/1.0/map",
+      "type": "image/png",
+    },
+    {
+      "href": "http://data.example.com/collections/buildings/map/metadata",
+      "rel": "http://www.opengis.net/def/rel/ogc/1.0/map-meta",
       "type": "application/json",
     }
   ]

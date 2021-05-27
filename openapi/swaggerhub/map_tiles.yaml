@@ -1211,42 +1211,42 @@ components:
             type: text/html
             title: The API definition in HTML
           - href: http://data.example.org/conformance?f=json
-            rel: http://www.opengis.net/def/rel/OGC/1.0/conformance
+            rel: http://www.opengis.net/def/rel/ogc/1.0/conformance
             type: application/json
             title: Conformance classes implemented by this API
           - href: http://data.example.org/collections?f=json
-            rel: http://www.opengis.net/def/rel/OGC/1.0/data
+            rel: http://www.opengis.net/def/rel/ogc/1.0/data
             type: application/json
             title: Collections in the dataset in JSON
           - href: http://data.example.org/collections?f=html
-            rel: http://www.opengis.net/def/rel/OGC/1.0/data
+            rel: http://www.opengis.net/def/rel/ogc/1.0/data
             type: text/html
             title: Collections in the dataset in HTML
           - href: http://data.example.org/tileMatrixSets?f=json
-            rel: http://www.opengis.net/def/rel/OGC/1.0/tiling-schemes
+            rel: http://www.opengis.net/def/rel/ogc/1.0/tiling-schemes
             type: application/json
             title: TileMatrixSets implemented by this API in JSON
           - href: http://data.example.org/tileMatrixSets?f=html
-            rel: http://www.opengis.net/def/rel/OGC/1.0/tiling-schemes
+            rel: http://www.opengis.net/def/rel/ogc/1.0/tiling-schemes
             type: text/html
             title: TileMatrixSets implemented by this API in HTML
           - href: http://data.example.org/styles?f=json
-            rel: http://www.opengis.net/def/rel/OGC/1.0/styles
+            rel: http://www.opengis.net/def/rel/ogc/1.0/styles
             type: application/json
             title: The set of available styles
           - href: http://data.example.org/tiles
-            rel: http://www.opengis.net/def/rel/OGC/1.0/tilesets
+            rel: http://www.opengis.net/def/rel/ogc/1.0/tilesets-vector
             type: application/json
             title: Information on tiles in the dataset
           - href: http://data.example.org/map
-            rel: http://www.opengis.net/def/rel/OGC/1.0/map
+            rel: http://www.opengis.net/def/rel/ogc/1.0/map
             title: Map combining collections in the dataset
           - href: http://data.example.org/map/metadata
-            rel: http://www.opengis.net/def/rel/OGC/1.0/map-meta
+            rel: http://www.opengis.net/def/rel/ogc/1.0/map-meta
             type: application/json
             title: Metadata of the map combining collections in the dataset
           - href: http://data.example.org/map/tiles
-            rel: http://www.opengis.net/def/rel/OGC/1.0/tilesets-map
+            rel: http://www.opengis.net/def/rel/ogc/1.0/tilesets-map
             type: application/json
             title: Information on map tiles in the dataset
           items:
@@ -1279,18 +1279,15 @@ components:
             type: application/rdf+xml
             title: CC0-1.0
           - href: http://data.example.com/collections/buildings/items
-            rel: http://www.opengis.net/def/rel/OGC/1.0/items
+            rel: http://www.opengis.net/def/rel/ogc/1.0/items
             title: Retrieve the items of the buildings collection
             type: application/geo+json
           - href: http://data.example.com/collections/buildings/map
-            rel: http://www.opengis.net/def/rel/OGC/1.0/map
+            rel: http://www.opengis.net/def/rel/ogc/1.0/map
           - href: http://data.example.com/collections/buildings/map/metadata
-            rel: describedBy
+            rel: map-meta
           - href: http://data.example.com/collections/buildings/map/tiles
-            rel: http://www.opengis.net/def/rel/OGC/1.0/tiles
-            type: application/json
-          - href: http://data.example.com/collections/buildings/tileSets
-            rel: describedBy
+            rel: http://www.opengis.net/def/rel/ogc/1.0/tilesets-map
             type: application/json
           items:
             $ref: '#/components/schemas/link'
@@ -1310,10 +1307,10 @@ components:
             rel: self
             type: application/json
           - href: http://data.example.com/collections/buildings/styles/{styleId}/tiles/map/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}.png
-            rel: http://www.opengis.net/def/rel/OGC/1.0/tile
+            rel: http://www.opengis.net/def/rel/ogc/1.0/tile
             type: image/png
           - href: http://data.example.com/collections/buildings/styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info
-            rel: http://www.opengis.net/def/rel/OGC/1.0/info
+            rel: http://www.opengis.net/def/rel/ogc/1.0/info
             type: text/html
           items:
             $ref: '#/components/schemas/link'
@@ -2073,71 +2070,10 @@ components:
         type: string
     geodata-map-metadata_1:
       allOf:
-      - $ref: '#/components/schemas/geodata-styles'
       - $ref: '#/components/schemas/map-metadata'
-    geodata-styles:
-      type: object
-      properties:
-        styles:
-          $ref: '#/components/schemas/geodata-style-set'
-    geodata-style-set:
-      type: array
-      nullable: true
-      example:
-      - id: brown
-        title: Topographic brown style
-        links:
-        - href: http://data.example.com/api/1.0/styles/brown?f =mapbox
-          type: application/vnd.mapbox.style+json
-          rel: stylesheet
-        - href: http://data.example.com/api/1.0/styles/brown?f=sld10
-          type: application/vnd.ogc.sld+xml;version=1.0
-          rel: stylesheet
-        - href: http://data.example.com/api/1.0/styles/brown/metadata?f=json
-          type: application/json
-          rel: describedby
-        - href: http://data.example.com/api/1.0/styles/brown/legend-small?f=png
-          type: image/png
-          rel: icon
-          minScaleDenominator: 10000
-        - href: http://data.example.com/api/1.0/styles/brown/legend-big?f=png
-          type: image/png
-          rel: icon
-          maxScaleDenominator: 10000
-        - href: http://data.example.com/collections/buildings/map/brown/thumnail?f=png
-          type: image/png
-          rel: preview
-        - href: http://data.example.com/collections/buildings/map/brown
-          rel: subset
-          type: image/png
-          types: image/png, image/jpeg, image/tiff
-        - href: http://data.example.com/collections/buildings/map/brown/info
-          rel: info
-          type: text/html
-      items:
-        $ref: '#/components/schemas/style-set-entry'
-    style-set-entry:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        links:
-          minItems: 1
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/link'
     map-metadata:
       type: object
       properties:
-        defaultStyle:
-          $ref: '#/components/schemas/default-style'
         wgs84SpatialExtent:
           $ref: '#/components/schemas/bbox'
         crsSpatialExtents:
@@ -2154,6 +2090,13 @@ components:
           type: number
           description: Maximum scale denominator (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404 If it is not present we will assume there is no limit.
           example: 10000000
+        minCellSize:
+          type: number
+          description: Minimum cell size (inclusive). If it is not present we will assume there is no limit.
+        maxCellSize:
+          type: number
+          description: Maximum cell size (inclusive). If it is not present we will assume there is no limit.
+          example: 10000000
         recomendedFormat:
           type: string
           description: Recommended output formats for a map request. Depending of the nature of the data, a format might be better than another. Categorical data looks better in a PNG but continuos data and pictures are smaller a JPEG. The map operation details all available formats for the OGC API maps. In contrast, this is the better one for this type of information. It would be one of the supported for the map operation
@@ -2166,10 +2109,6 @@ components:
           type: number
           description: Maximum width and height values that a client is permitted to include in bbox subset operation.  If absent the server imposes no limit.
           example: 2048
-    default-style:
-      type: string
-      description: the style id of a recommended default style to use for this collection. This is informative and optional.
-      example: topographic
     crsSpatialExtents:
       type: array
       description: Available CRSs and minimum spatial extent surrounding the map
@@ -2200,46 +2139,7 @@ components:
       description: The spatial extent of the element in the collection.
     dataset-map-metadata_1:
       allOf:
-      - $ref: '#/components/schemas/dataset-styles'
       - $ref: '#/components/schemas/map-metadata'
-    dataset-styles:
-      type: object
-      properties:
-        styles:
-          $ref: '#/components/schemas/dataset-style-set'
-    dataset-style-set:
-      type: array
-      nullable: true
-      example:
-      - id: brown
-        title: Topographic brown style
-        links:
-        - href: http://data.example.com/api/1.0/styles/brown?f=mapbox
-          type: application/vnd.mapbox.style+json
-          rel: stylesheet
-        - href: http://data.example.com/api/1.0/styles/brown?f=sld10
-          type: application/vnd.ogc.sld+xml;version=1.0
-          rel: stylesheet
-        - href: http://data.example.com/api/1.0/styles/brown/metadata?f=json
-          type: application/json
-          rel: describedby
-        - href: http://data.example.com/api/1.0/styles/brown/legend?f=png
-          type: image/png
-          rel: icon
-          title: Image representing the legend of the map
-        - href: http://data.example.com/api/1.0/styles/brown/thumnail?f=png
-          type: image/png
-          rel: preview
-          title: Image showing a small view of a fragment of the map
-        - href: http://data.example.com/map/brown
-          rel: subset
-          type: image/png
-          types: image/png, image/jpeg, image/tiff
-        - href: http://data.example.com/map/brown/info
-          rel: info
-          type: text/html
-      items:
-        $ref: '#/components/schemas/style-set-entry'
     inline_response_200:
       required:
       - links
@@ -2252,10 +2152,10 @@ components:
             rel: self
             type: application/json
           - href: http://data.example.com/styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}.png
-            rel: http://www.opengis.net/def/rel/OGC/1.0/tile
+            rel: http://www.opengis.net/def/rel/ogc/1.0/tile
             type: image/png
           - href: http://data.example.com/styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info
-            rel: http://www.opengis.net/def/rel/OGC/1.0/info
+            rel: http://www.opengis.net/def/rel/ogc/1.0/info
             type: text/html
           items:
             $ref: '#/components/schemas/link'
@@ -2290,7 +2190,7 @@ components:
           type: string
           xml:
             attribute: true
-      example: '{"rel":"http://www.opengis.net/def/rel/OGC/1.0/tile","tref":"https://.../tiles/WebMercatorQuad/{tileMatrix}/{tileRow}/{tileCol}/"}'
+      example: '{"rel":"http://www.opengis.net/def/rel/ogc/1.0/tile","tref":"https://.../tiles/WebMercatorQuad/{tileMatrix}/{tileRow}/{tileCol}/"}'
     mapml_extent:
       type: object
       properties:

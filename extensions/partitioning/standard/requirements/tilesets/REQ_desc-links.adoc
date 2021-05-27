@@ -2,10 +2,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/tilesets/desc-links*
-^|A |The map metadata SHALL include a `link` with the `href` pointing to a tileset list supported  that presents a tile aspect of this geospatial data resource and with rel: `http://www.opengis.net/def/rel/OGC/1.0/tilesets`.
-^|B |If the API has a mechanism for their maps to expose links to geospatial aspects (e.g. feature items, metadata...), the API SHALL include a `link` with the `href` pointing to the tileset list that presents a tile aspect of this geospatial data resource and with rel: `http://www.opengis.net/def/rel/OGC/1.0/tilesets`.
+^|A |The map metadata SHALL include a `link` with the `href` pointing to a tileset list supported that presents a tile aspect of this geospatial data resource and with rel: `http://www.opengis.net/def/rel/ogc/1.0/tilesets-map`.
+^|B |If the API has a mechanism for their maps to expose links to geospatial aspects (e.g. feature items, metadata...), the API SHALL include a `link` with the `href` pointing to the tileset list that presents a tile aspect of this geospatial data resource and with rel: `http://www.opengis.net/def/rel/ogc/1.0/tilesets-map`.
 ^|C |The tileset list SHALL be available as a URI that will be composed by two parts: The first part is the URL of the  map resource (e.g. '.../map') followed by the word '/tiles'.
-^|D |The map metadata SHALL include a `link` with the `href` pointing to every tileset supported that presents a tile aspect of this geospatial data resource and with rel: `http://www.opengis.net/def/rel/OGC/1.0/tileset`.
-^|E |If the API has a mechanism for their maps to expose links to geospatial aspects (e.g. feature collection, landing page,...), the API SHALL include a `link` with the `href` pointing to every tileset supported by the geospatial data resource that presents a tile aspect of this geospatial data resource and with rel: `http://www.opengis.net/def/rel/OGC/1.0/tileset`.
-^|F |The tileset SHALL be available as a URI that will be composed by three parts: The first part is the URL of the  map resource (e.g. '.../map') followed by the word '/tiles', and finally followed by the id of the tile matrix set supported.
 |===

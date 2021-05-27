@@ -114,7 +114,7 @@ image::images/MapMetadata.png[TileMatrixSet UML model]
 | maxHeight | Maximum height values that a client is permitted to include in a map operation. | nonNegativeInteger  | Zero or one (optional). If absent the server imposes no limit
 | link | Links to related resources | WebLink data structure, see 2DTMS | Zero or more (optional)
 4+|^a^  Depending of the nature of the data, a format might be better than another. Categorical data looks better in a PNG but continuous data and pictures are smaller a JPEG. The map operation details all available formats for the OGC API maps. In contrast, this is the better one for this type of information.
-^e^     Possible link `rel` values are: `http://www.opengis.net/def/rel/OGC/1.0/style` for a URL pointing to other styles of the resource exposed as maps, 'maps' for a URL template to the map resource. 'alternate' for a URL pointing to another representation of the MapMetadata (e.g a TileJSON file).
+^e^     Possible link `rel` values are: `http://www.opengis.net/def/rel/ogc/1.0/style` for a URL pointing to other styles of the resource exposed as maps, 'maps' for a URL template to the map resource. 'alternate' for a URL pointing to another representation of the MapMetadata (e.g a TileJSON file).
 |===
 
 NOTE: In WMS this metadata was present in the <layer> section of a GetCapabilities document. Some common metadata such as title, abstract, attribution, etc are not provided by this model. The client is expected to get this information directly from the parent resource that is converted into map (e.g. from the response to \collections\{collectionId}).

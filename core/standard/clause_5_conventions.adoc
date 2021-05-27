@@ -39,4 +39,6 @@ In addition the following link relation types this document proposes link relati
 
 * **map**: Refers to a resource that is map representation of another geospatial resource (e.g. a collection)
 
+* **map-meta**: Refers to a resource that provides metadata about a map representation of another geospatial resource (e.g. a collection)
+
 Each resource representation includes an array of links. Implementations are free to add additional links for all resources provided by the API.

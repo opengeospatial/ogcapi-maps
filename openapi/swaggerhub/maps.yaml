@@ -1825,22 +1825,22 @@ components:
             type: text/html
             title: API definition in HTML
           - href: http://data.example.org/conformance?f=json
-            rel: http://www.opengis.net/def/rel/OGC/1.0/conformance
+            rel: http://www.opengis.net/def/rel/ogc/1.0/conformance
             type: application/json
             title: Conformance classes implemented by this API
           - href: http://data.example.org/collections?f=json
-            rel: http://www.opengis.net/def/rel/OGC/1.0/data
+            rel: http://www.opengis.net/def/rel/ogc/1.0/data
             type: application/json
             title: Collections in the dataset in JSON
           - href: http://data.example.org/collections?f=html
-            rel: http://www.opengis.net/def/rel/OGC/1.0/data
+            rel: http://www.opengis.net/def/rel/ogc/1.0/data
             type: text/html
             title: Collections in the dataset in HTML
           - href: http://data.example.org/map
-            rel: http://www.opengis.net/def/rel/OGC/1.0/map
+            rel: http://www.opengis.net/def/rel/ogc/1.0/map
             title: Map combining collections in the dataset
           - href: http://data.example.org/map/metadata
-            rel: http://www.opengis.net/def/rel/OGC/1.0/map-meta
+            rel: http://www.opengis.net/def/rel/ogc/1.0/map-meta
             title: Metadata of the map combining collections in the dataset
           items:
             $ref: '#/components/schemas/link'
@@ -1872,18 +1872,18 @@ components:
             type: application/rdf+xml
             title: CC0-1.0
           - href: http://data.example.com/collections/buildings/items
-            rel: http://www.opengis.net/def/rel/OGC/1.0/items
+            rel: http://www.opengis.net/def/rel/ogc/1.0/items
             title: Retrieve the items of the buildings collection
             type: application/geo+json
           - href: http://data.example.com/collections/buildings/map
-            rel: http://www.opengis.net/def/rel/OGC/1.0/map
+            rel: http://www.opengis.net/def/rel/ogc/1.0/map
             title: A map of this collection
           - href: http://data.example.com/collections/buildings/map/metadata
             rel: describedby
             type: application/json
             title: A metadata of a map of this collection
           - href: http://data.example.com/collections/buildings/styles
-            rel: http://www.opengis.net/def/rel/OGC/1.0/styles
+            rel: http://www.opengis.net/def/rel/ogc/1.0/styles
             type: application/json
             title: The set of available styles for this collection
           items:
@@ -2424,8 +2424,6 @@ components:
     map-metadata:
       type: object
       properties:
-        defaultStyle:
-          $ref: '#/components/schemas/default-style'
         wgs84SpatialExtent:
           $ref: '#/components/schemas/bbox'
         crsSpatialExtents:
@@ -2461,10 +2459,6 @@ components:
           type: number
           description: Maximum width and height values that a client is permitted to include in bbox subset operation.  If absent the server imposes no limit.
           example: 2048
-    default-style:
-      type: string
-      description: the style id of a recommended default style to use for this collection. This is informative and optional.
-      example: topographic
     crsSpatialExtents:
       type: array
       description: Available CRSs and minimum spatial extent surrounding the map

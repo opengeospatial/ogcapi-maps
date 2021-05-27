@@ -2,6 +2,6 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/dataset/landingpage*
-^|A | If the API has mechanism to expose root resources (e.g. a landing page), the API SHALL advertise a URI to retrieve dataset maps defined by this service as links to the descriptions paths with rel: `http://www.opengis.net/def/rel/OGC/1.0/map`.
-^|B | If the API has mechanism to expose root resources (e.g. a landing page), the API SHALL advertise a URI to retrieve the metadata describing the maps defined by this service as links to the descriptions paths with rel: `http://www.opengis.net/def/rel/OGC/1.0/map-meta`.
+^|A | If the API has mechanism to expose root resources (e.g. a landing page), the API SHALL advertise a URI to retrieve dataset maps defined by this service as links to the descriptions paths with rel: `http://www.opengis.net/def/rel/ogc/1.0/map`.
+^|B | If the API has mechanism to expose root resources (e.g. a landing page), the API SHALL advertise a URI to retrieve the metadata describing the maps defined by this service as links to the descriptions paths with rel: `http://www.opengis.net/def/rel/ogc/1.0/map-meta`.
 |===
