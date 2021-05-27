@@ -9,10 +9,10 @@ servers:
     url: http://data.example.org
 info:
   title: |-
-    Map data service example. Part of the OGC API Maps and Tiles OpenAPI work.
+    Map data service example. Part of the OGC API Maps OpenAPI work.
   description: |-
     Maps of more than one collection.
-    This is a draft of an example of a service following the OGC API maps and tiles that produces maps.
+    This is a draft of an example of a service following the OGC API maps that produces maps.
 
     It is elaborated in the Testbed-15 Open Portrayal Framework in collaboration with the WMS.SWG. The Map Tile API is a Web API for fetching and managing maps and tiles.
 
@@ -110,7 +110,7 @@ paths:
         - OGC API Common
       summary: the collections in the dataset
       description: |-
-        A list of all collection in this dataset. Some collections may have a link with relation type `map` that point to a map resource created with data form this collection
+        A list of all collections available in this dataset.
       operationId: getCollections
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/f-json-html'
@@ -145,7 +145,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
-  '/collections/{collectionId}/map':
+  '/collections/{collectionId}/map/metadata':
     get:
       tags:
         - Map resources
@@ -162,7 +162,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/geodata-map'
+                $ref: '#/components/schemas/geodata-map-metadata'
             text/html:
               schema:
                 type: string
@@ -170,7 +170,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
-  '/map':
+  '/map/metadata':
     get:
       tags:
         - Map resources
@@ -185,22 +185,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/dataset-map'
+                $ref: '#/components/schemas/dataset-map-metadata'
             text/html:
               schema:
                 type: string
         '404':
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
-  '/collections/{collectionId}/map/{styleId}':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'          
+  '/collections/{collectionId}/styles/{styleId}/map':
     get:
       tags:
         - Geospatial Data Resource Maps
       summary: fetch a map from a collection
       description: |-
         Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core'
-      operationId: getMapCollectionId
+      operationId: getMapStyleIdCollectionId
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-styles/1.0.0#/components/parameters/styleId'
@@ -208,6 +208,7 @@ paths:
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bbox'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/width'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/cellSize'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/transparent'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bgcolor'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/datetime'
@@ -240,14 +241,14 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
-  '/collections/{collectionId}/map/{styleId}/info':
+  '/collections/{collectionId}/styles/{styleId}/map/info':
     get:
       tags:
         - Geospatial Data Resource Maps
       summary: fetch information about a point on a map from a collection
       description: |-
         Retrieves a getFeatureInfo in map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
-      operationId: getFeatureInfoCollectionId
+      operationId: getFeatureInfoStyleIdCollectionId
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-styles/1.0.0#/components/parameters/styleId'
@@ -255,6 +256,91 @@ paths:
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bbox'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/width'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/cellSize'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bgcolor'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/datetime'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/coord_i'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/coord_j'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/infoTemplate'
+        - $ref: '#/components/parameters/fMap'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/f-json-html'
+      responses:
+        '200':
+          description: |-
+            Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
+          content:
+            application/geo+json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-features/1.0.0#/components/schemas/featureCollectionGeoJSON'
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
+          
+  '/collections/{collectionId}/map':
+    get:
+      tags:
+        - Geospatial Data Resource Maps
+      summary: fetch a map from a collection
+      description: |-
+        Retrieves a map in the default style, in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.  The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core'
+      operationId: getMapCollectionId
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/crs'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/width'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/cellSize'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bgcolor'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/datetime'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
+        - $ref: '#/components/parameters/f-png-jpeg'
+      responses:
+        '200':
+          description: |-
+            Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+              example: JPEG image
+            image/png:
+              schema:
+                type: string
+                format: binary
+              example: PNG image
+            image/gif:
+              schema:
+                type: string
+                format: binary
+              example: GIF image
+            application/geo+json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-features/1.0.0#/components/schemas/featureCollectionGeoJSON'
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
+  '/collections/{collectionId}/map/info':
+    get:
+      tags:
+        - Geospatial Data Resource Maps
+      summary: fetch information about a point on a map from a collection
+      description: |-
+        Retrieves a getFeatureInfo in map in the default style, in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
+      operationId: getFeatureInfoCollectionId
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/crs'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/width'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/cellSize'     
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/transparent'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bgcolor'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/datetime'
@@ -277,14 +363,14 @@ paths:
         '500':
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
 
-  '/map/{styleId}':
+  '/styles/{styleId}/map/':
     get:
       tags:
         - Dataset Maps
       summary: retrieves a map composed by one or more collections
       description: |-
         Retrieves a map in the requested crs, on the requested bbox designed to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/root'
-      operationId: GetMapCollections
+      operationId: GetMapStyleIdCollections
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/geodata'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-styles/1.0.0#/components/parameters/styleId'
@@ -292,6 +378,7 @@ paths:
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bbox'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/width'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/cellSize'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/transparent'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bgcolor'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/datetime'
@@ -324,14 +411,14 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
-  '/map/{styleId}/info':
+  '/styles/{styleId}/map/info':
     get:
       tags:
         - Dataset Maps
       summary: fetch information about a point on a map from one or more collections
       description: |-
         Retrieves a getFeatureInfo in map for collections in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
-      operationId: GetFeatureInfoCollections
+      operationId: GetFeatureInfoStyleIdCollections
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/geodata'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-styles/1.0.0#/components/parameters/styleId'
@@ -339,6 +426,106 @@ paths:
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bbox'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/width'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/cellSize'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bgcolor'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/datetime'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/coord_i'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/coord_j'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/infoTemplate'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/infoGeodata'
+        - $ref: '#/components/parameters/fMap'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/f-json-html'
+      responses:
+        '200':
+          description: |-
+            Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+              example: JPEG image
+            image/png:
+              schema:
+                type: string
+                format: binary
+              example: PNG image
+            image/gif:
+              schema:
+                type: string
+                format: binary
+              example: GIF image
+            application/geo+json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-features/1.0.0#/components/schemas/featureCollectionGeoJSON'
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
+  '/map/':
+    get:
+      tags:
+        - Dataset Maps
+      summary: retrieves a map composed by one or more collections
+      description: |-
+        Retrieves a map int the default style, in the requested crs, on the requested bbox designed to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/root'
+      operationId: GetMapCollections
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/geodata'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/crs'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/width'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/cellSize'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bgcolor'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/datetime'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
+        - $ref: '#/components/parameters/f-png-jpeg'
+      responses:
+        '200':
+          description: |-
+            Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+              example: JPEG image
+            image/png:
+              schema:
+                type: string
+                format: binary
+              example: PNG image
+            image/gif:
+              schema:
+                type: string
+                format: binary
+              example: GIF image
+            application/geo+json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-features/1.0.0#/components/schemas/featureCollectionGeoJSON'
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/NotFound'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/responses/ServerError'
+  '/map/info':
+    get:
+      tags:
+        - Dataset Maps
+      summary: fetch information about a point on a map from one or more collections
+      description: |-
+        Retrieves a getFeatureInfo in map in the default style for collections in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
+      operationId: GetFeatureInfoCollections
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-map-tiles/1.0.0#/components/parameters/geodata'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/crs'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/width'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/cellSize'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/transparent'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/parameters/bgcolor'
         - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/parameters/datetime'
@@ -383,7 +570,7 @@ components:
       - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/landingPage'
       - $ref: '#/components/schemas/landingPage-link'
     landingPage-link:
-      #This element is a duplicate of the one in OGC API common but it is enriched with more examples for maps and other resource types.
+      #This element is a duplicate of the one in OGC API common but it is enriched with more examples for maps and other resource types.      
       type: object
       required:
         - links
@@ -393,14 +580,40 @@ components:
           items:
             $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
           example:
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-this'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-alternate'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-service-json'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-service-html'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-conformance'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-collections-json'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-landingPage-collections-html'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/examples/link-landingPage-maps'
+            - href: 'http://data.example.org/?f=json'
+              rel: self
+              type: application/json
+              title: This document
+            - href: 'http://data.example.org/?f=html'
+              rel: alternate
+              type: text/html
+              title: This document in HTML
+            - href: 'http://data.example.org/api?f=json'
+              rel: service-desc
+              type: application/vnd.oai.openapi+json;version=3.0
+              title: API definition in OpenAPI 3.0 JSON
+            - href: 'http://data.example.org/api?f=html'
+              rel: service-desc
+              type: text/html
+              title: API definition in HTML
+            - href: 'http://data.example.org/conformance?f=json'
+              rel: 'http://www.opengis.net/def/rel/OGC/1.0/conformance'
+              type: application/json
+              title: Conformance classes implemented by this API
+            - href: 'http://data.example.org/collections?f=json'
+              rel: 'http://www.opengis.net/def/rel/OGC/1.0/data'
+              type: application/json
+              title: Collections in the dataset in JSON
+            - href: 'http://data.example.org/collections?f=html'
+              rel: 'http://www.opengis.net/def/rel/OGC/1.0/data'
+              type: text/html
+              title: Collections in the dataset in HTML
+            - href: 'http://data.example.org/map'
+              rel: 'http://www.opengis.net/def/rel/OGC/1.0/map'
+              title: Map combining collections in the dataset
+            - href: 'http://data.example.org/map/metadata'
+              rel: 'http://www.opengis.net/def/rel/OGC/1.0/map-meta'
+              title: Metadata of the map combining collections in the dataset
     collection:
       allOf:
       - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/collection'
@@ -416,37 +629,41 @@ components:
           items:
             $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
           example:
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-this'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-describedBy'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-license-html'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-license-rdf'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-features/1.0.0#/components/examples/link-collection-items'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-coverages/1.0.0#/components/examples/link-collection-rangeType'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-coverages/1.0.0#/components/examples/link-collection-domainSet'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/examples/link-collection-maps'
-    geodata-map:
-      allOf:
-      - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/schemas/geodata-map'
-      - $ref: '#/components/schemas/geodata-map-link'
-    geodata-map-link:
-      #This element is a duplicate of the one in OGC API common but it is enriched with more examples for maps and other resource types.
-      type: object
-      required:
-        - links
-      properties:
-        links:
-          type: array
-          items:
-            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
-          example:
-            - href: 'http://data.example.com/collections/buildings/map'
+            - href: 'http://example.com/collections/buildings?f=json'
               rel: self
               type: 'application/json'
-    dataset-map:
+              title: This document
+            - href: 'http://example.com/concepts/buildings.html'
+              rel: describedby
+              type: text/html'
+            - href: 'https://creativecommons.org/publicdomain/zero/1.0/'
+              rel: license
+              type: text/html
+              title: CC0-1.0
+            - href: 'https://creativecommons.org/publicdomain/zero/1.0/rdf'
+              rel: license
+              type: application/rdf+xml
+              title: CC0-1.0
+            - href: 'http://data.example.com/collections/buildings/items'
+              rel: 'http://www.opengis.net/def/rel/OGC/1.0/items'
+              title: Retrieve the items of the buildings collection
+              type: 'application/geo+json'
+            - href: 'http://data.example.com/collections/buildings/map'
+              rel: 'http://www.opengis.net/def/rel/OGC/1.0/map'
+              title: A map of this collection
+            - href: 'http://data.example.com/collections/buildings/map/metadata'
+              rel: describedby
+              type: 'application/json'
+              title: A metadata of a map of this collection
+            - href: 'http://data.example.com/collections/buildings/styles'
+              rel: 'http://www.opengis.net/def/rel/OGC/1.0/styles'
+              type: 'application/json'
+              title: The set of available styles for this collection
+    geodata-map-metadata:
       allOf:
-      - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/schemas/dataset-map'
-      - $ref: '#/components/schemas/dataset-map-link'
-    dataset-map-link:
+      - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/schemas/geodata-map-metadata'
+      - $ref: '#/components/schemas/geodata-map-metadata-link'
+    geodata-map-metadata-link:
       #This element is a duplicate of the one in OGC API common but it is enriched with more examples for maps and other resource types.
       type: object
       required:
@@ -457,7 +674,25 @@ components:
           items:
             $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
           example:
-            - href: 'http://data.example.com/map'
+            - href: 'http://data.example.com/collections/buildings/map/metadata'
+              rel: self
+              type: 'application/json'
+    dataset-map-metadata:
+      allOf:
+      - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-maps/1.0.0#/components/schemas/dataset-map-metadata'
+      - $ref: '#/components/schemas/dataset-map-metadata-link'      
+    dataset-map-metadata-link:
+      #This element is a duplicate of the one in OGC API common but it is enriched with more examples for maps and other resource types.
+      type: object
+      required:
+        - links
+      properties:
+        links:
+          type: array
+          items:
+            $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
+          example:
+            - href: 'http://data.example.com/map/metadata'
               rel: self
               type: 'application/json'
   parameters:

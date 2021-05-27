@@ -1197,54 +1197,58 @@ components:
           - href: http://data.example.org/?f=json
             rel: self
             type: application/json
-            title: this document
+            title: This document
           - href: http://data.example.org/?f=html
             rel: alternate
             type: text/html
-            title: this document in HTML
+            title: This document in HTML
           - href: http://data.example.org/api?f=json
-            rel: service
+            rel: service-desc
             type: application/vnd.oai.openapi+json;version=3.0
-            title: the API definition in OpenAPI 3.0 JSON
+            title: The API definition in OpenAPI 3.0 JSON
           - href: http://data.example.org/api?f=html
-            rel: service
+            rel: service-desc
             type: text/html
-            title: the API definition in HTML
+            title: The API definition in HTML
           - href: http://data.example.org/conformance?f=json
-            rel: conformance
+            rel: http://www.opengis.net/def/rel/OGC/1.0/conformance
             type: application/json
-            title: the list of conformance classes implemented by this API
+            title: Conformance classes implemented by this API
           - href: http://data.example.org/collections?f=json
-            rel: data
+            rel: http://www.opengis.net/def/rel/OGC/1.0/data
             type: application/json
-            title: The collections in the dataset in JSON
+            title: Collections in the dataset in JSON
           - href: http://data.example.org/collections?f=html
-            rel: data
+            rel: http://www.opengis.net/def/rel/OGC/1.0/data
             type: text/html
-            title: The collections in the dataset in HTML
+            title: Collections in the dataset in HTML
           - href: http://data.example.org/tileMatrixSets?f=json
-            rel: tiling-schema
+            rel: http://www.opengis.net/def/rel/OGC/1.0/tiling-schemes
             type: application/json
-            title: List of tileMatrixSets implemented by this API in JSON
+            title: TileMatrixSets implemented by this API in JSON
           - href: http://data.example.org/tileMatrixSets?f=html
-            rel: tiling-schema
+            rel: http://www.opengis.net/def/rel/OGC/1.0/tiling-schemes
             type: text/html
-            title: List of tileMatrixSets implemented by this API in HTML
-          - href: http://data.example.org/styles
-            rel: styles
+            title: TileMatrixSets implemented by this API in HTML
+          - href: http://data.example.org/styles?f=json
+            rel: http://www.opengis.net/def/rel/OGC/1.0/styles
             type: application/json
             title: The set of available styles
+          - href: http://data.example.org/tiles
+            rel: http://www.opengis.net/def/rel/OGC/1.0/tilesets
+            type: application/json
+            title: Information on tiles in the dataset
           - href: http://data.example.org/map
-            rel: map
-            title: A map combining more than one collection
+            rel: http://www.opengis.net/def/rel/OGC/1.0/map
+            title: Map combining collections in the dataset
           - href: http://data.example.org/map/metadata
-            rel: describedby
+            rel: http://www.opengis.net/def/rel/OGC/1.0/map-meta
             type: application/json
-            title: Link to information on map combining more than one collection
+            title: Metadata of the map combining collections in the dataset
           - href: http://data.example.org/map/tiles
-            rel: tiles
+            rel: http://www.opengis.net/def/rel/OGC/1.0/tilesets-map
             type: application/json
-            title: Link to information on map tiles combining more than one collection
+            title: Information on map tiles in the dataset
           items:
             $ref: '#/components/schemas/link'
     collection:
@@ -1275,15 +1279,15 @@ components:
             type: application/rdf+xml
             title: CC0-1.0
           - href: http://data.example.com/collections/buildings/items
-            rel: items
+            rel: http://www.opengis.net/def/rel/OGC/1.0/items
             title: Retrieve the items of the buildings collection
             type: application/geo+json
           - href: http://data.example.com/collections/buildings/map
-            rel: map
+            rel: http://www.opengis.net/def/rel/OGC/1.0/map
           - href: http://data.example.com/collections/buildings/map/metadata
             rel: describedBy
           - href: http://data.example.com/collections/buildings/map/tiles
-            rel: tiles
+            rel: http://www.opengis.net/def/rel/OGC/1.0/tiles
             type: application/json
           - href: http://data.example.com/collections/buildings/tileSets
             rel: describedBy
@@ -1306,10 +1310,10 @@ components:
             rel: self
             type: application/json
           - href: http://data.example.com/collections/buildings/styles/{styleId}/tiles/map/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}.png
-            rel: tile
+            rel: http://www.opengis.net/def/rel/OGC/1.0/tile
             type: image/png
           - href: http://data.example.com/collections/buildings/styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info
-            rel: info
+            rel: http://www.opengis.net/def/rel/OGC/1.0/info
             type: text/html
           items:
             $ref: '#/components/schemas/link'
@@ -2001,35 +2005,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/link'
-      example:
-      - href: http://data.example.org/?f=json
-        rel: self
-        type: application/json
-        title: this document
-      - href: http://data.example.org/?f=html
-        rel: alternate
-        type: text/html
-        title: this document in HTML
-      - href: http://data.example.org/api?f=json
-        rel: service
-        type: application/vnd.oai.openapi+json;version=3.0
-        title: the API definition in OpenAPI 3.0 JSON
-      - href: http://data.example.org/api?f=html
-        rel: service
-        type: text/html
-        title: the API definition in HTML
-      - href: http://data.example.org/conformance?f=json
-        rel: conformance
-        type: application/json
-        title: the list of conformance classes implemented by this API
-      - href: http://data.example.org/collections?f=json
-        rel: data
-        type: application/json
-        title: The collections in the dataset in JSON
-      - href: http://data.example.org/collections?f=html
-        rel: data
-        type: text/html
-        title: The collections in the dataset in HTML
     tiles:
       required:
       - tileMatrixSetLink
@@ -2277,10 +2252,10 @@ components:
             rel: self
             type: application/json
           - href: http://data.example.com/styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}.png
-            rel: tile
+            rel: http://www.opengis.net/def/rel/OGC/1.0/tile
             type: image/png
           - href: http://data.example.com/styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info
-            rel: info
+            rel: http://www.opengis.net/def/rel/OGC/1.0/info
             type: text/html
           items:
             $ref: '#/components/schemas/link'
@@ -2315,7 +2290,7 @@ components:
           type: string
           xml:
             attribute: true
-      example: '{"rel":"tile","tref":"https://.../tiles/WebMercatorQuad/{tileMatrix}/{tileRow}/{tileCol}/"}'
+      example: '{"rel":"http://www.opengis.net/def/rel/OGC/1.0/tile","tref":"https://.../tiles/WebMercatorQuad/{tileMatrix}/{tileRow}/{tileCol}/"}'
     mapml_extent:
       type: object
       properties:

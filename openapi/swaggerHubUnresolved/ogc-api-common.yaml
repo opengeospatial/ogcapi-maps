@@ -1,5 +1,5 @@
 openapi: 3.0.2
-# Revisions:
+# Revisions: 
 # 2019-05-09 initial version
 # 2019-05-11 added nullable values to support patch
 # 2019-05-17 TileRow and TileCol are now 'numbers' (not strings)
@@ -10,9 +10,9 @@ openapi: 3.0.2
 # 2019-07-14 Updated with the last WFS3 draft https://github.com/opengeospatial/WFS_FES/blob/master/core/openapi/bbox/ogcapi-features-1.yaml
 # 2019-07-14 Replacins 'feature' by 'element' in many texts inherited from WFfS3 work
 # 2019-07-24 Examples in Response collections and collection has been removed because the examples in the schemas create them automatically. Before removing them we have ensured consistency.
-# 2019-07-24 Added attribution and crsSpatialExtent to collection.
+
 info:
-  title: OGC API Common
+  title: OGC API Common Building Blocks
   description: |-
     Common components used in the OGC API family of standards. Deeply inspired in Clemens Portele work.
 
@@ -236,8 +236,8 @@ components:
           $ref: '#/components/schemas/extent'
 
         #itemType:
-        #Deprecated. The links are indicating the availability of a collection as features, covreages etc
-        #  description: indicator about the type of the  items in the collection (the default value is 'feature'; alternative values are 'coverage', 'image', etc).
+        #Deprecated. The links indicates the type of items. It can be feature or record.
+        #  description: indicator about the type of the  items in the collection (the default value is 'feature'; alternative values are 'record', 'image', etc).
         #  type: string
         #  default: feature
         #  example: feature
@@ -251,31 +251,6 @@ components:
           example:
             - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
             - 'http://www.opengis.net/def/crs/EPSG/0/4326'
-        # crsLibray:
-        #this is just an idea for preventing long lists of CRSs. We have to see if there is consensus adopting it.
-        #  type: string
-        #  description: |-
-        #    Reference to a CRS library giving support to a comprehensive list of CRSs that are not advertised but supported anyway.
-        #  example: PROJ4G            
-        crsSpatialExtents:
-          type: array
-          description: |-
-            Minimum spatial extent surrounding the spatial resource for each CRS available
-          items:
-            $ref: '#/components/schemas/spatialExtent'
-          example:
-            - bbox:
-                - -180
-                - -90
-                - 180
-                - 90
-              crs: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-            - bbox:
-                - -20037508.3427892
-                - -20037508.3427892
-                - 20037508.3427892
-                - 20037508.3427892
-              crs: 'http://www.opengis.net/def/crs/EPSG/0/3395'            
     collection-link:
       # This element is only used by '\collections' and is not directly by other APIs in ''\collection\{collectionId}' because they probably will need to add other links to other resource types in the examples. Instead, it would be copied and enriched with the right examples.
       type: object
@@ -287,10 +262,21 @@ components:
           items:
             $ref: '#/components/schemas/link'
           example:
-            - $ref: '#/components/examples/link-collection-from-collections'
-            - $ref: '#/components/examples/link-collection-describedBy'
-            - $ref: '#/components/examples/link-collection-license-html'
-            - $ref: '#/components/examples/link-collection-license-rdf'
+            - href: 'http://example.com/collections/buildings?f=json'
+              rel: item
+              type: 'application/json'
+              title: CollectionId path description in the OpenAPI
+            - href: 'http://example.com/concepts/buildings.html'
+              rel: describedby
+              type: text/html'
+            - href: 'https://creativecommons.org/publicdomain/zero/1.0/'
+              rel: license
+              type: text/html
+              title: CC0-1.0
+            - href: 'https://creativecommons.org/publicdomain/zero/1.0/rdf'
+              rel: license
+              type: application/rdf+xml
+              title: CC0-1.0
     collections:
       type: object
       required:
@@ -312,7 +298,7 @@ components:
               type: text/html
               title: this document as HTML
             - href: 'http://schemas.example.org/1.0/dataset.xsd'
-              rel: describedBy
+              rel: describedby
               type: application/xml
               title: GML application schema for Acme Corporation dataset data
             - href: 'http://download.example.org/dataset.gpkg'
@@ -364,7 +350,8 @@ components:
       description: |-
         The spatial extent of the element in the collection.
       type: object
-      required: bbox
+      required: 
+        - bbox
       properties:
         bbox:
           $ref: '#/components/schemas/bbox'
@@ -382,17 +369,17 @@ components:
         description: |-
           West, south, east, north edges of the bounding box. The coordinates
           are in the coordinate reference system specified in `crs`. By default
-          this is WGS 84 longitude/latitude.
+          this is WGS 84 longitude/latitude (CRS84).
         type: array
         minItems: 4
         maxItems: 6
         items:
           type: number
-        example:
-          - - 7.01
-            - 50.63
-            - 7.22
-            - 50.78
+      example:
+        - - 7.01
+          - 50.63
+          - 7.22
+          - 50.78
     crs:
       description: |-
         Coordinate reference system of the coordinates in the spatial extent
@@ -465,36 +452,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/link'
-      ##Example may vary among different services.
-      example:
-        - href: 'http://data.example.org/?f=json'
-          rel: self
-          type: application/json
-          title: this document
-        - href: 'http://data.example.org/?f=html'
-          rel: alternate
-          type: text/html
-          title: this document in HTML
-        - href: 'http://data.example.org/api?f=json'
-          rel: service
-          type: application/vnd.oai.openapi+json;version=3.0
-          title: the API definition in OpenAPI 3.0 JSON
-        - href: 'http://data.example.org/api?f=html'
-          rel: service
-          type: text/html
-          title: the API definition in HTML
-        - href: 'http://data.example.org/conformance?f=json'
-          rel: conformance
-          type: application/json
-          title: the list of conformance classes implemented by this API
-        - href: 'http://data.example.org/collections?f=json'
-          rel: data
-          type: application/json
-          title: The collections in the dataset in JSON
-        - href: 'http://data.example.org/collections?f=html'
-          rel: data
-          type: text/html
-          title: The collections in the dataset in HTML
     id-link:
       type: object
       description: |-
@@ -547,6 +504,20 @@ components:
         length:
           type: integer
           minimum: 0
+        templated:
+          description: |- 
+            Use `true` if the `href` property contains a URI template with variables that needs to be substituted by values to get a URI
+          type: boolean
+          default: false
+          example: false
+        types:
+          description: |- 
+            Without this parameter you should repeat a link for each media type the resource is offered. 
+            Adding this parameter allows listing alternative media types that you can use for this resource. The value in the `type` parameter becomes the recommended media type.
+          type: array
+          items: 
+            type: string
+          example: 'image/png, image/jpeg, image/tiff'
     keyword:
       required:
         - keyword
@@ -601,13 +572,34 @@ components:
             title: Buildings in Bonn
             description: Access to data about buildings in the city of Bonn via a Web API that conforms to the OGC API specification.
             links:
-              - $ref: '#/components/examples/link-landingPage-this'
-              - $ref: '#/components/examples/link-landingPage-alternate'
-              - $ref: '#/components/examples/link-landingPage-service-json'
-              - $ref: '#/components/examples/link-landingPage-service-html'
-              - $ref: '#/components/examples/link-landingPage-conformance'
-              - $ref: '#/components/examples/link-landingPage-collections-json'
-              - $ref: '#/components/examples/link-landingPage-collections-html'
+            - href: 'http://data.example.org/?f=json'
+              rel: self
+              type: application/json
+              title: this document
+            - href: 'http://data.example.org/?f=html'
+              rel: alternate
+              type: text/html
+              title: this document in HTML
+            - href: 'http://data.example.org/api?f=json'
+              rel: service-desc
+              type: application/vnd.oai.openapi+json;version=3.0
+              title: the API definition in OpenAPI 3.0 JSON
+            - href: 'http://data.example.org/api?f=html'
+              rel: service-desc
+              type: text/html
+              title: the API definition in HTML
+            - href: 'http://data.example.org/conformance?f=json'
+              rel: 'http://www.opengis.net/def/rel/OGC/1.0/conformance'
+              type: application/json
+              title: the list of conformance classes implemented by this API
+            - href: 'http://data.example.org/collections?f=json'
+              rel: 'http://www.opengis.net/def/rel/OGC/1.0/data'
+              type: application/json
+              title: The collections in the dataset in JSON
+            - href: 'http://data.example.org/collections?f=html'
+              rel: 'http://www.opengis.net/def/rel/OGC/1.0/data'
+              type: text/html
+              title: The collections in the dataset in HTML
         text/html:
           schema:
             type: string
@@ -628,23 +620,22 @@ components:
             type: string
     Collections:
       description: |-
-        The collections shared by this API.
+        The collections (geospatial data resources) shared by this API.
         
         This response can be references directly for every service that wants only essential information at the collections level. /collections/collectionId might return more information.
 
-        The dataset is organized as one or more collections. This resource
-        provides information about and access to the collections.
+        The dataset is organized as one or more collections. This resource provides information about and how to access the collections.
 
         The response contains the list of collections. For each collection, a link
-        to other resources is present (e.g. the items in the collection; path `/collections/{collectionId}/items`,
-        link relation `items`) as well as key information about the collection.
-        This information includes:
+        to other resources present (e.g. the items in the collection, path `/collections/{collectionId}/items`,
+        link relation `items`, a map created with data from  collection, path `/collections/{collectionId}/map`,
+        link relation `map`) as well as key information about the collection.
+        This information includes, but is not limited to:
 
         * A local identifier for the collection that is unique for the dataset;
-        * A list of coordinate reference systems (CRS) in which geometries may be returned by the server. The first CRS is the default coordinate reference system (the default is always WGS 84 with axis order longitude/latitude);
+        * A list of coordinate reference systems (CRS) in which geometries may be returned by the server. The first CRS is the default coordinate reference system (the default is always WGS84 with axis order longitude/latitude);
         * An optional title and description for the collection;
         * An optional extent that can be used to provide an indication of the spatial and temporal extent of the collection - typically derived from the data;
-        * An optional indicator about the type of elements in the collection (the default value, if the indicator is not provided, is 'feature').
 
       content:
         application/json:
@@ -735,63 +726,3 @@ components:
       schema:
         type: string
       example: 'Link: <http://data.example.org/collections/buildings/items.json>; rel=\"self\"; type=\"application/geo+json\"'
-  examples:
-    link-collection-from-collections:
-      href: 'http://example.com/collections/buildings?f=json'
-      rel: item
-      type: 'application/json'
-      title: CollectionId path description in the OpenAPI
-    link-collection-this:
-      href: 'http://example.com/collections/buildings?f=json'
-      rel: self
-      type: 'application/json'
-      title: This document
-    link-collection-describedBy:
-      href: 'http://example.com/concepts/buildings.html'
-      rel: describedBy
-      type: text/html
-    link-collection-license-html:
-      href: 'https://creativecommons.org/publicdomain/zero/1.0/'
-      rel: license
-      type: text/html
-      title: CC0-1.0
-    link-collection-license-rdf:
-      href: 'https://creativecommons.org/publicdomain/zero/1.0/rdf'
-      rel: license
-      type: application/rdf+xml
-      title: CC0-1.0        
-    link-landingPage-this:
-      href: 'http://data.example.org/?f=json'
-      rel: self
-      type: application/json
-      title: this document
-    link-landingPage-alternate:
-      href: 'http://data.example.org/?f=html'
-      rel: alternate
-      type: text/html
-      title: this document in HTML
-    link-landingPage-service-json:
-      href: 'http://data.example.org/api?f=json'
-      rel: service
-      type: application/vnd.oai.openapi+json;version=3.0
-      title: the API definition in OpenAPI 3.0 JSON
-    link-landingPage-service-html:
-      href: 'http://data.example.org/api?f=html'
-      rel: service
-      type: text/html
-      title: the API definition in HTML
-    link-landingPage-conformance:
-      href: 'http://data.example.org/conformance?f=json'
-      rel: conformance
-      type: application/json
-      title: the list of conformance classes implemented by this API
-    link-landingPage-collections-json:
-      href: 'http://data.example.org/collections?f=json'
-      rel: data
-      type: application/json
-      title: The collections in the dataset in JSON
-    link-landingPage-collections-html:
-      href: 'http://data.example.org/collections?f=html'
-      rel: data
-      type: text/html
-      title: The collections in the dataset in HTML

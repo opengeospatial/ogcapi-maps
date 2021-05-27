@@ -51,9 +51,17 @@ components:
           items:
             $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/schemas/link'
           example:
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-this'
-            - $ref: 'https://api.swaggerhub.com/domains/UAB-CREAF/ogc-api-common/1.0.0#/components/examples/link-collection-describedBy'
-            - $ref: '#/components/examples/link-collection-items'
+            - href: 'http://example.com/collections/buildings?f=json'
+              rel: self
+              type: 'application/json'
+              title: This document
+            - href: 'http://example.com/concepts/buildings.html'
+              rel: describedby
+              type: text/html'
+            - href: 'http://data.example.com/collections/buildings/items'
+              rel: 'http://www.opengis.net/def/rel/OGC/1.0/items'
+              title: Retrieve the items of the buildings collection
+              type: 'application/geo+json'
     queryables:
       type: array
       items:
@@ -441,9 +449,3 @@ components:
               - 32.57551892
             - - 35.99601746
               - 32.50426061
-  examples:
-    link-collection-items:
-      href: 'http://data.example.com/collections/buildings/items'
-      rel: items
-      title: Retrieve the items of the buildings collection
-      type: 'application/geo+json'

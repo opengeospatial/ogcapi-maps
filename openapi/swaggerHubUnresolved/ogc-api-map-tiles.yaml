@@ -3,7 +3,7 @@ openapi: 3.0.2
 # 2019-07-14 Reparated from a more complex domains document
 #
 info:
-  title: OGC API Building Blocks
+  title: OGC API Map Tiles Building Blocks
   description: |-
     Common components used in the OGC API maps and tiles standards.
 
@@ -22,8 +22,8 @@ components:
     #############################
     # From OGC API Maps and Tiles
     #############################
-    collections:
-      name: collections
+    geodata:
+      name: geodata
       in: query
       description: |-
         The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
@@ -34,8 +34,8 @@ components:
         type: array
         items:
           type: string
-    infoCollections:
-      name: infoCollections
+    infoGeodata:
+      name: infoGeodada
       in: query
       description: |-
         The collections that are used in a response of a information request. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, all collections will be included.
@@ -80,45 +80,10 @@ components:
       explode: false
       schema:
         type: number
-  examples:
-    link-landingPage-map-tiles:
-      href: 'http://data.example.org/map/tiles'
-      rel: tiles
-      type: application/json
-      title: Link to information on map tiles combining more than one collection
-    link-collection-map-tiles:
-      href: 'http://data.example.com/collections/buildings/map/tiles'
-      rel: tiles
-      type: 'application/json'
-    link-map-tiles-this:
-      href: 'http://data.example.com/collections/buildings/map/tiles'
-      rel: self
-      type: 'application/json'      
-    link-map-tiles-tile:
-      href: 'http://data.example.com/collections/buildings/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}.png'
-      rel: tile
-      type: 'image/png'
-    link-map-tiles-multitile:
-      href: 'http://data.example.com/collections/buildings/map/{styleId}/tiles/{tileMatrixSetId}'
-      rel: multitile
-      type: 'application/vnd.ogc.multipart;container=application/x-zip-compressed;tiles=image/png'
-    link-map-tiles-info:
-      href: 'http://data.example.com/collections/buildings/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info'
-      rel: info
-      type: 'text/html'
-    link-map-tiles-col-this:
-      href: 'http://data.example.com/map/tiles'
-      rel: self
-      type: 'application/json'            
-    link-map-tiles-col-tile:
-      href: 'http://data.example.com/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}.png'
-      rel: tile
-      type: 'image/png'
-    link-map-tiles-col-multitile:
-      href: 'http://data.example.com/map/tiles/{tileMatrixSetId}'
-      rel: multitile
-      type: 'application/vnd.ogc.multipart;container=application/x-zip-compressed;tiles=image/png'   
-    link-map-tiles-col-info:
-      href: 'http://data.example.com/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info'
-      rel: info
-      type: 'text/html'
+  schemas:
+    infoTemplates:
+      type: array
+      items:
+        type: string
+      example:
+        - summary
