@@ -33,7 +33,7 @@ In the landing page, in JSON format, the links follow the link schema defined in
     ...,
     {
        "href": "http://data.example.org/tiles",
-       "rel": "tiles",
+       "rel": "http://www.opengis.net/def/rel/OGC/1.0/tiles",
        "type": "application/json",
        "title": "Link to information on map tilesets from the dataset",
     }
