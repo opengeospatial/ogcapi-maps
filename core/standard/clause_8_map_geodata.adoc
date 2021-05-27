@@ -38,12 +38,21 @@ If the server declares also conformity to OGC API - Common or to OGC API - Featu
 =================
 
 === Geospatial data resources
-This standard does not specify how geospatial resources are exposed in the API and if they have the possibility to be retrievable as geospatial data (e.g. feature items). For example OGC API - Features v1 includes the definition of collections and each collection is available in the /collections/{collectionId} path. OGC API - Common collections extension provides a similar mechanism. Other paths in the API could also give access to geospatial resources.
+This standard does not specify how geospatial resources are exposed in the API and if they have the possibility to be retrievable as geospatial data (e.g. feature items). This standard expect that other OGC API family standards will define how to expose these geospatial resources. Examples of standards that can expose geospatial resources are:
+
+* OGC API - Features v1 includes the definition of collections and each collection is available in the /collections/{collectionId} path.
+* OGC API - Common collections extension provides a similar mechanism.
+* OGC API - Process exposes processes that may result in other paths in the API giving access to geospatial resources.
+
+These geospatial resources can be modified or complemented by other resources creating new endpoints indirectly giving access to the modified or complemented resources. Other OGC API family standards will define this mechanisms. Examples of standards doing that are:
+
+* OGC API - Styles defines how to complement a geospatial resource by adding a style to it. The new resource is an overlap of both resources
 
 NOTE: The concept of geospatial resource path substitutes the concept of "layer" in WMS but it intends to give a better integration between data visualization and data access.
 
 include::requirements/geodata/REQ_desc-links.adoc[]
 
+include::recommendations/geodata/PER_desc-links.adoc[]
 
 .Fragment of a collection with a links array with one item of the array pointing to a map.
 =================

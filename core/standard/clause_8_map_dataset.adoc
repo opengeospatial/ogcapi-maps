@@ -19,12 +19,18 @@ The landing page provides links to start exploring the resources offered by the 
 
 ==== Response
 
+The root of the API represents a dataset that will be exposed in different ways by the API.
+
+The root can be modified or complemented by other resources creating new endpoints indirectly giving access to the modified or complemented dataset. Other OGC API family standards will define this mechanisms. Examples of standards doing that are:
+
+* OGC API - Styles defines how to complement a geospatial resource by adding a style to it. The new resources is an overlap of the dataset and the resource
+
 include::requirements/dataset/REQ_landingpage.adoc[]
 
 In the landing page, in JSON format, the links follow the link schema defined in the OGC API - Common or in OGC API - Features v1. Below you can find an example fragment of the response to an OGC API - Maps landing page showing the link to root tiles.
 
 [[landingPageTilesRoot]]
-.API Landing Page fragment that advertises dataset maps
+.API Landing Page fragment that advertises dataset maps. The same links could be added to a room style description.
 =================
 [source,JSON]
 ----
