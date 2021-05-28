@@ -8,9 +8,9 @@ OGC API - Maps is part of the suite of [OGC API standards](https://ogcapi.ogc.or
 
 ## Overview
 
-IMPORTANT NOTE: The description in this README.md can be older than the one in the [standard](core/standard) draft. In case of discrepancy the standard draft takes precedence.
+*IMPORTANT NOTE: The description in this README.md can be older than the one in the [standard](core/standard) draft. In case of discrepancy the standard draft takes precedence.
 
-For later - Need to determine how to describe conformance and collections work in the context of OGC API - Maps. Possible text for the collections part is: Maps typically contain multiple types of information (e.g. buildings, roads, lakes, etc.), commonly known as "layers". In OGC API - Maps, "{collectionId}" or "coverage" is used to identify the individual layers a map contains.
+*For later - Need to determine how to describe conformance and collections work in the context of OGC API - Maps. Possible text for the collections part is: Maps typically contain multiple types of information (e.g. buildings, roads, lakes, etc.), commonly known as "layers". In OGC API - Maps, "{collectionId}" or "coverage" is used to identify the individual layers a map contains.
 
 
 OGC API - Maps is a standard API that provides maps representing geospatial data. 
