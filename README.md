@@ -1,13 +1,46 @@
 # OGC API - Maps
 
-This GitHub repository contains the draft OGC API - Maps specification that defines a Web API for requesting map images over the Internet. OGC API - Maps makes it easy for a client to request images, changing parameters such as size and coordinate reference systems at the time of request. A server that implements OGC API - Maps provides information about what maps it offers, as well as producing a map and answering queries about the content of the maps. OGC API - Maps is expected to address use cases similar to those addressed by the Web Map Service (WMS) standard.
+This GitHub repository contains [OGC](https://www.ogc.org/)'s multi-part standard for querying and retrieving maps on the web, "OGC API - Maps". The draft specification is available in [HTML](http://docs.ogc.org/DRAFTS/20-058.html) and [PDF](http://docs.ogc.org/DRAFTS/20-058.pdf). 
 
+A [Map](https://en.wikipedia.org/wiki/Map) provides a visual representation of relationships between things within a defined space. OGC API - Maps defines a standardized way to request information about a map, query a map's contents, and obtain an image of a map to serve multiple purposes (e.g. displaying maps in web pages, mapping software, etc.). OGC API - Maps also makes it easy to change parameters of the map at the time of request (e.g. size, coordinate reference system used).
+
+OGC API - Maps is part of the suite of [OGC API standards](https://ogcapi.ogc.org/) that define modular API building blocks to enable access and use of location (i.e. geospatial) information in a consistent way. Information about other OGC APIs can be found [online](https://ogcapi.ogc.org/).
+
+## Overview
+
+*IMPORTANT NOTE: The description in this README.md can be older than the one in the [standard](core/standard) draft. In case of discrepancy the standard draft takes precedence.*
+
+*For later - Need to determine how to describe conformance and collections work in the context of OGC API - Maps. Possible text for the collections part is: Maps typically contain multiple types of information (e.g. buildings, roads, lakes, etc.), commonly known as "layers". In OGC API - Maps, "{collectionId}" or "coverage" is used to identify the individual layers a map contains.*
+
+
+OGC API - Maps is a standard API that provides maps representing geospatial data. 
+
+```
+GET /.../.../map
+```
+Requests the default representation of the map. Additional options can be invoked to refine the information that is returned.
+
+```
+GET /.../.../map/{styleId}
+```
+Requests the map to be returned in a specific style. This allows you to define the appearance of the map to suit your needs.
+
+```
+GET /.../.../map/{styleId}?crs=CRS84
+```
+Maps use [Coordinate Reference Systems](https://en.wikipedia.org/wiki/Spatial_reference_system) (CRS) to define their position within a space (e.g. the Earth's surface). OGC API - Maps allows maps to be requested in any available CRS. This example will return the map according to the [World Geodetic Survey](https://en.wikipedia.org/wiki/World_Geodetic_System) 1984 CRS.
+
+```
+GET /.../.../map/{styleId}?crs=CRS84&bbox=160.6,-55.95,-170,-25.89
+```
+Maps can cover large areas. The Bounding Box (bbox) option allows you to specify the portion of the map you wish to obtain. bbox is defined using the CRS specified in the request.
+
+```
+GET /.../.../map/{styleId}?crs=CRS84&bbox=160.6,-55.95,-170,-25.89&width=600&height=400
+```
+Width and height allow you to define the resolution of the returned map. 
 
 ## Standards
-
-[OGC API standards](https://ogcapi.ogc.org) define modular API building blocks to spatially enable Web APIs
-in a consistent way. [OpenAPI](http://openapis.org) is used to define the reusable
-API building blocks.
 
 After a while getting familiar and playing with the OpenAPI definition files (explained just below in the "Examples section"), we have finally started to write the standard. We have decided on an aggressive path towards a modular specification with a simple core and multiple extensions. The extensions are yet to be determined.
 
@@ -75,27 +108,6 @@ Another example OpenAPI definition, that describes a service that can serve only
 Several more examples are in the [openapi folder](openapi). The files are structured such that they can be combined together.
 
 Previous examples, some no longer accessible, are at [previous_examples.md](previous_examples.md).
-
-## Overview
-
-IMPORTANT NOTE: The description in this README.md can be older than the one in the [standard](core/standard) draft. In case of discrepancy the standard draft takes precedence.
-
-### Maps
-
-A "OGC API - Maps" is a standard API that provides maps representing geospatial data.
-
-```
-GET /.../.../map/{styleId}
-```
-
-The identifier of the "layer" is replaced by "{collectionId}" or "coverage"...
-
-Maps can be requested in any available CRS and can be subset by bbox width and height (and eventually other parameters such as time and elevation)
-```
-GET /.../.../map/{styleId}?crs=CRS84&bbox=160.6,-55.95,-170,-25.89&width=600&height=400
-```
-Returns a map - a representation of real-world elements at a given resolution. {styleId} is optional.
-
 
 ## Communication
 
