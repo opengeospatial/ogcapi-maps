@@ -10,24 +10,35 @@ OGC API - Maps is part of the suite of [OGC API standards](https://ogcapi.ogc.or
 
 IMPORTANT NOTE: The description in this README.md can be older than the one in the [standard](core/standard) draft. In case of discrepancy the standard draft takes precedence.
 
-OGC API - Maps is a standard API that provides maps representing geospatial data.
+For later - Need to determine how to describe conformance and collections work in the context of OGC API - Maps. Possible text for the collections part is: Maps typically contain multiple types of information (e.g. buildings, roads, lakes, etc.), commonly known as "layers". In OGC API - Maps, "{collectionId}" or "coverage" is used to identify the individual layers a map contains.
+
+
+OGC API - Maps is a standard API that provides maps representing geospatial data. 
+
+```
+GET /.../.../map
+```
+Requests the default representation of the map. Additional options can be invoked to refine the information that is returned.
 
 ```
 GET /.../.../map/{styleId}
 ```
+Requests the map to be returned in a specific style. This allows you to define the appearance of the map to suit your needs.
 
-Maps typically contain multiple types of information (e.g. buildings, roads, lakes, etc.), commonly known as "layers". In OGC API - Maps, "{collectionId}" or "coverage" is used to identify the individual layers a map contains.
+```
+GET /.../.../map/{styleId}?crs=CRS84
+```
+Maps use [Coordinate Reference Systems](https://en.wikipedia.org/wiki/Spatial_reference_system) (CRS) to define their position within a space (e.g. the Earth's surface). OGC API - Maps allows maps to be requested in any available CRS. This example will return the map according to the [World Geodetic Survey](https://en.wikipedia.org/wiki/World_Geodetic_System) 1984 CRS.
 
-Maps use Coordinate Reference Systems (CRS) to define their position within a space (e.g. the Earth's surface). OGC API - Maps allows maps to be requested in any available CRS.
+```
+GET /.../.../map/{styleId}?crs=CRS84&bbox=160.6,-55.95,-170,-25.89
+```
+Maps can cover large areas. The Bounding Box (bbox) option allows you to specify the portion of the map you wish to obtain. bbox is defined using the CRS specified in the request.
 
 ```
 GET /.../.../map/{styleId}?crs=CRS84&bbox=160.6,-55.95,-170,-25.89&width=600&height=400
 ```
-Maps can be requested in any available CRS and can be subset by bbox width and height (and eventually other parameters such as time and elevation)
-```
-GET /.../.../map/{styleId}?crs=CRS84&bbox=160.6,-55.95,-170,-25.89&width=600&height=400
-```
-Returns a map - a representation of real-world elements at a given resolution. {styleId} is optional.
+Width and height allow you to define the resolution of the returned map. 
 
 ## Standards
 
