@@ -853,7 +853,7 @@ paths:
         required: true
         schema:
           type: string
-      - name: geodata
+      - name: collections
         in: query
         description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
         required: false
@@ -1012,7 +1012,7 @@ paths:
         required: true
         schema:
           type: string
-      - name: geodata
+      - name: collections
         in: query
         description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
         required: false

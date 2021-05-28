@@ -84,7 +84,7 @@ The maps core defines a `map` resource that is associated with an operation that
 
 include::requirements/dataset/REQ_operation.adoc[]
 
-The request of this operation does not define extra parameters. Servers can advertise the requirements class http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/geodata-selection to add a `geodata` parameter that can be used to include only parts of the dataset in the map representation. Other extensions of this map standards will define how to get a subset of a map resource.
+The request of this operation does not define extra parameters. Servers can advertise the requirements class http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/collections-selection to add a `collections` parameter that can be used to include only parts of the dataset in the map representation. Other extensions of this map standards will define how to get a subset of a map resource.
 
 ==== Response
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)

@@ -1024,7 +1024,7 @@ paths:
       description: Retrieves a map in the requested crs, on the requested bbox designed to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/root'
       operationId: GetMapStyleIdCollections
       parameters:
-      - name: geodata
+      - name: collections
         in: query
         description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
         required: false
@@ -1201,7 +1201,7 @@ paths:
       description: Retrieves a getFeatureInfo in map for collections in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
       operationId: GetFeatureInfoStyleIdCollections
       parameters:
-      - name: geodata
+      - name: collections
         in: query
         description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
         required: false
@@ -1419,7 +1419,7 @@ paths:
       description: Retrieves a map int the default style, in the requested crs, on the requested bbox designed to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/root'
       operationId: GetMapCollections
       parameters:
-      - name: geodata
+      - name: collections
         in: query
         description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
         required: false
@@ -1590,7 +1590,7 @@ paths:
       description: Retrieves a getFeatureInfo in map in the default style for collections in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter. It is conformant to - 'http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/info'
       operationId: GetFeatureInfoCollections
       parameters:
-      - name: geodata
+      - name: collections
         in: query
         description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
         required: false
@@ -1838,9 +1838,11 @@ components:
             title: Collections in the dataset in HTML
           - href: http://data.example.org/map
             rel: http://www.opengis.net/def/rel/ogc/1.0/map
+            type: image/png
             title: Map combining collections in the dataset
           - href: http://data.example.org/map/metadata
             rel: http://www.opengis.net/def/rel/ogc/1.0/map-meta
+            type: application/json,
             title: Metadata of the map combining collections in the dataset
           items:
             $ref: '#/components/schemas/link'
