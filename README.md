@@ -1,6 +1,6 @@
 # OGC API - Maps
 
-This GitHub repository contains [OGC](https://www.ogc.org/)'s multi-part standard for querying and retrieving maps on the web, "OGC API - Maps". The draft specification is available in [HTML](http://docs.ogc.org/DRAFTS/20-058.html) and [PDF](http://docs.ogc.org/DRAFTS/20-058.pdf). 
+This GitHub repository contains [OGC](https://www.ogc.org/)'s multi-part standard for querying and retrieving maps on the web, "OGC API - Maps". The draft specification is available in [HTML](http://docs.ogc.org/DRAFTS/20-058.html) and [PDF](http://docs.ogc.org/DRAFTS/20-058.pdf).
 
 A [Map](https://en.wikipedia.org/wiki/Map) provides a visual representation of relationships between things within a defined space. OGC API - Maps defines a standardized way to request information about a map, query a map's contents, and obtain an image of a map to serve multiple purposes (e.g. displaying maps in web pages, mapping software, etc.). OGC API - Maps also makes it easy to change parameters of the map at the time of request (e.g. size, coordinate reference system used).
 
@@ -13,7 +13,7 @@ OGC API - Maps is part of the suite of [OGC API standards](https://ogcapi.ogc.or
 *For later - Need to determine how to describe conformance and collections work in the context of OGC API - Maps. Possible text for the collections part is: Maps typically contain multiple types of information (e.g. buildings, roads, lakes, etc.), commonly known as "layers". In OGC API - Maps, "{collectionId}" or "coverage" is used to identify the individual layers a map contains.*
 
 
-OGC API - Maps is a standard API that provides maps representing geospatial data. 
+OGC API - Maps is a standard API that provides maps representing geospatial data.
 
 ```
 GET /.../.../map
@@ -21,24 +21,24 @@ GET /.../.../map
 Requests the default representation of the map. Additional options can be invoked to refine the information that is returned.
 
 ```
-GET /.../.../map/{styleId}
+GET /.../.../styles/{styleId}/map/
 ```
 Requests the map to be returned in a specific style. This allows you to define the appearance of the map to suit your needs.
 
 ```
-GET /.../.../map/{styleId}?crs=CRS84
+GET /.../.../styles/{styleId}/map?crs=CRS84
 ```
 Maps use [Coordinate Reference Systems](https://en.wikipedia.org/wiki/Spatial_reference_system) (CRS) to define their position within a space (e.g. the Earth's surface). OGC API - Maps allows maps to be requested in any available CRS. This example will return the map according to the [World Geodetic Survey](https://en.wikipedia.org/wiki/World_Geodetic_System) 1984 CRS.
 
 ```
-GET /.../.../map/{styleId}?crs=CRS84&bbox=160.6,-55.95,-170,-25.89
+GET /.../.../styles/{styleId}/map?crs=CRS84&bbox=160.6,-55.95,-170,-25.89
 ```
 Maps can cover large areas. The Bounding Box (bbox) option allows you to specify the portion of the map you wish to obtain. bbox is defined using the CRS specified in the request.
 
 ```
-GET /.../.../map/{styleId}?crs=CRS84&bbox=160.6,-55.95,-170,-25.89&width=600&height=400
+GET /.../.../styles/{styleId}/map?crs=CRS84&bbox=160.6,-55.95,-170,-25.89&width=600&height=400
 ```
-Width and height allow you to define the resolution of the returned map. 
+Width and height allow you to define the resolution of the returned map.
 
 ## Standards
 
