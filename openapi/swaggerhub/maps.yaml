@@ -39,23 +39,8 @@ paths:
       description: The landing page provides links to the API definition, the conformance statements and to the feature collections in this dataset. It is conformant to - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core'
       operationId: getLandingPage
       parameters:
-      - name: f
-        in: query
-        description: |-
-          The format of the response. If no value is provided, the standard http
-          rules apply, i.e., the accept header is used to determine the format.
-
-          Pre-defined values are "json" and "html". The response to other
-          values is determined by the server.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - application/json
-          - text/html
-        example: application/json
+      - $ref: '#/components/parameters/f-png-jpeg-core'
+      - $ref: '#/components/parameters/def-param'
       responses:
         "200":
           description: Links to the API capabilities and the TileMatrixSets shared by this API.
@@ -84,17 +69,14 @@ paths:
         server conforms to. It is conformant to - 'http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core'
       operationId: getConformanceDeclaration
       parameters:
-      - name: f
-        in: query
+      - $ref: '#/components/parameters/f-png-jpeg-main'
         description: |-
           The format of the response. If no value is provided, the standard http
           rules apply, i.e., the accept header is used to determine the format.
 
           The only pre-defined value is "json". The response to other values is
           determined by the server.
-        required: false
-        style: form
-        explode: false
+      - $ref: '#/components/parameters/base-param'
         schema:
           type: string
           enum:
@@ -137,23 +119,8 @@ paths:
       description: A list of all collections available in this dataset.
       operationId: getCollections
       parameters:
-      - name: f
-        in: query
-        description: |-
-          The format of the response. If no value is provided, the standard http
-          rules apply, i.e., the accept header is used to determine the format.
-
-          Pre-defined values are "json" and "html". The response to other
-          values is determined by the server.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - application/json
-          - text/html
-        example: application/json
+      - $ref: '#/components/parameters/f-png-jpeg-core'
+      - $ref: '#/components/parameters/def-param'
       responses:
         "200":
           description: |-
@@ -203,23 +170,8 @@ paths:
         required: true
         schema:
           type: string
-      - name: f
-        in: query
-        description: |-
-          The format of the response. If no value is provided, the standard http
-          rules apply, i.e., the accept header is used to determine the format.
-
-          Pre-defined values are "json" and "html". The response to other
-          values is determined by the server.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - application/json
-          - text/html
-        example: application/json
+      - $ref: '#/components/parameters/f-png-jpeg-core'
+      - $ref: '#/components/parameters/def-param'
       responses:
         "200":
           description: Metadata about the collection including a link to the map.
@@ -344,9 +296,7 @@ paths:
 
           coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
           However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           maxItems: 4
           minItems: 4
@@ -357,42 +307,32 @@ paths:
       - name: width
         in: query
         description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: height
         in: query
         description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: cell-size
         in: query
         description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: boolean
           default: true
       - name: bgcolor
         in: query
         description: Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque. If opacity is not specified "opaque" opacity is assumed.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
           default: 0xFFFFFF
@@ -414,29 +354,22 @@ paths:
           If a element has multiple temporal properties, it is the decision of the
           server whether only a single temporal property is used to determine
           the extent or all relevant temporal properties.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
       - name: elevation
         in: query
         description: Elevation value
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
-      - name: f
-        in: query
+      - $ref: '#/components/parameters/f-png-jpeg-main'
         description: |-
           The format of the response. If no value is provided, the standard http rules apply, i.e., the accept header is used to determine the format.
 
           Pre-defined values are jpeg, png or gif for image based tiles
           The response to other values is determined by the server.
-        required: false
-        style: form
-        explode: false
+      - $ref: '#/components/parameters/base-param'
         schema:
           type: string
           enum:
@@ -517,9 +450,7 @@ paths:
 
           coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
           However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           maxItems: 4
           minItems: 4
@@ -530,42 +461,32 @@ paths:
       - name: width
         in: query
         description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: height
         in: query
         description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: cell-size
         in: query
         description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: boolean
           default: true
       - name: bgcolor
         in: query
         description: Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque. If opacity is not specified "opaque" opacity is assumed.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
           default: 0xFFFFFF
@@ -587,17 +508,13 @@ paths:
           If a element has multiple temporal properties, it is the decision of the
           server whether only a single temporal property is used to determine
           the extent or all relevant temporal properties.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
       - name: elevation
         in: query
         description: Elevation value
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: i
@@ -621,9 +538,7 @@ paths:
       - name: fMap
         in: query
         description: Internal format of the maps referenced by a getFeatureInfo.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
           enum:
@@ -631,23 +546,8 @@ paths:
           - image/jpeg
           - image/gif
         example: image/png
-      - name: f
-        in: query
-        description: |-
-          The format of the response. If no value is provided, the standard http
-          rules apply, i.e., the accept header is used to determine the format.
-
-          Pre-defined values are "json" and "html". The response to other
-          values is determined by the server.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - application/json
-          - text/html
-        example: application/json
+      - $ref: '#/components/parameters/f-png-jpeg-core'
+      - $ref: '#/components/parameters/def-param'
       responses:
         "200":
           description: Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
@@ -700,9 +600,7 @@ paths:
 
           coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
           However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           maxItems: 4
           minItems: 4
@@ -713,42 +611,32 @@ paths:
       - name: width
         in: query
         description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: height
         in: query
         description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: cell-size
         in: query
         description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: boolean
           default: true
       - name: bgcolor
         in: query
         description: Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque. If opacity is not specified "opaque" opacity is assumed.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
           default: 0xFFFFFF
@@ -770,29 +658,22 @@ paths:
           If a element has multiple temporal properties, it is the decision of the
           server whether only a single temporal property is used to determine
           the extent or all relevant temporal properties.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
       - name: elevation
         in: query
         description: Elevation value
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
-      - name: f
-        in: query
+      - $ref: '#/components/parameters/f-png-jpeg-main'
         description: |-
           The format of the response. If no value is provided, the standard http rules apply, i.e., the accept header is used to determine the format.
 
           Pre-defined values are jpeg, png or gif for image based tiles
           The response to other values is determined by the server.
-        required: false
-        style: form
-        explode: false
+      - $ref: '#/components/parameters/base-param'
         schema:
           type: string
           enum:
@@ -867,9 +748,7 @@ paths:
 
           coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
           However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           maxItems: 4
           minItems: 4
@@ -880,42 +759,32 @@ paths:
       - name: width
         in: query
         description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: height
         in: query
         description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: cell-size
         in: query
         description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: boolean
           default: true
       - name: bgcolor
         in: query
         description: Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque. If opacity is not specified "opaque" opacity is assumed.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
           default: 0xFFFFFF
@@ -937,17 +806,13 @@ paths:
           If a element has multiple temporal properties, it is the decision of the
           server whether only a single temporal property is used to determine
           the extent or all relevant temporal properties.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
       - name: elevation
         in: query
         description: Elevation value
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: i
@@ -971,9 +836,7 @@ paths:
       - name: fMap
         in: query
         description: Internal format of the maps referenced by a getFeatureInfo.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
           enum:
@@ -981,23 +844,8 @@ paths:
           - image/jpeg
           - image/gif
         example: image/png
-      - name: f
-        in: query
-        description: |-
-          The format of the response. If no value is provided, the standard http
-          rules apply, i.e., the accept header is used to determine the format.
-
-          Pre-defined values are "json" and "html". The response to other
-          values is determined by the server.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - application/json
-          - text/html
-        example: application/json
+      - $ref: '#/components/parameters/f-png-jpeg-core'
+      - $ref: '#/components/parameters/def-param'
       responses:
         "200":
           description: Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
@@ -1027,9 +875,7 @@ paths:
       - name: collections
         in: query
         description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: array
           items:
@@ -1060,9 +906,7 @@ paths:
 
           coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
           However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           maxItems: 4
           minItems: 4
@@ -1073,42 +917,32 @@ paths:
       - name: width
         in: query
         description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: height
         in: query
         description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: cell-size
         in: query
         description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: boolean
           default: true
       - name: bgcolor
         in: query
         description: Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque. If opacity is not specified "opaque" opacity is assumed.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
           default: 0xFFFFFF
@@ -1130,29 +964,22 @@ paths:
           If a element has multiple temporal properties, it is the decision of the
           server whether only a single temporal property is used to determine
           the extent or all relevant temporal properties.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
       - name: elevation
         in: query
         description: Elevation value
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
-      - name: f
-        in: query
+      - $ref: '#/components/parameters/f-png-jpeg-main'
         description: |-
           The format of the response. If no value is provided, the standard http rules apply, i.e., the accept header is used to determine the format.
 
           Pre-defined values are jpeg, png or gif for image based tiles
           The response to other values is determined by the server.
-        required: false
-        style: form
-        explode: false
+      - $ref: '#/components/parameters/base-param'
         schema:
           type: string
           enum:
@@ -1204,9 +1031,7 @@ paths:
       - name: collections
         in: query
         description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: array
           items:
@@ -1237,9 +1062,7 @@ paths:
 
           coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
           However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           maxItems: 4
           minItems: 4
@@ -1250,42 +1073,32 @@ paths:
       - name: width
         in: query
         description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: height
         in: query
         description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: cell-size
         in: query
         description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: boolean
           default: true
       - name: bgcolor
         in: query
         description: Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque. If opacity is not specified "opaque" opacity is assumed.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
           default: 0xFFFFFF
@@ -1307,17 +1120,13 @@ paths:
           If a element has multiple temporal properties, it is the decision of the
           server whether only a single temporal property is used to determine
           the extent or all relevant temporal properties.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
       - name: elevation
         in: query
         description: Elevation value
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: i
@@ -1341,9 +1150,7 @@ paths:
       - name: infoGeodada
         in: query
         description: The collections that are used in a response of a information request. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, all collections will be included.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: array
           items:
@@ -1351,9 +1158,7 @@ paths:
       - name: fMap
         in: query
         description: Internal format of the maps referenced by a getFeatureInfo.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
           enum:
@@ -1361,23 +1166,8 @@ paths:
           - image/jpeg
           - image/gif
         example: image/png
-      - name: f
-        in: query
-        description: |-
-          The format of the response. If no value is provided, the standard http
-          rules apply, i.e., the accept header is used to determine the format.
-
-          Pre-defined values are "json" and "html". The response to other
-          values is determined by the server.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - application/json
-          - text/html
-        example: application/json
+      - $ref: '#/components/parameters/f-png-jpeg-core'
+      - $ref: '#/components/parameters/def-param'
       responses:
         "200":
           description: Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
@@ -1422,9 +1212,7 @@ paths:
       - name: collections
         in: query
         description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: array
           items:
@@ -1449,9 +1237,7 @@ paths:
 
           coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
           However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           maxItems: 4
           minItems: 4
@@ -1462,42 +1248,32 @@ paths:
       - name: width
         in: query
         description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: height
         in: query
         description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: cell-size
         in: query
         description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: boolean
           default: true
       - name: bgcolor
         in: query
         description: Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque. If opacity is not specified "opaque" opacity is assumed.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
           default: 0xFFFFFF
@@ -1519,29 +1295,22 @@ paths:
           If a element has multiple temporal properties, it is the decision of the
           server whether only a single temporal property is used to determine
           the extent or all relevant temporal properties.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
       - name: elevation
         in: query
         description: Elevation value
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
-      - name: f
-        in: query
+      - $ref: '#/components/parameters/f-png-jpeg-main'
         description: |-
           The format of the response. If no value is provided, the standard http rules apply, i.e., the accept header is used to determine the format.
 
           Pre-defined values are jpeg, png or gif for image based tiles
           The response to other values is determined by the server.
-        required: false
-        style: form
-        explode: false
+      - $ref: '#/components/parameters/base-param'
         schema:
           type: string
           enum:
@@ -1593,9 +1362,7 @@ paths:
       - name: collections
         in: query
         description: The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: array
           items:
@@ -1620,9 +1387,7 @@ paths:
 
           coordinate reference system (and axis order) of the four values is specified in the 'crs' parametre. It the 'crs' parametres is CRS84, the sequence is minimum longitude, minimum latitude, maximum longitude and maximum latitude.
           However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           maxItems: 4
           minItems: 4
@@ -1633,42 +1398,32 @@ paths:
       - name: width
         in: query
         description: Width of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: height
         in: query
         description: Height of the viewport to present the response (the map subset).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: cell-size
         in: query
         description: cell size of the viewport to present the response in millimeters.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: transparent
         in: query
         description: Background transparency of map (default=true).
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: boolean
           default: true
       - name: bgcolor
         in: query
         description: Hexadecimal red-green-blue[-alpha] color value for the background color (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque. If opacity is not specified "opaque" opacity is assumed.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
           default: 0xFFFFFF
@@ -1690,17 +1445,13 @@ paths:
           If a element has multiple temporal properties, it is the decision of the
           server whether only a single temporal property is used to determine
           the extent or all relevant temporal properties.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
       - name: elevation
         in: query
         description: Elevation value
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: number
       - name: i
@@ -1724,9 +1475,7 @@ paths:
       - name: infoGeodada
         in: query
         description: The collections that are used in a response of a information request. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, all collections will be included.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: array
           items:
@@ -1734,9 +1483,7 @@ paths:
       - name: fMap
         in: query
         description: Internal format of the maps referenced by a getFeatureInfo.
-        required: false
-        style: form
-        explode: false
+        $ref: '#/components/parameters/base-param'
         schema:
           type: string
           enum:
@@ -1744,23 +1491,8 @@ paths:
           - image/jpeg
           - image/gif
         example: image/png
-      - name: f
-        in: query
-        description: |-
-          The format of the response. If no value is provided, the standard http
-          rules apply, i.e., the accept header is used to determine the format.
-
-          Pre-defined values are "json" and "html". The response to other
-          values is determined by the server.
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-          enum:
-          - application/json
-          - text/html
-        example: application/json
+      - $ref: '#/components/parameters/f-png-jpeg-core'
+      - $ref: '#/components/parameters/def-param'
       responses:
         "200":
           description: Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
@@ -2494,6 +2226,32 @@ components:
       - $ref: '#/components/schemas/map-metadata'
   responses: {}
   parameters:
+    base-param:
+      required: false
+      style: form
+      explode: false
+    def-param:
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+        enum:
+        - application/json
+        - text/html
+      example: application/json
+    f-png-jpeg-main:
+      - name: f
+        in: query
+    f-png-jpeg-core:
+      name: f
+      in: query
+      description: |-
+        The format of the response. If no value is provided, the standard http
+        rules apply, i.e., the accept header is used to determine the format.
+
+        Pre-defined values are "json" and "html". The response to other
+        values is determined by the server.
     f-png-jpeg:
       name: f
       in: query
