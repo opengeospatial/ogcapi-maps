@@ -1,0 +1,32 @@
+[[req_tiles-datetime-axis.adoc]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/datetime/axis*
+^|A |To subset a generic time dimension, the server SHALL support "datetime" as axisname in the subset parameter
+|===
+
+.A date-time (subset)
+=================
+February 12, 2018, 23:20:52 UTC:
+
+`subset=datetime(%222018-02-12T23%3A20%3A52Z%22)`
+=================
+
+For resources with a temporal property that is a timestamp (like `lastUpdate`), a date-time value would match all resources where the temporal property is identical.
+
+For resources with a temporal property that is a date or a time interval, a date-time value would match all resources where the timestamp is on that day or within the time interval.
+
+.Intervals (subset)
+=================
+February 12, 2018, 00:00:00 UTC to March 18, 2018, 12:31:12 UTC:
+
+`subset=datetime(%222018-02-12T00%3A00%3A00Z%22%3A%222018-03-18T12%3A31%3A12Z%22)`
+
+February 12, 2018, 00:00:00 UTC or later:
+
+`subset=datetime(%222018-02-12T00%3A00%3A00Z%22%3A*)`
+
+March 18, 2018, 12:31:12 UTC or earlier:
+
+`subset=datetime(*%3A%222018-03-18T12%3A31%3A12Z%22)`
+=================

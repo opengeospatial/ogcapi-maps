@@ -1,0 +1,8 @@
+[[rc_crs]]
+== Requirement Class "Maps CRS"
+
+=== Overview
+
+[[maps-crs-overview]]
+
+include::requirements/requirements_class_crs.adoc[]

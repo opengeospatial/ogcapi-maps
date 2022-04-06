@@ -1,0 +1,34 @@
+[[req_bbox_bbox-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/bbox/bbox-definition*
+^|A |The map operation SHALL support a parameter `bbox` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+[source,YAML]
+----
+  bbox:
+    name: bbox
+    in: query
+    description:
+      Bounding box of the rendered map. The bounding box is provided as four coordinates
+
+      * Lower left corner, coordinate axis 1
+      * Lower left corner, coordinate axis 2
+      * Upper right corner, coordinate axis 1
+      * Upper right corner, coordinate axis 2
+
+      The coordinate reference system and axis order of the values are indicated in the `crs` parameter.
+    required: false
+    schema:
+      type: array
+      minItems: 4
+      maxItems: 4
+      items:
+        type: number
+        format: double
+    style: form
+    explode: false
+----
+^|B |`bbox` SHALL be a comma separated list of floating point numbers. The first two numbers are the coordinates of the lower left corner. The last two are the coordinates of the upper right corner. The axis order is determined by the `crs` parameter value. For example in CRS84 the order is left_long, lower_lat, right_long, upper_lat.
+^|C |If the `bbox` parameter values exceeds the limits of the extent available, the exceeding portion shall be filled with the background color or transparent values based on the relevant query parameters specified.
+^|D |If the 'bbox' is absent, the full extent that corresponds to the 'crs' parameter value that is documented in the collection description or dataset landing page will be used.
+|===

@@ -1,0 +1,6 @@
+[[rec_map-bbox_link-relation]]
+[width="90%",cols="2,6a"]
+|===
+^|*Recommendation {counter:rec-id}* |*/rec/map-bbox/link-relation*
+^|A |The 'subset' relation type points to the URL to get map subsets by bbox. In this case the link relation can have an addition parameter `types`. This parameter allows listing alternative media types that you can use for this resource. The value in the `type` parameter becomes the recommended media type. Without this parameter you should repeat a link for each media type the resource is offered creating a more verbose encoding
+|===

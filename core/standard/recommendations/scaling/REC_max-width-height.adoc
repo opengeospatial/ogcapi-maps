@@ -1,0 +1,20 @@
+[[rec_scaling_max-width-height.adoc]]
+[width="90%",cols="2,6a"]
+|===
+^|*Recommendation {counter:rec-id}* |*/rec/scaling/max-width-height*
+^|A |The map description document may include a minimum and maximum width and height indicating what is the maximum value that the server will accept to create the map. Clients should not request a map subset with a width or a height greater than this limits and if they to, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment)
+[source,YAML]
+----
+  maxWidth:
+    type: number
+    description:
+      Maximum width and height values that a client is permitted to include in bbox subset operation.  If absent the server imposes no limit.
+    example: 2048
+  maxHeight:
+    type: number
+    description:
+      Maximum width and height values that a client is permitted to include in bbox subset operation.  If absent the server imposes no limit.
+    example: 2048
+----
+^|B |In the absence of the maxWidth the client will assume that there is no limit in the parameter width. In the absence of the maxHeight the client will assume that there is no limit in the parameter height
+|===

@@ -1,10 +1,11 @@
+[[rc_datasetMaps]]
 == Requirement Class "Dataset Maps"
 
 === Overview
 
 [[dataset-maps-overview]]
 
-include::requirements/requirements_class_dataset.adoc[]
+include::requirements/requirements_class_dataset-map.adoc[]
 
 The map core and the map metadata, define how to get a map from a resource but they do nor detail which resources can be "mapped". This requirements class defines how to get a map resource from the dataset (or datasets) represented by the services. In other words it provides the path to get a map resource from the dataset behind the API. This is achieved by using by adding the map path to the root (a.k.a. the landing page) of the service.
 

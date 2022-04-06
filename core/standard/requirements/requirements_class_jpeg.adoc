@@ -1,0 +1,9 @@
+[[rc_table-jpeg]]
+[cols="1,4",width="90%"]
+|===
+2+|*Requirements JPEG*
+2+|http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpeg
+|Target type |Web API
+|Dependency |<<ISO/IEC 10918-1>>
+|Dependency |http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+|===

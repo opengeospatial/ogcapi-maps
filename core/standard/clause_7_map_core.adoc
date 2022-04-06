@@ -1,3 +1,4 @@
+[[rc_maps_core]]
 == Requirement Class "Map Core"
 
 === Overview
@@ -82,9 +83,9 @@ A successful response to a map GET operation will be consistent with the media t
 
 [[maps-metadata-overview]]
 
-include::requirements/requirements_class_map-metadata.adoc[]
+TBD ....include::requirements/requirements_class_map-metadata.adoc[]
 
-This extension adds to the core the capability to retrieve a document that contains information (metadata) on the maps that can be useful and necessary to correctly formulate request of other extension such as the subset of a map. The document includes the CRSs and other styles supported and other metadata.
+This extension adds to the core the capability to retrieve metadata on the maps that can be useful and necessary to correctly formulate request of other extension such as the subset of a map. The document includes the CRSs and map limitations etc. This metadata is not expected to exist in isolation but embeded in other resource descriptions such as the collection description.
 
 ==== Map description document
 The core introduces the way data will be combined with styles to create a map. This class defined how to get some metadata about the map that can be used by the client formulate more personalized map requests with the help of query parametres.

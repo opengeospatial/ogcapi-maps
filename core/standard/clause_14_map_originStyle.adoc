@@ -1,0 +1,8 @@
+[[rc_styledMaps]]
+== Requirement Class "Styled Maps"
+
+=== Overview
+
+[[styled-maps-overview]]
+
+include::requirements/requirements_class_styled-map.adoc[]

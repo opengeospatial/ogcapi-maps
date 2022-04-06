@@ -1,0 +1,11 @@
+[[req_map-bbox_link-relation]]
+[width="90%",cols="2,6a"]
+
+TODO: Suggesting we get rid of this requirement and subset link relation.
+If an API advertises subset, more than likely it supports sub-setting all map resources.
+
+|===
+^|*Requirement {counter:req-id}* |*/req/map-bbox/link-relation*
+^|A |For each style in the map description document array of styles of the resources available to be subset by bounding box the links array SHALL include an extra link with the relation type rel=`http://www.opengis.net/def/rel/ogc/1.0/subset`.
+^|B |The map subsets SHALL be available as a URI that will be composed of two parts: The first part is the URL of the resource, followed by the '/styles/{styleId}/map'.
+|===

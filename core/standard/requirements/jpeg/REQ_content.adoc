@@ -1,0 +1,12 @@
+[[req_jpeg_content]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/jpeg/content*
+^|A |Every 200-response of the server with the media type image/jpeg SHALL be a JPEG document representing only one tile
+^|B |The colors of the JPEG SHALL represent coverage gradients in the tile.
+^|C |All tiles representing parts of the same resource or resources and using the same style SHALL follow the same portrayal rules
+|===
+
+NOTE: The way the colors in the JPEG are mapped to geospatial features or coverage gradients is out of scope of this standard. However a common set of portrayal rules for all tiles representing part of the same resource is essential, as adjacent tiles are normally represented one next to the other and presented as a single image to the user.
+
+NOTE: JPEG is an ideal support for remote sensing imagery. The use of JPEG to represent linear features or color solid polygons is not recommended.

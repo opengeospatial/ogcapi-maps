@@ -1,0 +1,8 @@
+[[req_oas30_completeness]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/oas30/completeness*
+^|A |The OpenAPI definition SHALL provide paths for all tileset, tilesets list and tile resources provided by the API instance
+^|B |The `paths` defined in the OpenAPI definition SHALL be consistent with the links to the same resources provided by the landing page, collections, tileset and tilesets list resources.
+^|C |The `paths` defined in the OpenAPI definition SHALL provide the description of the parameters that the tileset and tile resources need to operate that are specified in corresponding conformance classes
+|===

@@ -1,0 +1,18 @@
+[[ats_collections_rc-op-subset]]
+[width="90%",cols="2,6a"]
+|===
+^|*Abstract Test {counter:ats-id}* |*/conf/collections/rc-op-subset*
+^|Test Purpose |Validate that resources can be identified and extracted from an API server using the subset query parameter.
+^|Requirement |<<req_collections_rc-subset-definition,/req/collections/rc-subset-definition>> +
+<<req_collections_rc-subset-response,/req/collections/rc-subset-response>>
+^|Test Method |. Select a valid subset value which intersects a subset of the resource collections available through the API implementation.
+. Construct a subset query parameter using the selected dimension name and value.
+. Validate the subset query parameter using <<ats_collections_rc-subset-definition,/conf/collections/rc-subset-definition>>
+. Issue an HTTP GET request to the URL `{root}/collections`. Include the validated subset query parameter.
+. Validate that a document was returned with a status code 200
+. Validate the contents of the returned document using:
+.. <<ats_collections_rc-md-success,/conf/collections_rc-md-success>> and
+.. <<ats_collections_rc-datetime-response,/conf/collections/rc-subset-response>> and
+.. <<ats_collections_rc-paged-response,/conf/collections/rc-paged-response>>.
+
+|===

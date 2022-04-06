@@ -1,38 +1,188 @@
 == Conformance
-This standard defines *TBD* requirements / conformance classes.
 
-The standardization targets of all conformance classes are "Web APIs."
+This standard defines **TBD** requirements conformance classes.
 
-The requirements classes specified in this draft specification include:
+The standardization targets of all conformance classes are "Web APIs".
 
-* <<rc_map_resource,Map resource>>,
+The requirements classes are:
 
-* <<rc_bbox_subset,Bounding Box Subset>>,
+=== Requirements classes defining resources
+*<<rc_maps_core>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/core)
 
-* <<rc_dataset_map,Dataset Map>>,
+The Core specifies requirements that all Web APIs have to implement if they are claiming to support maps from a geospatial resource following this _OGC API - Maps Part 1: Core_ standard.
+It defines how to retrieve a arbitrary map by building a URI.
 
-* <<rc_geodata_resource_selection,Geospatial Data Resource Selection>> and
+[#table_resource_core,reftext='{table-caption} {counter:table-num}']
+.Overview of resource and common direct link that corresponds to an arbitrary map defined in core conformance class
+[cols="33,66",options="header"]
+|===
+|Resource name |**Common** path
+|Map |`.../map`
+|===
 
-* <<rc_geo_data_resource_map,Geospatial Data Resource Map>>.
+*<<rc_maps_tileSets-list>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tileset-list)
 
-This draft specification does not mandate a specific encoding or format for representing maps. TBD requirements classes specify options for representations of resources in commonly used encodings for maps on the web:
+The _tilesets-list_ conformance class defines a mechanism to describe a tileset list and obtain a list of tilesets supported by the map and eventually tiles representing the map
 
-* <<rc_html,HTML>>,
+[#table_resource_tilesets-list,reftext='{table-caption} {counter:table-num}']
+.Overview of resources and common direct links that corresponds to the tileset list
+[cols="33,66",options="header"]
+|===
+|Resource name |**Common** path
+|Tilesets list |`.../maps/tiles`
+|Tileset |`.../maps/tiles/{tileMatrixSetId}`
+|Tile |`.../tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}`
+|===
 
-* <<rc_jpeg,JPEG>> and
+=== Requirements classes defining parameters
+*<<rc_collections-selection>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection)
 
-* <<rc_png,PNG>>.
+The _maps geodata selection_ conformance class allows to list specific geospatial data resources from which to retrieve maps.
 
-None of these encodings are mandatory and an implementation of this draft specification may also decide to implement none of them, but to implement another encoding instead.
+[#table_resource_collection_selection,reftext='{table-caption} {counter:table-num}']
+.Overview of resource and common direct links that corresponds to the geodata selection
+[cols="33,66",options="header"]
+|===
+|Resource name |Example of possible paths
+|Map |`/map?collections={collectionId},{collectionId},...`
+|===
+
+*<<rc_scaling>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/scaling)
+The _maps scaling_ conformance class allows to request a width and height (in pixels) the transparent property and the bgcolor.
+
+[#table_resource_scaling,reftext='{table-caption} {counter:table-num}']
+.Overview of resource and common direct links that corresponds to the scaling
+[cols="33,66",options="header"]
+|===
+|Resource name |Example of possible paths
+|Scaling |`/map?width={width}&height={height}&tranparent={true|false}&bgcolor={bgcolor}
+|===
+
+*<<rc_spatial partitioning>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-partitioning)
+The _maps spatial partitioning_ conformance class allows to request a spatial partitioning in two syntaxes
+
+[#table_resource_spatial_partitioning,reftext='{table-caption} {counter:table-num}']
+.Overview of resource and common direct links that corresponds to the spatial partitioning
+[cols="33,66",options="header"]
+|===
+|Resource name |Example of possible paths
+|BBox |`/map?bbox={bbox}
+|Subsetting |`/map?subset={subset}
+|===
+
+*<<rc_crs>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs)
+The _maps crs_ conformance class allows to specify a crs of the spatial subseting and request a crs for the map
+
+[#table_resource_crs,reftext='{table-caption} {counter:table-num}']
+.Overview of resource and common direct links that corresponds to the spatial partitioning
+[cols="33,66",options="header"]
+|===
+|Resource name |Example of possible paths
+|BBox |`/map?bbox={bbox}&bbox-crs={bbox-crs}
+|CRS |`/map?crs={crs}
+|===
+
+*<<rc_datetime>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/temporal-partitioning)
+The _maps temporal partitioning_ conformance class allows to request a subset of the data using temporal partitioning in two syntaxes
+
+[#table_resource_temporal_partitioning,reftext='{table-caption} {counter:table-num}']
+.Overview of resource and common direct links that corresponds to the spatial partitioning
+[cols="33,66",options="header"]
+|===
+|Resource name |Example of possible paths
+|time |`/map?time={tiem}
+|Subsetting |`/map?subset={subset}
+|===
+
+=== Requirements classes defining origins
+
+*<<rc_styledMaps>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styled-map)
+
+The _styled maps_ conformance class allows retrieving maps for a styled resource.
+
+[#table_resource_styled_maps,reftext='{table-caption} {counter:table-num}']
+.Overview of resource and common direct links that corresponds to the styled maps
+[cols="33,66",options="header"]
+|===
+|Resource name |**Common** path
+|Dataset |`/styles/{styleId}/map`
+|GeoData | `collections/{collectionId}/styles/{styleId}/map`
+|===
+
+*<<rc_datasetMaps>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map)
+
+The _dataset maps_ conformance class allows retrieving maps for a whole dataset potentially made up of multiple geospatial data resources.
+All Web APIs have to implement this conformance class if they are claiming to support *dataset* maps following this _OGC API - Maps Part 1: Core_ standard.
+Dataset maps may combine content from multiple geospatial resources, regardless of whether those are available separately (as maps or otherwise).
+
+[#table_resource_dataset_maps,reftext='{table-caption} {counter:table-num}']
+.Overview of resource and common direct links that corresponds to the dataset maps
+[cols="33,66",options="header"]
+|===
+|Resource name |**Common** path
+|Map| `/map/`
+|Styled Map | `/styles/{styleId}/map`
+|===
+
+*<<rc_geoDataResourceMaps>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/geodata-maps)
+
+The _geodata maps_ conformance class allows retrieving maps from a specific geospatial data resource.
+
+[#table_resource_geodata_map,reftext='{table-caption} {counter:table-num}']
+.Overview of resource and common direct links that corresponds to the geospatial data resources maps
+[cols="33,66",options="header"]
+|===
+|Resource name |Example of possible paths
+|Map | `/collections/{collectionId}/map`
+|Styled Map | `/collections/{collectionId}/styles/{styleId}/map`
+|===
+
+=== Requirements classes defining representations
+
+*<<rc_oas30_definition>>*  (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/oas30)
+
+The _OpenAPI Specification 3.0_ conformance class specifies requirements for an OpenAPI 3.0 definition in addition to those defined in _OGC API - Common - Part 1: Core_.
+
+*<<rc_data_encodings>>*
+
+This standard does not mandate a specific encoding or format for representing maps and remains flexible and extensible to other formats that users and providers might need. However, requirements classes are provided for the following common map formats:
+
+* <<rc_png,PNG>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png)
+* <<rc_jpeg,JPEG>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpeg)
+* <<rc_tiff,TIFF>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff)
+* <<rc_html,HTML>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/html)
+
+All these conformance classes act as building blocks that should be implemented in combination with other more fundamental conformance classes that provide support for Web API discovery, conformity and Web API formal definition (e.g., OpenAPI). Possible alternatives for these fundamental conformance classes are _OGC API - Common Part 1: Core_, _OGC API - Features Part 1: Core_ or any other non-OGC classes that provide this functionality.
+
+All requirements-classes and conformance-classes described in this document are owned by the standard(s) identified.
+
+NOTE: Despite the fact that full paths and full path templates in the previous tables are used in many implementations of the OGC API - Maps, these exact paths are ONLY examples and are NOT required by this standard. Other paths are possible if correctly described in by the Web API definition document and the links between resources.
 
 That said, this draft specification includes recommendations to support, where practical, HTML.
 
-The draft specification does not mandate any encoding or format for the formal definition of the API either. One option is the OpenAPI 3.0 specification as described in the following requirements class:
-
-* <<rc_oas30,OpenAPI specification 3.0>>.
-
-An implementation of the draft specification may also decide to use other API definition representations in addition or instead of an OpenAPI 3.0 definition. Examples for alternative API definitions: OpenAPI 2.0 (Swagger), future versions of the OpenAPI specification, or an OWS Common 2.0 capabilities document.
-
 The draft specification is intended to be a minimal useful API for fine-grained read-access to maps. Additional capabilities may be specified in future parts of the OGC API - Maps series or as vendor-specific extensions.
 
-Conformance with this standard shall be checked using all the relevant tests specified in Annex A (normative) of this document. The framework, concepts, and methodology for testing, and the criteria to be achieved to claim conformance are specified in the OGC Compliance Testing Policies and Procedures and the OGC Compliance Testing web site.
+=== Declaration of conformance
+
+Conformance with this standard shall be checked using all the relevant tests specified in Annex A (normative) of this document if the respective conformance URLs listed in <<table_conformance_urls>> is present in the conformance response. The framework, concepts, and methodology for testing, and the criteria to be achieved to claim conformance are specified in the OGC Compliance Testing Policies and Procedures and the OGC Compliance Testing web site.
+
+[#table_conformance_urls,reftext='{table-caption} {counter:table-num}']
+.Conformance class URIs
+[cols="30,70",options="header"]
+|===
+| Conformance class | URI
+| <<rc_maps_core>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/core |
+| <<rc_maps_tileSets-list>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tileset-list |
+| <<rc_collections-selection>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection |
+| <<rc_scaling>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/scaling |
+| <<rc_spatial partitioning>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-partitioning |
+| <<rc_crs>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs |
+| <<rc_datetime>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/temporal-partitioning |
+| <<rc_styledMaps>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styled-map |
+| <<rc_datasetMaps>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map |
+| <<rc_geoDataResourceMaps>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/geodata-| <<rc_oas30_definition>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/oas30 |
+* <<rc_png,PNG>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png |
+* <<rc_jpeg,JPEG>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpeg |
+* <<rc_tiff,TIFF>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff |
+* <<rc_html,HTML>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png |
+|===

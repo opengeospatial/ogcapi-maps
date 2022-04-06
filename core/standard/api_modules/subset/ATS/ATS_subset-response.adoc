@@ -1,0 +1,14 @@
+[[ats_collections_rc-subset-response]]
+[width="90%",cols="2,6a"]
+|===
+^|*Abstract Test {counter:ats-id}* |*/conf/collections/rc-subset-response*
+^|Test Purpose |Validate that the `subset` query parameter is processed correctly.
+^|Requirement |<<req_collections_rc-subset-definition,/req/collections/rc-subset-definition>> +
+<<req_collections_rc-subset-response,/req/collections/rc-subset-response>> +
+<<req_collections_rc-subset-collection-response,/req/collections/rc-subset-collection-response>>
+^|Test Method |DO FOR each `Collection` in the `collections` element of the response:
+
+. Extract the dimension values from the `interval` element of the `extent` property of the `Collection` resource.
+. If the dimension is there, verify that the dimension interval intersects the dimension period defined by the `subset` parameter.
+. If the dimension is there, validate that the processing of the subset parameter complies with the syntax described in /req/collections/rc-subset-definition.
+|===

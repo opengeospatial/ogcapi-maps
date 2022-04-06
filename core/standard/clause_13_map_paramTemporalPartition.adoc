@@ -1,0 +1,40 @@
+[[rc_datetime]]
+== Requirement Class "Maps temporal partitioning"
+
+=== Overview
+
+[[maps-datetime-overview]]
+
+include::requirements/requirements_class_datetime.adoc[]
+
+This conformance class defines the way date and time can be used as a parameter to filter the content in the map resource. This conformance class is importing most of the functionality from OGC API - Commons.
+
+=== Describing the temporal extent
+
+Depending on the type of resource, the way the temporal extent and the resolution of the datetime values available for the client to request are described may be different:
+
+* For Geodata maps, the collection description should specify the temporal extent of the resources. Maps can be requested inside this extent. If the extent is specified in a way that instant values are provided (e.g. by listing them or by including a resolution) then it be possible to request maps for these instants.
+* For Dataset maps, the landingPage could specify the temporal extent of the dataset. Maps can be requested inside this extent.
+
+=== `datetime` query parameter request and response
+
+This section is based on the OGC API common datetime module that is entirely reproduced here.
+
+include::api_modules/datetime/requirements_module_datetime.adoc[]
+
+=== `subset=datetime` query parameter request and response
+
+The behavior of the subset parameter is imported from the OGC API - Common subset module. The entire module is reproduced here.
+However some consideration may not apply for datetime and the generic behavior is limited by predetermining the axis name of the generic datetime in an additional requirement, a permission and a recommendation at the end of this subsection.
+
+include::api_modules/subset/requirements_module_subset.adoc[]
+
+include::requirements/datetime/REQ_datetime-axis.adoc[]
+
+=== Actual date & time response header
+
+include::recommendations/datetime/REC_actual-datetime.adoc[]
+
+=== Closest date & time permission
+
+include::recommendations/datetime/PER_datetime-axis.adoc[]

@@ -1,10 +1,11 @@
+[[rc_geoDataResourceMaps]]
 == Requirement Class "Geospatial Data Map"
 
 === Overview
 
 [[maps-core-overview]]
 
-include::requirements/requirements_class_geodata.adoc[]
+include::requirements/requirements_class_geodata-map.adoc[]
 
 This requirements class specifies how to get maps from particular resources that contains geodata. Common resources that can contain geodata are the ones at the endpoint /collections/{collectionId} defined by OGC API - Common or OGC API - Features 1.0.
 

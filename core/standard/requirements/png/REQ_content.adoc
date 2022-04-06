@@ -1,0 +1,11 @@
+[[req_png_content]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/png/content*
+^|A |Every 200-response of the server with the media type image/png SHALL be a PNG document representing only one tile
+^|B |The colors of the PNG SHALL represent the geospatial features or coverage gradients in the tile.
+^|C |The alpha channel of the PNG SHALL be used when partial transparency is required
+^|D |All tiles representing parts of the same resource or resources and using the same style SHALL follow the same portrayal rules
+|===
+
+NOTE: The way the colors in the PNG are mapped to geospatial features or coverage gradients is out of scope of this standard. However a common set of portrayal rules for all tiles representing part of the same resource is essential, as adjacent tiles are normally represented one next to the other and presented as a single image to the user.

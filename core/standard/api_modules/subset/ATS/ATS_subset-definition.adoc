@@ -1,0 +1,24 @@
+[[ats_collections_rc-subset-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Abstract Test {counter:ats-id}* |*/conf/collections/rc-subset-definition*
+^|Test Purpose |Validate that the subset query parameter is constructed correctly.
+^|Requirement |<<req_collections_rc-subset-definition,/req/collections/rc-subset-definition>>
+^|Test Method |Verify that the `subset` query parameter complies with the following definition (using an OpenAPI Specification 3.0 fragment):
+
+[source,ABNF]
+----
+  SubsetSpec:       "subset"=axisName(intervalOrPoint)
+  axisName:         {text}
+  intervalOrPoint:  interval \| point
+  interval:         low : high
+  low:              point \| *
+  high:             point \| *
+  point:            {number} \| "{text}"
+
+  Where:
+     \" = double quote = ASCII code 0x42,
+     {number} is an integer or floating-point number, and
+     {text} is some general ASCII text (such as a time and date notation in ISO 8601).
+----
+|===

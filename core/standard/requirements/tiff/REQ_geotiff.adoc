@@ -1,0 +1,6 @@
+[[req_tiff_geotiff]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/tiff/geotiff*
+^|A |If the TIFF encoding incorporates GeoTIFF georeference, this information SHALL be consistent with the TileMatrixSet, TileMatrix, TileRow and TileCol
+|===

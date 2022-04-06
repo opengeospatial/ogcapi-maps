@@ -1,0 +1,8 @@
+[[req_map-bbox_conformance-success]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/map-bbox/conformance-success*
+2+|If the API has a mechanism to advertise conformance classes, the list of Conformance Classes advertised by the API SHALL include:
+^|A |http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core
+^|B |http://www.opengis.net/spec/ogcapi-maps-2/1.0/conf/bbox
+|===
