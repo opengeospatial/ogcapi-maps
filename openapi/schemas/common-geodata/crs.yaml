@@ -1,0 +1,26 @@
+title: CRS
+oneOf:
+- description: Simplification of the object into a url if the other properties are not present
+  type: string
+- type: object
+  oneOf:
+  - required:
+    - uri
+    properties:
+      uri:
+        description: Reference to one coordinate reference system (CRS)
+        type: string
+        format: uri
+  - required:
+    - wkt
+    properties:
+      wkt:
+        description: A string defining the CRS using the JSON encodng for Well Known Text
+        type: object
+        # $ref: 'projJSON.yaml'
+  - required:
+    - referenceSystem
+    properties:
+      referenceSystem:
+        description: A reference system data structure as defined in the MD_ReferenceSystem of the ISO 19115
+        type: object

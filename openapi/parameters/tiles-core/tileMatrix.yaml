@@ -1,0 +1,9 @@
+name: tileMatrix
+in: path
+description: |-
+  Identifier selecting one of the scales defined in the TileMatrixSet and representing the scaleDenominator the tile. For example,
+  Ireland is fully within the Tile at WebMercatorQuad tileMatrix=5, tileRow=10 and tileCol=15.
+required: true
+schema:
+  type: string
+example: '5'

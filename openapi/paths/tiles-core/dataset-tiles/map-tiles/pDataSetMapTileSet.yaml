@@ -1,0 +1,18 @@
+get:
+   tags:
+     - Map Tiles
+   summary: Retrieve a default map tileset of the whole dataset for the specified tiling scheme (tile matrix set)
+   operationId: .dataset.map.getTileSet
+   parameters:
+     - $ref: '../../../../parameters/common-geodata/collections.yaml'
+     - $ref: '../../../../parameters/unspecified/tileMatrixSetId.yaml'
+     - $ref: '../../../../parameters/unspecified/f-metadata.yaml'
+   responses:
+     '200':
+       $ref: '../../../../responses/tiles-core/rTileSet.yaml'
+     '404':
+       $ref: '../../../../responses/common-core/rNotFound.yaml'
+     '406':
+       $ref: '../../../../responses/common-core/rNotAcceptable.yaml'
+     '500':
+       $ref: '../../../../responses/common-core/rServerError.yaml'

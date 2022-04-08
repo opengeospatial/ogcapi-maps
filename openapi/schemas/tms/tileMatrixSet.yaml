@@ -1,0 +1,52 @@
+title: Tile Matrix Set Definition
+description: A definition of a tile matrix set following the Tile Matrix Set standard.
+  For tileset metadata, such a description (in `tileMatrixSet` property) is only required
+  for offline use, as an alternative to a link with a `http://www.opengis.net/def/rel/ogc/1.0/tiling-scheme`
+  relation type.
+type: object
+required:
+- crs
+- tileMatrices
+properties:
+  title:
+    description: Title of this tile matrix set, normally used for display to a human
+    type: string
+  description:
+    description: Brief narrative description of this tile matrix set, normally available
+      for display to a human
+    type: string
+  keywords:
+    description: Unordered list of one or more commonly used or formalized word(s)
+      or phrase(s) used to describe this tile matrix set
+    type: array
+    items:
+      type: string
+  id:
+    description: Tile matrix set identifier. Implementation of 'identifier'
+    type: string
+  uri:
+    description: Reference to an official source for this tileMatrixSet
+    type: string
+    format: uri
+  orderedAxes:
+    type: array
+    minItems: 1
+    items:
+      type: string
+  crs:
+    allOf:
+      - description: Coordinate Reference System (CRS)
+      - $ref: '../common-geodata/crs.yaml'
+  wellKnownScaleSet:
+    description: Reference to a well-known scale set
+    type: string
+    format: uri
+  boundingBox:
+    allOf:
+      - description: Minimum bounding rectangle surrounding the tile matrix set, in the supported CRS
+      - $ref: '2DBoundingBox.yaml'
+  tileMatrices:
+    type: array
+    description: Describes scale levels and its tile matrices
+    items:
+      $ref: 'tileMatrix.yaml'

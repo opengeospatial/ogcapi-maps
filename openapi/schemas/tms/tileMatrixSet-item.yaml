@@ -1,0 +1,25 @@
+title: Tile Matrix Set Item
+description: A minimal tile matrix set element for use within a list of tile matrix sets linking to a full definition.
+type: object
+required:
+- links
+properties:
+  id:
+    description: Optional local tile matrix set identifier, e.g. for use as unspecified `{tileMatrixSetId}` parameter. Implementation of 'identifier'
+    type: string
+  title:
+    description: Title of this tile matrix set, normally used for display to a human
+    type: string
+  uri:
+    description: Reference to an official source for this tileMatrixSet
+    type: string
+    format: uri
+  crs:
+    allOf:
+      - description: Coordinate Reference System (CRS)
+      - $ref: '../../schemas/common-geodata/crs.yaml'
+  links:
+    description: Links to related resources. A 'self' link to the tile matrix set definition is required.
+    type: array
+    items:
+      $ref: '../../schemas/common-core/link.yaml'

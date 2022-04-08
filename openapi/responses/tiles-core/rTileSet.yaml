@@ -1,0 +1,8 @@
+description: Description of the tileset
+content:
+  application/json:
+    schema:
+      $ref: '../../schemas/tms/tileSet.yaml'
+  text/html:
+    schema:
+      type: string

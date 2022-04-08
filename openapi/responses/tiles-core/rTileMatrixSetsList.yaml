@@ -1,0 +1,13 @@
+description: List of tile matrix sets (tiling schemes).
+content:
+   application/json:
+     schema:
+       type: object
+       properties:
+         tileMatrixSets:
+           type: array
+           items:
+             $ref: '../../schemas/tms/tileMatrixSet-item.yaml'
+   text/html:
+     schema:
+       type: string

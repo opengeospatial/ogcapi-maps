@@ -1,0 +1,17 @@
+# API Styles
+get:
+   tags:
+     - API
+   operationId: getAPIStyles
+   summary: Retrieve the list of dataset styles available from this API implementation & deployment.
+   parameters:
+     - $ref: '../../parameters/unspecified/f-metadata.yaml'
+   responses:
+     '200':
+       $ref: '../../responses/dynamic/rEnumeration.yaml'
+     '404':
+       $ref: '../../responses/common-core/rNotFound.yaml'
+     '406':
+       $ref: '../../responses/common-core/rNotAcceptable.yaml'
+     '500':
+       $ref: '../../responses/common-core/rServerError.yaml'

@@ -1,0 +1,14 @@
+get:
+   tags:
+     - Tiling Schemes
+   summary: Retrieve the list of available tiling schemes (tile matrix sets)
+   operationId: getTileMatrixSetsList
+   parameters:
+     - $ref: '../../../parameters/unspecified/f-metadata.yaml'
+   responses:
+     '200':
+       $ref: '../../../responses/tiles-core/rTileMatrixSetsList.yaml'
+     '406':
+       $ref: '../../../responses/common-core/rNotAcceptable.yaml'
+     '500':
+       $ref: '../../../responses/common-core/rServerError.yaml'

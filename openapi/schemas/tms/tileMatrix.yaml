@@ -1,0 +1,81 @@
+description: ''
+type: object
+required:
+- id
+- scaleDenominator
+- cellSize
+- pointOfOrigin
+- tileWidth
+- tileHeight
+- matrixWidth
+- matrixHeight
+properties:
+   title:
+     description: Title of this tile matrix set, normally used for display to a
+       human
+     type: string
+   description:
+     description: Brief narrative description of this tile matrix set, normally
+       available for display to a human
+     type: string
+   keywords:
+     description: Unordered list of one or more commonly used or formalized word(s)
+       or phrase(s) used to describe this dataset
+     type: array
+     items:
+       type: string
+   id:
+     description: Identifier selecting one of the scales defined in the TileMatrixSet
+       and representing the scaleDenominator the tile. Implementation of 'identifier'
+     type: string
+   scaleDenominator:
+     description: Scale denominator of this tile matrix
+     type: number
+   cellSize:
+     description: Cell size of this tile matrix
+     type: number
+   cornerOfOrigin:
+     description: The corner of the tile matrix (_topLeft_ or _bottomLeft_) used
+       as the origin for numbering tile rows and columns. This corner is also a
+       corner of the (0, 0) tile.
+     type: string
+     enum:
+     - topLeft
+     - bottomLeft
+     default: topLeft
+   pointOfOrigin:
+     allOf:
+      - description: Precise position in CRS coordinates of the corner of origin (e.g.
+         the top-left corner) for this tile matrix. This position is also a corner
+         of the (0, 0) tile. In previous version, this was 'topLeftCorner' and 'cornerOfOrigin'
+         did not exist.
+      - $ref: '2DPoint.yaml'
+   tileWidth:
+     type: number
+     description: Width of each tile of this tile matrix in pixels
+     format: integer
+     minimum: 1
+     multipleOf: 1
+   tileHeight:
+     type: number
+     description: Height of each tile of this tile matrix in pixels
+     format: integer
+     minimum: 1
+     multipleOf: 1
+   matrixHeight:
+     type: number
+     description: Width of the matrix (number of tiles in width)
+     format: integer
+     minimum: 1
+     multipleOf: 1
+   matrixWidth:
+     type: number
+     description: Height of the matrix (number of tiles in height)
+     format: integer
+     minimum: 1
+     multipleOf: 1
+   variableMatrixWidths:
+     description: Describes the rows that has variable matrix width
+     type: array
+     items:
+       $ref: 'variableMatrixWidth.yaml'
