@@ -7,9 +7,9 @@
 
 include::requirements/requirements_class_core.adoc[]
 
-This core specifies a map resource: a resource that represents the geospatial data as a rendered map. The map resource, as defined in this core retrieves a generic map as a graphical representation of the data in the API. With only the core, the representation is not constrained almost in any way by the client, so the server is free to return a total or a partial representation of the resource of an arbitrary size. Extensions to this core will add query parameters to personalize the server behavior to the client needs. Some of those extension will define specifying parameters that will determine the map resolution (width, height, bounding  box and CRS). In addition, another extension will define how a map endpoint can be retrieved as tiles by applying the OGC API - Tiles.
+This core specifies a map resource: a resource that represents the geospatial data as a rendered map. The map resource, as defined in this core retrieves a generic map as a graphical representation of the data in the API. With only the core, the representation is not constrained almost in any way by the client, so the server is free to return a total or a partial representation of the resource of an arbitrary size. Extensions to this core will add query parameters to personalize the server behavior to the client needs. These extensions will define specifying parameters that will allow for the client to define the map size and resolution of the map (width, height, bounding  box and CRS). In addition, an orthogonal extension will define how a map endpoint can be retrieved as tiles by applying the OGC API - Tiles.
 
-A map resource can be obtained from a non map resource by adding `/map` the resource. The core does not specify the resources where `/map` can be applied. However, we can list common places in and API where maps can be obtained in following table. Additional conformance classes will better define these possibilities.
+A map resource can be obtained from a non map resource by adding `/map` to the resource URI. The core does not specify which resources `/map` can be applied. However, a list of common places in the API where maps can be obtained is present in the following table as a recommendation. Additional conformance classes will better define these possibilities.
 
 [#Common-map-resources-in-the-api,reftext='{table-caption} {counter:table-num}']
 .Common map resources in an geospatial API
@@ -22,30 +22,7 @@ A map resource can be obtained from a non map resource by adding `/map` the reso
 |/collections/{collectionId}/styles/{styleId}/map | A map representing `collectionId` in the `styleId` style
 |===
 
-NOTE: There is no mandatory dependency of this core on OGC API - Commons. This allows for non-OGC APIs to implement this core without the need to comply to the OGC API common structure (landing page, conformance, API description). It expected that main implementations will specify a dependency on OGC API - Commons in their conformance page.
-
-=== Declaration of conformance classes
-To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the conformance classes it implements and conforms to.
-
-==== Response
-The conformance page mainly consists of a list of links.
-
-include::requirements/core/REQ_conformance-success.adoc[]
-
-If the server declares also conformity to OGC API - Common - Part 1: Core or to OGC API - Features - Part 1: Core, then it has to consider the OGC API requirements for declaring conformance, i.e. the use of a the conformance page. In the JSON format the conformance page is an array of links following the link schema defined in the OGC API - Common - Part 1: Core or in OGC API - Features - Part 1: Core. Below is an example fragment of a conformance information page of an API conformant to OGC API - Common and OGC API - Maps.
-
-[[ConformancePageMapsCore]]
-.Conformance Information Page fragment
-=================
-[source,JSON]
-{
-  "conformsTo": [
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
-    "http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections",
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
-  ]
-}
-=================
+NOTE: There is no mandatory dependency of this core on OGC API - Commons. This allows for non-OGC APIs to implement this core without the need to comply to the OGC API common structure (landing page, conformance, API description). However, it expected that many implementations will specify a dependency on OGC API - Commons in their conformance page.
 
 === Map resource
 
@@ -59,6 +36,8 @@ include::requirements/core/REQ_map-op.adoc[]
 include::recommendations/core/PER_map-op.adoc[]
 
 NOTE: The desired encoding is selected using HTTP content negotiation. In addition the parameters specified by the core, other parameters should be added.
+
+NOTE: HTTP content negotiation replaces the FORMAT= parameters in WMS. However, for convenience, some implementations can implement a f= parameter for circumstances where content negotiation is not possible or available (e.g. testing the API in a web browser by using a URL)
 
 ==== Parameters transparent and bgcolor
 These parameters indicate how the absence of data will be represented in the map and allow for the map to be overlaid with other maps without completely obscuring the lower layers. The parameter `transparent` is maintained for backwards compatibility; the use of the 'alpha channel' in `bgcolor` is recommended instead.
@@ -76,7 +55,7 @@ The response of a GET request to a map resource will be a map representing the g
 
 include::requirements/core/REQ_map-response.adoc[]
 
-A successful response to a map GET operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG). It is also possible to respond an HTML page with the image embedded and, eventually, with additional controls.
+A successful response to a map GET operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG). It is also possible to respond an HTML page with the image embedded and, eventually, with additional controls. This standard provides some conformance classes applicable to some common formats in <<rc_data_encodings>>
 
 == Requirement Class "Map Metadata"
 === Overview
@@ -249,4 +228,27 @@ If the API has a OpenAPI document describing the schema for the response, the fo
 	}
 }
 ----
+=================
+
+=== Declaration of conformance classes
+To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the conformance classes it implements and conforms to.
+
+==== Response
+The conformance page mainly consists of a list of links.
+
+include::requirements/core/REQ_conformance-success.adoc[]
+
+If the server declares also conformity to OGC API - Common - Part 1: Core or to OGC API - Features - Part 1: Core, then it has to consider the OGC API requirements for declaring conformance, i.e. the use of a the conformance page. In the JSON format the conformance page is an array of links following the link schema defined in the OGC API - Common - Part 1: Core or in OGC API - Features - Part 1: Core. Below is an example fragment of a conformance information page of an API conformant to OGC API - Common and OGC API - Maps.
+
+[[ConformancePageMapsCore]]
+.Conformance Information Page fragment
+=================
+[source,JSON]
+{
+  "conformsTo": [
+    "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
+    "http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections",
+    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
+  ]
+}
 =================

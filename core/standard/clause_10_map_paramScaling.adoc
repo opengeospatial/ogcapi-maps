@@ -9,30 +9,6 @@ include::requirements/requirements_class_scaling.adoc[]
 
 This extension describes how to scale a map by specifying a set of parameters that will define its size (width and height) in pixels of a displaying device that indirectly defines que scale of the map.
 
-=== Declaration of conformance classes
-
-To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the requirements classes it implements and conforms to.
-
-==== Response
-
-The conformance page mainly consists of a list of links. OGC API - Common already requires some links.
-
-include::requirements/scaling/REQ_conformance-success.adoc[]
-
-In the conformance page (typically in JSON format) the links follow the link schema defined in the OGC API - Common. The following is an example fragment of the response of an implementation of the OGC API - Maps draft specification with the maps extension conformance information page.
-
-[[ConformancePageMapsMaps]]
-.Conformance Information Page fragment
-=================
-[source,JSON]
-{
-  "conformsTo": [
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core",
-    "http://www.opengis.net/spec/ogcapi-maps-2/1.0/req/scaling"
-  ]
-}
-=================
-
 === Map resource
 The _OGC API - Maps - Part 1: Core_ defines the map resource. The core also defines a minimum set of metadata to enable a client application to formulate a map request.
 

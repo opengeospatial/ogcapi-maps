@@ -55,29 +55,6 @@ In the landing page, in JSON format, the links follow the link schema defined in
 ----
 =================
 
-=== Declaration of conformance classes
-
-==== Response
-
-The conformance page mainly consists of a list of links. OGC API - Common already requires some links.
-
-include::requirements/dataset/REQ_conformance-success.adoc[]
-
-In the conformance page (typically in JSON format) the links follow the link schema defined in the OGC API - Common. The following is an example fragment of the response of an OGC API - Maps conformance information page
-
-[[ConformancePageMapsCollection]]
-.Conformance Information Page fragment
-=================
-[source,JSON]
-{
-  "conformsTo": [
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset"
-  ]
-}
-=================
-
 === Dataset maps
 The maps core defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map request. Nevertheless, the core does not does not specify how to retrieve a map resource description. This section offers one possible path to do that from the dataset represented by the API.
 
