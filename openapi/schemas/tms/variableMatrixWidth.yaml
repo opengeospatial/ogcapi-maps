@@ -1,0 +1,27 @@
+description: Variable Matrix Width data structure
+type: object
+required:
+- coalesce
+- minTileRow
+- maxTileRow
+properties:
+   coalesce:
+     description: Number of tiles in width that coalesce in a single tile for these
+       rows
+     type: number
+     format: integer
+     minimum: 2
+     multipleOf: 1
+   minTileRow:
+     description: First tile row where the coalescence factor applies for this
+       tilematrix
+     type: number
+     format: integer
+     minimum: 0
+     multipleOf: 1
+   maxTileRow:
+     description: Last tile row where the coalescence factor applies for this tilematrix
+     type: number
+     format: integer
+     minimum: 0
+     multipleOf: 1

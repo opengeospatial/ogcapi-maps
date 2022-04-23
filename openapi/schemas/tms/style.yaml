@@ -1,0 +1,26 @@
+type: object
+required:
+- id
+properties:
+   id:
+     description: An identifier for this style. Implementation of 'identifier'
+     type: string
+   title:
+     description: A title for this style
+     type: string
+   description:
+     description: Brief narrative description of this style
+     type: string
+   keywords:
+     description: keywords about this style
+     type: array
+     items:
+       type: string
+   links:
+     description: 'Links to style related resources. Possible link ''rel'' values
+       are: ''style'' for a URL pointing to the style description, ''styleSpec''
+       for a URL pointing to the specification or standard used to define the style.'
+     type: array
+     minItems: 1
+     items:
+       $ref: '../common-core/link.yaml'

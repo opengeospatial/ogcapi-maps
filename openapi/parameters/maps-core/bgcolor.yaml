@@ -1,0 +1,9 @@
+name: bgcolor
+in: query
+description: Web color name or hexadecimal 0x[AA]RRGGBB color value for the background color (default to 0x9C9C9C gray). If alpha is not specified, full opacity is assumed.
+required: false
+style: form
+explode: false
+schema:
+  type: string
+  default: '0xFFFFFF'

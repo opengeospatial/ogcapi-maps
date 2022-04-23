@@ -1,0 +1,8 @@
+name: width
+in: query
+description: Width of the map in pixel. If omitted and height is specified, defaults to the width maintaining a 1:1 aspect ratio. If both width and height are omitted, the server will select a default dimensions.
+required: false
+style: form
+explode: false
+schema:
+  type: integer

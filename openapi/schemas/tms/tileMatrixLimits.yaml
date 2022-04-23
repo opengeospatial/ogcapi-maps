@@ -1,0 +1,29 @@
+title: TileMatrixLimits
+description: A resource describing useful to create an array that describes the limits
+  for a tile set TileMatrixSet based on the OGC TileSet Metadata Standard
+type: object
+required:
+- tileMatrix
+- minTileRow
+- maxTileRow
+- minTileCol
+- maxTileCol
+properties:
+  tileMatrix:
+    type: string
+  minTileRow:
+    type: number
+    format: integer
+    minimum: 0
+  maxTileRow:
+    type: number
+    format: integer
+    minimum: 0
+  minTileCol:
+    type: number
+    format: integer
+    minimum: 0
+  maxTileCol:
+    type: number
+    format: integer
+    minimum: 0

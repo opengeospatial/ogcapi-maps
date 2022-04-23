@@ -1,0 +1,19 @@
+description: List of available tilesets.
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - tilesets
+      properties:
+         links:
+           type: array
+           items:
+             $ref: '../../schemas/common-core/link.yaml'
+         tilesets:
+           type: array
+           items:
+              $ref: '../../schemas/tms/tileSet-item.yaml'
+  text/html:
+    schema:
+      type: string

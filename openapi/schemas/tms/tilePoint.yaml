@@ -1,0 +1,23 @@
+type: object
+required:
+- coordinates
+properties:
+   coordinates:
+     type: array
+     minItems: 2
+     maxItems: 2
+     items:
+       type: number
+   crs:
+     allOf:
+       - description: Coordinate Reference System (CRS) of the coordinates
+       - $ref: '../common-geodata/crs.yaml'
+   tileMatrix:
+     description: TileMatrix identifier associated with the scaleDenominator
+     type: string
+   scaleDenominator:
+     description: Scale denominator of the tile matrix selected
+     type: number
+   cellSize:
+     description: Cell size of the tile matrix selected
+     type: number

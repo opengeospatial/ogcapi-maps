@@ -1,0 +1,21 @@
+get:
+   tags:
+     - Tiling Schemes
+   summary: Retrieve the definition of the specified tiling scheme (tile matrix set)
+   operationId: getTileMatrixSet
+   parameters:
+     - $ref: '../../../parameters/unspecified/tileMatrixSetId.yaml'
+     - $ref: '../../../parameters/unspecified/f-metadata.yaml'
+   responses:
+     '200':
+       $ref: '../../../responses/tiles-core/rTileMatrixSet.yaml'
+     '404':
+       description: The requested tile matrix set id was not found
+       content:
+         application/json:
+           schema:
+             $ref: '../../../schemas/common-core/exception.yaml'
+     '406':
+       $ref: '../../../responses/common-core/rNotAcceptable.yaml'
+     '500':
+       $ref: '../../../responses/common-core/rServerError.yaml'
