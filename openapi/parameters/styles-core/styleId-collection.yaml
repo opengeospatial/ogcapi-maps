@@ -1,0 +1,11 @@
+name: styleId
+in: path
+description: An identifier representing a specific style.
+required: true
+allowEmptyValue: false
+schema:
+  # There is currently no way in OpenAPI to list styles specific to a particular collection.
+  # If templated $ref were supported, we could do e.g. $templatedRef: ../../../api/styles/{collectionId}
+  # (see https://github.com/json-schema-org/json-schema-vocabularies/issues/36 and
+  # https://github.com/OAI/OpenAPI-Specification/issues/2453).
+  type: string

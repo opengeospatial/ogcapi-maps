@@ -1,0 +1,18 @@
+get:
+   tags:
+     - Map Tiles
+   summary: Retrieve a list of styled map tilesets for the specified collection
+   operationId: .collection.style.map.getTileSetsList
+   parameters:
+     - $ref: '../../../../parameters/common-geodata/collectionId-all.yaml'
+     - $ref: '../../../../parameters/unspecified/f-metadata.yaml'
+     - $ref: '../../../../parameters/styles-core/styleId-collection.yaml'
+   responses:
+     '200':
+       $ref: '../../../../responses/tiles-core/rTileSetsList.yaml'
+     '404':
+       $ref: '../../../../responses/common-core/rNotFound.yaml'
+     '406':
+       $ref: '../../../../responses/common-core/rNotAcceptable.yaml'
+     '500':
+       $ref: '../../../../responses/common-core/rServerError.yaml'

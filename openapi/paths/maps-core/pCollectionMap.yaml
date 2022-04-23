@@ -1,0 +1,30 @@
+get:
+   tags:
+     - Maps
+   summary: Retrieve a map for the specified collection
+   operationId: getCollectionMap
+   parameters:
+     - $ref: '../../parameters/common-geodata/bbox.yaml'
+     - $ref: '../../parameters/common-geodata/datetime.yaml'
+     - $ref: '../../parameters/common-geodata/collectionId-all.yaml'
+     - $ref: '../../parameters/common-geodata/collections.yaml'
+     - $ref: '../../parameters/common-geodata/subset.yaml'
+     - $ref: '../../parameters/common-crs/crs.yaml'
+     - $ref: '../../parameters/common-crs/bbox-crs.yaml'
+     - $ref: '../../parameters/common-crs/subset-crs.yaml'
+     - $ref: '../../parameters/maps-core/bgcolor.yaml'
+     - $ref: '../../parameters/maps-core/transparent.yaml'
+     - $ref: '../../parameters/maps-core/width.yaml'
+     - $ref: '../../parameters/maps-core/height.yaml'
+     - $ref: '../../parameters/unspecified/f-map.yaml'
+   responses:
+     '200':
+       $ref: '../../responses/maps-core/rMap.yaml'
+     '204':
+       $ref: '../../responses/maps-core/rEmptyMap.yaml'
+     '404':
+       $ref: '../../responses/common-core/rNotFound.yaml'
+     '406':
+       $ref: '../../responses/common-core/rNotAcceptable.yaml'
+     '500':
+       $ref: '../../responses/common-core/rServerError.yaml'

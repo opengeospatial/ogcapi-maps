@@ -1,0 +1,12 @@
+name: f
+in: query
+description: The format of the map tile response (e.g. png). Accepted values are 'png', 'jpg' or 'tiff' (GeoTIFF).
+required: false
+schema:
+  type: string
+  enum:
+    - png
+    - jpg
+    - tiff
+style: form
+explode: false

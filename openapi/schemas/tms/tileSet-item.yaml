@@ -1,0 +1,32 @@
+title: Tile Set Metadata item
+description: A minimal tileset element for use within a list of tilesets linking to full description of those tilesets.
+type: object
+required:
+- dataType
+- links
+- crs
+properties:
+  title:
+    description: A title for this tileset
+    type: string
+  dataType:
+    allOf:
+      - description: Type of data represented in the tileset
+      - $ref: '../../schemas/common-geodata/dataType.yaml'
+  crs:
+    allOf:
+     - description: Coordinate Reference System (CRS)
+     - $ref: '../../schemas/common-geodata/crs.yaml'
+  tileMatrixSetURI:
+    description: Reference to a Tile Matrix Set on an offical source for Tile Matrix
+      Sets such as the OGC NA definition server (http://www.opengis.net/def/tms/).
+      Required if the tile matrix set is registered on an open official source.
+    type: string
+    format: uri
+  links:
+    description: Links to related resources. A 'self' link to the tileset
+      as well as a 'http://www.opengis.net/def/rel/ogc/1.0/tiling-scheme' link
+      to a definition of the TileMatrixSet are required.
+    type: array
+    items:
+      $ref: '../../schemas/common-core/link.yaml'

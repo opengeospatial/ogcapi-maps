@@ -1,0 +1,17 @@
+get:
+   tags:
+     - Map Tiles
+   summary: Retrieve a list of all map tilesets for specified collection.
+   operationId: .collection.map.getTileSetsList
+   parameters:
+     - $ref: '../../../../parameters/common-geodata/collectionId-all.yaml'
+     - $ref: '../../../../parameters/unspecified/f-metadata.yaml'
+   responses:
+     '200':
+       $ref: '../../../../responses/tiles-core/rTileSetsList.yaml'
+     '404':
+       $ref: '../../../../responses/common-core/rNotFound.yaml'
+     '406':
+       $ref: '../../../../responses/common-core/rNotAcceptable.yaml'
+     '500':
+       $ref: '../../../../responses/common-core/rServerError.yaml'

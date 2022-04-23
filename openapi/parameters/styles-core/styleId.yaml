@@ -1,0 +1,7 @@
+name: styleId
+in: path
+description: An identifier representing a specific style.
+required: true
+allowEmptyValue: false
+schema:
+  $ref: '../../schemas/dynamic/styles.yaml'

@@ -1,0 +1,18 @@
+description: Minimum bounding rectangle surrounding a 2D resource in the CRS indicated elsewhere
+type: object
+required:
+- lowerLeft
+- upperRight
+properties:
+  lowerLeft:
+    $ref: '2DPoint.yaml'
+  upperRight:
+    $ref: '2DPoint.yaml'
+  crs:
+    $ref: '../common-geodata/crs.yaml'
+  orderedAxes:
+    type: array
+    minItems: 2
+    maxItems: 2
+    items:
+      type: string

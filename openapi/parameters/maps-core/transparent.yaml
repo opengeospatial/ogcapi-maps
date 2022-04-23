@@ -1,0 +1,9 @@
+name: transparent
+in: query
+description: Background transparency of map (default=true).
+required: false
+style: form
+explode: false
+schema:
+  type: boolean
+  default: true

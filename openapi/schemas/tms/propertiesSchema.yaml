@@ -1,0 +1,85 @@
+description: Attributes of the features or rangetypes of a coverage. Defined by
+   a subset of the JSON Schema for the properties of a feature
+type: object
+required:
+- type
+- properties
+properties:
+   type:
+     type: string
+     enum:
+     - object
+   required:
+     description: "Implements 'multiplicity' by citing property 'name' defined as 'additionalProperties'"
+     type: array
+     minItems: 1
+     items:
+        type: string
+   properties:
+     type: object
+     default: {}
+     additionalProperties:
+       description: "No property names are defined but any property name they should be described by JSON Schema. So 'additionalProperties' implements 'name'."
+       type: object
+       properties:
+         title:
+           type: string
+         description:
+           description: "Implements 'description'"
+           type: string
+         type:
+           type: string
+           enum:
+           - array
+           - boolean
+           - integer
+           - 'null'
+           - number
+           - object
+           - string
+         enum:
+           description: "Implements 'acceptedValues'"
+           type: array
+           minItems: 1
+           items: {}
+           uniqueItems: true
+         format:
+           description: "Complements implementation of 'type'"
+           type: string
+         contentMediaType:
+           description: "Implements 'mediaType'"
+           type: string
+         maximum:
+           description: "Implements 'range'"
+           type: number
+         exclusiveMaximum:
+           description: "Implements 'range'"
+           type: number
+         minimum:
+           description: "Implements 'range'"
+           type: number
+         exclusiveMinimum:
+           description: "Implements 'range'"
+           type: number
+         pattern:
+           type: string
+           format: regex
+         maxItems:
+           description: "Implements 'upperMultiplicity'"
+           type: integer
+           minimum: 0
+         minItems:
+           description: "Implements 'lowerMultiplicity'"
+           type: integer
+           default: 0
+           minimum: 0
+         observedProperty:
+           type: string
+         observedPropertyURI:
+           type: string
+           format: uri
+         uom:
+           type: string
+         uomURI:
+           type: string
+           format: uri
