@@ -1,6 +1,0 @@
-[[req_core_md-op]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/core/md-op*
-^|A |Every map SHALL have an associated resource to retrieve map metadat that is available as a HTTP GET request to a URI that will be composed by two parts: the first part is the URI of a map resource an the second part follows the pattern .../metadata
-|===

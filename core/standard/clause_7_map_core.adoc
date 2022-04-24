@@ -57,46 +57,46 @@ include::requirements/core/REQ_map-response.adoc[]
 
 A successful response to a map GET operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG). It is also possible to respond an HTML page with the image embedded and, eventually, with additional controls. This standard provides some conformance classes applicable to some common formats in <<rc_data_encodings>>
 
-== Requirement Class "Map Metadata"
-=== Overview
+=== Map Metadata
 
-[[maps-metadata-overview]]
+In WMS, the `capabilities` of the service as a whole and the individual `layers` sections provide some metadata about the server and the layers that inform the client on some layer characteristics and some restrictions useful to formulate a successful map query. In the OGC API maps, this metadata is mainly provided by the service-meta relation in the landing page and the characteristics of the collections obtained when a collection is requested. This standard does not impose any extra requirement on this matter. However, implementers of Web APIs are encouraged to make use of the mechanisms provided by other standards of the OGC API family to communicate the relevant metadata to the client. The following table provides a reference to where some of this metadata aspects are specified.
 
-TBD ....include::requirements/requirements_class_map-metadata.adoc[]
-
-This extension adds to the core the capability to retrieve metadata on the maps that can be useful and necessary to correctly formulate request of other extension such as the subset of a map. The document includes the CRSs and map limitations etc. This metadata is not expected to exist in isolation but embeded in other resource descriptions such as the collection description.
-
-==== Map description document
-The core introduces the way data will be combined with styles to create a map. This class defined how to get some metadata about the map that can be used by the client formulate more personalized map requests with the help of query parametres.
-
-==== Map metadata data model
-This is the map metadata model to be used by the map metadata respones.
-
-[#img_map-metadata-uml-model,reftext='{figure-caption} {counter:figure-num}']
-.Map metadata UML model
-image::images/MapMetadata.png[TileMatrixSet UML model]
-
-[#parts-of-map-metadata-data-structure,reftext='{table-caption} {counter:table-num}']
-.Parts of Map Metadata data structure
+[#where-map-metadata-is,reftext='{table-caption} {counter:table-num}']
+.Where some map metadata elements are specified
 [width = "100%",options="header"]
 |===
-| Names | Definition | Data type and values | Multiplicity and use
-| wgs84SpatialExtent | Minimum bounding rectangle surrounding the data available a map, in the WGS84 | WGS84BoundingBox data structure, see 2DTMS standard | Zero or one (optional)
-| crsSpatialExtent | Minimum bounding rectangle surrounding the data available a map, in the indicated CRS | BoundingBox data structure, see 2DTMS standard | Zero or one (optional)
-| minScaleDenominator | Minimum scale denominator (inclusive) for which it is appropriate to generate a map of this resource. Requests outside this interval will return an HTTP 404. | double | Zero or one (optional) If it is not present we will assume there is no scale lower limit
-| maxScaleDenominator | Maximum scale denominator (inclusive) for which it is appropriate to generate a map of this resource. Requests outside this interval will return an HTTP 404. | double | Zero or one (optional) If it is not present we will assume there is no scale upper limit
-| minCellSize | Maximum cell size (inclusive) for which it is appropriate to generate a map of this resource. Requests outside this interval will return an HTTP 404. | double | Zero or one (optional) If it is not present we will assume there is no cell size lower limit
-| maxCellSize | Maximum cell size (inclusive) for which it is appropriate to generate a map of this resource. Requests outside this interval will return an HTTP 404. | double | Zero or one (optional) If it is not present we will assume there is no cell size upper limit
-| recommendedFormat | Recommended output formats for a map request^a^ | MediaType | Zero or one (optional) Include when available and useful. It would be one of the supported for the map operation
-| supportedFormat | Supported output formats for a map request | MediaType | Zero or more (optional) Include when available and useful
-| maxWidth | Maximum width values that a client is permitted to include in a map operation. | nonNegativeInteger  | Zero or one (optional). If absent the server imposes no limit
-| maxHeight | Maximum height values that a client is permitted to include in a map operation. | nonNegativeInteger  | Zero or one (optional). If absent the server imposes no limit
-| link | Links to related resources | WebLink data structure, see 2DTMS | Zero or more (optional)^b^
-4+|^a^    Depending of the nature of the data, a format might be better than another. Categorical data looks better in a PNG but continuous data and pictures are smaller a JPEG. The map operation details all available formats for the OGC API maps. In contrast, this is the better one for this type of information.
-^b^    Possible link `rel` values are: `http://www.opengis.net/def/rel/ogc/1.0/style` for a URL pointing to other styles of the resource exposed as maps, 'maps' for a URL template to the map resource. 'alternate' for a URL pointing to another representation of the MapMetadata (e.g a TileJSON file).
-|===
+| Name in WMS 1.3 | Where in the API | property | Specified in
+| Title | collections response | title | OGC API Common - part 2
+| Name | collections response | id | OGC API Common - part 2
+| Abstract | collections response | description | OGC API Common - part 2
+| Keywords | N/A |   |
+| Style | style response | id | OGC API Styles - part 1
+| EX_GeographicBoundingBox | collections response | extent | OGC API Common - part 2
+| CRS | collections response | storageCRS | OGC API Features - part 2
+| BoundingBox | N/A |  |
+| minScaleDenominator
 
-NOTE: In WMS this metadata was present in the <layer> section of a GetCapabilities document. Some common metadata such as title, abstract, attribution, etc are not provided by this model. The client is expected to get this information directly from the parent resource that is converted into map (e.g. from the response to \collections\{collectionId}).
+maxScaleDenominator | collections response | minScaleDenominator
+
+maxScaleDenominator | Possibly in OGC API Features - part 2
+| Sample Dimensions | OpenAPI extra parameters definition | |
+| MetadataURL | collections response | link with rel describedBy | OGC API Common - part 2
+| Attribution | collections response | attribution | OGC API Common - part 2
+| Identifier
+
+AuthorityURL | N/A | |
+| FeatureListURL | items response |  | OGC API features provides this capability
+| DataURL  |  |  | OGC API features, coverage and EDR provide download capabilities
+| queryable  |  |  | OGC API features, coverage and EDR provide query capabilities
+| cascaded
+
+noSubsets
+
+fixedWidth
+
+fixedHeight  | N/A | |
+
+|===
 
 NOTE: The supported formats for map resources, or more precisely the media types of the supported encodings, can be also be determined from the API definition. The desired encoding is selected using HTTP content negotiation. In addition the parameters specified by the core, other parameters should be added.
 
@@ -110,125 +110,7 @@ NOTE: The `fixedWidth` parameter in WMS has no use. The client will know if the 
 
 NOTE: The `fixedHeight` parameter in WMS has no use. The client will know if the server is no able to generate different widths if there is no extension supported in the server describing the use of a height parameter.
 
-NOTE: `maxWidth` and `maxHeight` are indented to control the work load of the server by providing limitations in size of the outputs of the subset. `width` and `height` parameters are commonly related with the size of the device screen, please consider that new devices are being build with more and more pixels and a reasonable limit in the server size may become too restrictive with the emerging devices.
-
-==== Operation
-include::requirements/metadata/REQ_md-op.adoc[]
-
-NOTE: The desired encoding is selected using HTTP content negotiation. In addition the parameters specified by the core, other parameters should be added.
-
-==== Response
-The response of a GET request to a map metadata resource will be a text document describing the map resource.
-
-include::requirements/metadata/REQ_md-response.adoc[]
-
-If the API has a OpenAPI document describing the schema for the response, the following JSON Schema can be used to defined the response.
-
-[[MapMetadataJSONSchema]]
-.Map metadata JSON Schema
-=================
-[source,JSON]
-----
-{
-	"$schema": "http://json-schema.org/draft-07/schema#",
-	"type": "object",
-	"properties":
-	{
-		"wgs84SpatialExtent":
-		{
-			"$ref": "#/definitions/bbox"
-		},
-		"crsSpatialExtents":
-		{
-			"type": "array",
-			"items": {
-				"$ref": "#/definitions/crsSpatialExtent"
-			}
-		},
-    "supportedCRSs":
-		{
-      "type": "array",
-			"items": {
-			     "$ref": "crs.json"
-      }
-		},
-		"minScaleDenominador":
-		{
-			"type": "number",
-			"description": "Minimum scale denominator (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404. If it is not present we will assume there is no limit"
-		},
-		"minCellSize":
-		{
-			"type": "number",
-			"description": "Minimum cell size (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404. If it is not present we will assume there is no limit"
-		},
-		"maxScaleDenominador":
-		{
-			"type": "number",
-			"description": "Maximum scale denominator (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404 If it is not present we will assume there is no limit"
-		},
-		"maxCellSize":
-		{
-			"type": "number",
-			"description": "Maximum cell size (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404. If it is not present we will assume there is no limit"
-		},
-		"recomendedFormat":
-		{
-			"type": "string",
-			"description": "Recommended output formats for a map request. Depending of the nature of the data, a format might be better than another. Categorical data looks better in a PNG but continuous data and pictures are smaller a JPEG. The map operation details all available formats for the OGC API maps. In contrast, this is the better one for this type of information. It would be one of the supported for the map operation"
-		},
-    "supportedFormats":
-		{
-      "type": "array",
-      "description": "Supported output formats for a map request",
-      "items": {
-			     "type": "string"
-			}
-		},
-		"maxWidth":
-		{
-			"type": "number",
-			"description": "Maximum width and height values that a client is permitted to include in bbox subset operation.  If absent the server imposes no limit"
-		},
-		"maxHeight":
-		{
-			"type": "number",
-			"description": "Maximum width and height values that a client is permitted to include in bbox subset operation.  If absent the server imposes no limit."
-		}
-	},
-	"definitions":
-	{
-		"bbox":
-		{
-			"description": "West, south, east, north edges of the bounding box. The coordinates are in the coordinate reference system specified in `crs`. By default this is WGS 84 longitude/latitude (CRS84).",
-			"type": "array",
-			"minItems": 4,
-			"maxItems": 6,
-			"items":
-			{
-				"type": "number"
-			}
-		},
-		"crsSpatialExtent":
-		{
-			"description": "The spatial extent of the resource",
-			"type": "object",
-			"properties":
-			 {
-				"crs":
-				{
-					"type": "string"
-				},
-				"bbox":
-				{
-					"$ref": "#/definitions/bbox"
-				}
-			}
-		}
-	}
-}
-----
-=================
+NOTE: `maxWidth` and `maxHeight` are indented to control the work load of the server by providing limitations in size of the outputs of the subset. `width` and `height` parameters in the OGC API maps (defined in <<rc_scaling>>) control the size of the response and its resolution. The core of OGC API maps does not provide explicit limits but is free to respond an error to avoid server work overload. `width` and `height` parameters are commonly related with the size of the device screen; please consider that new devices are being build with more and more pixels and a past reasonable limit in the server size may become too restrictive with the emerging devices.
 
 === Declaration of conformance classes
 To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the conformance classes it implements and conforms to.
