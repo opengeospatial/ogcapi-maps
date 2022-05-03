@@ -1,8 +1,0 @@
-[[per_core_map-op]]
-[width="90%",cols="2,6a"]
-|===
-^|*Permission {counter:per-id}* |*/per/core/map-op*
-^|A |A map resources SHOULD be retrieved as map subset or a tile subsets. Retrieving the map without subsetting or tiling has a limited use
-^|B |Retrieve the whole map as a tile may be possible if the server offers a very high scale denominator
-^|B |Retrieve the whole map is possible by not providing any parameters. The subsetting extension could be more specific on what will be retrieved when no subsetting is specified.
-|===

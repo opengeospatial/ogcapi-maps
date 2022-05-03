@@ -1,0 +1,7 @@
+[[rec_core_map-op]]
+[width="90%",cols="2,6a"]
+|===
+^|*Recommendation {counter:rec-id}* |*/rec/core/map-op*
+^|A |In absence of subsetting parameters the server SHOULD return the whole map.
+^|B |In absence of scaling parameter a reasonable width and height SHOULD be selected preserving aspect ratio.  
+|===
