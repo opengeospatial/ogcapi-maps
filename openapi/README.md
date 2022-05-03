@@ -1,6 +1,6 @@
 # OpenAPI definitions
 
-This example API definition can be used to provide an OpenAPI 3.0 definition for an implementation of _OGC API - Maps.
+This example API definition can be used to provide an OpenAPI 3.0 definition for an implementation of _OGC API - Maps_.
 The API definition can be visualized with [SwaggerUI](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/openapi/ogcapi-maps-1.bundled.json).
 
 The lists of collections and tile matrix sets in the `/api` sub-directory should be tailored to the implementation and deployment, or those `/api/*` paths can be implemented dynamically by the server instead.
