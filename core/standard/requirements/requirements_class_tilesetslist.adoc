@@ -2,7 +2,8 @@
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class*
-2+|http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tileset-list
 |Target type |Web API
+2+|http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tileset-list
 |Dependency |http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/tilesets-list
+http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 |===
