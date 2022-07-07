@@ -1,6 +1,0 @@
-[[per_bbox_no-width-height-definition]]
-[width="90%",cols="2,6a"]
-|===
-^|*Permission {counter:per-id}* |*/per/bbox/no-width-height-definition*
-^|A |If the parameter `width` and `height` are not provided, the values used and returned are at the discretion of the server. 
-|===
