@@ -1,6 +1,0 @@
-[[req_core_collections-selection-resources-query]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/collections-selection/resources-query*
-^|A |The parameter `collections` SHALL be supported by map resources for origins consisting of multiple geospatial data sub-resources (e.g. dataset map at `{datasetAPI}/map`).
-|===

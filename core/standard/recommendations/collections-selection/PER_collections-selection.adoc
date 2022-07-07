@@ -1,0 +1,6 @@
+[[per_tiles-collections-selection]]
+[width="90%",cols="2,6a"]
+|===
+^|*Permission {counter:per-id}* |*/per/collections-selection/valid-collections*
+^|A | An implementation MAY return an error when the specified list of collections is not supported, for reasons such as an incompatible combination, or an unsupported encoding or CRS for some of the selected collections.
+|===
