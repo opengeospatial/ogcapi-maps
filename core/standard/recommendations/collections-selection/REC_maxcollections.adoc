@@ -1,0 +1,26 @@
+[[rec_collection-selection-maxcollections]]
+[width="90%",cols="2,6a"]
+|===
+^|*Recommendation {counter:rec-id}* |*/rec/collection-selection/maxcollections*
+^|A |The service metadata may include a maximum number of collections that can be included to create the map. Clients should not request a map with more collections than this limit and if they to, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment)
+
+[source,YAML]
+----
+
+  x-OGC-limits:
+    type: object
+    properties:
+      maps:
+        type: object
+        properties:
+          maxCollections:
+            type: integer
+            description:
+              Maximum number of collections in the collections parameter. If absent the server imposes no limit.
+            example: 5
+----
+^|B |In the absence of maxCollections the client will assume that there is no limit in the number of collections.
+
+|===
+
+NOTE: this mimics the LayerLimit element in the WMS 1.3 GetCabilities document.

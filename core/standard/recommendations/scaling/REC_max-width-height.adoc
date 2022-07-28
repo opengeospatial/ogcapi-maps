@@ -2,19 +2,34 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/scaling/max-width-height*
-^|A |The map description document may include a minimum and maximum width and height indicating what is the maximum value that the server will accept to create the map. Clients should not request a map subset with a width or a height greater than this limits and if they to, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment)
+^|A |The service metadata may include a minimum and maximum width and height and product of both indicating what is the maximum values that the server will accept to create the map. Clients should not request a map subset with a width or a height greater than these limits and if they to, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment)
+
 [source,YAML]
 ----
-  maxWidth:
-    type: number
-    description:
-      Maximum width and height values that a client is permitted to include in bbox subset operation.  If absent the server imposes no limit.
-    example: 2048
-  maxHeight:
-    type: number
-    description:
-      Maximum width and height values that a client is permitted to include in bbox subset operation.  If absent the server imposes no limit.
-    example: 2048
+
+  x-OGC-limits:
+    type: object
+    properties:
+      maps:
+        type: object
+        properties:
+          maxWidth:
+            type: integer
+            description:
+              Maximum width parameter value. If absent the server imposes no limit.
+            example: 2048
+          maxHeight:
+            type: integer
+            description:
+              Maximum height parameter value. If absent the server imposes no limit.
+            example: 2048
+          maxPixels:
+            type: integer
+            description:
+              Maximum  product of width and height parameter values. If absent the server imposes no limit.
+            example: 2048
 ----
-^|B |In the absence of the maxWidth the client will assume that there is no limit in the parameter width. In the absence of the maxHeight the client will assume that there is no limit in the parameter height
+^|B |In the absence of the maxWidth or maxPixels the client will assume that there is no limit in the parameter width. In the absence of the maxHeight or maxPixels the client will assume that there is no limit in the parameter height
 |===
+
+NOTE: this mimics the maxWidth and maxHeight element in the WMS 1.3 GetCabilities document.

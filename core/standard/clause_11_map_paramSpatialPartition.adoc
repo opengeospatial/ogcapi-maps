@@ -14,7 +14,7 @@ The _OGC API - Maps - Part 1: Core_ defines the map resource. The core also defi
 
 This class defines the extension to the core to formulate a bounding box subset.
 
-The geospatial resource may expose a geospatial extent. This does not precluded that the map resource presents its own extent that will be similar or smaller to the geospatial extent resource (the API may opt to expose only a part of the geospatial resource as a map subsets)
+The geospatial resource covers a geospatial extent. This does not preclude that the map resource presents its own extent that will be similar or smaller to the geospatial extent resource (the API may opt to expose only a part of the geospatial resource as a map subsets)
 
 ==== Operation
 

@@ -37,6 +37,12 @@ include::requirements/collections-selection/REQ_collections-response.adoc[]
 
 ==== Error conditions
 
-If the value of the parameter `collections` contains a resource id of URI that does not exist on the Web API, the status code of the response is 400.
+If the value of the parameter `collections` contains a resource id of URI that does not exist on the Web API or too many collections are requested, the status code of the response is 400.
 
 If the value of the parameter `collections` has a wrong format or combines one of more geospatial data resources that are not compatible (e.g., they do not have a compatible value specified by other parameters in the request), the status code of the response is 400.
+
+=== Service Metadata
+
+The OGC API Common describes a mechanism to expose service-metadata for the API. See: http://docs.opengeospatial.org/DRAFTS/19-072.html#service-metadata-examples
+
+include::recommendations/collections-selection/REC_maxcollections.adoc[]
