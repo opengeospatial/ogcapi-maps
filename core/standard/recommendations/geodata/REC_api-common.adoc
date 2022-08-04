@@ -2,5 +2,5 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/geodata/api-common*
-^|A |An implementation this standard should consider to implement the requirements specified in the http://www.opengis.net/spec/OAPI_Common/1.0/req/core and http://www.opengis.net/spec/OAPI_Common/1.0/req/collections requirement classes of the OGC API-Common version 1.0 Standard.
+^|A |An implementation this standard should consider to implement the requirements specified in the http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core and http://www.opengis.net/spec/ogcapi-common-2/1.0/req/collections requirement classes of the OGC API-Common version 1.0 Standard.
 |===
