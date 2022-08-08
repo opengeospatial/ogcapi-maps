@@ -7,9 +7,9 @@
 
 include::requirements/requirements_class_core.adoc[]
 
-This core specifies a map resource: a resource that represents the geospatial data as a rendered map. The map resource, as defined in this core retrieves a generic map as a graphical representation of the data in the API. With only the core, the representation is not constrained almost in any way by the client, so the server is free to return a total or a partial representation of the resource of an arbitrary size. Extensions to this core will add query parameters to personalize the server behavior to the client needs. These extensions will define specifying parameters that will allow for the client to define the map size and resolution of the map (width, height, bounding  box and CRS). In addition, an orthogonal extension will define how a map endpoint can be retrieved as tiles by applying the OGC API - Tiles.
+This core specifies a map resource: a resource that represents the geospatial data as a rendered map. Requesting a map resource, as defined in this core, results in retrieving a generic map as a graphical representation of the data in the API. With only the core, the representation is not constrained almost in any way by the client, so the server is free to return a total or a partial representation of the resource of an arbitrary size. Extensions to this core will add query parameters to personalize the server behavior to the client needs. These extensions will define specific parameters that will allow for the client to control the map size and resolution of the map (width, height, bounding box and CRS). In addition, an orthogonal extension will define how a map resource can be retrieved as tiles by applying the OGC API - Tiles.
 
-A map resource can be obtained from a non map resource by adding `/map` to the resource URI. The core does not specify which resources `/map` can be applied. However, a list of common places in the API where maps can be obtained is present in the following table as a recommendation. Additional conformance classes will better define these possibilities.
+A map resource can be obtained from a non map resource by adding `/map` to the resource URI. The core does not specify to which resources `/map` is applicable. However, a list of common places in the API, where maps can commonly be obtained is present in the following table as a recommendation. Additional conformance classes will better define these possibilities.
 
 [#Common-map-resources-in-the-api,reftext='{table-caption} {counter:table-num}']
 .Common map resources in an geospatial API
@@ -26,7 +26,7 @@ NOTE: There is no mandatory dependency of this core on OGC API - Commons. This a
 
 === Map resource
 
-A map distribution of a dataset is a pictorial representation of geospatial resources. To create a pictorial representation a style is added to the data in the geospatial resource. This style can be internal (default style) of can be governed by the client.
+A map distribution of a geospatial resource is a pictorial representation of it. To create a pictorial representation, a style is added to the data in the geospatial resource by a portrayal engine and following portrayal rules. This style can be internal (default style) or can be governed by the client.
 
 This section defines the core resource of the OGC API - Maps standard: a map representation for a geospatial resources. To keep the core of the OGC API - Maps standard simple, the core only includes a mechanism to retrieve an map of an arbitrary size and from the extent the server considers optimal.
 
@@ -35,35 +35,35 @@ include::requirements/core/REQ_map-op.adoc[]
 
 include::recommendations/core/REC_map-op.adoc[]
 
-A map resources may be retrieved as map subset or a tile subsets. Retrieving the map without subsetting or tiling has a limited use.
+A map resource may be retrieved as a map subset or a tile subsets. Retrieving the map without subsetting or tiling has a limited use.
 
-NOTE: The desired encoding is selected using HTTP content negotiation. In addition the parameters specified by the core, other parameters should be added.
+NOTE: The desired encoding is selected using HTTP content negotiation. In addition to the parameters specified by the core, other parameters should be added.
 
-NOTE: HTTP content negotiation replaces the FORMAT= parameters in WMS. However, for convenience, some implementations can implement a f= parameter for circumstances where content negotiation is not possible or available (e.g. testing the API in a web browser by using a URL)
+NOTE: HTTP content negotiation replaces the FORMAT= parameters in WMS. However, for convenience, some implementations can implement a f= parameter for circumstances where content negotiation is not possible or available (e.g. testing the API in a web browser by using a URL embbed in a IMG SRC tag)
 
 ==== Parameters transparent and bgcolor
-These parameters indicate how the absence of data will be represented in the map and allow for the map to be overlaid with other maps without completely obscuring the lower layers. The parameter `transparent` is maintained for backwards compatibility; the use of the 'alpha channel' in `bgcolor` is recommended instead.
+The transparent and bgcolor parameters indicate how the absence of data will be represented in the map and allow for the map to be overlaid with other maps without completely obscuring the lower layers. The parameter `transparent` is maintained for backwards compatibility; the use of the 'alpha channel' in `bgcolor` is recommended instead.
 
 include::requirements/core/REQ_mc-bgcolor-definition.adoc[]
 
 include::requirements/core/REQ_mc-transparent-definition.adoc[]
 
-NOTE: If the client wants to force an opaque color, apart from defining the appropriate background color it should ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency, it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values and colors in the map.
+NOTE: If the client wants to force an opaque color, apart from defining the appropriate background color it should define the alpha value to `FF` or ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency, it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values and colors in the map.
 
-NOTE: The `opaque` and `cascaded` parameters present in the WMS have been deprecated and are not provided in this API.
+NOTE: The `opaque` and `cascaded` parameters present in the WMS have been deprecated and are not specified by this API.
 
 ==== Response
-The response of a GET request to a map resource will be a map representing the geospatial data in the resource. Without any extra parameters, the server could respond with a maps representing the whole geospatial data resource at maximum resolution that could be too difficult to generate by the server or too big to be efficiently retrieved by the client. It is expected that other query parameters are added by other extensions of this core to personalize the response.
+The response of a GET request to a map resource will be a map representing the geospatial data in the resource. Without any extra parameters, the server could respond with a maps representing the whole geospatial data resource at maximum resolution, but it could be too difficult to generate by the server or too big to be efficiently retrieved by the client. It is expected that other query parameters are added by other extensions of this core to personalize the response.
 
 include::requirements/core/REQ_map-response.adoc[]
 
 include::recommendations/core/REC_content-crs.adoc[]
 
-A successful response to a map GET operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG). It is also possible to respond an HTML page with the image embedded and, eventually, with additional controls. This standard provides some conformance classes applicable to some common formats in <<rc_data_encodings>>
+A successful response to a HTTP GET map operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG). It is also possible to respond an HTML page with the image embedded and, eventually, with additional controls. This standard provides some conformance classes applicable to some common formats in <<rc_data_encodings>>
 
 === Correspondence between WMS map metadata and OGC APIs
 
-In WMS, the `GetCapabilities` response of the service as a whole and the individual `layers` sections provide some metadata about the server and the layers that inform the client on some layer characteristics and some restrictions useful to formulate a successful map query. In OGC API maps, the equivalent metadata is provided by the landing page, the list of collections, the collections details, the API definition, and the service-meta link form the landing page. This standard does not impose any extra requirement on this matter. However, implementers of Web APIs are encouraged to make use of the mechanisms provided by other standards of the OGC API family to communicate the relevant metadata to the client. The following table provides a reference to where some of this metadata aspects are specified.
+In the WMS standard, the `GetCapabilities` response provide some metadata about the server and individual `layer` sections that inform the client on some layer characteristics and some restrictions useful to formulate a successful map query. In OGC API maps, the equivalent metadata is provided by the landing page, the list of collections, the collections details, the API definition, and the service-meta link from the landing page. This standard does not impose any extra requirement on this matter. However, implementers of Web APIs are encouraged to make use of the mechanisms provided by other standards of the OGC API family to communicate the relevant metadata to the client. The following table provides a reference to where some of this metadata aspects are specified.
 
 [#where-map-metadata-is,reftext='{table-caption} {counter:table-num}']
 .Where some map metadata elements are specified
@@ -102,7 +102,7 @@ fixedHeight  | N/A | |
 
 |===
 
-NOTE: The supported formats for map resources, or more precisely the media types of the supported encodings, can be also be determined from the API definition. The desired encoding is selected using HTTP content negotiation. In addition the parameters specified by the core, other parameters should be added.
+NOTE: The supported formats for map resources, or more precisely the media types of the supported encodings, can be also be determined from the API definition. The desired encoding is selected using HTTP content negotiation. In addition to the parameters specified by the core, other parameters should be added.
 
 NOTE: The `cascaded` XML attribute in WMS is removed because no practical use has been seen in past
 

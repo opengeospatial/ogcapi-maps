@@ -19,5 +19,5 @@
 ----
 ^|B |`bgcolor` SHALL be an hexadecimal red-green-blue[-alpha] color value for the background color of the map (default=0xFFFFFF). The first and second characters specify a the intensity of red, the third and forth characters specify a the intensity of green, and the fifth and sixth two characters specify a the intensity of blue. Optionally the seventh and eighth characters specify the level of opacity (alpha channel) where 00 is completely transparent and FF is completely opaque. If the alpha channel is not indicated, FF (opaque) is assumed.
 ^|C |If `bgcolor` is not specified, the server is free to choose a background color that's appropriate for the requested style, or 0xFFFFFF (white) if no such information is available.
-^|D |if `bgcolor` has an alpha channel, the `transparent` parameter is ignored. It the `bgcolor` does not have an alpha channel, the `transparent` parameter indicates the opacity of the background of the map.
+^|D |if `bgcolor` has an alpha channel, the `transparent` parameter is ignored. It the `bgcolor` does not have an alpha channel, the `transparent` parameter indicates if the background of the map is opaque or not.
 |===
