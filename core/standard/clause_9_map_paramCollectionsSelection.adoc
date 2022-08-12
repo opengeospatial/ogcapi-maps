@@ -11,12 +11,12 @@ include::requirements/requirements_class_collections-selection.adoc[]
 In a Web API providing access to a complex dataset formed by several geospatial data resources, it can be useful to select specific sub-resources of interest when requesting data from this dataset.
 This requirements class defines how to include a query parameter when requesting a resource (e.g., dataset tiles) to specify which geospatial data resources (a.k.a. collections) should be used to generate the response.
 
-This conformance class can be used e.g. in conjunction with the <<rc_datasetMaps>> conformance class or in conjunction with an equivalent conformance class in _OGC API - Tiles_.
+This conformance class can be used e.g. in conjunction with the <<rc_datasetMaps>> conformance class. A conformance class equivalent to this one is included in _OGC API - Tiles_.
 
 === Operation
 
-By default, the geospatial data resources to be included in the dataset tiles responses are unspecified but should represent the dataset as a whole.
-This class adds a mechanism to select the geospatial data resources to be used to generate the derived resources (e.g., maps or tiles).
+By default, the geospatial data resources to be included in the dataset maps responses are unspecified but should represent the dataset as a whole.
+This class adds a mechanism to select the geospatial data resources to be used to generate the derived resources (e.g., maps or map tiles).
 In practice this enables the capability to generate resources involving more than one geospatial data sub-resource.
 
 [[req_collections-selection_parameter-collections]]

@@ -11,10 +11,10 @@ This extension describes how to scale a map by specifying a set of parameters th
 
 === Operation
 
-The core of Part 1 defines how to get a map. This standard specifies parameters needed to scale a map.
+The map core of this standard defines how to get a map. This conformance class specifies parameters needed to scale a map.
 
 ==== Parameters width and height
-These parameters indicate the size of the viewport in rows and columns where the map is going to be shown. If the format of the response is a raster image, the number of columns and rows of the image will commonly match the requested width and height number respectively
+These parameters indicate the size of the viewport in rows and columns where the map is going to be shown. If the format of the response is a raster image, the number of columns and rows of the responded image will commonly match the width and height of the viewport.
 
 include::requirements/scaling/REQ_width-definition.adoc[]
 

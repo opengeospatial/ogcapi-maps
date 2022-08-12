@@ -63,10 +63,36 @@ A successful response to a HTTP GET map operation will be consistent with the me
 
 === Correspondence between WMS map metadata and OGC APIs
 
-In the WMS standard, the `GetCapabilities` response provide some metadata about the server and individual `layer` sections that inform the client on some layer characteristics and some restrictions useful to formulate a successful map query. In OGC API maps, the equivalent metadata is provided by the landing page, the list of collections, the collections details, the API definition, and the service-meta link from the landing page. This standard does not impose any extra requirement on this matter. However, implementers of Web APIs are encouraged to make use of the mechanisms provided by other standards of the OGC API family to communicate the relevant metadata to the client. The following table provides a reference to where some of this metadata aspects are specified.
+In the WMS standard, the `GetCapabilities` response provide some metadata about the server and individual `layer` sections that inform the client on some layer characteristics and some restrictions useful to formulate a successful map query. In OGC API maps, the equivalent metadata is provided by the landing page, the list of collections, the collections details, the API definition, and the service-meta link from the landing page. Implementers of Web APIs are encouraged to make use of the mechanisms provided by other standards of the OGC API family to communicate the relevant metadata to the client.
 
-[#where-map-metadata-is,reftext='{table-caption} {counter:table-num}']
-.Where some map metadata elements are specified
+The following table provides a reference to where some of metadata aspects at the service level are specified.
+
+[#where-service-metadata-is,reftext='{table-caption} {counter:table-num}']
+.Where some "service" metadata elements are specified
+[width = "100%",options="header"]
+|===
+| Name in <Service> WMS 1.3 | Where in the API | property | Specified in
+| Title | service metadata | title | OGC API Common - part 1
+| Name fixed to "WMS" | N/A |  |
+| Abstract | service metadata | description | OGC API Common - part 1
+| OnlineResource | landing page | links | OGC API Common - part 1
+| Keywords | N/A |   |
+| LayerLimit | service metadata | limits | This standard
+| MaxWidth
+
+MaxHeight | service metadata | x-OGC-limits.maps.maxWidth
+
+x-OGC-limits.maps.maxHeight
+
+x-OGC-limits.maps.maxPixels | This standard <<rc_scaling>>
+| Fees | N/A |   |
+| AccessConstraints | N/A |   |
+|===
+
+The following table provides a reference to where some of layer metadata aspects are specified.
+
+[#where-layer-metadata-is,reftext='{table-caption} {counter:table-num}']
+.Where some "layer" metadata elements are specified
 [width = "100%",options="header"]
 |===
 | Name in <Layer> WMS 1.3 | Where in the API | property | Specified in
@@ -114,7 +140,7 @@ NOTE: The `fixedWidth` XML attribute in WMS was used to indicate lack of scaling
 
 NOTE: The `fixedHeight` XML attribute in WMS was used to indicate lack of scaling support. The client will know if the server is not able to generate different heights if there is no extension supported in the server describing the use of a height parameter.
 
-NOTE: `maxWidth` and `maxHeight` are indented to control the work load of the server by providing limitations in size of the outputs of the subset. `width` and `height` parameters in the OGC API maps (defined in <<rc_scaling>>) control the size of the response and its resolution. The core of OGC API maps does not provide explicit limits but is free to respond an error to avoid server work overload. `width` and `height` parameters are commonly related with the size of the device screen; please consider that new devices are being build with more and more pixels and a past reasonable limit in the server size may become too restrictive with the emerging devices.
+NOTE: `x-OGC-limits.maps.maxWidth`, `x-OGC-limits.maps.maxHeight` and `x-OGC-limits.maps.maxPixels` are indented to control the work load of the server by providing limitations in size of the outputs of the subset. `width` and `height` parameters in the OGC API maps (defined in <<rc_scaling>>) control the size of the response and its resolution. The core of OGC API maps does not provide explicit limits but is free to respond an error to avoid server work overload. `width` and `height` parameters are commonly related with the size of the device screen; please consider that new devices are being build with more and more pixels and a past reasonable limit in the server size may become too restrictive with the emerging devices.
 
 === Declaration of conformance classes
 To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the conformance classes it implements and conforms to.

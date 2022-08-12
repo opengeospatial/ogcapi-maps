@@ -23,4 +23,4 @@
 
 |===
 
-NOTE: this mimics the LayerLimit element in the WMS 1.3 GetCabilities document.
+NOTE: This mimics the LayerLimit element in the WMS 1.3 GetCabilities document.
