@@ -1,0 +1,6 @@
+[[rec_subsetting_map-outside-bounds]]
+[width="90%",cols="2,6a"]
+|===
+^|*Recommendation {counter:rec-id}* |*/rec/subsetting/map-outside-bounds*
+^|A |The server should make an effort to honor the subseting coordinates requested. For example, if the server has no data in the requested area, a map filled with the background color or transparent values based on the relevant query parameters specified should be returned. For example, if the subseting coordinates requested are partially ourside the server data, the area with no data will be filled with the background color or transparent values based on the relevant query parameters specified.
+|===

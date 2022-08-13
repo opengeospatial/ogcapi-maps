@@ -6,3 +6,7 @@
 [[maps-crs-overview]]
 
 include::requirements/requirements_class_crs.adoc[]
+
+3.-
+The default output CRS for Maps with be be the native/storage CRS in the collection description.
+If not CRS= param then storage CRS is returned.

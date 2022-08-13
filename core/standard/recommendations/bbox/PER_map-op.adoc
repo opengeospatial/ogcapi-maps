@@ -1,6 +1,0 @@
-[[per_bbox_map-op]]
-[width="90%",cols="2,6a"]
-|===
-^|*Permission {counter:per-id}* |*/per/bbox/map-op*
-^|A |Retrieve the whole map as a map subset should be possible by not providing any subset parameters. In this case, the whole map will be retrieved at a high scale denominator that allows to fit the whole map in a reasonable width and height at the discretion of the server.
-|===

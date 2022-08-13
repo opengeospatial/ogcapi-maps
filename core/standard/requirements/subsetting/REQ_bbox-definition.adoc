@@ -1,0 +1,32 @@
+[[req_subsetting_bbox-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/subsetting/bbox-definition*
+^|A |The map operation SHALL support a parameter `bbox` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+[source,YAML]
+----
+  bbox:
+    name: bbox
+    in: query
+    description:
+      Bounding box of the rendered map. The bounding box is provided as four coordinates
+
+      * Lower left corner, coordinate axis 1
+      * Lower left corner, coordinate axis 2
+      * Upper right corner, coordinate axis 1
+      * Upper right corner, coordinate axis 2
+
+      The coordinate reference system and axis order of the values are indicated in the `bbox-crs` parameter or if the parameter is missing in CRS84
+    required: false
+    schema:
+      type: array
+      minItems: 4
+      maxItems: 4
+      items:
+        type: number
+        format: double
+    style: form
+    explode: false
+----
+^|B |`bbox` SHALL be a comma separated list of floating point numbers. The first two numbers are the coordinates of the lower left corner. The last two are the coordinates of the upper right corner. The axis order is determined by the `bbox-crs` parameter value or longitude and latitude if the parametre is missing (CRS84 axis order). For example in CRS84 the order is left_long, lower_lat, right_long, upper_lat.
+|===

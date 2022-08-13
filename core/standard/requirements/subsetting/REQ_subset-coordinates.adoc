@@ -1,0 +1,7 @@
+[[req_subsetting_subset-coordinates.adoc]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/subsetting/subset-coordinates*
+^|A |A subset parameter SHALL be used to subset each axis of the CRS specified in the `subset-crs` parameter value or in CRS84 if the `subset-crs` parameter is missing. The names of the axis SHALL univocally indicate the name or abbreviation of the subsetting CRS. The values of the subset SHALL be a comma separated list of two floating point numbers representing values of the minimum and maximum value of the requested coordinate. For example in CRS84 it will read as lon(left_long, right_long) and lat(lower_lat,upper_lat).
+^|B |If a `subset` parameter for the CRS axis is indicated, the `bbox` parameter SHALL be ignored.
+|===

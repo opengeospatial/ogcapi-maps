@@ -1,0 +1,7 @@
+[[req_subsetting_map-success]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/subsetting/map-success*
+^|A |A successful execution of the maps subset operation SHALL be reported as a response with a HTTP status code `200`.
+^|B |The content of that response SHALL be consistent with the format and CRS requested and represent elements inside or intersecting with the spatial extent of the geographical area of the map identified with the subsetting coordinates.
+|===
