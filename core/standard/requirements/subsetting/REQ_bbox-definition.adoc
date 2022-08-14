@@ -28,5 +28,5 @@
     style: form
     explode: false
 ----
-^|B |`bbox` SHALL be a comma separated list of floating point numbers. The first two numbers are the coordinates of the lower left corner. The last two are the coordinates of the upper right corner. The axis order is determined by the `bbox-crs` parameter value or longitude and latitude if the parametre is missing (CRS84 axis order). For example in CRS84 the order is left_long, lower_lat, right_long, upper_lat.
+^|B |`bbox` SHALL be a comma separated list of floating point numbers. The first two numbers are the coordinates of the lower left corner. The last two are the coordinates of the upper right corner. The axis order is determined by the `bbox-crs` parameter value or longitude and latitude if the parameter is missing (CRS84 axis order). For example in CRS84 the order is left_long, lower_lat, right_long, upper_lat.
 |===

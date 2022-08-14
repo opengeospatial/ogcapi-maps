@@ -1,0 +1,19 @@
+[[req_crs_crs]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/crs/crs*
+^|A |The map operation SHALL support a parameter `crs` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+[source,YAML]
+----
+  crs:
+    name: crs
+    in: query
+    description: A URI of the coordinate reference system of the map response. A list of all supported CRS values can be found under the collection metadata.
+    required: false
+    schema:
+      type: string
+    example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+----
+^|B |The CRS value SHALL be one of the values supported by the collection (or collections). If the list of supported CRS is not present, support for only http://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be assumed.
+^|C |If this parameter is not specified, the native/storage CRS in the collection description will be used as a default.
+|===

@@ -8,7 +8,7 @@
   crs:
     name: bbox-crs
     in: query
-    description: A URI of the coordinate reference system of the bbox and the map subset response. A list of all supported CRS values can be found under the map metadata.
+    description: A URI of the coordinate reference system of the bbox and the map subset response. A list of all supported CRS values can be found under the collection metadata.
     required: false
     schema:
       type: string

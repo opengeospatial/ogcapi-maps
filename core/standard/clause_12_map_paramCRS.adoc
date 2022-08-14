@@ -7,6 +7,26 @@
 
 include::requirements/requirements_class_crs.adoc[]
 
-3.-
-The default output CRS for Maps with be be the native/storage CRS in the collection description.
-If not CRS= param then storage CRS is returned.
+In WMS 1.3 the CRS parameters had two missions: it indicated the CRS of the data rendered in the map and it was the CRS of the coordinates of the BBOX parameter. In this standards, these two missions has been separated. This section describes how to request a map in a specific CRS.
+
+At least, for OGC API Maps and OGC API Coverages a native CRS (also called or storage CRS) is defined. The Content-Crs header (see <<maps-core-overview>>) specifies the CRS used in the response to avoid confusion.
+
+=== Operation
+
+The map core of this standard defines how to get a map. This requirements class specifies parameters needed to retrieve a map in a particular CRS
+
+==== Parameter crs
+
+include::requirements/crs/REQ_crs-definition.adoc[]
+
+NOTE: For clarification: The default CRS of the BBOX is CRS84 and the default CRS of the map is native or storage CRS
+
+==== Response
+
+include::requirements/crs/REQ_map-success.adoc[]
+
+==== Error conditions
+
+A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
+
+If the parameter value for `crs` is not one of the supported for the collections, the status code of the response will be `404`.

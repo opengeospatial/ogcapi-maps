@@ -9,20 +9,20 @@ include::requirements/requirements_class_spatial-partitioning.adoc[]
 
 The core requirements class of this standard defines the map resource. The core also defines a minimum set of metadata to enable a client application to formulate a map request. This extension describes how to subset a map. Another way to subset a map is provided by <<rc_maps_tileSets-list>> that make a map accessible as tiles.
 
-This class defines the extension to the core to formulate a subset using two mechanims, one similar to the WMS 1.3 BBOX and the other similar to the WCS 2.0 subset. The client will select between the `bbox` and the `subset` mechanism.
+This class defines the extension to the core to formulate a subset using two mechanisms, one similar to the WMS 1.3 BBOX and the other similar to the WCS 2.0 subset. The client will select between the `bbox` and the `subset` mechanism.
 
 === CRS for subsetting
-In WMS 1.3 the CRS parametres had two missions: it indicated the CRS of the data rendered in the map and it was the CRS of the coordinates of the BBOX parameter. In this standards, this two mossions has been separated. In this section we will define the CRS parameters for subsetting.
+In WMS 1.3 the CRS parameters had two missions: it indicated the CRS of the data rendered in the map and it was the CRS of the coordinates of the BBOX parameter. In this standards, these two missions has been separated. This section defines the CRS parameters for subsetting.
 
-The CRS advertised in the collection's spatial extent is always in CRS84 (for Earthly data and as required by OGC API Features). At least, for OGC API Maps and OGC API Coverages a native CRS (also called or storage CRS) is defined. The Content-Crs header (see <<maps-core-overview>>) specifies the CRS used in the response to avoid confussion.
+The CRS advertised in the collection's spatial extent is always in CRS84 (for Earthly data and as required by OGC API Features). At least, for OGC API Maps and OGC API Coverages a native CRS (also called or storage CRS) is defined. The Content-Crs header (see <<maps-core-overview>>) specifies the CRS used in the response to avoid confusion.
 
 NOTE: There is no obligation to provide the maps in CRS84.
 
-NOTE: The collections description will contain a native or storage CRS. If it is not there then we will assume CRS84. The exact mechanims to do so will be defined by OGC API common.
+NOTE: The collections description will contain a native or storage CRS. If it is not there then we will assume CRS84. The exact mechanism to do so will be defined by OGC API common.
 
-NOTE: Provide the extent of the collection in native native CRS (also called or storage CRS) is recommended and the mechanims will be defined by OGC API common.
+NOTE: Provide the extent of the collection in native native CRS (also called or storage CRS) is recommended and the mechanism will be defined by OGC API common.
 
-NOTE: A list of supported CRS's will be provided by the the collection. The first should be storage CRS. The mechanims to do so will be defined by OGC API common.
+NOTE: A list of supported CRS's will be provided by the the collection. The first should be storage CRS. The mechanism to do so will be defined by OGC API common.
 
 ==== Parameter bbox-crs
 
