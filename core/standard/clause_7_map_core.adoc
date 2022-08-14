@@ -9,7 +9,7 @@ include::requirements/requirements_class_core.adoc[]
 
 This core specifies a map resource: a resource that represents the geospatial data as a rendered map. Requesting a map resource, as defined in this core, results in retrieving a generic map as a graphical representation of the data in the API. With only the core, the representation is not constrained almost in any way by the client, so the server is free to return a total or a partial representation of the resource of an arbitrary size. Extensions to this core will add query parameters to personalize the server behavior to the client needs. These extensions will define specific parameters that will allow for the client to control the map size and resolution of the map (width, height, bounding box and CRS). In addition, an orthogonal extension will define how a map resource can be retrieved as tiles by applying the OGC API - Tiles.
 
-A map resource can be obtained from a non map resource by adding `/map` to the resource URI. The core does not specify to which resources `/map` is applicable. However, a list of common places in the API, where maps can commonly be obtained is present in the following table as a recommendation. Additional conformance classes will better define these possibilities.
+A map resource can be obtained from a non map resource by adding `/map` to the resource URI. The core does not specify to which resources `/map` is applicable. However, a list of common places in the API, where maps can commonly be obtained is present in the following table as a recommendation. Additional requirements classes will better define these possibilities.
 
 [#Common-map-resources-in-the-api,reftext='{table-caption} {counter:table-num}']
 .Common map resources in an geospatial API
@@ -59,7 +59,7 @@ include::requirements/core/REQ_map-response.adoc[]
 
 include::recommendations/core/REC_content-crs.adoc[]
 
-A successful response to a HTTP GET map operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG). It is also possible to respond an HTML page with the image embedded and, eventually, with additional controls. This standard provides some conformance classes applicable to some common formats in <<rc_data_encodings>>
+A successful response to a HTTP GET map operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG). It is also possible to respond an HTML page with the image embedded and, eventually, with additional controls. This standard provides some requirements classes applicable to some common formats in <<rc_data_encodings>>
 
 === Correspondence between WMS map metadata and OGC APIs
 

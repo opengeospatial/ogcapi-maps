@@ -6,3 +6,49 @@
 [[styled-maps-overview]]
 
 include::requirements/requirements_class_styled-map.adoc[]
+
+This requirements class specifies how to get maps from particular resources with a style applied by the OGC API - Styles 1.0.
+
+NOTE: This mechanism replaces the parameter STYLES in the WMS 1.3 and add the possibility to have a generic style for all layers of the service at once.
+
+=== Styled resources
+Geospatial resources can be modified or complemented by styles creating new endpoints giving access to the modified or complemented resources. The way this is done to a dataset resource or to a collection is specified by the OGC API - Styles.
+
+include::requirements/styles/REQ_desc-links.adoc[]
+
+.Fragment of a collection with a links array with one item of the array pointing to a map.
+=================
+[source,JSON]
+
+  "id": "buildings",
+  "title": "Buildings in the city of Bonn",
+  "description": "This collection contains buildings",
+  "attribution": "OpenStreetMap",
+  "extent": {
+    ...
+  }
+  "links": [
+    ...
+    {
+      "href": "http://data.example.com/collections/buildings/styles/dark/map",
+      "rel": "http://www.opengis.net/def/rel/ogc/1.0/map",
+      "type": "image/png",
+    }
+  ]
+}
+=================
+
+=== Styled Resource Map
+Styled resources are defined by the OGC API - Styles. Nevertheless, it does not specify how to retrieve a map resource representing a styled resource. This section explains how to do it.
+
+==== Map path
+
+include::requirements/styles/REQ_operation.adoc[]
+
+This standard does not specify any additional query parameter in the GET request. Other extensions of this map standards will define how to get a subset of a map resource.
+
+==== Response
+
+A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
+
+A successful response is a map that represents the styled resource

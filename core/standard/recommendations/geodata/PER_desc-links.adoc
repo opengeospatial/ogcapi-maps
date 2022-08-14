@@ -2,6 +2,5 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Permission {counter:per-id}* |*/rec/dataset/desc-links*
-^|A |the dataset can be exposed as a map totally of partially.
-^|B |the dataset that is modified or complemented by the /styles/{styleId} path fragment can be considered modified dataset resources that can be exposed as a map. The link to the map resource will be added to the /styles GET response
+^|A |the collection can be exposed as a map totally or partially.
 |===

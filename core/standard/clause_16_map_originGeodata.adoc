@@ -3,8 +3,6 @@
 
 === Overview
 
-[[maps-core-overview]]
-
 include::requirements/requirements_class_geodata-map.adoc[]
 
 This requirements class specifies how to get maps from particular resources that contains geodata. Common resources that can contain geodata are the ones at the endpoint /collections/{collectionId} defined by OGC API - Common or OGC API - Features 1.0.
@@ -48,11 +46,6 @@ include::recommendations/geodata/PER_desc-links.adoc[]
       "href": "http://data.example.com/collections/buildings/map",
       "rel": "http://www.opengis.net/def/rel/ogc/1.0/map",
       "type": "image/png",
-    },
-    {
-      "href": "http://data.example.com/collections/buildings/map/metadata",
-      "rel": "http://www.opengis.net/def/rel/ogc/1.0/map-meta",
-      "type": "application/json",
     }
   ]
 }
@@ -60,7 +53,7 @@ include::recommendations/geodata/PER_desc-links.adoc[]
 
 NOTE: In WMS layers have a hierarchical dependency. At the time of writing this standard neither OGC API - Features v1 nor OGC API - Common do not consider this possibility.
 
-=== Geospatial Data Resource Map description
+=== Geospatial Data Resource Map
 The maps core defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map request. Nevertheless, the core does not  specify how to retrieve a map resource representing another resource. This section offers one possible path to do that from a geospatial data resource offered by the API.
 
 ==== Map path
@@ -73,7 +66,4 @@ This standard does not specify any additional query parameter in the GET request
 
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
 
-A successful response is map that is expected to represent the geodata resource
-
-=== Geospatial Data Resource subset
-The bbox extension of this core have information on how to retrieve a subset of the map representing a piece of information in the dataset in the way explained in the bbox class. The OGC API - Tiles also contain classes that allow to retrieve a tile representation of a subset of the map.
+A successful response is a map that represents the geodata resource.

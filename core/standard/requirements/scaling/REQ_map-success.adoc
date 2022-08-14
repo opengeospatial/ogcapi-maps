@@ -2,6 +2,5 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/scaling/map-success*
-^|A |A successful execution of requesting a scaled map SHALL be reported as a response with a HTTP status code `200`.
-^|B |In the case of raster image media type (e.g. image/jpeg or image/png) the number of columns and rows SHALL be exactly the ones specified in the `width` and `height` parameters respectively.
+^|A |In the case of raster image media type (e.g. image/jpeg or image/png) the number of columns and rows SHALL be exactly the ones specified in the `width` and `height` parameters respectively.
 |===

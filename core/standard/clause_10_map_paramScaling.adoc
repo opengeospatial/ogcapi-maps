@@ -11,7 +11,7 @@ This extension describes how to scale a map by specifying a set of parameters th
 
 === Operation
 
-The map core of this standard defines how to get a map. This conformance class specifies parameters needed to scale a map.
+The map core of this standard defines how to get a map. This requirements class specifies parameters needed to scale a map.
 
 ==== Parameters width and height
 These parameters indicate the size of the viewport in rows and columns where the map is going to be shown. If the format of the response is a raster image, the number of columns and rows of the responded image will commonly match the width and height of the viewport.
@@ -36,6 +36,7 @@ include::requirements/scaling/REQ_cell-size-definition.adoc[]
 With this parameter, the server is able to know how big the map will be presented or printed and react accordingly. For example, if the server receives a very small value, the server could decide to represent linear elements wider than for normal values (preventing to create a representation of linear features that is going to result in lines that are too thin to be correctly perceived).
 
 ==== Response
+A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
 
 include::requirements/scaling/REQ_map-success.adoc[]
 

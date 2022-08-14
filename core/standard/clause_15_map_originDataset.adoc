@@ -7,7 +7,7 @@
 
 include::requirements/requirements_class_dataset-map.adoc[]
 
-The map core and the map metadata, define how to get a map from a resource but they do nor detail which resources can be "mapped". This requirements class defines how to get a map resource from the dataset (or datasets) represented by the services. In other words it provides the path to get a map resource from the dataset behind the API. This is achieved by using by adding the map path to the root (a.k.a. the landing page) of the service.
+The core section defines how to get a map from a resource but they do nor detail which resources can be "mapped". This requirements class defines how to get a map resource from the dataset represented by the service. In other words it provides the path to get a map resource from the dataset behind the API. This is achieved by using by adding the map path to the root (a.k.a. the landing page) of the service.
 
 === General
 include::recommendations/dataset/REC_api-common.adoc[]
@@ -43,12 +43,6 @@ In the landing page, in JSON format, the links follow the link schema defined in
       "rel": "http://www.opengis.net/def/rel/ogc/1.0/map",
       "type": "image/png",
       "title": "Map combining collections in the dataset"
-    },
-    {
-      "href": "http://data.example.org/map/metadata",
-      "rel": "http://www.opengis.net/def/rel/ogc/1.0/map-meta",
-      "type": "application/json",
-      "title": "Metadata of the map combining collections in the dataset"
     }
   ]
 }
@@ -56,7 +50,6 @@ In the landing page, in JSON format, the links follow the link schema defined in
 =================
 
 === Dataset maps
-The maps core defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map request. Nevertheless, the core does not does not specify how to retrieve a map resource description. This section offers one possible path to do that from the dataset represented by the API.
 
 ==== Map path
 
@@ -67,7 +60,7 @@ The request of this operation does not define extra parameters. Servers can adve
 ==== Response
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
 
-A successful response is map that is expected to represent the dataset as a whole. In a Web API providing access to  a complex dataset formed by several geospatial data resources, there are reasons for being selective in the amount of information included. This can be achieved by applying a manual filter currently described in a OGC API - Tiles - Part 1 or as an automatic decision by the server side.
+A successful response is map that is expected to represent the dataset as a whole. In a Web API providing access to a complex dataset formed by several geospatial data resources, there are reasons for being selective in the amount of information included. This can be achieved by applying a manual filter described in the <<rc_collections-selection>> or as an automatic decision by the server side.
 
 include::recommendations/dataset/REC_geodata-selection.adoc[]
 

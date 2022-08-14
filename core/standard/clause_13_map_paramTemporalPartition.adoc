@@ -7,7 +7,7 @@
 
 include::requirements/requirements_class_datetime.adoc[]
 
-This conformance class defines the way date and time can be used as a parameter to filter the content in the map resource. This conformance class is importing most of the functionality from OGC API - Commons.
+This requirements class defines the way date and time can be used as a parameter to filter the content in the map resource. This conformance class is importing most of the functionality from OGC API - Commons.
 
 === Describing the temporal extent
 
@@ -38,3 +38,14 @@ include::recommendations/datetime/REC_actual-datetime.adoc[]
 === Closest date & time permission
 
 include::recommendations/datetime/PER_datetime-axis.adoc[]
+
+=== Response
+A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
+
+include::requirements/datetime/REQ_map-success.adoc[]
+
+=== Error conditions
+
+A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
+
+If the parameter value for `datetime` is not compatible with what the collections can offer, the status code of the response will be `404`.

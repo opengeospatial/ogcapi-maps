@@ -2,5 +2,5 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/dataset/geodata-selection*
-^|A |When it is possible and sensible, all geospatial data resources (\collections) supporting the crs parameter value SHOULD be represented in the map.
+^|A |When it is possible and sensible, all geospatial data resources (\collections) supporting the requested CRS SHOULD be represented in the map response.
 |===

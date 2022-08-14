@@ -57,7 +57,7 @@ include::recommendations/subsetting/REC_subset-crs-axis-names.adoc[]
 
 === Response
 
-A successful response to a map GET operation will be consistent with the media type of resource requested.
+A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core). 
 
 include::requirements/subsetting/REQ_map-success.adoc[]
 
@@ -67,7 +67,7 @@ include::recommendations/subsetting/REC_map-outside-bounds.adoc[]
 
 include::recommendations/subsetting/PER_map-outside-bounds.adoc[]
 
-NOTE: As defined in the core conformance class, the ogcapi-bbox and the content-crs reports the actual bounding box of the data returned.
+NOTE: As defined in the core requirements class, the ogcapi-bbox and the content-crs reports the actual bounding box of the data returned.
 
 
 === Error conditions

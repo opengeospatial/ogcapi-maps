@@ -6,7 +6,7 @@
 [[maps-tilesets-overview]]
 
 include::requirements/requirements_class_tilesetslist.adoc[]
-This document describes two main ways to subset maps. For example, subsetting can be used to implement zoom and pan in a web map browser. The combination of <<rc_scaling>> and <<rs_spatial-subsetting>> conformance classes provides a way to subset by an arbitrary bounding box (in a CRS). However, the approach will not benefit from cache mechanisms. Instead, a map can be retrieved as tiles in a predefined TileMatrixSet. This extension describes how to use OGC API maps in combination with OGC API tiles by making maps accessible as tiles.
+This document describes two main ways to subset maps. For example, subsetting can be used to implement zoom and pan in a web map browser. The combination of <<rc_scaling>> and <<rs_spatial-subsetting>> requirements classes provides a way to subset by an arbitrary bounding box (in a CRS). However, the approach will not benefit from cache mechanisms. Instead, a map can be retrieved as tiles in a predefined TileMatrixSet. This extension describes how to use OGC API maps in combination with OGC API tiles by making maps accessible as tiles.
 
 NOTE: The concept of map tiles substitutes the WMTS 1.0 usage of tiles. WMTS was focused on map tiles (tiles that are rendered using a style).
 
