@@ -1,0 +1,6 @@
+[[rec_tiff_geotiff]]
+[width="90%",cols="2,6a"]
+|===
+^|*Recommendation {counter:rec-id}* |*/rec/tiff/geotiff*
+^|A |A TIFF encoding SHOULD include georeference information in GeoTIFF format.
+|===

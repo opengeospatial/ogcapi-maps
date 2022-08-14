@@ -2,9 +2,9 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/tiff/content*
-^|A |Every 200-response of the server with the media type image/tiff SHALL be a TIFF document representing only one tile
-^|B |The TIFF file SHALL be organized in strips (avoiding organization in internal tiles).
-^|C |All tiles representing parts of the same resource or resources and using the same style SHALL follow the same portrayal rules or represent data with the same reference and units of measure.
+^|A |Every 200-response of the server with the media type image/tiff SHALL be a TIFF document representing only one map
+^|B |The TIFF file SHALL be organized in strips (avoiding organization in internal maps).
+^|C |All maps representing parts of the same resource or resources and using the same style SHALL follow the same portrayal rules or represent data with the same reference and units of measure.
 |===
 
 NOTE: TIFF is an ideal support for geospatial grid data in its original format. However it also can be used for image palette or RGB imagery.

@@ -1,0 +1,10 @@
+[[req_png_content]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/png/content*
+^|A |Every 200-response of the server with the media type text/html SHALL be a HTML document representing the geospatial data as maps.
+|===
+
+NOTE: An HTML page can contain links to other resources. In particular, it can contain image sources linked to map resources as image/png or image/jpeg that will represent the actual data.
+
+NOTE: An HTML page may contain MapML elements to represent the map (https://maps4html.org/MapML/spec/).

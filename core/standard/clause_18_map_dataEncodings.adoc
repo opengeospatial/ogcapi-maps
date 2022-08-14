@@ -1,36 +1,75 @@
 [[rc_data_encodings]]
 == Requirements classes for encodings
 
-TBD
-
-NOTE: THIS SECTION REQUIRES A CAREFUL REVIEW. PLEASE IGNORE IT
-
-[NOTE]
-========
-The following content is from the OAPI Common specification and should be modified for Map Tile APIs. Keep in mind that both Map Tiles and metadata are supplied by the API. So HTML and GeoJSON encoding may be retained for the metadata responses.
-========
+The OGC API Maps is designed to support mapped data that can potentially be encoded and provided in many of the existing geospatial formats or new ones that could be invented in the future.  Web APIs may adopt these encodings and declare conformance to them in the list of conformance classes supported by the Web API. The intention of this section is NOT to limit the number of encodings offered by a Maps Web API but to provide a minimum set of encodings that could be implemented by many Maps Web APIs as well as to provide a practical way to test conformance to the standard. For each of these encodings, a requirements class is defined. Web APIs are free to support other encodings and data formats that can be convenient in each case, and use them despite the fact that they may not be listed as supported conformance classes by the Web API. In addition, the declaration of an encoding in the conformance classes supported does not mean that all the resources provided by the Web API should support all of them. Partial support could be conditioned by the different the nature of the data behind each collection.
 
 === Overview
 
-This clause specifies four pre-defined requirements classes for encodings to be used by an OGC API implementation. These encodings are commonly used encodings for spatial data on the web:
+This clause specifies five pre-defined requirements classes for encodings to be used by the maps of the OGC API implementation:
 
+* <<rc_png,PNG>>
+* <<rc_jpeg,JPEG>>
+* <<rc_tiff,TIFF>>
+* <<rc_geojson,GeoJSON>>
 * <<rc_html,HTML>>
 
-None of these encodings are mandatory and an implementation of the <<rc_core,Core>> requirements class may also implement none of them but implement another encoding instead.
+NOTE: If maps are provided as tiles this section should be ignored and the equivalent section in the OGC API - Tiles should be used instead.
 
-The <<rc_core,Core>> requirements class includes recommendations to support <<rec_html,HTML>> and <<rec_geojson,GeoJSON>> as encodings, where practical. <<overview,Clause 6 (Overview)>> includes a discussion about recommended encodings.
+NOTE: None of the encodings specified here is mandatory and an implementation of this standard may implement none of them but implement other encodings instead.
 
+[[rc_png]]
+=== Requirement Class "PNG"
+
+One fundamental use case for maps is immediate visualization in a web browser. In these circumstances, selecting an encoding that can be natively interpreted by the web browser is fundamental. The PNG is one of the most popular formats in de web defined by the ISO Information technology Computer graphics and image processing Portable Network Graphics (PNG): Functional specification. ISO/IEC 15948:2003 (E), also available by the W3C in https://www.w3.org/TR/PNG.
+
+PNG supports lossless data compression. PNG supports palette-based images (with palettes of 24-bit RGB or 32-bit RGBA colors), grayscale images (with or without an alpha channel for transparency), and full-color non-palette-based RGB or RGBA images. The PNG working group designed the format for transferring images on the Internet, not for professional-quality print graphics; therefore non-RGB color spaces such as CMYK are not supported.
+
+include::requirements/requirements_class_png.adoc[]
+
+include::requirements/png/REQ_content.adoc[]
+
+[[rc_jpeg]]
+=== Requirement Class "JPEG"
+
+One fundamental use case for maps is immediate visualization in a web browser. In these circumstances, selecting an encoding that can be natively interpreted by the web browser is fundamental. The JPEG is one of the most popular formats in de web defined by the ITU-T Recommendation T.81 and the ISO/IEC 10918-1.
+
+The JPEG compression algorithm operates at its best on photographs and paintings with smooth variations of tone and color. It is best used for color and grayscale still images, but not for binary images. JPEG is also the most common format saved by digital cameras. However, JPEG is not well suited for line drawings and other textual or iconic graphics, where the sharp contrasts between adjacent pixels can cause noticeable artifacts. Such images are better saved in a lossless graphics format such as PNG. Because JPEG is a lossy compression method, which reduces the image fidelity, it is inappropriate for exact reproduction of imaging data.
+
+include::requirements/requirements_class_jpeg.adoc[]
+
+include::requirements/jpeg/REQ_content.adoc[]
+
+[[rc_tiff]]
+=== Requirement Class "TIFF"
+
+One use case for maps is to distribute fragmented coverage values as regular grids. In these circumstances, selecting an encoding that is able to story grid values in their original format and eventually compress them using lossless compression is the right solution. The TIFF is one of the older formats but still one of the most popular formats to preserve arrays of data values and defined by the TIFF v6 specification owned by Adobe Systems.
+
+TIFF is a flexible, adaptable file format for handling images and data. The ability to store data in a lossless format makes a TIFF file a useful image archive, because, unlike standard JPEG files, a TIFF file using lossless compression such as PackBits or LZW compression.
+
+include::requirements/requirements_class_tiff.adoc[]
+
+include::requirements/tiff/REQ_content.adoc[]
+
+include::recommendations/tiff/REC_geotiff.adoc[]
+
+[[rc_geojson]]
+=== Requirement Class "GeoJSON"
+
+GeoJSON is a commonly used format for representing features with geometries and other properties. It is simple to understand and well supported by tools and software libraries. Since most Web developers are comfortable with using a JSON-based formats supporting GeoJSON is recommended for maps, if the feature data can be represented in GeoJSON for the intended use.
+
+include::requirements/requirements_class_geojson.adoc[]
+
+include::requirements/geojson/REQ_content.adoc[]
+
+include::recommendations/geojson/PER_overflow.adoc[]
+
+[[rc_html]]
 === Requirement Class "HTML"
 
-Geographic information that is only accessible in formats like GeoJSON or GML has two issues:
-
-* The data is not discoverable using the most common mechanism for discovering information, that is the search engines of the Web;
-* The data can not be viewed directly in a browser - additional tools are required to view the data.
-
-Therefore, sharing data on the Web should include publication in HTML. To be consistent with the Web, it should be done in a way that enables users and search engines to access all data.
-
-This is discussed in detail in
-link:https://www.w3.org/TR/sdw-bp/#indexable-by-search-engines[Best Practice 2: Make your spatial data indexable by search engines]
-<<SDWBP>>. This standard therefore <<rec_html,recommends supporting HTML as an encoding>>.
+One fundamental use case for maps is immediate visualization in a web browser. Returning a HTML page with a full operational map browser that allows for integrative navigation over the map (e.g. zoom and pan) is convenient for easy exploration of the data or for testing purposes.
 
 include::requirements/requirements_class_html.adoc[]
+
+include::requirements/html/REQ_content.adoc[]
+
+include::recommendations/html/REC_content.adoc[]

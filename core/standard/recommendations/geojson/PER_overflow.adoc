@@ -1,0 +1,6 @@
+[[per_geojson_overflow]]
+[width="90%",cols="2,6a"]
+|===
+^|*Permission {counter:per-id}* |*/rec/geojson/overflow*
+^|A |A GeoJSON content of a map can contain features that are partially outside of the requested map bounding box.
+|===
