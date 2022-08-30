@@ -1,79 +1,147 @@
 [[overview]]
 == Overview
 
+=== Introduction
+
+The _OGC API - Maps_ standard defines building blocks which can be used in a Web API to retrieve geospatial data as maps that as visual portrayals of the data created by applying a style to the data (see <<rc_maps_core>>). Maps can present the whole set of the geospatial data or only a part of it e.g. by filtering it by extent (see <<rs_spatial-subsetting>>). Maps can be retrieved by arbitrary extent or as tiles (see <<rc_maps_tileSets-list>>)
+
+Services and clients are encouraged to support as many of the CRSs as possible for all geospatial data resources to maximize
+interoperability, but support is not required for any specific CRS.
+
+This document does not specify any requirement for the type of _geospatial data resource_ that could be delivered as maps.
+Provided that the geospatial data resources can be organized into maps, they can be supported regardless of whether they are features data, coverages, a resource that does not represent data per se (e.g., an annotation) and so forth.
+
+NOTE: The geospatial data resources (e.g., collections) replace the concept of layer in WMS and WMTS. The main difference is that layers in WMS and WMTS were not defined by other OGC APIs and did not support other functionalities.
+
+These geospatial data resources can advertise one or more map portrayals in several resources, such as the dataset (see <<rc_geoDataResourceMaps>>) a collection (see <<rc_geoDataResourceMaps>>) or a collection with a style (see <<rc_styledMaps>>). Other OGC APIs can provide other possibilities.
+
+Accessing the _geospatial data resource_ content (other than as maps) or its descriptions is possible but out of the scope of this standard.
+If a description of the _geospatial data resource_ is specified by another standard, and this description has a mechanism to add links to other resources, this standard indicates the need to add a link to the list of available maps.
+
+The _OGC API Maps API_ standard does not specify how to get a Web API definition, the conformance class list or the collections lists.
+However, the standard assumes that the first two are defined by an OGC API standard (e.g., _OGC API - Common - Part 1: Core_) and the latter by an
+OGC API for collections (e.g., _OGC API - Common - Part 2: Geospatial data_). A similar definition is provided directly by _OGC API - Features - Part 1: Core_.
+
 === Evolution from OGC Web Services
 
-OGC Web Service (OWS) standards have historically implemented a Remote-Procedure-Call (RPC) architectural style using Extensible Markup Language (XML) for payloads over HTTP. This was the state-of-the-art when some of the initial versions of OGC Web Services were originally designed in the late 1990s and early 2000s. This architectural style has now a competing RESTful API style that is proposed as an alternative to RPC pattern. A RESTful API style is resource-oriented instead of service-oriented. This draft OGC API - Maps specification defines a Web API that follows this resource-oriented architecture and in particular the W3C/OGC best practices for sharing Spatial Data on the Web, as well as the W3C best practices for sharing Data on the Web.
+OGC Web Service (OWS) standards have historically implemented a Remote-Procedure-Call-over-HTTP architectural style using Extensible Markup Language (XML) for payloads. This was the state-of-the-art when some of the initial versions of OGC Web Services were originally designed in the late 1990s and early 2000s. This architectural style has now a competing RESTful Web API style that is proposed as an alternative to RPC pattern. A RESTful Web API style is resource-oriented instead of service-oriented. The Web Map Service 1.3 did not described a resource oriented architectural style or an Web API definition. This OGC API - Maps standard specifies a Web API that follows the Web architecture and in particular the W3C/OGC best practices for sharing Spatial Data on the Web as well as the W3C best practices for sharing Data on the Web.
 
-The draft OGC API - Common specification is the foundation upon which OGC APIs will be built, including this draft OGC API - Maps specification. The draft OGC API – Common specification specifies the common kernel of an API approach to services that follows current resource-oriented architecture practices. This common API is to be extended by resource-specific API standards. This draft specification therefore extends OGC API - Common to support Map resources.
+This document provides the necessary elements to incorporate maps support to a Web API implementation. These elements can be incorporated in an API based on the OGC API - Features - Part 1, core or can be incorporated in a Web API implementation based on the OGC API - Common - Part 1, core. Both specify a kernel of a Web API approach to services that follows current resource-oriented architecture practices in the OGC. The OGC API - Common standard provides the foundation upon which implementations of the OGC APIs can be built. OGC API - Common can be combined with this standard and other resource-specific OGC API standards to build an OGC API implementation. However, this standard is done in a way that can extend OGC API - Common, but does not make OGC API - Common mandatory. This way, this standard can be reused as a building block in other APIs that does not follow the OGC API pattern.
 
 Beside the general alignment with the architecture of the Web (e.g., consistency with HTTP/HTTPS, hypermedia controls), another goal for OGC API standards is modularization. This goal has several facets:
 
-* Clear separation between Core requirements and more advanced capabilities. The draft OGC API – Maps - Part 1: Core specification presents the requirements that are relevant for almost everyone who wants to share or use maps at a fine-grained level. Additional capabilities that several communities are using today will be specified as extensions to the Core API.
-* Technologies that change more frequently are decoupled and specified in separate modules ("requirements classes" in OGC terminology). This enables, for example, the use/re-use of new encodings for spatial data or API descriptions.
-* Modularization is not just about a single "service". OGC APIs will provide building blocks that can be reused in APIs in general. In other words, a server supporting the OGC API - Maps draft specification should not be seen as a standalone service. Rather it should be viewed as a collection of API building blocks that together implement OGC API - Maps capabilities. A corollary for this is that it should be possible to implement an API that simultaneously conforms to conformance classes from the Features, Coverages, Maps, Tiles, and other future OGC API standards.
+* Clear separation between Core requirements and more advanced capabilities. The draft OGC API - Maps - Part 1: Core standard presents the requirements that are relevant for almost everyone who wants to share or use maps at a fine-grained level. Additional capabilities that several communities are using today will be specified as extensions to the Core API.
+* Technologies that change more frequently are decoupled and specified in separate modules ("requirements classes" in OGC terminology). This enables, for example, the use/re-use of new encodings for spatial data or Web API definition (such as new version of the OpenAPI description document).
+* Modularization is not just about a single "service". OGC APIs will provide building blocks that can be reused in APIs in general. In other words, a server supporting the OGC API - Maps should not be seen as a standalone service. Rather it should be viewed as a collection of Web API building blocks that together implement OGC API - Maps capabilities. A corollary for this is that it should be possible to implement an API that simultaneously conforms to conformance classes from the Features, Coverages, Maps, Tiles, and other future OGC API standards.
 
 This approach intends to support two types of client developers:
 
-* Those that have never heard about OGC. Developers should be able to create a client using the API definition without the need to adopt a specific OGC approach (they no longer need to read how to implement a GetCapabilities, allowing them to focus on the geospatial aspects).
+* Those that have never heard about the OGC. Developers should be able to create a client using the Web API definition without the need to adopt a specific OGC approach (they no longer need to read how to implement a GetCapabilities, allowing them to focus on the geospatial aspects).
 * Those that want to write a "generic" client that can access OGC APIs. In other words, they are not specific to a particular API.
 
 As a result of following a RESTful approach, OGC API implementations are not backwards compatible with OWS implementations per se. However, a design goal is to define OGC APIs in a way that an OGC API interface can be mapped to an OWS implementation (where appropriate). OGC APIs are intended to be simpler and more modern, but still an evolution from the previous versions and their implementations making the transition easy (e.g. by initially implementing facades in front of the current OWS services).
 
-This document provides simple examples throughout the document. The examples are based on a dataset that contains buildings and the API provides access to the datasets via a single feature collection ("buildings") and two encodings: JSON and Hypertext Markup Language (HTML).
+=== Relationship to other OGC API standards
 
-=== Relationship to OGC API - Tiles
+The OGC WMS and WMTS share the concept of a map and the capability to create and distribute maps at a limited resolution and size.
+In WMS, the number of rows and columns can be selected by the user within limits and in WMTS the number of rows and columns of the response is predefined in the tile matrix set.
 
-WMS and WMTS share the concept of a map and the capability to create and distribute maps at a limited resolution and size. In WMS the number of rows and columns can be selected by the user within limits and in WMTS the number of rows and columns of the response is predefined in the tile matrix set.
+The concept of a maps used here is more abstract than the one used in WMS. A maps is a portrayal of data resulting from applying a style (usually in PNG or JPEG format). The way the styling rules in a style are applied to the data to create the portrayal is our of scope of this standard (see the OGC API styles). A map can be delivered as a single resource or as an arbitrary extent. In addition a map can also be delivered as tiles by combining this OGC API with some requirements classes of the OGC API Tiles. The relationship between the Maps and Tiles capabilities of OGC API - Maps and OGC API - Tiles was illustrated by the OGC Testbed-15 initiative as shown in <<img_CoreAndExtension>>.
 
-With time, the concept of a tile has been generalized to other data models such as feature data (some vendors use the expression _vector tiles_) and even to coverage data. This draft specification presents an approach to tiles that can be applied to almost every resource type that returns data representations. If applied in conjunction with the OGC API - Features standard and on top of a feature collection, the expected result is tiled feature data. If applied in conjunction with the OGC API - Maps draft specification and on top of a collection that is transformed into a map by applying a style, the result should be map tiles (usually in PNG or JPEG format). The relationship between the Maps and Tiles capabilities of OGC API - Maps and OGC API - Tiles was illustrated by the OGC Testbed-15 initiative as shown in <<img_CoreAndExtension>>.
+This standard can be referenced by other standards providing resources that that can be offered as maps. For example:
 
-NOTE: OGC API - Tiles includes a core specification and extensions for defining tile matrix sets, tiles from more that one collection, multi-tiles and multitiles from more than one collection. An info extension is foreseen but not fully developed. In contrast, OGC API - Maps is only partially described based on Testbed-15 requirements. The Maps API is described only to the extent to allow for map tiles to be created on top of a map created by selecting a collection with style or multiple collections with styles. This draft specification contains a section for retrieving a map of an arbitrary number of rows and columns but is not fully formulated. Other extensions for maps are also foreseen. In the future, the WMS SWG could take this document and complete the missing capabilities.
+* _OGC API - Tiles_ specifies the link relation types to access map tilesets from a dataset or collection.
+* _OGC API - Styles_ defines paths to list available styles from which maps can also be accessed.
+* _OGC API - Processes - Part 3: Workflows and Chaining_ provides a mechanism to trigger localized processing workflows as a result of retrieving maps (for a specific area and resolution of interest).
 
-[#img_CoreAndExtension,reftext='{figure-caption} {counter:figure-num}']
-.Modular approach in the Maps and Tiles draft specification
-image::images/CoreAndExtension.png[width=600,align="center"]
+This document is the first part of a series of _OGC API - Maps_ "parts" that use the core and extensions model.
+It is foreseen that future parts will specify other extensions, such as how to get information of a point in a map.
+Other standards or extensions of standards may also provide mechanisms (e.g., additional query parameters) to deal with additional dimensions such as elevation, or more advanced temporal capabilities than what is defined in this standard's _datetime_ conformance class.
+
+=== Using this standard independently
+
+Although this standard is designed as a building block that can be leveraged by other standards adding precisions about specific types of data available as maps
+(e.g., _OGC API - Tiles_), the conformance classes defined in this document are still concrete enough to make it possible to distribute
+and request map data by relying strictly on the content herein.
+
+As informative guidance on how this can be achieved, implementations should consider the following aspects.
+
+==== Description of the domain
+
+Three different mechanisms are defined by this standard to describe the domain of the maps, including spatiotemporal axes as well as additional dimensions.
+
+With the _Geospatial Data Map_ conformance class, the collection description inherited from _OGC API - Common - Part 2_ contains an `extent` property that can
+describe both the spatial and temporal domain of the data. In addition, the _Unified Additional Dimensions_ common building block, used in the
+example OpenAPI definition, further specifies that additional dimensions shall be described in a similar way to the temporal dimension.
+An extra `grid` property in the example OpenAPI definition also allows to specify the resolution and the number of cells (for data organized as a regular grid) or
+a list of coordinates (for data organized as an irregular grid) along each dimension.
+
+The collection metadata allows to specify a spatial bounding box for maps as a whole, as well as for each individual
+collections of geospatial data represented or contained within the map (the _layers_). The resolution of these layers can also be specified by including
+the minimum and maximum cell size and equivalent scale denominators. The domainset can be enhancing the schema to include bounds and resolution for additional dimensions, also able to handle
+the particularity of unequal temporal units.
+
+==== Available formats and map response expectations
+
+This standard defines five conformance classes for specific encodings to encode map data.
+Additional encodings can be supported using HTTP content negotiation, following conventions specific to those encodings while falling back to the closest
+encoding defined in these conformance classes (e.g., using the GeoTIFF as a model for other coverage data or the JPG and PNG classes
+for other map encodings).
+
+==== Limitations
+
+Although this standard can be used by itself, other OGC API standards or draft specifications may provide additional capabilities and specify additional
+normative requirements describing how to retrieve specific map content, or allowing to describe in greater detail the domain or the observed or
+measured properties within the map data. Conforming to these standards as well may enable greater interoperability.
 
 === How to approach an OGC API
-There are two ways to approach an OGC API.
+There are at least two ways to approach an OGC API.
 
 * Read the landing page, look for links, follow them and discover new links until the desired resource is found
-* Read an API definition document that will specify a list of paths to resources.
+* Read a Web API definition document that will specify a list of paths and path templates to resources.
 
-For the first approach, 'rel' properties identifying link relation types are used to determine the meaning of a relation represented by a link. The following figure illustrates those the links, including others from OGC API - Tiles.
+For the first approach, many resources in the Web API include links with _rel_ properties to know the reason and purpose for this relation. The following figure illustrates the resources as ellipses and the links as arrows with the link _rel_ as a label.
 
 [#img_relMapTiles,reftext='{figure-caption} {counter:figure-num}']
 .Resources and relations to them via links
 image::images/relMapTiles.png[width=600,align="center"]
 
-For the second approach, the section <<OpenAPIExamples>> provides some examples of OpenAPI definition documents that enumerate the paths to the necessary resources.
+For the second approach, implementations should consider the <<rc_oas30_definition>> which specifies the use of _operationID_ suffixes, providing a mechanism to associate API paths with the requirements class that they implement.
+
+There is yet a third way to approach an OGC API that relies on assuming a set of predefined paths and path templates.
+These predefined paths are used in many examples in this document and are presented together in <<table_resources>>.
+It is expected that many implementations of this Standard will provide a Web API definition document (e.g. OpenAPI) using this set of predefined paths and path templates to get necessary resources directly.
+All this could mislead the reader into getting the false impression that the predefined paths are enforced.
+Therefore, building a client that is assuming a predefined set of paths is risky.
+However, it is expected that many API implementations will actually follow the predefined set of paths and the client using this approach could be successful in many occasions.
+Again, be aware that these paths are not required by this Standard.
 
 [#table_resources,reftext='{table-caption} {counter:table-num}']
-.Overview of resources and common direct links defined in OGC API - Maps
+.Overview of resources and common direct links that can be used to define an OGC API - Maps implementation
 [cols="33,66",options="header"]
-|===
-|Resource name |Common path
-|Landing page | /
-|Conformance declaration | /conformance
-|Collections | /collections
-|Collection | /collections/{collectionId}
-|Maps description | /collections/{collectionId}/map
-|Maps description collections^1^ | /map
-|===
+!===
+|Resource name                                             |Common path
+|Landing page^4^                                           |`{datasetRoot}/`
+|Conformance declaration^4^                                |`{datasetRoot}/conformance`
+2+|*_Dataset Maps_*{set:cellbgcolor:#EEEEEE}
+|Dataset maps in the default style ^1^ {set:cellbgcolor:#FFFFFF}       |`{datasetRoot}/map`
+|Dataset maps^1,2^                                 |`{datasetRoot}/styles/{styleId}/map`
+|Dataset map tiles^1,3^                                 |`{datasetRoot}/map/tiles/{tileMatrixSetId}/...`
+2+|*_Geospatial data collections_*^5^{set:cellbgcolor:#EEEEEE}
+|Collections^5^{set:cellbgcolor:#FFFFFF}                   |`{datasetRoot}/collections`
+|Collection^5^                                             |`{datasetRoot}/collections/{collectionId}`
+|Collection maps in the default style{set:cellbgcolor:#FFFFFF}          |`{datasetRoot}/collections/{collectionId}/map`
+|Colletion maps^2^                               |`{datasetRoot}/collections/{collectionId}/styles/{styleId}/map`
+|Colletion map tiles^3^                               |`{datasetRoot}/collections/{collectionId}/map/tiles/{tileMatrixSetId}/...`
+2+|^1^ From the whole dataset or one or more geospatial resources or collections
 
-When OGC API - Maps is used along with the OGC API - Tiles specification, the resources listed in <<table_resources_with_tiles>> become available.
+^2^ Specified in the _OGC API - Styles_ standard
 
-[#table_resources_with_tiles,reftext='{table-caption} {counter:table-num}']
-.Overview of map tile resources and common direct links defined in OGC API - Tiles
-[cols="3,7",options="header"]
-|===
-|Resource name |Common path
-|Tiling Schemas |/tileMatrixSets
-|Tiling Schema |/tileMatrixSets/{tileMatrixSetId}
-|Map tiles description |/collections/{collectionId}/map/
-|Map tiles description collections^1^ |/map/{styleId}/tiles
-|Map tile with style |/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}
-|Map tile collections^1^ |/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}
-|===
+^3^ Specified in the _OGC API - Tiles Part 1: Core_ standard
 
-^1^: In first column of the table, the word "collections" means "from more than one collection"
+^4^ Specified in the _OGC API - Common Part 1: Core_ standard
+
+^5^ Specified in the _OGC API - Common Part 2: Geospatial data_ standard
+!===
+
+NOTE: Despite the fact that full path and full path templates in the previous table are used in many implementations of the OGC API - Maps standard, these exact paths are ONLY examples and are NOT required by this standard. Other paths are possible if correctly described in by the Web API definition document and/or the links between resources.
