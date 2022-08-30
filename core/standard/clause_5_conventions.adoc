@@ -1,5 +1,5 @@
 == Conventions
-This sections provides details and examples for any conventions used in the document. Examples of conventions are symbols, abbreviations, use of XML schema, or special notes regarding how to read the document.
+This section provides details of conventions used in this document.
 
 === Identifiers
 
@@ -9,36 +9,42 @@ All requirements and conformance tests that appear in this document are denoted 
 
 === Link relations
 
-To express relationships between resources, <<rfc8288,RFC 8288 (Web Linking)>> is used.
+To express relationships between resources, https://tools.ietf.org/rfc/rfc8288.txt[RFC 8288 (Web Linking)] is used.
 
-The following <<link-relations,registered link relation types [IANA]>> may be used by implementation of this document.
+The following https://www.iana.org/assignments/link-relations/link-relations.xhtml[IANA link relation types] are used in this document:
 
-* **collection**: The target IRI points to a resource which represents the collection resource for the context IRI.
+* **alternate**: Refers to a substitute for this context.
 
-* **describedby**: Refers to a resource providing information about the link's context.
+* **self**: Conveys an identifier for the link’s context.
 
-* **next**: Indicates that the link's context is a part of a series, and that the next in the series is the link target.
+* **item**: The target IRI points to a resource that is a member of the collection represented by the context IRI.
 
-* **license**: Refers to a license associated with this context.
-
-* **prev**: Indicates that the link's context is a part of a series, and that the previous in the series is the link target.
-
-* **self**: Conveys an identifier for the link's context.
-
-* **service-desc**: Identifies service description for the context that is primarily intended for consumption by machines.
+* **service-desc**: Identifies service description for the context that is primarily intended for consumption by machines. (Web API definitions are considered service descriptions)
 
 * **service-doc**: Identifies service documentation for the context that is primarily intended for human consumption.
 
-In addition the following link relation types may be used by implementation of this document for which no applicable registered link relation type could be identified in IANA.
+In addition, the following link relation type is used for which no applicable registered link relation type could be identified:
 
-* **items**: Refers to a resource that is comprised of members of the collection represented by the link's context.
+* **http://www.opengis.net/def/rel/ogc/1.0/map**: Refers to a resource that is map representation of another geospatial resource (e.g. a collection)
 
-* **conformance**: Refers to a resource that identifies the specifications that the link's context conforms to.
+Used in combination with _OGC API - Tiles - Part 1: Core_, other link relation types will be used, including:
 
-In addition the following link relation types this document proposes link relations for which no applicable registered link relation type could be identified in IANA.
+* **http://www.opengis.net/def/rel/ogc/1.0/tilesets-map**: The target IRI points to a resource that describes how to provide tile sets of the context resource in map format.
 
-* **map**: Refers to a resource that is map representation of another geospatial resource (e.g. a collection)
+Used in combination with _OGC API - Styles - Part 1: Core_, other link relation types will be used, including:
 
-* **map-meta**: Refers to a resource that provides metadata about a map representation of another geospatial resource (e.g. a collection)
+* **http://www.opengis.net/def/rel/ogc/1.0/styles**: The target IRI points to a resource that describes how to provide styles of the context resource that internally can contain links to maps.
 
-Each resource representation includes an array of links. Implementations are free to add additional links for all resources provided by the API.
+Used in combination with _OGC API - Features - Part 1: Core_ or _OGC API - Common - Part 1: Core_, other link relation types will be used, including:
+
+* **http://www.opengis.net/def/rel/ogc/1.0/conformance**: Refers to a resource that identifies the specifications that the link's context conforms to.
+
+Used in combination with _OGC API - Features Part 1: Core_ or _OGC API - Common Part 2: Geospatial data_, other link relation types will be used, including:
+
+* **http://www.opengis.net/def/rel/ogc/1.0/data**: Refers to the list of collections available for a dataset.
+
+Each resource representation includes an array of links. Implementations are free to add additional links for all resources provided by the Web API.
+
+=== Use of HTTPS
+
+For simplicity, this document in general only refers to the HTTP protocol. This is not meant to exclude the use of HTTPS and simply is a shorthand notation for "HTTP or HTTPS." In fact, most servers are expected to use https://tools.ietf.org/html/rfc2818[HTTPS], not https://www.ietf.org/rfc/rfc2616.txt[HTTP].
