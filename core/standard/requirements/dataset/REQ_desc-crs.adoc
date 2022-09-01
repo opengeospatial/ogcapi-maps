@@ -1,0 +1,9 @@
+[[req_dataset_desc-crs]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/dataset/desc-crs*
+^|A |The crs property in the landing page of a dataset SHALL contain the identifiers for the list of CRSs supported by the server for dataset as a whole.
+^|B |If the storageCrs is not CRS84, a storageCrs property in the landing page of the dataset SHALL be the identifier for the dataset as a whole.
+^|C |If the dataset is available more efficiently (e.g. it is stored in the server in that CRS) using a particular CRS that is not CRS84, a storageCrs property in the landing page of the dataset SHALL be the identifier for that CRS.
+^|D |If a storageCrs property is used and that is not CRS84, an extent SHALL be provided in a storageCrsExtent property following the same schema as the extent property.
+|===

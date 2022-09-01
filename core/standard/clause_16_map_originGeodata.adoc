@@ -29,6 +29,10 @@ include::requirements/geodata/REQ_desc-links.adoc[]
 
 include::recommendations/geodata/PER_desc-links.adoc[]
 
+include::requirements/geodata/REQ_desc-crs.adoc[]
+
+include::recommendations/geodata/REC_storage-epoch.adoc[]
+
 .Fragment of a collection with a links array with one item of the array pointing to a map.
 =================
 [source,JSON]
@@ -39,7 +43,15 @@ include::recommendations/geodata/PER_desc-links.adoc[]
   "attribution": "OpenStreetMap",
   "extent": {
     ...
-  }
+  },
+  "crs": ["EPSG:32631", "EPSG:23031", "EPSG:4326"],
+  "storageCrs": "EPSG:32631",
+  "storageCrsExtent": {
+    "spatial" : {
+         "bbox" : [ [ 47736, 4421022, 797736, 4734022 ] ]
+    }
+  },
+  "storageCrsCoordinateEpoch": 2022.3,
   "links": [
     ...
     {

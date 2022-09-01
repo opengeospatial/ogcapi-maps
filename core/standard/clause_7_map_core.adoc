@@ -57,6 +57,8 @@ The response of a GET request to a map resource will be a map representing the g
 
 include::requirements/core/REQ_map-response.adoc[]
 
+See how you can find out the storage CRS for the collection and the dataset in <<rc_geoDataResourceMaps>> and <<rc_datasetMaps>> respectively.
+
 include::recommendations/core/REC_content-crs.adoc[]
 
 A successful response to a HTTP GET map operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG). It is also possible to respond an HTML page with the image embedded and, eventually, with additional controls. This standard provides some requirements classes applicable to some common formats in <<rc_data_encodings>>

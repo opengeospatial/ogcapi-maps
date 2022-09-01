@@ -20,7 +20,9 @@ A successful GET response is described in the core class (http://www.opengis.net
 
 include::requirements/crs/REQ_crs-definition.adoc[]
 
-NOTE: For clarification: The default CRS of the BBOX is CRS84 and the default CRS of the map is native or storage CRS
+See how you can find out the storage CRS for the collection and the dataset in <<rc_geoDataResourceMaps>> and <<rc_datasetMaps>> respectively.
+
+NOTE: The default CRS of the BBOX is CRS84 but the default CRS of the map is storage CRS
 
 ==== Response
 

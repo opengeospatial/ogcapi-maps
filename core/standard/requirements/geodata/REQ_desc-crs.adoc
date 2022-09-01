@@ -1,0 +1,9 @@
+[[req_geodata_desc-crs]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/geodata/desc-crs*
+^|A |The crs property in the collection object of a geospatial collection SHALL contain the identifiers for the list of CRSs supported by the server for that collection.
+^|B |If the storageCrs is not CRS84, a storageCrs property in the collection object of a geospatial collection SHALL be the identifier for the server storage CRS for that collection.
+^|C |If the collection is available more efficiently (e.g. it is stored in the server in that CRS) using a particular CRS that is not CRS84, a storageCrs property in the collection object of a geospatial collection SHALL be the identifier for that CRS.
+^|D |If a storageCrs property is used and that is not CRS84, an extent SHALL be provided in a storageCrsExtent property following the same schema as the extent property.
+|===

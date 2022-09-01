@@ -22,21 +22,42 @@ The landing page provides links to start exploring the resources offered by the 
 
 The root of the API represents a dataset that will be exposed in different ways by the API.
 
-The root can be modified or complemented by other resources creating new endpoints indirectly giving access to the modified or complemented dataset. Other OGC API family standards will define this mechanisms. Examples of standards doing that are:
+The root can be modified or complemented by other resources creating new endpoints indirectly giving access to the modified or complemented dataset. Other OGC API family standards will define this mechanism. Examples of standards doing that are:
 
 * OGC API - Styles defines how to complement a geospatial resource by adding a style to it. The new resources is an overlap of the dataset and the resource
 
 include::requirements/dataset/REQ_landingpage.adoc[]
 
-In the landing page, in JSON format, the links follow the link schema defined in the OGC API - Common or in OGC API - Features v1. Below you can find an example fragment of the response to an OGC API - Maps landing page showing the link to root tiles.
+In the landing page, in JSON format, the links follow the link schema defined in the OGC API - Common or in OGC API - Features v1. Below you can find an example fragment of the response to an OGC API - Maps landing page showing the link to the dataset map.
 
-[[landingPageTilesRoot]]
-.API Landing Page fragment that advertises dataset maps. The same links could be added to a room style description.
+include::requirements/dataset/REQ_desc-extent.adoc[]
+
+include::requirements/dataset/REQ_desc-crs.adoc[]
+
+include::recommendations/dataset/REC_storage-epoch.adoc[]
+
+
+[[landingPageMap]]
+.API Landing Page fragment that advertises the dataset map.
 =================
 [source,JSON]
 ----
 {
-  links: [
+  "title": "Dataset of the city of Bonn",
+  "description": "Dataset containing collections such as buildings",
+  "attribution": "OpenStreetMap",
+  "extent": {
+    ...
+  },
+  "crs": ["EPSG:32631", "EPSG:23031", "EPSG:4326"],
+  "storageCrs": "EPSG:32631",
+  "storageCrsExtent": {
+    "spatial" : {
+         "bbox" : [ [ 47736, 4421022, 797736, 4734022 ] ]
+    }
+  },
+  "storageCrsCoordinateEpoch": 2022.3,
+  "links": [
     ...,
     {
       "href": "http://data.example.org/map",
