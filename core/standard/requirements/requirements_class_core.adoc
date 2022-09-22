@@ -1,8 +1,8 @@
 [[rc_maps-core]]
 [cols="1,4",width="90%"]
 |===
-2+|*Requirements Class*
-2+|http://www.opengis.net/spec/ogcapi-maps-1/1.0/core
+2+|*Requirements Class Core*
+2+|http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 |Target type |Web API
 |Dependency |
 |===

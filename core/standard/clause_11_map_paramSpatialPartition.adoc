@@ -1,4 +1,4 @@
-[[rs_spatial-subsetting]]
+[[rc_spatial-subsetting]]
 == Requirement Class "Maps spatial subsetting"
 
 === Overview
@@ -57,7 +57,7 @@ include::recommendations/subsetting/REC_subset-crs-axis-names.adoc[]
 
 === Response
 
-A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core). 
+A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core).
 
 include::requirements/subsetting/REQ_map-success.adoc[]
 
