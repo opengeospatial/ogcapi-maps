@@ -7,7 +7,7 @@ The standardization targets of all conformance classes are "Web APIs".
 The requirements classes are:
 
 === Requirements classes defining resources
-*<<rc_maps_core>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/core)
+*<<rc_maps_core>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core)
 
 The Core specifies requirements that all Web APIs have to implement if they are claiming to support maps from a geospatial resource following this _OGC API - Maps Part 1: Core_ standard.
 It defines how to retrieve a arbitrary map by building a URI.
@@ -20,7 +20,7 @@ It defines how to retrieve a arbitrary map by building a URI.
 |Map |`.../map`
 |===
 
-*<<rc_maps_tileSets-list>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tileset-list)
+*<<rc_maps_tileSets-list>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets-list)
 
 The _tilesets-list_ conformance class defines a mechanism to describe a tileset list and obtain a list of tilesets supported by the map and eventually tiles representing the map
 
@@ -58,7 +58,7 @@ The _maps scaling_ conformance class allows to request a width and height (in pi
 |Scaling |`/map?width={width}&height={height}&tranparent={true|false}&bgcolor={bgcolor}
 |===
 
-*<<rs_spatial-subsetting>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-partitioning)
+*<<rc_spatial-subsetting>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-partitioning)
 The _maps spatial partitioning_ conformance class allows to request a spatial partitioning in two syntaxes
 
 [#table_resource_spatial_partitioning,reftext='{table-caption} {counter:table-num}']
@@ -171,19 +171,19 @@ Conformance with this standard shall be checked using all the relevant tests spe
 [cols="30,70",options="header"]
 |===
 | Conformance class | URI
-| <<rc_maps_core>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/core
-| <<rc_maps_tileSets-list>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tileset-list
-| <<rc_collections-selection>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection
-| <<rc_scaling>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/scaling
-| <<rs_spatial-subsetting>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-partitioning
-| <<rc_crs>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs
-| <<rc_datetime>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/temporal-partitioning
-| <<rc_styledMaps>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styled-map
-| <<rc_datasetMaps>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map
-| <<rc_geoDataResourceMaps>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/geodata-map
-| <<rc_oas30_definition>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/oas30
-| <<rc_png,PNG>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png
-| <<rc_jpeg,JPEG>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpeg
-| <<rc_tiff,TIFF>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff
-| <<rc_html,HTML>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png
+| <<rc_maps_core>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core
+| <<rc_maps_tileSets-list>>    | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tilesets-list
+| <<rc_collections-selection>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collections-selection
+| <<rc_scaling>>               | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/scaling
+| <<rs_spatial-subsetting>>    | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-partitioning
+| <<rc_crs>>                   | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/crs
+| <<rc_datetime>>              | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/temporal-partitioning
+| <<rc_styledMaps>>            | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/styled-map
+| <<rc_datasetMaps>>           | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset-map
+| <<rc_geoDataResourceMaps>>   | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/geodata-map
+| <<rc_oas30_definition>>      | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/oas30
+| <<rc_png,PNG>>               | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/png
+| <<rc_jpeg,JPEG>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/jpeg
+| <<rc_tiff,TIFF>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tiff
+| <<rc_html,HTML>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/png
 |===
