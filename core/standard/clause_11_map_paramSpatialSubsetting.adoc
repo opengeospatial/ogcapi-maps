@@ -1,11 +1,11 @@
-[[rc_spatial-subsetting]]
+[[rs_spatial-subsetting]]
 == Requirement Class "Maps spatial subsetting"
 
 === Overview
 
-[[maps-spatial-partitioning-overview]]
+[[maps-spatial-subsetting-overview]]
 
-include::requirements/requirements_class_spatial-partitioning.adoc[]
+include::requirements/requirements_class_spatial-subsetting.adoc[]
 
 The core requirements class of this standard defines the map resource. The core also defines a minimum set of metadata to enable a client application to formulate a map request. This extension describes how to subset a map. Another way to subset a map is provided by <<rc_maps_tileSets-list>> that make a map accessible as tiles.
 
@@ -20,9 +20,9 @@ NOTE: There is no obligation to provide the maps in CRS84.
 
 NOTE: The collections description will contain a native or storage CRS. If it is not there then we will assume CRS84. The exact mechanism to do so will be defined by OGC API common.
 
-NOTE: Provide the extent of the collection in native native CRS (also called or storage CRS) is recommended and the mechanism will be defined by OGC API common.
+NOTE: Provide the extent of the collection in native CRS (also called or storage CRS) is recommended and the mechanism will be defined by OGC API common.
 
-NOTE: A list of supported CRS's will be provided by the the collection. The first should be storage CRS. The mechanism to do so will be defined by OGC API common.
+NOTE: A list of supported CRS's will be provided by the collection. The first should be storage CRS. The mechanism to do so will be defined by OGC API common.
 
 ==== Parameter bbox-crs
 
@@ -34,7 +34,7 @@ NOTE: For clarification: The default CRS of the BBOX is CRS84 and the default CR
 
 include::requirements/subsetting/REQ_subset-crs-definition.adoc[]
 
-NOTE: The `subset-crs` and `bbox-crs` are defined identically except they are afecting `subset` and `bbox` parameters respectively.
+NOTE: The `subset-crs` and `bbox-crs` are defined identically except they are affecting `subset` and `bbox` parameters respectively.
 
 === Subsetting coordinates
 

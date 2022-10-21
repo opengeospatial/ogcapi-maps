@@ -102,11 +102,11 @@ include::clause_9_map_paramCollectionsSelection.adoc[]
 
 include::clause_10_map_paramScaling.adoc[]
 
-include::clause_11_map_paramSpatialPartition.adoc[]
+include::clause_11_map_paramSpatialSubsetting.adoc[]
 
 include::clause_12_map_paramCRS.adoc[]
 
-include::clause_13_map_paramTemporalPartition.adoc[]
+include::clause_13_map_paramDateTime.adoc[]
 
 include::clause_14_map_originStyle.adoc[]
 

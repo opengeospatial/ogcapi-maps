@@ -1,5 +1,5 @@
 [[rc_datetime]]
-== Requirement Class "Maps temporal partitioning"
+== Requirement Class "DateTime"
 
 === Overview
 

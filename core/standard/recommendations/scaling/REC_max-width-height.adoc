@@ -29,7 +29,7 @@
               Maximum  product of width and height parameter values. If absent the server imposes no limit.
             example: 4194304
 ----
-^|C |An API instance may specify the maximum width and heigth by adding a `minimum` property to the `width` and `heigth` parameter definition in the OpenAPI as in this OpenAPI Specification 3.0 fragment
+^|C |An API instance may specify the maximum width and height by adding a `minimum` property to the `width` and `height` parameter definition in the OpenAPI as in this OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----
   width:

@@ -10,9 +10,8 @@ include::requirements/requirements_class_dataset-map.adoc[]
 The core section defines how to get a map from a resource but they do nor detail which resources can be "mapped". This requirements class defines how to get a map resource from the dataset represented by the service. In other words it provides the path to get a map resource from the dataset behind the API. This is achieved by using by adding the map path to the root (a.k.a. the landing page) of the service.
 
 === General
-include::recommendations/dataset/REC_api-common.adoc[]
 
-This building block stays flexible and does not require implementation OGC API - Common, allowing for other API architectures outside the OGC API framework to adopt it. However, a server under the OGC APIs is expected to implement OGC API - Common. If so, in practice, this means that the landing page and the conformance page follow OGC API - Common core and collections requirement classes when used. Temporarily, it is also possible to combine this building block with http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] that is not tied to OGC API - Common.
+This conformance class describes how to serve maps for a dataset provided as Web API instance implementing  _OGC API - Common - Part 1_ requirement classes or http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as an alternative.
 
 === Dataset API landing page
 

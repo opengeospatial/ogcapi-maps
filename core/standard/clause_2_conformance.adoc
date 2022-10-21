@@ -58,7 +58,7 @@ The _maps scaling_ conformance class allows to request a width and height (in pi
 |Scaling |`/map?width={width}&height={height}&tranparent={true|false}&bgcolor={bgcolor}
 |===
 
-*<<rc_spatial-subsetting>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-partitioning)
+*<<rc_spatial-subsetting>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting)
 The _maps spatial partitioning_ conformance class allows to request a spatial partitioning in two syntaxes
 
 [#table_resource_spatial_partitioning,reftext='{table-caption} {counter:table-num}']
@@ -82,7 +82,7 @@ The _maps crs_ conformance class allows to specify a crs of the spatial subsetin
 |CRS |`/map?crs={crs}
 |===
 
-*<<rc_datetime>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/temporal-partitioning)
+*<<rc_datetime>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime)
 The _maps temporal partitioning_ conformance class allows to request a subset of the data using temporal partitioning in two syntaxes
 
 [#table_resource_temporal_partitioning,reftext='{table-caption} {counter:table-num}']
@@ -175,9 +175,9 @@ Conformance with this standard shall be checked using all the relevant tests spe
 | <<rc_maps_tileSets-list>>    | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tilesets-list
 | <<rc_collections-selection>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collections-selection
 | <<rc_scaling>>               | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/scaling
-| <<rs_spatial-subsetting>>    | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-partitioning
+| <<rs_spatial-subsetting>>    | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting
 | <<rc_crs>>                   | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/crs
-| <<rc_datetime>>              | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/temporal-partitioning
+| <<rc_datetime>>              | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/datetime
 | <<rc_styledMaps>>            | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/styled-map
 | <<rc_datasetMaps>>           | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset-map
 | <<rc_geoDataResourceMaps>>   | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/geodata-map

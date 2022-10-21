@@ -1,7 +1,7 @@
 [[req_scaling_height-definition]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/scaling/heigth-definition*
+^|*Requirement {counter:req-id}* |*/req/scaling/height-definition*
 ^|A |The map operation SHALL support a parameter `height` with the characteristics defined in the OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----
