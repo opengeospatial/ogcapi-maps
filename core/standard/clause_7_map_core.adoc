@@ -7,7 +7,7 @@
 
 include::requirements/requirements_class_core.adoc[]
 
-This core specifies a map resource: a resource that represents the geospatial data as a rendered map. Requesting a map resource, as defined in this core, results in retrieving a generic map as a graphical representation of the data in the API. With only the core, the representation is not constrained almost in any way by the client, so the server is free to return a total or a partial representation of the resource of an arbitrary size. Extensions to this core will add query parameters to personalize the server behavior to the client needs. These extensions will define specific parameters that will allow for the client to control the map size and resolution of the map (width, height, bounding box and CRS). In addition, an orthogonal extension will define how a map resource can be retrieved as tiles by applying the OGC API - Tiles.
+This core specifies a map resource: a resource that represents the geospatial data as a rendered map. Requesting a map resource, as defined in this core, results in retrieving a generic map as a graphical representation of the data in the API. With only the core, the representation is not constrained almost in any way by the client, so the server is free to return a total or a partial representation of the resource of an arbitrary size. Additional requirement classes will add query parameters to personalize the server behavior to the client needs. These requirement classes will define specific parameters that will allow for the client to control the map size and resolution of the map (width, height, bounding box and CRS) and well as the background of the map. In addition, an orthogonal requirement class will define how a map resource can be retrieved as tiles by applying the OGC API - Tiles.
 
 A map resource can be obtained from a non map resource by adding `/map` to the resource URI. The core does not specify to which resources `/map` is applicable. However, a list of common places in the API, where maps can commonly be obtained is present in the following table as a recommendation. Additional requirements classes will better define these possibilities.
 
@@ -39,110 +39,7 @@ A map resource may be retrieved as a map subset or a tile subsets. Retrieving th
 
 NOTE: The desired encoding is selected using HTTP content negotiation. In addition to the parameters specified by the core, other parameters should be added.
 
-NOTE: HTTP content negotiation replaces the FORMAT= parameters in WMS. However, for convenience, some implementations can implement a f= parameter for circumstances where content negotiation is not possible or available (e.g. testing the API in a web browser by using a URL embbed in a IMG SRC tag)
-
-==== Parameters transparent and bgcolor
-The transparent and bgcolor parameters indicate how the absence of data will be represented in the map and allow for the map to be overlaid with other maps without completely obscuring the lower layers. The parameter `transparent` is maintained for backwards compatibility; the use of the 'alpha channel' in `bgcolor` is recommended instead.
-
-include::requirements/core/REQ_mc-bgcolor-definition.adoc[]
-
-include::requirements/core/REQ_mc-transparent-definition.adoc[]
-
-NOTE: If the client wants to force an opaque color, apart from defining the appropriate background color it should define the alpha value to `FF` or ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency, it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values and colors in the map.
-
-NOTE: The `opaque` and `cascaded` parameters present in the WMS have been deprecated and are not specified by this API.
-
-==== Response
-The response of a GET request to a map resource will be a map representing the geospatial data in the resource. Without any extra parameters, the server could respond with a maps representing the whole geospatial data resource at maximum resolution, but it could be too difficult to generate by the server or too big to be efficiently retrieved by the client. It is expected that other query parameters are added by other extensions of this core to personalize the response.
-
-include::requirements/core/REQ_map-response.adoc[]
-
-See how you can find out the storage CRS for the collection and the dataset in <<rc_geoDataResourceMaps>> and <<rc_datasetMaps>> respectively.
-
-include::recommendations/core/REC_content-crs.adoc[]
-
-A successful response to a HTTP GET map operation will be consistent with the media type of resource requested. This draft specification does not impose any media type or file format and map responses may be in JPEG, PNG or other appropriate format (including vector based formats such as KML or SVG). It is also possible to respond an HTML page with the image embedded and, eventually, with additional controls. This standard provides some requirements classes applicable to some common formats in <<rc_data_encodings>>
-
-=== Correspondence between WMS map metadata and OGC APIs
-
-In the WMS standard, the `GetCapabilities` response provide some metadata about the server and individual `layer` sections that inform the client on some layer characteristics and some restrictions useful to formulate a successful map query. In OGC API maps, the equivalent metadata is provided by the landing page, the list of collections, the collections details, the API definition, and the service-meta link from the landing page. Implementers of Web APIs are encouraged to make use of the mechanisms provided by other standards of the OGC API family to communicate the relevant metadata to the client.
-
-The following table provides a reference to where some of metadata aspects at the service level are specified.
-
-[#where-service-metadata-is,reftext='{table-caption} {counter:table-num}']
-.Where some "service" metadata elements are specified
-[width = "100%",options="header"]
-|===
-| Name in <Service> WMS 1.3 | Where in the API | property | Specified in
-| Title | service metadata | title | OGC API Common - part 1
-| Name fixed to "WMS" | N/A |  |
-| Abstract | service metadata | description | OGC API Common - part 1
-| OnlineResource | landing page | links | OGC API Common - part 1
-| Keywords | N/A |   |
-| LayerLimit | service metadata | limits | This standard
-| MaxWidth
-
-MaxHeight | service metadata | x-OGC-limits.maps.maxWidth
-
-x-OGC-limits.maps.maxHeight
-
-x-OGC-limits.maps.maxPixels | This standard <<rc_scaling>>
-| Fees | N/A |   |
-| AccessConstraints | N/A |   |
-|===
-
-The following table provides a reference to where some of layer metadata aspects are specified.
-
-[#where-layer-metadata-is,reftext='{table-caption} {counter:table-num}']
-.Where some "layer" metadata elements are specified
-[width = "100%",options="header"]
-|===
-| Name in <Layer> WMS 1.3 | Where in the API | property | Specified in
-| Title | collections response | title | OGC API Common - part 2
-| Name | collections response | id | OGC API Common - part 2
-| Abstract | collections response | description | OGC API Common - part 2
-| Keywords | N/A |   |
-| Style | style response | id | OGC API Styles - part 1
-| EX_GeographicBoundingBox | collections response | extent | OGC API Common - part 2
-| CRS | collections response | storageCRS | OGC API Features - part 2
-| BoundingBox | N/A |  |
-| minScaleDenominator
-
-maxScaleDenominator | collections response | minScaleDenominator
-
-maxScaleDenominator | Possibly in OGC API Features - part 2
-| Sample Dimensions | OpenAPI extra parameters definition | |
-| MetadataURL | collections response | link with rel describedBy | OGC API Common - part 2
-| Attribution | collections response | attribution | OGC API Common - part 2
-| Identifier
-
-AuthorityURL | N/A | |
-| FeatureListURL | items response |  | OGC API features provides this capability
-| DataURL  |  |  | OGC API features, coverage and EDR provide download capabilities
-| queryable  |  |  | OGC API features, coverage and EDR provide query capabilities
-| cascaded
-
-noSubsets
-
-fixedWidth
-
-fixedHeight  | N/A | |
-
-|===
-
-NOTE: The supported formats for map resources, or more precisely the media types of the supported encodings, can be also be determined from the API definition. The desired encoding is selected using HTTP content negotiation. In addition to the parameters specified by the core, other parameters should be added.
-
-NOTE: The `cascaded` XML attribute in WMS is removed because no practical use has been seen in past
-
-NOTE: The `opaque` XML attribute in WMS was rarely useful and has been removed. It indicated whether the map data represents features that probably do not completely fill space shows the background opaque (true) or transparent(false).
-
-NOTE: The `noSubsets` XML attribute in WMS was used to indicate lack of subsetting support. The client will know if the server is not able to generate subsets if there is no subset extension supported in the server.
-
-NOTE: The `fixedWidth` XML attribute in WMS was used to indicate lack of scaling support. The client will know if the server is not able to generate different widths if there is no extension supported in the server describing the use of a width parameter.
-
-NOTE: The `fixedHeight` XML attribute in WMS was used to indicate lack of scaling support. The client will know if the server is not able to generate different heights if there is no extension supported in the server describing the use of a height parameter.
-
-NOTE: `x-OGC-limits.maps.maxWidth`, `x-OGC-limits.maps.maxHeight` and `x-OGC-limits.maps.maxPixels` are indented to control the work load of the server by providing limitations in size of the outputs of the subset. `width` and `height` parameters in the OGC API maps (defined in <<rc_scaling>>) control the size of the response and its resolution. The core of OGC API maps does not provide explicit limits but is free to respond an error to avoid server work overload. `width` and `height` parameters are commonly related with the size of the device screen; please consider that new devices are being build with more and more pixels and a past reasonable limit in the server size may become too restrictive with the emerging devices.
+NOTE: HTTP content negotiation replaces the FORMAT= parameters in WMS. However, for convenience, some implementations can implement a f= parameter for circumstances where content negotiation is not possible or available (e.g. testing the API in a web browser by using a URL embbed in a HTML IMG SRC tag)
 
 === Declaration of conformance classes
 To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the conformance classes it implements and conforms to.

@@ -1,0 +1,6 @@
+[[req_background_map-success]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/background/map-success*
+^|A |The color and transparency level of the maps in the areas with no data SHALL be exactly the ones specified in the `bgcolor` and `tranparent` parameters.
+|===

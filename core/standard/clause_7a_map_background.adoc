@@ -1,0 +1,30 @@
+[[rc_background]]
+== Requirement Class "Map Background"
+
+=== Overview
+
+[[background-overview]]
+
+include::requirements/requirements_class_background.adoc[]
+
+This requirement class describes how to define the background of the map for the areas that has no data.
+
+=== Map operation
+
+The map core of this standard defines how to get a map. This requirements class specifies parameters needed to define the background of the map.
+
+==== Parameters transparent and bgcolor
+The transparent and bgcolor parameters indicate how the absence of data will be represented in the map and allow for the map to be overlaid with other maps without completely obscuring the lower layers. The parameter `transparent` is maintained for backwards compatibility; the use of the 'alpha channel' in `bgcolor` is recommended instead.
+
+include::requirements/background/REQ_bgcolor-definition.adoc[]
+
+include::requirements/background/REQ_transparent-definition.adoc[]
+
+NOTE: If the client wants to force an opaque color, apart from defining the appropriate background color it should define the alpha value to `FF` or ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency, it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values and colors in the map.
+
+NOTE: The `opaque` and `cascaded` parameters present in the WMS have been deprecated and are not specified by this API.
+
+==== Response
+A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
+
+include::requirements/background/REQ_map-success.adoc[]

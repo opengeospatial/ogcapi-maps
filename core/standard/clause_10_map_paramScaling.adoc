@@ -7,9 +7,9 @@
 
 include::requirements/requirements_class_scaling.adoc[]
 
-This extension describes how to scale a map by specifying a set of parameters that will define its size (width and height) in pixels of a displaying device that indirectly defines que scale of the map.
+This requirement class describes how to scale a map by specifying a set of parameters that will define its size (width and height) in pixels of a displaying device that indirectly defines que scale of the map.
 
-=== Operation
+=== Map Operation
 
 The map core of this standard defines how to get a map. This requirements class specifies parameters needed to scale a map.
 

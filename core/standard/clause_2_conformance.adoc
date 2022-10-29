@@ -35,6 +35,18 @@ The _tilesets-list_ conformance class defines a mechanism to describe a tileset 
 |===
 
 === Requirements classes defining parameters
+*<<rc_background>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background)
+
+The _maps background_ conformance class allows requesting a particular background color and degree of transparency for the areas of the map with nodata.
+
+[#table_resource_background,reftext='{table-caption} {counter:table-num}']
+.Overview of resource and common direct links that corresponds to the background
+[cols="33,66",options="header"]
+|===
+|Resource name |Example of possible paths
+|Map |`/map?bgcolor={bgcolor}&transparent={transparent},...`
+|===
+
 *<<rc_collections-selection>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection)
 
 The _maps geodata selection_ conformance class allows to list specific geospatial data resources from which to retrieve maps.
