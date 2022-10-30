@@ -47,6 +47,18 @@ The _maps background_ conformance class allows requesting a particular backgroun
 |Map |`/map?bgcolor={bgcolor}&transparent={transparent},...`
 |===
 
+*<<rc_decorations>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/decorations)
+
+The _maps decorations_ conformance class allows adding a title, a legend, a scale bar, a compass, a situation map,  an attribution text a lat/long graticule, and a CRS grid directly on top of a map.
+
+[#table_resource_decorations,reftext='{table-caption} {counter:table-num}']
+.Overview of resource and common direct links that corresponds to the decorations
+[cols="33,66",options="header"]
+|===
+|Resource name |Example of possible paths
+|Map |`/map?map-title={map-title}&legend={legend}&scale-bar={scale-bar}&compass={compass}&situation-map={situation-map}&graticule={graticule}&crs-grid={crs-grid}&attribution=attribution...`
+|===
+
 *<<rc_collections-selection>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection)
 
 The _maps geodata selection_ conformance class allows to list specific geospatial data resources from which to retrieve maps.

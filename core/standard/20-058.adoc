@@ -98,6 +98,8 @@ include::clause_7_map_core.adoc[]
 
 include::clause_7a_map_background.adoc[]
 
+include::clause_7b_map_decorations.adoc[]
+
 include::clause_8_map_tilesetsList.adoc[]
 
 include::clause_9_map_paramCollectionsSelection.adoc[]

@@ -12,7 +12,6 @@
       cell size of the viewport to present the response in millimeters.
     required: false
     style: form
-    explode: false
     schema:
       type: number
 ----

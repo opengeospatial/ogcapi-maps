@@ -1,0 +1,27 @@
+[[req_decorations_attribution-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/decorations/attribution-definition*
+^|A |The map operation SHALL support an optional parameter `attribution` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+[source,YAML]
+----
+  name: attribution
+   in: query
+   description: Add a attribution into the map
+   style: form
+   schema:
+     type: string
+      enum:
+        - none
+        - topLeft
+        - topCenter
+        - topRight
+        - middleLeft
+        - middleRight
+        - bottomLeft
+        - bottomCenter
+        - bottomRight
+      default: none
+----
+^|B |The absence of the parameter `attribution` or the value `none` SHALL be interpreted as "no attribution in the map". Other values SHALL be interpreted as the position where the attribution should appear
+|===

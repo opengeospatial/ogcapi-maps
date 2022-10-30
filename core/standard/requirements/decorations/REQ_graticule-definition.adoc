@@ -1,0 +1,17 @@
+[[req_decorations_graticule-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/decorations/graticule-definition*
+^|A |The map operation SHALL support an optional parameter `graticule` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+[source,YAML]
+----
+  name: graticule
+   in: query
+   description: Add a graticule into the map
+   style: form
+   schema:
+      type: boolean
+      default: false
+----
+^|B |The absence of the parameter `graticule` or the value `false` SHALL be interpreted as "no graticule in the map".
+|===

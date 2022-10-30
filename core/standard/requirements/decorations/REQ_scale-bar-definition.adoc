@@ -1,0 +1,27 @@
+[[req_decorations_scale-bar-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/decorations/scale-bar-definition*
+^|A |The map operation SHALL support an optional parameter `scale-bar` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+[source,YAML]
+----
+  name: scale-bar
+   in: query
+   description: Add a scale bar into the map
+   style: form
+   schema:
+     type: string
+      enum:
+        - none
+        - topLeft
+        - topCenter
+        - topRight
+        - middleLeft
+        - middleRight
+        - bottomLeft
+        - bottomCenter
+        - bottomRight
+      default: none
+----
+^|B |The absence of the parameter `scale-bar` or the value `none` SHALL be interpreted as "no scale bar in the map". Other values SHALL be interpreted as the position where the scale bar should appear
+|===

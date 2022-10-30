@@ -1,0 +1,27 @@
+[[req_decorations_compass-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/decorations/compass-definition*
+^|A |The map operation SHALL support an optional parameter `compass` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+[source,YAML]
+----
+  name: compass
+   in: query
+   description: Add a compass into the map
+   style: form
+   schema:
+     type: string
+      enum:
+        - none
+        - topLeft
+        - topCenter
+        - topRight
+        - middleLeft
+        - middleRight
+        - bottomLeft
+        - bottomCenter
+        - bottomRight
+      default: none
+----
+^|B |The absence of the parameter `compass` or the value `none` SHALL be interpreted as "no compass in the map". Other values SHALL be interpreted as the position where the compass should appear
+|===
