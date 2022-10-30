@@ -127,7 +127,7 @@ NOTE: `x-OGC-limits.maps.maxWidth`, `x-OGC-limits.maps.maxHeight` and `x-OGC-lim
 The OGC WMS and WMTS share the concept of a map and the capability to create and distribute maps at a limited resolution and size.
 In WMS, the number of rows and columns can be selected by the user within limits and in WMTS the number of rows and columns of the response is predefined in the tile matrix set.
 
-The concept of a maps used here is more abstract than the one used in WMS. A maps is a portrayal of data resulting from applying a style (usually in PNG or JPEG format). The way the styling rules in a style are applied to the data to create the portrayal is our of scope of this standard (see the OGC API styles). A map can be delivered as a single resource or as an arbitrary extent. In addition a map can also be delivered as tiles by combining this OGC API with some requirements classes of the OGC API Tiles. The relationship between the Maps and Tiles capabilities of OGC API - Maps and OGC API - Tiles was illustrated by the OGC Testbed-15 initiative as shown in <<img_CoreAndExtension>>.
+The concept of a maps used here is more abstract than the one used in WMS. A maps is a portrayal of data resulting from applying a style (usually image formats such as PNG or JPEG format or in presentation formats such as SVG). The way the styling rules in a style are applied to the data to create the portrayal is our of scope of this standard (see the OGC API styles for details). A map can be delivered as a single resource or as an arbitrary extent. In addition a map can also be delivered as tiles by combining this OGC API with some requirements classes of the OGC API Tiles. The relationship between the Maps and Tiles capabilities of OGC API - Maps and OGC API - Tiles was illustrated by the OGC Testbed-15 initiative as shown in <<img_CoreAndExtension>>.
 
 This standard can be referenced by other standards providing resources that that can be offered as maps. For example:
 
@@ -138,6 +138,21 @@ This standard can be referenced by other standards providing resources that that
 This document is the first part of a series of _OGC API - Maps_ "parts" that use the core and extensions model.
 It is foreseen that future parts will specify other extensions, such as how to get information of a point in a map.
 Other standards or extensions of standards may also provide mechanisms (e.g., additional query parameters) to deal with additional dimensions such as elevation, or more advanced temporal capabilities than what is defined in this standard's _datetime_ conformance class.
+
+==== No equivalent of GetFeatureInfo as part of this document
+The GetFeatureInfo operation in WMS gives the capability to clients to implement some simple level of user interaction to the map. In essence the user will focus on a point in the map (e.g. by clicking on it) and the client will request the server some textual information related to the elements represented in that point of the map (a functionality sometimes called "query by location"). If the elements represented in the map are simple features, the result should be related to their properties (attributes) . If the map represents a coverage, the result should report the value of the coverage in that position (eventually, if the coverage is multidimensional, it could be a time series graphic or a vertical profile). The format of the actual response was left at the discretion of the server.
+
+GetFeatureInfo was proposed more that 20 years ago. At that time, the web was only 11 years old, most HTML pages were static and JavaScript was a rudimentary programing language capable to control user entries in an html form and not much more. In that environment GetFeatureInfo provided a easy to implement solutions for the first step to dynamic maps. The second common expected functionality: querying or filtering by attributes was never introduced in WMS.
+
+The new OGC APIs emerges in a completely different context were most web content is dynamic and JavaScript is now a powerful programing language for the web. Most direct implementations of GetFeatureInfo result in an imperfect and old fashion presentations  and users demand much more that query by location. In addition, the integration of the different API modules and building blocks in the OGC API is provided by default. A map is connected to a collection that is most probably also offered as features with the OGC API - features or as coverage with the OGC API - coverages. Furthermore, the OGC API EDR also provides a point query similar to GetFeatureInfo as well as much more advanced queries by polygons, routes and corridors.
+
+In this new situation, implementers of map clients are encouraged to use OGC APIs beyond OGC API - maps to provide a functionality similar to GetFeatureInfo. Instead of building a request to a map point in map coordinates (I, J), implementers should use "small" bounding boxes in CRS coordinates (limited to one or a few pixels in the current map; a size of the box called 'd' in the next examples). For example:
+
+  * In OGC API Features, map coordinates should be transformed to long/lat WGS84 in the client side and implement a HTTP GET request to /collections/{collectionId}/items?bbox=lon-d,lat-d,lon+d,lat+d
+  * In OGC API Coverage, map coordinates should be transformed to native coordiantes and use /collections/{collectionId}/coverage?bbox=x-d,y-d,x+d,y+d or the equivalment "subset" query.
+  * In OGC API EDR, map coordinates should be transformed to a CRS coordinates and use /collections/{collectionId}/position?coords=POINT(x y) or a radius query /collections/{collectionId}/radius?coords=POINT(x y)&within=20&within-units=km
+
+NOTE: Even if this document does not provide a direct GetFeatureInfo equivalent, there is an strong tradition of GetFeatureInfo implementation that suggest a possible OGC API - Maps future "part" that can reintroduce a GetFeatureInfo equivalent if implementers still demands it.
 
 === Using this standard independently
 
