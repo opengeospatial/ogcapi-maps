@@ -96,9 +96,9 @@ include::clause_6_overview.adoc[]
 
 include::clause_7_map_core.adoc[]
 
-include::clause_7a_map_background.adoc[]
+include::clause_7a_map_paramsBackground.adoc[]
 
-include::clause_7b_map_decorations.adoc[]
+include::clause_7b_map_paramsCartographicLayout.adoc[]
 
 include::clause_8_map_tilesetsList.adoc[]
 
