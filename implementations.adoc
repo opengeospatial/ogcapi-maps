@@ -8,7 +8,7 @@
 |===
 |Implementation | Type | Contact
 
-| https://maps.ecere.com/ogcapi/[GNOSIS Map Server]
+| https://maps.gnosis.earth/ogcapi/[GNOSIS Map Server]
 | OGC API - Maps
 | https://github.com/jerstlouis[Jerome St Louis]
 
