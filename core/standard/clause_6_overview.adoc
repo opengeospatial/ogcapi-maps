@@ -227,8 +227,8 @@ Again, be aware that these paths are not required by this Standard.
 |Collections^5^{set:cellbgcolor:#FFFFFF}                   |`{datasetRoot}/collections`
 |Collection^5^                                             |`{datasetRoot}/collections/{collectionId}`
 |Collection maps in the default style{set:cellbgcolor:#FFFFFF}          |`{datasetRoot}/collections/{collectionId}/map`
-|Colletion maps^2^                               |`{datasetRoot}/collections/{collectionId}/styles/{styleId}/map`
-|Colletion map tiles^3^                               |`{datasetRoot}/collections/{collectionId}/map/tiles/{tileMatrixSetId}/...`
+|Collection maps^2^                               |`{datasetRoot}/collections/{collectionId}/styles/{styleId}/map`
+|Collection map tiles^3^                               |`{datasetRoot}/collections/{collectionId}/map/tiles/{tileMatrixSetId}/...`
 2+|^1^ From the whole dataset or one or more geospatial resources or collections
 
 ^2^ Specified in the _OGC API - Styles_ standard
