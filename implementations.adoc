@@ -8,9 +8,17 @@
 |===
 |Implementation | Type | Contact
 
-| TBA
+| https://maps.ecere.com/ogcapi/[GNOSIS Map Server]
 | OGC API - Maps
-| TBA
+| https://github.com/jerstlouis[Jerome St Louis]
+
+| https://www.cubewerx.com/[CubeServ]
+| OGC API - Maps
+| https://github.com/pomakis[Keith Pomakis]
+
+| https://docs.geoserver.org/latest/en/user/community/ogc-api/maps/index.html[GeoServer]
+| OGC API - Maps
+| https://github.com/aaime[Andrea Aime]
 
 | TBA
 | TBA
@@ -25,6 +33,22 @@
 [cols=",,",width="75%",options="header",align="center"]
 |===
 |Implementation | Type | Contact
+
+| https://ecere.ca/gnosis[GNOSIS SDK / Cartographer]
+| OGC API - Tiles
+| https://github.com/jerstlouis[Jerome St Louis]
+
+| https://gdal.org[GDAL/OGR] (https://gdal.org/drivers/raster/ogcapi.html[OPC API driver])
+| OGC API - Features/Coverages/Maps/Tiles
+| https://github.com/osgeo/gdal[osgeo/gdal]
+
+| https://github.com/bradh/opensphere-plugin-ogcapi[Plugin] for https://github.com/ngageoint/opensphere[OpenSphere]
+| OGC API - Maps
+| https://github.com/bradh[Brad Hards]
+
+| https://www.miramon.cat/Index_usa.htm[MiraMon Client]
+| OGC API - Maps
+| https://github.com/joanma747[Joan Masó]
 
 | TBA
 | TBA
