@@ -35,11 +35,11 @@
 |Implementation | Type | Contact
 
 | https://ecere.ca/gnosis[GNOSIS SDK / Cartographer]
-| OGC API - Tiles
+| OGC API - Maps
 | https://github.com/jerstlouis[Jerome St Louis]
 
 | https://gdal.org[GDAL/OGR] (https://gdal.org/drivers/raster/ogcapi.html[OPC API driver])
-| OGC API - Features/Coverages/Maps/Tiles
+| OGC API - Coverages/Maps/Tiles
 | https://github.com/osgeo/gdal[osgeo/gdal]
 
 | https://github.com/bradh/opensphere-plugin-ogcapi[Plugin] for https://github.com/ngageoint/opensphere[OpenSphere]
