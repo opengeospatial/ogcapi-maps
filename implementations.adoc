@@ -38,7 +38,7 @@
 | OGC API - Maps
 | https://github.com/jerstlouis[Jerome St Louis]
 
-| https://gdal.org[GDAL/OGR] (https://gdal.org/drivers/raster/ogcapi.html[OPC API driver])
+| https://gdal.org[GDAL/OGR] (https://gdal.org/drivers/raster/ogcapi.html[OGC API driver])
 | OGC API - Coverages/Maps/Tiles
 | https://github.com/osgeo/gdal[osgeo/gdal]
 
