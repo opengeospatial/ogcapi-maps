@@ -22,7 +22,7 @@ include::requirements/background/REQ_transparent-definition.adoc[]
 
 NOTE: If the client wants to force an opaque color, apart from defining the appropriate background color it should define the alpha value to `FF` or ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency, it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values and colors in the map.
 
-NOTE: The `opaque` and `cascaded` parameters present in the WMS have been deprecated and are not specified by this API.
+NOTE: The `opaque` attribute of layer element in the GetCapabilities response in WMS has been deprecated and is not specified by this API.
 
 ==== Response
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
