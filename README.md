@@ -100,18 +100,11 @@ The OGC API - Maps and [OGC API - Tiles](https://github.com/opengeospatial/ogcap
 
 ## Examples
 
-An example OpenAPI definition, that describes hypothetical WebAPI conformat to this standard is available at https://app.swaggerhub.com/apis/UAB-CREAF/ogc-api-maps-opf-xmp-more-1-collection/1.0.0
-A resolved (almost without dependencies with other files) YAML file, synchronized with the previous working document, is available in this github repository at: https://github.com/opengeospatial/ogcapi-maps/tree/master/openapi/swaggerhub/maps.yaml
-
-Another example OpenAPI definition, that describes a service that can serve only map (raster) tiles of one or more collections, is available at https://app.swaggerhub.com/apis/UAB-CREAF/ogc-api-map-tiles-opf-xmp-mt-more-1-collection/1.0.0
-
-Several more examples are in the [openapi folder](openapi). The files are structured such that they can be combined together.
-
-Previous examples, some no longer accessible, are at [previous_examples.md](previous_examples.md).
+OpenAPI building blocks, as well as a complete example OpenAPI definition of a Web API implementing this standard is [available here](https://github.com/opengeospatial/ogcapi-maps/tree/master/openapi). The README in that directory contains more information on how these building blocks can be assembled, and how an API description document can be bundled using `swagger-cli`. The API definition can also be visualized [here with SwaggerUI](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/openapi/ogcapi-maps-1.bundled.json).
 
 ## Communication
 
-Join the WMS mailing list
+Join the [WMS mailing list](https://lists.ogc.org/mailman/private/ogcapi-maps.swg/).
 
 Most work on the specification takes place in [GitHub issues](https://github.com/opengeospatial/ogcapi-maps/issues),
 so browse there to get a good idea of what is happening, as well as past decisions.
@@ -125,4 +118,4 @@ The WMS Standards Working Group (SWG) is the group at OGC that is responsible fo
 * [Open issues](https://github.com/opengeospatial/ogcapi-maps/issues)
 * [Copy of License Language](https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/LICENSE)
 
-Pull Requests from contributors are welcomed. However, please note that by sending a Pull Request or Commit to this GitHub repository, you are agreeing to the terms in the Observer Agreement https://portal.ogc.org/files/?artifact_id=92169
+Pull Requests from contributors are welcomed. However, please note that by sending a Pull Request or Commit to this GitHub repository, you are agreeing to the terms in the [Observer Agreement](https://portal.ogc.org/files/?artifact_id=92169).
