@@ -2,87 +2,125 @@
 
 This GitHub repository contains [OGC](https://www.ogc.org/)'s multi-part standard for querying and retrieving maps on the web, "OGC API - Maps". The draft specification is available in [HTML](http://docs.ogc.org/DRAFTS/20-058.html) and [PDF](http://docs.ogc.org/DRAFTS/20-058.pdf).
 
-A [Map](https://en.wikipedia.org/wiki/Map) provides a visual representation of relationships between things within a defined space. OGC API - Maps defines a standardized way to request information about a map, query a map's contents, and obtain an image of a map to serve multiple purposes (e.g. displaying maps in web pages, mapping software, etc.). OGC API - Maps also makes it easy to change parameters of the map at the time of request (e.g. size, coordinate reference system used).
+A [Map](https://en.wikipedia.org/wiki/Map) provides a visual representation of relationships between things within a defined space. OGC API - Maps defines a standardized way to request a map to serve multiple purposes (e.g. displaying maps in web pages, mapping software, etc.). OGC API - Maps defines number of request parameters to control e.g., the dimensions, background, portions of the dataset to be included in the map, coordinate reference system used.
 
 OGC API - Maps is part of the suite of [OGC API standards](https://ogcapi.ogc.org/) that define modular API building blocks to enable access and use of location (i.e. geospatial) information in a consistent way. Information about other OGC APIs can be found [online](https://ogcapi.ogc.org/).
 
 ## Overview
 
-*IMPORTANT NOTE: The description in this README.md can be older than the one in the [standard](core/standard) draft. In case of discrepancy the standard draft takes precedence.*
+*IMPORTANT NOTE: The description in this README.md can be older than the one in the [standard](core/standard) draft. In case of discrepancy, the standard draft takes precedence.*
 
-*For later - Need to determine how to describe conformance and collections work in the context of OGC API - Maps. Possible text for the collections part is: Maps typically contain multiple types of information (e.g. buildings, roads, lakes, etc.), commonly known as "layers". In OGC API - Maps, "{collectionId}" or "coverage" is used to identify the individual layers a map contains.*
+OGC API - Maps specifies building blocks for Web APIs providing maps representing geospatial data.
 
-
-OGC API - Maps is a standard API that provides maps representing geospatial data.
-
-```
-GET /.../.../map
-```
-Requests the default representation of the map. Additional options can be invoked to refine the information that is returned.
+**Get a map**
 
 ```
-GET /.../.../styles/{styleId}/map/
+GET .../map
 ```
-Requests the map to be returned in a specific style. This allows you to define the appearance of the map to suit your needs.
+Requests the default representation of the map. Additional parameters can be specified to offer more control on the map being returned.
+
+**Specify dimensions**
 
 ```
-GET /.../.../styles/{styleId}/map?crs=CRS84
-```
-Maps use [Coordinate Reference Systems](https://en.wikipedia.org/wiki/Spatial_reference_system) (CRS) to define their position within a space (e.g. the Earth's surface). OGC API - Maps allows maps to be requested in any available CRS. This example will return the map according to the [World Geodetic Survey](https://en.wikipedia.org/wiki/World_Geodetic_System) 1984 CRS.
-
-```
-GET /.../.../styles/{styleId}/map?crs=CRS84&bbox=160.6,-55.95,-170,-25.89
-```
-Maps can cover large areas. The Bounding Box (bbox) option allows you to specify the portion of the map you wish to obtain. bbox is defined using the CRS specified in the request.
-
-```
-GET /.../.../styles/{styleId}/map?crs=CRS84&bbox=160.6,-55.95,-170,-25.89&width=600&height=400
+GET .../map?width=600&height=400
 ```
 Width and height allow you to define the resolution of the returned map.
 
-## Standards
+**Spatial subsetting**
 
-After a while getting familiar and playing with the OpenAPI definition files (explained just below in the "Examples section"), we have finally started to write the standard. We have decided on an aggressive path towards a modular specification with a simple core and multiple extensions. The extensions are yet to be determined.
+```
+GET .../map?bbox-crs=[OGC:CRS84]&bbox=160.6,-55.95,-170,-25.89
+```
+Geospatial datasets can cover large areas. The Bounding Box (bbox) option allows you to specify a portion of the data for which you wish to retrieve a map. `bbox` is defined using the `bbox-crs` specified in the request (defaulting to CRS84 if not specified).
 
-The standard is written using asciidoc using many files that might be difficult to trace. Please see the standard document as a single HTML page that is EASY TO READ here: http://docs.opengeospatial.org/DRAFTS/20-058.html
+```
+GET .../map?subset-crs=[OGC:CRS84]&subset=Lat(-55.95:-25.89),Lon(160.6:-170)
+```
+As an alternative to `bbox`, the `subset` query parameter can be used, with a syntax explicitly stating the axis for each bounding coordinate pairs.
 
-We received several recommendations to separate the specifications into a core and extensions. In March 2020, we decided to restructure the GitHub repository to separate the core and the extensions into different documents that might be elaborated at different speeds.
+**Temporal subsetting**
 
-At this moment in time we are working on doing this separation by moving files around.
+```
+GET .../map?datetime=2020-08-20T14:12:05Z
+```
+Maps can be obtained for specific date and time.
 
-### OGC API - Maps - Part 1: Core
-The definition of OGC API - Maps - Part 1: Core is the immediate next step. The Standards Working Group (SWG) [agreed](https://github.com/opengeospatial/ogcapi-maps/issues/32) on the structure shown below.
+```
+GET .../map?subset=datetime("2020-08-20T14:12:05Z")
+```
+Date and time can also be specified using the subset query parameter.
 
-1. Map resource: It specifies a map resource, which is a resource that contains information on how to formulate a request to a map. This document includes the CRSs and styles supported and other metadata (including attribution). It also specifies how to apply a style to a map resources to get a styled map.
+**Styled maps**
 
-2. DatasetMap - OGC API Common - Part 1 (dataset, /map resource at the root): Defines how to get a map resource from the dataset (or datasets) represented by the services. it will tell the path to get a map resources.
+```
+GET .../styles/{styleId}/map
+```
+(In combination with _OGC API - Styles_) Requests the map to be returned in a specific style. This allows you to define the appearance of the map to suit your needs.
 
-3. GeoDataResourceMap - OGC API Common - Part 2 / OGC Feature - Part 1 (collection connection, /maps resource after {collectionID}): It will define how to specify the a link to a map resource containing a representation of this geospatial data resource (path).
+**Alternate map CRS**
 
-NOTE: GeoDataResourceSelection - together with 3, geodata= query parameters: This is identical to the GeoDataResourceSelection conformance class of OGC API - Common and if done adequately, the conformance class is shared with OGC API - Tiles (or the other way around) and is not repeated here.
+```
+GET .../map?crs=[EPSG:3395]
+```
+Maps use [Coordinate Reference Systems](https://en.wikipedia.org/wiki/Spatial_reference_system) (CRS) to define their position within a space (e.g., the Earth's surface). OGC API - Maps allows maps to be requested in any CRS supported by the server, and defaults to the native/storage CRS (not necessarily CRS84). This example will return the map according to a [World Mercator Projection](https://en.wikipedia.org/wiki/Mercator_projection) CRS.
 
-### Extensions
+**Putting it all together**
 
-1. BBoxSubset: It specifies how to include a query parameter to subset a styled map using a BBOX, WIDTH, HEIGHT etc as a query parameters. This is a partition that could be input for OGC API Common. Some considerations include OGC API - Features BBOX, representation of Time instances, and Clip versus Intersect.
+Multiple parameters can be combined together for a single request, e.g.:
 
+```
+GET .../styles/{styleId}/map?
+   width=600&height=400&
+   bbox-crs=[OGC:CRS84]&bbox=160.6,-55.95,-170,-25.89&
+   datetime=2020-08-20T14:12:05Z&
+   crs=[EPSG:3395]
+   
+GET .../styles/{styleId}/map?
+   crs=[EPSG:3395]&
+   width=600&height=400&
+   subset-crs=[OGC:CRS84]&
+   subset=Lat(-55.95:-25.89),Lon(160.6:-170),datetime("2020-08-20T14:12:05Z")
+```
 
+## Conformance Classes
 
-We foresee the following extensions (some of them may eventually become OGC standards and others might not).
-None of them has been started yet.
+### Resources Conformance Classes
 
-* StyleIds (Pending. In collaboration with the styles API. The only one necessary for the delta updates use cases)
-* Map+resolution
-* Info
-* Collections (more than one)
-* Collections-info
-* Maps with styles on the fly (involving collections)
+1. [Map "Core"](http://docs.ogc.org/DRAFTS/20-058.html#rc_maps_core) specifies a `.../map` sub-resource allowing to retrieve a map from some origin providing geospatial data (see _Origin Conformance Classes_).
 
-## Using the standard
+2. [Map "TileSets"](http://docs.ogc.org/DRAFTS/20-058.html#rc_maps_tileSets-list) specifies how to retrieve map tilesets (e.g., `.../map/tiles/{tileMatrixSetId}`) metadata and map tiles (e.g., `.../map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}`) based on _OGC API - Tiles_ building blocks.
 
-Those who want to just see the endpoints and responses can explore generic
-OpenAPI definitions in this folder (please paste one of them in the Swagger Editor):
+### Parameters Conformance Classes
 
-* [ogcapi-maps/openapi/](https://github.com/opengeospatial/ogcapi-maps/tree/master/openapi)
+3. [Map "Scaling"](http://docs.ogc.org/DRAFTS/20-058.html#rc_scaling) (`width` and `height`) allows to specify a map resolution
+4. [Map "Spatial subsetting"](http://docs.ogc.org/DRAFTS/20-058.html#rs_spatial-subsetting) (`bbox`, `bbox-crs`-, `subset` with `X`,`Y`,`E`,`N`,`Lat`,`Lon` axes) and `subset-crs`) allows to retrieve a portion of a map
+5. [Map "Background"](http://docs.ogc.org/DRAFTS/20-058.html#rc_background) (`bgcolor` and `transparent`) allows to toggle background transparency and select a background color
+6. [Map "Collections Selection"](http://docs.ogc.org/DRAFTS/20-058.html#rc_collections-selection) (`collections=`) allows to select geospatial data resources to include in the map
+7. [Map "Date & Time"](http://docs.ogc.org/DRAFTS/20-058.html#rc_datetime) (`datetime`, `subset` with `datetime` axis) allows to retrieve a map for a specific date and time
+8. [Map "CRS"](http://docs.ogc.org/DRAFTS/20-058.html#rc_crs) (`crs`) allows to select an output CRS other than the default native/storage CRS
+9. [Map "Cartographic Layout"](http://docs.ogc.org/DRAFTS/20-058.html#rc_cartographic-layout) allows enable and customize cartographic layout elements such as the legend, scale, compass
+
+### Origin Conformance Classes
+
+10. [Dataset Maps](http://docs.ogc.org/DRAFTS/20-058.html#rc_datasetMaps) (`.../map`) allows to retrieve a map for an OGC API dataset as a whole, in combination with OGC API Common - Part 1: Core
+11. [Collection Maps](http://docs.ogc.org/DRAFTS/20-058.html#rc_geoDataResourceMaps) (`.../collections/{collectionId}/map`) allows to retrieve a map for a specific OGC API collection, in combination with OGC API Common - Part 2: Geospatial Data.
+12. ["Styled Map"](http://docs.ogc.org/DRAFTS/20-058.html#rc_styledMaps) (`.../styles/{styleId}/map`) allows to retrieve a map for a particular style, in combination with OGC API - Styles
+
+### Representations Conformance Classes
+
+13. ["OpenAPI definition"](http://docs.ogc.org/DRAFTS/20-058.html#rc_oas30_definition) specifies additional requirements pertaining to operationIDs to identify Maps building blocks resources
+14. ["PNG"](http://docs.ogc.org/DRAFTS/20-058.html#rc_png) specifies the ability to return maps in the PNG format
+15. ["JPEG"](http://docs.ogc.org/DRAFTS/20-058.html#rc_jpeg) specifies the ability to return maps in the JPEG format
+16. ["TIFF"](http://docs.ogc.org/DRAFTS/20-058.html#rc_tiff) specifies the ability to return maps in the TIFF format (ideally, GeoTIFF)
+17. ["HTML"](http://docs.ogc.org/DRAFTS/20-058.html#rc_html) specifies the ability to return maps as an HTML document (which might provide an interactive map)
+
+## OpenAPI Definition
+
+OpenAPI building blocks, as well as a complete example OpenAPI definition of a Web API implementing this standard is [available here](https://github.com/opengeospatial/ogcapi-maps/tree/master/openapi). The README in that directory contains more information on how these building blocks can be assembled, and how an API description document can be bundled using `swagger-cli`.
+
+The API definition can also be visualized [here with SwaggerUI](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/openapi/ogcapi-maps-1.bundled.json), including a working implementation which can be experimented with to try out the different end-points and responses.
+
+## Implementations
 
 Several implementations of the draft standard exist:
 
@@ -94,13 +132,15 @@ OGC API - Maps follows on the footsteps of the [OGC](http://opengeospatial.org)'
 
 This is the [CURRENT](http://docs.opengeospatial.org/DRAFTS/20-058.html) working version of this initiative. An [Old](http://docs.opengeospatial.org/per/19-069.html) version of the specification was a deliverable in [Testbed-15](https://www.ogc.org/projects/initiatives/testbed15).
 
-IMPORTANT: Some examples of OpenAPI documents that are used as inspiration and test of this work are at: https://app.swaggerhub.com/apis/UAB-CREAF
+The OGC API - Maps, [OGC API - Styles](https://github.com/opengeospatial/ogcapi-styles), and [OGC API - Tiles](https://github.com/opengeospatial/ogcapi-tiles) specifications are closely related and should be considered complementary.
 
-The OGC API - Maps and [OGC API - Tiles](https://github.com/opengeospatial/ogcapi-tiles) specifications are closely related and should be considered complementary.
+### Extensions
 
-## Examples
+Extensions may be defined in the future to provide additional capabilities:
 
-OpenAPI building blocks, as well as a complete example OpenAPI definition of a Web API implementing this standard is [available here](https://github.com/opengeospatial/ogcapi-maps/tree/master/openapi). The README in that directory contains more information on how these building blocks can be assembled, and how an API description document can be bundled using `swagger-cli`. The API definition can also be visualized [here with SwaggerUI](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/openapi/ogcapi-maps-1.bundled.json).
+- [#97 **Cartographic Layout**](https://github.com/opengeospatial/ogcapi-maps/issues/97) Due to the complexity and flexibility of defining cartographic layout elements, it might be justified to move those capabilities in a separate extension Part 2 document in order to complete it without delaying _Part 1: Core_.
+- [#42 **Custom Styles**](https://github.com/opengeospatial/ogcapi-maps/issues/42) Defining how a client can provide a style with which to render a map (other than by publishing a style through _OGC API - Styles_)
+- [#81 **GetFeatureInfo**](https://github.com/opengeospatial/ogcapi-maps/issues/81) _OGC API - Maps - Part 1: Core_ does not include an equivalent of WMS _GetFeatureInfo_, however the specification specifies how a majority of the use cases for it can be handled by also implementing API building blocks from _OGC API - Features_ or _OGC API - Coverages_ alongside the Maps implementation. The specification also describes how dynamic maps might be better handled by using OGC API - Tiles and vector/coverage tiles for use cases that previously used _GetFeatureInfo_ in WMS. However, an extension for _GetFeatureInfo_ might still be standardized if the need for it is still there.
 
 ## Communication
 
