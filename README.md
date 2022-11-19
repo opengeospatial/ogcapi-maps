@@ -8,9 +8,9 @@ OGC API - Maps is part of the suite of [OGC API standards](https://ogcapi.ogc.or
 
 ## Overview
 
-*IMPORTANT NOTE: The description in this README.md can be older than the one in the [standard](core/standard) draft. In case of discrepancy, the standard draft takes precedence.*
+*IMPORTANT NOTE: The description in this README.md can be older than the one in the [standard](core/standard) draft. In case of discrepancy, the standard draft takes precedence (last update 2022-11-17).*
 
-OGC API - Maps specifies building blocks for Web APIs providing maps representing geospatial data.
+OGC API - Maps specifies building blocks for Web APIs providing maps representing geospatial data. These building blocks can be combined with several origins such as the ones suggested in the Origin Conformance Classes. To build a full URL substitute the "..." for the origin URL (e.g., `.../map` becomes `{datasetRoot}/collections/{collectionId}/map`).
 
 **Get a map**
 
@@ -18,6 +18,7 @@ OGC API - Maps specifies building blocks for Web APIs providing maps representin
 GET .../map
 ```
 Requests the default representation of the map. Additional parameters can be specified to offer more control on the map being returned.
+
 
 **Specify dimensions**
 
@@ -102,9 +103,9 @@ GET .../styles/{styleId}/map?
 
 ### Origin Conformance Classes
 
-10. [Dataset Maps](http://docs.ogc.org/DRAFTS/20-058.html#rc_datasetMaps) (`.../map`) allows to retrieve a map for an OGC API dataset as a whole, in combination with OGC API Common - Part 1: Core
-11. [Collection Maps](http://docs.ogc.org/DRAFTS/20-058.html#rc_geoDataResourceMaps) (`.../collections/{collectionId}/map`) allows to retrieve a map for a specific OGC API collection, in combination with OGC API Common - Part 2: Geospatial Data.
-12. ["Styled Map"](http://docs.ogc.org/DRAFTS/20-058.html#rc_styledMaps) (`.../styles/{styleId}/map`) allows to retrieve a map for a particular style, in combination with OGC API - Styles
+10. [Dataset Maps](http://docs.ogc.org/DRAFTS/20-058.html#rc_datasetMaps) (`{datasetRoot}/map`) allows to retrieve a map for an OGC API dataset as a whole, in combination with OGC API Common - Part 1: Core
+11. [Collection Maps](http://docs.ogc.org/DRAFTS/20-058.html#rc_geoDataResourceMaps) (`{datasetRoot}/collections/{collectionId}/map`) allows to retrieve a map for a specific OGC API collection, in combination with OGC API Common - Part 2: Geospatial Data.
+12. ["Styled Map"](http://docs.ogc.org/DRAFTS/20-058.html#rc_styledMaps) (`({datasetRoot}|{datasetRoot}/collections/{collectionId})/styles/{styleId}/map`) allows to retrieve a map for a particular style, in combination with OGC API - Styles
 
 ### Representations Conformance Classes
 
