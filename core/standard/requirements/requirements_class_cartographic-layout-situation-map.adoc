@@ -1,0 +1,8 @@
+[[rc_maps-cartographic-layout-situation-map]]
+[cols="1,4",width="90%"]
+|===
+2+|*Requirements Class Cartographic Layout Situation Map*
+2+|http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-situation-map
+|Target type |Web API
+|Dependency |http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+|===

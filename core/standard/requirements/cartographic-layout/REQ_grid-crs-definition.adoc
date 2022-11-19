@@ -1,0 +1,21 @@
+[[req_decorations_crs-grid-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/cartographic-layout/grid-crs-definition*
+^|A |The map operation SHALL support an optional parameter `grid-crss` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+[source,YAML]
+----
+  name: grid-crss
+  in: query
+  required: false
+  description: Add one or more grid crss or graticules into the map
+  style: form
+  explode: false
+  schema:
+    type: array
+    items:
+      type: string
+----
+^|B |Each name in the comma separated list in the value of the `grid-crss` SHALL be interpreted as a CRS name. For each CRS in the list, if the CRS coordinates are lat/long the server shall interpret the request for a graticule and otherwise the server shall interpret the request of a CRS grid.
+^|C |The absence of the parameter `grid-crss` SHALL be interpreted as "neither CRS grid nor graticule in the map".
+|===

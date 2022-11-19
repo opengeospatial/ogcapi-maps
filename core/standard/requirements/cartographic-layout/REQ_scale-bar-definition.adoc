@@ -1,12 +1,13 @@
 [[req_decorations_scale-bar-definition]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/decorations/scale-bar-definition*
+^|*Requirement {counter:req-id}* |*/req/cartographic-layout/scale-bar-definition*
 ^|A |The map operation SHALL support an optional parameter `scale-bar` with the characteristics defined in the OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----
   name: scale-bar
    in: query
+   required: false
    description: Add a scale bar into the map
    style: form
    schema:

@@ -1,12 +1,13 @@
 [[req_decorations_legend-definition]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/decorations/legend-definition*
-^|A |The map operation SHALL support an optional parameter `legend` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+^|*Requirement {counter:req-id}* |*/req/cartographic-layouts/legend-definition*
+^|A |The map operation SHALL support an optional parameter `map-legend` with the characteristics defined in the OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----
-  name: legend
+  name: map-legend
    in: query
+   required: false
    description: Add a legend into the map
    style: form
    schema:
@@ -23,5 +24,5 @@
         - bottomRight
       default: none
 ----
-^|B |The absence of the parameter `legend` or the value `none` SHALL be interpreted as "no legend in the map". Other values SHALL be interpreted as the position where the legend should appear
+^|B |The absence of the parameter `map-legend` or the value `none` SHALL be interpreted as "no legend in the map". Other values SHALL be interpreted as the position where the legend should appear
 |===

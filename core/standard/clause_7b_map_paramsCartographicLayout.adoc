@@ -1,51 +1,76 @@
 [[rc_cartographic-layout]]
-== Requirement Class "Map Cartographic Layout"
+== Requirement Classes for a "Map Cartographic Layout"
 
 === Overview
 
-[[background-overview]]
+This section describes a series of small requirement classes dealing with adding cartographic layout elements such as a title, a legend, a scale bar, a compass, a situation map, an attribution text or logo, and CRS grids and lat/long graticules to the map.
 
-include::requirements/requirements_class_cartographic-layout.adoc[]
-
-This requirement class describes how to add cartographic layout elements such as a title, a legend, a scale bar, a compass, a situation map, an attribution text or logo, a lat/long graticule, and a CRS grid to the map.
-
-Many of these cartographic layout elements can be better generated and controlled by the client that shows the map, in particular if a map is going to be presented overlaid with other maps these server rendered elements may interfere and collide, impeding the correct visualization. So server side cartographic layout is reserved to create maps that are going to be used as static illustrations (e.g. as images in web pages). If the map is going to be presented alone as an illustration, these cartographic layout elements could be make the map more informative and more "cartographic" (see for example https://reference.yourdictionary.com/resources/5-basic-parts-of-any-map.html). This requirements class has been designed in a way that gives complete freedom to the server for the style of this elements. In some cases, the server can even decide not to show them despite the client request.
+Many of these cartographic layout elements can be better directly generated and controlled by the client that shows the map, in particular if a map is going to be presented overlaid with other maps these server rendered elements may interfere and collide, impeding the correct visualization. So requesting layout elements to the API to force the server to render them (as described in this section) is reserved to some particular use cases such as to create maps that are going to be used as static illustrations (e.g. as images in web pages). If the map is going to be presented alone as an illustration, these cartographic layout elements could make the map more informative and more "cartographic" (see for example https://reference.yourdictionary.com/resources/5-basic-parts-of-any-map.html). These requirements classes have been designed in a way that gives complete freedom to the server for the style of this elements. In some cases, the server can even decide not to show them despite the client request. Future extensions to this conformance classes may reduce the freedom to the server.
 
 === Map operation
 
-The map core of this standard defines how to get a map. This requirements class specifies parameters to add some cartographic layout elements on top of it
+The map core of this standard defines how to get a map. Each requirements class in this section specifies a parameter to add a cartographic layout element on top of a map
 
 ==== Parameters for map cartographic layout elements
 
-The title, legend, scale-bar, compass, situation-map, attribution, graticule and crs-grid,  parameters indicate if and where the cartographic layout elements will be situated on top of the map.
+The title, legend, scale-bar, compass, situation-map, attribution, grid-crs, parameters indicate if and where the cartographic layout elements should be situated on top of the map.
+
+==== Parameter map-title
+
+include::requirements/requirements_class_cartographic-layout-title.adoc[]
 
 include::requirements/cartographic-layout/REQ_map-title-definition.adoc[]
 
 NOTE: The style and size of the text of the title is at complete discretion of the server
 
+==== Parameter map-legend
+
+include::requirements/requirements_class_cartographic-layout-legend.adoc[]
+
 include::requirements/cartographic-layout/REQ_legend-definition.adoc[]
 
+==== Parameter scale-bar
+
+include::requirements/requirements_class_cartographic-layout-scale-bar.adoc[]
+
 include::requirements/cartographic-layout/REQ_scale-bar-definition.adoc[]
+
+==== Parameter map-compass
+
+include::requirements/requirements_class_cartographic-layout-compass.adoc[]
 
 include::requirements/cartographic-layout/REQ_compass-definition.adoc[]
 
 NOTE: It is up to de server to decide how the compass can look like being some possibilities a full wind rose or a simple arrow to the north.
 
+==== Parameter situation-map
+
+include::requirements/requirements_class_cartographic-layout-situation-map.adoc[]
+
 include::requirements/cartographic-layout/REQ_situation-map-definition.adoc[]
+
+==== Parameter map-attribution
+
+include::requirements/requirements_class_cartographic-layout-attribution.adoc[]
 
 include::requirements/cartographic-layout/REQ_attribution-definition.adoc[]
 
-NOTE: The attribution may be represented as a text naming the responsible party of the data represented in the map or a logo of the responsible party organzation.
+NOTE: The attribution may be represented as a text naming the responsible party of the data represented in the map or a logo of the responsible party organization.
 
-include::requirements/cartographic-layout/REQ_graticule-definition.adoc[]
+==== Parameter map-grid-crs
 
-NOTE: A graticule is a network of lines on a map that delineate the geographic expressed as lines of equal latitude or longitude (a.k.a. meridians and parallels). A graticule added to a map in a lat/long CRS (such as CRS:84) will appear as a set of vertical and horizontal strait lines. In other CRSs, meridians a parallels may result in curbed lines.
+include::requirements/requirements_class_cartographic-layout-grid-crs.adoc[]
 
-include::requirements/cartographic-layout/REQ_crs-grid-definition.adoc[]
+include::requirements/cartographic-layout/REQ_grid-crs-definition.adoc[]
 
-NOTE: A CRS grid is a network of lines on a map that delineate the CRS coordinates expressed as lines of equal X or Y. A CRS grid added results in a set of vertical and horizontal strait lines.
+NOTE: A graticule is a network of lines on a map that delineate the geographic expressed as lines of equal latitude or longitude (a.k.a. meridians and parallels). A graticule can be added to a map by requesting a lat/long CRS (such as CRS:84). If the CRS of the map is the same as the one requested by this parameter, the grid will appear as a set of vertical and horizontal strait lines. In other CRSs, meridians a parallels may result in curbed lines.
 
-NOTE: It is possibly that graticules and CRS grids are presented in a different thickness and colors that contrast better with the map. It is also possible that a grid has more than one color or thickness to emphasize different densities of the grid. An alternative or complementary style could be to use margins and rulers showing coordinate numbers. All this variations are at the discretion of the server and cannot be controlled from the client.
+NOTE: A CRS grid is a network of lines on a map that delineate the CRS coordinates expressed as lines of equal X or Y. If the CRS of the map is the same as the one requested by this parameter, the results in a set of vertical and horizontal strait lines.
+
+NOTE: Commonly only one or two CRS values will be provided in this list (e.g. one graticule and another in the CRS of the projection). In some areas where there is two or more official CRS projections, three CRSs could be needed in the list. Adding more that three CRSs in the NOTE: A CRS grid is a network of lines on a map that delineate the CRS coordinates expressed as lines of equal X or Y. If the CRS of the map is the same as the one requested by this parameter, the results in a set of vertical and horizontal strait lines.
+list is expected to results in a very confusing presentation with too many lines.
+
+NOTE: It is possibly that graticules and CRS grids are presented in a different thickness and colors that contrast better with the map. It is also possible that a grid has more than one color or thickness to emphasize different densities of the grid. An alternative or complementary style could be the use of margins and rulers showing coordinate numbers. All these variations are at the discretion of the server and cannot be controlled from the client using this conformance class.
 
 ==== Response
-A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core). Some of this cartographic layout elements can be executed in different ways by the server. In some cases the server can decide that some elements are inappropriate or there is no space to add them. The standard does not impose any extra requirements on the response.
+A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core). Some of these cartographic layout elements can be interpreted and executed in different ways by the server. In some cases the server can decide that some elements are inappropriate or there is no space to add them. The standard does not impose any extra requirements on the response.

@@ -1,12 +1,13 @@
 [[req_decorations_situation-map-definition]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/decorations/situation-map-definition*
+^|*Requirement {counter:req-id}* |*/req/cartographic-layout/situation-map-definition*
 ^|A |The map operation SHALL support an optional parameter `situation-map` with the characteristics defined in the OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----
   name: situation-map
    in: query
+   required: false
    description: Add a situation-map into the map
    style: form
    schema:

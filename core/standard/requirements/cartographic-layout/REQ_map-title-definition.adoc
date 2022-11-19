@@ -1,13 +1,14 @@
 [[req_decorations_map-title-definition]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/decorations/map-title-definition*
+^|*Requirement {counter:req-id}* |*/req/cartographic-layout/map-title-definition*
 ^|A |The map operation SHALL support an optional parameter `map-title` with the characteristics defined in the OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----
   name: map-title
    in: query
-   description:  a title into the map
+   required: false
+   description: a title into the map
    style: form
    schema:
      type: string
