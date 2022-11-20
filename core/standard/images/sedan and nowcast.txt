@@ -1,0 +1,10 @@
+Nowcast source:
+https://nowcoast.noaa.gov/arcgis/rest/services/nowcoast/forecast_meteoceanhydro_sfc_ndfd_time/MapServer
+as seen in:
+https://www.arcgis.com/home/webmap/viewer.html?url=https%3A%2F%2Fnowcoast.noaa.gov%2Farcgis%2Frest%2Fservices%2Fnowcoast%2Fforecast_meteoceanhydro_sfc_ndfd_time%2FMapServer&source=sd
+
+Added this server:
+https://sedac.ciesin.columbia.edu/mapping/viewer/
+but from the layer search by asking for "popultation" selecting GPWv4 Population Density 2015
+
+20:27 20/11/2022
