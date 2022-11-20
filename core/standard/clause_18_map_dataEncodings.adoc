@@ -59,9 +59,9 @@ SVG is a commonly used format for representing vector objects in the web. It is 
 
 include::requirements/requirements_class_format_svg.adoc[]
 
-include::requirements/csvg/REQ_content.adoc[]
+include::requirements/format_svg/REQ_content.adoc[]
 
-include::recommendations/format_geojson/PER_overflow.adoc[]
+include::recommendations/format_svg/PER_overflow.adoc[]
 
 [[rc_html]]
 === Requirement Class "HTML"
