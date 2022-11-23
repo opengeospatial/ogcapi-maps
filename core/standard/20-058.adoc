@@ -28,7 +28,7 @@
 |Internal reference number of this OGC(R) document:    20-058
 |Version: 0.1.0
 |Category: OGC(R) Implementation Specification
-|Editor:   Joan Masó
+|Editor:   Joan Masó and Jérôme Jacovella-St-Louis
 |===
 
 [cols = "^", frame = "none"]
