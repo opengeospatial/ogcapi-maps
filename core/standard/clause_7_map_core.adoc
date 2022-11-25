@@ -33,7 +33,16 @@ This section defines the core resource of the OGC API - Maps standard: a map rep
 ==== Operation
 include::requirements/core/REQ_map-op.adoc[]
 
+==== Response
+include::requirements/core/REQ_map-response.adoc[]
+
+==== Recommendations
+
 include::recommendations/core/REC_map-op.adoc[]
+
+include::recommendations/core/REC_content-crs.adoc[]
+
+include::recommendations/core/REC_link-relation-type.adoc[]
 
 A map resource may be retrieved as a map subset or a tile subsets. Retrieving the map without subsetting or tiling has a limited use.
 
@@ -44,7 +53,6 @@ NOTE: HTTP content negotiation replaces the FORMAT= parameters in WMS. However, 
 === Declaration of conformance classes
 To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the conformance classes it implements and conforms to.
 
-==== Response
 The conformance page mainly consists of a list of links.
 
 include::requirements/core/REQ_conformance-success.adoc[]
