@@ -1,4 +1,4 @@
-[[req_crs_map-success]]
+[[req_datetime_map-success]]
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/crs/map-success*
