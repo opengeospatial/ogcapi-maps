@@ -1,7 +1,7 @@
 [[rc_maps-cartographic-layout-scale-bar]]
 [cols="1,4",width="90%"]
 |===
-2+|*Requirements Class Cartographic Layout Scale BAr*
+2+|*Requirements Class Cartographic Layout Scale Bar*
 2+|http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-scale-bar
 |Target type |Web API
 |Dependency |http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core

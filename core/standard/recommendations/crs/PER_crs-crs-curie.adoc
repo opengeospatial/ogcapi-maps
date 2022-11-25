@@ -1,0 +1,8 @@
+[[per_crs_crs-curie]]
+[width="90%",cols="2,6a"]
+|===
+^|*Permission {counter:per-id}* |*/per/crs/crs-curie*
+^|A |The implementation MAY support un-safe CURIE without square brackets.
+|===
+
+NOTE: This makes the notation compatible with WMS.

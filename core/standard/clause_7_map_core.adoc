@@ -39,7 +39,7 @@ A map resource may be retrieved as a map subset or a tile subsets. Retrieving th
 
 NOTE: The desired encoding is selected using HTTP content negotiation. In addition to the parameters specified by the core, other parameters should be added.
 
-NOTE: HTTP content negotiation replaces the FORMAT= parameters in WMS. However, for convenience, some implementations can implement a f= parameter for circumstances where content negotiation is not possible or available (e.g. testing the API in a web browser by using a URL embbed in a HTML IMG SRC tag)
+NOTE: HTTP content negotiation replaces the FORMAT= parameters in WMS. However, for convenience, some implementations can implement a f= parameter for circumstances where content negotiation is not possible or available (e.g. testing the API in a web browser by using a URL embed in a HTML IMG SRC tag)
 
 === Declaration of conformance classes
 To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the conformance classes it implements and conforms to.

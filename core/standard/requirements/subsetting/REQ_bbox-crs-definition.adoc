@@ -5,15 +5,18 @@
 ^|A |The map operation SHALL support a parameter `bbox-crs` with the characteristics defined in the OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----
-  crs:
+  bbox-crs:
     name: bbox-crs
     in: query
-    description: A URI of the coordinate reference system of the bbox and the map subset response. A list of all supported CRS values can be found under the collection metadata.
+    description: A coordinate reference system of the bbox and the map subset response. A list of all supported CRS values can be found under the collection metadata.
     required: false
     schema:
       type: string
     example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
 ----
-^|B |The CRS value SHALL be one of the values supported by the collection (or collections). If the list of supported CRS is not present, support for only http://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be assumed.
-^|C |If the `bbox` parameter is not indicated, the `bbox-crs` SHALL be ignored.
+^|B |The implementation SHALL support any of the CRSs listed in the collection (or collections) description. If the list of supported CRS is not present, only http://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be supported.
+^|C |The implementation SHALL support CRS expressed as URIs or as safe CURIEs.
+^|D |If the `bbox` parameter is not indicated, the `bbox-crs` SHALL be ignored.
 |===
+
+NOTE: A CURIE {authority}[-{objectType}]:{id} would map to the following OGC URI: http://www.opengis.net/def/{objectType}/{authority}/0/{id}. If -{objectType} is missing, the default object type is crs.

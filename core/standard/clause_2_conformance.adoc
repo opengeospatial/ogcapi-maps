@@ -174,7 +174,7 @@ This standard does not mandate a specific encoding or format for representing ma
 * <<rc_png,PNG>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png)
 * <<rc_jpeg,JPEG>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpeg)
 * <<rc_tiff,TIFF>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff)
-* <<rc_svg,TIFF>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/svg)
+* <<rc_svg,SVG>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/svg)
 * <<rc_html,HTML>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/html)
 
 All these conformance classes act as building blocks that should be implemented in combination with other more fundamental conformance classes that provide support for Web API discovery, conformity and Web API formal definition (e.g., OpenAPI). Possible alternatives for these fundamental conformance classes are _OGC API - Common Part 1: Core_, _OGC API - Features Part 1: Core_ or any other non-OGC classes that provide this functionality.

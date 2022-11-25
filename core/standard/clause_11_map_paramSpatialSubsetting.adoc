@@ -55,6 +55,10 @@ include::requirements/subsetting/REQ_subset-coordinates.adoc[]
 
 include::recommendations/subsetting/REC_subset-crs-axis-names.adoc[]
 
+==== CURIE permission
+
+include::recommendations/subsetting/PER_subset-crs-curie.adoc[]
+
 === Response
 
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core).

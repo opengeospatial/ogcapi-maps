@@ -24,6 +24,8 @@ See how you can find out the storage CRS for the collection and the dataset in <
 
 NOTE: The default CRS of the BBOX is CRS84 but the default CRS of the map is storage CRS
 
+include::recommendations/crs/PER_crs-crs-curie.adoc[]
+
 ==== Response
 
 include::requirements/crs/REQ_map-success.adoc[]
