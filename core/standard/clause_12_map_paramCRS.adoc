@@ -22,7 +22,7 @@ include::requirements/crs/REQ_crs-definition.adoc[]
 
 See how you can find out the storage CRS for the collection and the dataset in <<rc_geoDataResourceMaps>> and <<rc_datasetMaps>> respectively.
 
-NOTE: The default CRS of the BBOX is CRS84 but the default CRS of the map is storage CRS
+NOTE: The default CRS of the BBOX is http://www.opengis.net/def/crs/OGC/1.3/CRS84 but the default CRS of the map is storage CRS
 
 include::recommendations/crs/PER_crs-crs-curie.adoc[]
 

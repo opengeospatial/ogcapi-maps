@@ -108,6 +108,8 @@ include::clause_10_map_paramScaling.adoc[]
 
 include::clause_11_map_paramSpatialSubsetting.adoc[]
 
+include::clause_11b_map_paramSpatialCenterPoint.adoc[]
+
 include::clause_12_map_paramCRS.adoc[]
 
 include::clause_13_map_paramDateTime.adoc[]
