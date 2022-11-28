@@ -1,0 +1,26 @@
+[[req_scaling-mm-per-pixel-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/scaling/mm-per-pixel-definition*
+^|A |The map operation SHALL support a parameter `mm-per-pixel` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+[source,YAML]
+----
+  cellSize:
+    name: mm-per-pixel
+    in: query
+    description:
+      mm of a pixel of the viewport that presents the response (in millimeters).
+    required: false
+    style: form
+    schema:
+      type: number
+----
+^|B |`mm-per-pixel` SHALL be a positive integer number indicating the size the viewport pixels where the response will be presented in millimeters.
+^|C |if the parameter `mm-per-pixel` is not provided, the server SHALL assume that the cell size is 0.28 millimeters (90.71 dots per inch).
+|===
+
+NOTE: The definition of 0.28 as a default value is the same as used in Web Map Service WMS 1.3.0 OGC 06-042 and in the Symbology Encoding (SE) Implementation Specification 1.1.0 OGC 05-077r4 that was later adopted by WMTS 1.0 OGC 07-057r7 and 2D-TMS OGC 17-083r4. 0.28 mm was the actual pixel size of a common display from 2005. This value is still being used as reference, even if current display devices are built with much smaller pixel sizes.
+
+NOTE: Since the 1980s, the Microsoft Windows operating system has set its default standard display pixels per inch (PPI) to 96. This value results in an approximated 0.264 mm per pixel. The similarity of this value with the actual 0.28 mm adopted in this Standard can create some confusion.
+
+NOTE: Modern display devices (screens) have pixels so small that operating systems allow for defining a presentation scale factor bigger than one (e.g. 150%). In these circumstances, the actual size of the device pixels is not the same as the size used by the operating system.

@@ -28,14 +28,16 @@ include::recommendations/subsetting/PER_subset-crs-curie.adoc[]
 
 === Subsetting coordinates and scale
 
-==== Parameter TBD (center point)
+==== Parameter center
+TBD
 This parameter defines how to subset a map by bounding box (in the bbox-crs coordinates). The `bbox` parameter values are defined considering the exterior edges of the pixels of the viewport defined by the width and height. In other words, the relation of the Bounding Box to the map pixel matrix is that the bounding box goes around the "outside" of the pixels of the map rather than through the centers of the map's border pixels (as many times done in coverages). In this context, individual pixels represent a cell area on the ground.
 
 include::requirements/subsetting/REQ_bbox-definition.adoc[]
 
 NOTE: This parameter use the comma (",") as the separator between the coordinates. Additional white space will not be used to delimit list items. The comma character should not be escaped (IETF RFC 2396).
 
-==== Parameter TBD (scale)
+==== Parameter scale-denominator
+TBD
 The behavior of the subset parameter is imported from the OGC API - Common subset module. The entire module is reproduced here.
 However, some considerations may not apply, and the generic behavior is limited by the CRS axis abbreviations.
 
@@ -46,7 +48,7 @@ include::requirements/subsetting/REQ_subset-coordinates.adoc[]
 include::recommendations/subsetting/REC_subset-crs-axis-names.adoc[]
 
 === Response
-
+TBD
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core).
 
 include::requirements/subsetting/REQ_map-success.adoc[]
@@ -65,3 +67,26 @@ NOTE: As defined in the core requirements class, the ogcapi-bbox and the content
 A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
 
 If the CRS in the parameter value `bbox-crs` or `subset-crs` is not supported by the server for this resource, the parameter value is out-of-range, or the map is not provided due to lack of data in the area, the status code of the response will be `404`.
+
+=== Summary of the scaling and spatial subsetting parameters combinations
+
+[#table_spatial-subseting-params,reftext='{table-caption} {counter:table-num}']
+.Possible combinations of scaling and subsetting parameters
+[options="header"]
+!===
+|center     |scale-denominator |mm-per-pixel |bbox         |width      |height
+|provided   |provided          |provided     |calculated   |calculated |calculated
+|provided   |provided          |0.28 ^1^     |calculated   |calculated |calculated 
+|provided   |provided          |calculated   |calculated   |provided   |provided
+|calculated |calculated        |provided     |provided ^2^ |provided   |provided
+|calculated |calculated        |0.28 ^1^     |provided ^2^ |provided   |provided
+|provided   |calculated        |provided     |calculated   |provided   |provided
+|provided   |calculated        |0.28 ^1^     |calculated   |provided   |provided
+6+|"provided" means provided by the client as a query parameter
+
+"calculated" means no provided as a query parameter and calculated by the server 
+
+^1^ not provided. Default value is used
+
+^2^ adjusted if invalid
+!===

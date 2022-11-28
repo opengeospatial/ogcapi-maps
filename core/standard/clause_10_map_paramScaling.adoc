@@ -29,9 +29,9 @@ include::recommendations/scaling/REC_height-definition.adoc[]
 
 include::recommendations/scaling/PER_no-width-height-definition.adoc[]
 
-==== Parameter cellSize
+==== Parameter mm-per-pixel
 The width and height of the image to be presented in the display device is not actually controlling the scale because it is provided in pixel units. What controls the scale is the ratio between the size of features represented in the map and the size of the same features in the reality. One way to determine the scale is to divide the actual size of the display device in physical units (e.g. millimeters) by the actual size of the extent of the map (e.g. in meters).
-include::requirements/scaling/REQ_cell-size-definition.adoc[]
+include::requirements/scaling/REQ_mm-per-pixel-definition.adoc[]
 
 With this parameter, the server is able to know how big the map will be presented or printed and react accordingly. For example, if the server receives a very small value, the server could decide to represent linear elements wider than for normal values (preventing to create a representation of linear features that is going to result in lines that are too thin to be correctly perceived).
 
