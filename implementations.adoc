@@ -12,8 +12,8 @@
 | OGC API - Maps
 | https://github.com/jerstlouis[Jerome St Louis]
 
-| https://www.cubewerx.com/[CubeServ]
-| OGC API - Maps
+| https://test.cubewerx.com/cubewerx/cubeserv/demo/ogcapi/Daraa[MariaDB Geospatial (CubeWerx) OGC API test server]
+| OGC API - Maps, Tiles, Styles, Features, Coverages, etc.
 | https://github.com/pomakis[Keith Pomakis]
 
 | https://docs.geoserver.org/latest/en/user/community/ogc-api/maps/index.html[GeoServer]
