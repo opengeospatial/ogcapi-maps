@@ -54,6 +54,10 @@
 | OGC API - Maps
 | https://github.com/joanma747[Joan Masó]
 
+| https://geopython.github.io/OWSLib[OWSLib]
+| OGC API - Maps
+| https://github.com/tomkralidis[Tom Kralidis]
+
 | TBA
 | TBA
 | TBA
