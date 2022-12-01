@@ -20,6 +20,10 @@
 | OGC API - Maps
 | https://github.com/aaime[Andrea Aime]
 
+| https://pygeoapi.io[pygeoapi]
+| OGC API - Maps
+| https://github.com/tomkralidis[Tom Kralidis]
+
 | TBA
 | TBA
 | TBA
