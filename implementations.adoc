@@ -12,7 +12,7 @@
 | OGC API - Maps
 | https://github.com/jerstlouis[Jerome St Louis]
 
-| https://www.cubewerx.com/[CubeServ]
+| https://test.cubewerx.com/cubewerx/cubeserv/demo/ogcapi/EuroRegionalMap[CubeServ]
 | OGC API - Maps
 | https://github.com/pomakis[Keith Pomakis]
 
