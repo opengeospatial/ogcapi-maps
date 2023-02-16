@@ -74,15 +74,11 @@ If the CRS in the parameter value `bbox-crs` or `subset-crs` is not supported by
 .Possible combinations of scaling and subsetting parameters
 [options="header"]
 !===
-|center     |scale-denominator |mm-per-pixel |bbox         |width      |height
-|provided   |provided          |provided     |calculated   |calculated |calculated
-|provided   |provided          |0.28 ^1^     |calculated   |calculated |calculated 
-|provided   |provided          |calculated   |calculated   |provided   |provided
-|calculated |calculated        |provided     |provided ^2^ |provided   |provided
-|calculated |calculated        |0.28 ^1^     |provided ^2^ |provided   |provided
-|provided   |calculated        |provided     |calculated   |provided   |provided
-|provided   |calculated        |0.28 ^1^     |calculated   |provided   |provided
-6+|"provided" means provided by the client as a query parameter
+|center     |scale-denominator |mm-per-pixel of display |bbox         |width (in pixels)       |height (in pixels)
+|provided   |provided   |provided    |calculated   |provided   |provided
+|calculated |calculated |provided    |provided ^2^ |provided   |provided
+|calculated |provided   |provided    |provided     |calculated |calculated
+6+|"provided" means provided by the client as a query parameter or specified in this standard  as default (i.e mm-per-pixel=0.28) or decided by the server.
 
 "calculated" means no provided as a query parameter and calculated by the server 
 
@@ -90,3 +86,47 @@ If the CRS in the parameter value `bbox-crs` or `subset-crs` is not supported by
 
 ^2^ adjusted if invalid
 !===
+
+New requirement
+
+Servers SHALL return an error if bbox and scale is provided alongside width and/or height.
+Servers SHALL return an error if bbox and is provided alongside center
+
+
+Req class subsetting 
+Combinations that allow the server subsetting without resampling:
+
+1 bbox
+
+2 center, width(c) and height(c)
+
+If the center parameters is used, width and height determine the area to subset
+
+Req class resampling
+
+Combinations that allow the server resampling without subsetting
+
+1 scale
+
+2 width(r) and height(r)
+
+If the center parameters is not used, width and height determine the scale of the returned map
+
+3 center and scale
+
+(3 is edge case)
+
+Informative about using both req classes:
+
+Combinations that can result in resampling and subsetting
+
+1 center, width(c), height(c) and scale
+
+2 bbox, width(r) and height(r) 
+
+3 bbox and scale
+
+$$$$ Marge this section and conformance class together with the previous one
+
+
+
