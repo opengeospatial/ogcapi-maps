@@ -1,5 +1,5 @@
 [[rc_maps_core]]
-== Requirement Class "Map Core"
+== Requirement Class "Core"
 
 === Overview
 

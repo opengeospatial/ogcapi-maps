@@ -1,5 +1,5 @@
 [[rc_cartographic-layout]]
-== Requirement Classes for a "Map Cartographic Layout"
+== Requirement Classes for "Cartographic Layout"
 
 === Overview
 

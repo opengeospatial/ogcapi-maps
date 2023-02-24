@@ -1,0 +1,12 @@
+
+*<<rc_cartographic-layout>>* (http://www.opengis.net/spec/ogcapi-maps-2/1.0/req/cartographic-layout-title, http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-legend, http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-scale-bar, http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-compass, http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-situation-map, http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-attribution, and http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-grid-crss)
+
+The cartographic layout _core_ conformance classes allow adding a title, a legend, a scale bar, a compass, a situation map,  an attribution text, and lat/long graticules and a CRS grids directly on top of a map.
+
+[#table_resource_cartographic-layout,reftext='{table-caption} {counter:table-num}']
+.Overview of resource and common direct links that corresponds to the cartographic layout
+[cols="33,66",options="header"]
+|===
+|Resource name |Example of possible paths
+|Map |`/map?map-title=topCenter&map-legend=middleRight&scale-bar=bottomCenter&map-compass=topLeft&situation-map=bottomLeft&grid-crss=CRS:84,EPSG:32831&map-attribution=bottomRight`
+|===

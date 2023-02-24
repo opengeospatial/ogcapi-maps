@@ -1,6 +1,6 @@
 [[rc_collections-selection]]
 
-== Requirement Class "Map Geo Data Resource Selection"
+== Requirement Class "Collection Selection"
 
 === Overview
 

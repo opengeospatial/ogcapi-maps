@@ -1,5 +1,5 @@
 [[rc_geoDataResourceMaps]]
-== Requirement Class "Geospatial Data Map"
+== Requirement Class "Collection Maps"
 
 === Overview
 

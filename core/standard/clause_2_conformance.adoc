@@ -7,175 +7,223 @@ The standardization targets of all conformance classes are "Web APIs".
 The requirements classes are:
 
 === Requirements classes defining resources
-*<<rc_maps_core>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core)
+
+*<<rc_core>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core)
 
 The Core specifies requirements that all Web APIs have to implement if they are claiming to support maps from a geospatial resource following this _OGC API - Maps Part 1: Core_ standard.
 It defines how to retrieve a arbitrary map by building a URI.
 
-[#table_resource_core,reftext='{table-caption} {counter:table-num}']
-.Overview of resource and common direct link that corresponds to an arbitrary map defined in core conformance class
-[cols="33,66",options="header"]
-|===
-|Resource name |**Common** path
-|Map |`.../map`
-|===
+.Example request
+```
+.../map
+```
 
-*<<rc_maps_tileSets-list>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets-list)
+*<<rc_tileSets-list>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets-list)
 
 The _tilesets-list_ conformance class defines a mechanism to describe a tileset list and obtain a list of tilesets supported by the map and eventually tiles representing the map
 
-[#table_resource_tilesets-list,reftext='{table-caption} {counter:table-num}']
-.Overview of resources and common direct links that corresponds to the tileset list
-[cols="33,66",options="header"]
-|===
-|Resource name |**Common** path
-|Tilesets list |`.../map/tiles`
-|Tileset |`.../map/tiles/{tileMatrixSetId}`
-|Tile |`.../map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}`
-|===
+.Example requests
+```
+.../map/tiles
+.../map/tiles/WorldCRS84Quad
+.../map/tiles/WorldCRS84Quad/0/0/0
+```
 
 === Requirements classes defining parameters
+
+These conformance classes define Web API parameters that can be used together with any map resource, such as a dataset map or collection map at `.../map`.
+
 *<<rc_background>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background)
 
-The _maps background_ conformance class allows requesting a particular background color and degree of transparency for the areas of the map with nodata.
+The _background_ conformance class allows requesting a particular background color (`bgcolor`) and whether the areas of the map with no data are `transparent`.
 
-[#table_resource_background,reftext='{table-caption} {counter:table-num}']
-.Overview of resource and common direct links that corresponds to the background
-[cols="33,66",options="header"]
-|===
-|Resource name |Example of possible paths
-|Map |`/map?bgcolor={bgcolor}&transparent={transparent},...`
-|===
-
-*<<rc_cartographic-layout>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-title, http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-legend, http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-scale-bar, http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-compass, http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-situation-map, http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-attribution, and http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cartographic-layout-grid-crss)
-
-The _maps cartographic layout_ conformance classes allow adding a title, a legend, a scale bar, a compass, a situation map,  an attribution text, and lat/long graticules and a CRS grids directly on top of a map.
-
-[#table_resource_cartographic-layout,reftext='{table-caption} {counter:table-num}']
-.Overview of resource and common direct links that corresponds to the cartographic layout
-[cols="33,66",options="header"]
-|===
-|Resource name |Example of possible paths
-|Map |`/map?map-title=topCenter&map-legend=middleRight&scale-bar=bottomCenter&map-compass=topLeft&situation-map=bottomLeft&grid-crss=CRS:84,EPSG:32831&map-attribution=bottomRight`
-|===
+.Example request
+```
+.../map?bgcolor=0x001122&transparent=true
+```
 
 *<<rc_collections-selection>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection)
 
-The _maps geodata selection_ conformance class allows to list specific geospatial data resources from which to retrieve maps.
+The _collection selection_ conformance class allows to list specific geospatial data collection resources from which to retrieve maps.
 
-[#table_resource_collection_selection,reftext='{table-caption} {counter:table-num}']
-.Overview of resource and common direct links that corresponds to the geodata selection
-[cols="33,66",options="header"]
-|===
-|Resource name |Example of possible paths
-|Map |`/map?collections={collectionId},{collectionId},...`
-|===
+.Example request
+```
+.../map?collections=buildings,roads,...
+```
 
 *<<rc_scaling>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/scaling)
-The _maps scaling_ conformance class allows to request a width and height (in pixels) the transparent property and the bgcolor.
+The _scaling_ conformance class allows to retrieve a resampled map, by specifying a `width` and/or `height` parameter (in pixels),
+or a `scale-demoninator` parameter.
 
-[#table_resource_scaling,reftext='{table-caption} {counter:table-num}']
-.Overview of resource and common direct links that corresponds to the scaling
-[cols="33,66",options="header"]
-|===
-|Resource name |Example of possible paths
-|Scaling |`/map?width={width}&height={height}&tranparent={true|false}&bgcolor={bgcolor}
-|===
+.Example requests
+```
+.../map?width=1024&height=512
+.../map?scale-denominator=20000
+```
+
+NOTE: Combining this conformance class with the _spatial subsetting by center point_ conformance class, only the `scale-denominator` parameter is supported to specify the scale
+(not `width` and `height`, which take on a subsetting role).
+
+*<<rc_display-resolution>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/display-resolution)
+The _display resolution_ conformance class allows to specify the resolution of the display (the size of a pixel in millimeters) using the
+`mm-per-pixel` parameter on which the map will be visualized so as to properly interpret scale denominators and apply scale-dependent symbology rules.
+
+.Example requests
+```
+.../map?mm-per-pixel=0.14
+```
 
 *<<rc_spatial-subsetting>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting)
-The _maps spatial partitioning_ conformance class allows to request a spatial partitioning in two syntaxes
+The _spatial subsetting_ conformance class allows to retrieve a spatial subset of a map using either a `bbox` or `subset` parameter.
 
-[#table_resource_spatial_partitioning,reftext='{table-caption} {counter:table-num}']
-.Overview of resource and common direct links that corresponds to the spatial partitioning
-[cols="33,66",options="header"]
-|===
-|Resource name |Example of possible paths
-|BBox |`/map?bbox={bbox}
-|Subsetting |`/map?subset={subset}
-|===
+.Example requests using bounding box
+```
+.../map?bbox=120,30,180,90
+.../map?bbox-crs=[EPSG:3857]&bbox=500000,430000,1000000,1000000
+```
 
-*<<rc_crs>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs)
-The _maps crs_ conformance class allows to specify a crs of the spatial subseting and request a crs for the map
+.Example requests using subset
+```
+.../map?subset=Lat(30:90),Lon(120:180)
+.../map?subset-crs=[EPSG:3857]&subset=X(500000:1000000),Y(430000:1000000)
+```
 
-[#table_resource_crs,reftext='{table-caption} {counter:table-num}']
-.Overview of resource and common direct links that corresponds to the spatial partitioning
-[cols="33,66",options="header"]
-|===
-|Resource name |Example of possible paths
-|BBox |`/map?bbox={bbox}&bbox-crs={bbox-crs}
-|CRS |`/map?crs={crs}
-|===
+It also allows to retrieve a subset of a map using a `center` parameter, together with `width` and `height` parameters.
+
+NOTE: When combining the `center` parameter with the _scaling_ conformance class, only the scaling `scale-denominator` parameter is supported to specify
+the scale (not `width` and `height`, which take on a subsetting role).
+
+.Example requests using center point
+```
+.../map?center=-120,60
+.../map?center-crs=[EPSG:3857]&center=750000,70000
+```
 
 *<<rc_datetime>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime)
-The _maps temporal partitioning_ conformance class allows to request a subset of the data using temporal partitioning in two syntaxes
+The _temporal subsetting_ conformance class allows to request a temporal subset of the data using the `datetime` parameter,
+or the `subset` parameter for the `datetime` dimension.
 
-[#table_resource_temporal_partitioning,reftext='{table-caption} {counter:table-num}']
-.Overview of resource and common direct links that corresponds to the spatial partitioning
-[cols="33,66",options="header"]
-|===
-|Resource name |Example of possible paths
-|time |`/map?time={tiem}
-|Subsetting |`/map?subset={subset}
-|===
+.Example requests
+```
+.../map?datetime=2018-02-12T23:20:52Z
+.../map?subset=datetime('2018-02-12T23:20:52Z')
+```
+
+*<<rc_general-subsetting>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/general-subsetting)
+The _general subsetting_ conformance class allows to request a subset of dimensions of the data besides the spatial and temporal dimensions
+using the `subset` parameter, and based on adopting a consistent way to describe all dimensions of the data in the collection's extent description.
+
+.Example request
+```
+.../map?subset=atm_pressure_hpa(500)
+```
+
+*<<rc_crs>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs)
+The _CRS by reference_ conformance class allows to specify the output CRS of the map by referencing a URI (or CURIE) for a CRS definition.
+
+.Example request
+```
+.../map?crs=[EPSG:3031]
+```
+
+*<<rc_projection>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection)
+The _projection_ conformance class allows to specify a custom CRS through a projection, including the coordinate operation method (`crs-proj-method`)
+and associated parameters (`crs-proj-params`), as well as a datum (`crs-datum`) and orientation (`orientation`).
+It also defines a `crs-proj-center` parameter facilitating the selection of the most likely parameters to center the projection on an area of interest.
+The `orientation` parameter can also be used with the `crs` parameter, if the CRS by reference conformance class is also supported.
+
+.Example orthographic projection request
+```
+.../map?
+   crs-proj-method=[epsg-method:9840]&
+   crs-proj-center=Lat(40),Lon(-120)&
+   orientation=40
+```
+
+.Example Lambert Conic Conformal projection with two standard parallels
+```
+.../map?
+   crs-proj-method=[epsg-method:9802]&
+   crs-proj-params=[epsg-parameter:8823](40),[epsg-parameter:8824](90)&
+   crs-datum=[epsg-datum:6230]&
+   orientation=40
+```
 
 === Requirements classes defining origins
 
-*<<rc_styledMaps>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styled-map)
+*<<rc_collection-map>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collection-map)
 
-The _styled maps_ conformance class allows retrieving maps for a styled resource.
+The _collection map_ conformance class allows retrieving maps from a specific geospatial data resource.
 
-[#table_resource_styled_maps,reftext='{table-caption} {counter:table-num}']
-.Overview of resource and common direct links that corresponds to the styled maps
-[cols="33,66",options="header"]
-|===
-|Resource name |**Common** path
-|Dataset |`/styles/{styleId}/map`
-|GeoData | `collections/{collectionId}/styles/{styleId}/map`
-|===
+.Example request
+```
+/collections/buildings/map
+```
 
-*<<rc_datasetMaps>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map)
+*<<rc_dataset-map>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map)
 
-The _dataset maps_ conformance class allows retrieving maps for a whole dataset potentially made up of multiple geospatial data resources.
+The _dataset map_ conformance class allows retrieving maps for a whole dataset potentially made up of multiple geospatial data resources.
 All Web APIs have to implement this conformance class if they are claiming to support *dataset* maps following this _OGC API - Maps Part 1: Core_ standard.
 Dataset maps may combine content from multiple geospatial resources, regardless of whether those are available separately (as maps or otherwise).
 
-[#table_resource_dataset_maps,reftext='{table-caption} {counter:table-num}']
-.Overview of resource and common direct links that corresponds to the dataset maps
-[cols="33,66",options="header"]
-|===
-|Resource name |**Common** path
-|Map| `/map/`
-|Styled Map | `/styles/{styleId}/map`
-|===
+.Example request
+```
+.../map
+```
 
-*<<rc_geoDataResourceMaps>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/geodata-map)
+*<<rc_styled-map>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styled-map)
 
-The _geodata maps_ conformance class allows retrieving maps from a specific geospatial data resource.
+The _styled map_ conformance class allows retrieving maps for a styled resource.
 
-[#table_resource_geodata_map,reftext='{table-caption} {counter:table-num}']
-.Overview of resource and common direct links that corresponds to the geospatial data resources maps
-[cols="33,66",options="header"]
-|===
-|Resource name |Example of possible paths
-|Map | `/collections/{collectionId}/map`
-|Styled Map | `/collections/{collectionId}/styles/{styleId}/map`
-|===
+.Example request
+```
+.../styles/night/map
+```
 
 === Requirements classes defining representations
-
-*<<rc_oas30_definition>>*  (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/oas30)
-
-The _OpenAPI Specification 3.0_ conformance class specifies requirements for an OpenAPI 3.0 definition in addition to those defined in _OGC API - Common - Part 1: Core_.
-
 *<<rc_data_encodings>>*
 
-This standard does not mandate a specific encoding or format for representing maps and remains flexible and extensible to other formats that users and providers might need. However, requirements classes are provided for the following common map formats:
+This standard does not mandate a specific encoding or format for representing maps and remains flexible and extensible to other formats that users and providers might need.
+However, requirements classes are provided for the following common map formats:
 
-* <<rc_png,PNG>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png)
-* <<rc_jpeg,JPEG>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpeg)
-* <<rc_tiff,TIFF>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff)
-* <<rc_svg,SVG>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/svg)
-* <<rc_html,HTML>> (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/html)
+*<<rc_png,PNG>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png)
+
+.Media type
+```
+image/png
+```
+
+*<<rc_jpeg,JPEG>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpeg)
+
+.Media type
+```
+image/jpeg
+```
+
+*<<rc_tiff,TIFF>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff)
+
+.Media type
+```
+image/tiff
+```
+
+*<<rc_svg,SVG>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/svg)
+
+.Media type
+```
+image/svg+xml
+```
+
+*<<rc_html,HTML>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/html)
+
+.Media type
+```
+text/html
+```
+
+*<<rc_oas30>>*  (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/oas30)
+
+The _OpenAPI Specification 3.0_ conformance class specifies requirements for an OpenAPI 3.0 definition in addition to those defined in _OGC API - Common - Part 1: Core_.
 
 All these conformance classes act as building blocks that should be implemented in combination with other more fundamental conformance classes that provide support for Web API discovery, conformity and Web API formal definition (e.g., OpenAPI). Possible alternatives for these fundamental conformance classes are _OGC API - Common Part 1: Core_, _OGC API - Features Part 1: Core_ or any other non-OGC classes that provide this functionality.
 
@@ -196,20 +244,24 @@ Conformance with this standard shall be checked using all the relevant tests spe
 [cols="30,70",options="header"]
 |===
 | Conformance class | URI
-| <<rc_maps_core>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core
-| <<rc_maps_tileSets-list>>    | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tilesets-list
+| <<rc_core>>                  | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core
+| <<rc_background>>            | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/background
 | <<rc_collections-selection>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collections-selection
 | <<rc_scaling>>               | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/scaling
-| <<rs_spatial-subsetting>>    | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting
-| <<rc_crs>>                   | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/crs
+| <<rc_display-resolution>>    | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/display-resolution
+| <<rc_spatial-subsetting>>    | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting
 | <<rc_datetime>>              | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/datetime
-| <<rc_styledMaps>>            | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/styled-map
-| <<rc_datasetMaps>>           | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset-map
-| <<rc_geoDataResourceMaps>>   | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/geodata-map
-| <<rc_oas30_definition>>      | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/oas30
+| <<rc_general-subsetting>>    | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/general-subsetting
+| <<rc_crs>>                   | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/crs
+| <<rc_projection>>            | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/projection
+| <<rc_collection-map>>        | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collection-map
+| <<rc_dataset-map>>           | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset-map
+| <<rc_styled-map>>            | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/styled-map
+| <<rc_tileSets-list>>         | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tilesets-list
 | <<rc_png,PNG>>               | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/png
 | <<rc_jpeg,JPEG>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/jpeg
 | <<rc_tiff,TIFF>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tiff
 | <<rc_svg,SVG>>               | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/svg
 | <<rc_html,HTML>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/png
+| <<rc_oas30>>                 | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/oas30
 |===

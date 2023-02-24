@@ -1,5 +1,5 @@
 [[rc_background]]
-== Requirement Class "Map Background"
+== Requirement Class "Background"
 
 === Overview
 
