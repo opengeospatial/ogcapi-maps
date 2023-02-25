@@ -1,4 +1,4 @@
-[[rc_styledMaps]]
+[[rc_styled-map]]
 == Requirement Class "Styled Maps"
 
 === Overview

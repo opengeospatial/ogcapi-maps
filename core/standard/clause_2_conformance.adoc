@@ -18,9 +18,9 @@ It defines how to retrieve a arbitrary map by building a URI.
 .../map
 ```
 
-*<<rc_tileSets-list>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets-list)
+*<<rc_tilesets>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets)
 
-The _tilesets-list_ conformance class defines a mechanism to describe a tileset list and obtain a list of tilesets supported by the map and eventually tiles representing the map
+The _map tilesets_ conformance class defines a mechanism to describe a tileset list and obtain a list of tilesets supported by the map and eventually tiles representing the map
 
 .Example requests
 ```
@@ -245,6 +245,7 @@ Conformance with this standard shall be checked using all the relevant tests spe
 |===
 | Conformance class | URI
 | <<rc_core>>                  | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core
+| <<rc_tilesets>>              | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tilesets
 | <<rc_background>>            | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/background
 | <<rc_collections-selection>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collections-selection
 | <<rc_scaling>>               | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/scaling
@@ -257,7 +258,6 @@ Conformance with this standard shall be checked using all the relevant tests spe
 | <<rc_collection-map>>        | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collection-map
 | <<rc_dataset-map>>           | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset-map
 | <<rc_styled-map>>            | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/styled-map
-| <<rc_tileSets-list>>         | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tilesets-list
 | <<rc_png,PNG>>               | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/png
 | <<rc_jpeg,JPEG>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/jpeg
 | <<rc_tiff,TIFF>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tiff

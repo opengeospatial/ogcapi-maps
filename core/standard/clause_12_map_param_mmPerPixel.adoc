@@ -1,4 +1,4 @@
-[[rc_display_resolution]]
+[[rc_display-resolution]]
 == Requirement Class "Display Resolution"
 
 === Overview

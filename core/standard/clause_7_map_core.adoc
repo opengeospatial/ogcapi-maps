@@ -1,4 +1,4 @@
-[[rc_maps_core]]
+[[rc_core]]
 == Requirement Class "Core"
 
 === Overview

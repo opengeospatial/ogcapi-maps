@@ -1,11 +1,11 @@
-[[rc_custom-projection-crs]]
+[[rc_projection]]
 == Requirement Class "Custom Projection CRS"
 
 === Overview
 
-[[maps-custom-projection-crs-overview]]
+[[maps-projection-overview]]
 
-include::requirements/requirements_class_custom-projection-crs.adoc[]
+include::requirements/requirements_class_projection.adoc[]
 
 
 === Operation
