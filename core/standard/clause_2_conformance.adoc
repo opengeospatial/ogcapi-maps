@@ -11,7 +11,7 @@ The requirements classes are:
 *<<rc_core>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core)
 
 The Core specifies requirements that all Web APIs have to implement if they are claiming to support maps from a geospatial resource following this _OGC API - Maps Part 1: Core_ standard.
-It defines how to retrieve a arbitrary map by building a URI.
+It defines how to retrieve an arbitrary map by building a URI.
 
 .Example request
 ```
@@ -76,13 +76,13 @@ The _display resolution_ conformance class allows to specify the resolution of t
 *<<rc_spatial-subsetting>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting)
 The _spatial subsetting_ conformance class allows to retrieve a spatial subset of a map using either a `bbox` or `subset` parameter.
 
-.Example requests using bounding box
+.Example subsetting requests using bounding box
 ```
 .../map?bbox=120,30,180,90
 .../map?bbox-crs=[EPSG:3857]&bbox=500000,430000,1000000,1000000
 ```
 
-.Example requests using subset
+.Example subsetting requests using subset
 ```
 .../map?subset=Lat(30:90),Lon(120:180)
 .../map?subset-crs=[EPSG:3857]&subset=X(500000:1000000),Y(430000:1000000)
@@ -93,10 +93,10 @@ It also allows to retrieve a subset of a map using a `center` parameter, togethe
 NOTE: When combining the `center` parameter with the _scaling_ conformance class, only the scaling `scale-denominator` parameter is supported to specify
 the scale (not `width` and `height`, which take on a subsetting role).
 
-.Example requests using center point
+.Example subsetting requests using center point and dimensions
 ```
-.../map?center=-120,60
-.../map?center-crs=[EPSG:3857]&center=750000,70000
+.../map?center=-120,60&width=1024&height=512
+.../map?center-crs=[EPSG:3857]&center=750000,70000&width=1024&height=512
 ```
 
 *<<rc_datetime>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime)
@@ -168,7 +168,7 @@ Dataset maps may combine content from multiple geospatial resources, regardless 
 
 .Example request
 ```
-.../map
+/map
 ```
 
 *<<rc_styled-map>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styled-map)

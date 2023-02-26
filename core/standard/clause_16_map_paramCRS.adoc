@@ -14,7 +14,7 @@ At least, for OGC API Maps and OGC API Coverages a native CRS (also called or st
 
 The map core of this standard defines how to get a map. This requirements class specifies parameters needed to retrieve a map in a particular CRS
 
-==== Parameter crs
+==== Parameter `crs`
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
 
 include::requirements/crs/REQ_crs-definition.adoc[]
