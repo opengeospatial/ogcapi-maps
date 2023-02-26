@@ -1,0 +1,6 @@
+[[per_collection-map_desc-links]]
+[width="90%",cols="2,6a"]
+|===
+^|*Permission {counter:per-id}* |*/rec/collection-map/desc-links*
+^|A |The collection can be exposed as a map totally or partially.
+|===

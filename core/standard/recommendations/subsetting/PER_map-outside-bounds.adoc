@@ -1,6 +1,0 @@
-[[per_subsetting_map-outside-bounds]]
-[width="90%",cols="2,6a"]
-|===
-^|*Permission {counter:per-id}* |*/per/subsetting/map-outside-bounds*
-^|A |When the requested subset is outside the bounds of the requested CRS, the server MAY limit the Content-Bbox to the valid values in the CRS.
-|===

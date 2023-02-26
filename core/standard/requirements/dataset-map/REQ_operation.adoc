@@ -1,0 +1,6 @@
+[[req_dataset-map_operation]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/dataset-map/operation*
+^|A |If the dataset is exposed a map in the default style, the web API SHALL support an path URL and a HTTP GET operation to retrieve the map the API implementation can provide. The URI SHALL be `/map`
+|===

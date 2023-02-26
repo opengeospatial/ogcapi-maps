@@ -1,9 +1,8 @@
 [[rc_core]]
 == Requirement Class "Core"
 
-=== Overview
-
 [[maps-core-overview]]
+=== Overview
 
 include::requirements/requirements_class_core.adoc[]
 

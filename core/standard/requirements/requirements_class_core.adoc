@@ -1,4 +1,4 @@
-[[rc_maps-core]]
+[[rc_table_core]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Core*

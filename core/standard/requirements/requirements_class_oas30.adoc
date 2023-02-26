@@ -1,4 +1,4 @@
-[[rc_table-oas30]]
+[[rc_table_oas30]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class OpenAPI Specification 3.0*

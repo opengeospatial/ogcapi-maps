@@ -1,4 +1,4 @@
-[[rc_table-png]]
+[[rc_table_png]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class PNG*

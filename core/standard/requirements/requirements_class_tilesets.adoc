@@ -1,4 +1,4 @@
-[[rc_map-tilesets-list]]
+[[rc_table_tilesets-list]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Tilesets List*

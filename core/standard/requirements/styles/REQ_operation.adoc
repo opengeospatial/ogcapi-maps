@@ -1,7 +1,0 @@
-[[req_styled_operation]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/styles/map-operation*
-^|A |Every styled resource available as a map SHALL support an path URL and a HTTP GET operation to retrieve maps
-^|B |The URI shall be composed by two parts: the initial part is the URI of the styled resource that can be represented as a map (e.g. /collections/{collectionId}/styles/{styleId}) and the final part follows the pattern `/map`
-|===

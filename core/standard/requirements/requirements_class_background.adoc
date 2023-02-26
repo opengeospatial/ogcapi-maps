@@ -1,4 +1,4 @@
-[[rc_maps-background]]
+[[rc_table_background]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Background*

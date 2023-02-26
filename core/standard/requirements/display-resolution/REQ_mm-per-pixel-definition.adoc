@@ -1,7 +1,7 @@
-[[req_scaling-mm-per-pixel-definition]]
+[[req_display-resolution_mm-per-pixel-definition]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/scaling/mm-per-pixel-definition*
+^|*Requirement {counter:req-id}* |*/req/display-resolution/mm-per-pixel-definition*
 ^|A |The map operation SHALL support a parameter `mm-per-pixel` with the characteristics defined in the OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----

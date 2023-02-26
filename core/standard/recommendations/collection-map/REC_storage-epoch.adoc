@@ -1,0 +1,6 @@
+[[rec_collection-map_storage-epoch]]
+[width="90%",cols="2,6a"]
+|===
+^|*Recommendation {counter:rec-id}* |*/rec/collection-map/storage-epoch*
+^|A |If the collection is available more efficiently using a particular CRS (exposed in the `storageCrs` parameter) that is a dynamic coordinate reference system, the property `storageCrsCoordinateEpoch` in the collection object of the geospatial collection SHOULD provide the epoch of that CRS.
+|===

@@ -1,6 +1,0 @@
-[[rec_geodata_api-common]]
-[width="90%",cols="2,6a"]
-|===
-^|*Recommendation {counter:rec-id}* |*/rec/geodata/api-common*
-^|A |An implementation of this standard should consider to implement the requirement classes specified in the http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core (OGC API-Common version 1.0).
-|===

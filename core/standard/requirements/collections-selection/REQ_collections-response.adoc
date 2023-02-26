@@ -1,4 +1,4 @@
-[[req_core_collections-selection-response]]
+[[req_collections-selection_collections-response]]
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/collections-selection/collections-response*

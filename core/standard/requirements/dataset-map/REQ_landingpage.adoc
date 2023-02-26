@@ -1,0 +1,6 @@
+[[req_dataset-map_landingpage]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/dataset-map/landingpage*
+^|A | If the API has mechanism to expose root resources (e.g. a landing page), the API SHALL advertise a URI to retrieve dataset maps defined by this service as links to the descriptions paths with rel: `http://www.opengis.net/def/rel/ogc/1.0/map`.
+|===

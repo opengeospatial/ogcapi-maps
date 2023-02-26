@@ -1,4 +1,4 @@
-[[rc_styled-maps]]
+[[rc_table_styled-maps]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Styles Map*

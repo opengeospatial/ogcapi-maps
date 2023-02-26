@@ -1,4 +1,4 @@
-[[rc_table-html]]
+[[rc_table_html]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class HTML*

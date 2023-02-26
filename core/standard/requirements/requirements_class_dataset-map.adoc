@@ -1,4 +1,4 @@
-[[rc_maps-dataset]]
+[[rc_table_dataset]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Dataset Map*

@@ -3,7 +3,7 @@
 
 === Introduction
 
-The _OGC API - Maps_ standard defines building blocks which can be used in a Web API to retrieve geospatial data as maps that as visual portrayals of the data created by applying a style to the data (see <<rc_maps_core>>). Maps can present the whole set of the geospatial data or only a part of it e.g. by filtering it by extent (see <<rs_spatial-subsetting>>). Maps can be retrieved by arbitrary extent or as tiles (see <<rc_maps_tileSets-list>>)
+The _OGC API - Maps_ standard defines building blocks which can be used in a Web API to retrieve geospatial data as maps that as visual portrayals of the data created by applying a style to the data (see <<rc_core>>). Maps can present the whole set of the geospatial data or only a part of it e.g. by filtering it by extent (see <<rc_spatial-subsetting>>). Maps can be retrieved by arbitrary extent or as tiles (see <<rc_tilesets>>)
 
 Services and clients are encouraged to support as many of the CRSs as possible for all geospatial data resources to maximize
 interoperability, but support is not required for any specific CRS.
@@ -13,7 +13,7 @@ Provided that the geospatial data resources can be organized into maps, they can
 
 NOTE: The geospatial data resources (e.g., collections) replace the concept of layer in WMS and WMTS. The main difference is that layers in WMS and WMTS were not defined by other OGC APIs and did not support other functionalities.
 
-These geospatial data resources can advertise one or more map portrayals in several resources, such as the dataset (see <<rc_geoDataResourceMaps>>) a collection (see <<rc_geoDataResourceMaps>>) or a collection with a style (see <<rc_styledMaps>>). Other OGC APIs can provide other possibilities.
+These geospatial data resources can advertise one or more map portrayals in several resources, such as the dataset (see <<rc_dataset-map>>) a collection (see <<rc_collection-map>>) or a collection with a style (see <<rc_styled-map>>). Other OGC APIs can provide other possibilities.
 
 Accessing the _geospatial data resource_ content (other than as maps) or its descriptions is possible but out of the scope of this standard.
 If a description of the _geospatial data resource_ is specified by another standard, and this description has a mechanism to add links to other resources, this standard indicates the need to add a link to the list of available maps.

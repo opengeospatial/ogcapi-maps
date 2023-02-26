@@ -1,6 +1,0 @@
-[[per_geodata_desc-linsk]]
-[width="90%",cols="2,6a"]
-|===
-^|*Permission {counter:per-id}* |*/rec/geodata/desc-links*
-^|A |collections in the endpoint /collections/{collectionId} can be considered geospatial resources that can be exposed as maps
-|===

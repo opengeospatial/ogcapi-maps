@@ -25,15 +25,15 @@ The root can be modified or complemented by other resources creating new endpoin
 
 * OGC API - Styles defines how to complement a geospatial resource by adding a style to it. The new resources is an overlap of the dataset and the resource
 
-include::requirements/dataset/REQ_landingpage.adoc[]
+include::requirements/dataset-map/REQ_landingpage.adoc[]
 
 In the landing page, in JSON format, the links follow the link schema defined in the OGC API - Common or in OGC API - Features v1. Below you can find an example fragment of the response to an OGC API - Maps landing page showing the link to the dataset map.
 
-include::requirements/dataset/REQ_desc-extent.adoc[]
+include::requirements/dataset-map/REQ_desc-extent.adoc[]
 
-include::requirements/dataset/REQ_desc-crs.adoc[]
+include::requirements/dataset-map/REQ_desc-crs.adoc[]
 
-include::recommendations/dataset/REC_storage-epoch.adoc[]
+include::recommendations/dataset-map/REC_storage-epoch.adoc[]
 
 
 [[landingPageMap]]
@@ -73,7 +73,7 @@ include::recommendations/dataset/REC_storage-epoch.adoc[]
 
 ==== Map path
 
-include::requirements/dataset/REQ_operation.adoc[]
+include::requirements/dataset-map/REQ_operation.adoc[]
 
 The request of this operation does not define extra parameters. Servers can advertise the requirements class http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/collections-selection to add a `collections` parameter that can be used to include only parts of the dataset in the map representation. Other extensions of this map standards will define how to get a subset of a map resource.
 
@@ -82,6 +82,6 @@ A successful GET response is described in the core class (http://www.opengis.net
 
 A successful response is map that is expected to represent the dataset as a whole. In a Web API providing access to a complex dataset formed by several geospatial data resources, there are reasons for being selective in the amount of information included. This can be achieved by applying a manual filter described in the <<rc_collections-selection>> or as an automatic decision by the server side.
 
-include::recommendations/dataset/REC_geodata-selection.adoc[]
+include::recommendations/dataset-map/REC_geodata-selection.adoc[]
 
-include::recommendations/dataset/PER_geodata-selection.adoc[]
+include::recommendations/dataset-map/PER_geodata-selection.adoc[]

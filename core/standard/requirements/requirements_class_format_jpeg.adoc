@@ -1,4 +1,4 @@
-[[rc_table-jpeg]]
+[[rc_table_jpeg]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class JPEG*

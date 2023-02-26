@@ -1,8 +1,0 @@
-[[per_subset_crs-curie]]
-[width="90%",cols="2,6a"]
-|===
-^|*Permission {counter:per-id}* |*/per/subsetting/crs-curie*
-^|A |For the bbox-crs and subset-crs query parameters, the implementation MAY support un-safe CURIE without square brackets.
-|===
-
-NOTE: This makes the notation compatible with WMS.

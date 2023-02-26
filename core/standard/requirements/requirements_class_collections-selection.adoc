@@ -1,4 +1,4 @@
-[[rc_table-collections-selection]]
+[[rc_table_collections-selection]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Collections Selection*

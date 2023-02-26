@@ -1,4 +1,4 @@
-[[rc_maps-crs]]
+[[rc_table_crs]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Coordinate Reference System*

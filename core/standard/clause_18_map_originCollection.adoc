@@ -8,7 +8,7 @@ include::requirements/requirements_class_collection-map.adoc[]
 This requirements class specifies how to get maps from particular resources that contains geodata. Common resources that can contain geodata are the ones at the endpoint /collections/{collectionId} defined by OGC API - Common or OGC API - Features 1.0.
 
 === General
-include::recommendations/geodata/REC_api-common.adoc[]
+include::recommendations/collection-map/REC_api-common.adoc[]
 
 This building block stays flexible and does not require to implement OWS Common, allowing for other API architectures outside the OGC API framework to adopt it. However, a server under the OGC APIs is expected to implement OGC API Common. If so, in practice, this means that the landing page and the conformance page follow OGC API - Common core and collections requirement classes will be used. Temporarily, it is also possible to combine this building block with OGC API features v1 that is not tied to OWS Common.
 
@@ -25,13 +25,13 @@ These geospatial resources can be modified or complemented by other resources cr
 
 NOTE: The concept of geospatial resource path substitutes the concept of "layer" in WMS but it intends to give a better integration between data visualization and data access.
 
-include::requirements/geodata/REQ_desc-links.adoc[]
+include::requirements/collection-map/REQ_desc-links.adoc[]
 
-include::recommendations/geodata/PER_desc-links.adoc[]
+include::recommendations/collection-map/PER_desc-links.adoc[]
 
-include::requirements/geodata/REQ_desc-crs.adoc[]
+include::requirements/collection-map/REQ_desc-crs.adoc[]
 
-include::recommendations/geodata/REC_storage-epoch.adoc[]
+include::recommendations/collection-map/REC_storage-epoch.adoc[]
 
 .Fragment of a collection with a links array with one item of the array pointing to a map.
 =================
@@ -70,7 +70,7 @@ The maps core defines a `map` resource that is associated with an operation that
 
 ==== Map path
 
-include::requirements/geodata/REQ_operation.adoc[]
+include::requirements/collection-map/REQ_operation.adoc[]
 
 This standard does not specify any additional query parameter in the GET request. Other extensions of this map standards will define how to get a subset of a map resource.
 

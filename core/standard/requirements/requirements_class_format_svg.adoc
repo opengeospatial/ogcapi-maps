@@ -1,4 +1,4 @@
-[[rc_table-svg]]
+[[rc_table_svg]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class SVG*

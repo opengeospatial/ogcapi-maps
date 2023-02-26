@@ -1,4 +1,4 @@
-[[rc_table-datetime]]
+[[rc_table_datetime]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Temporal Subsetting*

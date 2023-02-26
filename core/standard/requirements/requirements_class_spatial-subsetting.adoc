@@ -1,4 +1,4 @@
-[[rc_maps-spatial-partitioning]]
+[[rc_table_spatial-subsetting]]
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Subsetting*

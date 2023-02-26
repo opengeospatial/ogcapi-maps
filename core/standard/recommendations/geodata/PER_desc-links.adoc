@@ -1,6 +1,0 @@
-[[per_dataset_desc-links]]
-[width="90%",cols="2,6a"]
-|===
-^|*Permission {counter:per-id}* |*/rec/dataset/desc-links*
-^|A |the collection can be exposed as a map totally or partially.
-|===
