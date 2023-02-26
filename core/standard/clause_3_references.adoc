@@ -18,3 +18,7 @@ The following normative documents contain provisions that, through reference in 
 * [[HTML5]] WHATWG. *HTML*, Living Standard [online, viewed 2020-03-16]. Available at https://html.spec.whatwg.org/
 
 * [[schema.org]] schema.org. **Schema.org** [online, viewed 2020-03-16]. Available at http://schema.org/docs/schemas.html
+
+* [[OGC20_057]] OGC: OGC 20-057, OGC API - Tiles - Part 1: Core (2022) Available at https://docs.ogc.org/is/20-057/20-057.html
+
+* [[OGC17_083r4]] OGC: OGC 17-083r4, OGC Two Dimensional Tile Matrix Set and Tile Set Metadata 1.0 (2022) http://docs.ogc.org/is/17-083r4/17-083r4.html
