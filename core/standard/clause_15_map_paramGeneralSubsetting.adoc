@@ -7,11 +7,17 @@
 
 include::requirements/requirements_class_general_subsetting.adoc[]
 
-This requirements class defines the way date and time can be used as a parameter to filter the content in the map resource. This conformance class is importing most of the functionality from OGC API - Commons.
+This requirements class defines the way a subset of the map resource in additional dimensions beyond spatial and temporal can be specified using the `subset` parameter.
+This functionality is defined as common building blocks shared with other OGC APIs.
 
 === Describing the extent of the additional dimensions
 
-=== `subset=` query parameter request and response
+When implementing this requirements class, additional dimensions included in an extent description (e.g., as found in a OGC API collection description response)
+must uses a uniform approach to describing the lower and upper bounds of those dimensions based on the `intervals` property, just as with the temporal dimension.
+
+=== `subset` query parameter request and response
+
+The implementation must support all additional dimensions listed in the extent as valid dimensions to be used with the `subset` parameter.
 
 === Response
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).

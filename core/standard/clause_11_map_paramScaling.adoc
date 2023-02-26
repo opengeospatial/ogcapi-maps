@@ -13,7 +13,7 @@ This requirement class describes how to scale a map by specifying a set of param
 
 The map core of this standard defines how to get a map. This requirements class specifies the width and height  parameters needed to indirectly define the scale of the map.
 
-==== Parameters width and height
+==== Parameters `width` and `height`
 These parameters indicate the size of the viewport in rows and columns where the map is going to be shown. If the format of the response is a raster image, the number of columns and rows of the responded image will commonly match the width and height of the viewport.
 
 include::requirements/scaling/REQ_width-definition.adoc[]

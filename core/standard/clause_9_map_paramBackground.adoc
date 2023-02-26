@@ -13,7 +13,7 @@ This requirement class describes how to define the background of the map for the
 
 The map core of this standard defines how to get a map. This requirements class specifies parameters needed to define the background of the map.
 
-==== Parameters transparent and bgcolor
+==== Parameters `transparent` and `bgcolor`
 The transparent and bgcolor parameters indicate how the absence of data will be represented in the map and allow for the map to be overlaid with other maps without completely obscuring the lower layers. The parameter `transparent` is maintained for backwards compatibility; the use of the 'alpha channel' in `bgcolor` is recommended instead.
 
 include::requirements/background/REQ_bgcolor-definition.adoc[]

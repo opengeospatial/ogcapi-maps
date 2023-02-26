@@ -30,15 +30,15 @@ NOTE: Provide the extent of the collection in native CRS (also called or storage
 
 NOTE: A list of supported CRS's will be provided by the collection. The first should be storage CRS. The mechanism to do so will be defined by OGC API common.
 
-==== Parameter bbox-crs
+==== Parameter `bbox-crs`
 
 include::requirements/subsetting/REQ_bbox-crs-definition.adoc[]
 
-==== Parameter subset-crs
+==== Parameter `subset-crs`
 
 include::requirements/subsetting/REQ_subset-crs-definition.adoc[]
 
-==== Parameter center-crs
+==== Parameter `center-crs`
 
 include::requirements/subsetting/REQ_center-crs-definition.adoc[]
 
