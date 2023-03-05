@@ -2,13 +2,12 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/spatial-subsetting/subset-definition*
-^|A |The `subset` parameter SHALL have the following characteristics (using an Augmented Backus Naur Form (ABNF) fragment):
+^|A |The implementation SHALL support a `subset` parameter conforming to the following Augmented Backus Naur Form (ABNF) fragment:
 
 [source,ABNF]
 ----
-  SubsetSpec:       "subset"=axisName(intervalOrPoint)
+  SubsetSpec:       "subset"=axisName(interval)
   axisName:         {text}
-  intervalOrPoint:  interval \| point
   interval:         low : high
   low:              point \| *
   high:             point \| *
@@ -19,10 +18,16 @@
      {number} is an integer or floating-point number, and
      {text} is some general ASCII text (such as a time and date notation in ISO 8601).
 ----
-^|B |The axis name SHALL correspond to one of the axis of the Coordinate Reference System (CRS) of the target resource or else return a 400 status code.
-^|C |If the intervalOrPoint values fall entirely outside the range of valid values defined for the identified axis, a 204 status code SHALL be returned
-^|D |For a CRS where an axis can wrap around, such as subsetting across the dateline (anti-meridian) in a geographic CRS, a `low` value greater than `high` SHALL
+^|B |The implementation SHALL support as axis names `Lat` and `Lon` for geographic CRS and `x` and `y` for projected CRS, which are to be interpreted as the best matching spatial axis in the CRS definition.
+^|C |The implementation SHALL return a 400 error status code if an axis name does not correspond to one of the axes of the Coordinate Reference System (CRS) of the target resource.
+^|D |If the _interval_ values fall entirely outside the range of valid values defined for the identified axis, a 204 status code SHALL be returned.
+^|E |For a CRS where an axis can wrap around, such as subsetting across the dateline (anti-meridian) in a geographic CRS, a _low_ value greater than _high_ SHALL
 be supported to indicate an extent crossing that wrapping point.
+^|F |The implementation SHALL interpret the coordinates as values for the named axis of the CRS specified in the `subset-crs` parameter value or in http://www.opengis.net/def/crs/OGC/1.3/CRS84 if the `subset-crs` parameter is missing.
+^|G |If the `subset` parameter including any of the dimensions corresponding to those of the map bounding box is used with a `bbox` and/or `center` parameter, the server SHALL return a 400 client error.
+
 |===
 
-NOTE: When the intervalOrPoint values fall partially outside of the range of valid values defined by the CRS for the identified axis, the service is expected to return the non-empty portion of the resource resulting from the subset.
+NOTE: A subset parameter for http://www.opengis.net/def/crs/OGC/1.3/CRS84 will read as subset=Lon(left_lon:right_lon),Lat(lower_lat:upper_lat).
+
+NOTE: When the _inteval_ values fall partially outside of the range of valid values defined by the CRS for the identified axis, the service is expected to return the non-empty portion of the resource resulting from the subset.

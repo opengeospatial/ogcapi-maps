@@ -13,11 +13,19 @@ This functionality is defined as common building blocks shared with other OGC AP
 === Describing the extent of the additional dimensions
 
 When implementing this requirements class, additional dimensions included in an extent description (e.g., as found in a OGC API collection description response)
-must uses a uniform approach to describing the lower and upper bounds of those dimensions based on the `intervals` property, just as with the temporal dimension.
+must use a uniform approach to describe the lower and upper bounds of those dimensions based on the `intervals` property, just as with the temporal dimension.
 
-=== `subset` query parameter request and response
+include::requirements/general-subsetting/REQ_uniform-additional-dimensions.adoc[]
+
+=== `subset-crs` query parameter
+
+include::requirements/general-subsetting/REQ_subset-crs-definition.adoc[]
+
+=== `subset` query parameter
 
 The implementation must support all additional dimensions listed in the extent as valid dimensions to be used with the `subset` parameter.
+
+include::requirements/general-subsetting/REQ_subset-definition.adoc[]
 
 === Response
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).

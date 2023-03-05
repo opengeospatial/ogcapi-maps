@@ -19,10 +19,12 @@
      {number} is an integer or floating-point number, and
      {text} is some general ASCII text (such as a time and date notation in ISO 8601).
 ----
-^|B |The axis name SHALL correspond to one of the axis of the Coordinate Reference System (CRS) of the target resource or else return a 400 status code.
-^|C |If the intervalOrPoint values fall entirely outside the range of valid values defined for the identified axis, a 204 status code SHALL be returned
-^|D |For a CRS where an axis can wrap around, such as subsetting across the dateline (anti-meridian) in a geographic CRS, a `low` value greater than `high` SHALL
+^|B |The implementation SHALL support `datetime` as an axis name, which is to be interpreted as the main temporal axis in the subsetting CRS definition.
+^|C |The axis name SHALL correspond to one of the axis of the Coordinate Reference System (CRS) of the subsetting CRS or else return a 400 status code.
+^|D |If the intervalOrPoint values fall entirely outside the range of valid values defined for the identified axis, a 204 status code SHALL be returned
+^|E |For a CRS where an axis can wrap around, such as subsetting across the dateline (anti-meridian) in a geographic CRS, a `low` value greater than `high` SHALL
 be supported to indicate an extent crossing that wrapping point.
+^|F |The implementation SHALL interpret the coordinates as values for the named axis of the CRS specified in the `subset-crs` parameter value, or Gregorian UTC time if the `subset-crs` parameter is missing.
 |===
 
 NOTE: When the intervalOrPoint values fall partially outside of the range of valid values defined by the CRS for the identified axis, the service is expected to return the non-empty portion of the resource resulting from the subset.

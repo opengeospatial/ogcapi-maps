@@ -74,8 +74,6 @@ While the processing of the `subset` parameter is specific to the resource and o
 
 include::requirements/spatial-subsetting/REQ_subset-response.adoc[]
 
-include::requirements/spatial-subsetting/REQ_subset-coordinates.adoc[]
-
 include::recommendations/spatial-subsetting/REC_subset-crs-axis-names.adoc[]
 
 ==== Parameter `center`, `width` and `height`
