@@ -1,0 +1,7 @@
+[[req_projection-crs-datum]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/projection/crs-atum*
+^|A |The implementation SHALL support a `crs-datum` parameter allowing to select a datum for the output CRS.
+^|B |The implementation SHALL support CURIEs in addition to URI to specify the datum parameter.
+|===

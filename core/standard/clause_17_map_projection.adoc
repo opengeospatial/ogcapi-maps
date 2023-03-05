@@ -12,20 +12,31 @@ include::requirements/requirements_class_projection.adoc[]
 
 ==== Parameter `crs-proj-method`
 
+include::requirements/projection/REQ_crs-proj-method.adoc[]
+
 ==== Parameter `crs-proj-params`
+
+include::requirements/projection/REQ_crs-proj-params.adoc[]
 
 ==== Parameter `crs-proj-center`
 
+In order to facilitate the task of centering a custom projection on the area of interest, which varies greatly between projections, the `crs-proj-center` parameter automatically picks the most appropriate parameters.
+
+include::requirements/projection/REQ_crs-proj-center-definition.adoc[]
+
+NOTE: For some projections where there is not a clear single center latitude parameter, such as those with multiple standard parallels, clients should use `crs-proj-params` to unambiguously set each parameter instead.
+
 ==== Parameter `crs-datum`
+
+include::requirements/projection/REQ_crs-datum.adoc[]
 
 ==== Parameter `orientation`
 
-
-A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
-
+include::requirements/projection/REQ_orientation.adoc[]
 
 ==== Response
 
+A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
 
 ==== Error conditions
 

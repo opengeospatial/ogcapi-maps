@@ -1,0 +1,6 @@
+[[req_projection-orientation]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/projection/orientation*
+^|A |The implementation SHALL support an `orientation` parameter allowing to rotate the CRS by an orientation, expressed as clockwise degrees.
+|===

@@ -1,0 +1,17 @@
+[[req_projection-crs-proj-center-definition]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/projection/subset-definition*
+^|A |The implementation SHALL support a `crs-proj-center` parameter of the form Lat(centerLat),Lon(centerLon) facilitating the selection of the most relevant projection parameters to center a custom projection.
+^|B |The projection-center `Lat` value SHALL be mapped to the first matching operation method parameter available for the selected operation method of the projection query parameter, in this order:
+
+* [epsg-parameter:8832] Latitude of standard parallel (PROJ: _lat_ts_)
+* [epsg-parameter:8823] Latitude of first standard parallel, if only a single standard parallel can be set i.e., no [epsg-parameter:8824] parameter is available (PROJ: _lat_ts_)
+* [epsg-parameter:8801] Latitude of natural origin (PROJ: _lat_0_ )
+* [epsg-parameter:8811] Latitude of projection center (PROJ: _lat_0_)
+^|C |The projection-center `Lon` value SHALL be mapped to the first matching operation method parameter available for the selected operation method of the projection query parameter, in this order:
+
+* [epsg-parameter:8802] Longitude of natural origin (PROJ: _lon_0_)
+* [epsg-parameter:8812] Longitude of projection center (PROJ: _lon_0_)
+* [epsg-parameter:8833] Longitude of origin (PROJ: _lon_0_)
+|===
