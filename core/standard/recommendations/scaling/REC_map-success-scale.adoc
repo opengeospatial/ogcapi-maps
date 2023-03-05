@@ -2,5 +2,5 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/scaling/map-success-scale*
-^|A |The resolution of the content represented in the map SHOULD be consistent with the `width` and `height` of the viewport indicated and should consider the `cell-size` In case of vector data (e.g. KML or SVG) the geometries should be simplified to match the `cell-size` of the viewport (raster responses are simplified to match the `width` and `height`).
+^|A |The resolution of the content represented in the map SHOULD be consistent with the `width` and `height` of the viewport indicated and should consider the display resolution (0.28 mm/pixel, unless the `mm-per-pixel` parameter is used) when applying symbology rules. These considerations should also be applied when simplifying the geometries for a vector output format, such as KML or SVG.
 |===
