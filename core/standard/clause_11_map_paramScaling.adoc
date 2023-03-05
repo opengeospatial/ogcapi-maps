@@ -21,7 +21,14 @@ include::requirements/scaling/REQ_width-definition.adoc[]
 include::requirements/scaling/REQ_height-definition.adoc[]
 
 ==== Parameter `scale-denominator`
+A client can specify the desired scale of the map as a scale denominator value using a `scale-denominator` parameter.
+The scale denominator specifies to how many units in the real world one of the same unit corresponds.
 
+NOTE: This correspondence depends on the display resolution for which defaults 0.28 mm/pixel is assumed, unless a client specifies otherwise through the <<rc_display-resolution, display resolution requirements class>>.
+
+NOTE: The `scale-denominator` is the only way to specify scaling when requesting a spatial subset using a `center` point.
+
+include::requirements/scaling/REQ_scale-denominator-definition.adoc[]
 
 ==== Aspect ratio considerations
 If a client provides both width and height the server will adopt them even if the aspect ratio between (maxx-minx)/(maxy-miny) and w/h are different (resulting in a non square pixel). However, in general circumstances (e.g 2D representations in the screen), the client should make an effort to provide parameters that preserve the aspect ratio. The client is allowed to provide only one of the values in width and height and the server should figure out the other one to maintain the aspect ratio.

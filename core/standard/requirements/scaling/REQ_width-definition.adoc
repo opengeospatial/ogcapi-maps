@@ -15,6 +15,8 @@
     schema:
       type: number
 ----
-^|B |`width` SHALL be a positive integer number indicating the horizontal size (columns) of the viewport where the response will be presented in pixel units (number of pixels).
-^|C |The value of the `width` SHALL no excide the capabilities of the server provided in the map description document under the `maxWidth` property.
+^|B |The implementation SHALL interpret the `width` value as the horizontal size (columns) of the viewport where the response will be presented in pixel units (number of pixels).
+^|C |The implementation SHALL return an error if the `width` number is not a positive integer number.
+^|D |The implementation SHALL return an error if the value of the `width` exceeds a `maxWidth` property from a `x-OGC-limits.maps` object included in the service metadata.
+^|E |The implementation SHALL return an error if the value of the `width` times `height` (specified or calculated) exceeds a `maxPixels` property from a `x-OGC-limits.maps` object included in the service metadata.
 |===

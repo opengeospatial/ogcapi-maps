@@ -15,6 +15,8 @@
     schema:
       type: number
 ----
-^|B |`height` SHALL be a positive integer number indicating the vertical size (rows) of the viewport where the response will be presented in pixel units (number of pixels).
-^|C |The value of the `height` SHALL no excide the capabilities of the server provided in the map description document under the `maxHeight` property.
+^|B |The implementation SHALL interpret the `height` value as the vertical size (rows) of the viewport where the response will be presented in pixel units (number of pixels).
+^|C |The implementation SHALL return an error if the `height` value is not a positive integer number.
+^|D |The implementation SHALL return an error if the value of the `height` exceeds a `maxHeight` property from a `x-OGC-limits.maps` object included in the service metadata.
+^|E |The implementation SHALL return an error if the value of the `width` (specified or calculated) times `height` exceeds a `maxPixels` property from a `x-OGC-limits.maps` object included in the service metadata.
 |===
