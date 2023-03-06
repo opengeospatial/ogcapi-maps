@@ -1,12 +1,14 @@
 [[rc_projection]]
 == Requirement Class "Custom Projection CRS"
 
-=== Overview
-
 [[maps-projection-overview]]
+=== Overview
 
 include::requirements/requirements_class_projection.adoc[]
 
+This requirements class defines the ability for clients to specify custom projection CRS based on parameters specifying a projection operation method, values for corresponding parameters, a datum, as well as an orientation.
+It also provides a parameter facilitating the task of selecting a projection center across different projections, for which the relevant latitude and longitude parameters differ.
+Angles are specified in degrees, whereas identifiers for methods, parameters and datums can be specified as URIs or CURIEs.
 
 === Operation
 
@@ -20,7 +22,8 @@ include::requirements/projection/REQ_crs-proj-params.adoc[]
 
 ==== Parameter `crs-proj-center`
 
-In order to facilitate the task of centering a custom projection on the area of interest, which varies greatly between projections, the `crs-proj-center` parameter automatically picks the most appropriate parameters.
+In order to facilitate the task of centering a custom projection on the area of interest, which varies greatly between projections, the `crs-proj-center` parameter automatically sets the most appropriate parameters
+for the specified center latitude and longitude.
 
 include::requirements/projection/REQ_crs-proj-center-definition.adoc[]
 
