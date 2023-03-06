@@ -43,6 +43,8 @@ include::recommendations/core/REC_content-crs.adoc[]
 
 include::recommendations/core/REC_link-relation-type.adoc[]
 
+include::recommendations/core/REC_multiple-media-types.adoc[]
+
 A map resource may be retrieved as a map subset or a tile subsets. Retrieving the map without subsetting or tiling has a limited use.
 
 NOTE: The desired encoding is selected using HTTP content negotiation. In addition to the parameters specified by the core, other parameters should be added.
