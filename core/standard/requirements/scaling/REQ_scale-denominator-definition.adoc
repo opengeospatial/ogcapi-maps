@@ -15,7 +15,7 @@
     schema:
       type: number
 ----
-^|B |The implementation SHALL interpret the `scale-denominator` value as the number of real-world units corresponding to one of the same unit on the display, based on the selected (e.g., from display resolution requirements class) or default (0.28 mm/pixel) display resolution.
+^|B |The implementation SHALL interpret the `scale-denominator` value as the number of real-world units corresponding to one of the same unit on the map (as printed or displayed), based on the selected (e.g., from display resolution requirements class) or default (0.28 mm/pixel) display resolution.
 ^|C |The implementation SHALL compute the width and height dimensions of the returned map based on the `scale-denominator` value, the display resolution, and the selected spatial subset of the map to return.
 ^|D |The implementation SHALL return an error if the computed width, height or width times height exceeds the respective `maxWidth`, `maxHeight` or `maxPixels` properties from a `x-OGC-limits.maps` object included in the service metadata.
 ^|E |The implementation SHALL return an error if the `scale-denominator` parameter is used together with `width` and/or `height` and the implementation does not declare conformance to the <<rc_table_spatial-subsetting, _spatial subsetting_>> requirements class (which specifies that the `width` and `height` parameters can also take on a subsetting role).
