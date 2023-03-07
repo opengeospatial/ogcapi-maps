@@ -6,9 +6,9 @@
 
 include::requirements/requirements_class_projection.adoc[]
 
-This requirements class defines the ability for clients to specify custom projection CRS based on parameters specifying a projection operation method, values for corresponding parameters, a datum, as well as an orientation.
+This requirements class defines the ability for clients to specify a custom projection CRS based on parameters defining a projection operation method, values for corresponding parameters, a datum, as well as an orientation.
 It also provides a parameter facilitating the task of selecting a projection center across different projections, for which the relevant latitude and longitude parameters differ.
-Angles are specified in degrees, whereas identifiers for methods, parameters and datums can be specified as URIs or CURIEs.
+Angles are specified in degrees, whereas identifiers for methods, parameters and datums can be specified as URIs or safe CURIEs.
 
 === Operation
 
