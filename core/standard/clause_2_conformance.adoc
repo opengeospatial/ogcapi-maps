@@ -101,12 +101,12 @@ the scale (not `width` and `height`, which take on a subsetting role).
 
 *<<rc_datetime>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime)
 The _temporal subsetting_ conformance class allows to request a temporal subset of the data using the `datetime` parameter,
-or the `subset` parameter for the `datetime` dimension.
+or the `subset` parameter for the `time` dimension.
 
 .Example requests
 ```
 .../map?datetime=2018-02-12T23:20:52Z
-.../map?subset=datetime('2018-02-12T23:20:52Z')
+.../map?subset=time('2018-02-12T23:20:52Z')
 ```
 
 *<<rc_general-subsetting>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/general-subsetting)

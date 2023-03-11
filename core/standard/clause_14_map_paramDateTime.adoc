@@ -67,10 +67,10 @@ A template for the definition of the parameter in YAML according to OpenAPI 3.0 
 
 
 
-=== `subset=datetime` query parameter request and response
+=== `subset=time` query parameter request and response
 
 The `subset` parameter is a common building block that is shared with other OGC API Standards.
-The dimensions that can be included within the value of this parameter are defined by the axis name of the generic datetime in an additional requirement, a permission and a recommendation at the end of this subsection.
+The dimensions that can be included within the value of this parameter are defined by the axis name of the generic time in an additional requirement, a permission and a recommendation at the end of this subsection.
 
 The `subset` parameter can be used to select a temporal subset of a geospatial resource, and is defined as follows:
 
