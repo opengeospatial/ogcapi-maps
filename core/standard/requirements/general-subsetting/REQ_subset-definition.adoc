@@ -25,6 +25,8 @@
 ^|E |For a CRS where an axis can wrap around, such as subsetting across the dateline (anti-meridian) in a geographic CRS, a _low_ value greater than _high_ SHALL
 be supported to indicate an extent crossing that wrapping point.
 ^|F |The implementation SHALL interpret the coordinates as values for the named axis of the CRS specified in the `subset-crs` parameter value or in http://www.opengis.net/def/crs/OGC/1.3/CRS84 if the `subset-crs` parameter is missing.
+^|G |The implementation SHALL interpret multiple `subset` parameters, as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.
+^|  |^1^ Example: `subset=Lat(-90:90)&subset=Lon(-180:180)&subset=atm_pressure_hpa(500)` is equivalent to `subset=Lat(-90:90),Lon(-180:180),atm_pressure_hpa(500)`
 |===
 
 NOTE: When the intervalOrPoint values fall partially outside of the range of valid values defined by the CRS for the identified axis, the service is expected to return the non-empty portion of the resource resulting from the subset.

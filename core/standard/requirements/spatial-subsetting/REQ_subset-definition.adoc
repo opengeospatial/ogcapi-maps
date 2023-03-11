@@ -25,7 +25,8 @@
 be supported to indicate an extent crossing that wrapping point.
 ^|F |The implementation SHALL interpret the coordinates as values for the named axis of the CRS specified in the `subset-crs` parameter value or in http://www.opengis.net/def/crs/OGC/1.3/CRS84 if the `subset-crs` parameter is missing.
 ^|G |If the `subset` parameter including any of the dimensions corresponding to those of the map bounding box is used with a `bbox` and/or `center` parameter, the server SHALL return a 400 client error.
-
+^|H |The implementation SHALL interpret multiple `subset` parameters, as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.
+^|  |^1^ Example: `subset=Lat(-90:90)&subset=Lon(-180:180)` is equivalent to `subset=Lat(-90:90),Lon(-180:180)`
 |===
 
 NOTE: A subset parameter for http://www.opengis.net/def/crs/OGC/1.3/CRS84 will read as subset=Lon(left_lon:right_lon),Lat(lower_lat:upper_lat).
