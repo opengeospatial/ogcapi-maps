@@ -2,7 +2,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/projection/crs-proj-params*
-^|A |The implementation SHALL support a `crs-proj-params` parameter allowing to select one or more value for operation method parameters, with values in between parentheses `(` `)` following the URI of a parameter, and different parmaeters separated by value.
+^|A |The implementation SHALL support a `crs-proj-params` parameter allowing to select one or more value for operation method parameters, with values in between parentheses `(` `)` following the URI of a parameter, and different parameters separated by value.
 For example, `crs-proj-params=[epsg-parameter:8823](40),[epsg-parameter:8824](90)`.
 ^|B |The implementation SHALL support CURIEs in addition to URI to specify the projection parameters.
 |===

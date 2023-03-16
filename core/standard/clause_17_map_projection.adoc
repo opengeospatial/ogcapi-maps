@@ -13,16 +13,18 @@ Angles are specified in degrees, whereas identifiers for methods, parameters and
 === Operation
 
 ==== Parameter `crs-proj-method`
+The operation method refers mainly to the equations that relates geographic coordinates to projected coordinates and vice-versa. 
 
 include::requirements/projection/REQ_crs-proj-method.adoc[]
 
 ==== Parameter `crs-proj-params`
+The operation method may have some parameters to set such as the standard parallel. This query parameter allows to set those values. In some simple cases this query parameter might not be necessary and clients can consider using `crs-proj-center` instead.
 
 include::requirements/projection/REQ_crs-proj-params.adoc[]
 
 ==== Parameter `crs-proj-center`
 
-In order to facilitate the task of centering a custom projection on the area of interest, which varies greatly between projections, the `crs-proj-center` parameter automatically sets the most appropriate parameters
+In order to facilitate the task of centering a custom projection on the area of interest, with parameters varying greatly between projections, the `crs-proj-center` parameter automatically sets the most appropriate parameters
 for the specified center latitude and longitude.
 
 include::requirements/projection/REQ_crs-proj-center-definition.adoc[]

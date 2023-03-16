@@ -2,5 +2,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/background/map-success*
-^|A |The color and transparency level of the maps in the areas with no data SHALL be exactly the ones specified in the `bgcolor` and `transparent` parameters.
+^|A |The color  of the map in the areas with no data SHALL be exactly the one specified in the `bgcolor`.
+^|B |In case the output format allows it and in the absence of the `transparent` parameter (or if is 'false'), the opacity (alpha value) of the map in the areas with no data SHALL be exactly 100% if `transparent` is `false` or 0% if `transparent` is `true`.
+^|C |If the renderer supports anti-aliasing, at the edges of areas with data and no data, the opacity SHALL be a value between 0% and 100%.
 |===

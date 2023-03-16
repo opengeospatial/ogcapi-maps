@@ -1,0 +1,6 @@
+[[per_bgcolor-alpha]]
+[width="90%",cols="2,6a"]
+|===
+^|*Permission {counter:per-id}* |*/per/background/bgcolor-alpha*
+^|A |The implementation MAY support a `bgcolor` parameter with 8 hexadecimal digits where the first 2 represent an alpha value, to be used as the opacity value for no data areas.
+|===

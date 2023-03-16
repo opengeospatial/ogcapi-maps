@@ -18,6 +18,8 @@ The transparent and bgcolor parameters indicate how the absence of data will be 
 
 include::requirements/background/REQ_bgcolor-definition.adoc[]
 
+include::recommendations/background/PER_bgcolor-alpha.adoc[]
+
 include::requirements/background/REQ_transparent-definition.adoc[]
 
 NOTE: If the client wants to force an opaque color, apart from defining the appropriate background color it should define the alpha value to `FF` or ensure that the parameter `transparent` is set to `false`. For the formats that reserve a color to define transparency, it still makes sense to combine background color and transparent=true with the purpose of helping the server to select a color that does not interfere with the actual values and colors in the map.

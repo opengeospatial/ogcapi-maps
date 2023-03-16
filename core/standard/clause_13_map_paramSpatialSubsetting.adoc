@@ -81,9 +81,9 @@ include::recommendations/spatial-subsetting/REC_subset-crs-axis-names.adoc[]
 The `center` parameter defines the center point of the map in the `center-crs` coordinates from which the `width` and `height` parameter will define a subset,
 taking into consideration the scale and display resolution of the map.
 
-NOTE: This parameter use the comma (",") as the separator between the coordinates. Additional white space will not be used to delimit list items. The comma character should not be escaped (IETF RFC 2396).
-
 include::requirements/spatial-subsetting/REQ_center-definition.adoc[]
+
+NOTE: This parameter use the comma (",") as the separator between the coordinates. Additional white space will not be used to delimit list items. The comma character should not be escaped (IETF RFC 2396).
 
 include::requirements/spatial-subsetting/REQ_subsetting-width-height-definition.adoc[]
 

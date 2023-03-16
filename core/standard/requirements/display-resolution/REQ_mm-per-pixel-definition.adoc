@@ -9,14 +9,14 @@
     name: mm-per-pixel
     in: query
     description:
-      size of a pixel of the viewport that presents the response (in millimeters).
+      size (in millimeters) of a pixel of the rendering device that presents the response.
     required: false
     style: form
     schema:
       type: number
 ----
-^|B |`mm-per-pixel` SHALL be a positive integer number indicating the size the viewport pixels where the response will be presented in millimeters.
-^|C |if the parameter `mm-per-pixel` is not provided, the server SHALL assume that the pixel size is 0.28 millimeters (90.71 dots per inch).
+^|B |`mm-per-pixel` SHALL be a positive number indicating the size (in millimeters) of a rendering device pixel.
+^|C |if the parameter `mm-per-pixel` is not provided, the server SHALL assume that the pixel size is 0.28 millimeters (90.71 pixels per inch).
 |===
 
 NOTE: The definition of 0.28 as a default value is the same as used in Web Map Service WMS 1.3.0 OGC 06-042 and in the Symbology Encoding (SE) Implementation Specification 1.1.0 OGC 05-077r4 that was later adopted by WMTS 1.0 OGC 07-057r7 and 2D-TMS OGC 17-083r4. 0.28 mm was the actual pixel size of a common display from 2005. This value is still being used as reference, even if current display devices are built with much smaller pixel sizes.
