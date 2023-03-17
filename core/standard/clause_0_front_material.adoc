@@ -31,7 +31,5 @@ All questions regarding this submission should be directed to the editor or the 
 |Name |Affiliation
 |Joan Masó | UAB-CREAF
 |Jérôme Jacovella-St-Louis | Ecere
-|TBA | TBA
-|TBA | TBA
-|TBA | TBA
+|Jeff Harrison | US Army Geospatial Center
 |===
