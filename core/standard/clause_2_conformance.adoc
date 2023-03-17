@@ -65,7 +65,7 @@ NOTE: Combining this conformance class with the _spatial subsetting by center po
 (not `width` and `height`, which take on a subsetting role).
 
 *<<rc_display-resolution>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/display-resolution)
-The _display resolution_ conformance class allows to specify the resolution of the display (the size of a pixel in millimeters) using the
+The _display resolution_ conformance class allows the specification the resolution of the display (the size of a pixel in millimeters) using the
 `mm-per-pixel` parameter on which the map will be visualized so as to properly interpret scale denominators and apply scale-dependent symbology rules.
 
 .Example requests
