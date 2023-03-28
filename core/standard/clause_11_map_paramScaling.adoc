@@ -7,11 +7,11 @@
 
 include::requirements/requirements_class_scaling.adoc[]
 
-This requirement class describes how to scale a map by specifying a set of parameters that will define its size (width and height) in pixels of a displaying device that indirectly defines que scale of the map.
+This requirement class describes how to scale a map by specifying a set of parameters that will define its size (width and height) in pixels of a displaying device that indirectly defines the scale of the map.
 
 === Map Operation
 
-The map core of this standard defines how to get a map. This requirements class specifies the width and height  parameters needed to indirectly define the scale of the map.
+The map core of this standard defines how to get a map. This requirements class specifies the width and height parameters needed to indirectly define the scale of the map.
 
 ==== Parameters `width` and `height`
 These parameters indicate the size of the viewport in rows and columns where the map is going to be shown. If the format of the response is a raster image, the number of columns and rows of the responded image will commonly match the width and height of the viewport.
@@ -31,7 +31,7 @@ NOTE: The `scale-denominator` is the only way to specify scaling when requesting
 include::requirements/scaling/REQ_scale-denominator-definition.adoc[]
 
 ==== Aspect ratio considerations
-If a client provides both width and height the server will adopt them even if the aspect ratio between (maxx-minx)/(maxy-miny) and w/h are different (resulting in a non square pixel). However, in general circumstances (e.g 2D representations in the screen), the client should make an effort to provide parameters that preserve the aspect ratio. The client is allowed to provide only one of the values in width and height and the server should figure out the other one to maintain the aspect ratio.
+If a client provides both width (w) and height (h) the server will adopt them even if the aspect ratio between (maxx-minx)/(maxy-miny) and w/h are different (resulting in a non square pixel). However, in general circumstances (e.g 2D representations in the screen), the client should make an effort to provide parameters that preserve the aspect ratio. The client is allowed to provide only one of the values in width and height and the server should figure out the other one to maintain the aspect ratio.
 
 include::recommendations/scaling/REC_width-definition.adoc[]
 
