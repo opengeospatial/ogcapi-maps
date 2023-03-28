@@ -180,7 +180,7 @@ NOTE: Even if this document does not provide a direct GetFeatureInfo equivalent,
 
 === Using this standard independently
 
-Although this standard is designed as a building block that can be leveraged by other standards adding precisions about specific types of data available as maps
+Although this standard is designed as a building block that can be leveraged by other standards by adding precision about specific types of data available as maps
 (e.g., _OGC API - Tiles_), the conformance classes defined in this document are still concrete enough to make it possible to distribute
 and request map data by relying strictly on the content herein.
 
@@ -193,12 +193,12 @@ Three different mechanisms are defined by this standard to describe the domain o
 With the _Geospatial Data Map_ conformance class, the collection description inherited from _OGC API - Common - Part 2_ contains an `extent` property that can
 describe both the spatial and temporal domain of the data. In addition, the _Unified Additional Dimensions_ common building block, used in the
 example OpenAPI definition, further specifies that additional dimensions shall be described in a similar way to the temporal dimension.
-An extra `grid` property in the example OpenAPI definition also allows to specify the resolution and the number of cells (for data organized as a regular grid) or
+An extra `grid` property in the example OpenAPI definition also allows the specification of the resolution and the number of cells (for data organized as a regular grid) or
 a list of coordinates (for data organized as an irregular grid) along each dimension.
 
-The collection metadata allows to specify a spatial bounding box for maps as a whole, as well as for each individual
-collections of geospatial data represented or contained within the map (the _layers_). The resolution of these layers can also be specified by including
-the minimum and maximum cell size and equivalent scale denominators. The domainset can be enhancing the schema to include bounds and resolution for additional dimensions, also able to handle
+The collection metadata allows the specification of a spatial bounding box for maps as a whole, as well as for each individual
+collection of geospatial data represented or contained within the map (the _layers_). The resolution of these layers can also be specified by including
+the minimum and maximum cell size and equivalent scale denominators. The domainset can enhance the schema to include bounds and resolution for additional dimensions, which is able to handle
 the particularity of unequal temporal units.
 
 ==== Available formats and map response expectations
@@ -211,7 +211,7 @@ for other map encodings).
 ==== Limitations
 
 Although this standard can be used by itself, other OGC API standards or draft specifications may provide additional capabilities and specify additional
-normative requirements describing how to retrieve specific map content, or allowing to describe in greater detail the domain or the observed or
+normative requirements describing how to retrieve specific map content, or allowing the description of greater detail the domain or the observed or
 measured properties within the map data. Conforming to these standards as well may enable greater interoperability.
 
 === How to approach an OGC API
