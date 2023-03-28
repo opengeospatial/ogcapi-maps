@@ -224,11 +224,11 @@ This standard allows to describe the domain of the maps, including spatiotempora
 With the _Geospatial Data Map_ conformance class, the collection description inherited from _OGC API - Common - Part 2_ contains an `extent` property that can
 describe both the spatial and temporal domain of the data. In addition, the _Unified Additional Dimensions_ common building block, used in the
 example OpenAPI definition, further specifies that additional dimensions shall be described in a similar way to the temporal dimension.
-An extra `grid` property in the example OpenAPI definition also allows to specify the resolution and the number of cells (for data organized as a regular grid) or
+An extra `grid` property in the example OpenAPI definition also allows the specification of the resolution and the number of cells (for data organized as a regular grid) or
 a list of coordinates (for data organized as an irregular grid) along each dimension.
 
-The collection metadata allows to specify a spatial bounding box for maps as a whole, as well as for each individual
-collections of geospatial data represented or contained within the map (the _layers_). The resolution of these layers can also be specified by including
+The collection metadata allows the specification of a spatial bounding box for maps as a whole, as well as for each individual
+collection of geospatial data represented or contained within the map (the _layers_). The resolution of these layers can also be specified by including
 the minimum and maximum cell size and equivalent scale denominators.
 
 ==== Available formats and map response expectations
