@@ -16,14 +16,32 @@ set of mathematical rules for specifying how coordinates are to be assigned to p
 === *geographic information*
 information concerning phenomena implicitly or explicitly associated with a location relative to the Earth (source: ISO 19101)
 
+=== *height*
+
+1. vertical elevation of an object in the real world above a reference point (height above the reference ellipsoid for geographic CRS such as [OGC:CRS84h] and [EPSG:4979]).
+
+2. size of a map image in pixels along the vertical axis of the rendering device
+
+NOTE: both the _spatial subsetting_ and _scaling_ requirements class make use of the `height` query parameters.
+In both cases, the parameter refers to the height of the image in pixels, but the effect of specifying a fixed value for the parameter
+is different in each case (selecting a portion of the image to return or resampling the image to a different size).
 
 === *map*
-portrayal of geographic information as a digital image file suitable for display on a computer screen (source: OGC 06-042)
-
+portrayal of geographic information as a digital representation suitable for display on a rendering device (adapted from OGC 06-042)
 
 === *portrayal*
 presentation of information to humans (source: ISO 19117)
 
+=== *rendering device*
+medium or apparatus on which the map being retrieved will be displayed, whether temporarily (e.g., computer screen) or permanently (e.g., paper).
+
+=== *width*
+
+size of a map image in pixels along the horizontal axis of the rendering device
+
+NOTE: both the _spatial subsetting_ and _scaling_ requirements class make use of the `width` query parameters.
+In both cases, the parameter refers to the width of the image in pixels, but the effect of specifying a fixed value for the parameter
+is different in each case (selecting a portion of the image to return or resampling the image to a different size).
 
 === *Web API*
 An Application Programming Interface (API) using an architectural style that is founded on the technologies of the Web (source: OGC 17-069r3)

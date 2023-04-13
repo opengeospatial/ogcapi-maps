@@ -9,11 +9,15 @@ include::requirements/requirements_class_spatial-subsetting.adoc[]
 
 The core requirements class of this standard defines the map resource.
 The core also defines a minimum set of metadata to enable a client application to formulate a map request.
-This requirements class adds the ability to request an arbitrary 2D subset of a map using either a bounding box specified using one of two equivalent syntaxes
+This requirements class adds the ability to request an arbitrary 2D or 3D spatial subset of a map using either a bounding box specified using one of two equivalent syntaxes
 (a `bbox` parameter similar to the one in WMS 1.3, as well as a `subset` parameter similar to WCS 2.1),
 or as a center point as well as `width` and/or `height` parameters taking into account the scale and the display resolution.
 
-The client can use only one of the `bbox`, `subset` or `center` subsetting mechanism.
+The way the third (vertical) spatial dimension is applied to filter the output is left to the implementation and may depend on the nature of the data being represented and/or the negotiated output format.
+For example, the server could include features located within a vertical interval as part of a 2D map being rendered.
+In a second example, the extent of a 3D perspective view or a 3D model output would include only the subset of the vertical dimension specified.
+In a third example, a vertical profile could be returned for a single point or for a path across the other spatial dimensions.
+In this last example, the subset mechanism would likely only be used to subset the vertical dimension, while another mechanism would be used to select an arbitrary path in the horizontal dimensions.
 
 [[maps-spatial-subsetting-crs]]
 === CRS for subsetting
@@ -42,7 +46,7 @@ include::requirements/spatial-subsetting/REQ_subset-crs-definition.adoc[]
 
 include::requirements/spatial-subsetting/REQ_center-crs-definition.adoc[]
 
-NOTE: For clarification: The default CRS of the bbox, center and subset spatial dimensions is http://www.opengis.net/def/crs/OGC/1.3/CRS84 and the default CRS of the map is native (storage) CRS.
+NOTE: For clarification: The default CRS of the bbox, center and subset spatial dimensions is http://www.opengis.net/def/crs/OGC/1.3/CRS84 and the default output CRS of the map is native (storage) CRS.
 
 NOTE: The `center-crs`, `subset-crs` and `bbox-crs` are defined identically except they are affecting `center`, `subset` and `bbox` parameters respectively.
 
@@ -60,7 +64,10 @@ include::requirements/spatial-subsetting/REQ_bbox-definition.adoc[]
 NOTE: This parameter use the comma (",") as the separator between the coordinates. Additional white space will not be used to delimit list items. The comma character should not be escaped (IETF RFC 2396).
 
 Example:
-`bbox=-180,-90,180,90&bbox-crs=`
+`bbox=-180,-90,180,90&bbox-crs=[OGC:CRS84]`
+
+Example of a 3D bounding box:
+`bbox=-180,-90,10000,180,90,12000&bbox-crs=[OGC:CRS84h]`
 
 ==== Parameter `subset`
 The `subset` parameter is a common building block used to select a subset of a geospatial resource shared with other OGC API Standards.
