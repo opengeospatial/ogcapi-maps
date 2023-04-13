@@ -182,7 +182,7 @@ This standard can be referenced by other standards providing resources that that
 * _OGC API - Processes - Part 3: Workflows and Chaining_ provides a mechanism to trigger localized processing workflows as a result of retrieving maps (for a specific area and resolution of interest).
 
 This document is the first part of a series of _OGC API - Maps_ "parts" that use the core and extensions model.
-It is foreseen that future parts will specify other extensions, such as how to get information on a point in a map.
+It is foreseen that future parts will specify other extensions, such as how to get information for a point in a map.
 Other standards or extensions of standards may also provide mechanisms (e.g., additional query parameters) to deal with additional dimensions such as elevation, or more advanced temporal capabilities than what is defined in this standard's _datetime_ conformance class.
 
 ==== Dynamic and scalable map viewers
