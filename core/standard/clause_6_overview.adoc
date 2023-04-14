@@ -64,7 +64,7 @@ One important change in _OGC API - Maps_ is that requests are built out of modul
 allowing different levels of complexity, from a simple map request with no parameters to a precise selection of
 collections, spatiotemporal subsets, output dimensions, scale, background settings and so on.
 
-Additionally, in order to accomodate different client preferences and use cases as well as maintain consistency with other OGC API
+Additionally, in order to accommodate different client preferences and use cases as well as maintain consistency with other OGC API
 data access mechanisms such as _OGC API - Coverages_ and _OGC API - Features_, multiple
 equivalent subsetting mechanisms are supported e.g., subsetting by bounding box, date and time, generic dimension subset or center point.
 
