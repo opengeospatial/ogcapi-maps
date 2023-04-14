@@ -22,9 +22,9 @@ information concerning phenomena implicitly or explicitly associated with a loca
 
 2. size of a map image in pixels along the vertical axis of the rendering device
 
-NOTE: both the _spatial subsetting_ and _scaling_ requirements class make use of the `height` query parameters.
+NOTE: both the _spatial subsetting_ and _scaling_ requirements classes make use of the `height` query parameter.
 In both cases, the parameter refers to the height of the image in pixels, but the effect of specifying a fixed value for the parameter
-is different in each case (selecting a portion of the image to return or resampling the image to a different size).
+is different in each case (selecting the portion of the map to return in the image vs. resampling the map to the requested image size).
 
 === *map*
 portrayal of geographic information as a digital representation suitable for display on a rendering device (adapted from OGC 06-042)
@@ -39,9 +39,9 @@ medium or apparatus on which the map being retrieved will be displayed, whether 
 
 size of a map image in pixels along the horizontal axis of the rendering device
 
-NOTE: both the _spatial subsetting_ and _scaling_ requirements class make use of the `width` query parameters.
+NOTE: both the _spatial subsetting_ and _scaling_ requirements classes make use of the `width` query parameter.
 In both cases, the parameter refers to the width of the image in pixels, but the effect of specifying a fixed value for the parameter
-is different in each case (selecting a portion of the image to return or resampling the image to a different size).
+is different in each case (selecting the portion of the map to return in the image vs. resampling the map to the requested image size).
 
 === *Web API*
 An Application Programming Interface (API) using an architectural style that is founded on the technologies of the Web (source: OGC 17-069r3)
