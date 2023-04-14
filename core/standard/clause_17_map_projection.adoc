@@ -9,11 +9,12 @@ include::requirements/requirements_class_projection.adoc[]
 This requirements class defines the ability for clients to specify a custom projection CRS based on parameters defining a projection operation method, values for corresponding parameters, a datum, as well as an orientation.
 It also provides a parameter facilitating the task of selecting a projection center across different projections, for which the relevant latitude and longitude parameters differ.
 Angles are specified in degrees, whereas identifiers for methods, parameters and datums can be specified as URIs or safe CURIEs.
+Additionally, it defines a resource at `/projections` listing the available operation methods and their associated parameters, as well as the possible datums that can be used as values for these parameters.
 
 === Operation
 
 ==== Parameter `crs-proj-method`
-The operation method refers mainly to the equations that relates geographic coordinates to projected coordinates and vice-versa. 
+The operation method refers mainly to the equations that relates geographic coordinates to projected coordinates and vice-versa.
 
 include::requirements/projection/REQ_crs-proj-method.adoc[]
 
@@ -39,6 +40,28 @@ include::requirements/projection/REQ_crs-datum.adoc[]
 
 include::requirements/projection/REQ_orientation.adoc[]
 
+==== Response headers
+
+include::requirements/projection/REQ_response-headers.adoc[]
+
+Example of a request and associated response headers:
+
+```
+/map?
+   crs-proj-method=[epsg-method:9840]&
+   crs-proj-center=Lat(30),Lon(40)&
+   crs-datum=[epsg-datum:6326]&
+   orientation=40
+```
+
+```
+Content-Crs-Method: <http://www.opengis.net/def/method/EPSG/0/9840>
+Content-Crs-Method-Params: <http://www.opengis.net/def/parameter/EPSG/0/8801>=30; <http://www.opengis.net/def/parameter/EPSG/0/8802>=40
+Content-Crs-Datum: <http://www.opengis.net/def/datum/EPSG/0/6326>
+Content-Orientation: 40
+Content-Bbox=-1000,-800,1000,800
+```
+
 ==== Response
 
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
@@ -48,3 +71,139 @@ A successful GET response is described in the core class (http://www.opengis.net
 A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
 
 If the parameter value for the parameters is not one of the supported for the collections, the status code of the response will be `404`.
+
+=== Available projections
+
+==== Available projections operation
+
+The resource at `/projections` supports a `GET` operation, with JSON as an available representation, returning a list of the supported projection operation methods and their associated parameters,
+as well as a list of available datums, applying to all map retrieval operations of the API.
+
+include::requirements/projection/REQ_projections-resource.adoc[]
+
+==== Available projections response
+
+The custom projections resource includes a `methods` property listing the available projections operation methods,
+corresponding to the valid values for the `crs-proj-method` query parameter, and their associated parameters,
+corresponding to the valid values for the `crs-proj-params` parameters.
+
+The custom projections resource also includes a `datums` property listing the available datums corresponding to the valid values for the `crs-datum` query parameter.
+
+include::requirements/projection/REQ_projections-response.adoc[]
+
+.Example JSON response for `/projections` resource listing available projections, parameters and datums
+====
+[source,json]
+----
+{
+   "methods":
+   {
+      "[epsg-method:9802]":
+      {
+         "title": "Lambert Conic Conformal",
+         "description": "Lambert Conic Conformal projection (2 standard parallels)",
+         "parameters":
+         {
+            "[epsg-parameter:8823]": { "$ref": "#/parameters/[epsg-parameter:8823]" },
+            "[epsg-parameter:8824]": { "$ref": "#/parameters/[epsg-parameter:8824]" },
+         },
+         "centerLatParam": "[epsg-parameter:8823]"
+      },
+      "[epsg-method:9805]":
+      {
+         "title": "Mercator",
+         "description": "Mercator projection",
+         "parameters":
+         {
+            "[epsg-parameter:8823]": { "$ref": "#/parameters/[epsg-parameter:8823]" },
+            "[epsg-parameter:8802]": { "$ref": "#/parameters/[epsg-parameter:8802]" }
+         },
+         "centerLatParam": "[epsg-parameter:8823]",
+         "centerLonParam": "[epsg-parameter:8802]"
+      },
+      "[epsg-method:9807]":
+      {
+         "title": "Transverse Mercator",
+         "description": "Transverse Mercator projection",
+         "parameters":
+         {
+            "[epsg-parameter:8801]": { "$ref": "#/parameters/[epsg-parameter:8801]" },
+            "[epsg-parameter:8802]": { "$ref": "#/parameters/[epsg-parameter:8802]" }
+         },
+         "centerLatParam": "[epsg-parameter:8801]",
+         "centerLonParam": "[epsg-parameter:8802]"
+      },
+      "[epsg-method:9820]":
+      {
+         "title": "Lambert Azimuthal Equal Area",
+         "description": "Lambert Azimuthal Equal Area projection",
+         "parameters":
+         {
+            "epsg-parameter:8801": { "$ref": "#/parameters/[epsg-parameter:8801]" },
+            "epsg-parameter:8802": { "$ref": "#/parameters/[epsg-parameter:8802]" }
+         },
+         "centerLatParam": "[epsg-parameter:8801]",
+         "centerLonParam": "[epsg-parameter:8802]"
+      },
+      "[epsg-method:9829]":
+      {
+         "title": "Polar Stereographic",
+         "description": "Polar Stereographic projection",
+         "parameters":
+         {
+            "[epsg-parameter:8832]": { "$ref": "#/parameters/[epsg-parameter:8832]" },
+            "[epsg-parameter:8833]": { "$ref": "#/parameters/[epsg-parameter:8833]" },
+         },
+         "centerLatParam": "[epsg-parameter:8832]",
+         "centerLonParam": "[epsg-parameter:8833]"
+      },
+      "[epsg-method:9840]":
+      {
+         "title": "Orthographic",
+         "description": "Orthographic projection",
+         "parameters":
+         {
+            "epsg-parameter:8801": { "$ref": "#/parameters/[epsg-parameter:8801]" },
+            "epsg-parameter:8802": { "$ref": "#/parameters/[epsg-parameter:8802]" }
+         },
+         "centerLatParam": "[epsg-parameter:8801]",
+         "centerLonParam": "[epsg-parameter:8802]"
+      },
+      "mollweide":
+      {
+         "title": "Mollweide",
+         "description": "Mollweide projection",
+         "parameters":
+         {
+            "epsg-parameter:8802": { "$ref": "#/parameters/[epsg-parameter:8802]" }
+         },
+         "centerLonParam": "[epsg-parameter:8802]"
+      }
+   },
+   "parameters":
+   {
+      "[epsg-parameter:8801]": { "title": "Latitude of natural origin" },
+      "[epsg-parameter:8802]": { "title": "Longitude of natural origin" },
+      "[epsg-parameter:8823]": { "title": "Latitude of 1st standard parallel" },
+      "[epsg-parameter:8824]": { "title": "Latitude of 2nd standard parallel" },
+      "[epsg-parameter:8832]": { "title": "Latitude of standard parallel" },
+      "[epsg-parameter:8833]": { "title": "Longitude of origin" }
+   },
+   "datums":
+   {
+      "[epsg-datum:6230]"
+      {
+         "title": "European Datum 1950",
+         "description": "European Datum 1950",
+         "ellipsoid": "[epsg-ellipsoid:7022]"
+      },
+      "[epsg-datum:6326]":
+      {
+         "title": "WGS84",
+         "description": "World Geodetic System 1984 ensemble",
+         "ellipsoid": "[epsg-ellipsoid:7030]"
+      }
+   }
+}
+----
+====

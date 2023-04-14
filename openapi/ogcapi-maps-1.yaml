@@ -54,6 +54,10 @@ paths:
    /collections/{collectionId}/styles/{styleId}/map:
       $ref: 'paths/maps-core/pStyledCollectionMap.yaml'
 
+   # Custom CRS projections and datums
+   /projections:
+      $ref: 'paths/maps-core/pProjections.yaml'
+
    # Shared Tile Matrix Set definitions
    /tileMatrixSets:
       $ref: 'paths/tiles-core/tileMatrixSets/pTileMatrixSetsList.yaml'

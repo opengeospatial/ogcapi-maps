@@ -508,6 +508,126 @@
         }
       }
     },
+    "/projections": {
+      "get": {
+        "tags": [
+          "Maps"
+        ],
+        "summary": "Retrieve the list of custom CRS projection operation methods (including their associated parameters) and datums supported by this API.",
+        "operationId": "getProjections",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/f-metadata"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of custom CRS projection operation methods (including their associated parameters) and datums supported by this API.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Custom CRS projections and datums",
+                  "description": "The list of available projection operation methods, parameters and datums for custom CRS definitions",
+                  "type": "object",
+                  "required": [
+                    "methods",
+                    "datums"
+                  ],
+                  "properties": {
+                    "methods": {
+                      "type": "object",
+                      "description": "The list of available projection operation methods for the `crs-proj-method` query parameter of the API. The properties in this dictionary object are the available values, and correspond to safe CURIEs if a URI is registered for the method.",
+                      "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "description": "A title for this projection operation method",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "Brief narrative description of this projection operation method",
+                            "type": "string"
+                          },
+                          "parameters": {
+                            "type": "object",
+                            "description": "The list of available method parmaeters for the `crs-proj-params` query parameter of the API when using this method. The properties in this dictionary object are the available values, and correspond to safe CURIEs if a URI is registered for the method. \"$ref\" may be used to refer to global parameters in the \"parameters\" property of this document.",
+                            "additionalProperties": {
+                              "type": "object",
+                              "properties": {
+                                "title": {
+                                  "description": "A title for this method parameter",
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "description": "Brief narrative description of this method parameter",
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "datums": {
+                      "type": "object",
+                      "description": "The list of available datums for the `crs-datum` query parameter of the API. The properties in this dictionary object are the available values, and correspond to safe CURIEs if a URI is registered for the method.",
+                      "additionalProperties": {
+                        "type": "object",
+                        "required": [
+                          "ellipsoid"
+                        ],
+                        "properties": {
+                          "title": {
+                            "description": "A title for this datum.",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "Brief narrative description of this datum",
+                            "type": "string"
+                          },
+                          "ellipsoid": {
+                            "description": "The identifier (safe CURIE if a URI exists) for the ellipsoid associated with this datum.",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "parameters": {
+                      "type": "object",
+                      "description": "A list of global method parameters that can be referenced from individual methods supporting them using the \"$ref\" JSON Pointer mechanism.",
+                      "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "description": "A title for this method parameter",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "Brief narrative description of this method parameter",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "406": {
+            "$ref": "#/components/responses/NotAcceptable"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
     "/tileMatrixSets": {
       "get": {
         "tags": [

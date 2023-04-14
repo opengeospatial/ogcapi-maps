@@ -1,0 +1,14 @@
+get:
+   tags:
+     - Maps
+   summary: Retrieve the list of custom CRS projection operation methods (including their associated parameters) and datums supported by this API.
+   operationId: getProjections
+   parameters:
+     - $ref: '../../parameters/unspecified/f-metadata.yaml'
+   responses:
+     '200':
+       $ref: '../../responses/maps-core/rProjections.yaml'
+     '406':
+       $ref: '../../responses/common-core/rNotAcceptable.yaml'
+     '500':
+       $ref: '../../responses/common-core/rServerError.yaml'

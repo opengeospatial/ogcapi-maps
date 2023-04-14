@@ -1,0 +1,12 @@
+[[req_projection-response-headers]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/projection/response-headers*
+^|A |For responses to map request where the `crs-proj-method` query parameter was used, the implementation SHALL return a response header `Content-Crs-Method: <[URI]>` including the URI of the projection operation method.
+^|B |The implementation SHALL return a response header `Content-Crs-Method-Params: <URI>=[value]; ...` including the URI of the projection operation parameters and its value for each parameter specified using the `crs-proj-method` or `crs-proj-center` query parameters.
+^|C |For responses to map request where the `crs-datum` query parameter was used, the implementation SHALL return a response header `Content-Crs-Datum: <[URI]>` corresponding to the URI of the projection operation method.
+^|D |For responses to map request where the `orientation` query parameter was used, the implementation SHALL return a response header `Content-Orientation: [value in decimal degrees]` corresponding to the orientation of the map.
+^|E |For responses to map request where the `orientation` query parameter was used, the `Content-Bbox` response header SHALL reflect the bounding box in the map CRS prior to the orientation being applied.
+^|F |For responses to map requests specifying the `crs-proj-method` query parameter, the implementation SHALL NOT include a `Content-Crs` response header.
+^|G |For responses to map requests specifying the `crs-proj-method` query parameter, the CRS of the `Content-Bbox` response header coordinates SHALL be in the custom CRS defined by this operation method and its parameters.
+|===

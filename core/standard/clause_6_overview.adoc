@@ -62,30 +62,30 @@ As a result of following a RESTful approach, OGC API implementations are not bac
 
 One important change in _OGC API - Maps_ is that requests are built out of modular building blocks,
 allowing different levels of complexity, from a simple map request with no parameters to a precise selection of
-collections, spatiotemporal subsets, background settings and so on.
+collections, spatiotemporal subsets, output dimensions, scale, background settings and so on.
 
 Additionally, in order to accomodate different client preferences and use cases as well as maintain consistency with other OGC API
 data access mechanisms such as _OGC API - Coverages_ and _OGC API - Features_, multiple
-equivalent subsetting mechanisms are supported e.g., subsetting by bounding box, date time, generic dimension subset or center point.
+equivalent subsetting mechanisms are supported e.g., subsetting by bounding box, date and time, generic dimension subset or center point.
 
 Similarly, the ability to explicitly specify a scale denominator as a way to control downsampling is also defined.
 
 The concept of a display resolution (`mmPerPixel`) is also introduced as an alternative to the default 0.28 mm/pixel specified in WMS,
-enabling a better control how a server renders symbology suitable for devices and printed maps of diferent resolutions.
+enabling a better control on how a server renders symbology suitable for devices and printed maps of diferent resolutions.
 
-A more flexible mechanism to define custom CRS and re-orient the map is also introduced, offering a more comprehensive approach based on
-operation methods, parameters and ellipsoids compared to the _auto_ CRSs available in WMS.
+A flexible mechanism to define custom CRS and re-orient the map is also introduced, offering a more comprehensive approach based on
+projection operation methods, parameters and datums (implying a particular ellipsoid) compared to the _AUTO2:_ CRSs available in WMS.
 
-Finally, OGC API - Maps can also be used to represent a vertical dimension, either by returning a 3D data format, by
+Finally, _OGC API - Maps_ can also be used to represent a vertical dimension, either by returning a 3D data format, by
 selecting a vertical subset of features to be rendered on a 2D output, or by rendering a vertical profile.
 Some examples include:
 
-* 3D map used as input for virtual reality devices,
+* 3D map to be displayed on virtual reality devices,
 * 1D graph of NDVI over time for a particular point,
 * 1D graph of a temperature over a vertical profile for a given spatial point,
 * intensity of rain along a latitude and vertical dimension,
 * video over temporal axis,
-* video of temperature representing showing different elevation levels at different points in the video.
+* video of temperature representing different elevation levels in different frames of the video.
 
 ==== Correspondence between WMS map metadata and OGC APIs
 
@@ -259,7 +259,7 @@ However, it is expected that many API implementations will actually follow the p
 Again, be aware that these paths are not required by this Standard.
 
 [#table_resources,reftext='{table-caption} {counter:table-num}']
-.Overview of resources and common direct links that can be used to define an OGC API - Maps implementation
+.Overview of resources and common direct links that can be used to define an _OGC API - Maps_ implementation
 [cols="33,66",options="header"]
 !===
 |Resource name                                             |Common path

@@ -3,4 +3,5 @@
 |===
 ^|*Requirement {counter:req-id}* |*/req/projection/orientation*
 ^|A |The implementation SHALL support an `orientation` parameter allowing to rotate the map by an orientation, expressed as clockwise degrees.
+^|B |If an `orientation` parameter is not specified, the implementation SHALL assume a zero orientation value.
 |===

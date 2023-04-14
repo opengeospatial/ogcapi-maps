@@ -1,0 +1,8 @@
+description: The list of custom CRS projection operation methods (including their associated parameters) and datums supported by this API.
+content:
+  application/json:
+    schema:
+      $ref: '../../schemas/maps-core/projections.yaml'
+  text/html:
+    schema:
+      type: string
