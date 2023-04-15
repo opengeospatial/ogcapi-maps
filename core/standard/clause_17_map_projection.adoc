@@ -191,7 +191,7 @@ include::requirements/projection/REQ_projections-response.adoc[]
    },
    "datums":
    {
-      "[epsg-datum:6230]"
+      "[epsg-datum:6230]":
       {
          "title": "European Datum 1950",
          "description": "European Datum 1950",
