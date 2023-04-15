@@ -29,7 +29,7 @@ All questions regarding this submission should be directed to the editor or the 
 [cols=",",options="header",]
 |===
 |Name |Affiliation
-|Joan Masó | UAB-CREAF
-|Jérôme Jacovella-St-Louis | Ecere
+|Joan Masó _(editor)_ | UAB-CREAF
+|Jérôme Jacovella-St-Louis _(editor)_ | Ecere
 |Jeff Harrison | US Army Geospatial Center
 |===
