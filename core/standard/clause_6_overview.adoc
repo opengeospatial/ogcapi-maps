@@ -70,7 +70,7 @@ equivalent subsetting mechanisms are supported e.g., subsetting by bounding box,
 
 Similarly, the ability to explicitly specify a scale denominator as a way to control downsampling is also defined.
 
-The concept of a display resolution (`mmPerPixel`) is also introduced as an alternative to the default 0.28 mm/pixel specified in WMS,
+The concept of a display resolution (millimeters per pixel) is also introduced as an alternative to the default 0.28 mm/pixel specified in WMS,
 enabling a better control on how a server renders symbology suitable for devices and printed maps of diferent resolutions.
 
 A flexible mechanism to define custom CRS and re-orient the map is also introduced, offering a more comprehensive approach based on
