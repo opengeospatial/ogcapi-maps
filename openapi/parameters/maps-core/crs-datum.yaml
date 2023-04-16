@@ -1,0 +1,8 @@
+name: crs-datum
+in: query
+description: Datum for a custom projection CRS, implying a particular ellipsoid.
+required: false
+style: form
+explode: false
+schema:
+  type: string

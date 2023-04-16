@@ -1,0 +1,10 @@
+name: mm-per-pixel
+in: query
+description: >-
+   Display resolution of the target rendering device in millimeters per pixel. This parameter controls the relationship between the dimensions of the resulting map in pixels and the scale of the map.
+   The display resolution is taken into account for applying symbology rules, for the `scale-denominator` parameter, and for the spatial subsetting using a `center`, `width` and `height` parameters.
+required: false
+style: form
+explode: false
+schema:
+  type: number

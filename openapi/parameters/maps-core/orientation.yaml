@@ -1,0 +1,8 @@
+name: orientation
+in: query
+description: Orientation in clockwise degrees by which the map is to be rotated around the center of the subset area as pivot point.
+required: false
+style: form
+explode: false
+schema:
+  type: number

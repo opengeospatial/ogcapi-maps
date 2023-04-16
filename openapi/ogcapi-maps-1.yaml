@@ -195,6 +195,24 @@ components:
          $ref: 'parameters/maps-core/width.yaml'
       height:
          $ref: 'parameters/maps-core/height.yaml'
+      center:
+         $ref: 'parameters/maps-core/center.yaml'
+      center-crs:
+         $ref: 'parameters/maps-core/center-crs.yaml'
+      scale-denominator:
+         $ref: 'parameters/maps-core/scale-denominator.yaml'
+      mm-per-pixel:
+         $ref: 'parameters/maps-core/mm-per-pixel.yaml'
+      orientation:
+         $ref: 'parameters/maps-core/orientation.yaml'
+      crs-proj-method:
+         $ref: 'parameters/maps-core/crs-proj-method.yaml'
+      crs-proj-center:
+         $ref: 'parameters/maps-core/crs-proj-center.yaml'
+      crs-proj-params:
+         $ref: 'parameters/maps-core/crs-proj-params.yaml'
+      crs-datum:
+         $ref: 'parameters/maps-core/crs-datum.yaml'
 
       # Maps - Core (unspecified)
       f-map:

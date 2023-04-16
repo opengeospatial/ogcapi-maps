@@ -1,0 +1,8 @@
+name: crs-proj-params
+in: query
+description: Operation method parameters for a custom projection CRS.
+required: false
+style: form
+explode: false
+schema:
+  type: string

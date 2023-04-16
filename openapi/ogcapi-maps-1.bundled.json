@@ -282,6 +282,33 @@
             "$ref": "#/components/parameters/height"
           },
           {
+            "$ref": "#/components/parameters/center"
+          },
+          {
+            "$ref": "#/components/parameters/center-crs"
+          },
+          {
+            "$ref": "#/components/parameters/scale-denominator"
+          },
+          {
+            "$ref": "#/components/parameters/mm-per-pixel"
+          },
+          {
+            "$ref": "#/components/parameters/orientation"
+          },
+          {
+            "$ref": "#/components/parameters/crs-proj-method"
+          },
+          {
+            "$ref": "#/components/parameters/crs-proj-center"
+          },
+          {
+            "$ref": "#/components/parameters/crs-proj-params"
+          },
+          {
+            "$ref": "#/components/parameters/crs-datum"
+          },
+          {
             "$ref": "#/components/parameters/f-map"
           }
         ],
@@ -344,6 +371,33 @@
           },
           {
             "$ref": "#/components/parameters/height"
+          },
+          {
+            "$ref": "#/components/parameters/center"
+          },
+          {
+            "$ref": "#/components/parameters/center-crs"
+          },
+          {
+            "$ref": "#/components/parameters/scale-denominator"
+          },
+          {
+            "$ref": "#/components/parameters/mm-per-pixel"
+          },
+          {
+            "$ref": "#/components/parameters/orientation"
+          },
+          {
+            "$ref": "#/components/parameters/crs-proj-method"
+          },
+          {
+            "$ref": "#/components/parameters/crs-proj-center"
+          },
+          {
+            "$ref": "#/components/parameters/crs-proj-params"
+          },
+          {
+            "$ref": "#/components/parameters/crs-datum"
           },
           {
             "$ref": "#/components/parameters/styleId"
@@ -416,6 +470,33 @@
             "$ref": "#/components/parameters/height"
           },
           {
+            "$ref": "#/components/parameters/center"
+          },
+          {
+            "$ref": "#/components/parameters/center-crs"
+          },
+          {
+            "$ref": "#/components/parameters/scale-denominator"
+          },
+          {
+            "$ref": "#/components/parameters/mm-per-pixel"
+          },
+          {
+            "$ref": "#/components/parameters/orientation"
+          },
+          {
+            "$ref": "#/components/parameters/crs-proj-method"
+          },
+          {
+            "$ref": "#/components/parameters/crs-proj-center"
+          },
+          {
+            "$ref": "#/components/parameters/crs-proj-params"
+          },
+          {
+            "$ref": "#/components/parameters/crs-datum"
+          },
+          {
             "$ref": "#/components/parameters/f-map"
           }
         ],
@@ -481,6 +562,33 @@
           },
           {
             "$ref": "#/components/parameters/height"
+          },
+          {
+            "$ref": "#/components/parameters/center"
+          },
+          {
+            "$ref": "#/components/parameters/center-crs"
+          },
+          {
+            "$ref": "#/components/parameters/scale-denominator"
+          },
+          {
+            "$ref": "#/components/parameters/mm-per-pixel"
+          },
+          {
+            "$ref": "#/components/parameters/orientation"
+          },
+          {
+            "$ref": "#/components/parameters/crs-proj-method"
+          },
+          {
+            "$ref": "#/components/parameters/crs-proj-center"
+          },
+          {
+            "$ref": "#/components/parameters/crs-proj-params"
+          },
+          {
+            "$ref": "#/components/parameters/crs-datum"
           },
           {
             "$ref": "#/components/parameters/styleId-collection"
@@ -2788,7 +2896,7 @@
       "width": {
         "name": "width",
         "in": "query",
-        "description": "Width of the map in pixel. If omitted and height is specified, defaults to the width maintaining a 1:1 aspect ratio. If both width and height are omitted, the server will select a default dimensions.",
+        "description": "Width of the map in pixels. If omitted and `height` is specified, defaults to the width maintaining a 1:1 aspect ratio. If both `width` and `height` are omitted, the server will select default dimensions. When used together with the `center` and/or `scale-denominator` parameter, `width` takes on a subsetting role rather than scaling (resampling), defining the horizontal portion of the map to subset based on the scale (native scale, or specified by `scale-denominator`) and display resolution (28 mm/pixel, or specified by `mm-per-pixel`).",
         "required": false,
         "style": "form",
         "explode": false,
@@ -2799,12 +2907,111 @@
       "height": {
         "name": "height",
         "in": "query",
-        "description": "Height of the map in pixel. If omitted and width is specified, defaults to the height maintaining a 1:1 aspect ratio. If both width and height are omitted, the server will select a default dimensions.",
+        "description": "Height of the map in pixels. If omitted and `width` is specified, defaults to the height maintaining a 1:1 aspect ratio. If both `width` and `height` are omitted, the server will select default dimensions. When used together with the `center` and/or `scale-denominator` parameter, `height` takes on a subsetting role rather than scaling (resampling), defining the vertical portion of the map to subset based on the scale (native scale, or specified by `scale-denominator`) and display resolution (28 mm/pixel, or specified by `mm-per-pixel`).",
         "required": false,
         "style": "form",
         "explode": false,
         "schema": {
           "type": "integer"
+        }
+      },
+      "center": {
+        "name": "center",
+        "in": "query",
+        "description": "Coordinates of center point for subsetting, in conjunction with the `width` and/or `height` parameters, taking into consideration the scale and display resolution of the map. The center coordinates are comma-separated and interpreted as [ogc:CRS84], unless the `center-crs` parameter specifies otherwise.",
+        "required": false,
+        "style": "form",
+        "explode": false,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "center-crs": {
+        "name": "center-crs",
+        "in": "query",
+        "description": "CRS for the specified center point",
+        "required": false,
+        "style": "form",
+        "explode": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "scale-denominator": {
+        "name": "scale-denominator",
+        "in": "query",
+        "description": "Scale denominator of the map specifying to how many units in the real world one of the same unit on the map corresponds, as printed or displayed, taking into account the display resolution (`mm-per-pixel` or 28 mm/pixel default). This parameter can only be used together with the `width` or `height` parameters (which provide an alternative mechanism to control the scale) if the implementation also supports subsetting, in which case those `width` and `height` parameters then control the subset of the map returned rather than the scale. If `scale-denominator` is omitted, the scale is implied from the dimensions of the returned map compared its spatial subset area.",
+        "required": false,
+        "style": "form",
+        "explode": false,
+        "schema": {
+          "type": "number"
+        }
+      },
+      "mm-per-pixel": {
+        "name": "mm-per-pixel",
+        "in": "query",
+        "description": "Display resolution of the target rendering device in millimeters per pixel. This parameter controls the relationship between the dimensions of the resulting map in pixels and the scale of the map. The display resolution is taken into account for applying symbology rules, for the `scale-denominator` parameter, and for the spatial subsetting using a `center`, `width` and `height` parameters.",
+        "required": false,
+        "style": "form",
+        "explode": false,
+        "schema": {
+          "type": "number"
+        }
+      },
+      "orientation": {
+        "name": "orientation",
+        "in": "query",
+        "description": "Orientation in clockwise degrees by which the map is to be rotated around the center of the subset area as pivot point.",
+        "required": false,
+        "style": "form",
+        "explode": false,
+        "schema": {
+          "type": "number"
+        }
+      },
+      "crs-proj-method": {
+        "name": "crs-proj-method",
+        "in": "query",
+        "description": "Projecton operation method for a custom projection CRS.",
+        "required": false,
+        "style": "form",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "crs-proj-center": {
+        "name": "crs-proj-center",
+        "in": "query",
+        "description": "Projection center for a custom projection CRS corresponding to specific projection operation method parameters for latitude and longitude.",
+        "required": false,
+        "style": "form",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "crs-proj-params": {
+        "name": "crs-proj-params",
+        "in": "query",
+        "description": "Operation method parameters for a custom projection CRS.",
+        "required": false,
+        "style": "form",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "crs-datum": {
+        "name": "crs-datum",
+        "in": "query",
+        "description": "Datum for a custom projection CRS, implying a particular ellipsoid.",
+        "required": false,
+        "style": "form",
+        "explode": false,
+        "schema": {
+          "type": "string"
         }
       },
       "f-map": {

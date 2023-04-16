@@ -1,0 +1,9 @@
+name: crs-proj-center
+in: query
+description: >-
+   Projection center for a custom projection CRS corresponding to specific projection operation method parameters for latitude and longitude.
+required: false
+style: form
+explode: false
+schema:
+  type: string

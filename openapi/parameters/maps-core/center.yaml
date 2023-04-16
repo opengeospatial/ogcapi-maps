@@ -1,0 +1,8 @@
+name: center
+in: query
+description: Coordinates of center point for subsetting, in conjunction with the `width` and/or `height` parameters, taking into consideration the scale and display resolution of the map. The center coordinates are comma-separated and interpreted as [ogc:CRS84], unless the `center-crs` parameter specifies otherwise.
+required: false
+style: form
+explode: false
+schema:
+  type: integer

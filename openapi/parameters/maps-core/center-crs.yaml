@@ -1,0 +1,8 @@
+name: center-crs
+in: query
+description: CRS for the specified center point
+required: false
+style: form
+explode: true
+schema:
+  type: string
