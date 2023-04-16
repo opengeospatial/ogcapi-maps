@@ -1,6 +1,6 @@
 name: scale-denominator
 in: query
-description: Scale denominator of the map specifying to how many units in the real world one of the same unit on the map corresponds, as printed or displayed, taking into account the display resolution (`mm-per-pixel` or 28 mm/pixel default). This parameter can only be used together with the `width` or `height` parameters (which provide an alternative mechanism to control the scale) if the implementation also supports subsetting, in which case those `width` and `height` parameters then control the subset of the map returned rather than the scale. If `scale-denominator` is omitted, the scale is implied from the dimensions of the returned map compared its spatial subset area.
+description: Scale denominator of the map specifying to how many units in the real world one of the same unit on the map corresponds, as printed or displayed, taking into account the display resolution (`mm-per-pixel` or 0.28 mm/pixel default). This parameter can only be used together with the `width` or `height` parameters (which provide an alternative mechanism to control the scale) if the implementation also supports subsetting, in which case those `width` and `height` parameters then control the subset of the map returned rather than the scale. If `scale-denominator` is omitted, the scale is implied from the dimensions of the returned map compared to its spatial subset area.
 required: false
 style: form
 explode: false

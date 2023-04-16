@@ -2,7 +2,7 @@ name: width
 in: query
 description: >-
    Width of the map in pixels. If omitted and `height` is specified, defaults to the width maintaining a 1:1 aspect ratio. If both `width` and `height` are omitted, the server will select default dimensions.
-   When used together with the `center` and/or `scale-denominator` parameter, `width` takes on a subsetting role rather than scaling (resampling), defining the horizontal portion of the map to subset based on the scale (native scale, or specified by `scale-denominator`) and display resolution (28 mm/pixel, or specified by `mm-per-pixel`).
+   When used together with the `center` and/or `scale-denominator` parameter, `width` takes on a subsetting role rather than scaling (resampling), defining the horizontal portion of the map to subset based on the scale (native scale, or specified by `scale-denominator`) and display resolution (0.28 mm/pixel, or specified by `mm-per-pixel`).
 required: false
 style: form
 explode: false

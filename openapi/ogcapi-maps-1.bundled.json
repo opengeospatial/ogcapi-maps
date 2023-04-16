@@ -2789,7 +2789,7 @@
       "bbox": {
         "name": "bbox",
         "in": "query",
-        "description": "Only features that have a geometry that intersects the bounding box are selected. The bounding box is provided as four or six numbers, depending on whether the coordinate reference system includes a vertical axis (height or depth):\n* Lower left corner, coordinate axis 1 * Lower left corner, coordinate axis 2 * Minimum value, coordinate axis 3 (optional) * Upper right corner, coordinate axis 1 * Upper right corner, coordinate axis 2 * Maximum value, coordinate axis 3 (optional)\nThe coordinate reference system of the values is WGS 84 longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a different coordinate reference system is specified in the parameter `bbox-crs`.\nFor WGS 84 longitude/latitude the values are in most cases the sequence of minimum longitude, minimum latitude, maximum longitude and maximum latitude. However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).\nIf the vertical axis is included, the third and the sixth number are the bottom and the top of the 3-dimensional bounding box.\nIf a feature has multiple spatial geometry properties, it is the decision of the server whether only a single spatial geometry property is used to determine the extent or all relevant geometries.",
+        "description": "Only features that have a geometry that intersects the bounding box are selected.\nThe bounding box is provided as four or six numbers, depending on whether the\ncoordinate reference system includes a vertical axis (height or depth):\n\n* Lower left corner, coordinate axis 1\n* Lower left corner, coordinate axis 2\n* Minimum value, coordinate axis 3 (optional)\n* Upper right corner, coordinate axis 1\n* Upper right corner, coordinate axis 2\n* Maximum value, coordinate axis 3 (optional)\n\nThe coordinate reference system of the values is WGS 84 longitude/latitude\n(http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a different coordinate\nreference system is specified in the parameter `bbox-crs`.\n\nFor WGS 84 longitude/latitude the values are in most cases the sequence of\nminimum longitude, minimum latitude, maximum longitude and maximum latitude.\nHowever, in cases where the box spans the antimeridian the first value\n(west-most box edge) is larger than the third value (east-most box edge).\n\nIf the vertical axis is included, the third and the sixth number are\nthe bottom and the top of the 3-dimensional bounding box.\n\nIf a feature has multiple spatial geometry properties, it is the decision of the\nserver whether only a single spatial geometry property is used to determine\nthe extent or all relevant geometries.",
         "required": false,
         "schema": {
           "type": "array",
@@ -2896,7 +2896,7 @@
       "width": {
         "name": "width",
         "in": "query",
-        "description": "Width of the map in pixels. If omitted and `height` is specified, defaults to the width maintaining a 1:1 aspect ratio. If both `width` and `height` are omitted, the server will select default dimensions. When used together with the `center` and/or `scale-denominator` parameter, `width` takes on a subsetting role rather than scaling (resampling), defining the horizontal portion of the map to subset based on the scale (native scale, or specified by `scale-denominator`) and display resolution (28 mm/pixel, or specified by `mm-per-pixel`).",
+        "description": "Width of the map in pixels. If omitted and `height` is specified, defaults to the width maintaining a 1:1 aspect ratio. If both `width` and `height` are omitted, the server will select default dimensions. When used together with the `center` and/or `scale-denominator` parameter, `width` takes on a subsetting role rather than scaling (resampling), defining the horizontal portion of the map to subset based on the scale (native scale, or specified by `scale-denominator`) and display resolution (0.28 mm/pixel, or specified by `mm-per-pixel`).",
         "required": false,
         "style": "form",
         "explode": false,
@@ -2907,7 +2907,7 @@
       "height": {
         "name": "height",
         "in": "query",
-        "description": "Height of the map in pixels. If omitted and `width` is specified, defaults to the height maintaining a 1:1 aspect ratio. If both `width` and `height` are omitted, the server will select default dimensions. When used together with the `center` and/or `scale-denominator` parameter, `height` takes on a subsetting role rather than scaling (resampling), defining the vertical portion of the map to subset based on the scale (native scale, or specified by `scale-denominator`) and display resolution (28 mm/pixel, or specified by `mm-per-pixel`).",
+        "description": "Height of the map in pixels. If omitted and `width` is specified, defaults to the height maintaining a 1:1 aspect ratio. If both `width` and `height` are omitted, the server will select default dimensions. When used together with the `center` and/or `scale-denominator` parameter, `height` takes on a subsetting role rather than scaling (resampling), defining the vertical portion of the map to subset based on the scale (native scale, or specified by `scale-denominator`) and display resolution (0.28 mm/pixel, or specified by `mm-per-pixel`).",
         "required": false,
         "style": "form",
         "explode": false,
@@ -2923,7 +2923,12 @@
         "style": "form",
         "explode": false,
         "schema": {
-          "type": "integer"
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number"
+          }
         }
       },
       "center-crs": {
@@ -2940,7 +2945,7 @@
       "scale-denominator": {
         "name": "scale-denominator",
         "in": "query",
-        "description": "Scale denominator of the map specifying to how many units in the real world one of the same unit on the map corresponds, as printed or displayed, taking into account the display resolution (`mm-per-pixel` or 28 mm/pixel default). This parameter can only be used together with the `width` or `height` parameters (which provide an alternative mechanism to control the scale) if the implementation also supports subsetting, in which case those `width` and `height` parameters then control the subset of the map returned rather than the scale. If `scale-denominator` is omitted, the scale is implied from the dimensions of the returned map compared its spatial subset area.",
+        "description": "Scale denominator of the map specifying to how many units in the real world one of the same unit on the map corresponds, as printed or displayed, taking into account the display resolution (`mm-per-pixel` or 0.28 mm/pixel default). This parameter can only be used together with the `width` or `height` parameters (which provide an alternative mechanism to control the scale) if the implementation also supports subsetting, in which case those `width` and `height` parameters then control the subset of the map returned rather than the scale. If `scale-denominator` is omitted, the scale is implied from the dimensions of the returned map compared to its spatial subset area.",
         "required": false,
         "style": "form",
         "explode": false,

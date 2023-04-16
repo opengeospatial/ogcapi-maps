@@ -5,4 +5,8 @@ required: false
 style: form
 explode: false
 schema:
-  type: integer
+  type: array
+  minItems: 2
+  maxItems: 2
+  items:
+    type: number
