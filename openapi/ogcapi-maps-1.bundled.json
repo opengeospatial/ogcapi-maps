@@ -2956,7 +2956,8 @@
         "style": "form",
         "explode": false,
         "schema": {
-          "type": "number"
+          "type": "number",
+          "default": 0.28
         }
       },
       "orientation": {
@@ -2967,7 +2968,8 @@
         "style": "form",
         "explode": false,
         "schema": {
-          "type": "number"
+          "type": "number",
+          "default": 0
         }
       },
       "crs-proj-method": {

@@ -8,3 +8,4 @@ style: form
 explode: false
 schema:
   type: number
+  default: 0.28
