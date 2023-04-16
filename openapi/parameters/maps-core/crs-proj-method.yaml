@@ -1,6 +1,6 @@
 name: crs-proj-method
 in: query
-description: Projecton operation method for a custom projection CRS.
+description: Projection operation method for a custom projection CRS.
 required: false
 style: form
 explode: false
