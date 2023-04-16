@@ -1,6 +1,6 @@
 name: orientation
 in: query
-description: Orientation in clockwise degrees by which the map is to be rotated around the center of the subset area as pivot point.
+description: Orientation in degrees by which the content of the map is to be rotated around the center of the subset area as pivot point in a counter-clockwise direction, resulting in the viewing perspective being rotated by the same orientation in a clockwise direction.
 required: false
 style: form
 explode: false

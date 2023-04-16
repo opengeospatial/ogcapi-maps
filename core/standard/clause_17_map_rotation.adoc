@@ -6,7 +6,8 @@
 
 include::requirements/requirements_class_rotation.adoc[]
 
-This requirements class defines the ability for clients to request a map rotated by a clockwise orientation specified in degrees.
+This requirements class defines the ability for clients to request a map whose content is rotated by a counter-clockwise orientation specified in degrees, resulting in
+the viewing perspective being rotated by that same orientation in a clockwise direction.
 
 === Operation
 
