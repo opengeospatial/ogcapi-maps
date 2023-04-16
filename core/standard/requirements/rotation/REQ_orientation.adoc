@@ -1,7 +1,7 @@
-[[req_projection-orientation]]
+[[req_rotationS-orientation]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/projection/orientation*
+^|*Requirement {counter:req-id}* |*/req/rotation/orientation*
 ^|A |The implementation SHALL support an `orientation` parameter allowing to rotate the map by an orientation, expressed as clockwise degrees.
 ^|B |If an `orientation` parameter is not specified, the implementation SHALL assume a zero orientation value.
 ^|C |The orientation SHALL be applied to the map with the center of the selected spatial subset as the pivot point, or the center of the map if none is specified.

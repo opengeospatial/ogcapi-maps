@@ -1,0 +1,41 @@
+[[rc_rotation]]
+== Requirement Class "Rotation"
+
+[[maps-rotation-overview]]
+=== Overview
+
+include::requirements/requirements_class_rotation.adoc[]
+
+This requirements class defines the ability for clients to request a map rotated by a clockwise orientation specified in degrees.
+
+=== Operation
+
+==== Parameter `orientation`
+
+include::requirements/rotation/REQ_orientation.adoc[]
+
+==== Response headers
+
+include::requirements/rotation/REQ_response-headers.adoc[]
+
+Example of a request and associated response headers:
+
+```
+/map?orientation=40
+```
+
+```
+Content-Crs: <http://www.opengis.net/def/crs/EPSG/0/3995>
+Content-Orientation: 40
+Content-Bbox=-10000,-4000,10000,4000
+```
+
+==== Response
+
+A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
+
+==== Error conditions
+
+A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
+
+If the parameter value for the parameters is not one of the supported for the collections, the status code of the response will be `404`.

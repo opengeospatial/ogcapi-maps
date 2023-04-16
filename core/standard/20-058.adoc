@@ -114,17 +114,19 @@ include::clause_15_map_paramGeneralSubsetting.adoc[]
 
 include::clause_16_map_paramCRS.adoc[]
 
-include::clause_17_map_projection.adoc[]
+include::clause_17_map_rotation.adoc[]
 
-include::clause_18_map_originCollection.adoc[]
+include::clause_18_map_projection.adoc[]
 
-include::clause_19_map_originDataset.adoc[]
+include::clause_19_map_originCollection.adoc[]
 
-include::clause_20_map_originStyle.adoc[]
+include::clause_20_map_originDataset.adoc[]
 
-include::clause_21_map_dataEncodings.adoc[]
+include::clause_21_map_originStyle.adoc[]
 
-include::clause_22_map_openAPI.adoc[]
+include::clause_22_map_dataEncodings.adoc[]
+
+include::clause_23_map_openAPI.adoc[]
 
 include::annex-ats.adoc[]
 

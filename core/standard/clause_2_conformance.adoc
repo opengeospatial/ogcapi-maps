@@ -1,6 +1,6 @@
 == Conformance
 
-This standard defines **20** requirements conformance classes.
+This standard defines **21** requirements conformance classes.
 
 The standardization targets of all conformance classes are "Web APIs".
 
@@ -126,6 +126,14 @@ The _CRS by reference_ conformance class allows to specify the output CRS of the
 .../map?crs=[EPSG:3031]
 ```
 
+*<<rc_rotation>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/rotation)
+The _rotation_ conformance class allows to specify an angle by which to rotate the map (`orientation`).
+
+.Example orientation request
+```
+.../map?orientation=40
+```
+
 *<<rc_projection>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection)
 The _projection_ conformance class allows to specify a custom CRS through a projection, including the coordinate operation method (`crs-proj-method`)
 and associated parameters (`crs-proj-params`), as well as a datum (`crs-datum`) and orientation (`orientation`).
@@ -136,8 +144,7 @@ The `orientation` parameter can also be used with the `crs` parameter, if the CR
 ```
 .../map?
    crs-proj-method=[epsg-method:9840]&
-   crs-proj-center=Lat(40),Lon(-120)&
-   orientation=40
+   crs-proj-center=Lat(40),Lon(-120)
 ```
 
 .Example Lambert Conic Conformal projection with two standard parallels
@@ -145,8 +152,7 @@ The `orientation` parameter can also be used with the `crs` parameter, if the CR
 .../map?
    crs-proj-method=[epsg-method:9802]&
    crs-proj-params=[epsg-parameter:8823](40),[epsg-parameter:8824](90)&
-   crs-datum=[epsg-datum:6230]&
-   orientation=40
+   crs-datum=[epsg-datum:6230]
 ```
 
 === Requirements classes defining origins
@@ -254,6 +260,7 @@ Conformance with this standard shall be checked using all the relevant tests spe
 | <<rc_datetime>>              | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/datetime
 | <<rc_general-subsetting>>    | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/general-subsetting
 | <<rc_crs>>                   | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/crs
+| <<rc_rotation>>              | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/rotation
 | <<rc_projection>>            | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/projection
 | <<rc_collection-map>>        | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collection-map
 | <<rc_dataset-map>>           | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset-map
