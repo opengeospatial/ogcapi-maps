@@ -2,13 +2,13 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/background/transparent-definition*
-^|A |The map operation SHALL support an optional parameter `transparent` to force or not a transparent background with the characteristics defined in the OpenAPI Specification 3.0 fragment
+^|A |The map operation SHALL support an optional parameter `transparent` specifying whether to use or not a transparent background with the characteristics defined in the OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----
   name: transparent
   in: query
   description:
-    'Background transparency of map (default=true).'
+    '(defaults to `true` when `bgcolor` is specified, but to `false` when a `bgcolor` is used).'
   required: false
   style: form
   explode: false
@@ -16,7 +16,9 @@
     type: boolean
     default: true
 ----
-^|B |`transparent` SHALL be a boolean indicating if the background of the map should be transparent.
-^|C |If `transparent` is not specified, the server will use `true`.
+^|B |The server SHALL interpret `transparent` as a boolean indicating whether the background of the map should be transparent.
+^|C |If `transparent` is not specified and a `bgcolor` is not specified, the server SHALL assume a value of `true`.
+^|D |If `transparent` is not specified and a `bgcolor is specified, the server SHALL assume a value of `false`.
+^|E |If `transparent` is `true` and a `bgcolor` is specified, the server SHALL use 0 for the background's opacity.
 
 |===

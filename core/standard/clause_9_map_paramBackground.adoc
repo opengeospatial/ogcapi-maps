@@ -177,8 +177,9 @@ include::recommendations/background/PER_bgcolor-alpha.adoc[]
 
 include::requirements/background/REQ_transparent-definition.adoc[]
 
-NOTE: If the client wants to force an opaque color, apart from defining the appropriate background color it should ensure that the parameter `transparent` is set to `false`.
-For the formats that reserve a color to define transparency, it still makes sense to combine background color and `transparent=true` with the purpose of helping the server to select a color that does not interfere with the actual values and colors in the map.
+NOTE: When not specified, the value of `transparent` defaults to `true` when `bgcolor` is not used, but to `false` when used together with `bgcolor`.
+When explicitly setting `transparent=true` together with a `bgcolor`, for formats with an alpha channel, it allows defining the color value to use for the RGB channels where there is no data, while 0 will be used for the alpha channel.
+For formats resrving a color to define transparency (color key), the combination allows selecting a color that does not interfere with the actual values and colors in the map.
 
 NOTE: The `opaque` attribute of layer element in the GetCapabilities response in WMS has been deprecated and is not specified by this API.
 
