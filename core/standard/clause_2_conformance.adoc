@@ -39,7 +39,8 @@ The _background_ conformance class allows requesting a particular background col
 
 .Example request
 ```
-.../map?bgcolor=0x001122&transparent=true
+.../map?bgcolor=0x001122
+.../map?transparent=false
 ```
 
 *<<rc_collections-selection>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection)
