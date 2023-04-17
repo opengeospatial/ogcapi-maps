@@ -3,5 +3,5 @@
 |===
 ^|*Requirement {counter:req-id}* |*/req/core/map-op*
 ^|A |Every map SHALL be available as a HTTP GET request to a URI that will be composed by three parts: the first part is the URI of a resource that can be represented as a map (with or without a style path parameter), the second part follows the pattern `/map` and the third part completing the retrieval parameters as needed.
-^|B |Only the resources (e.g., a landing page or individual collections) that advertise the following the pattern `.../map...` can be retrieved as maps.
+^|B |Only the resources (e.g., a landing page or individual collections) that advertise the pattern `.../map...` can be retrieved as maps.
 |===
