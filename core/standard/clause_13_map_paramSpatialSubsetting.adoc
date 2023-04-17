@@ -106,7 +106,7 @@ include::recommendations/spatial-subsetting/REC_map-outside-bounds.adoc[]
 
 include::recommendations/spatial-subsetting/PER_map-outside-bounds.adoc[]
 
-NOTE: As defined in the core requirements class, the `ogcapi-bbox:` and the `Content-Crs:` response headers report the actual bounding box of the data returned.
+NOTE: As defined in the core requirements class, the `Content-Bbox:` and the `Content-Crs:` response headers report the actual bounding box of the data returned.
 
 === Error conditions
 

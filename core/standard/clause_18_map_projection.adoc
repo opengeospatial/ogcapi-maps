@@ -53,7 +53,7 @@ Example of a request and associated response headers:
 Content-Crs-Method: <http://www.opengis.net/def/method/EPSG/0/9840>
 Content-Crs-Method-Params: <http://www.opengis.net/def/parameter/EPSG/0/8801>=30; <http://www.opengis.net/def/parameter/EPSG/0/8802>=40
 Content-Crs-Datum: <http://www.opengis.net/def/datum/EPSG/0/6326>
-Content-Bbox=-1000,-800,1000,800
+Content-Bbox: -1000,-800,1000,800
 ```
 
 ==== Response

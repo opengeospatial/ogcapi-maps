@@ -28,7 +28,7 @@ Example of a request and associated response headers:
 ```
 Content-Crs: <http://www.opengis.net/def/crs/EPSG/0/3995>
 Content-Orientation: 40
-Content-Bbox=-10000,-4000,10000,4000
+Content-Bbox: -10000,-4000,10000,4000
 ```
 
 ==== Response
