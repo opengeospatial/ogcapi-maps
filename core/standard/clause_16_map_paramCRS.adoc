@@ -6,22 +6,22 @@
 
 include::requirements/requirements_class_crs.adoc[]
 
-In WMS 1.3 the CRS parameters had two missions: it indicated the CRS of the data rendered in the map and it was the CRS of the coordinates of the BBOX parameter. In this standards, these two missions has been separated. This section describes how to request a map in a specific CRS.
+In WMS 1.3 the CRS parameters had two purposes: it indicated the CRS of the data rendered in the map and it was the CRS of the coordinates of the BBOX parameter. In this standard, these two purposes has been separated. This section describes how to request a map in a specific CRS.
 
-At least, for OGC API Maps and OGC API Coverages a native CRS (also called or storage CRS) is defined. The `Content-Crs:` header (see <<maps-core-overview>>) specifies the CRS used in the response to avoid confusion.
+At least for _OGC API - Maps_ and _OGC API - Coverages_, a native CRS (also called a _storage CRS_) is defined. The `Content-Crs:` header (see <<maps-core-overview>>) specifies the CRS used in the response to avoid confusion.
 
 === Operation
 
-The map core of this standard defines how to get a map. This requirements class specifies parameters needed to retrieve a map in a particular CRS
+The core requirements class of this standard defines how to retrieve a map. This requirements class specifies parameters needed to retrieve a map in a particular output CRS.
 
 ==== Parameter `crs`
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
 
 include::requirements/crs/REQ_crs-definition.adoc[]
 
-See how you can find out the storage CRS for the collection and the dataset in <<rc_collection-map>> and <<rc_dataset-map>> respectively.
+See how to determine the native (storage) CRS for the collection and the dataset in <<rc_collection-map>> and <<rc_dataset-map>> respectively.
 
-NOTE: The default CRS of the BBOX is http://www.opengis.net/def/crs/OGC/1.3/CRS84 but the default CRS of the map is storage CRS
+NOTE: The default CRS of the BBOX is http://www.opengis.net/def/crs/OGC/1.3/CRS84 but the default CRS of the map is the native (storage) CRS
 
 include::recommendations/crs/PER_crs-crs-curie.adoc[]
 

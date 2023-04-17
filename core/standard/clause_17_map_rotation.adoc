@@ -37,6 +37,6 @@ A successful GET response is described in the core class (http://www.opengis.net
 
 ==== Error conditions
 
-A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
+A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[_OGC API - Features - Part 1: Core_, version 1.0] as well as in _OGC API - Common_.
 
 If the parameter value for the parameters is not one of the supported for the collections, the status code of the response will be `404`.

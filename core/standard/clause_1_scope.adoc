@@ -1,9 +1,14 @@
 == Scope
 
-This draft specification specifies how to access maps and tiles in a manner independent of the underlying data store. The standard makes use of the https://www.openapis.org/[OpenAPI] specification and specifies resources for discovery, retrieval and querying of maps from a Web API.
+This Standard specifies how to access maps and map tiles in a manner independent of the underlying data store. The API defined by this Standard can be described and documented using the https://www.openapis.org/[OpenAPI] specification and specifies resources for discovering and retrieving maps from a Web API.
 
-Specifically, this draft OGC API - Maps specification supports the following:
+Specifically, this _OGC API - Maps_ Standard supports the following:
 
-* Discovery operations allow the API to be interrogated to determine its capabilities and to retrieve information (metadata) about this distribution of maps. This includes the API definition as well as metadata about the map layers provided through the API and the Coordinate Reference Systems supported by the API.
-* Retrieval operations that allow a client application to get a map from the API
-* Query operations that allow a client application to retrieve data (e.g. feature attributes) at a point on a map
+* discovery operations that allow the API to be interrogated to determine its capabilities and to retrieve information (metadata) about this distribution of maps. This includes the API definition (if also implementing _OGC API - Common - Part 1: Core_), as well as metadata about the map layers provided through the API and the Coordinate Reference Systems supported by the API,
+* retrieval operations that allow a client application to retrieve a map, using a default or pre-defined style, for an arbitrary geospatial resource, an OGC API dataset or an OGC API collection of geospatial data,
+* parameters for specifying the background and transparency of the map,
+* parameters for specifying the scale of the map,
+* a parameter for specifying the pixel size of the device or medium on which the map is intended to be displayed,
+* parameters for retrieving only a subset of the map,
+* a parameter for specifying a particular orientation for the map,
+* parameters for specifying a Coordinate Reference System for the map by reference or using a projection operation method, parameters for that method and a datum.

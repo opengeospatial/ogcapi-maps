@@ -1,0 +1,7 @@
+[[req_display-resolution_map-success]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/display-resolution/map-success*
+^|A |For an implementation supporting the _scaling_ requirements class, the implementation SHALL use the `mm-per-pixel` value instead of the default 0.28 mm/pixel when establishing the relationship between the dimensions of the output image, the scale and the spatial extent of the map.
+^|B |The implementation SHALL use the `mm-per-pixel` value instead of the default 0.28 mm/pixel when establishing scale for the purpose of applying styling and symbology rules to the map. For example, this needs to be considered for scale-dependent rule selectors as well as for graphical units in real world units (e.g., meters) or display units (e.g., millimeters).
+|===

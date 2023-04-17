@@ -10,18 +10,25 @@ This requirements class specifies how to get maps from particular resources that
 === General
 include::recommendations/collection-map/REC_api-common.adoc[]
 
-This building block stays flexible and does not require to implement OWS Common, allowing for other API architectures outside the OGC API framework to adopt it. However, a server under the OGC APIs is expected to implement OGC API Common. If so, in practice, this means that the landing page and the conformance page follow OGC API - Common core and collections requirement classes will be used. Temporarily, it is also possible to combine this building block with OGC API features v1 that is not tied to OWS Common.
+This requirements class depends on the _OGC API - Common - Part 2 - Geospatial data_ "collections" requirement classes,
+but remains flexible and does not require to implement _OGC API - Common - Part 1: Core_, allowing for other API architectures outside the OGC API framework to adopt it.
+However, OGC API servers are normally expected to implement _OGC API - Common - Part 1_.
+If so, in practice, this means that the landing page and the conformance page follow _OGC API - Common - Part 1: Core_.
+Temporarily, it is also possible to combine this building block with _OGC API - Features_ version 1.0 that is not tied to _OGC API - Common_, which can also substituted for the _OGC API - Common - Part 2_ depedency.
 
 === Geospatial data resources
-This standard does not specify how geospatial resources are exposed in the API and if they have the possibility to be retrievable as geospatial data (e.g. feature items). This standard expect that other OGC API family standards will define how to expose these geospatial resources. Examples of standards that can expose geospatial resources are:
+This standard does not specify how geospatial resources are exposed in the API and if they have the possibility to be retrievable as raw geospatial data (e.g., feature items or coverage cell values).
+This standard expect that other OGC API family standards will define how to expose additional access mechanisms for these geospatial resources.
+Examples of such standards, all of which also implement _OGC API - Common - Part 2_: Geospatial data_ defining the `/collections` and `/collections/{collectionId}` paths, are:
 
-* OGC API - Features v1 includes the definition of collections and each collection is available in the /collections/{collectionId} path.
-* OGC API - Common collections extension provides a similar mechanism.
-* OGC API - Process exposes processes that may result in other paths in the API giving access to geospatial resources.
+* _OGC API - Tiles_ (coverage tiles and vector tiles)
+* _OGC API - Features_
+* _OGC API - EDR_
+* _OGC API - Processes - Part 3: Workflows and Chaining_ ("Collection Output" requirements class)
 
 These geospatial resources can be modified or complemented by other resources creating new endpoints indirectly giving access to the modified or complemented resources. Other OGC API family standards will define this mechanisms. Examples of standards doing that are:
 
-* OGC API - Styles defines how to complement a geospatial resource by adding a style to it. The new resource is an overlap of both resources
+* _OGC API - Styles_ defines how to complement a geospatial resource by adding a style to it. The new resource is an overlap of both resources
 
 NOTE: The concept of geospatial resource path substitutes the concept of "layer" in WMS but it intends to give a better integration between data visualization and data access.
 
@@ -63,19 +70,21 @@ include::recommendations/collection-map/REC_storage-epoch.adoc[]
 }
 =================
 
-NOTE: In WMS layers have a hierarchical dependency. At the time of writing this standard neither OGC API - Features v1 nor OGC API - Common do not consider this possibility.
+NOTE: In WMS layers have a hierarchical dependency. At the time of writing this standard, neither _OGC API - Features_ v1 nor _OGC API - Common_ define such a concept.
+However, there is a draft proposal to establish a hierarchical relation between collections based on a `parent` property and/or an `up` link relation type in the collection description.
+If a collection represented a hierarchy, then the <<rc_collections-selection, Collections Selection>> requirements class could allow the selection of a subset of the collections it consists of to be included using the `collections` parameter.
 
 === Geospatial Data Resource Map
-The maps core defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map request. Nevertheless, the core does not  specify how to retrieve a map resource representing another resource. This section offers one possible path to do that from a geospatial data resource offered by the API.
+The core requirement class defines a `map` resource that is associated with an operation that contains the necessary information to later formulate a map request. Nevertheless, the core does not specify how to retrieve a map resource representing another resource. This section offers one possible path to do that from a geospatial data resource offered by the API.
 
 ==== Map path
 
 include::requirements/collection-map/REQ_operation.adoc[]
 
-This standard does not specify any additional query parameter in the GET request. Other extensions of this map standards will define how to get a subset of a map resource.
+This requirements class does not specify any additional query parameter for the GET request.
 
 ==== Response
 
-A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
+A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
 
-A successful response is a map that represents the geodata resource.
+A successful response is a map that represents the collection of geospatial data resource.

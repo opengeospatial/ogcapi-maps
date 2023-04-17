@@ -1,7 +1,7 @@
 [[rc_data_encodings]]
 == Requirements classes for encodings
 
-The OGC API Maps is designed to support mapped data that can potentially be encoded and provided in many of the existing geospatial formats or new ones that could be invented in the future.  Web APIs may adopt these encodings and declare conformance to them in the list of conformance classes supported by the Web API. The intention of this section is NOT to limit the number of encodings offered by a Maps Web API but to provide a minimum set of encodings that could be implemented by many Maps Web APIs as well as to provide a practical way to test conformance to the standard. For each of these encodings, a requirements class is defined. Web APIs are free to support other encodings and data formats that can be convenient in each case, and use them despite the fact that they may not be listed as supported conformance classes by the Web API. In addition, the declaration of an encoding in the conformance classes supported does not mean that all the resources provided by the Web API should support all of them. Partial support could be conditioned by the different the nature of the data behind each collection.
+_OGC API - Maps_ is designed to support mapped data that can potentially be encoded and provided in many of the existing geospatial formats or new ones that could be invented in the future.  Web APIs may adopt these encodings and declare conformance to them in the list of conformance classes supported by the Web API. The intention of this section is NOT to limit the number of encodings offered by a _Maps_ Web API but to provide a minimum set of encodings that could be implemented by many Maps Web APIs as well as to provide a practical way to test conformance to the standard. For each of these encodings, a requirements class is defined. Web APIs are free to support other encodings and data formats that can be convenient in each case, and use them despite the fact that they may not be listed as supported conformance classes by the Web API. In addition, the declaration of an encoding in the conformance classes supported does not mean that all the resources provided by the Web API should support all of them. Partial support could be conditioned by the different the nature of the data behind each collection.
 
 === Overview
 
@@ -13,7 +13,7 @@ This clause specifies five pre-defined requirements classes for encodings to be 
 * <<rc_svg,SVG>>
 * <<rc_html,HTML>>
 
-NOTE: If maps are provided as tiles this section should be ignored and the equivalent section in the OGC API - Tiles should be used instead.
+NOTE: If maps are provided as tiles, this section should be ignored and the equivalent section in the _OGC API - Tiles_ should be used instead.
 
 NOTE: None of the encodings specified here is mandatory and an implementation of this standard may implement none of them but implement other encodings instead.
 

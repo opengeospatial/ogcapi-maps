@@ -1,6 +1,6 @@
 [big]*i.     Abstract*
 
-The draft OGC API - Maps - Part 1: Core specification defines a Web API for requesting map images over the Internet. OGC API - Maps makes it easy for a client to request images, changing parameters such as size and coordinate reference systems at the time of request. A server that implements OGC API - Maps provides information about what maps it offers, as well as producing a map and answering queries about the content of the maps. OGC API - Maps addresses use cases similar to those addressed by the http://portal.opengeospatial.org/files/?artifact_id=14416[Web Map Service (WMS)] standard.
+The _OGC API - Maps - Part 1: Core_ Standard defines a Web API for requesting map images over the Internet. _OGC API - Maps_ makes it easy for a client to request visual representation of geospatial data in different styles, selecting layers, area, time and resolution of interest, and changing parameters such as the background color and coordinate reference systems at the time of request. A server that implements _OGC API - Maps_ provides information about what maps it offers. _OGC API - Maps_ addresses use cases similar to those addressed by the http://portal.opengeospatial.org/files/?artifact_id=14416[Web Map Service (WMS)] standard.
 
 [big]*ii.    Keywords*
 
@@ -10,7 +10,7 @@ ogcdoc, OGC document, maps, API, OpenAPI, OGC API
 
 [big]*iii.   Preface*
 
-This document defines the draft OGC API - Maps - Part 1: Core specification. A 'map' is portrayal of geographic information as a digital image file suitable for display on a computer screen (http://portal.opengeospatial.org/files/?artifact_id=14416[OGC 06-042]). Suggested additions, changes and comments on this standard are welcome and encouraged. Such suggestions may be submitted using the online change request form on OGC web site: http://portal.opengeospatial.org/public_ogc/change_request.php
+This document defines the _OGC API - Maps - Part 1: Core_ Standard. A _map_ is portrayal of geographic information as a digital representation suitable for display on a rendering device (adapted from http://portal.opengeospatial.org/files/?artifact_id=14416[OGC 06-042]). Suggested additions, changes and comments on this standard are welcome and encouraged. Such suggestions may be submitted as an issue on the https://github.com/opengeospatial/ogcapi-maps/issues[_OGC API - Maps_ GitHub repository].
 
 Attention is drawn to the possibility that some of the elements of this document may be the subject of patent rights. The Open Geospatial Consortium shall not be held responsible for identifying any or all such patent rights.
 
@@ -20,7 +20,9 @@ Recipients of this document are requested to submit, with their comments, notifi
 
 The following organizations submitted this Document to the Open Geospatial Consortium (OGC):
 
-Organization name(s)
+* UAB-CREAF
+* Ecere Corporation
+* US Army Geospatial Center
 
 [big]*v.     Submitters*
 
@@ -28,8 +30,8 @@ All questions regarding this submission should be directed to the editor or the 
 
 [cols=",",options="header",]
 |===
-|Name |Affiliation
-|Joan Masó _(editor)_ | UAB-CREAF
-|Jérôme Jacovella-St-Louis _(editor)_ | Ecere
-|Jeff Harrison | US Army Geospatial Center
+|Name                                  |Affiliation
+|Joan Masó _(editor)_                  |UAB-CREAF
+|Jérôme Jacovella-St-Louis _(editor)_  |Ecere
+|Jeff Harrison                         |US Army Geospatial Center
 |===

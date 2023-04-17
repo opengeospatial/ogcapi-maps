@@ -11,7 +11,7 @@ This core specifies a map resource: a resource that represents the geospatial da
 A map resource can be obtained from a non map resource by adding `/map` to the resource URI. The core does not specify to which resources `/map` is applicable. However, a list of common places in the API, where maps can commonly be obtained is present in the following table as a recommendation. Additional requirements classes will better define these possibilities.
 
 [#Common-map-resources-in-the-api,reftext='{table-caption} {counter:table-num}']
-.Common map resources in an geospatial API
+.Common map resources in a geospatial API
 [width = "100%",options="header"]
 |===
 |Resource	Path |Description
@@ -21,13 +21,13 @@ A map resource can be obtained from a non map resource by adding `/map` to the r
 |/collections/{collectionId}/styles/{styleId}/map | A map representing `collectionId` in the `styleId` style
 |===
 
-NOTE: There is no mandatory dependency of this core on OGC API - Commons. This allows for non-OGC APIs to implement this core without the need to comply to the OGC API common structure (landing page, conformance, API description). However, it expected that many implementations will specify a dependency on OGC API - Commons in their conformance page.
+NOTE: There is no mandatory dependency of this core on _OGC API - Common_. This allows for non-OGC APIs to implement this core without the need to comply to the OGC API common structure (landing page, conformance, API description). However, it expected that many implementations will specify a dependency on _OGC API - Common_ in their conformance page.
 
 === Map resource
 
 A map distribution of a geospatial resource is a pictorial representation of it. To create a pictorial representation, a style is added to the data in the geospatial resource by a portrayal engine and following portrayal rules. This style can be internal (default style) or can be governed by the client.
 
-This section defines the core resource of the OGC API - Maps standard: a map representation for a geospatial resources. To keep the core of the OGC API - Maps standard simple, the core only includes a mechanism to retrieve an map of an arbitrary size and from the extent the server considers optimal.
+This section defines the core resource of the _OGC API - Maps_ standard: a map representation for a geospatial resource. To keep the core of _OGC API - Maps_ simple, the core only includes a mechanism to retrieve a map of the size and for the spatiotemporal extent that the server considers optimal.
 
 ==== Operation
 include::requirements/core/REQ_map-op.adoc[]
@@ -45,11 +45,12 @@ include::recommendations/core/REC_link-relation-type.adoc[]
 
 include::recommendations/core/REC_multiple-media-types.adoc[]
 
-A map resource may be retrieved as a map subset or a tile subsets. Retrieving the map without subsetting or tiling has a limited use.
+Retrieving a map without subsetting or tiling has a limited use. An implementation should therefore consider allowing to retrieve only part of a map by supporting the _map tilesets_ and/or
+the _spatial subsetting_ requirements class.
 
 NOTE: The desired encoding is selected using HTTP content negotiation. In addition to the parameters specified by the core, other parameters should be added.
 
-NOTE: HTTP content negotiation replaces the FORMAT= parameters in WMS. However, for convenience, some implementations can implement a f= parameter for circumstances where content negotiation is not possible or available (e.g. testing the API in a web browser by using a URL embed in a HTML IMG SRC tag)
+NOTE: HTTP content negotiation replaces the `FORMAT=` parameter in WMS. However, for convenience, some implementations can implement a `f=` parameter for circumstances where content negotiation is not possible or available (e.g., testing the API in a web browser, or using a URL embedded in an HTML IMG SRC tag).
 
 === Declaration of conformance classes
 To support "generic" clients that want to access multiple OGC API standards and extensions - and not "just" a specific API / server, the API has to declare the conformance classes it implements and conforms to.
@@ -58,7 +59,7 @@ The conformance page mainly consists of a list of links.
 
 include::requirements/core/REQ_conformance-success.adoc[]
 
-If the server declares also conformity to OGC API - Common - Part 1: Core or to OGC API - Features - Part 1: Core, then it has to consider the OGC API requirements for declaring conformance, i.e. the use of a the conformance page. In the JSON format the conformance page is an array of links following the link schema defined in the OGC API - Common - Part 1: Core or in OGC API - Features - Part 1: Core. Below is an example fragment of a conformance information page of an API conformant to OGC API - Common and OGC API - Maps.
+If the server declares conformity also to _OGC API - Common - Part 1: Core_ or to _OGC API - Features - Part 1: Core_, then it has to consider the OGC API requirements for declaring conformance, i.e. the use of the `/conformance` resource. In the JSON format, the conformance resource is an array of links following the link schema defined in _OGC API - Common - Part 1: Core_ or in _OGC API - Features - Part 1: Core_. Below is an example fragment of a conformance information page of an API conformant to _OGC API - Common_ and _OGC API - Maps_.
 
 [[ConformancePageMapsCore]]
 .Conformance Information Page fragment

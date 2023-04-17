@@ -21,7 +21,7 @@
 ----
 ^|B |The implementation SHALL support `time` as an axis name, which is to be interpreted as the main temporal axis in the subsetting CRS definition.
 ^|C |The axis name SHALL correspond to one of the axis of the Coordinate Reference System (CRS) of the subsetting CRS or else return a 400 status code.
-^|D |If the intervalOrPoint values fall entirely outside the range of valid values defined for the identified axis, a 204 status code SHALL be returned
+^|D |If the intervalOrPoint values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code SHALL be returned
 ^|E |For a CRS where an axis can wrap around, such as subsetting across the dateline (anti-meridian) in a geographic CRS, a `low` value greater than `high` SHALL
 be supported to indicate an extent crossing that wrapping point.
 ^|F |The implementation SHALL interpret the coordinates as values for the named axis of the CRS specified in the `subset-crs` parameter value, or Gregorian UTC time (as specified in RFC 3339) if the `subset-crs` parameter is missing.

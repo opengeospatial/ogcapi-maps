@@ -3,9 +3,8 @@
 |===
 ^|*Requirement {counter:req-id}* |*/req/dataset-map/desc-crs*
 ^|A |The `crs` property in the landing page of a dataset SHALL contain URI or safe CURIEs for the list of CRSs supported by the dataset as a whole.
-^|B |If the storage CRS is not http://www.opengis.net/def/crs/OGC/1.3/CRS84, a `storageCrs` property in the landing page of a dataset  SHALL be the URI or the safe CURIEs for the server storage CRS for the dataset as a whole.
-^|C |If the dataset is available more efficiently (e.g. it is stored in the server in that CRS) using a particular CRS that is not http://www.opengis.net/def/crs/OGC/1.3/CRS84, a `storageCrs` property in the landing page of a dataset SHALL be the identifier for that CRS.
-^|D |If a `storageCrs` property is used and that is not http://www.opengis.net/def/crs/OGC/1.3/CRS84, an extent SHALL be provided in a `storageCrsExtent` property following the same schema as the extent property.
+^|B |If the dataset is available more efficiently (e.g., if it is stored in the server in that CRS) using a particular CRS (the native CRS, also called the _storage CRS_) that is not http://www.opengis.net/def/crs/OGC/1.3/CRS84, a `storageCrs` property in the landing page of a dataset SHALL be the URI or the safe CURIE for that CRS.
+^|C |If a `storageCrs` property is used and that is not http://www.opengis.net/def/crs/OGC/1.3/CRS84, an extent SHALL be provided in a `storageCrsExtent` property following the same schema as the extent property.
 |===
 
-NOTE: A CURIE {authority}[-{objectType}]:{id} would map to the following OGC URI: http://www.opengis.net/def/{objectType}/{authority}/0/{id}. If -{objectType} is missing, the default object type is crs.
+NOTE: A CURIE `{authority}[-{objectType}]:{id}` would map to the following OGC URI: `http://www.opengis.net/def/{objectType}/{authority}/0/{id}`. If `-{objectType}` is missing, the default object type is _crs_.

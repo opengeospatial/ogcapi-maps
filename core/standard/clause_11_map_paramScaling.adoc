@@ -32,7 +32,7 @@ specified by the _display resolution_ conformance class (`mm-per-pixel` paramete
 A client can specify the desired scale of the map as a scale denominator value using a `scale-denominator` parameter.
 The scale denominator specifies to how many units in the real world one of the same unit on the map corresponds, as printed or displayed.
 
-NOTE: This correspondence depends on the display resolution for which defaults 0.28 mm/pixel is assumed, unless a client specifies otherwise through the <<rc_display-resolution, display resolution requirements class>>.
+NOTE: This correspondence depends on the display resolution for which a default 0.28 mm/pixel is assumed, unless a client specifies otherwise through the <<rc_display-resolution, display resolution requirements class>>.
 
 NOTE: The `scale-denominator` is the only way to specify scaling when requesting a spatial subset using a `center` point.
 
@@ -57,11 +57,11 @@ include::recommendations/scaling/REC_map-success-scale.adoc[]
 A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
 
 If the parameters values for `width` or `height` are out-of-range, the status code of the response will be `413` (Payload too big).
-If map is not provided due to lack of data in the area, the status code of the response will be `204`.
+If a map is not provided due to lack of data in the area, the status code of the response will be `204` or `404`.
 
 === Service Metadata
 The OGC API Common describes a mechanism to expose service-metadata for the API. See: http://docs.opengeospatial.org/DRAFTS/19-072.html#service-metadata-examples
 
 include::recommendations/scaling/REC_max-width-height.adoc[]
 
-NOTE: The attributes maxWidth, maxHeight and maxPixels are intended to limit the work load of the server, by providing limitations in size of the output. If your width and height parameters are defined in relation to the size of a common device screen, please consider that new devices are being build with more and more pixels and a reasonable limit last year may be too restrictive with devices emerging this year.
+NOTE: The attributes `maxWidth`, `maxHeight` and `maxPixels` are intended to limit the work load of the server, by providing limitations in size of the output. If the `width` and `height` limits are defined in relation to the size of a common device screen, implementations should consider that new devices are being built with more and more pixels and a reasonable limit from the current year may be too restrictive for devices emerging in the next year.

@@ -8,7 +8,7 @@
   crs:
     name: subset-crs
     in: query
-    description: A URI (or safe CURIE) of the coordinate reference system for the coordinates specified in the `subset` parameter. The valid values are [OGC:CRS84], the native (storage) CRS (if different), or the output `crs` (if specified).
+    description: A URI (or safe CURIE) of the coordinate reference system for the coordinates specified in the `subset` parameter. The valid values are `[OGC:CRS84]`, the native (storage) CRS (if different), or the output `crs` (if specified).
     required: false
     schema:
       type: string
@@ -21,4 +21,4 @@
 ^|F |If no `subset` parameter referring to an axis of the CRS is used, the `subset-crs` SHALL be ignored.
 |===
 
-NOTE: A CURIE {authority}[-{objectType}]:{id} would map to the following OGC URI: http://www.opengis.net/def/{objectType}/{authority}/0/{id}. If -{objectType} is missing, the default object type is crs.
+NOTE: A CURIE `{authority}[-{objectType}]:{id}` would map to the following OGC URI: `http://www.opengis.net/def/{objectType}/{authority}/0/{id}`. If `-{objectType}` is missing, the default object type is _crs_.

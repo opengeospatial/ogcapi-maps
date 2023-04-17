@@ -7,7 +7,7 @@
 
 include::requirements/requirements_class_dataset-map.adoc[]
 
-The core section defines how to get a map from a resource but they do nor detail which resources can be "mapped". This requirements class defines how to get a map resource from the dataset represented by the service. In other words it provides the path to get a map resource from the dataset behind the API. This is achieved by using by adding the map path to the root (a.k.a. the landing page) of the service.
+The core requirements class defines how to retrieve a map from a resource but does not detail which resources can be "mapped". This requirements class defines how to retrieve a map resource from the dataset represented by the service. In other words, it provides the path to retrieve a map resource from the dataset behind the API. This is achieved by adding the map path to the root (a.k.a. the landing page) of the service.
 
 === General
 
@@ -75,7 +75,7 @@ include::recommendations/dataset-map/REC_storage-epoch.adoc[]
 
 include::requirements/dataset-map/REQ_operation.adoc[]
 
-The request of this operation does not define extra parameters. Servers can advertise the requirements class http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/collections-selection to add a `collections` parameter that can be used to include only parts of the dataset in the map representation. Other extensions of this map standards will define how to get a subset of a map resource.
+The request of this operation does not define extra parameters. Servers can advertise the requirements class http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/collections-selection to add a `collections` parameter that can be used to include only parts of the dataset in the map representation.
 
 ==== Response
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)

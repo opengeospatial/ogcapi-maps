@@ -21,14 +21,14 @@
 |===
 |{set:cellbgcolor:#FFFFFF}
 |[big]*Open Geospatial Consortium*
-|Submission Date: <yyyy-mm-dd>
-|Approval Date:   <yyyy-mm-dd>
-|Publication Date:   2022-06-06
-|External identifier of this OGC(R) document: http://www.opengis.net/doc/{doc-type}/{standard}/{m.n}
-|Internal reference number of this OGC(R) document:    20-058
-|Version: 0.1.0
+|Submission Date:    2023-06-01
+|Approval Date:      <yyyy-mm-dd>
+|Publication Date:   2023-09-01
+|External identifier of this OGC(R) document: http://www.opengis.net/doc/IS/ogcapi-maps-1/1.0
+|Internal reference number of this OGC(R) document: 20-058
+|Version: 0.8.0
 |Category: OGC(R) Implementation Specification
-|Editor:   Joan Masó and Jérôme Jacovella-St-Louis
+|Editors:   Joan Masó and Jérôme Jacovella-St-Louis
 |===
 
 [cols = "^", frame = "none"]

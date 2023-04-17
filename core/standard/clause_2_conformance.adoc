@@ -235,11 +235,11 @@ All these conformance classes act as building blocks that should be implemented 
 
 All requirements-classes and conformance-classes described in this document are owned by the standard(s) identified.
 
-NOTE: Despite the fact that full paths and full path templates in the previous tables are used in many implementations of the OGC API - Maps, these exact paths are ONLY examples and are NOT required by this standard. Other paths are possible if correctly described in by the Web API definition document and the links between resources.
+NOTE: Despite the fact that full paths and full path templates in the previous tables are used in many implementations of the _OGC API - Maps_, these exact paths are ONLY examples and are NOT required by this standard. Other paths are possible if correctly described in by the Web API definition document and the links between resources.
 
-That said, this draft specification includes recommendations to support, where practical, HTML.
+That said, this Standard includes recommendations to support, where practical, HTML.
 
-The draft specification is intended to be a minimal useful API for fine-grained read-access to maps. Additional capabilities may be specified in future parts of the OGC API - Maps series or as vendor-specific extensions.
+The Sstandard is intended to be a minimal useful API for fine-grained read-access to maps. Additional capabilities may be specified in future parts of the _OGC API - Maps_ series or as vendor-specific extensions.
 
 === Declaration of conformance
 

@@ -41,7 +41,7 @@ A tileset contains the necessary metadata to enable a client application to form
 The operations to retrieve a list of tilesets, individual tilsets and individual tiles are described respectively in the Tilesets List, TileSet and Core
 requirements classes of the _OGC API - Tiles_ Standard.
 
-This requirements class does not specifies that the query parameters of the GET request to individual map tiles support as additional parameters
+This requirements class does not specify that the query parameters of the GET request to individual map tiles support as additional parameters
 the ones defined in the _background_, _display resolution_ and _general subsetting_ requirements classes, when either of those requirement class is supported.
 
 ==== Response

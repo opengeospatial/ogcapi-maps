@@ -21,18 +21,18 @@ In this last example, the subset mechanism would likely only be used to subset t
 
 [[maps-spatial-subsetting-crs]]
 === CRS for subsetting
-In WMS 1.3 the CRS parameters had two missions: it indicated the CRS of the data rendered in the map and it was the CRS of the coordinates of the BBOX parameter.
+In WMS 1.3 the CRS parameters had two purposes: it indicated the CRS of the data rendered in the map and it was the CRS of the coordinates of the BBOX parameter.
 In this Standard, these two objectives have been separated. This section defines the CRS parameters for subsetting.
 
-The CRS advertised in the collection's spatial extent is always in http://www.opengis.net/def/crs/OGC/1.3/CRS84 (for Earthly data and as required by OGC API Features). At least, for OGC API Maps and OGC API Coverages a native CRS (also called or storage CRS) is defined. The Content-Crs header (see <<maps-core-overview>>) specifies the CRS used in the response to avoid confusion.
+The CRS advertised in the collection's spatial extent is always in http://www.opengis.net/def/crs/OGC/1.3/CRS84 (for Earthly data and as required by _OGC API - Features_). At least for _OGC API - Maps_ and _OGC API - Coverages_, a native CRS (also called storage CRS) is defined. The `Content-Crs:` header (see <<maps-core-overview>>) specifies the CRS used in the response to avoid confusion.
 
 NOTE: There is no obligation to provide the maps in http://www.opengis.net/def/crs/OGC/1.3/CRS84.
 
-NOTE: The collections description will contain a native or storage CRS. If it is not there then we will assume http://www.opengis.net/def/crs/OGC/1.3/CRS84. The exact mechanism to do so will be defined by OGC API common.
+NOTE: The collection or dataset description will contain a `storageCRS` property indicating the native CRS. If it is not present, then http://www.opengis.net/def/crs/OGC/1.3/CRS84 is assumed. This is specified in the _Collection Map_ and _Dataset Map_ requirements classes.
 
-NOTE: Provide the extent of the collection in native CRS (also called or storage CRS) is recommended and the mechanism will be defined by OGC API common.
+NOTE: Providing the extent of the collection or dataset in its native CRS (_storage CRS_) is also required, as specified in the _Collection Map_ and _Dataset Map_ requirements classes.
 
-NOTE: A list of supported CRS's will be provided by the collection. The first should be storage CRS. The mechanism to do so will be defined by OGC API common.
+NOTE: A list of supported CRSs will be provided by the collection or dataset, as specified in the _Collection Map_ and _Dataset Map_ requirements classes. The first CRS should be the same as the native CRS (`storageCRS`).
 
 ==== Parameter `bbox-crs`
 
@@ -46,7 +46,7 @@ include::requirements/spatial-subsetting/REQ_subset-crs-definition.adoc[]
 
 include::requirements/spatial-subsetting/REQ_center-crs-definition.adoc[]
 
-NOTE: For clarification: The default CRS of the bbox, center and subset spatial dimensions is http://www.opengis.net/def/crs/OGC/1.3/CRS84 and the default output CRS of the map is native (storage) CRS.
+NOTE: For clarification: The default CRS of the `bbox`, `center` and `subset` spatial subsetting parameters is `http://www.opengis.net/def/crs/OGC/1.3/CRS84` and the default output CRS of the map is its native (storage) CRS.
 
 NOTE: The `center-crs`, `subset-crs` and `bbox-crs` are defined identically except they are affecting `center`, `subset` and `bbox` parameters respectively.
 
@@ -57,7 +57,7 @@ include::recommendations/spatial-subsetting/PER_subset-crs-curie.adoc[]
 === Subsetting coordinates
 
 ==== Parameter `bbox`
-This parameter defines how to subset a map by bounding box (in the `bbox-crs` coordinates). The `bbox` parameter values are defined considering the exterior edges of the pixels of the viewport defined by the width and height. In other words, the relation of the Bounding Box to the map pixel matrix is that the bounding box goes around the "outside" of the pixels of the map rather than through the centers of the map's border pixels (as many times done in coverages). In this context, individual pixels represent a cell area on the ground.
+This parameter defines how to subset a map by bounding box (in `bbox-crs` coordinates). The `bbox` parameter values are defined considering the exterior edges of the pixels of the viewport defined by the width and height. In other words, the relation of the Bounding Box to the map pixel matrix is that the bounding box goes around the "outside" of the pixels of the map rather than through the centers of the map's border pixels (as is often the case for coverages where cell values represent a point). In this context, individual pixels represent a cell area on the ground.
 
 include::requirements/spatial-subsetting/REQ_bbox-definition.adoc[]
 
@@ -100,17 +100,17 @@ A successful GET response is described in the core class (http://www.opengis.net
 
 include::requirements/spatial-subsetting/REQ_map-success.adoc[]
 
-Normally, the content partially outside the map bounding box will be clipped at the extent of the bounding box. This can be done efficiently when map subsets are in raster format (e.g. map tiles). However, maps containing features in vector format may not clip features that are partially outside to ensure continuity of features or for performance.
+Normally, the content partially outside the map bounding box will be clipped at the extent of the bounding box. This can be done efficiently when map subsets are in raster format (e.g., map tiles). However, maps containing features in vector format may not clip features that are partially outside to ensure continuity of features or for performance.
 
 include::recommendations/spatial-subsetting/REC_map-outside-bounds.adoc[]
 
 include::recommendations/spatial-subsetting/PER_map-outside-bounds.adoc[]
 
-NOTE: As defined in the core requirements class, the `ogcapi-bbox` and the `Content-Crs` response headers report the actual bounding box of the data returned.
+NOTE: As defined in the core requirements class, the `ogcapi-bbox:` and the `Content-Crs:` response headers report the actual bounding box of the data returned.
 
 === Error conditions
 
 A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
 
-If the CRS in the parameter value `bbox-crs`, `subset-crs` or `center-crs` is not supported by the server for this resource, the parameter value is out-of-range, or the map is not provided due to lack of data in the area, the status code of the response will be `404`.
-
+If the CRS in the parameter value `bbox-crs`, `subset-crs` or `center-crs` is not supported by the server for this resource, or the parameter value is out-of-range, the status code of the response will be `400`.
+If the map is not provided due to lack of data in the area, the status code of the response will be `204` or `404`.
