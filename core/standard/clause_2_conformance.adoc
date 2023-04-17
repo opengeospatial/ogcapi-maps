@@ -62,8 +62,8 @@ or a `scale-demoninator` parameter.
 .../map?scale-denominator=20000
 ```
 
-NOTE: Combining this conformance class with the _spatial subsetting by center point_ conformance class, only the `scale-denominator` parameter is supported to specify the scale
-(not `width` and `height`, which take on a subsetting role).
+NOTE: When conforming to both this conformance class and the _spatial subsetting_ conformance class, only the `scale-denominator` parameter is supported to specify the scale
+when not using `bbox` or `subset` for spatial subsetting (not `width` and `height`, which take on a subsetting role).
 
 *<<rc_display-resolution>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/display-resolution)
 The _display resolution_ conformance class allows the specification of the resolution of the display (the size of a pixel in millimeters) using the
@@ -91,8 +91,8 @@ The _spatial subsetting_ conformance class allows to retrieve a spatial subset o
 
 It also allows to retrieve a subset of a map using a `center` parameter, together with `width` and `height` parameters.
 
-NOTE: When combining the `center` parameter with the _scaling_ conformance class, only the scaling `scale-denominator` parameter is supported to specify
-the scale (not `width` and `height`, which take on a subsetting role).
+NOTE: When conforming to both this conformance class and the _scaling_ conformance class, only the scaling `scale-denominator` parameter is supported to specify the scale
+when not using `bbox` or `subset` for spatial subsetting (not `width` and `height`, which take on a subsetting role).
 
 .Example subsetting requests using center point and dimensions
 ```
