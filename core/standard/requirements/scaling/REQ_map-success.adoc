@@ -1,6 +1,0 @@
-[[req_scaling_map-success]]
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/scaling/map-success*
-^|A |The map SHALL include the decorations requested and in the requested position.
-|===

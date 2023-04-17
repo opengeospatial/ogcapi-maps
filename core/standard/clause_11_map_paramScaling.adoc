@@ -42,8 +42,6 @@ include::recommendations/scaling/PER_no-width-height-definition.adoc[]
 ==== Response
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
 
-include::requirements/scaling/REQ_map-success.adoc[]
-
 include::recommendations/scaling/REC_map-success-scale.adoc[]
 
 ==== Error conditions
