@@ -2,8 +2,8 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/spatial-subsetting/width-height*
-^|A |When the `center` parameter is used, the implementation SHALL support a `width` and `height` parameter specifying the subset of the map to return around that specified center of the map.
+^|A |When the `center` parameter and/or the `scale-denominator` parameter is used, or if the _scaling_ conformance class is not supported, the implementation SHALL support a `width` and `height` parameter specifying the subset of the map to return around the specified or default center of the map.
 ^|B |The implementation SHALL take into consideration the scale of the map, whether returning the map at a native scale or resampled
 (e.g., using the _scaling_ conformance class `scale-denominator` parameter), as well as the display resolution
-(either the default 0.28 mm/pixel, or the one specified by the `mm-per-pixel` parameter of the display resolution conformance class).
+(either the default 0.28 mm/pixel, or the one specified by the `mm-per-pixel` parameter of the _display resolution_ conformance class).
 |===

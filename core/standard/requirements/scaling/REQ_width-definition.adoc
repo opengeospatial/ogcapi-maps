@@ -9,7 +9,7 @@
     name: width
     in: query
     description:
-      Width of the viewport to present the response in pixel units (the map subset).
+      Width of the viewport in pixel units to present the response (the map subset).
     required: false
     style: form
     schema:

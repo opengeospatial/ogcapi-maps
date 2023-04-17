@@ -11,7 +11,9 @@ This requirement class describes how to scale a map by specifying a set of param
 
 === Map Operation
 
-The map core of this standard defines how to get a map. This requirements class specifies the width and height parameters needed to indirectly define the scale of the map.
+The _core_ requirements class of this standard defines how to retrieve a map.
+This requirements class specifies two alternative mechanisms to specify the scale of the map, either implicitly by providing output dimensions using
+`width` and `height` parameters, or explicitly by providing a `scale-denominator` parameter.
 
 ==== Parameters `width` and `height`
 These parameters indicate the size of the viewport in rows and columns where the map is going to be shown. If the format of the response is a raster image, the number of columns and rows of the responded image will commonly match the width and height of the viewport.
@@ -19,6 +21,12 @@ These parameters indicate the size of the viewport in rows and columns where the
 include::requirements/scaling/REQ_width-definition.adoc[]
 
 include::requirements/scaling/REQ_height-definition.adoc[]
+
+NOTE: The `width` and `height` parameters are also defined by the _spatial subsetting_ requirements class.
+The parameter takes this resampling (scaling) role in requests not using either of the `scale-denominator` parameter (defined in this requirements class),
+or the `center` parameter (defined in the _spatial subsetting_ requirements class), or when the _spatial subsetting_ requirements class is not supported.
+The `width` and `height` parameters define the scale of the map, in combination with either the default 0.28 mm/pixel default display resolution, or the resolution
+specified by the _display resolution_ conformance class (`mm-per-pixel` parameter).
 
 ==== Parameter `scale-denominator`
 A client can specify the desired scale of the map as a scale denominator value using a `scale-denominator` parameter.

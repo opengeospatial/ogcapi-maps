@@ -9,7 +9,7 @@
     name: height
     in: query
     description:
-      Height of the viewport to present the response in pixel units (the map subset).
+      Height of the viewport in pixel units to present the response (the map subset).
     required: false
     style: form
     schema:
