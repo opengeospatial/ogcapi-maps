@@ -8,7 +8,7 @@
   name: transparent
   in: query
   description:
-    '(defaults to `true` when `bgcolor` is specified, but to `false` when a `bgcolor` is used).'
+    '(defaults to `true` without a `bgcolor` specified, but to `false` when a `bgcolor` is used).'
   required: false
   style: form
   explode: false
