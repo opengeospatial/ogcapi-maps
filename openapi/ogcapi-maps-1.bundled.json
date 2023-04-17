@@ -1382,6 +1382,11 @@
             "type": "boolean",
             "description": "This flag set to true if the link is a URL template."
           },
+          "varBase": {
+            "description": "A base path to retrieve semantic information about the variables used in URL template.",
+            "type": "string",
+            "example": "/ogcapi/vars/"
+          },
           "hreflang": {
             "type": "string",
             "description": "A hint indicating what the language of the result of dereferencing the link should be.",
@@ -1652,6 +1657,57 @@
                   "http://www.opengis.net/def/crs/OGC/0/CRS84h"
                 ],
                 "default": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+              },
+              "grid": {
+                "description": "Provides information about the limited availability of data within the collection organized\nas a grid (regular or irregular) along each spatial dimension.",
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 3,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "coordinates": {
+                      "description": "List of coordinates along the dimension for which data organized as an irregular grid in the collection is available\n(e.g., 2, 10, 80, 100).",
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ]
+                      },
+                      "example": [
+                        2,
+                        10,
+                        80,
+                        100
+                      ]
+                    },
+                    "cellsCount": {
+                      "description": "Number of samples available along the dimension for data organized as a regular grid.\nFor values representing the whole area of contiguous cells spanning _resolution_ units along the dimension, this will be (_upperBound_ - _lowerBound_) / _resolution_.\nFor values representing infinitely small point cells spaced by _resolution_ units along the dimension, this will be (_upperBound_ - _lowerBound_) / _resolution_ + 1.",
+                      "type": "integer",
+                      "example": 50
+                    },
+                    "resolution": {
+                      "description": "Resolution of regularly gridded data along the dimension in the collection",
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "example": 0.0006866455078
+                    }
+                  }
+                }
               }
             }
           },
@@ -1686,6 +1742,46 @@
                   "http://www.opengis.net/def/uom/ISO-8601/0/Gregorian"
                 ],
                 "default": "http://www.opengis.net/def/uom/ISO-8601/0/Gregorian"
+              },
+              "grid": {
+                "type": "object",
+                "description": "Provides information about the limited availability of data within the collection organized as a grid (regular or irregular) along the temporal dimension.",
+                "properties": {
+                  "coordinates": {
+                    "description": "List of coordinates along the temporal dimension for which data organized as an irregular grid in the collection is available\n(e.g., \"2017-11-14T09:00Z\",\"2017-11-14T12:00Z\",\"2017-11-14T15:00Z\",\"2017-11-14T18:00Z\",\"2017-11-14T21:00Z\").",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "example": [
+                      [
+                        "2020-11-12T12:15Z",
+                        "2020-11-12T12:30Z",
+                        "2020-11-12T12:45Z"
+                      ]
+                    ]
+                  },
+                  "cellsCount": {
+                    "description": "Number of samples available along the temporal dimension for data organized as a regular grid.\nFor values representing the whole area of contiguous cells spanning _resolution_ units along the dimension, this will be (_upperBound_ - _lowerBound_) / _resolution_.\nFor values representing infinitely small point cells spaced by _resolution_ units along the dimension, this will be (_upperBound_ - _lowerBound_) / _resolution_ + 1.",
+                    "type": "integer",
+                    "example": 50
+                  },
+                  "resolution": {
+                    "description": "Resolution of regularly gridded data along the temporal dimension in the collection",
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "example": "PT1H"
+                  }
+                }
               }
             }
           }
@@ -1762,6 +1858,55 @@
                 "vrs": {
                   "type": "string",
                   "description": "vertical coordinate reference system (e.g. as defined in EDR for 'vertical')"
+                },
+                "grid": {
+                  "type": "object",
+                  "description": "Provides information about the limited availability of data within the collection organized as a grid (regular or irregular) along the dimension.",
+                  "properties": {
+                    "coordinates": {
+                      "description": "List of coordinates along the temporal dimension for which data organized as an irregular grid in the collection is available\n(e.g., 2, 10, 80, 100).",
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ]
+                      },
+                      "example": [
+                        2,
+                        10,
+                        80,
+                        100
+                      ]
+                    },
+                    "cellsCount": {
+                      "description": "Number of samples available along the dimension for data organized as a regular grid.\nFor values representing the whole area of contiguous cells spanning _resolution_ units along the dimension, this will be (_upperBound_ - _lowerBound_) / _resolution_.\nFor values representing infinitely small point cells spaced by _resolution_ units along the dimension, this will be (_upperBound_ - _lowerBound_) / _resolution_ + 1.",
+                      "type": "integer",
+                      "example": 50
+                    },
+                    "resolution": {
+                      "description": "Resolution of regularly gridded data along the dimension in the collection",
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "example": [
+                        "PT1H",
+                        0.0006866455078
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -1796,8 +1941,14 @@
                 ],
                 "properties": {
                   "wkt": {
-                    "description": "A string defining the CRS using the JSON encodng for Well Known Text",
-                    "type": "object"
+                    "allOf": [
+                      {
+                        "description": "An object defining the CRS using the JSON encoding for Well-known text representation of coordinate reference systems 2.0"
+                      },
+                      {
+                        "type": "object"
+                      }
+                    ]
                   }
                 }
               },
@@ -1817,7 +1968,7 @@
         ]
       },
       "dataType": {
-        "oneOf": [
+        "anyOf": [
           {
             "type": "string"
           },
@@ -1832,9 +1983,10 @@
         ]
       },
       "timeStamp": {
-        "description": "This property indicates the time and date when the response was generated",
+        "description": "This property indicates the time and date when the response was generated using RFC 3339 notation.",
         "type": "string",
-        "format": "date-time"
+        "format": "date-time",
+        "example": "2017-08-17T08:05:32Z"
       },
       "numberReturned": {
         "description": "The number of features in the feature collection.\nA server may omit this information in a response, if the information\nabout the number of features is not known or difficult to compute.\nIf the value is provided, the value shall be identical to the number\nof items in the \"features\" array.",
@@ -1953,6 +2105,14 @@
                 },
                 "featureType": {
                   "description": "Feature type identifier. Only applicable to layers of datatype 'geometries'",
+                  "type": "string"
+                },
+                "attribution": {
+                  "description": "Short reference to recognize the author or provider",
+                  "type": "string"
+                },
+                "license": {
+                  "description": "License applicable to the tiles",
                   "type": "string"
                 },
                 "pointOfContact": {
@@ -2280,6 +2440,10 @@
               }
             ]
           },
+          "attribution": {
+            "description": "Short reference to recognize the author or provider",
+            "type": "string"
+          },
           "license": {
             "description": "License applicable to the tiles",
             "type": "string"
@@ -2457,7 +2621,7 @@
             "type": "array",
             "description": "Describes scale levels and its tile matrices",
             "items": {
-              "description": "",
+              "description": "A tile matrix, usually corresponding to a particular zoom level of a TileMatrixSet.",
               "type": "object",
               "required": [
                 "id",
@@ -2471,7 +2635,7 @@
               ],
               "properties": {
                 "title": {
-                  "description": "Title of this tile matrix set, normally used for display to a human",
+                  "description": "Title of this tile matrix, normally used for display to a human",
                   "type": "string"
                 },
                 "description": {
@@ -2627,7 +2791,7 @@
       },
       "tileMatrixLimits": {
         "title": "TileMatrixLimits",
-        "description": "A resource describing useful to create an array that describes the limits for a tile set TileMatrixSet based on the OGC TileSet Metadata Standard",
+        "description": "The limits for an individual tile matrix of a TileSet's TileMatrixSet, as defined in the OGC 2D TileMatrixSet and TileSet Metadata Standard",
         "type": "object",
         "required": [
           "tileMatrix",
@@ -2641,23 +2805,19 @@
             "type": "string"
           },
           "minTileRow": {
-            "type": "number",
-            "format": "integer",
+            "type": "integer",
             "minimum": 0
           },
           "maxTileRow": {
-            "type": "number",
-            "format": "integer",
+            "type": "integer",
             "minimum": 0
           },
           "minTileCol": {
-            "type": "number",
-            "format": "integer",
+            "type": "integer",
             "minimum": 0
           },
           "maxTileCol": {
-            "type": "number",
-            "format": "integer",
+            "type": "integer",
             "minimum": 0
           }
         }

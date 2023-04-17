@@ -29,6 +29,12 @@ properties:
    featureType:
      description: Feature type identifier. Only applicable to layers of datatype 'geometries'
      type: string
+   attribution:
+     description: Short reference to recognize the author or provider
+     type: string
+   license:
+     description: License applicable to the tiles
+     type: string
    pointOfContact:
      description: Useful information to contact the authors or custodians for the
        layer (e.g. e-mail address, a physical address,  phone numbers, etc)

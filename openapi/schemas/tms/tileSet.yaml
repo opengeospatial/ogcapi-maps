@@ -64,6 +64,9 @@ properties:
     allOf:
       - description: Style involving all layers used to generate the tileset
       - $ref: 'style.yaml'
+  attribution:
+    description: Short reference to recognize the author or provider
+    type: string
   license:
     description: License applicable to the tiles
     type: string

@@ -49,3 +49,37 @@ allOf:
          vrs:
            type: string
            description: vertical coordinate reference system (e.g. as defined in EDR for 'vertical')
+         grid:
+           type: object
+           description: |-
+             Provides information about the limited availability of data within the collection organized as a grid (regular or irregular) along the dimension.
+           properties:
+             coordinates:
+               description: |-
+                 List of coordinates along the temporal dimension for which data organized as an irregular grid in the collection is available
+                 (e.g., 2, 10, 80, 100).
+               type: array
+               minItems: 1
+               items:
+                 oneOf:
+                   - type: string
+                     nullable: true
+                   - type: number
+               example: [2, 10, 80, 100]
+             cellsCount:
+               description: |-
+                 Number of samples available along the dimension for data organized as a regular grid.
+                 For values representing the whole area of contiguous cells spanning _resolution_ units along the dimension, this will be (_upperBound_ - _lowerBound_) / _resolution_.
+                 For values representing infinitely small point cells spaced by _resolution_ units along the dimension, this will be (_upperBound_ - _lowerBound_) / _resolution_ + 1.
+               type: integer
+               example: 50
+             resolution:
+               description: |-
+                 Resolution of regularly gridded data along the dimension in the collection
+               oneOf:
+                 - type: string
+                   nullable: true
+                 - type: number
+               example:
+                 - "PT1H"
+                 - 0.0006866455078

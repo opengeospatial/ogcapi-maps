@@ -1,4 +1,4 @@
-description: ''
+description: 'A tile matrix, usually corresponding to a particular zoom level of a TileMatrixSet.'
 type: object
 required:
 - id
@@ -11,7 +11,7 @@ required:
 - matrixHeight
 properties:
    title:
-     description: Title of this tile matrix set, normally used for display to a
+     description: Title of this tile matrix, normally used for display to a
        human
      type: string
    description:

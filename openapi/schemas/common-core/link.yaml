@@ -18,6 +18,10 @@ properties:
   templated:
     type: boolean
     description: This flag set to true if the link is a URL template.
+  varBase:
+    description: A base path to retrieve semantic information about the variables used in URL template.
+    type: string
+    example: /ogcapi/vars/
   hreflang:
     type: string
     description: A hint indicating what the language of the result of dereferencing the link should be.
