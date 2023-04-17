@@ -239,7 +239,7 @@ NOTE: Despite the fact that full paths and full path templates in the previous t
 
 That said, this Standard includes recommendations to support, where practical, HTML.
 
-The Sstandard is intended to be a minimal useful API for fine-grained read-access to maps. Additional capabilities may be specified in future parts of the _OGC API - Maps_ series or as vendor-specific extensions.
+The Standard is intended to be a minimal useful API for fine-grained read-access to maps. Additional capabilities may be specified in future parts of the _OGC API - Maps_ series or as vendor-specific extensions.
 
 === Declaration of conformance
 
