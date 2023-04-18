@@ -600,8 +600,8 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test id: |/conf/styled-map/map-operation
 |Requirement: |/req/styled-map/map-operation
 |Test purpose: | Verify that the implementation supports retrieving maps from _OGC API - Styles_ style resources
-|Test method: | *Given:* a OGC API style correctly linking to a map resource as per /conf/styled-map/desc-links +
-*When:* retrieve a map for that style as per /conf/core +
+|Test method: | *Given:* an OGC API style correctly linking to a map resource as per /conf/styled-map/desc-links +
+*When:* retrieving a map for that style as per /conf/core +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 

@@ -40,35 +40,35 @@ include::requirements/oas30/REQ_operation-id.adoc[]
 .OpenAPI operationId suffixes
 [width = "100%",options="header",cols="12%,8%,15%,53%"]
 |===
-|Origin          |Styled   |Resource       |_operationId_ suffixes^1^
-|_root_^5^       |         |Projections    |`getCustomCRSProjections`
+|Origin          |Styled   |Resource       |_operationId_ suffixes
+|_root_          |         |Projections    |`getCustomCRSProjections`
 4+|_With the origins described in this document_
-|DataSet^5^      |         |Map^8^         |`.dataset.getMap`
+|DataSet^5^      |         |Map^1^         |`.dataset.getMap`
 |DataSet^5^      |         |TileSetsList^4^|`.dataset.map.getTileSetsList`
 |DataSet^5^      |         |TileSet^3^     |`.dataset.map.getTileSet`
 |DataSet^5^      |         |Tile^2^        |`.dataset.map.getTile`
-|DataSet^5^      |Styled^7^|Map^8^         |`.dataset.style.getMap`
+|DataSet^5^      |Styled^7^|Map^1^         |`.dataset.style.getMap`
 |DataSet^5^      |Styled^7^|TileSetsList^4^|`.dataset.style.map.getTileSetsList`
 |DataSet^5^      |Styled^7^|TileSet^3^     |`.dataset.style.map.getTileSet`
 |DataSet^5^      |Styled^7^|Tile^2^        |`.dataset.style.map.getTile`
-|Collection^6^   |         |Map^8^         |`.collection.getMap`
+|Collection^6^   |         |Map^1^         |`.collection.getMap`
 |Collection^6^   |         |TileSetsList^4^|`.collection.map.getTileSetsList`
 |Collection^6^   |         |TileSet^3^     |`.collection.map.getTileSet`
 |Collection^6^   |         |Tile^2^        |`.collection.map.getTile`
-|Collection^6^   |Styled^7^|Map^8^         |`.collection.style.getMap`
+|Collection^6^   |Styled^7^|Map^1^         |`.collection.style.getMap`
 |Collection^6^   |Styled^7^|TileSetsList^4^|`.collection.style.map.getTileSetsList`
 |Collection^6^   |Styled^7^|TileSet^3^     |`.collection.style.map.getTileSet`
 |Collection^6^   |Styled^7^|Tile^2^        |`.collection.style.map.getTile`
-4+|_With other potential origins_
-|_other_         |         |Map^8^         |`#.getMap`
+4+|_With other potential origins_^8^
+|_other_         |         |Map^1^         |`#.getMap`
 |_other_         |         |TileSetsList^4^|`#.map.getTileSetsList`
 |_other_         |         |TileSet^3^     |`#.map.getTileSet`
 |_other_         |         |Tile^2^        |`#.map.getTile`
-|_other_         |Styled^7^|Map^8^         |`#.style.getMap`
+|_other_         |Styled^7^|Map^1^         |`#.style.getMap`
 |_other_         |Styled^7^|TileSetsList^4^|`#.style.map.getTileSetsList`
 |_other_         |Styled^7^|TileSet^3^     |`#.style.map.getTileSet`
 |_other_         |Styled^7^|Tile^2^        |`#.style.map.getTile`
-4+|^1^ '#' represents an optional _origin_ that could be defined in another relevant standard.
+4+|^1^ The _Map_ resource is defined in requirements class "Core".
 
 ^2^ The _Tile_ resource is defined in the _OGC API - Tiles - Part 1: Core_ "Core" requirements class.
 
@@ -83,6 +83,5 @@ Map tilesets are defined in the _Map Tilesets_ requirements class_ and depend on
 
 ^7^ Styled tilesets rely on the ability to list styles defined in _OGC API - Styles_.
 
-^8^ The _Map_ resource is defined in requirements class "Core".
-
+^8^ '#' represents an optional _origin_ that could be defined in another relevant standard.
 |===

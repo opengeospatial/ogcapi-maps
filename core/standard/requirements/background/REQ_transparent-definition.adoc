@@ -18,7 +18,7 @@
 ----
 ^|B |The server SHALL interpret `transparent` as a boolean indicating whether the background of the map should be transparent.
 ^|C |If `transparent` is not specified and a `bgcolor` is not specified, the server SHALL assume a value of `true`.
-^|D |If `transparent` is not specified and a `bgcolor is specified, the server SHALL assume a value of `false`.
+^|D |If `transparent` is not specified and a `bgcolor` is specified, the server SHALL assume a value of `false`.
 ^|E |If `transparent` is `true` and a `bgcolor` is specified, the server SHALL use 0 for the background's opacity.
 
 |===
