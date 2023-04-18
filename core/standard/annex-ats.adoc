@@ -393,7 +393,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/crs/crs-definition
 |Test purpose: | Verify that the implementation supports the output `crs` paramter for map requests
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using with the `crs` parameter for different available CRS and without +
+*When:* retrieving maps with the `crs` parameter for different available CRS and without +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -404,7 +404,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/crs/map-success
 |Test purpose: | Verify that the implementation responds correctly to map requests using the `crs` parameter
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using with the `crs` parameter for different available CRS and without +
+*When:* retrieving maps with the `crs` parameter for different available CRS and without +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -417,7 +417,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/rotation/orientation
 |Test purpose: | Verify that the implementation supports the `orientation` parameter correctly for map requests
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using with the `orientation` parameter for different values and without +
+*When:* retrieving maps with the `orientation` parameter for different values and without +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -428,7 +428,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/rotation/response-headers
 |Test purpose: | Verify that the implementation includes the correct response headers for map requests using the `orientation` parameter.
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using with the `orientation` parameter for different values and without +
+*When:* retrieving maps with the `orientation` parameter for different values and without +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
