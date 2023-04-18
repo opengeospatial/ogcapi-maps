@@ -1,6 +1,6 @@
 [big]*i.     Abstract*
 
-The _OGC API - Maps - Part 1: Core_ Standard defines a Web API for requesting map images over the Internet. _OGC API - Maps_ makes it easy for a client to request visual representation of geospatial data in different styles, selecting layers, area, time and resolution of interest, and changing parameters such as the background color and coordinate reference systems at the time of request. A server that implements _OGC API - Maps_ provides information about what maps it offers. _OGC API - Maps_ addresses use cases similar to those addressed by the http://portal.opengeospatial.org/files/?artifact_id=14416[Web Map Service (WMS)] standard.
+The _OGC API - Maps - Part 1: Core_ Standard defines a Web API for requesting maps over the Internet. _OGC API - Maps_ makes it easy for a client to request visual representation of geospatial data in different styles, selecting layers, area, time and resolution of interest, and changing parameters such as the background color and coordinate reference systems at the time of request. A server that implements _OGC API - Maps_ provides information about what maps it offers. _OGC API - Maps_ addresses use cases similar to those addressed by the http://portal.opengeospatial.org/files/?artifact_id=14416[Web Map Service (WMS)] standard.
 
 [big]*ii.    Keywords*
 
