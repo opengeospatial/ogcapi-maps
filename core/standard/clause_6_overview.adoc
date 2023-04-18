@@ -45,7 +45,7 @@ This document provides the necessary elements to incorporate maps support to a W
 
 Beside the general alignment with the architecture of the Web (e.g., consistency with HTTP/HTTPS, hypermedia controls), another goal for OGC API standards is modularization. This goal has several facets:
 
-* Clear separation between Core requirements and more advanced capabilities. The draft _OGC API - Maps - Part 1: Core_ standard presents the requirements that are relevant for almost everyone who wants to share or use maps at a fine-grained level. Additional capabilities that several communities are using today will be specified as extensions to the Core API.
+* Clear separation between Core requirements and more advanced capabilities. The draft _OGC API - Maps - Part 1: Core_ standard presents the requirements that are relevant for almost everyone who wants to share or use maps at a fine-grained level. Additional capabilities deemed useful for several communities will be specified as extensions to the Core API.
 * Technologies that change more frequently are decoupled and specified in separate modules ("requirements classes" in OGC terminology). This enables, for example, the use/re-use of new encodings for spatial data or Web API definition (such as new version of the OpenAPI description document).
 * Modularization is not just about a single "service". OGC APIs will provide building blocks that can be reused in APIs in general. In other words, a server supporting _OGC API - Maps_ should not be seen as a standalone service. Rather it should be viewed as a collection of Web API building blocks that together implement _OGC API - Maps_ capabilities. A corollary for this is that it should be possible to implement an API that simultaneously conforms to conformance classes from the Features, Coverages, Maps, Tiles, and other future OGC API standards.
 
@@ -160,11 +160,11 @@ NOTE: The `cascaded` XML attribute in WMS is removed because no practical use ha
 
 NOTE: The `opaque` XML attribute in WMS was rarely useful and has been removed. It indicated whether the map data represents features that probably do not completely fill space and shows the background opaque (true) or transparent(false).
 
-NOTE: The `noSubsets` XML attribute in WMS was used to indicate lack of subsetting support. The client will know if the server is not able to generate subsets if there is no subset extension supported in the server.
+NOTE: The `noSubsets` XML attribute in WMS was used to indicate lack of subsetting support. The client will know if the server does not support the _spatial subsetting_, _date and time_ (for temporal subsetting) or _general subsetting_ conformance class by inspecting its conformance declaration.
 
-NOTE: The `fixedWidth` XML attribute in WMS was used to indicate lack of scaling support. The client will know if the server is not able to generate different widths if there is no extension supported in the server describing the use of a width parameter.
+NOTE: The `fixedWidth` XML attribute in WMS was used to indicate lack of scaling support. The client will know if the server does not support the _scaling_ conformance class by inspecting its conformance declaration.
 
-NOTE: The `fixedHeight` XML attribute in WMS was used to indicate lack of scaling support. The client will know if the server is not able to generate different heights if there is no extension supported in the server describing the use of a height parameter.
+NOTE: The `fixedHeight` XML attribute in WMS was used to indicate lack of scaling support. The client will know if the server does not support the _scaling_ conformance class by inspecting its conformance declaration.
 
 NOTE: `x-OGC-limits.maps.maxWidth`, `x-OGC-limits.maps.maxHeight` and `x-OGC-limits.maps.maxPixels` are indented to control the work load of the server by providing limitations in size of the outputs of the subset. `width` and `height` parameters in _OGC API - Maps_ (defined in <<rc_scaling>>) control the size of the response and its resolution. The core of OGC API maps does not provide explicit limits but is free to respond an error to avoid server work overload. `width` and `height` parameters are commonly related with the size of the device screen; please consider that new devices are being build with more and more pixels and a past reasonable limit in the server size may become too restrictive with the emerging devices.
 
@@ -185,8 +185,8 @@ This standard can be referenced by other standards providing resources that can 
 * _OGC API - Processes - Part 3: Workflows and Chaining_ provides a mechanism to trigger localized processing workflows as a result of retrieving maps (for a specific area and resolution of interest).
 
 This document is the first part of a series of _OGC API - Maps_ "parts" that use the core and extensions model.
-It is foreseen that future parts will specify other extensions, such as how to specify cartographic layout element to be included on the map,
-how to specify a filter for which elements should be included on the map, and possibly how to get information for a point in a map.
+It is foreseen that future parts will specify other extensions, such as how to specify cartographic layout elements to be included on the map,
+how to specify a filter for which elements should be included on the map, and possibly how to query information for a point in a map.
 
 ==== Dynamic and scalable map viewers
 The concept of a map as an image was created more that 20 years ago as part of the OGC Web Map Service. At that time, the web was only 11 years old, most HTML pages were static and JavaScript was a rudimentary programing language capable of controlling user entries in an HTML form and not much more. In that environment, having a service capable of creating a PNG that could be embedded as a HTML page by using an IMG tag provide the first approach to static maps on the web.  Replacing the source (SRC) of the IMG tag programmatically with JavaScript, as a reaction of some user actions, provided the first approach to dynamic maps. _GetFeatureInfo_ added a limited capability for queryable maps. However, users are now used to moving around the map by frequently doing zoom and pan operations. If the server is not providing a very fast response, the user experience is not fluid and the map is not responsive enough. One possible approach to solve this, is to divide the viewport into tiles and request them separately. Since tiles follow a tile matrix pattern, they can be pre-rendered in the server or cached in the Internet. For implementing fast dynamic maps, this OGC API should be combined with _OGC API - Tiles_.
@@ -203,9 +203,9 @@ The new OGC APIs emerges in a completely different context where most web conten
 
 In this new situation, implementers of map clients are encouraged to use OGC APIs beyond _OGC API - Maps_ to provide a functionality similar to _GetFeatureInfo_. Instead of building a request to a map point in map coordinates (I, J), implementers should use point narrow bounding boxes in CRS coordinates. For example:
 
-  * In OGC API - Features, map coordinates should be transformed to long/lat WGS84 in the client side and implement a HTTP GET request to `/collections/{collectionId}/items?bbox=Lon,Lat,Lon,Lat`.
-  * In OGC API - Coverages, map coordinates should be transformed to native coordinates and use `/collections/{collectionId}/coverage?bbox=x,y,x,y` or the equivalent "subset" query.
-  * In OGC API - EDR, map coordinates should be transformed to a CRS coordinates and use `/collections/{collectionId}/position?coords=POINT(x y)` or by adding a radius query `/collections/{collectionId}/radius?coords=POINT(x y)&within=20&within-units=km`.
+  * In _OGC API - Features_, map coordinates should be transformed to Lon,Lat WGS84 in the client side and implement a HTTP GET request to `/collections/{collectionId}/items?bbox=Lon,Lat,Lon,Lat`.
+  * In _OGC API - Coverages_, map coordinates should be transformed to native coordinates and use `/collections/{collectionId}/coverage?bbox=x,y,x,y` or the equivalent "subset" query.
+  * In _OGC API - EDR_, map coordinates should be transformed to a CRS coordinates and use `/collections/{collectionId}/position?coords=POINT(x y)` or by adding a radius query `/collections/{collectionId}/radius?coords=POINT(x y)&within=20&within-units=km`.
 
 The use of _OGC API - Tiles_ and serving vector tiles directly also makes it possible to create visualizations with query capabilities directly on the client side. Since vector tiles contain features, their attributes can be presented to the user when clicked, and a different style can be applied to highlight that selected feature.
 
@@ -225,9 +225,9 @@ As informative guidance on how this can be achieved, implementations should cons
 This standard allows to describe the domain of the maps, including spatiotemporal axes as well as additional dimensions.
 
 With the _Geospatial Data Map_ conformance class, the collection description inherited from _OGC API - Common - Part 2_ contains an `extent` property that can
-describe both the spatial and temporal domain of the data. In addition, the _Unified Additional Dimensions_ common building block, used in the
-example OpenAPI definition, further specifies that additional dimensions shall be described in a similar way to the temporal dimension.
-An extra `grid` property in the example OpenAPI definition also allows the specification of the resolution and the number of cells (for data organized as a regular grid) or
+describe both the spatial and temporal domain of the data. In addition, the _Unified Additional Dimensions_ common building block, specified in the _General Subsetting_ requirements class and used in the
+example OpenAPI definition, requires that additional dimensions shall be described in a similar way to the temporal dimension.
+An extra `grid` property also allows the specification of the resolution and the number of cells (for data organized as a regular grid) or
 a list of coordinates (for data organized as an irregular grid) along each dimension.
 
 The collection metadata allows the specification of a spatial bounding box for maps as a whole, as well as for each individual
@@ -255,7 +255,7 @@ For the second approach, implementations should consider the <<rc_oas30>> which 
 
 There is yet a third way to approach an OGC API that relies on assuming a set of predefined paths and path templates.
 These predefined paths are used in many examples in this document and are presented together in <<table_resources>>.
-It is expected that many implementations of this Standard will provide a Web API definition document (e.g. OpenAPI) using this set of predefined paths and path templates to get necessary resources directly.
+It is expected that many implementations of this Standard will provide a Web API definition document (e.g., OpenAPI) using this set of predefined paths and path templates to get necessary resources directly.
 All this could mislead the reader into getting the false impression that the predefined paths are enforced.
 Therefore, building a client that is assuming a predefined set of paths is risky.
 However, it is expected that many API implementations will actually follow the predefined set of paths and the client using this approach could be successful in many occasions.
