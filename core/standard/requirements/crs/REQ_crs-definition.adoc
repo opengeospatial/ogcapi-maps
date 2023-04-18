@@ -1,7 +1,7 @@
-[[req_crs_crs]]
+[[req_crs_crs-definition]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/crs/crs*
+^|*Requirement {counter:req-id}* |*/req/crs/crs-definition*
 ^|A |The map operation SHALL support a parameter `crs` with the characteristics defined in the OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----
@@ -21,4 +21,4 @@
 
 NOTE: When no crs parameters is specified, please refer to the core conformance class to know about the default crs.
 
-NOTE: A CURIE {authority}[-{objectType}]:{id} would map to the following OGC URI: http://www.opengis.net/def/{objectType}/{authority}/0/{id}. If -{objectType} is missing, the default object type is crs.
+NOTE: A CURIE `{authority}[-{objectType}]:{id}` would map to the following OGC URI: `http://www.opengis.net/def/{objectType}/{authority}/0/{id}`. If `-{objectType}` is missing, the default object type is crs.

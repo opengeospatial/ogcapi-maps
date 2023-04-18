@@ -5,15 +5,703 @@
 [NOTE]
 Ensure that there is a conformance class for each requirements class and a test for each requirement (identified by requirement name and number)
 
-=== Conformance Class A
+=== Conformance Class "Core"
 
-==== Requirement 1
+==== Requirement Map Operation
 [cols=">20h,<80d",width="100%"]
 |===
-|Test id: |/conf/conf-class-a/req-name-1
-|Requirement: |/req/req-class-a/req-name-1
-|Test purpose: | Verify that...
-|Test method: | Inspect...
+|Test id: |/conf/core/map-op
+|Requirement: |/req/core/map-op
+|Test purpose: | Verify that the implementation supports the map retrieval operation
+|Test method: | *Given:* a geospatial data resource conforming to this standard, with a an API path including `.../map...` or discovered following a link with relation type `[ogc-rel:map]` +
+*When:* performing a GET operation on the `/map` resource with a supported media type specified in the `Accept:` header (e.g., `Accept: image/png,image/jpeg`) +
+*Then:* +
+- assert that the response is HTTP status code 200 +
+- assert that the CRS of the resulting map is the native CRS (the native CRS is `[ogc:crs84]`, unless specified in the dataset map or collection map description `storageCRS` property, or specified out-of-band if _OGC API - Common_ is not implemented), +
+- assert that the response headers either includes a `Content-Crs:` header for the native CRS, or omits it if the nativeCRS is `[ogc:crs84]`, +
+- assert that the headers of the response include a `Content-Bbox:` header with the actual axis-aligned geospatial boundary of the rendered map, +
+- assert that the `Content-Bbox:` coordinates are in the native CRS and honor the CRS coordinates order, +
+- assert that the body of a response is a map of the geostia data resource in the negotiated format.
 |===
 
-==== Requirement 2
+==== Requirement Map Response
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/core/map-response
+|Requirement: |/req/core/map-response
+|Test purpose: | Verify that the implementation's response for the map retrieval operation is correct
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement Map Conformance Success
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/core/conformance-success
+|Requirement: |/req/core/conformance-success
+|Test purpose: | For implementations having a mechanism to advertise conformance classes, verify that it reports conformance to this standard correctly.
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "Map Tilesets"
+
+==== Requirement desc-links
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/tilesets/desc-links
+|Requirement: |/req/tilesets/desc-links
+|Test purpose: | Verify that the implementation supports map tilesets
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* +
+- assert that the geospatial data resource (e.g., collection or landing page description's `links` property) includes a link with the `href` pointing to a tileset list supported that presents a tile aspect of this geospatial data resource and with rel: `[ogc-rel:tilesets-map]`
+|===
+
+NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilesets List" conformance class to which the implementation must also conform.
+
+=== Conformance Class "Background"
+
+==== Requirement `transparent` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/background/transparent-definition
+|Requirement: |/req/background/transparent-definition
+|Test purpose: | Verify that the implementation supports the `bgcolor` parameter
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement `bgcolor` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/background/bgcolor-definition
+|Requirement: |/req/background/bgcolor-definition
+|Test purpose: | Verify that the implementation supports the `transparent` parameter
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement Background Map Success
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/background/map-success
+|Requirement: |/req/background/map-success
+|Test purpose: | Verify that the implementation's response for the map retrieval operation with a background color and/or transparent parameter is correct
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "Collection Selection"
+
+==== Requirement `collections` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/collections-selection/query-collections
+|Requirement: |/req/collections-selection/query-collections
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement Collection Selection Response
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/collections-selection/collections-response
+|Requirement: |/req/collections-selection/collections-response
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "Scaling"
+
+==== Requirement `width` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/scaling/width-definition
+|Requirement: |/req/scaling/width-definition
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement `height` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/scaling/height-definition
+|Requirement: |/req/scaling/height-definition
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement `scale-denominator` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/scaling/scale-denominator-definition
+|Requirement: |/req/scaling/scale-denominator-definition
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "Display Resolution"
+
+==== Requirement `mm-per-pixel` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/display-resolution/mm-per-pixel-definition
+|Requirement: |/req/display-resolution/mm-per-pixel-definition
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement Display Resolution Map Success
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/display-resolution/map-success
+|Requirement: |/req/display-resolution/map-success
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "Spatial Subsetting"
+
+==== Requirement `bbox-crs` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/spatial-subsetting/bbox-crs
+|Requirement: |/req/spatial-subsetting/bbox-crs
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement `subset-crs` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/spatial-subsetting/subset-crs
+|Requirement: |/req/spatial-subsetting/subset-crs
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement `center-crs` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/spatial-subsetting/center-crs
+|Requirement: |/req/spatial-subsetting/center-crs
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement `bbox` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/spatial-subsetting/bbox-definition
+|Requirement: |/req/spatial-subsetting/bbox-definition
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement spatial subsetting `subset` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/spatial-subsetting/subset-definition
+|Requirement: |/req/spatial-subsetting/subset-definition
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement `center` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/spatial-subsetting/center-definition
+|Requirement: |/req/spatial-subsetting/center-definition
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement subsetting `width` and `height` parameters definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/spatial-subsetting/width-height
+|Requirement: |/req/spatial-subsetting/width-height
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+
+==== Requirement map subset sucesss
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/spatial-subsetting/map-success
+|Requirement: |/req/spatial-subsetting/map-success
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement map subset response
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/spatial-subsetting/subset-response
+|Requirement: |/req/spatial-subsetting/subset-response
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "Date and Time"
+
+==== Requirement `datetime` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/datetime/datetime-definition
+|Requirement: |/req/datetime/datetime-definition
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement `datetime` parameter response
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/datetime/datetime-response
+|Requirement: |/req/datetime/datetime-response
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement temporal `subset` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/datetime/subset-definition
+|Requirement: |/req/datetime/subset-definition
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement temporal axis
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/datetime/axis
+|Requirement: |/req/datetime/axis
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement temporal subset response
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/datetime/subset-response
+|Requirement: |/req/datetime/subset-response
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement temporal subsetting success
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/datetime/map-success
+|Requirement: |/req/datetime/map-success
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "General Subsetting"
+
+==== Requirement uniform additional dimensions
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/general-subsetting/uniform-additional-dimensions
+|Requirement: |/req/general-subsetting/uniform-additional-dimensions
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement general subsetting `subset` parameter
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/general-subsetting/subset-definition
+|Requirement: |/req/general-subsetting/subset-definition
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement general subsetting `subset-crs` parameter
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/general-subsetting/subset-crs
+|Requirement: |/req/general-subsetting/subset-crs
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "Coordinate Reference System"
+
+==== Requirement `crs` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/crs/crs-definition
+|Requirement: |/req/crs/crs-definition
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement CRS map sucess
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/crs/map-success
+|Requirement: |/req/crs/map-success
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "Rotation"
+
+==== Requirement `orientation` parameter
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/rotation/orientation
+|Requirement: |/req/rotation/orientation
+|Test purpose: | Verify that the implementation supports the `orientation` parameter correctly.
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement orientation response headers
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/rotation/response-headers
+|Requirement: |/req/rotation/response-headers
+|Test purpose: | Verify that the implementation includes the correct response headers for requests using the `orientation` parameter.
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "Custom Projection CRS"
+
+==== Requirement `crs-proj-method` parameter
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/projection/crs-proj-method
+|Requirement: |/req/projection/crs-proj-method
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement `crs-proj-params` parameter
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/projection/crs-proj-params
+|Requirement: |/req/projection/crs-proj-params
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement  `crs-proj-center` parameter
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/projection/crs-proj-center-definition
+|Requirement: |/req/projection/crs-proj-center-definition
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement `crs-datum` parameter
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/projection/crs-datum
+|Requirement: |/req/projection/crs-datum
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement custom CRS projection response headers
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/projection/response-headers
+|Requirement: |/req/projection/response-headers
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement `/projections` resource
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/projection/projections-resource
+|Requirement: |/req/projection/projections-resource
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement `/projections` response
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/projection/projections-response
+|Requirement: |/req/projection/projections-response
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "Collection Map"
+
+==== Requirement collection map operation
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/collection-map/map-operation
+|Requirement: |/req/collection-map/map-operation
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement collection description links
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/collection-map/desc-links
+|Requirement: |/req/collection-map/desc-links
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement collection description CRS
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/collection-map/desc-crs
+|Requirement: |/req/collection-map/desc-crs
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "Dataset map"
+
+==== Requirement dataset map operation
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/dataset-map/operation
+|Requirement: |/req/dataset-map/operation
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement dataset landing page
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/dataset-map/landingpage
+|Requirement: |/req/dataset-map/landingpage
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement dataset description extent
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/dataset-map/desc-extent
+|Requirement: |/req/dataset-map/desc-extent
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement dataset description CRS
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/dataset-map/desc-crs
+|Requirement: |/req/dataset-map/desc-crs
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "Styled Map"
+
+==== Requirement styled map operation
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/styled-map/map-operation
+|Requirement: |/req/styled-map/map-operation
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement styled map links
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/styled-map/desc-links
+|Requirement: |/req/styled-map/desc-links
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "PNG"
+
+==== Requirement PNG map content
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/png/content
+|Requirement: |/req/png/content
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "JPEG"
+
+==== Requirement JPEG map content
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/jpeg/content
+|Requirement: |/req/jpeg/content
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+**Then:** (assert requirement is satisfied)
+|===
+
+=== Conformance Class "TIFF"
+
+==== Requirement TIFF map content
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/tiff/content
+|Requirement: |/req/tiff/content
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "SVG"
+
+==== Requirement SVG map content
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/svg/content
+|Requirement: |/req/svg/content
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "HTML"
+
+==== Requirement HTML map content
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/html/content
+|Requirement: |/req/html/content
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+=== Conformance Class "OpenAPI 3.0 Specification"
+
+==== Requirement OpenAPI definition completeness
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/oas30/completeness
+|Requirement: |/req/oas30/completeness
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===
+
+==== Requirement OpenAPI operation IDs
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/oas30/operation-id
+|Requirement: |/req/oas30/operation-id
+|Test purpose: | Verify that the implementation supports ...
+|Test method: | *Given:* (preconditions / initial state) +
+*When:* (action performed by client / ETS) +
+*Then:* (assert requirement is satisfied)
+|===

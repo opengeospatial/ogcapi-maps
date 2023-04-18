@@ -270,6 +270,6 @@ Conformance with this standard shall be checked using all the relevant tests spe
 | <<rc_jpeg,JPEG>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/jpeg
 | <<rc_tiff,TIFF>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tiff
 | <<rc_svg,SVG>>               | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/svg
-| <<rc_html,HTML>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/png
+| <<rc_html,HTML>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/html
 | <<rc_oas30>>                 | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/oas30
 |===
