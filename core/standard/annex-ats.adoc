@@ -266,7 +266,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/spatial-subsetting/map-success
 |Test purpose: | Verify that the implementation responds correctly to map requests using subsetting parameters (`bbox`, `subset` or `center`)
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `bbox` (with and without the `bbox-crs` parameter), `subset` (with and without the `subset-crs` parameter), and center` parameter (with and without the `center-crs` parameter, with the `width` and/or `height` parameter, with and without the `scale-denominator` parameter if scaling is supported +
+*When:* retrieving maps using the `bbox` (with and without the `bbox-crs` parameter), `subset` (with and without the `subset-crs` parameter), and `center` parameter (with and without the `center-crs` parameter, with the `width` and/or `height` parameter, with and without the `scale-denominator` parameter if scaling is supported +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -463,7 +463,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/projection/crs-proj-center-definition
 |Test purpose: | Verify that the implementation supports the `crs-proj-center` parameter correctly for map requests
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
-*When:* retrieving maps with the `crs-proj-method` parameter for different available values as listed in `/projections`and the `crs-proj-center` parameter for different values +
+*When:* retrieving maps with the `crs-proj-method` parameter for different available values as listed in `/projections` and the `crs-proj-center` parameter for different values +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
