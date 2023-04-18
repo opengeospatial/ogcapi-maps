@@ -92,7 +92,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test id: |/conf/background/map-success
 |Requirement: |/req/background/map-success
 |Test purpose: | Verify that the implementation's response for the map retrieval operation with a background color and/or transparent parameter is correct
-|Test method: | *Given:* (preconditions / initial state) +
+|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
 *When:* for all combinations of (no `transparent` parameter, transparent=false`, `transparent=true`) and (without `bgcolor` parameter, with `bgcolor` using a hexadecimal value and with `bgcolor` using a W3C Web Color name) +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
