@@ -13,8 +13,8 @@ This requirements class defines the way date and time can be used as a parameter
 
 Depending on the type of resource, the way the temporal extent and the resolution of the datetime values available for the client to request are described may be different:
 
-* For Geodata maps, the collection description should specify the temporal extent of the resources. Maps can be requested inside this extent. If the extent is specified in a way that instant values are provided (e.g. by listing them or by including a resolution) then it be possible to request maps for these instants.
-* For Dataset maps, the landing page could specify the temporal extent of the dataset. Maps can be requested inside this extent.
+* For Collection maps, the collection description should specify the temporal extent of the resources. Maps can be requested inside this extent. If the extent is specified in a way that instant values are provided (e.g. by listing them or by including a resolution) then it be possible to request maps for these instants.
+* For Dataset maps, the landing page should specify the temporal extent of the dataset. Maps can be requested inside this extent.
 
 === `datetime` query parameter request and response
 

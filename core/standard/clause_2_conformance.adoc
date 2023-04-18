@@ -107,7 +107,7 @@ or the `subset` parameter for the `time` dimension.
 .Example requests
 ```
 .../map?datetime=2018-02-12T23:20:52Z
-.../map?subset=time('2018-02-12T23:20:52Z')
+.../map?subset=time("2018-02-12T23:20:52Z")
 ```
 
 *<<rc_general-subsetting>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/general-subsetting)
