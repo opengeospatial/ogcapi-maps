@@ -33,4 +33,4 @@ include::requirements/crs/REQ_map-success.adoc[]
 
 A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
 
-If the parameter value for `crs` is not one of the supported for the collections, the status code of the response will be `404`.
+If the parameter value for `crs` is not valid for the collections, the status code of the response will be `400`.
