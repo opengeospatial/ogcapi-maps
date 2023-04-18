@@ -2,7 +2,7 @@ get:
    tags:
      - Maps
    summary: Retrieve a map for a specified collection and style
-   operationId: getCollectionStyleMap
+   operationId: .collection.style.getMap
    parameters:
      - $ref: '../../parameters/common-geodata/bbox.yaml'
      - $ref: '../../parameters/common-geodata/datetime.yaml'

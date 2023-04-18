@@ -2,7 +2,7 @@ get:
    tags:
      - Maps
    summary: Retrieve a map for the specified collection
-   operationId: getCollectionMap
+   operationId: .collection.getMap
    parameters:
      - $ref: '../../parameters/common-geodata/bbox.yaml'
      - $ref: '../../parameters/common-geodata/datetime.yaml'

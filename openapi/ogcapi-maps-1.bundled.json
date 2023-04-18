@@ -246,7 +246,7 @@
           "Maps"
         ],
         "summary": "Retrieve a default map of the whole dataset",
-        "operationId": "getDatasetMap",
+        "operationId": ".dataset.getMap",
         "parameters": [
           {
             "$ref": "#/components/parameters/bbox"
@@ -337,7 +337,7 @@
           "Maps"
         ],
         "summary": "Retrieve a styled map of the whole dataset",
-        "operationId": "getDatasetStyleMap",
+        "operationId": ".dataset.style.getMap",
         "parameters": [
           {
             "$ref": "#/components/parameters/bbox"
@@ -431,7 +431,7 @@
           "Maps"
         ],
         "summary": "Retrieve a map for the specified collection",
-        "operationId": "getCollectionMap",
+        "operationId": ".collection.getMap",
         "parameters": [
           {
             "$ref": "#/components/parameters/bbox"
@@ -525,7 +525,7 @@
           "Maps"
         ],
         "summary": "Retrieve a map for a specified collection and style",
-        "operationId": "getCollectionStyleMap",
+        "operationId": ".collection.style.getMap",
         "parameters": [
           {
             "$ref": "#/components/parameters/bbox"
@@ -622,7 +622,7 @@
           "Maps"
         ],
         "summary": "Retrieve the list of custom CRS projection operation methods (including their associated parameters) and datums supported by this API.",
-        "operationId": "getProjections",
+        "operationId": "getCustomCRSProjections",
         "parameters": [
           {
             "$ref": "#/components/parameters/f-metadata"

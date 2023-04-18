@@ -2,7 +2,7 @@ get:
    tags:
      - Maps
    summary: Retrieve a styled map of the whole dataset
-   operationId: getDatasetStyleMap
+   operationId: .dataset.style.getMap
    parameters:
      - $ref: '../../parameters/common-geodata/bbox.yaml'
      - $ref: '../../parameters/common-geodata/datetime.yaml'

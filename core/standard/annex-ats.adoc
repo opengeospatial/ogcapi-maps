@@ -13,7 +13,7 @@ Ensure that there is a conformance class for each requirements class and a test 
 |Test id: |/conf/core/map-op
 |Requirement: |/req/core/map-op
 |Test purpose: | Verify that the implementation supports the map retrieval operation
-|Test method: | *Given:* a geospatial data resource conforming to this standard, with a an API path including `.../map...` or discovered following a link with relation type `[ogc-rel:map]` +
+|Test method: | *Given:* a geospatial data resource conforming to this standard, with an API path including `.../map...` or discovered following a link with relation type `[ogc-rel:map]` +
 *When:* performing a GET operation on the `/map` resource with a supported media type specified in the `Accept:` header (e.g., `Accept: image/png,image/jpeg`) +
 *Then:* +
 - assert that the response is HTTP status code 200 +
@@ -21,7 +21,7 @@ Ensure that there is a conformance class for each requirements class and a test 
 - assert that the response headers either includes a `Content-Crs:` header for the native CRS, or omits it if the nativeCRS is `[ogc:crs84]`, +
 - assert that the headers of the response include a `Content-Bbox:` header with the actual axis-aligned geospatial boundary of the rendered map, +
 - assert that the `Content-Bbox:` coordinates are in the native CRS and honor the CRS coordinates order, +
-- assert that the body of a response is a map of the geostia data resource in the negotiated format.
+- assert that the body of the response is a map of the geospatial data resource in the negotiated format.
 |===
 
 ==== Requirement Map Response
