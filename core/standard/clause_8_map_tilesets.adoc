@@ -7,10 +7,11 @@
 
 include::requirements/requirements_class_tilesets.adoc[]
 
-This requirements class describes how to provide access to a map as tilesets in combination with the _OGC API - Tiles Standard.
-However, the approach will not benefit from cache mechanisms. Instead, a map can be retrieved as tiles in a predefined TileMatrixSet.
+This requirements class describes how to provide access to a map as tilesets in combination with the https://docs.ogc.org/is/20-057/20-057.html[_OGC API - Tiles_] Standard, itself based on the https://docs.ogc.org/is/17-083r4/17-083r4.html[_OGC 2D Tile Matrix Set and Tileset Metadata_] Standard.
+Tiles facilitate caching of data for clients and servers by requesting predefined subsets at fixed resolutions according to multi-resolution set of grids called a _TileMatrixSet_.
 
-NOTE: The concept of map tiles substitutes the WMTS 1.0 usage of tiles. WMTS was focused on map tiles (tiles that are rendered using a style).
+NOTE: WMTS was focused on map tiles (tiles that are rendered using a style). Since _OGC API - Tiles_ allows for other types of tiled data (e.g., vector tiles and coverage tiles),
+_map tiles_ is used to refer to the WMTS 1.0 usage of tiles.
 
 === Map
 A map resource can be accessed as tiles if the API exposes a link to map tilesets in the resource that is available as map tiles.
