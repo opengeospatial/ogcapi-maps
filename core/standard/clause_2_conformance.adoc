@@ -29,6 +29,8 @@ The _map tilesets_ conformance class defines a mechanism to describe a tileset l
 .../map/tiles/WorldCRS84Quad/0/0/0
 ```
 
+NOTE: The "Custom Projection CRS" requirements class also defines a `/projections` resource listing values available for the parameters it defines.
+
 === Requirements classes defining parameters
 
 These conformance classes define Web API parameters that can be used together with any map resource, such as a dataset map or collection map at `.../map`.
@@ -136,7 +138,7 @@ The _rotation_ conformance class allows to specify an angle by which to rotate t
 ```
 
 *<<rc_projection>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection)
-The _projection_ conformance class allows to specify a custom CRS through a projection, including the coordinate operation method (`crs-proj-method`)
+The _custom projection CRS_ conformance class allows to specify a custom CRS through a projection, including the coordinate operation method (`crs-proj-method`)
 and associated parameters (`crs-proj-params`), as well as a datum (`crs-datum`) and orientation (`orientation`).
 It also defines a `crs-proj-center` parameter facilitating the selection of the most likely parameters to center the projection on an area of interest.
 The `orientation` parameter can also be used with the `crs` parameter, if the CRS by reference conformance class is also supported.
@@ -155,6 +157,8 @@ The `orientation` parameter can also be used with the `crs` parameter, if the CR
    crs-proj-params=[epsg-parameter:8823](40),[epsg-parameter:8824](90)&
    crs-datum=[epsg-datum:6230]
 ```
+
+NOTE: This "Custom Projection CRS" requirements class also defines a `/projections` resource listing values available for the parameters it defines.
 
 === Requirements classes defining origins
 
