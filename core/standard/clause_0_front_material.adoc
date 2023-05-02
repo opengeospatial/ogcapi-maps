@@ -23,6 +23,7 @@ The following organizations submitted this Document to the Open Geospatial Conso
 * UAB-CREAF
 * Ecere Corporation
 * US Army Geospatial Center
+* ESRI
 
 [big]*v.     Submitters*
 
@@ -34,4 +35,5 @@ All questions regarding this submission should be directed to the editor or the 
 |Joan Masó _(editor)_                  |UAB-CREAF
 |Jérôme Jacovella-St-Louis _(editor)_  |Ecere
 |Jeff Harrison                         |US Army Geospatial Center
+|Satish Sankaran                       |ESRI
 |===
