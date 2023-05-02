@@ -14,5 +14,6 @@
 |2019-10-25 |T15-ER-0.98|J. Masó              |all                       |document ready for the 3 week rule in the Toulouse TC.
 |2019-12-09 |T15-ER-0.99|C. Reed              |various                   |Minor edits to Abstract, Exec Summary, and various other clauses prior to publication as a Public ER
 |2020-01-02 |T15-ER-1.0 |J. Masó              |various                   |Final staff review and edits of Testbed-15 engineering report (OGC 19-069).
-|2023-04-20 |0.8        |J. Masó, J. St-Louis |all                       |Re-organized into several new requirements classes providing additional capability and flexibility. First version of OGC API - Maps ready for OAB review.
+|2023-04-20 |0.8        |J. Masó, J. St-Louis |all                       |Re-organized into several new requirements classes providing additional capability and flexibility.
+|2023-05-02 |1.0.0rc1   |J. Masó, J. St-Louis |various                   |First version of OGC API - Maps submitted to the OAB for review.
 |===
