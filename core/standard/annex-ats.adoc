@@ -441,7 +441,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/projection/crs-proj-method
 |Test purpose: | Verify that the implementation supports the `crs-proj-method` parameter correctly for map requests
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
-*When:* retrieving maps with the `crs-proj-method` parameter for different available values as listed in `/projections` +
+*When:* retrieving maps with the `crs-proj-method` parameter for different available values as listed in `/projectionsAndDatums` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -452,7 +452,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/projection/crs-proj-params
 |Test purpose: | Verify that the implementation supports the `crs-proj-params` parameter correctly for map requests
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
-*When:* retrieving maps with the `crs-proj-method` parameter for different available values and different values of the associated method parameters as listed in `/projections` +
+*When:* retrieving maps with the `crs-proj-method` parameter for different available values and different values of the associated method parameters as listed in `/projectionsAndDatums` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -463,7 +463,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/projection/crs-proj-center-definition
 |Test purpose: | Verify that the implementation supports the `crs-proj-center` parameter correctly for map requests
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
-*When:* retrieving maps with the `crs-proj-method` parameter for different available values as listed in `/projections` and the `crs-proj-center` parameter for different values +
+*When:* retrieving maps with the `crs-proj-method` parameter for different available values as listed in `/projectionsAndDatums` and the `crs-proj-center` parameter for different values +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -474,7 +474,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/projection/crs-datum
 |Test purpose: | Verify that the implementation supports the `crs-datum` parameter correctly for map requests
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
-*When:* retrieving maps with the `crs-datum` parameter for different available values as listed in `/projections` +
+*When:* retrieving maps with the `crs-datum` parameter for different available values as listed in `/projectionsAndDatums` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -485,29 +485,29 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/projection/response-headers
 |Test purpose: | Verify that the implementation responds to map requests using the `crs-proj-method` parameter and/or `crs-datum` with the correct response headers
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
-*When:* retrieving maps with the `crs-proj-method` parameter for different available values, different values of the associated method parameters (using both `crs-proj-center` and `crs-proj-params`), and different values for `crs-proj-datums` as listed in `/projections` +
+*When:* retrieving maps with the `crs-proj-method` parameter for different available values, different values of the associated method parameters (using both `crs-proj-center` and `crs-proj-params`), and different values for `crs-proj-datums` as listed in `/projectionsAndDatums` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement `/projections` resource
+==== Requirement `/projectionsAndDatums` resource
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/projection/projections-resource
 |Requirement: |/req/projection/projections-resource
-|Test purpose: | Verify that the implementation supports retrieveing the list of available projection operation methods, their parameters, and the list of available datums at `/projections`
+|Test purpose: | Verify that the implementation supports retrieveing the list of available projection operation methods, their parameters, and the list of available datums at `/projectionsAndDatums`
 |Test method: | *Given:* an API being tested +
-*When:* retrieving the `/projections resource +
+*When:* retrieving the `/projectionsAndDatums resource +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement `/projections` response
+==== Requirement `/projectionsAndDatums` response
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/projection/projections-response
 |Requirement: |/req/projection/projections-response
-|Test purpose: | Verify that the implementation responds correctly to a request for the `/projections` resource, conforming to the JSON schema and using the correct URIs
+|Test purpose: | Verify that the implementation responds correctly to a request for the `/projectionsAndDatums` resource, conforming to the JSON schema and using the correct URIs
 |Test method: | *Given:* an API being tested passing /conf/projection/projections-resource +
-*When:* retrieving the `/projections resource` +
+*When:* retrieving the `/projectionsAndDatums resource` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 

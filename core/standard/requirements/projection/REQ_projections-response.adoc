@@ -2,8 +2,8 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/projection/projections-response*
-^|A |The implementation SHALL include in its response for the `/projections` resource the complete list of custom CRS projection operation methods supported for map retrieval operations.
-^|B |The implementation SHALL include in its response for the `/projections` resource the complete list of custom CRS datums supported for map retrieval operations.
+^|A |The implementation SHALL include in its response for the `/projectionsAndDatums` resource the complete list of custom CRS projection operation methods supported for map retrieval operations.
+^|B |The implementation SHALL include in its response for the `/projectionsAndDatums` resource the complete list of custom CRS datums supported for map retrieval operations.
 ^|C |In the JSON representation, the list of supported projection operation methods SHALL be provided as a dictionary (associative array) value for a `methods` property associating operation method objects
 (including optional `title` and `description` properties) to the corresponding identifiers to be used as values for the `crs-proj-method` query parameter.
 These operation method identifiers SHALL be safe CURIEs when a registered URI exists for the method.
@@ -19,4 +19,4 @@ To avoid repeating the same parameter, those objects may use a JSON pointer (`$r
 for which values specified for the `crs-proj-center` query parameter will be mapped, in a manner consistent with requirement `/req/projection/crs-proj-center-definition`.
 |===
 
-NOTE: Refer to the OpenAPI definition for the `/projections` path resource for the schema corresponding to these requirements.
+NOTE: Refer to the OpenAPI definition for the `/projectionsAndDatums` path resource for the schema corresponding to these requirements.

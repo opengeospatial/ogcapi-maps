@@ -108,7 +108,7 @@ GET .../styles/{styleId}/map?
 
 2. ["Map TileSets"](http://docs.ogc.org/DRAFTS/20-058.html#rc_maps_tileSets-list) specifies how to retrieve map tilesets (e.g., `.../map/tiles/{tileMatrixSetId}`) metadata and map tiles (e.g., `.../map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}`) based on _OGC API - Tiles_ building blocks.
 
-NOTE: The ["Custom Projection CRS"](http://docs.ogc.org/DRAFTS/20-058.html#rc_projection) conformance class also defines a global `/projections` resource listing available projection operation methods, parameters and datums.
+NOTE: The ["Custom Projection CRS"](http://docs.ogc.org/DRAFTS/20-058.html#rc_projection) conformance class also defines a global `/projectionsAndDatums` resource listing available projection operation methods, parameters and datums.
 
 ### Parameters Conformance Classes
 
@@ -121,7 +121,7 @@ NOTE: The ["Custom Projection CRS"](http://docs.ogc.org/DRAFTS/20-058.html#rc_pr
 9. ["General subsetting"](http://docs.ogc.org/DRAFTS/20-058.html#rc_general-subsetting) (`subset`, `subset-crs`) allows to subset any other dimension besides spatial and temporal
 10. ["CRS"](http://docs.ogc.org/DRAFTS/20-058.html#rc_crs) (`crs`) allows to select an output CRS other than the default native/storage CRS
 11. ["Rotation"](http://docs.ogc.org/DRAFTS/20-058.html#rc_rotation) (`orientation`) allows to rotate the map
-12. ["Custom Projection CRS"](http://docs.ogc.org/DRAFTS/20-058.html#rc_projection) (`crs-proj-method`, `crs-proj-params`, `crs-proj-center`, `crs-datum`) allows to define a custom CRS using available projection operation methods, parameters and datums (as listed in `/projections`)
+12. ["Custom Projection CRS"](http://docs.ogc.org/DRAFTS/20-058.html#rc_projection) (`crs-proj-method`, `crs-proj-params`, `crs-proj-center`, `crs-datum`) allows to define a custom CRS using available projection operation methods, parameters and datums (as listed in `/projectionsAndDatums`)
 
 ### Origin Conformance Classes
 

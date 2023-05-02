@@ -2,5 +2,5 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/projection/projections-resource*
-^|A |The implementation SHALL support a GET operation at `/projections` providing at minimum a JSON representation.
+^|A |The implementation SHALL support a GET operation at `/projectionsAndDatums` providing at minimum a JSON representation.
 |===

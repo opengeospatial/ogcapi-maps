@@ -616,7 +616,7 @@
         }
       }
     },
-    "/projections": {
+    "/projectionsAndDatums": {
       "get": {
         "tags": [
           "Maps"
