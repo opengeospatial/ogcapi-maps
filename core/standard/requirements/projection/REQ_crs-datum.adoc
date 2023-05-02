@@ -4,5 +4,5 @@
 ^|*Requirement {counter:req-id}* |*/req/projection/crs-datum*
 ^|A |The implementation SHALL support a `crs-datum` parameter as a URI allowing to select a datum for the output CRS.
 ^|B |The implementation SHALL support CURIEs in addition to URI to specify the datum parameter.
-^|C |If a `crs-datum` parameter is not specified, the implementation SHALL assume the `[epsg-datum:6326]` datum (WGS84 ensemble).
+^|C |If a `crs-datum` parameter is not specified, the implementation SHALL assume the native (storage) CRS datum (the WGS84 ensemble `[epsg-datum:6326]` datum is assumed if the native CRS is not declared).
 |===
