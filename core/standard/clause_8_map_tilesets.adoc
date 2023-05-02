@@ -62,4 +62,4 @@ include::requirements/tilesets/REQ_tiles-parameters.adoc[]
 ==== Response
 
 Successful GET responses to requests for a list of map tilesets, an individual map tileset, and map tiles are described in the corresponding requirements
-class of the _OGC API - Tiles_ Standard. The response to map tiles requests shall also reflect the parameters as specified in operation requirement.
+class of the _OGC API - Tiles_ Standard. The response to map tiles requests shall also reflect the parameters as specified in the operation requirement.
