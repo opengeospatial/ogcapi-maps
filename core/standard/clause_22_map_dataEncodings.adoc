@@ -66,7 +66,7 @@ include::recommendations/format_svg/PER_overflow.adoc[]
 [[rc_html]]
 === Requirement Class "HTML"
 
-One fundamental use case for maps is immediate visualization in a web browser. Returning a HTML page with a full operational map browser that allows for integrative navigation over the map (e.g. zoom and pan) is convenient for easy exploration of the data or for testing purposes.
+One fundamental use case for maps is immediate visualization in a web browser. Returning a HTML page with a full operational map browser that allows for integrative navigation over the map (e.g., zoom and pan) is convenient for easy exploration of the data or for testing purposes.
 
 include::requirements/requirements_class_format_html.adoc[]
 

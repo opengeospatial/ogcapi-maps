@@ -11,7 +11,7 @@ include::requirements/requirements_class_collections-selection.adoc[]
 In a Web API providing access to a complex dataset formed by several geospatial data resources, it can be useful to select specific sub-resources of interest when requesting data from this dataset.
 This requirements class defines how to include a query parameter when requesting a resource (e.g., dataset tiles) to specify which geospatial data resources (a.k.a. collections) should be used to generate the response.
 
-This requirements class can be used e.g. in conjunction with the <<rc_dataset-map>> requirements class. A requirements class equivalent to this one is included in _OGC API - Tiles_.
+This requirements class can be used e.g., in conjunction with the <<rc_dataset-map>> requirements class. A requirements class equivalent to this one is included in _OGC API - Tiles_.
 
 === Operation
 
