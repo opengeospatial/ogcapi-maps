@@ -1,0 +1,6 @@
+[[req_tilesets_tiles-parameters]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/tilesets/tiles-parameters*
+^|A |The implementation SHALL support any parameters specified in the _background_, _display resolution_, _spatial subsetting_ (if a vertical dimension is available), _general subsetting_, and _scaling_ requirements classes, for map tiles end-point if the implementation declares conformance to the associated conformance classes. 
+|===

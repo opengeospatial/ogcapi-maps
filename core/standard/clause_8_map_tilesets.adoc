@@ -7,13 +7,24 @@
 
 include::requirements/requirements_class_tilesets.adoc[]
 
+While it is possible to support map tiles and map tilesets without conforming to this requirements class, implementing this requirements class means that the tiles resources support parameters
+defined by _OGC API - Maps_ in the following requirement classes:
+
+- Background (`bgcolor` and `transparent` parameter),
+- Display Resolution (`mm-per-pixel`),
+- Spatial subsetting (only if a vertical dimension is available, since the 2D Tile Matrix Sets already handle partitioning the other two dimensions, and only for `subset` and `subset-crs` parameters),
+- General subsetting (`subset` for dimensions beyond spatial and temporal),
+- Scaling (`scale-denomimator`, `width` and `height` which will override the usual `tileWidth` and `tileHeight` of the requested tile in pixels from the tile matrix, but those values are still used for calculating the geospatial bounding box corresponding to each tile),
+
+NOTE: _OGC API - Tiles_ defines its own equivalent requirements class for temporal subsetting.
+
 This requirements class describes how to provide access to a map as tilesets in combination with the https://docs.ogc.org/is/20-057/20-057.html[_OGC API - Tiles_] Standard, itself based on the https://docs.ogc.org/is/17-083r4/17-083r4.html[_OGC 2D Tile Matrix Set and Tileset Metadata_] Standard.
 Tiles facilitate caching of data for clients and servers by requesting predefined subsets at fixed resolutions according to multi-resolution set of grids called a _TileMatrixSet_.
 
 NOTE: WMTS was focused on map tiles (tiles that are rendered using a style). Since _OGC API - Tiles_ allows for other types of tiled data (e.g., vector tiles and coverage tiles),
 _map tiles_ is used to refer to the WMTS 1.0 usage of tiles.
 
-=== Map
+=== Link from data resource
 A map resource can be accessed as tiles if the API exposes a link to map tilesets in the resource that is available as map tiles.
 
 include::requirements/tilesets/REQ_desc-links.adoc[]
@@ -42,10 +53,13 @@ A tileset contains the necessary metadata to enable a client application to form
 The operations to retrieve a list of tilesets, individual tilsets and individual tiles are described respectively in the Tilesets List, TileSet and Core
 requirements classes of the _OGC API - Tiles_ Standard.
 
-This requirements class does not specify that the query parameters of the GET request to individual map tiles support as additional parameters
-the ones defined in the _background_, _display resolution_ and _general subsetting_ requirements classes, when either of those requirement class is supported.
+This requirements class specifies that the query parameters of the GET request to individual map tiles support as additional parameters
+the ones defined in the _background_, _display resolution_, _spatial subsetting_ (if a vertical dimension is available), _general subsetting_, and _scaling_ requirements classes,
+when any of those requirement class is supported.
+
+include::requirements/tilesets/REQ_tiles-parameters.adoc[]
 
 ==== Response
 
 Successful GET responses to requests for a list of map tilesets, an individual map tileset, and map tiles are described in the corresponding requirements
-class of the _OGC API - Tiles_ Standard.
+class of the _OGC API - Tiles_ Standard. The response to map tiles requests shall also reflect the parameters as specified in operation requirement.

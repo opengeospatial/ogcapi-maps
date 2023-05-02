@@ -60,6 +60,19 @@ Ensure that there is a conformance class for each requirements class and a test 
 - assert that the geospatial data resource (e.g., collection or landing page description's `links` property) includes a link with the `href` pointing to a tileset list supported that presents a tile aspect of this geospatial data resource and with rel: `[ogc-rel:tilesets-map]`
 |===
 
+==== Requirement tiles-parameters
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/tilesets/desc-links
+|Requirement: |/req/tilesets/desc-links
+|Test purpose: | Verify that the implementation supports relevant parameters for map tilesets
+|Test method: | *Given:* a geospatial data resource conforming to this standard, to "Map Tilesets", to OGC _API - Tiles_, and to _Maps_ requirements classes introducing parameters relevant for map tiles  +
+*When:* retrieving the map tiles with parameters for the _background_, _display resolution_, _spatial subsetting_ (if a vertical dimension is available), _general subsetting_, and _scaling_ requirements classes +
+*Then:* +
+- assert that tiles responses reflect the relevant map parameters used for the requests
+|===
+
+
 NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilesets List" conformance class to which the implementation must also conform.
 
 === Conformance Class "Background"
