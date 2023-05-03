@@ -4,5 +4,6 @@
 2+|*Requirements Class Collections Selection*
 2+|http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection
 |Target type |Web API
-|Dependency |http://www.opengis.net/spec/ogcapi-common-2/1.0/req/collections
+|Dependency |http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+http://www.opengis.net/spec/ogcapi-common-2/1.0/req/collections
 |===
