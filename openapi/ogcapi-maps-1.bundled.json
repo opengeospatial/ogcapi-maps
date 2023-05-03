@@ -619,7 +619,7 @@
     "/projectionsAndDatums": {
       "get": {
         "tags": [
-          "Maps"
+          "Custom Projection CRS"
         ],
         "summary": "Retrieve the list of custom CRS projection operation methods (including their associated parameters) and datums supported by this API.",
         "operationId": "getCustomCRSProjections",
