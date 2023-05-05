@@ -89,7 +89,7 @@ Some examples include:
 
 ==== Correspondence between WMS map metadata and OGC APIs
 
-In the WMS standard, the `GetCapabilities` response provide some metadata about the server and individual `layer` sections that inform the client on some layer characteristics and some restrictions useful to formulate a successful map query. In OGC API maps, the equivalent metadata is provided by the landing page, the list of collections, the collections details, the API definition, and the service-meta link from the landing page. Implementers of Web APIs are encouraged to make use of the mechanisms provided by other standards of the OGC API family to communicate the relevant metadata to the client.
+In the WMS standard, the `GetCapabilities` response provides some metadata about the server and individual `layer` sections that inform the client on some layer characteristics and some restrictions useful to formulate a successful map query. In OGC API maps, the equivalent metadata is provided by the landing page, the list of collections, the collections details, the API definition, and the service-meta link from the landing page. Implementers of Web APIs are encouraged to make use of the mechanisms provided by other standards of the OGC API family to communicate the relevant metadata to the client.
 
 The following table provides a reference to where some of metadata aspects at the service level are specified.
 
@@ -102,17 +102,20 @@ The following table provides a reference to where some of metadata aspects at th
 | Name fixed to "WMS" | N/A |  |
 | Abstract | service metadata | description | OGC API - Common - Part 1
 | OnlineResource | landing page | links | OGC API - Common - Part 1
-| Keywords | N/A |   |
-| LayerLimit | service metadata | limits | This standard
+| Keywords | service metadata | x-keywords | OGC API - Common - Part 1, Annex B.4
+| LayerLimit | service metadata | x-OGC-limits.maps.maxCollections | This standard
 | MaxWidth
 
 MaxHeight | service metadata | x-OGC-limits.maps.maxWidth
 
 x-OGC-limits.maps.maxHeight
 
-x-OGC-limits.maps.maxPixels | This standard <<rc_scaling>>
+x-OGC-limits.maps.maxPixels ^1^ | This standard <<rc_scaling>>
 | Fees | N/A |   |
 | AccessConstraints | N/A |   |
+4+|
+^1^ `x-OGC-limits.maps.maxWidth`, `x-OGC-limits.maps.maxHeight` and `x-OGC-limits.maps.maxPixels` are indented to control the work load of the server by providing limitations in size of the outputs of the subset. `width` and `height` parameters in _OGC API - Maps_ (defined in <<rc_scaling>>) control the size of the response and its resolution. The core of OGC API maps does not provide explicit limits but the server is free to respond an error to avoid work overload. `width` and `height` parameters are commonly related with the size of the device screen; please consider that new devices are being build with more and more pixels and a past reasonable limit in the server side may become too restrictive with emerging devices
+
 |===
 
 The following table provides a reference to where some of layer metadata aspects are specified.
@@ -122,51 +125,56 @@ The following table provides a reference to where some of layer metadata aspects
 [width = "100%",options="header"]
 |===
 | Name in WMS 1.3 <Layer> | Where in the API | property | Specified in
-| Title | collections response | title | OGC API - Common - Part 2
-| Name | collections response | id | OGC API - Common - part 2
-| Abstract | collections response | description | OGC API - Common - Part 2
-| Keywords | N/A |   |
+| Title | collection response | title | OGC API - Common - Part 2
+| Name | collection response | id | OGC API - Common - Part 2
+| Abstract | collection response | description | OGC API - Common - Part 2
+| Keywords | collection response | keywords | OGC API - Records (Local Resources Catalogue)
 | Style | style response | id | OGC API - Styles - Part 1
-| EX_GeographicBoundingBox | collections response | extent | OGC API - Common - Part 2
-| CRS | collections response | storageCRS | OGC API - Features - Part 2
-| BoundingBox | N/A |  |
+| EX_GeographicBoundingBox | collections response | extent.spatial | OGC API - Common - Part 2
+| CRS | collection response | storageCrs | This standard
+| BoundingBox | collection response | storageCrsExtent^1^ | This standard
 | minScaleDenominator
 
-maxScaleDenominator | collections response | minScaleDenominator
+maxScaleDenominator | collection response | minScaleDenominator
 
 maxScaleDenominator | Possibly in OGC API - Common - Part 2
-| Sample Dimensions | OpenAPI extra parameters definition | |
-| MetadataURL | collections response | link with rel describedBy | OGC API Common - Part 2
-| Attribution | collections response | attribution | OGC API Common - Part 2
+| Sample Dimensions | collection response | extent ^2^ | This standard
+| MetadataURL | collection response | link with rel describedBy | OGC API Common - Part 2
+| Attribution | collection response | attribution | OGC API - Common - Part 2
 | Identifier
 
-AuthorityURL | N/A | |
+AuthorityURL | collection response | externalIds | OGC API Records (Local Resources Catalogue)
 | FeatureListURL | items response |  | OGC API - Features provides this capability
 | DataURL  |  |  | OGC API - Features, Coverages and EDR provide download capabilities
-| queryable  |  |  | OGC API - Features, Coverages and EDR provide query capabilities
-| cascaded
+| queryable ^3^  |  |  | OGC API - Features, Coverages and EDR provide query capabilities
+| cascaded ^4^
 
-noSubsets
+noSubsets ^5^
 
-fixedWidth
+fixedWidth ^6^
 
-fixedHeight  | N/A | |
+fixedHeight ^7^ | N/A | |
+4+| ^1^ In WMS it was possible to specify as many bounding boxes as needed, one for each CRS. In OGC API - Maps, it is only available for native CRS (storageCrs). 
+
+^2^ If extra dimensions are supported the range of values are defined in additional properties of the 'extent' of the collection.
+
+^3^ No equivalent functionality to GetFeatureInfo is provided so this flag has not sense in OGC API - Maps. Please use the query capabilities of other OGC APIs family instead
+
+^4^ The `cascaded` XML attribute in WMS is removed because no practical use has been seen in past. 'capacaded' indicated if a map was generated by the addressed service of by another service assisting the first one.
+
+^5^ The `noSubsets` XML attribute in WMS was used to indicate lack of subsetting support. The client will know if the server does not support the _spatial subsetting_, _date and time_ (for temporal subsetting) or _general subsetting_ conformance class by inspecting its conformance declaration.
+
+^6^ The `fixedWidth` XML attribute in WMS was used to indicate lack of scaling support. The client will know if the server does not support the _scaling_ conformance class by inspecting its conformance declaration.
+
+^7^ The `fixedHeight` XML attribute in WMS was used to indicate lack of scaling support. The client will know if the server does not support the _scaling_ conformance class by inspecting its conformance declaration.
 
 |===
 
 NOTE: The supported formats for map resources, or more precisely the media types of the supported encodings, can be also be determined from the API definition. The desired encoding is selected using HTTP content negotiation. In addition to the parameters specified by the core, other parameters should be added.
 
-NOTE: The `cascaded` XML attribute in WMS is removed because no practical use has been seen in past
 
 NOTE: The `opaque` XML attribute in WMS was rarely useful and has been removed. It indicated whether the map data represents features that probably do not completely fill space and shows the background opaque (true) or transparent(false).
 
-NOTE: The `noSubsets` XML attribute in WMS was used to indicate lack of subsetting support. The client will know if the server does not support the _spatial subsetting_, _date and time_ (for temporal subsetting) or _general subsetting_ conformance class by inspecting its conformance declaration.
-
-NOTE: The `fixedWidth` XML attribute in WMS was used to indicate lack of scaling support. The client will know if the server does not support the _scaling_ conformance class by inspecting its conformance declaration.
-
-NOTE: The `fixedHeight` XML attribute in WMS was used to indicate lack of scaling support. The client will know if the server does not support the _scaling_ conformance class by inspecting its conformance declaration.
-
-NOTE: `x-OGC-limits.maps.maxWidth`, `x-OGC-limits.maps.maxHeight` and `x-OGC-limits.maps.maxPixels` are indented to control the work load of the server by providing limitations in size of the outputs of the subset. `width` and `height` parameters in _OGC API - Maps_ (defined in <<rc_scaling>>) control the size of the response and its resolution. The core of OGC API maps does not provide explicit limits but is free to respond an error to avoid server work overload. `width` and `height` parameters are commonly related with the size of the device screen; please consider that new devices are being build with more and more pixels and a past reasonable limit in the server size may become too restrictive with the emerging devices.
 
 === Relationship to other OGC API standards
 
