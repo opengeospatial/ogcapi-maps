@@ -37,7 +37,7 @@ include::requirements/tilesets/REQ_desc-links.adoc[]
     "links": [
     ...
     {
-      "href": "http://data.example.com/collections/buildings/map/tiles",
+      "href": "https://data.example.com/collections/buildings/map/tiles",
       "rel": "http://www.opengis.net/def/rel/ogc/1.0/tilesets-map",
       "type": "application/json"
     }

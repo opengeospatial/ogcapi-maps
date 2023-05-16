@@ -30,7 +30,7 @@ include::requirements/styled-map/REQ_desc-links.adoc[]
   "links": [
     ...
     {
-      "href": "http://data.example.com/collections/buildings/styles/dark/map",
+      "href": "https://data.example.com/collections/buildings/styles/dark/map",
       "rel": "http://www.opengis.net/def/rel/ogc/1.0/map",
       "type": "image/png",
     }
