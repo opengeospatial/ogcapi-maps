@@ -4,6 +4,10 @@ This standard defines **21** requirements conformance classes.
 
 The standardization targets of all conformance classes are "Web APIs".
 
+All conformance classes in here act as building blocks that should be implemented in combination with other more fundamental conformance classes that provide support for Web API discovery, conformity and Web API formal definition (e.g., OpenAPI). Possible alternatives for these fundamental conformance classes are _OGC API - Common Part 1: Core_, _OGC API - Features Part 1: Core_ or any other non-OGC classes that provide this functionality.
+
+The Standard is intended to be a minimal useful API for fine-grained read-access to maps. Additional classes may be specified in future parts of the _OGC API - Maps_ series to add more capabilities or as vendor-specific extensions.
+
 The requirements classes are:
 
 === Requirements classes defining resources
@@ -236,15 +240,11 @@ text/html
 
 The _OpenAPI Specification 3.0_ conformance class specifies requirements for an OpenAPI 3.0 definition in addition to those defined in _OGC API - Common - Part 1: Core_.
 
-All these conformance classes act as building blocks that should be implemented in combination with other more fundamental conformance classes that provide support for Web API discovery, conformity and Web API formal definition (e.g., OpenAPI). Possible alternatives for these fundamental conformance classes are _OGC API - Common Part 1: Core_, _OGC API - Features Part 1: Core_ or any other non-OGC classes that provide this functionality.
-
 All requirements-classes and conformance-classes described in this document are owned by the standard(s) identified.
 
 NOTE: Despite the fact that full paths and full path templates in the previous tables are used in many implementations of the _OGC API - Maps_, these exact paths are ONLY examples and are NOT required by this standard. Other paths are possible if correctly described in by the Web API definition document and the links between resources.
 
 That said, this Standard includes recommendations to support, where practical, HTML.
-
-The Standard is intended to be a minimal useful API for fine-grained read-access to maps. Additional capabilities may be specified in future parts of the _OGC API - Maps_ series or as vendor-specific extensions.
 
 === Declaration of conformance
 
