@@ -23,6 +23,11 @@ As a result of following a RESTful approach, OGC API implementations are not bac
 
 === Comparision of WMS to _OGC API - Maps_
 
+The OGC WMS and WMTS share the concept of a map and the capability to create and distribute maps at a limited resolution and size.
+In WMS, the number of rows and columns can be selected by the user within limits and in WMTS the number of rows and columns of the response is predefined in the tile matrix set.
+
+The concept of a map used in the OGC APIs is more abstract than the one used in WMS. Read more about the map concept in the <<overview>>. 
+
 ==== Functionality changes from WMS
 
 One important change in _OGC API - Maps_ is that requests are built out of modular building blocks,
@@ -135,7 +140,7 @@ fixedHeight ^7^ | N/A | |
 
 |===
 
-NOTE: The supported formats for map resources, or more precisely the media types of the supported encodings, can be also be determined from the API definition. The desired encoding is selected using HTTP content negotiation. In addition to the parameters specified by the core, other parameters should be added.
+NOTE: The supported formats for map resources, or more precisely the media types of the supported encodings, can also be determined from the API definition. The desired encoding is selected using HTTP content negotiation. In addition to the parameters specified by the core, other parameters should be added.
 
 
 NOTE: The `opaque` XML attribute in WMS was rarely useful and has been removed. It indicated whether the map data represents features that probably do not completely fill space and shows the background opaque (true) or transparent (false).

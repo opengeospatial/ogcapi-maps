@@ -32,6 +32,10 @@ The _OGC API - Maps_ Standard does not specify how to get a Web API definition, 
 However, the standard assumes that the first two are defined by an OGC API standard (e.g., _OGC API - Common - Part 1: Core_) and the latter by an
 OGC API for collections (e.g., _OGC API - Common - Part 2: Geospatial data_). A similar definition is provided directly by _OGC API - Features - Part 1: Core_.
 
+This document is the first part of a series of _OGC API - Maps_ "parts" that use the core and extensions model.
+It is foreseen that future parts will specify other extensions, such as how to specify cartographic layout elements to be included on the map,
+how to specify a filter for which elements should be included on the map, and possibly how to query information for a point in a map.
+
 === Map interoperability
 
 One of the most significant use cases for this standard API is to define a common way to generate maps on the web that can be combined together in a single view. In particular, this standard provides a clear way to request an image that covers a bounding box of interest in a map with a defined number of rows and columns. When this API is implemented by different organizations that offer different collections of information, the same bounding box, in the same CRS and the same number of rows and columns can be requested to each of them. The result is a set of images that perfectly overlap showing different variables of the same area depending on the collection requested. For example, a population map can be requested to one organization (e.g., SEDAC Population Density) and weather forecast to another (e.g., NDFD Surface Wind Velocity) using their APIs in the exact same way and both be presented together in one overlaid view or side by side.
@@ -47,60 +51,6 @@ One of the most significant use cases for this standard API is to define a commo
 .Forecast NDFD wind speed on top of SEDAN Population density
 image::images/sedan_and_nowcast.png[width=600,align="center"]
 
-
-=== Relationship to other OGC API standards
-
-The OGC WMS and WMTS share the concept of a map and the capability to create and distribute maps at a limited resolution and size.
-In WMS, the number of rows and columns can be selected by the user within limits and in WMTS the number of rows and columns of the response is predefined in the tile matrix set.
-
-The concept of a map used here is more abstract than the one used in WMS. A map is a portrayal of data resulting from applying a style (usually image formats such as PNG or JPEG format or in presentation formats such as SVG). The way the styling rules in a style are applied to the data to create the portrayal is out of scope of this standard (see https://github.com/opengeospatial/ogcapi-styles[_OGC API - Styles_], as well as specific styles and symbology standards such as https://github.com/opengeospatial/styles-and-symbology[OGC Styles & Symbology], for details).
-A map can be delivered as a single resource or as an arbitrary extent.
-In addition, a map can also be delivered as tiles by combining this OGC API with some requirements classes of _OGC API - Tiles_, as defined by the _Map Tilesets_ requirements class of this standard,
-which also correspond to _map tilesets_ described in _OGC API - Tiles_, with a _map_ being a specific type of data resource for which tiles are provided.
-
-This standard can be referenced by other standards providing resources that can be offered as maps. For example:
-
-* _OGC API - Tiles_ specifies the link relation types to access map tilesets from a dataset or collection.
-* _OGC API - Styles_ defines paths to list available styles from which maps can also be accessed.
-* _OGC API - Processes - Part 3: Workflows and Chaining_ provides a mechanism to trigger localized processing workflows as a result of retrieving maps (for a specific area and resolution of interest).
-
-This document is the first part of a series of _OGC API - Maps_ "parts" that use the core and extensions model.
-It is foreseen that future parts will specify other extensions, such as how to specify cartographic layout elements to be included on the map,
-how to specify a filter for which elements should be included on the map, and possibly how to query information for a point in a map.
-
-==== Dynamic and scalable map viewers
-The concept of a map as an image was created more that 20 years ago as part of the OGC Web Map Service. At that time, the web was only 11 years old, most HTML pages were static and JavaScript was a rudimentary programing language capable of controlling user entries in an HTML form and not much more. In that environment, having a service capable of creating a PNG that could be embedded as a HTML page by using an IMG tag provide the first approach to static maps on the web.  Replacing the source (SRC) of the IMG tag programmatically with JavaScript, as a reaction of some user actions, provided the first approach to dynamic maps. _GetFeatureInfo_ added a limited capability for queryable maps. However, users are now used to moving around the map by frequently doing zoom and pan operations. If the server is not providing a very fast response, the user experience is not fluid and the map is not responsive enough. One possible approach to solve this, is to divide the viewport into tiles and request them separately. Since tiles follow a tile matrix pattern, they can be pre-rendered in the server or cached in the Internet. For implementing fast dynamic maps, this OGC API should be combined with _OGC API - Tiles_.
-
-==== Client side maps versus server side maps
-This standard deals with maps that are generated by the server. The client can present them with no modification. Currently, even the smallest rendering device supports hardware rendering i.e., the transformation from geometries to pixels can be done by the GPU. Transmitting geometries from the server commonly requires less bandwidth than transmitting the rendered map from the server and offers more flexibility in the client side to personalize the portrayal style. Because of this, it is expected that _OGC API - Maps_ use cases will focus more on static maps, infrequently changing requests for dynamic maps, as well as print cartography, whereas requesting raw data values using _OGC API - Tiles_ (e.g., Vector and Coverage Tiles) will be better suited for interactive clients presenting dynamic maps.
-
-=== Use of this standard
-
-This standard defines how to retrieve geospatial information portrayed as a map, typically returned as a 2D image.
-This standard also defines building blocks that can be combined with other APIs generating or providing access to information having a geospatial component,
-including the other standards of the OGC API family such as _OGC API - Tiles_ and _OGC API - Processes_.
-For example, a generic open data API giving access to tables, some of them with columns storing latitude and longitude, could be enhanced with OGC APIs to provide mapping capabilities.
-
-As informative guidance on how this can be achieved, implementations should consider the following aspects.
-
-==== Description of the domain
-
-This standard allows to describe the domain of the maps, including spatiotemporal axes as well as additional dimensions.
-
-With the _Geospatial Data Map_ conformance class, the collection description inherited from _OGC API - Common - Part 2_ contains an `extent` property that can
-describe both the spatial and temporal domain of the data. In addition, the _Unified Additional Dimensions_ common building block, specified in the _General Subsetting_ requirements class and used in the
-example OpenAPI definition, requires that additional dimensions shall be described in a similar way to the temporal dimension.
-An extra `grid` property also allows the specification of the resolution and the number of cells (for data organized as a regular grid) or
-a list of coordinates (for data organized as an irregular grid) along each dimension.
-
-The collection metadata allows the specification of a spatial bounding box for maps as a whole, as well as for each individual
-collection of geospatial data represented or contained within the map (the _layers_). The resolution of these layers can also be specified by including
-the minimum and maximum cell size and equivalent scale denominators.
-
-==== Available formats and map response expectations
-
-This standard defines five conformance classes for specific encodings to encode map data.
-Additional encodings can be supported using HTTP content negotiation, following conventions specific to those encodings.
 
 === How to approach an OGC API
 There are at least two ways to approach an OGC API.
@@ -155,40 +105,29 @@ Again, be aware that these paths are not required by this Standard.
 NOTE: Despite the fact that full path and full path templates in the previous table are used in many implementations of the _OGC API - Maps_ standard, these exact paths are ONLY examples and are NOT required by this standard. Other paths are possible if correctly described in by the Web API definition document and/or the links between resources.
 
 
-=== Relationship to other OGC API standards
+=== What a map is and relation to other OGC Web APIs
 
-The OGC WMS and WMTS share the concept of a map and the capability to create and distribute maps at a limited resolution and size.
-In WMS, the number of rows and columns can be selected by the user within limits and in WMTS the number of rows and columns of the response is predefined in the tile matrix set.
-
-The concept of a map used here is more abstract than the one used in WMS. A map is a portrayal of data resulting from applying a style (usually image formats such as PNG or JPEG format or in presentation formats such as SVG). The way the styling rules in a style are applied to the data to create the portrayal is out of scope of this standard (see https://github.com/opengeospatial/ogcapi-styles[_OGC API - Styles_], as well as specific styles and symbology standards such as https://github.com/opengeospatial/styles-and-symbology[OGC Styles & Symbology], for details).
+A map is a portrayal of data resulting from applying a style (usually 2D image formats such as PNG or JPEG format or in presentation formats such as SVG). The way the styling rules in a style are applied to the data to create the portrayal is out of scope of this standard (see https://github.com/opengeospatial/ogcapi-styles[_OGC API - Styles_], as well as specific styles and symbology standards such as https://github.com/opengeospatial/styles-and-symbology[OGC Styles & Symbology], for details).
 A map can be delivered as a single resource or as an arbitrary extent.
 In addition, a map can also be delivered as tiles by combining this OGC API with some requirements classes of _OGC API - Tiles_, as defined by the _Map Tilesets_ requirements class of this standard,
 which also correspond to _map tilesets_ described in _OGC API - Tiles_, with a _map_ being a specific type of data resource for which tiles are provided.
 
-This standard can be referenced by other standards providing resources that can be offered as maps. For example:
+This standard defines building blocks that can be combined with other APIs generating or providing access to information having a geospatial component,
+including the other standards of the OGC API family such as _OGC API - Tiles_ and _OGC API - Processes_. This standard can be referenced by other standards providing resources that can be offered as maps. For example:
 
 * _OGC API - Tiles_ specifies the link relation types to access map tilesets from a dataset or collection.
 * _OGC API - Styles_ defines paths to list available styles from which maps can also be accessed.
 * _OGC API - Processes - Part 3: Workflows and Chaining_ provides a mechanism to trigger localized processing workflows as a result of retrieving maps (for a specific area and resolution of interest).
 
-This document is the first part of a series of _OGC API - Maps_ "parts" that use the core and extensions model.
-It is foreseen that future parts will specify other extensions, such as how to specify cartographic layout elements to be included on the map,
-how to specify a filter for which elements should be included on the map, and possibly how to query information for a point in a map.
+But possibilities are endless: for example, a generic open data API giving access to tables, some of them with columns storing latitude and longitude, could be enhanced with OGC APIs to provide mapping capabilities.
 
 ==== Dynamic and scalable map viewers
+
 The concept of a map as an image was created more that 20 years ago as part of the OGC Web Map Service. At that time, the web was only 11 years old, most HTML pages were static and JavaScript was a rudimentary programing language capable of controlling user entries in an HTML form and not much more. In that environment, having a service capable of creating a PNG that could be embedded as a HTML page by using an IMG tag provide the first approach to static maps on the web.  Replacing the source (SRC) of the IMG tag programmatically with JavaScript, as a reaction of some user actions, provided the first approach to dynamic maps. _GetFeatureInfo_ added a limited capability for queryable maps. However, users are now used to moving around the map by frequently doing zoom and pan operations. If the server is not providing a very fast response, the user experience is not fluid and the map is not responsive enough. One possible approach to solve this, is to divide the viewport into tiles and request them separately. Since tiles follow a tile matrix pattern, they can be pre-rendered in the server or cached in the Internet. For implementing fast dynamic maps, this OGC API should be combined with _OGC API - Tiles_.
 
 ==== Client side maps versus server side maps
+
 This standard deals with maps that are generated by the server. The client can present them with no modification. Currently, even the smallest rendering device supports hardware rendering i.e., the transformation from geometries to pixels can be done by the GPU. Transmitting geometries from the server commonly requires less bandwidth than transmitting the rendered map from the server and offers more flexibility in the client side to personalize the portrayal style. Because of this, it is expected that _OGC API - Maps_ use cases will focus more on static maps, infrequently changing requests for dynamic maps, as well as print cartography, whereas requesting raw data values using _OGC API - Tiles_ (e.g., Vector and Coverage Tiles) will be better suited for interactive clients presenting dynamic maps.
-
-=== Use of this standard
-
-This standard defines how to retrieve geospatial information portrayed as a map, typically returned as a 2D image.
-This standard also defines building blocks that can be combined with other APIs generating or providing access to information having a geospatial component,
-including the other standards of the OGC API family such as _OGC API - Tiles_ and _OGC API - Processes_.
-For example, a generic open data API giving access to tables, some of them with columns storing latitude and longitude, could be enhanced with OGC APIs to provide mapping capabilities.
-
-As informative guidance on how this can be achieved, implementations should consider the following aspects.
 
 ==== Description of the domain
 
