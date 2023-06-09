@@ -1,10 +1,10 @@
-[[rc_rotation]]
-== Requirement Class "Rotation"
+[[rc_orientation]]
+== Requirement Class "Orientation"
 
-[[maps-rotation-overview]]
+[[maps-orientation-overview]]
 === Overview
 
-include::requirements/requirements_class_rotation.adoc[]
+include::requirements/requirements_class_orientation.adoc[]
 
 This requirements class defines the ability for clients to request a map whose content is rotated by a counter-clockwise orientation specified in degrees, resulting in
 the viewing perspective being rotated by that same orientation in a clockwise direction.
@@ -13,11 +13,11 @@ the viewing perspective being rotated by that same orientation in a clockwise di
 
 ==== Parameter `orientation`
 
-include::requirements/rotation/REQ_orientation.adoc[]
+include::requirements/orientation/REQ_orientation.adoc[]
 
 ==== Response headers
 
-include::requirements/rotation/REQ_response-headers.adoc[]
+include::requirements/orientation/REQ_response-headers.adoc[]
 
 Example of a request and associated response headers:
 

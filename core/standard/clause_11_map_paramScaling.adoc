@@ -30,7 +30,7 @@ specified by the _display resolution_ conformance class (`mm-per-pixel` paramete
 
 ==== Parameter `scale-denominator`
 A client can specify the desired scale of the map as a scale denominator value using a `scale-denominator` parameter.
-The scale denominator specifies to how many units in the real world one of the same unit on the map corresponds, as printed or displayed.
+Given a selected unit of measure, the scale denominator specifies how many of these units in the real world correspond to a distance of one unit on the map as printed or displayed.
 
 NOTE: This correspondence depends on the display resolution for which a default 0.28 mm/pixel is assumed, unless a client specifies otherwise through the <<rc_display-resolution, display resolution requirements class>>.
 

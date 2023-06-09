@@ -1,8 +1,0 @@
-[[rc_table_rotation]]
-[cols="1,4",width="90%"]
-|===
-2+|*Requirements Class Rotation*
-2+|http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/rotation
-|Target type |Web API
-|Dependency |http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
-|===

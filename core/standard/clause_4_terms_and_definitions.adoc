@@ -22,7 +22,7 @@ information concerning phenomena implicitly or explicitly associated with a loca
 
 2. size of a map image in pixels along the vertical axis of the rendering device
 
-NOTE: both the _spatial subsetting_ and _scaling_ requirements classes make use of the `height` query parameter.
+NOTE: Both the _spatial subsetting_ and _scaling_ requirements classes make use of the `height` query parameter.
 In both cases, the parameter refers to the height of the image in pixels, but the effect of specifying a fixed value for the parameter
 is different in each case (selecting the portion of the map to return in the image vs. resampling the map to the requested image size).
 
@@ -39,7 +39,7 @@ medium or apparatus on which the map being retrieved will be displayed, whether 
 
 size of a map image in pixels along the horizontal axis of the rendering device
 
-NOTE: both the _spatial subsetting_ and _scaling_ requirements classes make use of the `width` query parameter.
+NOTE: Both the _spatial subsetting_ and _scaling_ requirements classes make use of the `width` query parameter.
 In both cases, the parameter refers to the width of the image in pixels, but the effect of specifying a fixed value for the parameter
 is different in each case (selecting the portion of the map to return in the image vs. resampling the map to the requested image size).
 

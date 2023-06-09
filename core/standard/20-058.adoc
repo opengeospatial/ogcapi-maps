@@ -114,7 +114,7 @@ include::clause_15_map_paramGeneralSubsetting.adoc[]
 
 include::clause_16_map_paramCRS.adoc[]
 
-include::clause_17_map_rotation.adoc[]
+include::clause_17_map_orientation.adoc[]
 
 include::clause_18_map_projection.adoc[]
 

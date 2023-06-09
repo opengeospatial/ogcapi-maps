@@ -1,5 +1,6 @@
 [appendix]
 :appendix-caption: Annex
+[[annex-ats]]
 == Conformance Class Abstract Test Suite (Normative)
 
 [NOTE]
@@ -421,13 +422,13 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-=== Conformance Class "Rotation"
+=== Conformance Class "Orientation"
 
 ==== Requirement `orientation` parameter
 [cols=">20h,<80d",width="100%"]
 |===
-|Test id: |/conf/rotation/orientation
-|Requirement: |/req/rotation/orientation
+|Test id: |/conf/orientation/orientation
+|Requirement: |/req/orientation/orientation
 |Test purpose: | Verify that the implementation supports the `orientation` parameter correctly for map requests
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps with the `orientation` parameter for different values and without +
@@ -437,8 +438,8 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 ==== Requirement orientation response headers
 [cols=">20h,<80d",width="100%"]
 |===
-|Test id: |/conf/rotation/response-headers
-|Requirement: |/req/rotation/response-headers
+|Test id: |/conf/orientation/response-headers
+|Requirement: |/req/orientation/response-headers
 |Test purpose: | Verify that the implementation includes the correct response headers for map requests using the `orientation` parameter.
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps with the `orientation` parameter for different values and without +
