@@ -128,7 +128,11 @@ include::clause_22_map_dataEncodings.adoc[]
 
 include::clause_23_map_openAPI.adoc[]
 
-include::annex-ats.adoc[]
+include::annex_ats.adoc[]
+
+include::annex_examples.adoc[]
+
+include::annex_ogc_wms.adoc[]
 
 include::annex_history.adoc[]
 

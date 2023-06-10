@@ -44,7 +44,13 @@ how to specify a filter for which elements should be included on the map, and po
 
 === Map interoperability
 
-One of the most significant use cases for this standard API is to define a common way to generate maps on the web that can be combined together in a single view. In particular, this standard provides a clear way to request an image that covers a bounding box of interest in a map with a defined number of rows and columns. When this API is implemented by different organizations that offer different collections of information, the same bounding box, in the same CRS and the same number of rows and columns can be requested to each of them. The result is a set of images that perfectly overlap showing different variables of the same area depending on the collection requested. For example, a population map can be requested to one organization (e.g., SEDAC Population Density) and weather forecast to another (e.g., NDFD Surface Wind Velocity) using their APIs in the exact same way and both be presented together in one overlaid view or side by side.
+One of the most significant use cases of the _Maps API_ is the ability to generate maps on the web that can be combined into a single view.
+This standard provides a clear and common way to request a map image that covers a bounding box of interest with a defined number of pixel rows and columns.
+When the _Maps API_ is implemented by different organizations that offer different collections of information, the same bounding box, in the same CRS and the same number
+of rows and columns can be requested from each organization's geospatial repository.
+The result is a set of images that perfectly overlap showing different variables of the same area depending on the collection of geospatial data requested.
+For example, a population map can be requested to one organization (e.g., SEDAC Population Density) and weather forecast to another
+(e.g., NDFD Surface Wind Velocity) in the exact same way allowing to present both together in one overlaid view or side by side.
 
 [#table_sedan_nowcast,reftext='{figure-caption} {counter:figure-num}', cols=">a,<a", frame=none, grid=none]
 .SEDAN GPWv4 Population Density, 2015 and Forecast NDFD, Surface (10m AGL) Wind Velocity (Barb, Knots)

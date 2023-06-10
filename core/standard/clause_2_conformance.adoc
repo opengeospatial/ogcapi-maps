@@ -40,7 +40,7 @@ The _map tilesets_ requirements class defines a mechanism to list available map 
 .../map/tiles/WorldCRS84Quad/0/0/0
 ```
 
-NOTE: Despite the `.../map/tiles` path templates used in these examples may become common in implementations of _OGC API - Maps_,
+NOTE: Despite the use of `.../map/tiles` path templates in these examples which may become common in implementations of _OGC API - Maps_,
 these exact paths are only examples and are not required by _OGC API - Tiles_ or by this _Maps API_ Standard.
 Other paths are possible provided that they are correctly described in the API description of the Web API and the links between resources.
 
