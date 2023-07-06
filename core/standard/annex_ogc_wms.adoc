@@ -35,7 +35,7 @@ OGC approach. For example, developers no longer need to read how to implement a 
 
 As a result of following a RESTful approach, OGC API implementations are not backwards compatible with OWS implementations per se. However, a design goal is to define OGC APIs in a way that an OGC API interface can be mapped to an OWS implementation (where appropriate). OGC APIs are intended to be simpler and more modern, but still an evolution from the previous versions and their implementations making the transition easy (e.g., by initially implementing facades in front of the current OWS services).
 
-=== Comparision of WMS to _OGC API - Maps_
+=== Comparison with WMS to _OGC API - Maps_
 
 The OGC WMS and WMTS share the concept of a map and the capability to create and distribute maps at a limited resolution and size.
 In WMS, the number of rows and columns can be selected by the user within limits and in WMTS the number of rows and columns of the response is predefined in the tile matrix set.
@@ -44,23 +44,23 @@ The concept of a map used in the OGC APIs is more abstract than the one used in 
 
 ==== Functionality changes from WMS
 
-One important change in _OGC API - Maps_ is that requests are built out of modular building blocks,
+One important enhancement in _OGC API - Maps_ when compared to WMS is that requests are built out of modular building blocks,
 allowing different levels of complexity, from a simple map request with no parameters to a precise selection of
 collections, spatiotemporal subsets, output dimensions, scale, background settings and so on.
 
-Additionally, in order to accommodate different client preferences and use cases as well as maintain consistency with other OGC API
+Additionally, to accommodate different client preferences and use cases as well as maintain consistency with other OGC API
 data access mechanisms such as _OGC API - Coverages_ and _OGC API - Features_, multiple
-equivalent subsetting mechanisms are supported e.g., subsetting by bounding box, date and time, generic dimension subset or center point.
+equivalent subsetting mechanisms are supported such as subsetting by bounding box, date and time, generic dimension subset or center point.
 
 Similarly, the ability to explicitly specify a scale denominator as a way to control downsampling is also defined.
 
 The concept of a display resolution (millimeters per pixel) is also introduced as an alternative to the default 0.28 mm/pixel specified in WMS,
-enabling a better control on how a server renders symbology suitable for devices and printed maps of diferent resolutions.
+enabling a better control on how a server renders symbology suitable for devices and printed maps of different resolutions.
 
 A flexible mechanism to define custom CRS and re-orient the map is also introduced, offering a more comprehensive approach based on
-projection operation methods, parameters and datums (implying a particular ellipsoid) compared to the _AUTO2:_ CRSs available in WMS.
+coordinate operation (see https://docs.ogc.org/as/18-005r4/18-005r4.html, definition 3.1.8) methods, parameters and datums (implying a particular ellipsoid) compared to the _AUTO2:_ namespace for CRSs as specified in the WMS Standard. The _AUTO2_ namespace is used for “automatic” coordinate reference systems.
 
-Finally, _OGC API - Maps_ can also be used to represent a vertical dimension, either by returning a 3D data format, by
+Finally, _OGC API - Maps_ can also be used to represent a vertical dimension. This can be done either by returning a 3D data format, by
 selecting a vertical subset of features to be rendered on a 2D output, or by rendering a vertical profile.
 Some examples include:
 
@@ -73,7 +73,7 @@ Some examples include:
 
 ==== Correspondence between WMS map metadata and OGC APIs
 
-In the WMS standard, the `GetCapabilities` response provides some metadata about the server and individual `layer` sections that inform the client on some layer characteristics and some restrictions useful to formulate a successful map query. In OGC API maps, the equivalent metadata is provided by the landing page, the list of collections, the collections details, the API definition, and the service-meta link from the landing page. Implementers of Web APIs are encouraged to make use of the mechanisms provided by other standards of the OGC API family to communicate the relevant metadata to the client.
+In the WMS standard, the `GetCapabilities` response provides some metadata about the server and individual `layer` sections that inform the client about layer characteristics and some restrictions useful to formulate a successful map query. In the OGC API - Maps Standard, the equivalent metadata is provided via the landing page, the list of collections, the collections details, the API definition, and the service-meta link from the landing page. Implementers of Web APIs are encouraged to make use of the mechanisms provided by other standards of the OGC API family to communicate the relevant metadata to the client.
 
 The following table provides a reference to where some of metadata aspects at the service level are specified.
 
@@ -98,7 +98,7 @@ x-OGC-limits.maps.maxPixels ^1^ | This standard <<rc_scaling>>
 | Fees | N/A |   |
 | AccessConstraints | N/A |   |
 4+|
-^1^ `x-OGC-limits.maps.maxWidth`, `x-OGC-limits.maps.maxHeight` and `x-OGC-limits.maps.maxPixels` are intended to control the work load of the server by providing limitations in size of the outputs of the subset. `width` and `height` parameters in _OGC API - Maps_ (defined in <<rc_scaling>>) control the size of the response and its resolution. The core of OGC API maps does not provide explicit limits but the server is free to respond an error to avoid work overload. `width` and `height` parameters are commonly related with the size of the device screen. The fact that new devices are being built with more and more pixels should be taken into consideration, as a past reasonable limit on the server side may become too restrictive for emerging devices.
+^1^ `x-OGC-limits.maps.maxWidth`, `x-OGC-limits.maps.maxHeight` and `x-OGC-limits.maps.maxPixels` are intended to control the work load of the server by providing limitations in size of the outputs of the subset. `width` and `height` parameters in _OGC API - Maps_ (defined in <<rc_scaling>>) control the size of the response and its resolution. The core of OGC API - Maps does not provide explicit limits on the size and resolution, but the server is free to respond with an error to avoid work overload. `width` and `height` parameters are commonly related to the size of the device screen. The fact that new devices are being built with more and more available display pixels. As such, specifying a reasonable limit on the server side based on today's technology may become too restrictive for future devices.
 
 |===
 
@@ -144,7 +144,7 @@ fixedHeight ^7^ | N/A | |
 
 ^3^ No equivalent functionality to GetFeatureInfo is provided so this flag has not sense in OGC API - Maps. Please use the query capabilities of other OGC APIs family instead
 
-^4^ The `cascaded` XML attribute in WMS is removed because no practical use has been seen in past. `cascaded` indicated if a map was generated by the addressed service or by another service assisting the first one.
+^4^ The `cascaded` XML attribute in WMS is removed because no practical use has been seen. `cascaded` indicated if a map was generated by the addressed service or by another service assisting the first one.
 
 ^5^ The `noSubsets` XML attribute in WMS was used to indicate lack of subsetting support. The client will know if the server does not support the _spatial subsetting_, _date and time_ (for temporal subsetting) or _general subsetting_ conformance class by inspecting its conformance declaration.
 
@@ -157,21 +157,23 @@ fixedHeight ^7^ | N/A | |
 NOTE: The supported formats for map resources, or more precisely the media types of the supported encodings, can also be determined from the API definition. The desired encoding is selected using HTTP content negotiation. In addition to the parameters specified by the core, other parameters should be added.
 
 
-NOTE: The `opaque` XML attribute in WMS was rarely useful and has been removed. It indicated whether the map data represents features that probably do not completely fill space and shows the background opaque (true) or transparent (false).
+NOTE: The `opaque` XML attribute in WMS was rarely useful and has been removed. This attribute indicated whether the map data represents features that probably do not completely fill space and shows the background opaque (true) or transparent (false).
 
 ==== No equivalent to _GetFeatureInfo_ as part of this document
-The _GetFeatureInfo_ operation in the OGC Web Map Service gives the capability to clients to implement some simple level of user interaction with the map. In essence the user will focus on a point in the map (e.g., by clicking on it) and the client will request the server some textual information related to the elements represented at that point of the map (a functionality sometimes called "query by location"). If the elements represented in the map are simple features, the result should be related to their properties (attributes). If the map represents a coverage, the result should report the value of the coverage in that position (eventually, if the coverage is multidimensional, it could be a e.g., time series graphic or a vertical profile). The format of the actual response is left to the discretion of the server.
+The OGC Web Map Service _GetFeatureInfo_ operation provides the capability for clients to implement some simple level of user interaction with the map. In essence the user can focus on a point in the map (e.g., by clicking on it) and the client will request from the server some textual information related to the elements represented at that point of the map (a functionality sometimes called "query by location"). If the elements represented in the map are simple features, the result should be related to their properties (attributes). If the map represents a coverage, the result should report the value of the coverage in that position (eventually, if the coverage is multidimensional, it could be a e.g., time series graphic or a vertical profile). The format of the actual response is left to the discretion of the server.
 
-_GetFeatureInfo_ was proposed more that 20 years ago as part of the OGC Web Map Service. In that environment _GetFeatureInfo_ provided an easy to implement solution for the first step to "queryable" maps. The second common expected functionality: querying or filtering by the attributes of the features shown in the map was never introduced in WMS.
+_GetFeatureInfo_ was first proposed in the 2000 version of the OGC Web Map Service Standard. In that environment _GetFeatureInfo_ provided an easy to implement solution for the first step to "queryable" maps. 
 
-The new OGC APIs emerges in a completely different context where most web content is dynamic and JavaScript is now a powerful programing language for the web. Most direct implementations of _GetFeatureInfo_ result in an imperfect and old fashion presentations, and users demand much more than query by location. Now, the integration of the different API modules and building blocks in the OGC APIs is provided by default. A map is connected to a collection (or a dataset) that is most probably also offered as features with _OGC API - Features_ or as coverage with _OGC API - Coverages_ from the same API landing page. Furthermore, _OGC API - Environmental Data Retrieval (EDR)_ also provides a point query, similar to _GetFeatureInfo_ as well as much more advanced queries by polygons, trajectories or corridors.
+The new OGC APIs emerged in a completely different context where most web content is dynamic and JavaScript is now a powerful programming language for the Web. Most simplistic implementations of WMS _GetFeatureInfo_ resulted in an imperfect presentation of the attribute text. Users demand much more than query by location. Now, the integration of the different building blocks defined in the OGC APIs can be provided by default. A map is connected to a collection (or a dataset) that is most probably also offered as features with _OGC API - Features_ or as coverage with _OGC API - Coverages_ -- all from the same API landing page. Furthermore, _OGC API - Environmental Data Retrieval (EDR)_ also provides a point query, similar to _GetFeatureInfo_ as well as much more advanced queries by polygons, trajectories or corridors.
 
-In this new situation, implementers of map clients are encouraged to use OGC APIs beyond _OGC API - Maps_ to provide a functionality similar to _GetFeatureInfo_. Instead of building a request to a map point in map coordinates (I, J), implementers should use point narrow bounding boxes in CRS coordinates. For example:
+Implementers of map clients are encouraged to use OGC APIs beyond _OGC API - Maps_ to provide a functionality similar to _GetFeatureInfo_. Instead of building a request to a map point in map coordinates (I, J), implementers should use point narrow bounding boxes in CRS coordinates. For example:
 
   * In _OGC API - Features_, map coordinates should be transformed to Lon,Lat WGS84 in the client side and implement a HTTP GET request to `/collections/{collectionId}/items?bbox=Lon,Lat,Lon,Lat`.
   * In _OGC API - Coverages_, map coordinates should be transformed to native coordinates and use `/collections/{collectionId}/coverage?bbox=x,y,x,y` or the equivalent "subset" query.
   * In _OGC API - EDR_, map coordinates should be transformed to a CRS coordinates and use `/collections/{collectionId}/position?coords=POINT(x y)` or by adding a radius query `/collections/{collectionId}/radius?coords=POINT(x y)&within=20&within-units=km`.
 
-The use of _OGC API - Tiles_ and serving vector tiles directly also makes it possible to create visualizations with query capabilities directly on the client side. Since vector tiles contain features, their attributes can be presented to the user when clicked, and a different style can be applied to highlight that selected feature.
+The use of _OGC API - Tiles_ and serving vector tiled content directly also makes creating visualizations with query capabilities directly on the client side possible. Since tiled vector data can contain features, their attributes can be presented to the user when clicked, and a different style can be applied to highlight that selected feature.
 
-NOTE: Even if this document does not provide a direct _GetFeatureInfo_ equivalent, there is a strong tradition of _GetFeatureInfo_ implementations that suggests a possible _OGC API - Maps_ future "part" could reintroduce a _GetFeatureInfo_ equivalent, if implementers still demand it.
+NOTE: Even if this document does not provide a direct _GetFeatureInfo_ equivalent, there is a strong tradition of _GetFeatureInfo_ implementations that suggests a possible _OGC API - Maps_ future "part" could reintroduce a _GetFeatureInfo_ equivalent - if users and implementers demand this capability.
+
+NOTE: The second most common expected function, querying or filtering by the attributes of the features shown in the map, was never introduced in WMS. The same _OGC API - Maps_ future "part" could provide the ability to filter by attributes using a CQL2 expression.
