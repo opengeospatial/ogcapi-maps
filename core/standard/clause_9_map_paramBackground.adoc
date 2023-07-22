@@ -7,18 +7,20 @@
 
 include::requirements/requirements_class_background.adoc[]
 
-This requirement class describes how to define the background of the map for the areas that has no data.
+This  Background requirement class describes how to define the background of the map is represented.
 
 === Map operation
 
-The core requirements class of this standard defines how to get a map. This requirements class specifies parameters allowing to customize the background of the map.
+The Maps API core requirements class defines how to get a map. The Map operation requirements class specifies parameters supporting customization of the background of the map.
 
 ==== Parameters `transparent` and `bgcolor`
 The `transparent` and `bgcolor` parameters indicate how the absence of data will be represented in the map, what color will show underneath any non-opaque layer, and allow for the map to be overlaid with other maps without completely obscuring the lower layers.
 
 include::requirements/background/REQ_bgcolor-definition.adoc[]
 
-The list of W3C color names which can be specified instead of a hexadecimal value is shown in the following table:
+include::recommendations/background/REC_bgcolor-definition.adoc[]
+
+The list of https://www.w3.org/wiki/CSS/Properties/color/keywords[W3C web color names] which can be specified instead of a hexadecimal value is reproduced in the following table for convenience:
 
 .Named web color enumeration
 [width="90%",options="header"]
@@ -177,11 +179,11 @@ include::recommendations/background/PER_bgcolor-alpha.adoc[]
 
 include::requirements/background/REQ_transparent-definition.adoc[]
 
-NOTE: When not specified, the value of `transparent` defaults to `true` when `bgcolor` is not used, but to `false` when used together with `bgcolor`.
-When explicitly setting `transparent=true` together with a `bgcolor`, for formats with an alpha channel, it allows defining the color value to use for the RGB channels where there is no data, while 0 will be used for the alpha channel.
-For formats reserving a color to define transparency (color key), the combination allows selecting a color that does not interfere with the actual values and colors in the map.
+NOTE: When not specified, the value of `transparent` defaults to `true` when `bgcolor` is not used, but to `false` when used together with `bgcolor`.  
+For formats with an alpha channel, explicitly setting `transparent=true` together with a `bgcolor` allow for defining the color value to use for the RGB channels where there is no data, while 0 will be used for the alpha channel.
+For formats reserving a color to define transparency (color key), the combination supports selecting a color that does not interfere with the actual values and colors in the map.
 
-NOTE: The `opaque` attribute of layer element in the GetCapabilities response in WMS has been deprecated and is not specified by this API.
+NOTE: The `opaque` attribute of layer element in the GetCapabilities response in WMS is deprecated and is not specified by the Maps API.
 
 ==== Response
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)

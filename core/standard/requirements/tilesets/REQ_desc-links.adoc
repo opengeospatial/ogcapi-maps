@@ -2,5 +2,5 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/tilesets/desc-links*
-^|A |The geospatial data resource (e.g., the collection or landing page description's `links` property) SHALL include a link with the `href` pointing to a tileset list supported that presents a tile aspect of this geospatial data resource and with rel: `http://www.opengis.net/def/rel/ogc/1.0/tilesets-map`.
+^|A |The geospatial data resource (e.g., the collection or landing page description's `links` property) SHALL include a link with the href pointing to a supported tileset list that presents tilesets of this geospatial data resource and with rel: `http://www.opengis.net/def/rel/ogc/1.0/tilesets-map`.
 |===
