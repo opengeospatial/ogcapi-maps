@@ -8,14 +8,13 @@ include::requirements/requirements_class_collections-selection.adoc[]
 
 [[rm_collections-selection]]
 
-In a Web API providing access to a complex dataset formed by several geospatial data resources, it can be useful to select specific sub-resources of interest when requesting data from this dataset.
-This requirements class defines how to include a query parameter when requesting a resource (e.g., dataset tiles) to specify which geospatial data resources (a.k.a. collections) should be used to generate the response.
+In a deployed Web API incorporating elements of the OGC Maps API Standard that provides access to a complex dataset formed by several geospatial data resources, selecting specific sub-resources of interest when requesting data from this dataset can be useful. The Collection Selection requirements class defines how to include a query parameter when requesting a resource (e.g., dataset tiles) to specify which geospatial data resources (a.k.a. collections) should be used to generate the response.
 
-This requirements class can be used e.g., in conjunction with the <<rc_dataset-map>> requirements class. A requirements class equivalent to this one is included in _OGC API - Tiles_.
+This requirements class can be used in conjunction with the <<rc_dataset-map>> requirements class. A requirements class equivalent to this one is included in _OGC API - Tiles_.
 
 === Operation
 
-By default, the geospatial data resources to be included in the dataset maps responses are unspecified but should represent the dataset as a whole.
+By default, the geospatial data resources included in the dataset maps responses are unspecified but should represent the dataset as a whole.
 This class adds a mechanism to select the geospatial data resources to be used to generate the derived resources (e.g., maps or map tiles).
 In practice this enables the capability to generate resources involving more than one geospatial data sub-resource.
 
@@ -38,12 +37,12 @@ include::requirements/collections-selection/REQ_collections-response.adoc[]
 
 ==== Error conditions
 
-If the value of the parameter `collections` contains a resource id of URI that does not exist on the Web API or too many collections are requested, the status code of the response is 400.
+If the value of the parameter `collections` contains a resource id of URI that does not exist on the implementation instance of the Maps API or too many collections are requested, the status code of the response is 400.
 
 If the value of the parameter `collections` has a wrong format or combines one of more geospatial data resources that are not compatible (e.g., they do not have a compatible value specified by other parameters in the request), the status code of the response is 400.
 
 === Service Metadata
 
-The OGC API Common describes a mechanism to expose service-metadata for the API. See: http://docs.opengeospatial.org/DRAFTS/19-072.html#service-metadata-examples
+The OGC API Common Standard describes a mechanism to expose service-metadata for the API. See: http://docs.opengeospatial.org/DRAFTS/19-072.html#service-metadata-examples
 
 include::recommendations/collections-selection/REC_maxcollections.adoc[]

@@ -82,12 +82,12 @@ The following table provides a reference to where some of metadata aspects at th
 [width = "100%",options="header"]
 |===
 | Name in <Service> WMS 1.3 | Where in the API | property | Specified in
-| Title | service metadata | title | OGC API - Common - Part 1
+| Title | service metadata^2^ | title | OGC API - Common - Part 1
 | Name fixed to "WMS" | N/A |  |
-| Abstract | service metadata | description | OGC API - Common - Part 1
+| Abstract | service metadata^2^ | description | OGC API - Common - Part 1
 | OnlineResource | landing page | links | OGC API - Common - Part 1
-| Keywords | service metadata | x-keywords | OGC API - Common - Part 1, Annex B.4
-| LayerLimit | service metadata | x-OGC-limits.maps.maxCollections | This standard
+| Keywords | service metadata^2^ | x-keywords | OGC API - Common - Part 1, Annex B.4
+| LayerLimit | service metadata^2^ | x-OGC-limits.maps.maxCollections | This standard
 | MaxWidth
 
 MaxHeight | service metadata | x-OGC-limits.maps.maxWidth
@@ -99,7 +99,7 @@ x-OGC-limits.maps.maxPixels ^1^ | This standard <<rc_scaling>>
 | AccessConstraints | N/A |   |
 4+|
 ^1^ `x-OGC-limits.maps.maxWidth`, `x-OGC-limits.maps.maxHeight` and `x-OGC-limits.maps.maxPixels` are intended to control the work load of the server by providing limitations in size of the outputs of the subset. `width` and `height` parameters in _OGC API - Maps_ (defined in <<rc_scaling>>) control the size of the response and its resolution. The core of OGC API - Maps does not provide explicit limits on the size and resolution, but the server is free to respond with an error to avoid work overload. `width` and `height` parameters are commonly related to the size of the device screen. The fact that new devices are being built with more and more available display pixels. As such, specifying a reasonable limit on the server side based on today's technology may become too restrictive for future devices.
-
+^2^ service metadata may be provided as an extension of the `info` section of the Open API document as indicated in OGC API - Common - Part 1, Annex B.4 
 |===
 
 The following table provides a reference to where some of layer metadata aspects are specified.

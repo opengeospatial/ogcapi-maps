@@ -6,4 +6,4 @@
 ^|B |If there is more than one collection name and the style applied does not specify otherwise, the comma-separated collections SHALL be included in the result starting by the first (leftmost) and ending by the last (rightmost).
 |===
 
-NOTE: In maps and map tiles, sub-requirement B will result in the first collection being portrayed in the bottom with the others rendered on top of the previous ones, one by one (the rightmost collection will become topmost in the portrayal).
+NOTE: IIn maps and map tiles, sub-requirement B will result in the first collection being portrayed at the "bottom" of the display stack with the others rendered on top of the previous ones, one by one (the rightmost collection will become topmost in the portrayal).

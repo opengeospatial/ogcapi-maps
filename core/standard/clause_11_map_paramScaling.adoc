@@ -7,39 +7,38 @@
 
 include::requirements/requirements_class_scaling.adoc[]
 
-This requirement class describes how to scale a map by specifying a set of parameters that will define its size (width and height) in pixels of a displaying device that indirectly defines the scale of the map.
+The Scaling requirement class describes how to scale a map for display by specifying a set of parameters that will define its size (width and height) in pixels of a display device that indirectly defines the scale of the map.
 
 === Map Operation
 
-The _core_ requirements class of this standard defines how to retrieve a map.
-This requirements class specifies two alternative mechanisms to specify the scale of the map, either implicitly by providing output dimensions using
+The Maps API _core_ requirements class defines how to retrieve a map. The Scaling requirements class specifies two alternative mechanisms for specifying the scale of the map, either implicitly by providing output dimensions using
 `width` and `height` parameters, or explicitly by providing a `scale-denominator` parameter.
 
 ==== Parameters `width` and `height`
-These parameters indicate the size of the viewport in rows and columns where the map is going to be shown. If the format of the response is a raster image, the number of columns and rows of the responded image will commonly match the width and height of the viewport.
+The width and height parameters indicate the size of the viewport in rows and columns where the map is to be displayed. If the format of the response is a raster image, the number of columns and rows of the responded image will commonly match the width and height of the viewport.
 
 include::requirements/scaling/REQ_width-definition.adoc[]
 
 include::requirements/scaling/REQ_height-definition.adoc[]
 
-NOTE: The `width` and `height` parameters are also defined by the _spatial subsetting_ requirements class.
+NOTE: The `width` and `height` parameters are also defined by the Maps API _spatial subsetting_ requirements class.
 The parameter takes this resampling (scaling) role in requests not using either of the `scale-denominator` parameter (defined in this requirements class),
 or the `center` parameter (defined in the _spatial subsetting_ requirements class), or when the _spatial subsetting_ requirements class is not supported.
 The `width` and `height` parameters define the scale of the map, in combination with either the default 0.28 mm/pixel default display resolution, or the resolution
-specified by the _display resolution_ conformance class (`mm-per-pixel` parameter).
+specified by the Maps API _display resolution_ conformance class (`mm-per-pixel` parameter).
 
 ==== Parameter `scale-denominator`
 A client can specify the desired scale of the map as a scale denominator value using a `scale-denominator` parameter.
 Given a selected unit of measure, the scale denominator specifies how many of these units in the real world correspond to a distance of one unit on the map as printed or displayed.
 
-NOTE: This correspondence depends on the display resolution for which a default 0.28 mm/pixel is assumed, unless a client specifies otherwise through the <<rc_display-resolution, display resolution requirements class>>.
+NOTE: The correspondence between real world units and display units depends on the display resolution for which a default 0.28 mm/pixel is assumed, unless a client specifies otherwise through the <<rc_display-resolution, display resolution requirements class>>.
 
 NOTE: The `scale-denominator` is the only way to specify scaling when requesting a spatial subset using a `center` point.
 
 include::requirements/scaling/REQ_scale-denominator-definition.adoc[]
 
 ==== Aspect ratio considerations
-If a client provides both width (w) and height (h) the server will adopt them even if the aspect ratio between (maxx-minx)/(maxy-miny) and w/h are different (resulting in a non square pixel). However, in general circumstances (e.g 2D representations in the screen), the client should make an effort to provide parameters that preserve the aspect ratio. The client is allowed to provide only one of the values in width and height and the server should figure out the other one to maintain the aspect ratio.
+If a client provides both width (w) and height (h) values, the server will use these values even if the aspect ratio between (maxx-minx)/(maxy-miny) and w/h are different (resulting in a non square pixel). However, in general circumstances (e.g., 2D representations in the screen), the client should make an effort to provide parameters that preserve the aspect ratio. The client is allowed to provide only one of the values in width and height and the server should figure out the other one to maintain the aspect ratio.
 
 include::recommendations/scaling/REC_width-definition.adoc[]
 
@@ -48,7 +47,7 @@ include::recommendations/scaling/REC_height-definition.adoc[]
 include::recommendations/scaling/PER_no-width-height-definition.adoc[]
 
 ==== Response
-A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
+A successful GET response is described in the Maps API core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
 
 include::recommendations/scaling/REC_map-success-scale.adoc[]
 
@@ -60,8 +59,22 @@ If the parameters values for `width` or `height` are out-of-range, the status co
 If a map is not provided due to lack of data in the area, the status code of the response will be `204` or `404`.
 
 === Service Metadata
-The OGC API Common describes a mechanism to expose service-metadata for the API. See: http://docs.opengeospatial.org/DRAFTS/19-072.html#service-metadata-examples
+The OGC API - Common Standard describes a mechanism to expose service-metadata for the API. See: OGC API - Common - Part 1: Core [OGC 19-072r1] Annex B.4 (2021)
 
 include::recommendations/scaling/REC_max-width-height.adoc[]
 
-NOTE: The attributes `maxWidth`, `maxHeight` and `maxPixels` are intended to limit the work load of the server, by providing limitations in size of the output. If the `width` and `height` limits are defined in relation to the size of a common device screen, implementations should consider that new devices are being built with more and more pixels and a reasonable limit from the current year may be too restrictive for devices emerging in the next year.
+NOTE: The attributes `maxWidth`, `maxHeight` and `maxPixels` are intended to limit server workload, by providing limitations in the size of the output. If the `width` and `height` limits are defined in relation to the size of a common device screen, Maps API implementations should consider that new devices are being built with more and more pixels and a reasonable limit from the current year may be too restrictive for devices emerging in the next year.
+
+Example of the OpenAPI service metadata section
+----
+info:
+  title: My Web API
+  version: 1.0.0
+  description: This example shows population of an OpenAPI Info element with identifying
+    metadata for both the service and the service provider.
+  x-OGC-limits:
+    maps:
+      maxWidth: 2048
+      maxHeight: 2048
+      maxPixels: 10000000
+----

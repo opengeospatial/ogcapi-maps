@@ -1,7 +1,7 @@
-[[req_collections-selection_query-collections]]
+[[req_collections-selection_collections-parameter]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/collections-selection/query-collections*
+^|*Requirement {counter:req-id}* |*/req/collections-selection/collections-parameter*
 ^|A |An operation that acts on a resource consisting of multiple geospatial data sub-resources (e.g., a resource derived from a root dataset) SHALL support an optional parameter `collections` with the following characteristics (shown as OpenAPI Specification 3.0 fragment)
 [source,YAML]
 ----
@@ -15,6 +15,6 @@
     items:
       type: string
 ----
-^|B |The parameter `collections` SHALL be supported by  origins consisting of multiple geospatial data sub-resources (e.g. dataset map at `{datasetAPI}/maps/`).
+^|B |The parameter `collections` SHALL be supported by resources consisting of multiple geospatial data sub-resources (e.g. dataset map at `{datasetAPI}/maps/`).
 ^|C |Implementations SHALL support a comma-separated list of either geospatial resource identifiers (e.g., collectionId's) and/or full URLs to geospatial resource identifiers.
 |===

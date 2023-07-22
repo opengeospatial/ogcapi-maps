@@ -29,7 +29,7 @@
               Maximum  product of width and height parameter values. If absent the server imposes no limit.
             example: 4194304
 ----
-^|C |An API instance may specify the maximum width and height by adding a `minimum` property to the `width` and `height` parameter definition in the OpenAPI as in this OpenAPI Specification 3.0 fragment
+^|C |An Maps API implementation instance may specify the maximum width and height by adding a `minimum` property to the `width` and `height` parameter definition in the OpenAPI as in this OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----
   width:
@@ -58,6 +58,6 @@
 ^|B |In the absence of the `maxWidth` or `maxPixels`, the client will assume that there is no limit in the parameter `width`. In the absence of the `maxHeight` or `maxPixels`, the client will assume that there is no limit in the parameter `height`.
 |===
 
-NOTE: this mimics the `maxWidth` and `maxHeight` elements in the WMS 1.3 _GetCabilities_ document.
+NOTE: This mimics the `maxWidth` and `maxHeight` elements in the WMS 1.3 _GetCapabilities_ document.
 
-NOTE: Service metadata can be embeded in the info section of the OpenAPI instance or in an independent document linked to the landing page with the rel="service-meta"
+NOTE: Service metadata can be embedded in the info section of the OpenAPI instance or in an independent document linked to the landing page with the rel="service-meta"

@@ -15,8 +15,10 @@
     schema:
       type: number
 ----
-^|B |The implementation SHALL interpret the `height` value as the vertical size (rows) of the viewport where the response will be presented in pixel units (number of pixels).
-^|C |The implementation SHALL return an error if the `height` value is not a positive integer number.
-^|D |The implementation SHALL return an error if the value of the `height` exceeds a `maxHeight` property from a `x-OGC-limits.maps` object included in the service metadata.
-^|E |The implementation SHALL return an error if the value of the `width` (specified or calculated) times `height` exceeds a `maxPixels` property from a `x-OGC-limits.maps` object included in the service metadata.
+^|B |The `height` value SHALL be computed as the vertical size (rows) of the viewport where the response will be presented in pixel units (number of pixels).
+^|C |An error SHALL be returned if the `height` value is not a positive integer number.
+^|D |An error SHALL be returned if the value of the `height` exceeds the `maxHeight` property specified in the `x-OGC-limits.maps` object included in the service metadata^1^.
+^|E |An error SHALL be returned if the value of the `width`  (specified or calculated) times `height` (specified or calculated) exceeds a `maxPixels` property from a `x-OGC-limits.maps` object included in the service metadata^1^.
+2+|
+^1^ service metadata may be provided as an extension of the `info` section of the Open API document as indicated in OGC API - Common - Part 1, Annex B.4 and discussed in the last subsection of the Maps API scaling requirements class section
 |===
