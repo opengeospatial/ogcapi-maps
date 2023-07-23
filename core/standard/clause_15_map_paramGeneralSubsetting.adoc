@@ -7,13 +7,13 @@
 
 include::requirements/requirements_class_general_subsetting.adoc[]
 
-This requirements class defines the way a subset of the map resource in additional dimensions beyond spatial and temporal can be specified using the `subset` parameter.
+The General Subsetting requirements class defines the way a subset of the map resource in additional dimensions beyond spatial and temporal can be specified using the `subset` parameter.
 This functionality is defined as common building blocks shared with other OGC APIs.
 
 === Describing the extent of the additional dimensions
 
-When implementing this requirements class, additional dimensions included in an extent description (e.g., as found in a OGC API collection description response)
-must use a uniform approach to describe the lower and upper bounds of those dimensions based on the `intervals` property, just as with the temporal dimension.
+When implementing the General Subsetting requirements class, additional dimensions included in an extent description (e.g., as found in a OGC API collection description response)
+must use a uniform approach to describe the lower and upper bounds of those dimensions based on the `intervals` property. This is the same as with the temporal dimension.
 
 include::requirements/general-subsetting/REQ_uniform-additional-dimensions.adoc[]
 
@@ -23,17 +23,17 @@ include::requirements/general-subsetting/REQ_subset-crs-definition.adoc[]
 
 === `subset` query parameter
 
-The implementation must support all additional dimensions listed in the extent as valid dimensions to be used with the `subset` parameter.
+All additional dimensions listed in the extent as valid dimensions to be used with the subset parameter must be supported.
 
 include::requirements/general-subsetting/REQ_subset-definition.adoc[]
 
 === Response
-A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
+A successful GET response is described in the Maps API core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
 
 === Error conditions
 
-A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
+A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in the https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core] Standard.
 
 If the parameter value for the additional dimensions is outside the domain of the collections, the status code of the response will be `400`.
 
-If the request otherwise returns no data (e.g., in combination with other types of subsetting), the status code of the response will be `204` or `404`.
+Otherwise, if the request returns no data (e.g., in combination with other types of subsetting), the status code of the response will be `204` or `404`.

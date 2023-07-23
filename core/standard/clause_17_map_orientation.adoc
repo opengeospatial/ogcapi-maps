@@ -6,7 +6,7 @@
 
 include::requirements/requirements_class_orientation.adoc[]
 
-This requirements class defines the ability for clients to request a map whose content is rotated by a counter-clockwise orientation specified in degrees, resulting in
+This requirements class defines the ability for clients to request a map whose content is rotated by a counterclockwise orientation specified in degrees, resulting in
 the viewing perspective being rotated by that same orientation in a clockwise direction.
 
 === Operation
@@ -33,10 +33,10 @@ Content-Bbox: -10000,-4000,10000,4000
 
 ==== Response
 
-A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
+A successful GET response is described in the Maps API core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
 
 ==== Error conditions
 
-A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[_OGC API - Features - Part 1: Core_, version 1.0] as well as in _OGC API - Common_.
+A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[_OGC API - Features - Part 1: Core_, version 1.0] as well as in the https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core] Standard..
 
 If the parameter value for the orientation is not a valid orientation, the status code of the response will be `400`.

@@ -7,11 +7,11 @@
 
 include::requirements/requirements_class_datetime.adoc[]
 
-This requirements class defines the way date and time can be used as a parameter to filter the content in the map resource. This conformance class is importing most of the functionality from OGC API - Commons.
+This requirements class defines the way date and time can be used as a parameter to filter the content in the map resource. This requirements class is importing most of the functionality from the OGC API – Common Part 1 Standard.
 
 === Describing the temporal extent
 
-Depending on the type of resource, the way the temporal extent and the resolution of the datetime values available for the client to request are described may be different:
+Depending on the type of resource, the way the temporal extent and the resolution of the datetime values that are available for the client to request are described may be different:
 
 * For Collection maps, the collection description should specify the temporal extent of the resources. Maps can be requested inside this extent. If the extent is specified in a way that instant values are provided (e.g., by listing them or by including a resolution) then it be possible to request maps for these instants.
 * For Dataset maps, the landing page should specify the temporal extent of the dataset. Maps can be requested inside this extent.
@@ -32,10 +32,7 @@ include::requirements/datetime/REQ_datetime-response.adoc[]
 
 "Intersects" means that the time (instant or period) specified in the parameter `datetime` includes a timestamp that is part of the temporal geometry of the resource (again, a time instant or period). For time periods this includes the start and end time.
 
-[width="90%",cols="2,6a"]
-|====
-| Note | ISO 8601-2 distinguishes open start/end timestamps (double-dot) and unknown start/end timestamps (empty string). For queries, an unknown start/end has the same effect as an open start/end.
-|====
+NOTE: ISO 8601-2 (Date and time — Representations for information interchange — Part 2: Extensions) distinguishes open start/end timestamps (double-dot) and unknown start/end timestamps (empty string). For queries, an unknown start/end has the same effect as an open start/end.
 
 .A date-time
 =================
@@ -70,7 +67,7 @@ A template for the definition of the parameter in YAML according to OpenAPI 3.0 
 === `subset=time` query parameter request and response
 
 The `subset` parameter is a common building block that is shared with other OGC API Standards.
-The dimensions that can be included within the value of this parameter are defined by the axis name of the generic time in an additional requirement, a permission and a recommendation at the end of this subsection.
+The dimensions that can be included within the value of this parameter are defined by the axis name of the generic time in an additional requirement, a permission, and a recommendation provided at the end of this section.
 
 The `subset` parameter can be used to select a temporal subset of a geospatial resource, and is defined as follows:
 
@@ -91,13 +88,13 @@ include::recommendations/datetime/REC_actual-datetime.adoc[]
 include::recommendations/datetime/PER_datetime-axis.adoc[]
 
 === Response
-A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
+A successful GET response is described in the Maps API core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
 
 include::requirements/datetime/REQ_map-success.adoc[]
 
 === Error conditions
 
-A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
+A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in the https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core] Standard.
 
 If the parameter value for `datetime` is outside the domain of the collections, the status code of the response will be `400`.
 

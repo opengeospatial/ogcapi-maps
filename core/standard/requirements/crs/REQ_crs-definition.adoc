@@ -14,11 +14,11 @@
       type: string
     example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
 ----
-^|B |The implementation SHALL support any of the CRSs listed in the collection (or collections) description. If the list of supported CRS is not present, only http://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be supported.
-^|C |If the spatial subsetting conformance class is supported, the bbox-crs and the subset-crs SHALL additionally support value specified in the crs parameter.
-^|D |The implementation SHALL support CRS expressed as URIs or as safe CURIEs.
+^|B |Any of the CRSs listed in the collection (or collections) description SHALL be supported. If the list of supported CRS is not present, only http://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be supported.
+^|C |If the spatial subsetting requirements class is supported, the `bbox-crs` and the `subset-crs` SHALL additionally support value specified in the crs parameter.
+^|D |CRS expressed as URIs or as safe CURIEs SHALL be supported.
 |===
 
-NOTE: When no crs parameters is specified, please refer to the core conformance class to know about the default crs.
+NOTE: When no crs parameters are specified, please refer to the Maps API core conformance class to know about the default crs.
 
 NOTE: A CURIE `{authority}[-{objectType}]:{id}` would map to the following OGC URI: `http://www.opengis.net/def/{objectType}/{authority}/0/{id}`. If `-{objectType}` is missing, the default object type is crs.

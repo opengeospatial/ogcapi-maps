@@ -2,5 +2,5 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/styled-map/desc-links*
-^|A |If the API has a mechanism for styled datasets or geospatial resources to expose links to related aspects (e.g. feature items, metadata...), the API SHALL include a link with and with rel: `http://www.opengis.net/def/rel/ogc/1.0/map` and the href pointing to a the map resource that presents this styled resource.
+^|A |If the deployed API endpoint has a mechanism for styled datasets or geospatial resources to expose links to related aspects (e.g. feature items, metadata...), the API SHALL include a link with and with rel: `http://www.opengis.net/def/rel/ogc/1.0/map` and the href pointing to a the map resource that presents this styled resource.
 |===

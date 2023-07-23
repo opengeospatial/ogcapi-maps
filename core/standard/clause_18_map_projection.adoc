@@ -6,10 +6,10 @@
 
 include::requirements/requirements_class_projection.adoc[]
 
-This requirements class defines the ability for clients to specify a custom projection CRS based on parameters defining a projection operation method, values for corresponding parameters, as well as a datum.
-It also provides a parameter facilitating the task of selecting a projection center across different projections, for which the relevant latitude and longitude parameters differ.
+The Custom Projection CRS requirements class defines the ability for clients to specify a custom projection CRS based on parameters defining a projection operation method, values for corresponding parameters, as well as a datum.
+This class also provides a parameter facilitating the task of selecting a projection center across different projections, for which the relevant latitude and longitude parameters differ.
 Angles are specified in degrees, whereas identifiers for methods, parameters and datums can be specified as URIs or safe CURIEs.
-Additionally, it defines a resource at `/projectionsAndDatums` listing the available operation methods and their associated parameters, as well as the possible datums that can be used as values for these parameters.
+Additionally, this requirements class defines a resource at `/projectionsAndDatums` listing the available operation methods and their associated parameters, as well as the possible datums that can be used as values for these parameters.
 
 === Operation
 
@@ -19,13 +19,13 @@ The operation method refers mainly to the equations that relates geographic coor
 include::requirements/projection/REQ_crs-proj-method.adoc[]
 
 ==== Parameter `crs-proj-params`
-The operation method may have some parameters to set such as the standard parallel. This query parameter allows to set those values. In some simple cases this query parameter might not be necessary and clients can consider using `crs-proj-center` instead.
+The operation method may have some parameters, such as the standard parallel, to set. This query parameter supports setting those values. In some simple cases this query parameter might not be necessary, and clients can consider using `crs-proj-center` instead.
 
 include::requirements/projection/REQ_crs-proj-params.adoc[]
 
 ==== Parameter `crs-proj-center`
 
-In order to facilitate the task of centering a custom projection on the area of interest, with parameters varying greatly between projections, the `crs-proj-center` parameter automatically sets the most appropriate parameters
+To facilitate the task of centering a custom projection on the area of interest, with parameters varying greatly between projections, the `crs-proj-center` parameter automatically sets the most appropriate parameters
 for the specified center latitude and longitude.
 
 include::requirements/projection/REQ_crs-proj-center-definition.adoc[]
@@ -58,11 +58,11 @@ Content-Bbox: -1000,-800,1000,800
 
 ==== Response
 
-A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
+A successful GET response is described in the Maps API core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
 
 ==== Error conditions
 
-A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
+A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in the https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core] Standard.
 
 If the parameter value for the parameters is not valid, the status code of the response will be `400`.
 

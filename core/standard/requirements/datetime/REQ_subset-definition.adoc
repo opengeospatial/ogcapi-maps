@@ -19,13 +19,13 @@
      {number} is an integer or floating-point number, and
      {text} is some general ASCII text (such as a time and date notation in ISO 8601).
 ----
-^|B |The implementation SHALL support `time` as an axis name, which is to be interpreted as the main temporal axis in the subsetting CRS definition.
-^|C |The axis name SHALL correspond to one of the axis of the Coordinate Reference System (CRS) of the subsetting CRS or else return a 400 status code.
+^|B |An axis name SHALL be supported and is to be interpreted as the main temporal axis in the subsetting CRS definition.
+^|C |The axis name SHALL correspond to one of the axes of the Coordinate Reference System (CRS) of the subsetting CRS or else a 400 status code SHALL be returned.
 ^|D |If the intervalOrPoint values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code SHALL be returned
 ^|E |For a CRS where an axis can wrap around, such as subsetting across the dateline (anti-meridian) in a geographic CRS, a `low` value greater than `high` SHALL
 be supported to indicate an extent crossing that wrapping point.
-^|F |The implementation SHALL interpret the coordinates as values for the named axis of the CRS specified in the `subset-crs` parameter value, or Gregorian UTC time (as specified in RFC 3339) if the `subset-crs` parameter is missing.
-^|G |The implementation SHALL interpret multiple `subset` parameters, as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.
+^|F |Coordinates SHALL be interpreted as values for the named axis of the CRS specified in the `subset-crs` parameter value, or Gregorian UTC time (as specified in RFC 3339) if the `subset-crs` parameter is missing.
+^|G |Multiple `subset` parameters SHALL be interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.
 ^|  |^1^ Example: `subset=Lat(-90:90)&subset=Lon(-180:180)&subset=time("2018-02-12T23:20:52Z")` is equivalent to `subset=Lat(-90:90),Lon(-180:180),time("2018-02-12T23:20:52Z")`
 |===
 

@@ -7,27 +7,27 @@
 
 include::requirements/requirements_class_dataset-map.adoc[]
 
-The core requirements class defines how to retrieve a map from a resource but does not detail which resources can be "mapped". This requirements class defines how to retrieve a map resource from the dataset represented by the service. In other words, it provides the path to retrieve a map resource from the dataset behind the API. This is achieved by adding the map path to the root (a.k.a. the landing page) of the service.
+The Maps API core requirements class defines how to retrieve a map from a resource but does not detail which resources can be "mapped". The Dataset Map requirements class defines how to retrieve a map resource from the dataset represented by the service. In other words, it provides the path to retrieve a map resource from the dataset behind the API. This is achieved by adding the map path to the root (a.k.a. the landing page) of the service.
 
 === General
 
-This conformance class describes how to serve maps for a dataset provided as Web API instance implementing  _OGC API - Common - Part 1_ requirement classes or http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as an alternative.
+This requirements class describes how to serve maps for a dataset provided as Web API instance implementing  _OGC API - Common - Part 1_ requirement classes or http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as an alternative.
 
 === Dataset API landing page
 
-The landing page provides links to start exploring the resources offered by the API. It mainly consists of a list of links to `root` resources. This standard extension requires a new link in the landing page for getting a dataset map
+The landing page provides links to start exploring the resources offered by the API. The landing page mainly consists of a list of links to root resources. The Maps API Standard extension specifies a new link in the landing page for getting a dataset map.
 
 ==== Response
 
-The root of the API represents a dataset that will be exposed in different ways by the API.
+The root of a OGC API represents a dataset that will be exposed in different ways by the API.
 
-The root can be modified or complemented by other resources creating new endpoints indirectly giving access to the modified or complemented dataset. Other OGC API family standards will define this mechanism. Examples of standards doing that are:
+The root of a OGC API can be modified or complemented by other resources creating new endpoints indirectly giving access to the modified or complemented dataset. Other OGC API standards will define this mechanism. Examples of standards doing that are:
 
 * OGC API - Styles defines how to complement a geospatial resource by adding a style to it. The new resources is an overlap of the dataset and the resource
 
 include::requirements/dataset-map/REQ_landingpage.adoc[]
 
-In the landing page, in JSON format, the links follow the link schema defined in the OGC API - Common or in OGC API - Features v1. Below you can find an example fragment of the response to an OGC API - Maps landing page showing the link to the dataset map.
+In the landing page, in JSON format, the links follow the link schema defined in the OGC API - Common or in the OGC API - Features v1 Standards. Below you can find an example fragment of the response to an OGC API - Maps landing page showing the link to the dataset map
 
 include::requirements/dataset-map/REQ_desc-extent.adoc[]
 
@@ -75,12 +75,12 @@ include::recommendations/dataset-map/REC_storage-epoch.adoc[]
 
 include::requirements/dataset-map/REQ_operation.adoc[]
 
-The request of this operation does not define extra parameters. Servers can advertise the requirements class http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/collections-selection to add a `collections` parameter that can be used to include only parts of the dataset in the map representation.
+The operation request does not define extra parameters. Servers can advertise the requirements class http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/collections-selection to add a `collections` parameter that can be used to include only parts of the dataset in the map representation.
 
 ==== Response
 A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
 
-A successful response is map that is expected to represent the dataset as a whole. In a Web API providing access to a complex dataset formed by several geospatial data resources, there are reasons for being selective in the amount of information included. This can be achieved by applying a manual filter described in the <<rc_collections-selection>> or as an automatic decision by the server side.
+A successful response is a map resource that is represent the entire dataset. In a Web API providing access to a complex dataset comprised of several geospatial data resources, there are reasons for being selective in the amount of information included. This can be achieved by applying a manual filter described in the <<rc_collections-selection>> or as an automatic decision by the server side.
 
 include::recommendations/dataset-map/REC_geodata-selection.adoc[]
 

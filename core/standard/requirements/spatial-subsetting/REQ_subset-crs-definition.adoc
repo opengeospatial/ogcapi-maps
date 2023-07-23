@@ -14,10 +14,10 @@
       type: string
     example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
 ----
-^|B |For Earthly data, the implementation SHALL support http://www.opengis.net/def/crs/OGC/1.3/CRS84 as a value.
+^|B |For Earth centric data, http://www.opengis.net/def/crs/OGC/1.3/CRS84 as a value SHALL be supported.
 ^|C |If the `subset-crs` is not indicated http://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be assumed.
-^|D |If the storage (native) CRS is known, the implementation SHALL support the storage CRS as a value. Other requirements classes may allow additional values (see `crs` parameter definition).
-^|E |The implementation SHALL support CRS expressed as URIs or as safe CURIEs.
+^|D |IIf the storage (native) CRS is known, the storage CRS as a value SHALL be supported. Other requirements classes may allow additional values (see crs parameter definition).
+^|E |CRS expressed as URIs or as safe CURIEs SHALL be supported.
 ^|F |If no `subset` parameter referring to an axis of the CRS is used, the `subset-crs` SHALL be ignored.
 |===
 

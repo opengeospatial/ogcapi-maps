@@ -7,13 +7,13 @@
 
 include::requirements/requirements_class_spatial-subsetting.adoc[]
 
-The core requirements class of this standard defines the map resource.
-The core also defines a minimum set of metadata to enable a client application to formulate a map request.
-This requirements class adds the ability to request an arbitrary 2D or 3D spatial subset of a map using either a bounding box specified using one of two equivalent syntaxes
+The Maps API core requirements class defines the map resource. 
+The Maps API core also defines a minimum set of metadata that enables a client application to formulate a map request. 
+The Subsetting requirements class adds the ability to request an arbitrary 2D or 3D spatial subset of a map using either a bounding box specified using one of two equivalent syntaxes
 (a `bbox` parameter similar to the one in WMS 1.3, as well as a `subset` parameter similar to WCS 2.1),
 or as a center point as well as `width` and/or `height` parameters taking into account the scale and the display resolution.
 
-The way the third (vertical) spatial dimension is applied to filter the output is left to the implementation and may depend on the nature of the data being represented and/or the negotiated output format.
+How the third (vertical) spatial dimension is applied to filter the output is left to the implementation and may depend on the nature of the data being represented and/or the negotiated output format.
 For example, the server could include features located within a vertical interval as part of a 2D map being rendered.
 In a second example, the extent of a 3D perspective view or a 3D model output would include only the subset of the vertical dimension specified.
 In a third example, a vertical profile could be returned for a single point or for a path across the other spatial dimensions.
@@ -21,10 +21,10 @@ In this last example, the subset mechanism would likely only be used to subset t
 
 [[maps-spatial-subsetting-crs]]
 === CRS for subsetting
-In WMS 1.3 the CRS parameters had two purposes: it indicated the CRS of the data rendered in the map and it was the CRS of the coordinates of the BBOX parameter.
-In this Standard, these two objectives have been separated. This section defines the CRS parameters for subsetting.
+In WMS 1.3 the CRS parameters had two purposes: Indicate the CRS of the data rendered in the map and the CRS of the coordinates of the BBOX parameter. 
+In the Maps API Standard, these two objectives have been separated. This section defines the CRS parameters for subsetting.
 
-The CRS advertised in the collection's spatial extent is always in http://www.opengis.net/def/crs/OGC/1.3/CRS84 (for Earthly data and as required by _OGC API - Features_). At least for _OGC API - Maps_ and _OGC API - Coverages_, a native CRS (also called storage CRS) is defined. The `Content-Crs:` header (see <<maps-core-overview>>) specifies the CRS used in the response to avoid confusion.
+The CRS advertised in the collection's spatial extent is always in http://www.opengis.net/def/crs/OGC/1.3/CRS84 (for Earth centric data and as required by _OGC API - Features_). At least for _OGC API - Maps_ and _OGC API - Coverages_, a native CRS (also called storage CRS) is defined. The `Content-Crs:` header (see <<maps-core-overview>>) specifies the CRS used in the response to avoid confusion.
 
 NOTE: There is no obligation to provide the maps in http://www.opengis.net/def/crs/OGC/1.3/CRS84.
 
@@ -46,7 +46,7 @@ include::requirements/spatial-subsetting/REQ_subset-crs-definition.adoc[]
 
 include::requirements/spatial-subsetting/REQ_center-crs-definition.adoc[]
 
-NOTE: For clarification: The default CRS of the `bbox`, `center` and `subset` spatial subsetting parameters is `http://www.opengis.net/def/crs/OGC/1.3/CRS84` and the default output CRS of the map is its native (storage) CRS.
+NOTE: For clarification, the default CRS of the `bbox`, `center` and `subset` spatial subsetting parameters is `http://www.opengis.net/def/crs/OGC/1.3/CRS84` and the default output CRS of the map is its native (storage) CRS.
 
 NOTE: The `center-crs`, `subset-crs` and `bbox-crs` are defined identically except they are affecting `center`, `subset` and `bbox` parameters respectively.
 
@@ -57,11 +57,11 @@ include::recommendations/spatial-subsetting/PER_subset-crs-curie.adoc[]
 === Subsetting coordinates
 
 ==== Parameter `bbox`
-This parameter defines how to subset a map by bounding box (in `bbox-crs` coordinates). The `bbox` parameter values are defined considering the exterior edges of the pixels of the viewport defined by the width and height. In other words, the relation of the Bounding Box to the map pixel matrix is that the bounding box goes around the "outside" of the pixels of the map rather than through the centers of the map's border pixels (as is often the case for coverages where cell values represent a point). In this context, individual pixels represent a cell area on the ground.
+The `bbox` parameter defines how to subset a map using a bounding box (in bbox-crs coordinates). The `bbox` parameter values are defined using the exterior edges of the pixels of the viewport defined by the width and height values. In other words, the relation of the Bounding Box to the map pixel matrix is that the bounding box goes around the "outside" of the pixels of the map rather than through the centers of the map's border pixels (as is often the case for coverages where cell values represent a point). In this context, individual pixels represent a cell area on the ground.
 
 include::requirements/spatial-subsetting/REQ_bbox-definition.adoc[]
 
-NOTE: This parameter use the comma (",") as the separator between the coordinates. Additional white space will not be used to delimit list items. The comma character should not be escaped (IETF RFC 2396).
+NOTE: The `bbox` uses the comma (",") as the separator between the coordinates. Additional white space will not be used to delimit list items. The comma character should not be escaped (IETF RFC 2396).
 
 Example:
 `bbox=-180,-90,180,90&bbox-crs=[OGC:CRS84]`
@@ -71,7 +71,7 @@ Example of a 3D bounding box:
 
 ==== Parameter `subset`
 The `subset` parameter is a common building block used to select a subset of a geospatial resource shared with other OGC API Standards.
-The dimensions that can be used within the value specified for this parameter are the axis abbreviations defined in the CRS.
+The dimensions that can be used within the value specified for this parameter are the axis abbreviations specified in the CRS definition.
 
 The `subset` parameter is defined as follows:
 
@@ -85,7 +85,7 @@ include::recommendations/spatial-subsetting/REC_subset-crs-axis-names.adoc[]
 
 ==== Parameter `center`, `width` and `height`
 
-The `center` parameter defines the center point of the map in the `center-crs` coordinates from which the `width` and `height` parameter will define a subset,
+The `center` parameter defines the center point of the map in the `center-crs` coordinates from which the `width` and `height` parameters will define a subset,
 taking into consideration the scale and display resolution of the map.
 
 include::requirements/spatial-subsetting/REQ_center-definition.adoc[]
@@ -96,7 +96,7 @@ include::requirements/spatial-subsetting/REQ_subsetting-width-height-definition.
 
 === Response
 
-A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core).
+A successful GET response is described in the Maps API core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core).
 
 include::requirements/spatial-subsetting/REQ_map-success.adoc[]
 
@@ -106,7 +106,7 @@ include::recommendations/spatial-subsetting/REC_map-outside-bounds.adoc[]
 
 include::recommendations/spatial-subsetting/PER_map-outside-bounds.adoc[]
 
-NOTE: As defined in the core requirements class, the `Content-Bbox:` and the `Content-Crs:` response headers report the actual bounding box of the data returned.
+NOTE: As defined in the Maps API core requirements class, the `Content-Bbox:` and the `Content-Crs:` response headers report the actual bounding box of the data returned.
 
 === Error conditions
 

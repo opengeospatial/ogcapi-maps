@@ -10,8 +10,8 @@ These operation method identifiers SHALL be safe CURIEs when a registered URI ex
 ^|D |In the JSON representation, the list of supported datums SHALL be provided as a dictionary (associative array) value for a `datums` property associating datum objects
 to the corresponding identifiers to be used as values for the `crs-datum` query parameter.
 These datum identifiers SHALL be safe CURIEs when a registered URI exists for the datum.
-The datum object SHALL include an `ellipsoid` property specifying the safe CURIE for the associated ellipsoid, and may additional contain optional `title` and `description` properties.
-^|E |In the JSON representation, the operation method objects SHALL include all valid parameters for that particular method as a dictionary (associative array) value for a `parameters` property to method parameters object
+The datum object SHALL include an `ellipsoid` property specifying the safe CURIE for the associated ellipsoid and may additional contain optional `title` and `description` properties.
+^|E |In the JSON representation, the operation method objects SHALL include all valid parameters for that  method as a dictionary (associative array) value for a `parameters` property to method parameters object
 (including optional `title` and `description` properties) to the corresponding identifiers to be used as values for the `crs-proj-params` query parameter.
 These method parameters SHALL be safe CURIEs when a registered URI exists for the parameter.
 To avoid repeating the same parameter, those objects may use a JSON pointer (`$ref`) to a top-level `parameters` property in the same custom projections JSON document.

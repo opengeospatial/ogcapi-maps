@@ -7,24 +7,24 @@
 
 include::requirements/requirements_class_display_resolution.adoc[]
 
-This requirement class describes how to specify an accurate physical size of pixels for the target display device or medium with a `mm-per-pixel` parameter, instead of a default 0.28 mm/pixel, allowing to apply symbology rules correctly.
-The physical pixel size is taken into account for establishing the relationship between the scale of the map and its output dimensions in pixels.
+The Display Resolution requirement class describes how to specify an accurate physical size of a pixel for the target display device or medium with a `mm-per-pixel` parameter. This is instead of a default 0.28 mm/pixel and allowing applying symbology rules correctly. 
+The physical pixel size is considered for establishing the relationship between the scale of the map and its output dimensions in pixels.
 
 === Map Operation
 
-This requirements class specifies the `mm-per-pixel` parameter to accurately interpret scale denominators and symbology rules.
+The Display Resolution requirements class specifies the mm-per-pixel parameter to accurately interpret scale denominators and symbology rules.
 
 ==== Parameter `mm-per-pixel`
-The width and height of the image to be presented on the display device by themselves are not enough to determine the scale of a map, because they are provided in pixel units.
-Conversely, the `scale-denominator` by itself does not specify the size in pixels of a map for a given spatial area.
-The scale, being the ratio between the size of features represented on the map and the size of the same features in reality, also depends on the size of display device pixels in physical units.
-Knowing the size of these pixels allows to accurately establish the physical size of features as they will be presented on the display device and therefore compute the scale correctly
+By themselves the width and height of the image to be presented on the display device are not enough to determine the scale of a map. This is because these values are provided in pixel units. 
+Conversely, the `scale-denominator` does not specify the size in pixels of a map for a given spatial area.
+The scale, being the ratio between the size of features represented on the map and the size of the same features, also depends on the size of display device pixels in physical units. 
+Knowing the size of these pixels supports accurately establishing the physical size of features as they will be presented on the display device and therefore compute the scale correctly
 by dividing the actual size of the display device in physical units (e.g., millimeters) by the actual size of the extent of the map (e.g., in meters).
 When this parameter is not specified, a default 0.28 mm/pixel is assumed (as standardized in WMS).
 
 include::requirements/display-resolution/REQ_mm-per-pixel-definition.adoc[]
 
-With this parameter, the server is able to know the physical size of the map as presented on a display device or printed and apply styling and symbology rules accordingly.
+With this parameter, the server has information on the physical size of the map as presented on a display device or printed and apply styling and symbology rules accordingly.
 For example, if the server receives a very small value, the server could decide to represent linear elements wider than for normal values, preventing to create a representation of linear features that is going to result in lines that are too thin to be correctly perceived.
 
 ==== Response
@@ -34,6 +34,6 @@ include::requirements/display-resolution/REQ_map-success.adoc[]
 
 ==== Error conditions
 
-A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
+A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in https://docs.ogc.org/is/19-072/19-072.html[OGC API - Common - Part 1: Core] Standard.
 
 If the parameters values for `mm-per-pixel` are out-of-range, the status code of the response will be `400`.

@@ -2,6 +2,5 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/general-subsetting/uniform-additional-dimensions*
-^|A |Wherever applicable (e.g., the collection or dataset description), the implementation SHALL describe the extent of any additional dimension(s) beyond temporal and spatial in the same way as the temporal dimension i.e.,
-using the name of the dimension as a key and an object as value, with that object containing an `interval` property and `crs`, `trs`, or `vrs`, as specified in https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/openapi/schemas/common-geodata/extent-uad.yaml[_extent-uad.yaml_].
+^|A |Wherever applicable (e.g., the collection or dataset description), the extent of any additional dimension(s) beyond temporal and spatial SHALL be described in the same way as the temporal dimension. For example, using the name of the dimension as a key and an object as value, with that object containing an `interval` property and `crs`, `trs`, or `vrs`, as specified in https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/openapi/schemas/common-geodata/extent-uad.yaml[_extent-uad.yaml_].
 |===

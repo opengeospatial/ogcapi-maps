@@ -3,9 +3,6 @@
 [[annex-ats]]
 == Conformance Class Abstract Test Suite (Normative)
 
-[NOTE]
-Ensure that there is a conformance class for each requirements class and a test for each requirement (identified by requirement name and number)
-
 === Conformance Class "Core"
 
 ==== Requirement Map Operation
@@ -14,7 +11,7 @@ Ensure that there is a conformance class for each requirements class and a test 
 |Test id: |/conf/core/map-op
 |Requirement: |/req/core/map-op
 |Test purpose: | Verify that the implementation supports the map retrieval operation
-|Test method: | *Given:* a geospatial data resource conforming to this standard, with an API path including `.../map...` or discovered following a link with relation type `[ogc-rel:map]` +
+|Test method: | *Given:* a geospatial data resource conforming to the Maps API standard, with an API path including `.../map...` or discovered following a link with relation type `[ogc-rel:map]` +
 *When:* performing a GET operation on the `/map` resource with a supported media type specified in the `Accept:` header (e.g., `Accept: image/png,image/jpeg`) +
 *Then:* +
 - assert that the response has HTTP status code 200 +
@@ -119,7 +116,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test id: |/conf/collections-selection/query-collections
 |Requirement: |/req/collections-selection/query-collections
 |Test purpose: | Verify that the implementation supports the `collections` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core and that is understood to consist of multiple collections (e.g., a dataset advertsing support for Dataset Map and featuring multiple collections) +
+|Test method: | *Given:* a map resource that conformed successfully to /conf/core and that is understood to consist of multiple collections (e.g., a dataset advertising support for Dataset Map and featuring multiple collections) +
 *When:* retrieving a map using the `collections` parameter with one and multiple _collectionsIds_ +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
@@ -130,7 +127,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test id: |/conf/collections-selection/collections-response
 |Requirement: |/req/collections-selection/collections-response
 |Test purpose: | Verify that the implementation responds correctly to map requests using the `collections` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core and that is understood to consist of multiple collections (e.g., a dataset advertsing support for Dataset Map and featuring multiple collections) +
+|Test method: | *Given:* a map resource that conformed successfully to /conf/core and that is understood to consist of multiple collections (e.g., a dataset advertising support for Dataset Map and featuring multiple collections) +
 *When:* retrieving a map using the `collections` parameter with one and multiple _collectionsIds_ +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
@@ -203,7 +200,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/spatial-subsetting/bbox-crs
 |Test purpose: | Verify that the implementation supports the `bbox-crs` parameter for specifying the CRS of the `bbox` parameter correctly
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using `bbox` and `bbox-crs` parameter for different values, as well as different valus for the `crs` parameter if supported and applicable, +
+*When:* retrieving maps using `bbox` and `bbox-crs` parameter for different values, as well as different values for the `crs` parameter if supported and applicable, +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -214,7 +211,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/spatial-subsetting/subset-crs
 |Test purpose: | Verify that the implementation supports the `subset-crs` parameter for specifying the CRS of the `subset` parameter correctly
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using `subset` and `subset-crs` parameter for different values (using the correct spatial axes), as well as different valus for the `crs` parameter if supported and applicable, +
+*When:* retrieving maps using `subset` and `subset-crs` parameter for different values (using the correct spatial axes), as well as different values for the `crs` parameter if supported and applicable, +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -225,7 +222,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/spatial-subsetting/center-crs
 |Test purpose: | Verify that the implementation supports the `center-crs` parameter for specifying the CRS of the `center` parameter correctly
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using `center` and `center-crs` parameter for different values, as well as different valus for the `crs` parameter if supported and applicable, +
+*When:* retrieving maps using `center` and `center-crs` parameter for different values, as well as different values for the `crs` parameter if supported and applicable, +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -273,7 +270,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement map subset sucesss
+==== Requirement map subset success
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/spatial-subsetting/map-success
@@ -508,7 +505,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |===
 |Test id: |/conf/projection/projections-resource
 |Requirement: |/req/projection/projections-resource
-|Test purpose: | Verify that the implementation supports retrieveing the list of available projection operation methods, their parameters, and the list of available datums at `/projectionsAndDatums`
+|Test purpose: | Verify that the implementation supports retrieving the list of available projection operation methods, their parameters, and the list of available datums at `/projectionsAndDatums`
 |Test method: | *Given:* an API being tested +
 *When:* retrieving the `/projectionsAndDatums resource +
 *Then:* (assert that all parts of the requirement are fully satisfied)
@@ -600,7 +597,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |===
 |Test id: |/conf/dataset-map/desc-crs
 |Requirement: |/req/dataset-map/desc-crs
-|Test purpose: | Verify that the implementation sdescribes the supported CRS correctly in its landing page resource
+|Test purpose: | Verify that the implementation describes the supported CRS correctly in its landing page resource
 |Test method: | *Given:* a dataset provided by an API conforming to OGC API - Common - Part 1: Core +
 *When:* retrieving the JSON representation of the landing page description for that dataset +
 *Then:* (assert that all parts of the requirement are fully satisfied)
@@ -650,6 +647,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |===
 |Test id: |/conf/jpeg/content
 |Requirement: |/req/jpeg/content
+|Test purpose: | Verify that the implementation supports retrieving maps negotiating for JPEG content
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving a JPEG (`image/jpeg`) representation of a map resource through HTTP content negotiation +
 **Then:** (assert that all parts of the requirement are fully satisfied)
@@ -712,7 +710,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |===
 |Test id: |/conf/oas30/operation-id
 |Requirement: |/req/oas30/operation-id
-|Test purpose: | Verify that the implementation uses the correct OpenAPI operation Id suffixes to identify the resources defined in this Standard
+|Test purpose: | Verify that the implementation uses the correct OpenAPI operation Id suffixes to identify the resources defined in the Maps API Standard
 |Test method: | *Given:* an API conforming to _OGC API - Common - Part 1: Core_ "OAS30" requirements class +
 *When:* retrieving the OpenAPI 3.0 API description +
 *Then:* (assert that all parts of the requirement are fully satisfied)
