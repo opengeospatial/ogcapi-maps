@@ -67,9 +67,9 @@ A template for the definition of the parameter in YAML according to OpenAPI 3.0 
 === `subset=time` query parameter request and response
 
 The `subset` parameter is a common building block that is shared with other OGC API Standards.
-The dimensions that can be included within the value of this parameter are defined by the axis name of the generic time in an additional requirement, a permission, and a recommendation provided at the end of this section.
+The `subset` parameter can be specified as an interval between lower and higher bound values or as a single value. An example of an interval is "between 1st of January 2021 and last day of May 2021" `subset=time("2021-01-01":"2021-05-31")`. An example of single value is "1st of January 2021 at 8am o'clock" `subset=time("2021-01-01T08:00:00")`. The `time` dimension can be used within the value specified for this parameter and should ideally match with the axis abbreviation specified in the CRS definition. 
 
-The `subset` parameter can be used to select a temporal subset of a geospatial resource, and is defined as follows:
+The `subset` parameter is defined as follows:
 
 include::requirements/datetime/REQ_subset-definition.adoc[]
 

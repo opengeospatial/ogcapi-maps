@@ -23,7 +23,9 @@ include::requirements/general-subsetting/REQ_subset-crs-definition.adoc[]
 
 === `subset` query parameter
 
-All additional dimensions listed in the extent as valid dimensions to be used with the subset parameter must be supported.
+The `subset` parameter can be specified as an interval between lower and higher bound values or as a single value. An example of an interval is "between 500.0 and 1013.0 hPa" `subset=pressure(500:1013)`. An example of single value is "750 hPa" `subset=pressure(750)`.
+The dimensions that can be used within the value specified for this parameter are the axis abbreviations specified in the CRS definition. 
+All additional dimensions listed in the extent as valid dimensions to be used with the subset parameter must be supported. 
 
 include::requirements/general-subsetting/REQ_subset-definition.adoc[]
 

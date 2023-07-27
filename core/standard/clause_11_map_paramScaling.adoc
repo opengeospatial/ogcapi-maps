@@ -58,6 +58,7 @@ A general summary of the HTTP status codes can be found in http://www.opengis.ne
 If the parameters values for `width` or `height` are out-of-range, the status code of the response will be `413` (Payload too big).
 If a map is not provided due to lack of data in the area, the status code of the response will be `204` or `404`.
 
+[[ScalingServiceMetadata]]
 === Service Metadata
 The OGC API - Common Standard describes a mechanism to expose service-metadata for the API. See: OGC API - Common - Part 1: Core [OGC 19-072r1] Annex B.4 (2021)
 

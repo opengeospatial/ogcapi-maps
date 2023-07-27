@@ -5,9 +5,6 @@ This document also uses terms defined in the OGC Standard for Modular specificat
 
 For the purposes of this document, the following additional terms and definitions apply.
 
-=== *background*
-areas of the map have no data to represent. They are commonly left transparent or filled with a background color
-
 === *coordinate reference system*
 coordinate system that is related to the real world by a datum (source: ISO 19111)
 
@@ -31,6 +28,9 @@ is different in each case (selecting the portion of the map to return in the ima
 
 === *map*
 portrayal of geographic information as a digital representation suitable for display on a rendering device (adapted from OGC 06-042)
+
+=== *map background*
+areas of the map having no data to represent. They are commonly left transparent or filled with a background color
 
 === *portrayal*
 presentation of information to humans (source: ISO 19117)

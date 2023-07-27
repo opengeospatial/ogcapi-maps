@@ -2,5 +2,5 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:per-id}* |*/rec/background/bgcolor-definition*
-^|A |If `bgcolor` is not specified, and either `transparent` is set to `false` or the output format cannot encode transparency, in the case that the style applied to the map does not specify a background color, the server SHOULD use a neutral default color such as white or a light shade of gray.
+^|A |If `bgcolor` is not specified, and either `transparent` is set to `false` or the output format cannot encode transparency and the style applied to the map does not specify a background color, the server SHOULD use a neutral default color such as white or a light shade of gray.
 |===

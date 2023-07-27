@@ -6,13 +6,13 @@
 
 [source,ABNF]
 ----
-  SubsetSpec:       "subset"=axisName(intervalOrPoint)
+  SubsetSpec:       "subset"=axisName(intervalOrSingle)
   axisName:         {text}
-  intervalOrPoint:  interval \| point
+  intervalOrSingle: interval \| single
   interval:         low : high
-  low:              point \| *
-  high:             point \| *
-  point:            {number} \| "{text}"
+  low:              single \| *
+  high:             single \| *
+  single:            {number} \| "{text}"
 
   Where:
      \" = double quote = ASCII code 0x42,

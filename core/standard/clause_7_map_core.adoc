@@ -6,9 +6,10 @@
 
 include::requirements/requirements_class_core.adoc[]
 
-The core requirements class specifies a map resource. This is a resource that represents the geospatial data as a rendered map. Requesting a map resource, as defined in the core, results in retrieving a generic map as a graphical representation of the data in the API repository. When using an implementation of the core requirements class, the representation is not constrained in any way by the client. Therefore the server is free to return a total or a partial representation of the resource at an arbitrary size. Additional Maps API requirement classes add query parameters to personalize the server behavior to the client needs. These requirement classes define specific parameters that allow the client to control the map size and resolution of the map (width, height, bounding box and CRS) and well as the background of the map. In addition, an alternative requirement class defines how a map resource can be retrieved as tiles by applying the OGC API - Tiles.
+The core requirements class specifies a map resource. This is a resource that represents the geospatial data as a rendered map. Requesting a map resource, as defined in the core, results in retrieving a generic map as a graphical representation of the data in the API repository. When using an implementation of the core requirements class, the representation is not constrained in any way by the client. Therefore the server is free to return a total or a partial representation of the resource at an arbitrary size. Additional Maps API requirement classes add query parameters to personalize the server behavior to the client needs. These requirement classes define specific parameters that allow the client to control the map size and resolution of the map (width, height, bounding box and CRS) and well as the background of the map. An additional requirement class defines how a map resource can be retrieved as tiles by applying the OGC API - Tiles.
 
-A map resource can be obtained from a non map resource by adding `/map` to the resource URI. The Maps API core does not specify to which resources `/map` is applicable. However, a list of common resource URLs in the API, where maps can commonly be obtained is presented in the following table. Additional requirements classes better define these possibilities.
+A map resource can be obtained from a non map resource by adding `/map` to the resource URI. The Maps API core does not specify to which resources `/map` is applicable. 
+However, a list of common paths to resources in the API, where maps can commonly be obtained is presented in the following table. Additional requirements classes better define these possibilities.
 
 [#Common-map-resources-in-the-api,reftext='{table-caption} {counter:table-num}']
 .Common map resources in a geospatial API
@@ -35,7 +36,7 @@ include::requirements/core/REQ_map-op.adoc[]
 ==== Response
 include::requirements/core/REQ_map-response.adoc[]
 
-Example of the successful HTTP response headers describing a PNG image with 1500 columns and 616 rows in the WGS 84 / UTM zone 31N CRS centered in the Barcelona area.
+Below is an example of the successful HTTP response headers describing a PNG image with 1500 columns and 616 rows in the datum WGS84 and projection UTM zone 31N centered in the Barcelona area.
 
 ----
 HTTP/1.1 200 OK
@@ -49,6 +50,14 @@ Content-Length: 1198247
 [#img_barcelona,reftext='{figure-caption} {counter:figure-num}']
 .Example of a successful HTTP response body containing a PNG image captured by Sentinel 2 image. Date: 2023-01-22
 image::images/barcelona.png[width=600,align="center"]
+
+Below is another example of the successful HTTP response headers describing a PNG image in the datum WGS84 and lat/long centered in the Barcelona area.
+----
+HTTP/1.1 200 OK
+Content-Type: image/png
+Last-Modified: Thu, 27 Jul 2023 14:37:46 GMT
+Content-Bbox: 2.1486,41.3674,2.1886,41.4074
+----
 
 ==== Recommendations
 
