@@ -7,7 +7,7 @@
 
 include::requirements/requirements_class_datetime.adoc[]
 
-This requirements class defines the way date and time can be used as a parameter to filter the content in the map resource. This requirements class is importing most of the functionality from the OGC API – Common Part 1 Standard.
+This requirements class defines the way date and time can be used as a parameter to filter the content in the map resource.
 
 === Describing the temporal extent
 

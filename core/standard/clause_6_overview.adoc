@@ -8,6 +8,8 @@ portrayals of the data created by applying a style to the data (see <<rc_core>>)
 Maps can present the whole area of the geospatial data or a subset of the content, such as by filtering the data by extent (see <<rc_spatial-subsetting>>).
 Maps can be retrieved by arbitrary extent or as tiles (see <<rc_tilesets>>).
 
+The core conformance class is the only mandatory one. All other conformance classes are optional and depend on the _core_.
+
 An annex with examples of map requests and responses is included as a way to learn by examples how this standard can be applied. See <<annex_examples>>.
 
 An example OpenAPI definition for this standard is available at:
@@ -28,7 +30,7 @@ If the geospatial data resources can be organized into maps, they can be support
 NOTE: Geospatial data resources (e.g., collections) replace the concept of layer in WMS and WMTS.
 The main difference is that layers in WMS and WMTS were not defined by other OGC APIs and did not support other functionalities.
 
-These geospatial data resources can advertise one or more map portrayals in several resources, such as the dataset (see <<rc_dataset-map>>) a collection (see <<rc_collection-map>>) or a collection with a style (see <<rc_styled-map>>).
+These geospatial data resources can advertise one or more map portrayals in several resources, such as the dataset (see <<rc_dataset-map>>), a collection (see <<rc_collection-map>>), a dataset with a style, or a collection with a style (see <<rc_styled-map>>).
 Other OGC APIs can provide other origins that may be represented as maps.
 
 Accessing the _geospatial data resource_ content (other than as maps) or its descriptions is possible but out of the scope of this standard.

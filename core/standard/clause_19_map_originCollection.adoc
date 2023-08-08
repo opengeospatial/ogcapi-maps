@@ -14,7 +14,7 @@ The Collection Maps requirements class depends on the _OGC API - Common - Part 2
 but remains flexible and does not require using _OGC API - Common - Part 1: Core_. This allows for other API architectures outside the OGC API framework to implement OGC API – Maps requirements classes.
 However, OGC API servers are normally expected to implement _OGC API - Common - Part 1_.
 If so, in practice, this means that the landing page and the conformance page follow _OGC API - Common - Part 1: Core_.
-Temporarily, it is also possible to combine this building block with _OGC API - Features_ version 1.0 that is not tied to _OGC API - Common_, which can also be substituted for the _OGC API - Common - Part 2_ dependency.
+It is also possible to combine this building block with _OGC API - Features_ version 1.0 that is not tied to _OGC API - Common_, which can also be substituted for the _OGC API - Common - Part 2_ dependency.
 
 === Geospatial data resources
 The Maps API standard does not specify how geospatial resources are exposed in the API or if they can be retrieved as raw geospatial data (e.g., feature items or coverage cell values). The Maps API standard expects that other OGC API standards will define how to expose additional access mechanisms for these geospatial resources. 

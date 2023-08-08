@@ -19,9 +19,9 @@ The landing page provides links to start exploring the resources offered by the 
 
 ==== Response
 
-The root of a OGC API represents a dataset that will be exposed in different ways by the API.
+The root path of an OGC API offering access to geospatial data represents a dataset that will be exposed in different ways by the API.
 
-The root of a OGC API can be modified or complemented by other resources creating new endpoints indirectly giving access to the modified or complemented dataset. Other OGC API standards will define this mechanism. Examples of standards doing that are:
+Subresources can be added to the root path of an OGC API to complement it by offering new endpoints indirectly giving access to the complemented dataset. Other OGC API standards will define this mechanism. Examples of standards doing that are:
 
 * OGC API - Styles defines how to complement a geospatial resource by adding a style to it. The new resources is an overlap of the dataset and the resource
 
@@ -37,7 +37,7 @@ include::recommendations/dataset-map/REC_storage-epoch.adoc[]
 
 
 [[landingPageMap]]
-.API Landing Page fragment that advertises the dataset map.
+.API Landing Page fragment that advertises the dataset map, the storageCrs and the extent of it.
 =================
 [source,JSON]
 ----
@@ -46,7 +46,9 @@ include::recommendations/dataset-map/REC_storage-epoch.adoc[]
   "description": "Dataset containing collections such as buildings",
   "attribution": "OpenStreetMap",
   "extent": {
-    ...
+    "spatial" : {
+         "bbox" : [ [ -2.2830363, 39.8188272, 6.6350523, 42.7010011 ] ]
+    }
   },
   "crs": ["EPSG:32631", "EPSG:23031", "EPSG:4326"],
   "storageCrs": "EPSG:32631",

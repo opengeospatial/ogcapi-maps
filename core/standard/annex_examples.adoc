@@ -1,4 +1,5 @@
 [appendix]
 :appendix-caption: Annex
 [[annex_examples]]
-== Examples
+== Examples (informative)
+TBD

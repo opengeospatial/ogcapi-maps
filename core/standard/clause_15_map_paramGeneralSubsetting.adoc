@@ -12,14 +12,12 @@ This functionality is defined as common building blocks shared with other OGC AP
 
 === Describing the extent of the additional dimensions
 
-When implementing the General Subsetting requirements class, additional dimensions included in an extent description (e.g., as found in a OGC API collection description response)
+When implementing the General Subsetting requirements class, additional dimensions included in an extent description (e.g., as found in a OGC API collection description response described in OGC API - Common: Part 2 and follows the JSON schema in https://github.com/opengeospatial/ogcapi-maps/blob/master/openapi/schemas/common-geodata/collectionInfo.yaml)
 must use a uniform approach to describe the lower and upper bounds of those dimensions based on the `intervals` property. This is the same as with the temporal dimension.
 
 include::requirements/general-subsetting/REQ_uniform-additional-dimensions.adoc[]
 
-=== `subset-crs` query parameter
-
-include::requirements/general-subsetting/REQ_subset-crs-definition.adoc[]
+NOTE: The values on subset for additional dimensions beyond spatial and temporal can only be provided in the crs stated in the axis of the extent (that is expected to be the same as the storageCrs).
 
 === `subset` query parameter
 

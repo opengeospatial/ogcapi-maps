@@ -12,7 +12,7 @@ The Styles Map requirements class specifies how to get maps from particular reso
 NOTE: This mechanism replaces the parameter `STYLES` in WMS 1.3 and adds the possibility to have a generic style for all layers of the service at once.
 
 === Styled resources
-Geospatial resources can be modified or complemented by styles creating new endpoints giving access to the modified or complemented resources. The way this is done to a dataset resource or to a collection is specified in the draft _OGC API – Styles_ Standard.
+Geospatial resources can be modified or complemented by styles creating new endpoints giving access to the modified or complemented resources. The way this is done to a dataset resource or to a collection is specified in the draft _OGC API – Styles_.
 
 include::requirements/styled-map/REQ_desc-links.adoc[]
 

@@ -20,7 +20,7 @@ NOTE: None of the encodings specified here are mandatory and an implementation o
 [[rc_png]]
 === Requirement Class "PNG"
 
-One fundamental use case for maps is immediate visualization in a web browser.. For this use case, selecting an encoding that can be natively interpreted by the web browser is fundamental. The PNG format is one of the most popular formats. The PNG format is defined by the ISO Information technology Computer graphics and image processing Portable Network Graphics (PNG): Functional specification. ISO/IEC 15948:2003 (E), also available by the W3C in https://www.w3.org/TR/PNG.
+PNG can be used for simple and immediate visualization in a web browser. For this use case, selecting an encoding that can be natively interpreted by the web browser is fundamental. The PNG format is one of the most popular formats. The PNG format is defined by the ISO Information technology Computer graphics and image processing Portable Network Graphics (PNG): Functional specification. ISO/IEC 15948:2003 (E), also available by the W3C in https://www.w3.org/TR/PNG.
 
 PNG supports lossless data compression. PNG supports palette-based images (with palettes of 24-bit RGB or 32-bit RGBA colors), grayscale images (with or without an alpha channel for transparency), and full-color non-palette-based RGB or RGBA images. The PNG working group designed the format for transferring images on the Internet, not for professional-quality print graphics. Therefore non-RGB color spaces such as CMYK are not supported.
 
@@ -31,7 +31,7 @@ include::requirements/format_png/REQ_content.adoc[]
 [[rc_jpeg]]
 === Requirement Class "JPEG"
 
-Another fundamental use case for maps is immediate visualization in a web browser. In these circumstances, selecting an encoding that can be natively interpreted by the web browser is fundamental. The JPEG format is another popular format in the web. JPEG is defined by the ITU-T Recommendation T.81 and the ISO/IEC 10918-1.
+JPEG can be used for simple and immediate visualization in a web browser. In these circumstances, selecting an encoding that can be natively interpreted by the web browser is fundamental. The JPEG format is another popular format in the web. JPEG is defined by the ITU-T Recommendation T.81 and the ISO/IEC 10918-1.
 
 The JPEG compression algorithm operates at its best on photographs and paintings with smooth variations of tone and color. It is best used for color and grayscale still images, but not for binary images. JPEG is also the most common format used by digital cameras. However, JPEG is not well suited for line drawings and other textual or iconic graphics, where the sharp contrasts between adjacent pixels can cause noticeable artifacts. Such images are better saved in a lossless graphics format such as PNG. Because JPEG uses a lossy compression method, which reduces image fidelity. As such, it is inappropriate for exact reproduction of imaging data.
 
