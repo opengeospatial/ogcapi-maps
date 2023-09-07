@@ -17,12 +17,17 @@ How the third (vertical) spatial dimension is applied to filter the output is le
 For example, the server could include features located within a vertical interval as part of a 2D map being rendered.
 In a second example, the extent of a 3D perspective view or a 3D model output would include only the subset of the vertical dimension specified.
 In a third example, a vertical profile could be returned for a single point or for a path across the other spatial dimensions.
-In this last example, the subset mechanism would likely only be used to subset the vertical dimension, while another mechanism would be used to select an arbitrary path in the horizontal dimensions.
+In this last example, the subset mechanism would likely only be used to subset the vertical dimension, while another mechanism would be used to select an arbitrary path in the horizontal dimensions (this standard part does not specify how to provide a path in a map request).
 
 [[maps-spatial-subsetting-crs]]
 === CRS for subsetting
-In WMS 1.3 the CRS parameters had two purposes: Indicate the CRS of the data rendered in the map and the CRS of the coordinates of the BBOX parameter. 
+In WMS 1.3 the CRS parameters had two purposes: Indicate the CRS of the data rendered in the map and the CRS of the coordinates of the `bbox` parameter. 
 In the Maps API Standard, these two objectives have been separated. This section defines the CRS parameters for subsetting.
+
+In this document the CRS for subsetting can have 3 possible values:
+* http://www.opengis.net/def/crs/OGC/1.3/CRS84
+* "storageCRS" indicated in the collection description. 
+* the one indicated in the `crs` parameter (the one picked for the map response). This possibility is described in the <<rc_crs, "CRS" requirement class>>.
 
 The CRS advertised in the collection's spatial extent is always in http://www.opengis.net/def/crs/OGC/1.3/CRS84 (for Earth centric data and as required by _OGC API - Features_). At least for _OGC API - Maps_ and _OGC API - Coverages_, a native CRS (also called storage CRS) is defined. The `Content-Crs:` header (see <<maps-core-overview>>) specifies the CRS used in the response to avoid confusion.
 

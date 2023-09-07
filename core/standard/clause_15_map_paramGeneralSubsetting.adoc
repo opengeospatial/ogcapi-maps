@@ -17,7 +17,7 @@ must use a uniform approach to describe the lower and upper bounds of those dime
 
 include::requirements/general-subsetting/REQ_uniform-additional-dimensions.adoc[]
 
-NOTE: The values on subset for additional dimensions beyond spatial and temporal can only be provided in the crs stated in the axis of the extent (that is expected to be the same as the storageCrs).
+NOTE: The `subset-crs` mentioned in <<rc_spatial-subsetting, Spatial subsetting>> can only be used in combination with a spatial `subset`.
 
 === `subset` query parameter
 
