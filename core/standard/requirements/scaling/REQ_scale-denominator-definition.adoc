@@ -17,5 +17,5 @@
 ----
 ^|B |The `scale-denominator` value SHALL be interpreted as the number of real-world units corresponding to one of the same unit on the map (as printed or displayed), based on the selected (e.g., from display resolution requirements class) or default (0.28 mm/pixel) display resolution.
 ^|C |The width and height dimensions of the returned map SHALL be computed based on the `scale-denominator` value, the display resolution, and the selected spatial subset of the map to return.
-^|D |An error SHALL be returned if the `scale-denominator` parameter is used together with `width` and/or `height` and the implementation does not declare conformance to the <<rc_table_spatial-subsetting, _spatial subsetting_>> requirements class (which specifies that the `width` and `height` parameters can also take on a subsetting role).
+^|D |An HTTP 400 error SHALL be returned if the `scale-denominator` parameter is used together with `width` and/or `height` and the implementation does not declare conformance to the <<rc_table_spatial-subsetting, _spatial subsetting_>> requirements class (which specifies that the `width` and `height` parameters can also take on a subsetting role).
 |===

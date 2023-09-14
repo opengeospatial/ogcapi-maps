@@ -7,6 +7,12 @@
 
 include::requirements/requirements_class_tilesets.adoc[]
 
+The Map Tilesets requirements class describes how to provide access to a map as tilesets in combination with the https://docs.ogc.org/is/20-057/20-057.html[_OGC API - Tiles_] Standard, which is based on the https://docs.ogc.org/is/17-083r4/17-083r4.html[_OGC 2D Tile Matrix Set and Tileset Metadata_] Standard.
+Tiles facilitate caching of data for clients and servers by requesting predefined subsets at fixed resolutions according to multi-resolution set of grids called a _TileMatrixSet_.
+
+NOTE: WMTS was focused on map tiles (tiles that are rendered using a style). Since _OGC API - Tiles_ allows for other types of tiled data (e.g., vector tiles and coverage tiles),
+_map tiles_ is used to refer to the WMTS 1.0 usage of tiles.
+
 While supporting map tiles and map tilesets without conforming to this requirements class is possible, implementing this requirements class means that the tiles resources support parameters 
 defined by _OGC API - Maps_ in the following requirement classes:
 
@@ -18,11 +24,7 @@ defined by _OGC API - Maps_ in the following requirement classes:
 
 NOTE: _OGC API - Tiles_ defines its own equivalent requirements class for temporal subsetting.
 
-The Map Tilesets requirements class describes how to provide access to a map as tilesets in combination with the https://docs.ogc.org/is/20-057/20-057.html[_OGC API - Tiles_] Standard, which is based on the https://docs.ogc.org/is/17-083r4/17-083r4.html[_OGC 2D Tile Matrix Set and Tileset Metadata_] Standard.
-Tiles facilitate caching of data for clients and servers by requesting predefined subsets at fixed resolutions according to multi-resolution set of grids called a _TileMatrixSet_.
 
-NOTE: WMTS was focused on map tiles (tiles that are rendered using a style). Since _OGC API - Tiles_ allows for other types of tiled data (e.g., vector tiles and coverage tiles),
-_map tiles_ is used to refer to the WMTS 1.0 usage of tiles.
 
 === Link from data resource
 A map resource can be accessed as tiles if the API implementation instance exposes a link to map tilesets in the resource that is available as map tiles.

@@ -10,7 +10,9 @@ Maps can be retrieved by arbitrary extent or as tiles (see <<rc_tilesets>>).
 
 The core conformance class is the only mandatory one. All other conformance classes are optional and depend on the _core_.
 
+////
 An annex with examples of map requests and responses is included as a way to learn by examples how this standard can be applied. See <<annex_examples>>.
+////
 
 An example OpenAPI definition for this standard is available at:
 https://petstore.swagger.io/?url=https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/openapi/ogcapi-maps-1.bundled.json .
@@ -119,7 +121,7 @@ Again, be aware that these paths are not required by the Maps API Standard.
 NOTE: Even though full path and full path templates in the previous table may be used in many implementations of the _OGC API - Maps_ standard, these exact paths are ONLY examples and are NOT required by this Standard. Other paths are possible if correctly described in by the Web API definition document and/or the links between resources.
 
 
-=== What a map is and relation to other OGC Web APIs
+=== What a map is, and its relation to other OGC Web APIs
 
 A map is a portrayal of data resulting from applying a style (usually 2D image formats such as PNG or JPEG format or in presentation formats such as SVG). The way the styling rules in a style are applied to the data to create the portrayal is out of scope of this standard (see https://github.com/opengeospatial/ogcapi-styles[_OGC API - Styles_], as well as specific styles and symbology standards such as https://github.com/opengeospatial/styles-and-symbology[OGC Styles & Symbology], for details).
 A map can be delivered as a single resource or as an arbitrary extent.

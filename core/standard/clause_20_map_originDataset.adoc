@@ -23,11 +23,11 @@ The root path of an OGC API offering access to geospatial data represents a data
 
 Subresources can be added to the root path of an OGC API to complement it by offering new endpoints indirectly giving access to the complemented dataset. Other OGC API standards will define this mechanism. Examples of standards doing that are:
 
-* OGC API - Styles defines how to complement a geospatial resource by adding a style to it. The new resources is an overlap of the dataset and the resource
+* OGC API - Styles defines how to complement a geospatial resource by adding a style to it. The new resources is an overlap of the dataset and the resource.
 
 include::requirements/dataset-map/REQ_landingpage.adoc[]
 
-In the landing page, in JSON format, the links follow the link schema defined in the OGC API - Common or in the OGC API - Features v1 Standards. Below you can find an example fragment of the response to an OGC API - Maps landing page showing the link to the dataset map
+In the landing page, in JSON format, the links follow the link schema defined in the OGC API - Common or in the OGC API - Features v1 Standards. Below you can find an example fragment of the response to an OGC API - Maps landing page showing the link to the dataset map.
 
 include::requirements/dataset-map/REQ_desc-extent.adoc[]
 
@@ -80,7 +80,7 @@ include::requirements/dataset-map/REQ_operation.adoc[]
 The operation request does not define extra parameters. Servers can advertise the requirements class http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/collections-selection to add a `collections` parameter that can be used to include only parts of the dataset in the map representation.
 
 ==== Response
-A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
+A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
 
 A successful response is a map resource that is represent the entire dataset. In a Web API providing access to a complex dataset comprised of several geospatial data resources, there are reasons for being selective in the amount of information included. This can be achieved by applying a manual filter described in the <<rc_collections-selection>> or as an automatic decision by the server side.
 

@@ -2,5 +2,5 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Permission {counter:per-id}* |*/rec/svg/overflow*
-^|A |A SVG content of a map can contain features that are partially outside of the requested map bounding box (represented by negative coordinates or coordinates bigger than the requested width and height)
+^|A |A SVG content of a map can contain features that are partially outside of the requested map bounding box (represented by negative coordinates or coordinates bigger than the requested width and height).
 |===

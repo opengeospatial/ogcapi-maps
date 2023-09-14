@@ -8,8 +8,8 @@ include::requirements/requirements_class_core.adoc[]
 
 The core requirements class specifies a map resource. This is a resource that represents the geospatial data as a rendered map. Requesting a map resource, as defined in the core, results in retrieving a generic map as a graphical representation of the data in the API repository. When using an implementation of the core requirements class, the representation is not constrained in any way by the client. Therefore the server is free to return a total or a partial representation of the resource at an arbitrary size. Additional Maps API requirement classes add query parameters to personalize the server behavior to the client needs. These requirement classes define specific parameters that allow the client to control the map size and resolution of the map (width, height, bounding box and CRS) and well as the background of the map. An additional requirement class defines how a map resource can be retrieved as tiles by applying the OGC API - Tiles.
 
-A map resource can be obtained from a non map resource by adding `/map` to the resource URI. The Maps API core does not specify to which resources `/map` is applicable. 
-However, a list of common paths to resources in the API, where maps can commonly be obtained is presented in the following table. Additional requirements classes better define these possibilities.
+A map resource can be obtained from an arbitrary resource of a geospatial nature by adding `/map` to the resource URI. The Maps API core does not specify to which resources `/map` is applicable. 
+However, a list of common paths to resources in the API, where maps can commonly be obtained is presented in the following table. The <<rc_collection-map, Collection Maps]>>, <<rc_dataset-map,Dataset maps>> and <<rc_styled-map, Styled Maps>> requirements classes define some of these possibilities.
 
 [#Common-map-resources-in-the-api,reftext='{table-caption} {counter:table-num}']
 .Common map resources in a geospatial API
@@ -17,7 +17,7 @@ However, a list of common paths to resources in the API, where maps can commonly
 |===
 |Resource	Path |Description
 |/map |A map representing dataset behind the API in the default style
-|/styles/{styleId}/map |A map representing dataset behind the API in the `styleId` style.
+|/styles/{styleId}/map |A map representing dataset behind the API in the `styleId` style
 |/collections/{collectionId}/map | A map representing `collectionId` in the default style
 |/collections/{collectionId}/styles/{styleId}/map | A map representing `collectionId` in the `styleId` style
 |===
@@ -65,7 +65,7 @@ include::recommendations/core/REC_map-op.adoc[]
 
 include::recommendations/core/REC_content-crs.adoc[]
 
-include::recommendations/core/REC_legend-thumbnail-style.adoc[]
+include::recommendations/core/PER_legend-thumbnail-style.adoc[]
 
 include::recommendations/core/REC_multiple-media-types.adoc[]
 

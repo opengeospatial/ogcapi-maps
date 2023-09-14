@@ -130,7 +130,7 @@ include::clause_23_map_openAPI.adoc[]
 
 include::annex_ats.adoc[]
 
-include::annex_examples.adoc[]
+// include::annex_examples.adoc[]
 
 include::annex_ogc_wms.adoc[]
 
