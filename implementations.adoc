@@ -58,6 +58,10 @@
 | OGC API - Maps
 | https://github.com/tomkralidis[Tom Kralidis]
 
+| https://gitlab.com/IvanSanchez/leaflet.imageoverlay.ogcapi[Leaflet OGC API - Maps plugin]
+| OGC API - Maps
+| https://gitlab.com/IvanSanchez[Iván Sánchez Ortega]
+
 | TBA
 | TBA
 | TBA
