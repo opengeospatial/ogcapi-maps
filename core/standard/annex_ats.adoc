@@ -15,7 +15,7 @@
 *When:* performing a GET operation on the `/map` resource with a supported media type specified in the `Accept:` header (e.g., `Accept: image/png,image/jpeg`) +
 *Then:* +
 - assert that the response has HTTP status code 200 +
-- assert that the CRS of the resulting map is the native CRS (the native CRS is `[ogc:crs84]`, unless specified in the dataset map or collection map description `storageCRS` property, or specified out-of-band if _OGC API - Common_ is not implemented), +
+- assert that the CRS of the resulting map is the native CRS (the native CRS is `[ogc:crs84]`, unless specified in the dataset map or collection map description `storageCrs` property, or specified out-of-band if _OGC API - Common_ is not implemented), +
 - assert that the response headers either includes a `Content-Crs:` header for the native CRS, or omits it if the nativeCRS is `[ogc:crs84]`, +
 - assert that the headers of the response include a `Content-Bbox:` header with the actual axis-aligned geospatial boundary of the rendered map, +
 - assert that the `Content-Bbox:` coordinates are in the native CRS and honor the CRS coordinates order, +
