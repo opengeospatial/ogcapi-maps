@@ -159,6 +159,51 @@ The collection metadata allows the specification of a spatial bounding box for e
 collection of geospatial data represented or contained within the map (the _layers_). The resolution of these layers can also be specified by including
 the minimum and maximum cell size and equivalent scale denominators.
 
+==== Subsetting the domain and scaling
+
+The Maps API Standard core class provides a way to retrieve the map that is modified by other classes allowing for subsetting and scale the map. These classes (<<rc_scaling, Scaling>>, <<rc_display-resolution, Display resolution>> and <<rc_spatial-subsetting, subsetting>>) define the following parameters:
+
+[#table_resources,reftext='{table-caption} {counter:table-num}']
+.Parameters for scaling and subsetting  
+[cols="33,66",options="header"]
+!=== 
+| Parameter | Definition
+| `width` | Width of the viewport in pixel units 
+| `height` | Height of the viewport in pixel units
+| `scale-denominator` | Number of units in the reality that is equivalent of 1 unit in the rendering device 
+| `mm-per-pixel` | Size of one pixel in the rendering device expressed in millimeters. The default value is 0.28mm
+| `bbox` (`bbox-crs`) (and the equivalent `subset` and `subset-crs`) | Bounding box of the requested map in CRS coordinates. It defines the geographic size.
+| `center` (`center-crs`) | Center of the requested map in CRS coordinates. `center` and `bbox` are mutually exclusive.
+!===
+
+All these parameters are optional. The server need to know the geographic size of the map in the reality, and the size of the map in the viewport. Some combinations completely defined both sizes. Some combinations of parameters generate impossible situations and will result in an error. Other combinations require that the server decides a default value for some not provided parameters to be able to resolve the requested sizes. This standard only specify the default value for `mm-per-pixel` leaving to the server freedom to decide about the others. The following table presents an overview of the different combinations.
+
+[#table_resources,reftext='{table-caption} {counter:table-num}']
+.Parameter combinations and server decisions  
+[cols="30,40,30",options="header"]
+!===
+| Parameters provided in the request ^1^ | Server defaults | Computed
+| _none_ | `width`, `height` and `bbox`^2^ | `scale-denominator` 
+| `bbox` | `width` and `height` | `scale-denominator`
+| `scale-denominator` | `width`, `height` and `center` | `bbox` 
+| `width` and `height` | `scale-denominator` and `center` | `bbox`
+| `bbox`, `width` and `height` | | `scale-denominator`
+| `bbox` and `scale-denominator` | | `width` and `height`
+| `bbox`, `width`, `height` and `scale-denominator` 2+| Error (conflicts with the default mm-per-pixel)
+| `width`, `height` and `scale-denominator` | `center` |
+| `center` | `width`, `height` and `scale-denominator` | `bbox` 
+| `bbox` and `center` 2+| Error
+| `scale-denominator` and `center` | `width` and `height` | `bbox`
+| `width`, `height`  and `center` | `scale-denominator` | `bbox`
+| `bbox`, `width`, `height` and `center` 2+| Error
+| `bbox`, `scale-denominator` and `center` 2+| Error
+| `bbox`, `width`, `height`, `scale-denominator` and `center` 2+| Error
+| `width`, `height`, `scale-denominator` and `center` | |
+3+| ^1^ The parameter `mm-per-pixel` is never mention and, if not provided in the request, it will adopt the 0.28 value.
+
+^2^ Every time that `bbox` appear on this table it represent either the `bbox` and the equivalent `subset`.
+!===
+
 ==== Available formats and map response expectations
 
 The Maps API Standard defines five requirements classes for specific encodings to encode map data.
