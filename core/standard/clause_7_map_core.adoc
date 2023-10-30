@@ -42,7 +42,7 @@ Below is an example of the successful HTTP response headers describing a PNG ima
 HTTP/1.1 200 OK
 Content-Type: image/png
 Last-Modified: Fri, 21 Jul 2023 14:37:46 GMT
-Content-Crs: http://www.opengis.net/def/crs/EPSG/0/32631
+Content-Crs: <http://www.opengis.net/def/crs/EPSG/0/32631>
 Content-Bbox: 347736.47,4546722.45,497736.47,4608322.45
 Content-Length: 1198247
 ----
