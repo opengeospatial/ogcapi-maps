@@ -46,6 +46,9 @@ include::recommendations/scaling/REC_height-definition.adoc[]
 
 include::recommendations/scaling/PER_no-width-height-definition.adoc[]
 
+See also the aspect ratio considerations mentioned at the end of the _Subsetting and scaling the map_ sub-section of the <<overview>>,
+regarding aspect ratio of the CRS unit vs. aspect ratio of the corresponding physical units.
+
 ==== Response
 A successful GET response is described in the Maps API core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
 

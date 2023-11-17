@@ -121,8 +121,9 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&scal
 image::images/xmp_map_center_scale_hw_512x1024.png[width=300,align="center"]
 
 For these last two requests, specifying both the `width` and `height`, the `center`, as well as the `scale-denominator`, combined with the fact that the default value of `mm-per-pixel`
-is defined as 0.28mm/pixel, defines all of the parameters necessary to make the subsetting and scaling completely predictable by the client.
-However, the response headers will still contain the bounding box information as a backup, and for cases where the server may decide to correct the center or bounding box due to the values being out of range.
+is defined as 0.28mm/pixel, defines all of the parameters necessary to make the subsetting and scaling completely predictable by the client
+(except for aspect ratio considerations mentioned at the end of the _Subsetting and scaling the map_ sub-section of the <<overview>>).
+The response headers will still contain the bounding box information as the consistently reliable mechanism for georeferencing the response, including cases where the server may decide to correct the center or bounding box due to the values being out of range.
 
 // page break to keep request & response together in PDF
 <<<
