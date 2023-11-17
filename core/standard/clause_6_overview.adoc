@@ -169,9 +169,11 @@ The collection metadata allows the specification of a spatial bounding box for e
 collection of geospatial data represented or contained within the map (the _layers_). The resolution of these layers can also be specified by including
 the minimum and maximum cell size and equivalent scale denominators.
 
-=== Subsetting the domain and scaling
+=== Subsetting and scaling the map
 
-The Maps API Standard core class provides a way to retrieve the map that is modified by other classes allowing for subsetting and scaling the map. These classes (<<rc_scaling, Scaling>>, <<rc_display-resolution, Display resolution>> and <<rc_spatial-subsetting, Subsetting>>) define the following parameters:
+The Maps API Standard core class provides a way to retrieve the map that is modified by other classes allowing for subsetting the domain, specifying a particular size for the output map image, and modifying the default
+assumption about the physical size of a pixel on the rendering device. The combination of these parameters also define the scale of the map, which affects how scale-dependent symbology rules should be applied.
+These classes (<<rc_scaling, Scaling>>, <<rc_display-resolution, Display resolution>> and <<rc_spatial-subsetting, Subsetting>>) define the following parameters:
 
 [#table_params_scaling_subsetting,reftext='{table-caption} {counter:table-num}']
 .Parameters for scaling and subsetting
@@ -180,8 +182,8 @@ The Maps API Standard core class provides a way to retrieve the map that is modi
 | Parameter | Definition
 | `width` | Width of the viewport in pixel units
 | `height` | Height of the viewport in pixel units
-| `scale-denominator` | Number of units in the reality that is equivalent of 1 unit in the rendering device
-| `mm-per-pixel` | Size of one pixel in the rendering device expressed in millimeters. The default value is 0.28mm
+| `scale-denominator` | Number of units in the reality that is equivalent to 1 unit on the rendering device
+| `mm-per-pixel` | Size of one pixel on the rendering device expressed in millimeters. The default value is 0.28mm
 | `bbox` (`bbox-crs`) (and the equivalent `subset` and `subset-crs`) | Bounding box of the requested map in CRS coordinates. It defines the geographic size.
 | `center` (`center-crs`) | Center of the requested map in CRS coordinates. `center` and `bbox` are mutually exclusive.
 !===
@@ -189,7 +191,8 @@ The Maps API Standard core class provides a way to retrieve the map that is modi
 All these parameters are optional. The server needs to know the geographic size of the map in the reality, and the size of the map in the viewport. Some combinations completely define both sizes. Some combinations of parameters generate impossible situations and will result in an error. Other combinations require that the server decides a default value for some parameters not provided to be able to resolve the requested sizes. This standard only specifies the default value for `mm-per-pixel` leaving to the server freedom to decide about the others.
 The following tables present an overview of the different combinations possible depending on whether the _Scaling_, _Subsetting_ or both _Scaling_ and _Subsetting_ requirements classes are supported by the implementation.
 
-NOTE: The parameter `mm-per-pixel` is not included in these tables, but is used to infer the `scale-denominator` from the dimensions (`width` and `height`) and the spatial extent (`bbox`). If not provided in the request, it defaults to 0.28 mm per pixel.
+NOTE: The parameter `mm-per-pixel` is not included in these tables, but is used for computing one of the `scale-denominator`, dimensions (`width` and `height`) or spatial extent (`bbox`), based on the default or provided values for the others.
+If not provided in the request, the default is 0.28 mm per pixel.
 
 NOTE: Every time that `bbox` appears as a provided parameter in these tables, it represent either `bbox` or the equivalent `subset`.
 
@@ -234,9 +237,6 @@ However, an implementation supporting only _Subsetting_ may (*but is not require
 resulting in a different computed subsetting bounding box. In this case, a Subsetting-only implementation may not be applying scale-dependent symbolization rules correctly, since it likely would not render the map anew,
 but simply cut a piece from a pre-rendered map of a default scale. This is not an issue for maps without any scale-dependent symbolization, such as plain imagery.
 !===
-
-// page break to table header and table together in PDF
-<<<
 
 [#table_params_combinations_scaling,reftext='{table-caption} {counter:table-num}']
 .Parameter combinations for implementations supporting _Scaling_, but not _Subsetting_
