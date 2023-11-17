@@ -200,8 +200,8 @@ In this case, for the omitted dimension, the server may either use a default val
 .Always valid requests (no scaling or subsetting parameter)
 [cols="30,40,30",options="header"]
 !===
-| Parameters provided in the request                  | Server or resource defaults used                    | Computed
-| _none_                                              | `scale-denominator`, `center`, `width` and `height` | `bbox`
+| Parameters provided in the request                  | Server or resource defaults used                            | Computed
+| _none_                                              | `bbox`, `scale-denominator`, `center`, `width` and `height` | _None_
 !===
 
 [#table_params_combinations_invalid,reftext='{table-caption} {counter:table-num}']
@@ -265,6 +265,9 @@ but simply cut a piece from a pre-rendered map of a default scale. This is not a
 | `bbox` and `scale-denominator`                      | _None (fully defined combination)_                  | `width` and `height`
 | `scale-denominator`, `center`, `width` and `height` | _None (fully defined combination)_                  | `bbox`
 !===
+
+NOTE: Changing the output CRS using the `crs` parameter will of course also have an impact on the mapping between pixels on the map and units in the real world,
+and on the calculated bounding box (in output CRS unit).
 
 === Available formats and map response expectations
 
