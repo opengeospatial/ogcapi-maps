@@ -125,43 +125,53 @@ NOTE: Even though full path and full path templates in the previous table may be
 
 A map is a portrayal of data resulting from applying a style (usually 2D image formats such as PNG or JPEG format or in presentation formats such as SVG). The way the styling rules in a style are applied to the data to create the portrayal is out of scope of this standard (see https://github.com/opengeospatial/ogcapi-styles[_OGC API - Styles_], as well as specific styles and symbology standards such as https://github.com/opengeospatial/styles-and-symbology[OGC Styles & Symbology], for details).
 A map can be delivered as a single resource or as an arbitrary extent.
-In addition, a map can also be delivered as tiles by combining the OGC API - Maps with some _OGC API - Tiles_ requirements classes. This approach is defined by the _Map Tilesets_ requirements class of this standard,
+In addition, a map can also be delivered as tiles by combining _OGC API - Maps_ with some _OGC API - Tiles_ requirements classes. This approach is defined by the _Map Tilesets_ requirements class of this standard,
 which also correspond to _map tilesets_ described in _OGC API - Tiles_, with a _map_ being a specific type of data resource for which tiles are provided.
 
 This Standard defines building blocks that can be combined with other APIs generating or providing access to information having a geospatial component,
 including the other standards of the OGC API family such as _OGC API - Tiles_ and _OGC API - Processes_. The Maps API Standard can be referenced by other standards providing resources that can be offered as maps. For example:
 
-* _OGC API - Tiles_ specifies the link relation types to access map tilesets from a dataset or collection.
+* _OGC API - Tiles_ specifies the link relation types to access map tilesets from a dataset or collection. _OGC API - Tiles_ can also be used to serve the source data (e.g., vector features or coverage data)
 * _OGC API - Styles_ defines paths to list available styles from which maps can also be accessed.
 * _OGC API - Processes - Part 3: Workflows and Chaining_ provides a mechanism to trigger localized processing workflows as a result of retrieving maps (for a specific area and resolution of interest).
+
+The origin resources to which the map resource can be attached, such as the  dataset landing page (defined by _OGC API - Common - Part 1_) and collection (defined by _OGC API - Common - Part 2_),
+may also provide access to the data used to generate the maps, alongside the Maps API capability. For example:
+
+* _OGC API - Tiles_ also specifies link relation types to access tilesets of vector and coverage data from a dataset or collection.
+* _OGC API - Features_ defines an API to access collections of vector features at `/collections/{collectionId}/items` and individual features at `/collections/{collectionId}/items/{itemId}`, including both geometry and properties.
+* _OGC API - Coverages_ defines an API to efficiently access information organized as multi-resolution and multi-dimensional datacubes at `/collections/{collectionId}/coverage`.
+Since several common parameters are shared with this Maps API, for some request formulations, it is possible to simply toggle between `/map` and `/coverage` while keeping the same parameters, to alternate between retrieving the raw data values or a server-side visualization.
 
 But possibilities are endless: for example, a generic open data API giving access to tables, some of them with columns storing latitude and longitude, could be enhanced with OGC APIs to provide mapping capabilities.
 
 ==== Dynamic and scalable map viewers
 
-In the OGC, the concept of a map as an image was formulated in 1998 as part of the OGC Web Map Service standards work. At that time, the web was very young, most HTML pages were static, and JavaScript was a rudimentary programming language capable of controlling user entries in an HTML form and not much more. In that environment, having a service capable of creating a PNG that could be embedded as a HTML page by using an IMG tag provided the first approach to static maps on the web.  Replacing the source (SRC) of the IMG tag programmatically with JavaScript, as a reaction of some user actions, provided the first approach to dynamic maps. _GetFeatureInfo_ added a limited capability for queryable maps. However, users are now used to moving around the map by frequently doing zoom and pan operations. If the server does not provide a very fast response, the user experience is not fluid and the map display application is perceived as not responsive enough. One possible approach to solve this problem is to divide the viewport into tiles and request them separately. Since tiles follow a tile matrix pattern, they can be pre-rendered in the server or cached in the Internet. For implementing fast dynamic maps, the OGC API - Maps requirement should be combined with _OGC API - Tiles_ requirements.
+In the OGC, the concept of a map as an image was formulated in 1998 as part of the OGC Web Map Service standards work. At that time, the web was very young, most HTML pages were static, and JavaScript was a rudimentary programming language capable of controlling user entries in an HTML form and not much more. In that environment, having a service capable of creating a PNG that could be embedded as a HTML page by using an IMG tag provided the first approach to static maps on the web.  Replacing the source (SRC) of the IMG tag programmatically with JavaScript, as a reaction of some user actions, provided the first approach to dynamic maps. _GetFeatureInfo_ added a limited capability for queryable maps. However, users are now used to moving around the map by frequently doing zoom and pan operations. If the server does not provide a very fast response, the user experience is not fluid and the map display application is perceived as not responsive enough. One possible approach to solve this problem is to divide the viewport into tiles and request them separately. Since tiles follow a tile matrix pattern, they can be pre-rendered in the server or cached in the Internet. For implementing fast dynamic maps, the _OGC API - Maps_ requirement should be combined with _OGC API - Tiles_ requirements.
 
 ==== Client side maps versus server side maps
 
-The OGC API - Maps Standard deals with maps that are generated by the server. The client can present them with no modification. Currently, even the smallest rendering device supports hardware rendering i.e., the transformation from geometries to pixels can be done by the GPU. Transmitting geometries from the server commonly requires less bandwidth than transmitting the rendered map from the server and offers more flexibility in the client side to personalize the portrayal style. Because of this, it is expected that _OGC API - Maps_ use cases will focus more on static maps, infrequently changing requests for dynamic maps, as well as print cartography, whereas requesting raw data values using _OGC API - Tiles_ (e.g., Vector and Coverage Tiles) will be better suited for interactive clients presenting dynamic maps.
+The _OGC API - Maps_ Standard deals with maps that are generated by the server. The client can present them with no modification. Currently, even the smallest rendering device supports hardware rendering i.e., the transformation from geometries to pixels can be done by the GPU. Transmitting geometries from the server commonly requires less bandwidth than transmitting the rendered map from the server and offers more flexibility in the client side to personalize the portrayal style. Because of this, it is expected that _OGC API - Maps_ use cases will focus more on static maps, infrequently changing requests for dynamic maps, as well as print cartography, whereas requesting raw data values using _OGC API - Tiles_ (e.g., Vector and Coverage Tiles) will be better suited for interactive clients presenting dynamic maps.
 
-==== Description of the domain
+=== Description of the domain
 
 The Maps API Standard defines how to describe the domain of the maps, including spatiotemporal axes as well as additional dimensions.
 
 With the <<rc_collection-map,_Collection Map_>> requirements class, the collection description inherited from _OGC API - Common - Part 2_ contains an `extent` property that can
 describe both the spatial and temporal domain of the data. In addition, the _Unified Additional Dimensions_ common building block, specified in the <<rc_general-subsetting,_General Subsetting_>> requirements class and used in the
 example OpenAPI definition, requires that additional dimensions be described in a similar way to the temporal dimension.
-An extra `grid` property also supports the specification of the resolution and the number of cells (for data organized as a regular grid) or
-a list of coordinates (for data organized as an irregular grid) along each dimension.
+This allows providing an overall lower and upper bound (the first `interval` elevement), as well as optional sparse inner intervals where data is found along each dimension (additional `interval` elements).
+A `grid` property also supports the description of regular and irregular grids.
+The `resolution` (the distance between any two neighboring cells, an absolute value) and the number of cells (`cellsCount`) can be specified for each regular dimension.
+A list of `coordinates` where data is found can be specified for irregular dimensions.
 
 The collection metadata allows the specification of a spatial bounding box for entire maps, as well as for each individual
 collection of geospatial data represented or contained within the map (the _layers_). The resolution of these layers can also be specified by including
 the minimum and maximum cell size and equivalent scale denominators.
 
-==== Subsetting the domain and scaling
+=== Subsetting the domain and scaling
 
-The Maps API Standard core class provides a way to retrieve the map that is modified by other classes allowing for subsetting and scale the map. These classes (<<rc_scaling, Scaling>>, <<rc_display-resolution, Display resolution>> and <<rc_spatial-subsetting, subsetting>>) define the following parameters:
+The Maps API Standard core class provides a way to retrieve the map that is modified by other classes allowing for subsetting and scaling the map. These classes (<<rc_scaling, Scaling>>, <<rc_display-resolution, Display resolution>> and <<rc_spatial-subsetting, Subsetting>>) define the following parameters:
 
 [#table_params_scaling_subsetting,reftext='{table-caption} {counter:table-num}']
 .Parameters for scaling and subsetting
@@ -176,35 +186,87 @@ The Maps API Standard core class provides a way to retrieve the map that is modi
 | `center` (`center-crs`) | Center of the requested map in CRS coordinates. `center` and `bbox` are mutually exclusive.
 !===
 
-All these parameters are optional. The server need to know the geographic size of the map in the reality, and the size of the map in the viewport. Some combinations completely defined both sizes. Some combinations of parameters generate impossible situations and will result in an error. Other combinations require that the server decides a default value for some not provided parameters to be able to resolve the requested sizes. This standard only specify the default value for `mm-per-pixel` leaving to the server freedom to decide about the others. The following table presents an overview of the different combinations.
+All these parameters are optional. The server needs to know the geographic size of the map in the reality, and the size of the map in the viewport. Some combinations completely define both sizes. Some combinations of parameters generate impossible situations and will result in an error. Other combinations require that the server decides a default value for some parameters not provided to be able to resolve the requested sizes. This standard only specifies the default value for `mm-per-pixel` leaving to the server freedom to decide about the others.
+The following tables present an overview of the different combinations possible depending on whether the _Scaling_, _Subsetting_ or both _Scaling_ and _Subsetting_ requirements classes are supported by the implementation.
 
-[#table_params_combinations,reftext='{table-caption} {counter:table-num}']
-.Parameter combinations and server decisions
+NOTE: The parameter `mm-per-pixel` is not included in these tables, but is used to infer the `scale-denominator` from the dimensions (`width` and `height`) and the spatial extent (`bbox`). If not provided in the request, it defaults to 0.28 mm per pixel.
+
+NOTE: Every time that `bbox` appears as a provided parameter in these tables, it represent either `bbox` or the equivalent `subset`.
+
+NOTE: Wherever `width` and `height` appear together in these tables, it also represents either of them being specified without the other.
+In this case, for the omitted dimension, the server may either use a default value or compute the ideal value in order to preserve the aspect ratio of the map.
+
+[#table_params_combinations_impossible,reftext='{table-caption} {counter:table-num}']
+.Always valid requests (no scaling or subsetting parameter)
 [cols="30,40,30",options="header"]
 !===
-| Parameters provided in the request ^1^ | Server defaults | Computed
-| _none_ | `width`, `height` and `bbox`^2^ | `scale-denominator`
-| `bbox` | `width` and `height` | `scale-denominator`
-| `scale-denominator` | `width`, `height` and `center` | `bbox`
-| `width` and `height` | `scale-denominator` and `center` | `bbox`
-| `bbox`, `width` and `height` | | `scale-denominator`
-| `bbox` and `scale-denominator` | | `width` and `height`
-| `bbox`, `width`, `height` and `scale-denominator` 2+| Error (conflicts with the default mm-per-pixel)
-| `width`, `height` and `scale-denominator` | `center` |
-| `center` | `width`, `height` and `scale-denominator` | `bbox`
-| `bbox` and `center` 2+| Error
-| `scale-denominator` and `center` | `width` and `height` | `bbox`
-| `width`, `height`  and `center` | `scale-denominator` | `bbox`
-| `bbox`, `width`, `height` and `center` 2+| Error
-| `bbox`, `scale-denominator` and `center` 2+| Error
-| `bbox`, `width`, `height`, `scale-denominator` and `center` 2+| Error
-| `width`, `height`, `scale-denominator` and `center` | |
-3+| ^1^ The parameter `mm-per-pixel` is never mention and, if not provided in the request, it will adopt the 0.28 value.
-
-^2^ Every time that `bbox` appear on this table it represent either the `bbox` and the equivalent `subset`.
+| Parameters provided in the request                  | Server or resource defaults used                    | Computed
+| _none_                                              | `width`, `height`, `scale-denominator` and `center` | `bbox`
 !===
 
-==== Available formats and map response expectations
+[#table_params_combinations_invalid,reftext='{table-caption} {counter:table-num}']
+.Always invalid parameter combinations
+[cols="30,40",options="header"]
+!===
+| Parameters provided in the request                            | Explanation
+| `bbox`, `width`, `height` and `scale-denominator`             | _Error (conflicts with default or provided `mm-per-pixel`)_
+| `bbox` *and* `center` (with or without additional parameters) | _Error (`bbox` and `center` are mutually exclusive)_
+!===
+
+[#table_params_combinations_subsetting,reftext='{table-caption} {counter:table-num}']
+.Parameter combinations for implementations supporting _Subsetting_, but not _Scaling_
+[cols="30,40,30",options="header"]
+!===
+| Parameters provided in the request                    | Server or resource defaults used                    | Computed
+| `width` and `height`                                  | `scale-denominator` and `center`                    | `bbox`
+| `bbox`                                                | `scale-denominator`                                 | `width` and `height`
+| `center`                                              | `width`, `height` and `scale-denominator`           | `bbox`
+| `width`, `height`  and `center`                       | `scale-denominator`                                 | `bbox`
+| `scale-denominator` ^1^                               | `width`, `height` and `center`                      | `bbox`
+| `scale-denominator` ^1^ and `center`                  | `width` and `height`                                | `bbox`
+| `width`, `height` and `scale-denominator`           2+| _Error (would require rescaling the map)_
+| `bbox`, `width` and `height`                        2+| _Error (would require rescaling the map)_
+| `bbox` and `scale-denominator`                      2+| _Error (would require rescaling the map)_
+| `width`, `height`, `scale-denominator` and `center` 2+| _Error (would require rescaling the map)_
+3+|
+^1^ The `scale-denominator` parameter is defined in the _Scaling_ requirements class.
+However, an implementation supporting only _Subsetting_ may (*but is not required to*) still recognize the `scale-denominator` parameter and adjust its default `width` and `height` dimensions accordingly,
+resulting in a different computed subsetting bounding box. In this case, a Subsetting-only implementation may not be applying scale-dependent symbolization rules correctly, since it likely would not render the map anew,
+but simply cut a piece from a pre-rendered map of a default scale. This is not an issue for maps without any scale-dependent symbolization, such as plain imagery.
+!===
+
+// page break to table header and table together in PDF
+<<<
+
+[#table_params_combinations_scaling,reftext='{table-caption} {counter:table-num}']
+.Parameter combinations for implementations supporting _Scaling_, but not _Subsetting_
+[cols="30,40,30",options="header"]
+!===
+| Parameters provided in the request                              | Server or resource defaults used                    | Computed
+| `width` and `height`                                            | `scale-denominator` and `center`                    | `bbox`
+| `scale-denominator`                                             | `width`, `height` and `center`                      | `bbox`
+| `width`, `height` and `scale-denominator`                       | `center`                                            | `bbox`
+| `bbox` *or* `center` (with or without additional parameters)  2+| _Error (would require subsetting the map)_
+!===
+
+[#table_params_combinations_subsetting_scaling_,reftext='{table-caption} {counter:table-num}']
+.Parameter combinations for implementations supporting both _Subsetting_ and _Scaling_
+[cols="30,40,30",options="header"]
+!===
+| Parameters provided in the request                  | Server or resource defaults used                    | Computed
+| `width` and `height`                                | `scale-denominator` and `center`                    | `bbox`
+| `bbox`                                              | `width` and `height`                                | `scale-denominator`
+| `center`                                            | `width`, `height` and `scale-denominator`           | `bbox`
+| `width`, `height`  and `center`                     | `scale-denominator`                                 | `bbox`
+| `scale-denominator`                                 | `width`, `height` and `center`                      | `bbox`
+| `scale-denominator` and `center`                    | `width` and `height`                                | `bbox`
+| `width`, `height` and `scale-denominator`           | `center`                                            | `bbox`
+| `bbox`, `width` and `height`                        | _None (fully defined combination)_                  | `scale-denominator`
+| `bbox` and `scale-denominator`                      | _None (fully defined combination)_                  | `width` and `height`
+| `width`, `height`, `scale-denominator` and `center` | _None (fully defined combination)_                  | `bbox`
+!===
+
+=== Available formats and map response expectations
 
 The Maps API Standard defines five requirements classes for specific encodings to encode map data.
 Additional encodings can be supported using HTTP content negotiation, following conventions specific to those encodings.
