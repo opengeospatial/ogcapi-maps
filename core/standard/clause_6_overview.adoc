@@ -231,7 +231,8 @@ In this case, for the omitted dimension, the server may either use a default val
 3+|
 ^1^ The `scale-denominator` parameter is defined in the _Scaling_ requirements class.
 However, an implementation supporting only _Subsetting_ may (*but is not required to*) still recognize the `scale-denominator` parameter and adjust its default `width` and `height` dimensions accordingly,
-resulting in a different computed subsetting bounding box.
+resulting in a different computed subsetting bounding box. In this case, a Subsetting-only implementation may not be applying scale-dependent symbolization rules correctly, since it likely would not render the map anew,
+but simply cut a piece from a pre-rendered map of a default scale. This is not an issue for maps without any scale-dependent symbolization, such as plain imagery.
 !===
 
 // page break to table header and table together in PDF
