@@ -173,7 +173,7 @@ the minimum and maximum cell size and equivalent scale denominators.
 
 The Maps API Standard core class provides a way to retrieve the map that is modified by other classes allowing for subsetting the domain, specifying a particular size for the output map image, and modifying the default
 assumption about the physical size of a pixel on the rendering device. The combination of these parameters also define the scale of the map, which affects how scale-dependent symbology rules should be applied.
-These classes (<<rc_scaling, Scaling>>, <<rc_display-resolution, Display resolution>> and <<rc_spatial-subsetting, Subsetting>>) define the following parameters:
+These classes (<<rc_scaling, Scaling>>, <<rc_display-resolution, Display resolution>> and <<rc_spatial-subsetting, Subsetting>>) define the following parameters interacting with each other (in a not so trivial manner):
 
 [#table_params_scaling_subsetting,reftext='{table-caption} {counter:table-num}']
 .Parameters for scaling and subsetting
@@ -189,7 +189,7 @@ These classes (<<rc_scaling, Scaling>>, <<rc_display-resolution, Display resolut
 !===
 
 All these parameters are optional. The server needs to know the geographic size of the map in the reality, and the size of the map in the viewport. Some combinations completely define both sizes. Some combinations of parameters generate impossible situations and will result in an error. Other combinations require that the server decides a default value for some parameters not provided to be able to resolve the requested sizes. This standard only specifies the default value for `mm-per-pixel` leaving to the server freedom to decide about the others.
-The following tables present an overview of the different combinations possible depending on whether the _Scaling_, _Subsetting_ or both _Scaling_ and _Subsetting_ requirements classes are supported by the implementation.
+The following tables present an overview of the different combinations possible depending on whether the _Scaling_, _Subsetting_ or both _Scaling_ and _Subsetting_ requirements classes are supported by the implementation, to clarify the relationship between these parameters and provide centralized guidance for implementers.
 
 NOTE: The parameter `mm-per-pixel` is not included in these tables, but is used for computing one of the `scale-denominator`, dimensions (`width` and `height`) or spatial extent (`bbox`), based on the default or provided values for the others.
 If not provided in the request, the default is 0.28 mm per pixel.
@@ -261,9 +261,19 @@ but simply cut a piece from a pre-rendered map of a default scale. This is not a
 | `scale-denominator`                                 | `center`, `width` and `height`                      | `bbox`
 | `scale-denominator` and `center`                    | `width` and `height`                                | `bbox`
 | `scale-denominator`, `width` and `height`           | `center`                                            | `bbox`
-| `bbox`, `width` and `height`                        | _None (fully defined combination)_                  | `scale-denominator`
-| `bbox` and `scale-denominator`                      | _None (fully defined combination)_                  | `width` and `height`
-| `scale-denominator`, `center`, `width` and `height` | _None (fully defined combination)_                  | `bbox`
+| `bbox`, `width` and `height`                        | _None (fully defined combination^1^)_               | `scale-denominator`
+| `bbox` and `scale-denominator`                      | _None (fully defined combination^2^)_               | `width` and `height`
+| `scale-denominator`, `center`, `width` and `height` | _None (fully defined combination^2^)_               | `bbox`
+3+|
+^1^ This combination corresponds to the WMS parameters, and should be used for obtaining identical results from different implementations.
+
+^2^ Different implementations may maintain a slightly different relationship between the dimensions (`width` and `height`), the spatial extent (`bbox`) and the `scale-denominator`,
+based on different considerations for preserving the aspect ratio of the map for CRSs that do not have a constant mapping to physical distance along their axes, such as geographic CRSs
+(preserving the aspect ratio of CRS unit vs. preserving the aspect ratio of physical units).
+For example, an implementation may decide to maintain a constant degrees of longitude to degrees of latitude mapping for CRS84, while another may try to avoid returning maps that appear
+squished at polar latitudes by compensating for the fact that degrees of longitudes correspond to a smaller real-world physical distance.
+This may result in the `bounding box`, `width` or `height` being computed differently between these implementations.
+Clients should always use `Content-Bbox` header to properly georeference the output, and not expect unspecified parameters to be computed to a particular value.
 !===
 
 NOTE: Changing the output CRS using the `crs` parameter will of course also have an impact on the mapping between pixels on the map and units in the real world,
