@@ -127,7 +127,7 @@ maxScaleDenominator | Possibly in OGC API - Common - Part 2
 | Attribution | collection response | attribution | OGC API - Common - Part 2
 | Identifier
 
-AuthorityURL | collection response | externalIds | OGC API Records (Local Resources Catalogue)
+AuthorityURL | collection response | externalIds | OGC API - Records (Local Resources Catalogue)
 | FeatureListURL | items response |  | OGC API - Features provides this capability
 | DataURL  |  |  | OGC API - Features, Coverages and EDR provide download capabilities
 | queryable ^3^  |  |  | OGC API - Features, Coverages and EDR provide query capabilities

@@ -2,7 +2,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Permission {counter:per-id}* |*/per/spatial-subsetting/crs-curie*
-^|A |For the bbox-crs and subset-crs query parameters, unsafe CURIE without square brackets MAY be used.
+^|A |For the `center-crs`, `bbox-crs` and `subset-crs` query parameters, unsafe CURIE without square brackets MAY be supported by the implementation.
 |===
 
 NOTE: This makes the notation compatible with WMS.
