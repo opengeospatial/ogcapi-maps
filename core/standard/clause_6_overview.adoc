@@ -219,7 +219,7 @@ In this case, for the omitted dimension, the server may either use a default val
 !===
 | Parameters provided in the request                    | Server or resource defaults used                    | Computed
 | `width` and `height`                                  | `scale-denominator` and `center`                    | `bbox`
-| `bbox`                                                | `scale-denominator`                                 | `width` and `height`
+| `bbox`                                                | `scale-denominator`                                 | `center`, `width` and `height`
 | `center`                                              | `width`, `height` and `scale-denominator`           | `bbox`
 | `width`, `height`  and `center`                       | `scale-denominator`                                 | `bbox`
 | `scale-denominator` ^1^                               | `width`, `height` and `center`                      | `bbox`
@@ -243,9 +243,9 @@ but simply cut a piece from a pre-rendered map of a default scale. This is not a
 [cols="30,40,30",options="header"]
 !===
 | Parameters provided in the request                              | Server or resource defaults used                    | Computed
-| `width` and `height`                                            | `scale-denominator` and `center`                    | `bbox`
-| `scale-denominator`                                             | `width`, `height` and `center`                      | `bbox`
-| `width`, `height` and `scale-denominator`                       | `center`                                            | `bbox`
+| `width` and `height`                                            | `bbox` and `center`                                 | `scale-denominator`
+| `scale-denominator`                                             | `bbox` and `center`                                 | `width` and `height`
+| `width`, `height` and `scale-denominator`                     2+| _Error (would require subsetting the map)_
 | `bbox` *or* `center` (with or without additional parameters)  2+| _Error (would require subsetting the map)_
 !===
 
@@ -255,9 +255,9 @@ but simply cut a piece from a pre-rendered map of a default scale. This is not a
 !===
 | Parameters provided in the request                  | Server or resource defaults used                    | Computed
 | `width` and `height`                                | `scale-denominator` and `center`                    | `bbox`
-| `bbox`                                              | `width` and `height`                                | `scale-denominator`
+| `bbox`                                              | `width` and `height`                                | `center` and `scale-denominator`
 | `center`                                            | `width`, `height` and `scale-denominator`           | `bbox`
-| `width`, `height`  and `center`                     | `scale-denominator`                                 | `bbox`
+| `width`, `height` and `center`                      | `scale-denominator`                                 | `bbox`
 | `scale-denominator`                                 | `width`, `height` and `center`                      | `bbox`
 | `scale-denominator` and `center`                    | `width` and `height`                                | `bbox`
 | `width`, `height` and `scale-denominator`           | `center`                                            | `bbox`
