@@ -201,7 +201,7 @@ In this case, for the omitted dimension, the server may either use a default val
 [cols="30,40,30",options="header"]
 !===
 | Parameters provided in the request                  | Server or resource defaults used                    | Computed
-| _none_                                              | `width`, `height`, `scale-denominator` and `center` | `bbox`
+| _none_                                              | `scale-denominator`, `center`, `width` and `height` | `bbox`
 !===
 
 [#table_params_combinations_invalid,reftext='{table-caption} {counter:table-num}']
@@ -209,7 +209,7 @@ In this case, for the omitted dimension, the server may either use a default val
 [cols="30,40",options="header"]
 !===
 | Parameters provided in the request                            | Explanation
-| `bbox`, `width`, `height` and `scale-denominator`             | _Error (conflicts with default or provided `mm-per-pixel`)_
+| `bbox`, `scale-denominator`, `width` and `height`             | _Error (conflicts with default or provided `mm-per-pixel`)_
 | `bbox` *and* `center` (with or without additional parameters) | _Error (`bbox` and `center` are mutually exclusive)_
 !===
 
@@ -220,14 +220,14 @@ In this case, for the omitted dimension, the server may either use a default val
 | Parameters provided in the request                    | Server or resource defaults used                    | Computed
 | `width` and `height`                                  | `scale-denominator` and `center`                    | `bbox`
 | `bbox`                                                | `scale-denominator`                                 | `center`, `width` and `height`
-| `center`                                              | `width`, `height` and `scale-denominator`           | `bbox`
-| `width`, `height`  and `center`                       | `scale-denominator`                                 | `bbox`
-| `scale-denominator` ^1^                               | `width`, `height` and `center`                      | `bbox`
+| `center`                                              | `scale-denominator`, `width` and `height`           | `bbox`
+| `center`, `width` and `height`                        | `scale-denominator`                                 | `bbox`
+| `scale-denominator` ^1^                               | `center`, `width` and `height`                      | `bbox`
 | `scale-denominator` ^1^ and `center`                  | `width` and `height`                                | `bbox`
-| `width`, `height` and `scale-denominator`           2+| _Error (would require rescaling the map)_
+| `scale-denominator`, `width` and `height`           2+| _Error (would require rescaling the map)_
 | `bbox`, `width` and `height`                        2+| _Error (would require rescaling the map)_
 | `bbox` and `scale-denominator`                      2+| _Error (would require rescaling the map)_
-| `width`, `height`, `scale-denominator` and `center` 2+| _Error (would require rescaling the map)_
+| `scale-denominator`, `center`, `width` and `height` 2+| _Error (would require rescaling the map)_
 3+|
 ^1^ The `scale-denominator` parameter is defined in the _Scaling_ requirements class.
 However, an implementation supporting only _Subsetting_ may (*but is not required to*) still recognize the `scale-denominator` parameter and adjust its default `width` and `height` dimensions accordingly,
@@ -244,7 +244,7 @@ resulting in a different computed subsetting bounding box.
 | Parameters provided in the request                              | Server or resource defaults used                    | Computed
 | `width` and `height`                                            | `bbox` and `center`                                 | `scale-denominator`
 | `scale-denominator`                                             | `bbox` and `center`                                 | `width` and `height`
-| `width`, `height` and `scale-denominator`                     2+| _Error (would require subsetting the map)_
+| `scale-denominator`, `width` and `height`                     2+| _Error (would require subsetting the map)_
 | `bbox` *or* `center` (with or without additional parameters)  2+| _Error (would require subsetting the map)_
 !===
 
@@ -254,15 +254,15 @@ resulting in a different computed subsetting bounding box.
 !===
 | Parameters provided in the request                  | Server or resource defaults used                    | Computed
 | `width` and `height`                                | `scale-denominator` and `center`                    | `bbox`
-| `bbox`                                              | `width` and `height`                                | `center` and `scale-denominator`
-| `center`                                            | `width`, `height` and `scale-denominator`           | `bbox`
-| `width`, `height` and `center`                      | `scale-denominator`                                 | `bbox`
-| `scale-denominator`                                 | `width`, `height` and `center`                      | `bbox`
+| `bbox`                                              | `width` and `height`                                | `scale-denominator` and `center`
+| `center`                                            | `scale-denominator`, `width` and `height`           | `bbox`
+| `center` ,`width` and `height`                      | `scale-denominator`                                 | `bbox`
+| `scale-denominator`                                 | `center`, `width` and `height`                      | `bbox`
 | `scale-denominator` and `center`                    | `width` and `height`                                | `bbox`
-| `width`, `height` and `scale-denominator`           | `center`                                            | `bbox`
+| `scale-denominator`, `width` and `height`           | `center`                                            | `bbox`
 | `bbox`, `width` and `height`                        | _None (fully defined combination)_                  | `scale-denominator`
 | `bbox` and `scale-denominator`                      | _None (fully defined combination)_                  | `width` and `height`
-| `width`, `height`, `scale-denominator` and `center` | _None (fully defined combination)_                  | `bbox`
+| `scale-denominator`, `center`, `width` and `height` | _None (fully defined combination)_                  | `bbox`
 !===
 
 === Available formats and map response expectations
