@@ -59,3 +59,7 @@ All questions regarding this submission should be directed to the editor or the 
 |Jeff Harrison                         |US Army Geospatial Center
 |Satish Sankaran                       |Esri
 |===
+
+[big]*vii.     Legacy*
+
+This standard stands on the work done by many in the different versions of OGC Web Map Service. In particular work of Jeff de La Beaujardiere was instrumental in the consolidation of Web Map Service. He participated in the original testbeds that resulted in the WMS 1.0, back in April 2000. He became the author of all subsequence versions included WMS 1.1, WMS 1.1.1, WMS 1.3 and the ISO 19128:2005.
