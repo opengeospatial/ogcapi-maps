@@ -7,7 +7,7 @@ This annex provides a set of examples that illustrate requests to get maps from 
 The first example shows the response of a map endpoint with a request with no parameters (https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map).
 
 The server is free to respond with any `bbox` and any `width` and `height`.
-In this case the server default behaviour is to render the whole of Great Britain in a 448x1024 pixels canvas.
+In this case the server default behaviour is to render the whole of Great Britain in a 631x1024 pixels canvas.
 
 [#img_xmp_map_no_param,reftext='{figure-caption} {counter:figure-num}']
 .Great Britain data served as a map without specifying any parameter. From: https://www.ordnancesurvey.co.uk/products/os-open-map-local[OS OpenMap - Local], by the Ordnance Survey.
@@ -17,9 +17,12 @@ The headers of the response provide additional information on the bounding box (
 
 ----
 HTTP/1.1 200 OK
+Expires: Tue, 19 Nov 2024 09:58:40 GMT
+Access-Control-Allow-Origin: *
+Vary: Accept, Accept-Encoding, Prefer
 Content-Type: image/png
 Content-Bbox: -8.756498,49.814737,1.848147,60.948016
-Content-Length: 453751
+Content-Length: 538037
 ----
 
 The following examples are going to be centered on The O2 (formerly known as the Millenium Dome) shown here in a night aerial picture.
@@ -47,34 +50,40 @@ Since the `Content-Crs` is not specified in this case, the client can assume CRS
 
 ----
 HTTP/1.1 200 OK
+Expires: Tue, 19 Nov 2024 09:57:36 GMT
+Access-Control-Allow-Origin: *
+Vary: Accept, Accept-Encoding, Prefer
 Content-Type: image/png
-Content-Bbox: -0.005493,51.494507,0.005493,51.505493
+Content-Bbox: -0.008805,51.494504,0.008805,51.505496
+Content-Length: 188490
 ----
 
 The following request is equivalent, using the value of that `Content-Bbox` as the value for the `bbox` parameter instead of using `center`, explicitly specifying the same `width` and `height` dimensions as those
 default values chosen by the server for the above request:
 
-https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?bbox=-0.005493,51.494507,0.005493,51.505493&width=1024&height=1024
+https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?bbox=-0.008805,51.494504,0.008805,51.505496&width=1024&height=1024
 
 There is also an equivalent notation for the previous request that uses `subset` instead of `bbox`:
 
-https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?subset=Lat(51.494507:51.505493),Lon(-0.005493:0.005493)&width=1024&height=1024
+https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?subset=Lat(51.494504:51.505496),Lon(-0.008805:0.008805)&width=1024&height=1024
+
+As explained in the aspect ratio considerations section, clients wishing to retrieve identical responses from different implementations should specify either of these `bbox` or `subset` parameters,
+together with a `width` and `height`.
 
 // page break to keep request & response together in PDF
 <<<
 
+////
 Next, we demonstrate the use of the `crs` parameter to select World Mercator (EPSG:3395) as an alternative output Coordinate Reference System,
 instead of the default output CRS which corresponds to the native CRS (`storageCRS`), CRS84 in this case.
 In order to also specify a bounding box in that CRS, the following request makes use of the `bbox-crs` parameter, which otherwise always defaults to CRS84 (regardless of the native CRS or selected output CRS).
 
 https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?bbox-crs=%5BEPSG:3395%5D&bbox=-611.496226,6676146.257264,611.496226,6677369.249717&crs=%5BEPSG:3395%5D["https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?bbox-crs=[EPSG:3395\]&bbox=-611.496226,6676146.257264,611.496226,6677369.249717&crs=[EPSG:3395\]"]
 
-As seen in the image response below, the shapes are less distorted than they were before, when the CRS84 default (the native CRS) was used,
-and the bounding box has been adjusted slightly, bringing the top of The O2 dome partially outside the top of the map.
-
 [#xmp_map_center_crs,reftext='{figure-caption} {counter:figure-num}']
 .Map of OS OpenMap - Local close to The O2 dome, using World Mercator (EPSG:3395) output `crs`
 image::images/xmp_map_bbox_crs_1024x1024.png[width=600,align="center"]
+////
 
 // page break to keep request & response together in PDF
 <<<
@@ -87,12 +96,13 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&scal
 .Map OS OpenMap - Local centered on The O2 dome at 1:50,000 scale using `scale-denominator`
 image::images/xmp_map_center_scale_1024x1024.png[width=600,align="center"]
 
-The server responded with the same `width` and `height` (1024x1024 pixels) but it gives us a more general view of the center of London. The headers of the response provide additional information on the bounding box of the image.
+The server responded with the same `width` and `height` (1024x1024 pixels) but it gives us a more general view of the center of London.
+The headers of the response provide additional information on the bounding box of the image.
 
 // page break to keep request & response together in PDF
 <<<
 
-We can now request a smaller image of by specifying the `height` of the image.
+We can also request a smaller image by specifying the `height` of the image.
 https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&scale-denominator=50000&height=512
 
 [#xmp_map_center_scale_h,reftext='{figure-caption} {counter:figure-num}']
@@ -121,9 +131,11 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&scal
 image::images/xmp_map_center_scale_hw_512x1024.png[width=300,align="center"]
 
 For these last two requests, specifying both the `width` and `height`, the `center`, as well as the `scale-denominator`, combined with the fact that the default value of `mm-per-pixel`
-is defined as 0.28mm/pixel, defines all of the parameters necessary to make the subsetting and scaling completely predictable by the client
-(except for aspect ratio considerations mentioned at the end of the _Subsetting and scaling the map_ sub-section of the <<overview>>).
-The response headers will still contain the bounding box information as the consistently reliable mechanism for georeferencing the response, including cases where the server may decide to correct the center or bounding box due to the values being out of range.
+is defined as 0.28mm/pixel, defines all of the parameters necessary to make the subsetting and scaling mostly predictable by the client.
+As explained in the aspect ratio recommendation section, one exception is that some implementations may aim to maintain the two-dimensional scale between physical and pixel units,
+others may maintain the ratio between CRS and pixel units instead, or perform calculations slightly differently (e.g., taking into account the eccentricity of the ellisoid or not).
+Because of these potential differences, clients should always consider the bounding box information in the response headers for georeferencing purposes, as well as the actual dimensions of the image returned.
+This will also avoid problems in cases where the server may decide to correct the center or bounding box due to the values being out of range.
 
 // page break to keep request & response together in PDF
 <<<

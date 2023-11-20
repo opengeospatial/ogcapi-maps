@@ -212,7 +212,7 @@ In this case, for the omitted dimension, the server may either use a default val
 [cols="30,40",options="header"]
 !===
 | Parameters provided in the request                            | Explanation
-| `bbox`, `scale-denominator`, `width` and `height`             | _Error (conflicts with default or provided `mm-per-pixel`)_
+| `bbox`, `scale-denominator`, (`width` or `height`)            | _Error (conflicts with default or provided `mm-per-pixel`)_
 | `bbox` *and* `center` (with or without additional parameters) | _Error (`bbox` and `center` are mutually exclusive)_
 !===
 
@@ -269,7 +269,7 @@ but simply cut a piece from a pre-rendered map of a default scale. This is not a
 
 ^2^ Different implementations may maintain a slightly different relationship between the dimensions (`width` and `height`), the spatial extent (`bbox`) and the `scale-denominator`,
 based on different considerations for preserving the aspect ratio of the map for CRSs that do not have a constant mapping to physical distance along their axes, such as geographic CRSs
-(preserving the aspect ratio of CRS unit vs. preserving the aspect ratio of physical units).
+(preserving the aspect ratio of CRS units vs. preserving the aspect ratio of physical units).
 For example, an implementation may decide to maintain a constant degrees of longitude to degrees of latitude mapping for CRS84, while another may try to avoid returning maps that appear
 squished at polar latitudes by compensating for the fact that degrees of longitudes correspond to a smaller real-world physical distance.
 This may result in the `bounding box`, `width` or `height` being computed differently between these implementations.
@@ -277,7 +277,7 @@ Clients should always use `Content-Bbox` header to properly georeference the out
 !===
 
 NOTE: Changing the output CRS using the `crs` parameter will of course also have an impact on the mapping between pixels on the map and units in the real world,
-and on the calculated bounding box (in output CRS unit).
+and on the calculated bounding box (in output CRS units).
 
 === Available formats and map response expectations
 
