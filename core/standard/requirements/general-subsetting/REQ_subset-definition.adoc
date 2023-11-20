@@ -19,8 +19,8 @@
      {number} is an integer or floating-point number, and
      {text} is some general ASCII text (such as a time and date notation in ISO 8601).
 ----
-^|B |Any name of the 'additional' dimensions in the extent of the collection SHALL be supported as axis name.
-^|C |A 400 error status code SHALL be returned if an axis name does not correspond to the name of one of the 'additional' dimensions in the extent of the collection.
+^|B |Any name of the _additional_ dimensions in the extent of the collection SHALL be supported as axis name.
+^|C |A 400 error status code SHALL be returned if an axis name does not correspond to the name of one of the _additional_ dimensions in the extent of the collection.
 ^|D |If the _intervalOrPoint_ values fall entirely outside the range of valid values defined for the identified axis, a 204 status code SHALL be returned.
 ^|E |For an axis that can wrap around, a _low_ value greater than _high_ SHALL be supported to indicate an extent crossing that wrapping point.
 ^|F |Multiple subset parameters SHALL be interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.

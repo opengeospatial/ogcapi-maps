@@ -63,7 +63,12 @@ include::recommendations/spatial-subsetting/PER_subset-crs-curie.adoc[]
 === Subsetting coordinates
 
 ==== Parameter `bbox`
-The `bbox` parameter defines how to subset a map using a bounding box (in bbox-crs coordinates). The `bbox` parameter values are defined using the exterior edges of the pixels of the viewport defined by the width and height values. This is because individual pixels (including the ones in the four corners of the viewport) occupy an area on the ground. In other words, the relation of the bounding box to the map pixel matrix is that the bounding box goes around the "outside" of the pixels of the map rather than through the centers of the map's border pixels (as is often the case for coverages where cell values represent a point).
+The `bbox` parameter defines how to subset a map using a bounding box (in `bbox-crs` coordinates).
+This parameter selects a spatial region consisting of any pixels of the map whose area is contained or intersects with the specified bounding box.
+Individual pixels (including the ones in the four corners of the map) occupy an area on the ground (unlike a coverage whose cell values represent an infinitely small point).
+The bounding box describing the spatial content of the map (e.g., in the collection description) will go around the "outside" of the pixels of the map, rather than through the centers of the map's border pixels.
+This is also true for the description of a coverage whose cells represent a value for an area, which may be available as both _Maps_ as well as through _OGC API - Coverages_, allowing
+to offer them both from the same OGC API collection. For example, a global dataset will always be described using -180 to 180 longitude bounds.
 
 include::requirements/spatial-subsetting/REQ_bbox-definition.adoc[]
 
@@ -76,8 +81,10 @@ Example of a 3D bounding box:
 `bbox=-180,-90,10000,180,90,12000&bbox-crs=[OGC:CRS84h]`
 
 ==== Parameter `subset`
-The `subset` parameter is a common building block used to select a subset of a geospatial resource shared with other OGC API Standards. This can be specified as an interval between lower and higher bound values or as a single value. An example of an interval is "between 10.0 and 20.0 degrees of latitude" `subset=Lat(10:20)`. An example of single value is "150 meters above main sea level" `subset=h(150)`.
-The dimensions that can be used within the value specified for this parameter are the axis abbreviations specified in the CRS definition.
+The `subset` parameter is a common building block used to select a subset of a geospatial resource shared with other OGC API Standards.
+This can be specified as an interval between lower and higher bound values or as a single value. An example of an interval is "between 10.0 and 20.0 degrees of latitude" `subset=Lat(10:20)`.
+An example of single value is "150 meters above main sea level" `subset=h(150)`.
+The dimensions that can be used within the value specified for this parameter, in the context of this particular requirement class, are the abbreviations for the spatial axes specified in the CRS definition.
 
 The `subset` parameter is defined as follows:
 
