@@ -25,6 +25,58 @@ Content-Bbox: -8.756498,49.814737,1.848147,60.948016
 Content-Length: 538037
 ----
 
+This map resource is attached to an https://docs.ogc.org/DRAFTS/20-024.html[_OGC API - Common - Part 2_] collection origin, which is available from the parent resource path:
+
+https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal?f=json[https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal]
+
+.JSON collection description response for the OS OpenMap Local collection
+=================
+[source,JSON]
+
+{
+   "id" : "OpenMapLocal",
+   "title" : "OS OpenMap - Local",
+   "description" : "OS OpenMap - Local, by the OrdnanceSurvey",
+   "attribution" : "<a href='https://www.ordnancesurvey.co.uk/products/os-open-map-local'>OS OpenMap - Local</a>",
+   "extent" : {
+      "spatial" : {
+         "bbox" : [ [ -8.7564981947375, 49.8147371614082,
+                       1.8481470870055, 60.9480162305518 ] ]
+   } },
+   "minScaleDenominator" : 4265.4591676995678,
+   "minCellSize" : 0.0000107288361,
+   "storageCrs" : "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
+   "crs" : [
+      "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
+      "http://www.opengis.net/def/crs/EPSG/0/4326",
+      "http://www.opengis.net/def/crs/EPSG/0/3857",
+      "http://www.opengis.net/def/crs/EPSG/0/3395"
+   ],
+   "links" : [
+      { "rel" : "self", "title" : "Information about the OpenMapLocal data",
+        "href" : "/ogcapi/collections/OpenMapLocal"
+      },
+      { "rel" : "[ogc-rel:map]", "title" : "Default map",
+         "href" : "/ogcapi/collections/OpenMapLocal/map"
+      },
+      { "rel" : "[ogc-rel:tilesets-map]",
+        "title" : "Map tilesets available for this collection",
+        "href" : "/ogcapi/collections/OpenMapLocal/map/tiles"
+      },
+      { "rel" : "[ogc-rel:tilesets-vector]",
+        "title" : "Multi-layer vector tilesets available for this collection",
+        "href" : "/ogcapi/collections/OpenMapLocal/tiles"
+      },
+      { "rel" : "[ogc-rel:styles]", "title" : "Styles for OpenMapLocal",
+        "href" : "/ogcapi/collections/OpenMapLocal/styles"
+      }
+   ]
+}
+=================
+
+// page break to keep request & response together in PDF
+<<<
+
 The following examples are going to be centered on The O2 (formerly known as the Millenium Dome) shown here in a night aerial picture.
 
 [#o2_dome,reftext='{figure-caption} {counter:figure-num}']
@@ -69,48 +121,51 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?subset=Lat(51.4945
 
 As explained in the aspect ratio considerations section, clients wishing to retrieve identical responses from different implementations should specify either of these `bbox` or `subset` parameters,
 together with a `width` and `height`.
+We can request a smaller image by specifying the `height` of the image.
+https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512
 
-// page break to keep request & response together in PDF
-<<<
-
-////
-Next, we demonstrate the use of the `crs` parameter to select World Mercator (EPSG:3395) as an alternative output Coordinate Reference System,
-instead of the default output CRS which corresponds to the native CRS (`storageCRS`), CRS84 in this case.
-In order to also specify a bounding box in that CRS, the following request makes use of the `bbox-crs` parameter, which otherwise always defaults to CRS84 (regardless of the native CRS or selected output CRS).
-
-https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?bbox-crs=%5BEPSG:3395%5D&bbox=-611.496226,6676146.257264,611.496226,6677369.249717&crs=%5BEPSG:3395%5D["https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?bbox-crs=[EPSG:3395\]&bbox=-611.496226,6676146.257264,611.496226,6677369.249717&crs=[EPSG:3395\]"]
-
-[#xmp_map_center_crs,reftext='{figure-caption} {counter:figure-num}']
-.Map of OS OpenMap - Local close to The O2 dome, using World Mercator (EPSG:3395) output `crs`
-image::images/xmp_map_bbox_crs_1024x1024.png[width=600,align="center"]
-////
-
-// page break to keep request & response together in PDF
-<<<
-
-The following request specifies the same `center` point parameter as before, but specifies a more general scale denominator:
-
-https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&scale-denominator=50000
-
-[#xmp_map_center_scale,reftext='{figure-caption} {counter:figure-num}']
-.Map OS OpenMap - Local centered on The O2 dome at 1:50,000 scale using `scale-denominator`
-image::images/xmp_map_center_scale_1024x1024.png[width=600,align="center"]
-
-The server responded with the same `width` and `height` (1024x1024 pixels) but it gives us a more general view of the center of London.
-The headers of the response provide additional information on the bounding box of the image.
-
-// page break to keep request & response together in PDF
-<<<
-
-We can also request a smaller image by specifying the `height` of the image.
-https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&scale-denominator=50000&height=512
-
-[#xmp_map_center_scale_h,reftext='{figure-caption} {counter:figure-num}']
-.Smaller 512x512 map of OS OpenMap - Local centered on the O2 dome at 1:50,000 (smaller area)
-image::images/xmp_map_center_scale_h_512x512.png[width=300,align="center"]
+[#xmp_map_center_h_512,reftext='{figure-caption} {counter:figure-num}']
+.Map of OS OpenMap - Local centered on The O2 dome using `height=512`
+image::images/xmp_map_center_h_512x512.png[width=280,align="center"]
 
 The server would be free to act otherwise, but it automatically adjusted the width to also be 512.
-Notice that in order to preserve the same specified 1:50,000 scale with a smaller image, the spatial region (bounding box) was reduced accordingly.
+Notice that in order to preserve the same default scale with a smaller image, the spatial region (bounding box) was reduced accordingly.
+This behavior is particularly important when the client requests a specific scale, as in the following request which specifies the same `center` point parameter as before,
+but requests a map for a 1:8000 scale:
+
+// page break to keep request & response together in PDF
+<<<
+
+https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512&scale-denominator=8000
+
+[#xmp_map_center_scale8000,reftext='{figure-caption} {counter:figure-num}']
+.Map of OS OpenMap - Local centered on The O2 dome at 1:8000 scale using `scale-denominator`
+image::images/xmp_map_center_scale_8000.png[width=280,align="center"]
+
+The server responded with the same `width` and `height` (512x512 pixels).
+The headers of the response provide additional information on the bounding box of the image.
+
+Clients can easily zoom in and out by simply changing the `scale-denominator` parameter as in the following images at different scales:
+
+[#xmp_map_center_scale12000,reftext='{figure-caption} {counter:figure-num}']
+.Map of OS OpenMap - Local centered on The O2 dome https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512&scale-denominator=12000[at 1:12,000 scale] using `scale-denominator`
+image::images/xmp_map_center_scale_12000.png[width=280,align="center"]
+
+[#xmp_map_center_scale20000,reftext='{figure-caption} {counter:figure-num}']
+.Map of OS OpenMap - Local centered on The O2 dome https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512&scale-denominator=20000[at 1:20,000 scale] using `scale-denominator`
+image::images/xmp_map_center_scale_20000.png[width=280,align="center"]
+
+[#xmp_map_center_scale30000,reftext='{figure-caption} {counter:figure-num}']
+.Map of OS OpenMap - Local centered on The O2 dome https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512&scale-denominator=30000[at 1:30,000 scale] using `scale-denominator`
+image::images/xmp_map_center_scale_30000.png[width=280,align="center"]
+
+[#xmp_map_center_scale50000,reftext='{figure-caption} {counter:figure-num}']
+.Map of OS OpenMap - Local centered on The O2 dome https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512&scale-denominator=50000[at 1:50,000 scale] using `scale-denominator`
+image::images/xmp_map_center_scale_50000.png[width=280,align="center"]
+
+// page break to keep request & response together in PDF
+<<<
+
 We could force a rectangular image by also specifying the `width` of the image to be 1024, while keeping the rest of the parameters:
 
 https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&scale-denominator=50000&width=1024&height=512
@@ -119,10 +174,23 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&scal
 .Wider 1024x512 map of OS OpenMap - Local centered on the O2 dome at 1:50,000 scale
 image::images/xmp_map_center_scale_hw_1024x512.png[width=600,align="center"]
 
+For this last request, as well as for the one below, specifying both the `width` and `height`, the `center`, as well as the `scale-denominator`, combined with the fact that the default value of `mm-per-pixel`
+is defined as 0.28mm/pixel, defines all of the parameters necessary to make the subsetting and scaling _mostly_ predictable by the client.
+As explained in the aspect ratio recommendation section, one exception is that some implementations may aim to maintain the two-dimensional scale between physical and pixel units,
+wheras others may maintain the ratio between CRS and pixel units instead. Calculations may also be performed slightly differently (e.g., taking into account the eccentricity of the ellisoid or not).
+Because of these potential differences, clients should always consider the bounding box information in the response headers for georeferencing purposes, as well as the actual dimensions of the image returned.
+This will also avoid problems in cases where the server may decide to correct the center or bounding box due to the values being out of range.
+The `center` and `scale-denominator` parameters are primarily intended as convenience parameters to let the server automatically compute ideal bounding boxes and dimensions,
+while specifying a spatial region using the `bbox` or `subset` parameter as well as `width` and `height`, should result in more deterministic responses.
+
+////
+
+// This taller example probably does not help very much.
+
 // page break to keep request & response together in PDF
 <<<
 
-Or a taller image by specifying instead a `width` of 512 and a `height` of 1024:
+The following requests a taller image by specifying instead a `width` of 512 and a `height` of 1024:
 
 https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&scale-denominator=50000&height=1024&width=512
 
@@ -130,12 +198,7 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&scal
 .Taller map of OS OpenMap - Local centered on the O2 dome at 1:50,000 scale
 image::images/xmp_map_center_scale_hw_512x1024.png[width=300,align="center"]
 
-For these last two requests, specifying both the `width` and `height`, the `center`, as well as the `scale-denominator`, combined with the fact that the default value of `mm-per-pixel`
-is defined as 0.28mm/pixel, defines all of the parameters necessary to make the subsetting and scaling mostly predictable by the client.
-As explained in the aspect ratio recommendation section, one exception is that some implementations may aim to maintain the two-dimensional scale between physical and pixel units,
-others may maintain the ratio between CRS and pixel units instead, or perform calculations slightly differently (e.g., taking into account the eccentricity of the ellisoid or not).
-Because of these potential differences, clients should always consider the bounding box information in the response headers for georeferencing purposes, as well as the actual dimensions of the image returned.
-This will also avoid problems in cases where the server may decide to correct the center or bounding box due to the values being out of range.
+////
 
 // page break to keep request & response together in PDF
 <<<
@@ -143,7 +206,8 @@ This will also avoid problems in cases where the server may decide to correct th
 Spatial datasets are often also organized with a temporal dimension in addition to two or three spatial dimensions
 (some of these datasets are sometimes called time series or datacubes).
 
-The following example reuses the same subsetting and scaling and applies it to a Sentinel-2 collection of images. The `datetime` parameter selects a particular day of the time series (April 1st, 2022).
+The following example reuses the same subsetting and scaling from the earlier rectangular 1:50,000 map of London, and applies it to a Sentinel-2 collection of images.
+The `datetime` parameter selects a particular day of the time series (April 1st, 2022).
 
 https://maps.gnosis.earth/ogcapi/collections/sentinel2-l2a/map?center=0,51.5&scale-denominator=50000&datetime=2022-04-01&width=1024&height=512
 
@@ -155,11 +219,51 @@ There is an equivalent notation for the previous request that uses `subset` inst
 
 https://maps.gnosis.earth/ogcapi/collections/sentinel2-l2a/map?center=0,51.5&scale-denominator=50000&width=1024&height=512&subset=time(%222022-04-01%22)["https://maps.gnosis.earth/ogcapi/collections/sentinel2-l2a/map?center=0,51.5&scale-denominator=50000&width=1024&height=512&subset=time(\"2022-04-01\")"]
 
-It is also common for spatial datasets, especially for climate weather and climate data, to feature additional dimensions beyond space and time,
-such as pressure levels, or additional time dimensions relating to forecasting. These can all be handled in a generic manner also using the `subset` parameter.
+// page break to keep request & response together in PDF
+<<<
+
+The following two example requests, for the same region and time of interest, illustrate two additional styles available from the same sentinel-2 datacube,
+in addition to its default Red, Green, Blue natural color style.
+The styles are available at `.../styles/{styleId}`, through https://docs.ogc.org/DRAFTS/20-009.html[_OGC API - Styles_], and provide links to map resources.
+The first style, using the style identifier _scl_, symbolizes the Scene Classification Layer categories:
+
+https://maps.gnosis.earth/ogcapi/collections/sentinel2-l2a/styles/scl/map?center=0,51.5&scale-denominator=50000&datetime=2022-04-01&width=1024&height=512
+
+[#xmp_xmp_s2l2a_scl,reftext='{figure-caption} {counter:figure-num}']
+.A map of a scene classification layer style for Sentinel-2 data from April 1st, 2022 of London. From: https://sentinel.esa.int/web/sentinel/missions/sentinel-2[Copernicus SENTINEL-2 operated by ESA].
+image::images/xmp_s2l2a_scl.png[width=600,align="center"]
+
+The next style, using style identifier _evi2_, represents an Enhanced Vegetation Index (EVI) calculated from bands B02 (blue), B04 (red) and B08 (near infrared):
+
+https://maps.gnosis.earth/ogcapi/collections/sentinel2-l2a/styles/evi2/map?center=0,51.5&scale-denominator=50000&datetime=2022-04-01&width=1024&height=512
+
+[#xmp_xmp_s2l2a_evi,reftext='{figure-caption} {counter:figure-num}']
+.A map of an Enhanced Vegetation Index (EVI) style for Sentinel-2 data from April 1st, 2022 of London. From: https://sentinel.esa.int/web/sentinel/missions/sentinel-2[Copernicus SENTINEL-2 operated by ESA].
+image::images/xmp_s2l2a_evi.png[width=600,align="center"]
 
 // page break to keep request & response together in PDF
 <<<
+
+The following example requests illustrate how to retrieve two different styles for a High Resolution (1 m) Digital Terrain Model (DTM) of the Red River in Manitoba, from Natural Resources Canada.
+Styles with identifiers _style1_ and _style2_ are available at `.../styles/{styleId}`, through https://docs.ogc.org/DRAFTS/20-009.html[_OGC API - Styles_], and provide links to map resources.
+
+https://maps.gnosis.earth/ogcapi/collections/HRDEM-RedRiver:DTM:1m/styles/style1/map?center=-97.06,49.937&scale-denominator=28000&height=600&width=1000
+
+[#hrdem_redriver_style1,reftext='{figure-caption} {counter:figure-num}']
+.Styled map of https://open.canada.ca/data/en/dataset/957782bf-847c-4644-a757-e383c0057995[High Resolution DTM] from Natural Resources Canada (style1)
+image::images/xmp_hrdem_style1.png[width=550,align="center"]
+
+https://maps.gnosis.earth/ogcapi/collections/HRDEM-RedRiver:DTM:1m/styles/style2/map?center=-97.06,49.937&scale-denominator=28000&height=600&width=1000
+
+[#hrdem_redriver_style2,reftext='{figure-caption} {counter:figure-num}']
+.Styled map of High Resolution DTM from Natural Resources Canada, showing alternative _style2_
+image::images/xmp_hrdem_style2.png[width=550,align="center"]
+
+// page break to keep request & response together in PDF
+<<<
+
+It is also common for spatial datasets, especially for climate weather and climate data, to feature additional dimensions beyond space and time,
+such as pressure levels, or additional time dimensions relating to forecasting. These can all be handled in a generic manner also using the `subset` parameter.
 
 The following example illustrates how to retrieve a map of the temperature for the whole world at a _pressure_ (an extra dimension) of 500 hpa:
 
@@ -169,6 +273,9 @@ https://maps.gnosis.earth/ogcapi/collections/climate:cmip5:byPressureLevel:tempe
 .A map of Copernicus CMIP5 data showing temperature of the whole world at 500 hPa on July 3rd, 2023. From: https://cds.climate.copernicus.eu/cdsapp#!/dataset/projections-cmip5-daily-pressure-levels[Copernicus climate data store].
 image::images/world_T.png[width=600,align="center"]
 
+// page break to keep request & response together in PDF
+<<<
+
 The following example illustrates how to retrieve a map of the relative humidity for the whole world at a _pressure_ (an extra dimension) of 500 hpa:
 
 https://maps.gnosis.earth/ogcapi/collections/climate:era5:relativeHumidity/map?subset=pressure(500)&datetime=2023-04-06T23:00:00Z
@@ -176,3 +283,120 @@ https://maps.gnosis.earth/ogcapi/collections/climate:era5:relativeHumidity/map?s
 [#world_HR_png,reftext='{figure-caption} {counter:figure-num}']
 .A map of Copernicus ERA5 reanalysis data showing HR of the whole world at 500 hPa on April 6th, 2023 at 23:00:00 UTC. From: https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-pressure-levels[Copernicus climate data store].
 image::images/world_HR.png[width=600,align="center"]
+
+The following https://maps.gnosis.earth/ogcapi/collections/climate:era5:relativeHumidity?f=json[JSON collection description] for this last relative humidity example illustrates
+how to describe the extent of multidimensional datasets, including the description of both regular and irregular grids.
+
+.JSON collection description response for ERA5 relative humidity
+=================
+[source,JSON]
+
+{
+   "id" : "climate:era5:relativeHumidity", "title" : "ERA5 Relative Humidity",
+   "attribution" : "<a href='https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-pressure-levels'>Copernicus Climate Data Store</a>",
+   "extent" : {
+      "spatial" : {
+         "bbox" : [ [ -180, -90, 180, 90 ] ],
+         "grid" : [
+            { "cellsCount" : 2049, "resolution" : 0.17578125 },
+            { "cellsCount" : 1025, "resolution" : 0.17578125 }
+         ]
+      },
+      "temporal" : {
+         "interval" : [ [ "2023-04-01T00:00:00Z", "2023-04-06T23:00:00Z" ] ],
+         "grid" : { "cellsCount" : 144, "resolution" : "PT1H" }
+      },
+      "pressure" : {
+         "unit" : "hPa",
+         "interval" : [ [ 1.0, 1000.0 ] ],
+         "grid" : {
+            "cellsCount" : 37,
+            "coordinates" : [ 1.0, 2.0, 3.0, 5.0, 7.0, 10.0, 20.0,
+               30.0, 50.0, 70.0, 100.0, 125.0, 150.0, 175.0, 200.0,
+               225.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0, 550.0,
+               600.0, 650.0, 700.0, 750.0, 775.0, 800.0, 825.0, 850.0,
+               875.0, 900.0, 925.0, 950.0, 975.0, 1000.0 ]
+         }
+      }
+   },
+   "minCellSize" : 0.17578125,
+   "minScaleDenominator" : 69885283.0035897195339,
+   "crs" : [
+      "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
+      "http://www.opengis.net/def/crs/EPSG/0/4326",
+      "http://www.opengis.net/def/crs/EPSG/0/3857",
+      "http://www.opengis.net/def/crs/EPSG/0/3395"
+   ],
+   "storageCrs" : "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
+   "links" : [
+      { "rel" : "self",
+        "title" : "Information about the ERA5 Relative Humidity",
+        "href" : "/ogcapi/collections/climate:era5:relativeHumidity"
+      },
+      { "rel" : "[ogc-rel:map]", "title" : "Default map",
+        "href" : "/ogcapi/collections/climate:era5:relativeHumidity/map"
+      },
+      { "rel" : "[ogc-rel:tilesets-map]",
+        "title" : "Map tilesets available for this collection",
+        "href" : "/ogcapi/collections/climate:era5:relativeHumidity/map/tiles"
+      },
+      { "rel" : "[ogc-rel:styles]", "title" : "Styles for Relative Humidity",
+        "href" : "/ogcapi/collections/climate:era5:relativeHumidity/styles"
+      }
+      { "rel" : "[ogc-rel:schema]", "title" : "Schema",
+        "href" : "/ogcapi/collections/climate:era5:relativeHumidity/schema"
+      },
+      { "rel" : "[ogc-rel:coverage]", "title" : "Coverage for Relative Humidity",
+        "href" : "/ogcapi/collections/climate:era5:relativeHumidity/coverage"
+      },
+      { "rel" : "[ogc-rel:tilesets-coverage]",
+        "title" : "Coverage tilesets available for this collection",
+        "href" : "/ogcapi/collections/climate:era5:relativeHumidity/tiles"
+      },
+   ]
+}
+=================
+
+// page break to keep request & response together in PDF
+<<<
+
+Before introducing the selection of alternative output Coordinate Reference System (World Mercator, EPSG:3395) from the default native CRS (`storageCRS`) returned so far (CRS84),
+let's zoom out significantly further away to a 20,000,000. At the scales used above, the difference between those two CRSs would not be distinguishable,
+since the server automatically preserve scales in both dimensions, which makes the responses for those two CRSs almost equivalent on a local scale.
+We will illustrate this by requesting a map for the Blue Marble Next Generation (2004) from NASA Earth Observatory's Visible Earth,
+and first explicitly request EPSG:4326 (whose main difference from CRS84 is that axis order is Latitude, Longitude).
+
+https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=%5BEPSG:4326%5D["https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=[EPSG:4326\]"]
+
+Notice that the response header now includes the `Content-Crs:` header, and that the `Content-Bbox:` axis order now follows the latitude, longitude order:
+
+----
+Content-Crs: <http://www.opengis.net/def/crs/EPSG/0/4326>
+Content-Bbox: 25.729221,-28.573112,77.270779,28.573112
+----
+
+[#xmp_map_blueMarble_4326,reftext='{figure-caption} {counter:figure-num}']
+.Map of https://earthobservatory.nasa.gov/features/BlueMarble[NASA Earth Observatory Blue Marble Next Generation (2004)], in Plate Carrée (EPSG:4326) output `crs`
+image::images/xmp_blueMarble_4326.jpg[width=400,align="center"]
+
+// page break to keep request & response together in PDF
+<<<
+
+Now we can instead request EPSG:3395 using this request:
+
+https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=%5BEPSG:3395%5D["https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=[EPSG:3395\]"]
+
+[#xmp_map_blueMarble_3395,reftext='{figure-caption} {counter:figure-num}']
+.Map of NASA Earth Observatory Blue Marble Next Generation (2004), using World Mercator (EPSG:3395) output `crs`
+image::images/xmp_blueMarble_3395.jpg[width=400,align="center"]
+
+The `Content-Crs:` contains the coordinates of the bounding box selected from the requested scale and default dimensions, which we can use to make a request that will generate an equilvalent response.
+
+----
+Content-Crs: <http://www.opengis.net/def/crs/EPSG/0/3395>
+Content-Bbox: -4596385.263861,2080129.089271,4596385.263861,11273386.415933
+----
+
+In order to also specify the bounding box in that EPSG:3395 CRS, the following request also makes use of the `bbox-crs` parameter, which otherwise always defaults to CRS84 (regardless of the native CRS or selected output CRS).
+
+https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?bbox-crs=%5BEPSG:3395%5D&bbox=-4596385.263861,2080129.089271,4596385.263861,11273386.415933&crs=%5BEPSG:3395%5D["https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?bbox-crs=[EPSG:3395\]&bbox=-4596385.263861,2080129.089271,4596385.263861,11273386.415933&crs=[EPSG:3395\]"]
