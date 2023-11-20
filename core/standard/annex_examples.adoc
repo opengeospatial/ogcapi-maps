@@ -215,9 +215,11 @@ https://maps.gnosis.earth/ogcapi/collections/sentinel2-l2a/map?center=0,51.5&sca
 .A map of Sentinel-2 data from April 1st, 2022 of the same area. From: https://sentinel.esa.int/web/sentinel/missions/sentinel-2[Copernicus SENTINEL-2 operated by ESA].
 image::images/xmp_s2l2a_center_scale.png[width=600,align="center"]
 
-There is an equivalent notation for the previous request that uses `subset` instead of `datetime` (note that in this case, the time string should be enclosed in double quotes):
+There is an equivalent notation for the previous request that uses `subset` for the _time_ axis instead of the `datetime` parameter.
+This subsetting axis can also be combined within a single `subset` parameter value together with subsetting for the `Lat` and `Lon` axes, instead of using `center` and `scale-denominator`, or `bbox`.
+Note that in this case, the time string should be enclosed in double quotes.
 
-https://maps.gnosis.earth/ogcapi/collections/sentinel2-l2a/map?center=0,51.5&scale-denominator=50000&width=1024&height=512&subset=time(%222022-04-01%22)["https://maps.gnosis.earth/ogcapi/collections/sentinel2-l2a/map?center=0,51.5&scale-denominator=50000&width=1024&height=512&subset=time(\"2022-04-01\")"]
+https://maps.gnosis.earth/ogcapi/collections/sentinel2-l2a/map?width=1024&height=512&subset=time(%222022-04-01%22),Lat(51.467787:51.532213),Lon(-0.103152:0.103152)["https://maps.gnosis.earth/ogcapi/collections/sentinel2-l2a/map?width=1024&height=512&subset=time(\"2022-04-01\"),Lat(51.467787:51.532213),Lon(-0.103152:0.103152)"]
 
 // page break to keep request & response together in PDF
 <<<
@@ -265,7 +267,7 @@ image::images/xmp_hrdem_style2.png[width=550,align="center"]
 It is also common for spatial datasets, especially for climate weather and climate data, to feature additional dimensions beyond space and time,
 such as pressure levels, or additional time dimensions relating to forecasting. These can all be handled in a generic manner also using the `subset` parameter.
 
-The following example illustrates how to retrieve a map of the temperature for the whole world at a _pressure_ (an extra dimension) of 500 hpa:
+The following example illustrates how to retrieve a map of the temperature for the whole world at a _pressure_ (an extra dimension) of 500 hectopascals:
 
 https://maps.gnosis.earth/ogcapi/collections/climate:cmip5:byPressureLevel:temperature/map?subset=pressure(500)&datetime=2023-07-03
 
@@ -276,7 +278,7 @@ image::images/world_T.png[width=600,align="center"]
 // page break to keep request & response together in PDF
 <<<
 
-The following example illustrates how to retrieve a map of the relative humidity for the whole world at a _pressure_ (an extra dimension) of 500 hpa:
+The following example illustrates how to retrieve a map of the relative humidity for the whole world at a _pressure_ (an extra dimension) of 500 hectopascals:
 
 https://maps.gnosis.earth/ogcapi/collections/climate:era5:relativeHumidity/map?subset=pressure(500)&datetime=2023-04-06T23:00:00Z
 
@@ -342,7 +344,7 @@ how to describe the extent of multidimensional datasets, including the descripti
       },
       { "rel" : "[ogc-rel:styles]", "title" : "Styles for Relative Humidity",
         "href" : "/ogcapi/collections/climate:era5:relativeHumidity/styles"
-      }
+      },
       { "rel" : "[ogc-rel:schema]", "title" : "Schema",
         "href" : "/ogcapi/collections/climate:era5:relativeHumidity/schema"
       },
@@ -352,7 +354,7 @@ how to describe the extent of multidimensional datasets, including the descripti
       { "rel" : "[ogc-rel:tilesets-coverage]",
         "title" : "Coverage tilesets available for this collection",
         "href" : "/ogcapi/collections/climate:era5:relativeHumidity/tiles"
-      },
+      }
    ]
 }
 =================
@@ -360,9 +362,9 @@ how to describe the extent of multidimensional datasets, including the descripti
 // page break to keep request & response together in PDF
 <<<
 
-Before introducing the selection of alternative output Coordinate Reference System (World Mercator, EPSG:3395) from the default native CRS (`storageCRS`) returned so far (CRS84),
-let's zoom out significantly further away to a 20,000,000. At the scales used above, the difference between those two CRSs would not be distinguishable,
-since the server automatically preserve scales in both dimensions, which makes the responses for those two CRSs almost equivalent on a local scale.
+Before introducing the selection of an alternative output Coordinate Reference System (World Mercator, EPSG:3395) from the default native CRS (`storageCRS`) returned so far (CRS84),
+let's zoom out significantly further away to a 1:20,000,000 scale. At the scales used above, the difference between those two CRSs would not be distinguishable,
+since the server automatically preserve scales in both dimensions, which makes the responses for those two CRSs almost visually equivalent on a local scale.
 We will illustrate this by requesting a map for the Blue Marble Next Generation (2004) from NASA Earth Observatory's Visible Earth,
 and first explicitly request EPSG:4326 (whose main difference from CRS84 is that axis order is Latitude, Longitude).
 
@@ -376,7 +378,7 @@ Content-Bbox: 25.729221,-28.573112,77.270779,28.573112
 ----
 
 [#xmp_map_blueMarble_4326,reftext='{figure-caption} {counter:figure-num}']
-.Map of https://earthobservatory.nasa.gov/features/BlueMarble[NASA Earth Observatory Blue Marble Next Generation (2004)], in Plate Carrée (EPSG:4326) output `crs`
+.Map of https://earthobservatory.nasa.gov/features/BlueMarble[NASA Earth Observatory's Blue Marble Next Generation (2004)], in Plate Carrée (EPSG:4326) output `crs`
 image::images/xmp_blueMarble_4326.jpg[width=400,align="center"]
 
 // page break to keep request & response together in PDF
@@ -387,10 +389,10 @@ Now we can instead request EPSG:3395 using this request:
 https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=%5BEPSG:3395%5D["https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=[EPSG:3395\]"]
 
 [#xmp_map_blueMarble_3395,reftext='{figure-caption} {counter:figure-num}']
-.Map of NASA Earth Observatory Blue Marble Next Generation (2004), using World Mercator (EPSG:3395) output `crs`
+.Map of NASA Earth Observatory's Blue Marble Next Generation (2004), using World Mercator (EPSG:3395) output `crs`
 image::images/xmp_blueMarble_3395.jpg[width=400,align="center"]
 
-The `Content-Crs:` contains the coordinates of the bounding box selected from the requested scale and default dimensions, which we can use to make a request that will generate an equilvalent response.
+The `Content-Crs:` contains the coordinates of the bounding box selected from the requested scale and default dimensions, which we can use to make a request that will generate an equivalent response.
 
 ----
 Content-Crs: <http://www.opengis.net/def/crs/EPSG/0/3395>
