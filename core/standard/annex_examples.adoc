@@ -180,7 +180,7 @@ image::images/xmp_map_center_scale_hw_1024x512.png[width=600,align="center"]
 
 For this last request, as well as for the one below, specifying both the `width` and `height`, the `center`, as well as the `scale-denominator`, combined with the fact that the default value of `mm-per-pixel`
 is defined as 0.28mm/pixel, defines all of the parameters necessary to make the subsetting and scaling _mostly_ predictable by the client.
-As explained in the <<scaling-aspect-ratio, scale and aspect ratio considerations section>>, implementations may the compute dimensions and bounding boxes not explicitly specified slightly differently.
+As explained in the <<scaling-aspect-ratio, scale and aspect ratio considerations section>>, implementations may compute the dimensions and bounding boxes not explicitly specified slightly differently.
 Because of these potential differences, clients should always consider the bounding box information in the response headers for georeferencing purposes, as well as the actual dimensions of the image returned.
 This will also avoid problems in cases where the server may decide to correct the center or bounding box due to the values being out of range.
 The `center` and `scale-denominator` parameters are primarily intended as convenience parameters to let the server automatically compute ideal bounding boxes and dimensions,
@@ -431,7 +431,7 @@ physicalMetersPerPixel = (mm-per-pixel / 1000 mm/m) * scale-denominator
 physicalMetersPerPixel = (0.28 mm/pix / 1000 mm/m) * 10,000,000 = 2800 m/pix
 ```
 
-==== EPSG:4326 Example
+==== Plate Carrée (EPSG:4326) Example
 
 The first example is for an EPSG:4326 Plate Carrée CRS.
 
@@ -467,7 +467,7 @@ width  = 30 deg *  96,405.5069633228529 m/deg / 2800 m/pix = 1033 pixels
 height = 20 deg * 111,319.4907932735805 m/deg / 2800 m/pix =  795 pixels
 ```
 
-==== EPSG:3395 Example
+==== World Mercator (EPSG:3395) Example
 
 This second example is for the same geographical area, but for an EPSG:3395 World Mercator CRS instead.
 
@@ -548,7 +548,7 @@ physicalMetersPerPixel = (mm-per-pixel / 1000 mm/m) * scale-denominator
 physicalMetersPerPixel = (0.28 mm/pix / 1000 mm/m) * 10,000,000 = 2800 m/pix
 ```
 
-==== EPSG:4326 Example
+==== Plate Carrée (EPSG:4326) Example
 
 This first example requests a map in an EPSG:4326 output CRS, using that same CRS for specifying the center as well:
 
@@ -602,11 +602,11 @@ leftLon  = 12.4922°E - 30.448632 deg / 2 =  2.732116°W
 rightLon = 12.4922°E + 30.448632 deg / 2 = 27.716516°E
 ```
 
-which completes the bounding box calculation, which expressed in the default CRS84 (longitude, latitude) order of the `bbox` parameter would be:
+which completes the bounding box calculation. Expressed in the default CRS84 (longitude, latitude) order, the `bbox` parameter would be:
 
 `bbox=-2.732116,32.231514,27.716516,51.548886`.
 
-==== EPSG:3395 Example
+==== World Mercator (EPSG:3395) Example
 
 This second example requests a map in an EPSG:3395 output CRS, using that same CRS for specifying the center as well:
 
@@ -674,6 +674,6 @@ rightEasting  = 1,390,625.3428877322 + 3,851,559.355 / 2 = 3,316,405.0203877322
 upperNorthing = 5,116,008.2270851005 + 2,888,669.516 / 2 = 6,560,342.9850851005
 ```
 
-which completes the bounding box calculation, which expressed in EPSG:3395 together with the required `bbox-crs` would be:
+which completes the bounding box calculation. Expressed in EPSG:3395 together with the required `bbox-crs`, the parameters would be:
 
 `bbox=-535154.3346122678,3671673.4690851005,3316405.0203877322,6560342.9850851005&bbox-crs=[EPSG:3395]`.

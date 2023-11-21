@@ -53,30 +53,8 @@ A general summary of the HTTP status codes can be found in http://www.opengis.ne
 If the parameters values for `width` or `height` are out-of-range, the status code of the response will be `413` (Payload too big).
 If a map is not provided due to lack of data in the area, the status code of the response will be `204` or `404`.
 
-[[ScalingServiceMetadata]]
-=== Service Metadata
-The OGC API - Common Standard describes a mechanism to expose service-metadata for the API. See: OGC API - Common - Part 1: Core [OGC 19-072r1] Annex B.4 (2021)
-
-include::recommendations/scaling/REC_max-width-height.adoc[]
-
-NOTE: The attributes `maxWidth`, `maxHeight` and `maxPixels` are intended to limit server workload, by providing limitations in the size of the output. If the `width` and `height` limits are defined in relation to the size of a common device screen, Maps API implementations should consider that new devices are being built with more and more pixels and a reasonable limit from the current year may be too restrictive for devices emerging in the next year.
-
-Example of the OpenAPI service metadata section
-----
-info:
-  title: My Web API
-  version: 1.0.0
-  description: This example shows population of an OpenAPI Info element with identifying
-    metadata for both the service and the service provider.
-  x-OGC-limits:
-    maps:
-      maxWidth: 2048
-      maxHeight: 2048
-      maxPixels: 10000000
-----
-
 [[scaling-aspect-ratio]]
-==== Scale and aspect ratio considerations (informative)
+=== Scale and aspect ratio considerations (informative)
 
 Since all parameters for map requests are optional, implementations must fill in missing parameters by using default values or computing appropriate values based on the parameters provided by the client
 and the specifics of the resource for which a map is being retrieved.
@@ -129,3 +107,25 @@ For identicals responses to the same request across different implementations, c
 rather than the `scale-denominator` and `center` parameters, which are primarily intended for convenience directly accessing a Maps API, such as from a Web browser.
 
 See also detailed step-by-step examples in an annex of computations to <<dimensions-calculation-examples,infer dimensions>> and <<bbox-calculation-examples,infer bounding boxes>> based on specified parameters.
+
+[[ScalingServiceMetadata]]
+=== Service Metadata
+The OGC API - Common Standard describes a mechanism to expose service-metadata for the API. See: OGC API - Common - Part 1: Core [OGC 19-072r1] Annex B.4 (2021)
+
+include::recommendations/scaling/REC_max-width-height.adoc[]
+
+NOTE: The attributes `maxWidth`, `maxHeight` and `maxPixels` are intended to limit server workload, by providing limitations in the size of the output. If the `width` and `height` limits are defined in relation to the size of a common device screen, Maps API implementations should consider that new devices are being built with more and more pixels and a reasonable limit from the current year may be too restrictive for devices emerging in the next year.
+
+Example of the OpenAPI service metadata section
+----
+info:
+  title: My Web API
+  version: 1.0.0
+  description: This example shows population of an OpenAPI Info element with identifying
+    metadata for both the service and the service provider.
+  x-OGC-limits:
+    maps:
+      maxWidth: 2048
+      maxHeight: 2048
+      maxPixels: 10000000
+----

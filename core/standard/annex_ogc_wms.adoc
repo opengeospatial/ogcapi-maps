@@ -35,7 +35,7 @@ OGC approach. For example, developers no longer need to read how to implement a 
 
 As a result of following a RESTful approach, OGC API implementations are not backwards compatible with OWS implementations per se. However, a design goal is to define OGC APIs in a way that an OGC API interface can be mapped to an OWS implementation (where appropriate). OGC APIs are intended to be simpler and more modern, but still an evolution from the previous versions and their implementations making the transition easy (e.g., by initially implementing facades in front of the current OWS services).
 
-=== Comparison with WMS to _OGC API - Maps_
+=== Comparison between _WMS_ and _OGC API - Maps_
 
 The OGC WMS and WMTS share the concept of a map and the capability to create and distribute maps at a limited resolution and size.
 In WMS, the number of rows and columns can be selected by the user within limits and in WMTS the number of rows and columns of the response is predefined in the tile matrix set.

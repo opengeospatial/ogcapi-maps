@@ -120,11 +120,16 @@ Again, be aware that these paths are not required by the Maps API Standard.
 
 NOTE: Even though full path and full path templates in the previous table may be used in many implementations of the _OGC API - Maps_ standard, these exact paths are ONLY examples and are NOT required by this Standard. Other paths are possible if correctly described in by the Web API definition document and/or the links between resources.
 
+=== _OGC API - Maps_ within the OGC API family
 
-=== What a map is, and its relation to other OGC Web APIs
+==== What is a map?
 
-A map is a portrayal of data resulting from applying a style (usually 2D image formats such as PNG or JPEG format or in presentation formats such as SVG). The way the styling rules in a style are applied to the data to create the portrayal is out of scope of this standard (see https://github.com/opengeospatial/ogcapi-styles[_OGC API - Styles_], as well as specific styles and symbology standards such as https://github.com/opengeospatial/styles-and-symbology[OGC Styles & Symbology], for details).
-A map can be delivered as a single resource or as an arbitrary extent.
+A map is a portrayal of data resulting from applying a style (usually 2D image formats such as PNG or JPEG format or in presentation formats such as SVG).
+The way the styling rules in a style are applied to the data to create the portrayal is out of scope of this standard (see https://github.com/opengeospatial/ogcapi-styles[_OGC API - Styles_],
+as well as specific styles and symbology standards such as https://github.com/opengeospatial/styles-and-symbology[OGC Styles & Symbology], for details).
+
+==== Implementing _OGC API - Maps_ within a Web API
+A map can be delivered as a single static resource (only implementing the "Core" requirement class), or as a dynamic service able to return different maps for arbitrary extents (implementing "Subsetting" requirement class).
 In addition, a map can also be delivered as tiles by combining _OGC API - Maps_ with some _OGC API - Tiles_ requirements classes. This approach is defined by the _Map Tilesets_ requirements class of this standard,
 which also correspond to _map tilesets_ described in _OGC API - Tiles_, with a _map_ being a specific type of data resource for which tiles are provided.
 
