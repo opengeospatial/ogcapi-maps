@@ -57,7 +57,7 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal?f=json[https://maps.gn
         "href" : "/ogcapi/collections/OpenMapLocal"
       },
       { "rel" : "[ogc-rel:map]", "title" : "Default map",
-         "href" : "/ogcapi/collections/OpenMapLocal/map"
+        "href" : "/ogcapi/collections/OpenMapLocal/map"
       },
       { "rel" : "[ogc-rel:tilesets-map]",
         "title" : "Map tilesets available for this collection",
@@ -122,6 +122,7 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?subset=Lat(51.4945
 As explained in the aspect ratio considerations section, clients wishing to retrieve identical responses from different implementations should specify either of these `bbox` or `subset` parameters,
 together with a `width` and `height`.
 We can request a smaller image by specifying the `height` of the image.
+
 https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512
 
 [#xmp_map_center_h_512,reftext='{figure-caption} {counter:figure-num}']

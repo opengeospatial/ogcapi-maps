@@ -37,6 +37,8 @@ NOTE: The `scale-denominator` is the only way to specify scaling when requesting
 
 include::requirements/scaling/REQ_scale-denominator-definition.adoc[]
 
+[[scaling-aspect-ratio]]
+
 ==== Aspect ratio considerations
 If a client provides both width (w) and height (h) values, the server will use these values even if the aspect ratio between (maxx-minx)/(maxy-miny) and w/h are different (resulting in a non square pixel). However, in general circumstances (e.g., 2D representations in the screen), the client should make an effort to provide parameters that preserve the aspect ratio. The client is allowed to provide only one of the values in width and height and the server should figure out the other one to maintain the aspect ratio.
 

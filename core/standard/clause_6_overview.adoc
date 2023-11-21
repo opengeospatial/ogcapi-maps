@@ -169,6 +169,7 @@ The collection metadata allows the specification of a spatial bounding box for e
 collection of geospatial data represented or contained within the map (the _layers_). The resolution of these layers can also be specified by including
 the minimum and maximum cell size and equivalent scale denominators.
 
+[[overview-subsetting-and-scaling]]
 === Subsetting and scaling the map
 
 The Maps API Standard core class provides a way to retrieve the map that is modified by other classes allowing for subsetting the domain, specifying a particular size for the output map image, and modifying the default
@@ -225,16 +226,16 @@ In this case, for the omitted dimension, the server may either use a default val
 | `bbox`                                                | `scale-denominator`                                 | `center`, `width` and `height`
 | `center`                                              | `scale-denominator`, `width` and `height`           | `bbox`
 | `center`, `width` and `height`                        | `scale-denominator`                                 | `bbox`
-| `scale-denominator` ^1^                               | `center`, `width` and `height`                      | `bbox`
-| `scale-denominator` ^1^ and `center`                  | `width` and `height`                                | `bbox`
+| `scale-denominator` ^1^                               | `center`                                            | `bbox`, `width` and `height`
+| `scale-denominator` ^1^ and `center`                  | _None_                                              | `bbox`, `width` and `height`
 | `scale-denominator`, `width` and `height`           2+| _Error (would require rescaling the map)_
 | `bbox`, `width` and `height`                        2+| _Error (would require rescaling the map)_
 | `bbox` and `scale-denominator`                      2+| _Error (would require rescaling the map)_
 | `scale-denominator`, `center`, `width` and `height` 2+| _Error (would require rescaling the map)_
 3+|
 ^1^ The `scale-denominator` parameter is defined in the _Scaling_ requirements class.
-However, an implementation supporting only _Subsetting_ may (*but is not required to*) still recognize the `scale-denominator` parameter and adjust its default `width` and `height` dimensions accordingly,
-resulting in a different computed subsetting bounding box. In this case, a Subsetting-only implementation may not be applying scale-dependent symbolization rules correctly, since it likely would not render the map anew,
+However, an implementation supporting only _Subsetting_ may (*but is not required to*) still recognize the `scale-denominator` parameter and compute `width` and `height` dimensions accordingly,
+along with the corresponding bounding box. In this case, a Subsetting-only implementation may not be applying scale-dependent symbolization rules correctly, since it likely would not render the map anew,
 but simply cut a piece from a pre-rendered map of a default scale. This is not an issue for maps without any scale-dependent symbolization, such as plain imagery.
 !===
 
