@@ -4,6 +4,7 @@
 == Examples (informative)
 This annex provides a set of examples that illustrate requests to get maps from an API, and how the responses look like.
 
+=== Default map
 The first example shows the response of a map endpoint with a request with no parameters (https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map).
 
 The server is free to respond with any `bbox` and any `width` and `height`.
@@ -25,6 +26,7 @@ Content-Bbox: -8.756498,49.814737,1.848147,60.948016
 Content-Length: 538037
 ----
 
+=== Collection description
 This map resource is attached to an https://docs.ogc.org/DRAFTS/20-024.html[_OGC API - Common - Part 2_] collection origin, which is available from the parent resource path:
 
 https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal?f=json[https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal]
@@ -77,6 +79,7 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal?f=json[https://maps.gn
 // page break to keep request & response together in PDF
 <<<
 
+=== Scaling and subsetting the map
 The following examples are going to be centered on The O2 (formerly known as the Millenium Dome) shown here in a night aerial picture.
 
 [#o2_dome,reftext='{figure-caption} {counter:figure-num}']
@@ -177,8 +180,7 @@ image::images/xmp_map_center_scale_hw_1024x512.png[width=600,align="center"]
 
 For this last request, as well as for the one below, specifying both the `width` and `height`, the `center`, as well as the `scale-denominator`, combined with the fact that the default value of `mm-per-pixel`
 is defined as 0.28mm/pixel, defines all of the parameters necessary to make the subsetting and scaling _mostly_ predictable by the client.
-As explained in the aspect ratio recommendation section, one exception is that some implementations may aim to maintain the two-dimensional scale between physical and pixel units,
-wheras others may maintain the ratio between CRS and pixel units instead. Calculations may also be performed slightly differently (e.g., taking into account the eccentricity of the ellisoid or not).
+As explained in the <<scaling-aspect-ratio, scale and aspect ratio considerations section>>, implementations may the compute dimensions and bounding boxes not explicitly specified slightly differently.
 Because of these potential differences, clients should always consider the bounding box information in the response headers for georeferencing purposes, as well as the actual dimensions of the image returned.
 This will also avoid problems in cases where the server may decide to correct the center or bounding box due to the values being out of range.
 The `center` and `scale-denominator` parameters are primarily intended as convenience parameters to let the server automatically compute ideal bounding boxes and dimensions,
@@ -204,6 +206,8 @@ image::images/xmp_map_center_scale_hw_512x1024.png[width=300,align="center"]
 // page break to keep request & response together in PDF
 <<<
 
+=== Temporal subsetting
+
 Spatial datasets are often also organized with a temporal dimension in addition to two or three spatial dimensions
 (some of these datasets are sometimes called time series or datacubes).
 
@@ -225,10 +229,10 @@ https://maps.gnosis.earth/ogcapi/collections/sentinel2-l2a/map?width=1024&height
 // page break to keep request & response together in PDF
 <<<
 
+=== Styled maps
+
 The following two example requests, for the same region and time of interest, illustrate two additional styles available from the same sentinel-2 datacube,
-in addition to its default Red, Green, Blue natural color style.
-The styles are available at `.../styles/{styleId}`, through https://docs.ogc.org/DRAFTS/20-009.html[_OGC API - Styles_], and provide links to map resources.
-The first style, using the style identifier _scl_, symbolizes the Scene Classification Layer categories:
+in addition to its default Red, Green, Blue natural color style. The first style, symbolizes the Scene Classification Layer categories:
 
 https://maps.gnosis.earth/ogcapi/collections/sentinel2-l2a/styles/scl/map?center=0,51.5&scale-denominator=50000&datetime=2022-04-01&width=1024&height=512
 
@@ -264,6 +268,8 @@ image::images/xmp_hrdem_style2.png[width=550,align="center"]
 
 // page break to keep request & response together in PDF
 <<<
+
+=== Additional dimensions
 
 It is also common for spatial datasets, especially for climate weather and climate data, to feature additional dimensions beyond space and time,
 such as pressure levels, or additional time dimensions relating to forecasting. These can all be handled in a generic manner also using the `subset` parameter.
@@ -363,11 +369,13 @@ how to describe the extent of multidimensional datasets, including the descripti
 // page break to keep request & response together in PDF
 <<<
 
-Before introducing the selection of an alternative output Coordinate Reference System (World Mercator, EPSG:3395) from the default native CRS (`storageCRS`) returned so far (CRS84),
-let's zoom out significantly further away to a 1:20,000,000 scale. At the scales used above, the difference between those two CRSs would not be distinguishable,
+=== Coordinate Reference Systems
+
+While introducing the selection of an alternative output Coordinate Reference System (World Mercator, EPSG:3395) to the default native CRS (`storageCRS`) returned so far (CRS84),
+the following examples will zoom out significantly to a 1:20,000,000 scale. At the scales used in previous examples, the difference between those two CRSs would not be distinguishable,
 since the server automatically preserve scales in both dimensions, which makes the responses for those two CRSs almost visually equivalent on a local scale.
-We will illustrate this by requesting a map for the Blue Marble Next Generation (2004) from NASA Earth Observatory's Visible Earth,
-and first explicitly request EPSG:4326 (whose main difference from CRS84 is that axis order is Latitude, Longitude).
+These examples will illustrate the two CRS by requesting a map for the Blue Marble Next Generation (2004) from NASA Earth Observatory's Visible Earth,
+first explicitly requesting EPSG:4326 (whose main difference from CRS84 is that axis order is Latitude, Longitude).
 
 https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=%5BEPSG:4326%5D["https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=[EPSG:4326\]"]
 
@@ -403,3 +411,269 @@ Content-Bbox: -4596385.263861,2080129.089271,4596385.263861,11273386.415933
 In order to also specify the bounding box in that EPSG:3395 CRS, the following request also makes use of the `bbox-crs` parameter, which otherwise always defaults to CRS84 (regardless of the native CRS or selected output CRS).
 
 https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?bbox-crs=%5BEPSG:3395%5D&bbox=-4596385.263861,2080129.089271,4596385.263861,11273386.415933&crs=%5BEPSG:3395%5D["https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?bbox-crs=[EPSG:3395\]&bbox=-4596385.263861,2080129.089271,4596385.263861,11273386.415933&crs=[EPSG:3395\]"]
+
+// page break to keep request & response together in PDF
+<<<
+
+[[dimensions-calculation-examples]]
+=== Calculations to infer correct dimensions
+
+In these examples, the client specifies a bounding box (using `bbox` or `subset`) from 30°N to 50°N and 0°E to 30°E and a `scale-denominator` of 1:10,000,000,
+and the server needs to compute appropriate map image dimensions.
+No default center or dimensions are necessary, and the 0.28 mm/pixel display resolution is used since `mm-per-pixel` is not specified.
+Two examples are given, one in a geographic Plate Carrée CRS (EPSG:4326) and one in a projected World Mercator CRS (EPSG:3395)
+(which uses a bounding box of the same geographic area transformed into coordinates in that CRS).
+
+Regardless of the CRS, the number of physical meters that each pixel should represent can be computed with:
+
+```
+physicalMetersPerPixel = (mm-per-pixel / 1000 mm/m) * scale-denominator
+physicalMetersPerPixel = (0.28 mm/pix / 1000 mm/m) * 10,000,000 = 2800 m/pix
+```
+
+==== EPSG:4326 Example
+
+The first example is for an EPSG:4326 Plate Carrée CRS.
+
+```
+GET /collections/blueMarble/map?
+   subset=Lat(30:50),Lon(0:30)&
+   scale-denominator=10000000&
+   crs=[EPSG:4326]
+
+GET /collections/blueMarble/map?
+   bbox=0,30,30,50&
+   scale-denominator=10000000&
+   crs=[EPSG:4326]
+```
+
+The latitude delta is 20°, whereas the longitude delta is 30°.
+
+The implementation could assume the WGS84 111,319.4907932735805 meters / degree of latitude (`metersPerDegLat` below), and use the most equatorial latitude of the subset (30°N) to
+compute the numbers of meters / degree of longitude with:
+
+```
+metersPerDegLon = metersPerDegLat * cos(mostEquatorialLat)
+metersPerDegLon = 111,319.4907932735805 m/deg * cos(30°) = 96,405.5069633228529 m/deg
+```
+
+The dimensions can then simply be computed (rounding to the nearest integer) with:
+
+```
+width  = deltaLon * metersPerDegLon / physicalMetersPerPixel
+height = deltaLat * metersPerDegLat / physicalMetersPerPixel
+
+width  = 30 deg *  96,405.5069633228529 m/deg / 2800 m/pix = 1033 pixels
+height = 20 deg * 111,319.4907932735805 m/deg / 2800 m/pix =  795 pixels
+```
+
+==== EPSG:3395 Example
+
+This second example is for the same geographical area, but for an EPSG:3395 World Mercator CRS instead.
+
+```
+GET /collections/blueMarble/map?
+   subset=E(0:3339584.723798),N(3482189.085409:6413524.594164)&
+   scale-denominator=10000000&
+   subset-crs=[EPSG:3395]&
+   crs=[EPSG:3395]
+
+GET /collections/blueMarble/map?
+   bbox=0,3482189.085409,3339584.723798,6413524.594164&
+   scale-denominator=10000000&
+   crs=[EPSG:3395]&
+   bbox-crs=[EPSG:3395]
+```
+
+The easting delta is 3,339,584.723798, whereas the northing delta is 2,931,335.508755.
+
+In order to correctly apply the scale, the ratio between CRS units and physical meters must be taken into account.
+This could be calculated for the center point: (E: 1,669,792.361899, N: 4,947,856.8397865) which corresponds to (4,947,856.8397865°N, 15°E).
+One approach could be to project two points 1 degree of longitude apart around the center point,
+using the implementation's projection library, to obtain the number of CRS units per degree of longitude.
+Transforming (40.7514917°N, 14.5°E) to EPSG:3395 yields (E: 1,614,132.6165024668, N: 4,947,856.846908879) and transforming (40.7514917°N, 15.5°E) yields (E: 1,725,452.1072957402, N: 4,947,856.846908879).
+The resulting easting delta (`oneDegEastingDelta` below) is 111,319.4907932734, which in this case can be recognized as the actual physical meters per degree at the equator, rather than at the center latitude used.
+Therefore, in this case implementations effectively needs to apply the reverse correction that had to be applied for Plate Carrée when considering the numbers of true meters per Easting unit.
+First, `metersPerDegLon` can be computed as in the previous example:
+
+```
+metersPerDegLon = metersPerDegLat * cos(centerLat)
+metersPerDegLon = 111,319.49079327 m/deg * cos(40.7514917°) = 84,329.85644 m/deg
+```
+
+Then the meters per easting unit can be computed:
+
+```
+metersPerEastingUnit = metersPerDegLon / oneDegEastingDelta
+metersPerEastingUnit = 84,329.85644 m/deg / 111,319.49079327 m/deg = 0.757547989
+```
+
+Notice that in this particular case of World Mercator, this is simply:
+
+```
+metersPerEastingUnit = cos(centerLat)
+metersPerEastingUnit = cos(40.7514917°) = 0.757547989
+```
+
+The implementation could also apply similar logic to compute the meters per northing unit:
+
+```
+metersPerNorthingUnit = metersPerDegLat / oneDegNorthingDelta
+```
+
+However, in the case of World Mercator, it could simply assume that `metersPerNorthingUnit` is equal to `metersPerEastingUnit`.
+
+Finally, the map image dimensions can be computed with:
+
+```
+width  = deltaEasting  * metersPerEastingUnit  / physicalMetersPerPixel
+height = deltaNorthing * metersPerNorthingUnit / physicalMetersPerPixel
+
+width  = 3,339,584.723798 m * 0.757547989 / 2800 m/pix = 904 pixels
+height = 2,931,335.508755 m * 0.757547989 / 2800 m/pix = 793 pixels
+```
+
+[[bbox-calculation-examples]]
+=== Calculations to infer correct bounding boxes
+
+In this example, the client specifies a `center`, a `scale-denominator`, and optionally `width` and or `height` dimensions.
+If either the `width` or `height` is not specified, the server could pick default values, such as making the missing dimension
+equal to the one provided, or selecting default values.
+The examples will assume that the client explicitly requested a 1024 x 768 map at a 1:10,000,000 scale for a location centered on (41.8902°N, 12.4922°E).
+
+In order to compute the extent in CRS units, first the physical meters per pixel can be computed using the same formula as earlier (and same result in this case):
+
+```
+physicalMetersPerPixel = (mm-per-pixel / 1000 mm/m) * scale-denominator
+physicalMetersPerPixel = (0.28 mm/pix / 1000 mm/m) * 10,000,000 = 2800 m/pix
+```
+
+==== EPSG:4326 Example
+
+This first example requests a map in an EPSG:4326 output CRS, using that same CRS for specifying the center as well:
+
+```
+GET /collections/blueMarble/map?
+   center=41.8902,12.4922&
+   center-crs=[EPSG:4326]&
+   scale-denominator=10000000&
+   crs=[EPSG:4326]&
+   width=1024&
+   height=768
+```
+
+A simple approach to computing the bounding box is to extend away from the center in both directions by the distance in CRS units corresponding to half the respective pixel dimension.
+
+In order to take into consideration the latitude of the subsets for computing the longitude extent, the latitude extent will be computed first, using the inverse of the earlier height computation:
+
+```
+deltaLat = height * physicalMetersPerPixel / metersPerDegLat
+deltaLat = 768 pix * 2800 m/pix / 111,319.49 m/deg = 19.317372 degrees
+```
+
+A constant 111,319.49 meters / degree of latitude is assumed here again, rather than the more accurate polynomial equation taking into consideration the ellipsoid eccentricity mentioned earlier,
+which would yield slightly different results.
+
+The lower and upper latitudes of the bounding can then be easily computed by adding and subtracting half this delta to the requested center latitude:
+
+```
+lowerLat = 41.8902°N - 19.317372 deg / 2 = 32.231514°N
+upperLat = 41.8902°N + 19.317372 deg / 2 = 51.548886°N
+```
+
+From this, the most equatorial latitude can be established to be 32.231514°N, which can then be used to compute the meters per degrees of longitude, exactly like for the dimension computation examples:
+
+```
+metersPerDegLon = metersPerDegLat * cos(mostEquatorialLat)
+metersPerDegLon = 111,319.49 m/deg * cos(32.231514°) = 94,165.15 m/deg
+```
+
+and the longitude delta can then be computed similarly:
+
+```
+deltaLon = width * physicalMetersPerPixel / metersPerDegLon
+deltaLon = 1024 pix * 2800 m/pix / 94,165.15 m/deg = 30.448632 degrees
+```
+
+and from this the left (West) and right (East) longitude bounds:
+
+```
+leftLon  = 12.4922°E - 30.448632 deg / 2 =  2.732116°W
+rightLon = 12.4922°E + 30.448632 deg / 2 = 27.716516°E
+```
+
+which completes the bounding box calculation, which expressed in the default CRS84 (longitude, latitude) order of the `bbox` parameter would be:
+
+`bbox=-2.732116,32.231514,27.716516,51.548886`.
+
+==== EPSG:3395 Example
+
+This second example requests a map in an EPSG:3395 output CRS, using that same CRS for specifying the center as well:
+
+```
+GET /collections/blueMarble/map?
+   center=1390625.3428877322,5116008.2270851005&
+   center-crs=[EPSG:3395]&
+   scale-denominator=10000000&
+   crs=[EPSG:3395]&
+   width=1024&
+   height=768
+```
+
+The center corresponds to the same point as the previous example (41.8902°N, 12.4922°E).
+
+Using the same approach as for the earlier dimensions computation examples, transforming test points one degree apart, the number of physical meters per easting and northing units can be computed
+specifically for the requested center point (E: 1390625.3428877322, N: 5116008.2270851005).
+Like earlier, in the specific case of World Mercator the `oneDegEastingDelta` and `oneDegNorthingDelta` is constant at 111,319.49 m/deg,
+which corresponds to the number of meters per degree at the equator.
+The number of physical meters per degree of longitude at the center latitude (41.8902°N) can be computed in the same way as previous examples:
+
+```
+metersPerDegLon = metersPerDegLat * cos(centerLat)
+metersPerDegLon = 111,319.49 m/deg * cos(41.8902°) = 82,869.096 m/deg
+```
+
+Then the meters per easting unit can be computed:
+
+```
+metersPerEastingUnit = metersPerDegLon / oneDegEastingDelta
+metersPerEastingUnit = 82,869.096 m/deg / 111,319.49 m/deg = 0.74442576
+```
+
+Again in the case of World Mercator, this is simply:
+
+```
+metersPerEastingUnit = cos(centerLat)
+metersPerEastingUnit = cos(41.8902°) = 0.74442576
+```
+
+The implementation could also apply similar logic to compute the meters per northing unit:
+
+```
+metersPerNorthingUnit = metersPerDegLat / oneDegNorthingDelta
+```
+
+And again in this case it could simply assume that `metersPerNorthingUnit` is equal to `metersPerEastingUnit`.
+
+Then the delta easting and northing can be computed using the inverse of the equations used for computing dimensions:
+
+```
+deltaEasting  = width  * physicalMetersPerPixel / metersPerEastingUnit
+deltaNorthing = height * physicalMetersPerPixel / metersPerNorthingUnit
+
+deltaEasting  = 1024 pix * 2800 m/pix / 0.74442576 = 3,851,559.355 m
+deltaNorthing =  768 pix * 2800 m/pix / 0.74442576 = 2,888,669.516 m
+```
+
+and finally this bounding box can be extended away from the requested center point (E: 1,390,625.3428877322, N: 5,116,008.2270851005 ):
+
+```
+leftEasting   = 1,390,625.3428877322 - 3,851,559.355 / 2 =  -535,154.3346122678
+lowNorthing   = 5,116,008.2270851005 - 2,888,669.516 / 2 = 3,671,673.4690851005
+rightEasting  = 1,390,625.3428877322 + 3,851,559.355 / 2 = 3,316,405.0203877322
+upperNorthing = 5,116,008.2270851005 + 2,888,669.516 / 2 = 6,560,342.9850851005
+```
+
+which completes the bounding box calculation, which expressed in EPSG:3395 together with the required `bbox-crs` would be:
+
+`bbox=-535154.3346122678,3671673.4690851005,3316405.0203877322,6560342.9850851005&bbox-crs=[EPSG:3395]`.

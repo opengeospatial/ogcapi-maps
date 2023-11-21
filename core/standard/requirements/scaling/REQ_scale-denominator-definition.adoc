@@ -15,7 +15,10 @@
     schema:
       type: number
 ----
-^|B |The `scale-denominator` value SHALL be interpreted as the number of real-world units corresponding to one of the same unit on the map (as printed or displayed), based on the selected (e.g., from display resolution requirements class) or default (0.28 mm/pixel) display resolution.
-^|C |The width and height dimensions of the returned map SHALL be computed based on the `scale-denominator` value, the display resolution, and the selected spatial subset of the map to return.
+^|B |The `scale-denominator` value SHALL be interpreted as the number of real-world units corresponding to one of the same unit on the map (as printed or displayed), considering only the local subset of the map being returned, based on the selected (e.g., from display resolution requirements class) or default (0.28 mm/pixel) display resolution.
+^|C |The implementation SHALL establish the correspondence between real-world units and pixel units based on the equation: _physicalMetersPerPixel_= (`mm-per-pixel` / 1000 mm/m) * `scale-denominator`, where the _physicalMetersPerPixel_ do not necessarily correspond to CRS units for the region of that CRS corresponding to the subset of the map being returned, even if those units are expressed in meters.
 ^|D |An HTTP 400 error SHALL be returned if the `scale-denominator` parameter is used together with `width` and/or `height` and the implementation does not declare conformance to the <<rc_table_spatial-subsetting, _spatial subsetting_>> requirements class (which specifies that the `width` and `height` parameters can also take on a subsetting role).
+^|E |An HTTP 400 error SHALL be returned if the `scale-denominator` parameter is used together with `width` and/or `height` as well as a `bbox` (or equivalent `subset` parameter for a spatial dimension).
+^|F |If the `scale-denominator` parameter is omitted, the implementation SHALL compute it as needed (for purposes such as applying scale-dependent symbology rules) based on the default or selected dimensions, display resolution, and the spatial subset of the map to return.
+^|G |For implementations also supporting "Subsetting", when the spatial subset of the map is not specified in the request, the `scale-denominator` value (default or specified) SHALL be used to compute this bounding box, taking into consideration the display resolution as well as the default or specified dimensions.
 |===

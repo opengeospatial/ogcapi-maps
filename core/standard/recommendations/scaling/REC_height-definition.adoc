@@ -1,6 +1,0 @@
-[[rec_scaling_height-definition]]
-[width="90%",cols="2,6a"]
-|===
-^|*Recommendation {counter:rec-id}* |*/rec/scaling/height-definition*
-^|A |If the parameter `width` is present and the value of the `height` is not provided, the `height` should be calculated from the `bbox` and the `width` in a way that the cell size of the map is squared (h=w*(maxy-miny)/(maxx-minx)).
-|===

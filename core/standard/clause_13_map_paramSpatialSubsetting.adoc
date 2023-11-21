@@ -110,7 +110,7 @@ include::requirements/spatial-subsetting/REQ_subsetting-width-height-definition.
 NOTE: Although the `scale-denominator` parameter is defined in the "Scaling" requirement class and not in "Spatial Subsetting",
 implementations supporting only Spatial Subsetting are allowed (but not required) to recognize the parameter to compute `width` and `height` dimensions accordingly, together with a corresponding bounding box.
 
-==== Aspect ratio and scale considerations
+==== Scale and aspect ratio considerations when subsetting
 
 For implementations not implementing "Scaling", the map is assumed to always be returned with the same fixed aspect ratio in both its native CRS unit space and pixel space,
 and the same CRS unit to pixel unit scale regardless of the subset being requested.
@@ -119,7 +119,9 @@ For implementations implementing both "Scaling" and "Spatial Subsetting" require
 Guidance for implementers is provided in a <<overview-subsetting-and-scaling,section of the overview>> on these interactions,
 including the specific combinations of parameters that can be provided based on which requirement classes are implemented, and which parameter assume default values or should be computed in each case.
 
-The "Scaling" requirement class also includes specific <<scaling-aspect-ratio,recommendations for aspect ratio considerations>>.
+The "Scaling" requirement class also includes specific <<scaling-aspect-ratio,recommendations for scale and aspect ratio considerations>>.
+
+See also examples in an annex of computations to <<dimensions-calculation-examples,infer dimensions>> and <<bbox-calculation-examples,infer bounding boxes>> based on specified parameters.
 
 === Response
 

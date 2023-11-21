@@ -262,23 +262,22 @@ but simply cut a piece from a pre-rendered map of a default scale. This is not a
 | `scale-denominator`                                 | `center`, `width` and `height`                      | `bbox`
 | `scale-denominator` and `center`                    | `width` and `height`                                | `bbox`
 | `scale-denominator`, `width` and `height`           | `center`                                            | `bbox`
-| `bbox`, `width` and `height`                        | _None (fully defined combination^1^)_               | `scale-denominator`
-| `bbox` and `scale-denominator`                      | _None (fully defined combination^2^)_               | `width` and `height`
+| `bbox`, `width` and `height`                        | _None (fully defined combination^1^)_               | `scale-denominator` and `center`
+| `bbox` and `scale-denominator`                      | _None (fully defined combination^2^)_               | `center`, `width` and `height`
 | `scale-denominator`, `center`, `width` and `height` | _None (fully defined combination^2^)_               | `bbox`
 3+|
 ^1^ This combination corresponds to the WMS parameters, and should be used for obtaining identical results from different implementations.
 
 ^2^ Different implementations may maintain a slightly different relationship between the dimensions (`width` and `height`), the spatial extent (`bbox`) and the `scale-denominator`,
-based on different considerations for preserving the aspect ratio of the map for CRSs that do not have a constant mapping to physical distance along their axes, such as geographic CRSs
-(preserving the aspect ratio of CRS units vs. preserving the aspect ratio of physical units).
-For example, an implementation may decide to maintain a constant degrees of longitude to degrees of latitude mapping for CRS84, while another may try to avoid returning maps that appear
-squished at polar latitudes by compensating for the fact that degrees of longitudes correspond to a smaller real-world physical distance.
-This may result in the `bounding box`, `width` or `height` being computed differently between these implementations.
-Clients should always use `Content-Bbox` header to properly georeference the output, and not expect unspecified parameters to be computed to a particular value.
+based on different considerations for calculating the scales of the map across each dimension.
+This may result in the `bbox`, `width` or `height` being computed differently between these implementations.
+Clients should always use `Content-Bbox:` header to properly georeference the output, and not expect unspecified parameters to be computed to a particular value.
 !===
 
 NOTE: Changing the output CRS using the `crs` parameter will of course also have an impact on the mapping between pixels on the map and units in the real world,
 and on the calculated bounding box (in output CRS units).
+
+See examples in an annex for computations <<dimensions-calculation-examples,infering dimensions>> and <<bbox-calculation-examples,infering bounding boxes>> based on specified parameters.
 
 === Available formats and map response expectations
 
