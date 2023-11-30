@@ -21,7 +21,7 @@
 ^|E |An error SHALL be returned if the value of the `width` (specified or calculated) times `height` (specified or calculated) exceeds a `maxPixels` property from a `x-OGC-limits.maps` object included in the service metadata^1^.
 ^|F |An error SHALL be returned if the `width` parameter is used together with the `bbox` (or `subset` for spatial dimensions) as well as the `scale-denominator` parameter.
 ^|G |An error SHALL be returned if the `width` parameter is used together with the `scale-denominator` parameter and the implementation does not also support the "Subsetting" requirement class.
-^|H |When the `width` parameter is omitted, the implementation SHALL use an appropriate width which accurately reflects the default or requested scale of the map horizontally, specifically for the local subset (bounding box) of the map being returned, and taking into consideration the default (0.28 mm/pixel) or specified display resolution (`mm-per-pixel`).
+^|H |When the `width` parameter is omitted, the implementation SHALL use an appropriate width which accurately reflects the default or requested scale established as the ratio between the horizontal dimension of the viewport and the corresponding size of the physical world, specifically for the local subset (bounding box) of the map being returned, and taking into consideration the default (0.28 mm/pixel) or specified display resolution (`mm-per-pixel`).
 2+|
 ^1^ service metadata may be provided as an extension of the `info` section of the Open API document as indicated in https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core], Annex B.4 and discussed in the <<ScalingServiceMetadata, last subsection of the Maps API scaling requirements class section>>.
 |===

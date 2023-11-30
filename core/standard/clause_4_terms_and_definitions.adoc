@@ -20,7 +20,7 @@ information concerning phenomena implicitly or explicitly associated with a loca
 
 1. vertical elevation of an object in the real world above a reference point (height above the reference ellipsoid for geographic CRS such as [OGC:CRS84h] and [EPSG:4979]).
 
-2. size of a map image in pixels along the vertical axis of the rendering device
+2. size in pixels of a viewport along its vertical axis
 
 NOTE: Both the _spatial subsetting_ and _scaling_ requirements classes make use of the `height` query parameter.
 In both cases, the parameter refers to the height of the image in pixels, but the effect of specifying a fixed value for the parameter
@@ -41,12 +41,19 @@ medium or apparatus on which the map being retrieved will be displayed, whether 
 === *scale*
 ratio between the size of a map shown in the rendering device (commonly in expressed in mm or inches) and the equivalent geographic bounding box of a map in the reality (commonly in expressed in meters or miles). Commonly, the ratio is expressed as a fraction, where 1 unit in the rendering device is equivalent to `n` units in the reality (in the same units of measure). In this case, `n` is called scale denominator.
 
+=== *viewport*
+portion of a rendering device where information is being visualized
+
+NOTE: For the purpose of this document, the viewport refers to the portion of the map resource response, such as a digital image, where the actual geospatial content of the map is rendered.
+It excludes any layout element such as margin, title or legend.
+For a two dimensional viewport, its dimensions are named horizontal and vertical, corresponding to the width and height dimensions of the viewport, respectively.
+
 === *width*
 
-size of a map image in pixels along the horizontal axis of the rendering device
+size of in pixels of a viewport along its horizontal axis
 
 NOTE: Both the _spatial subsetting_ and _scaling_ requirements classes make use of the `width` query parameter.
-In both cases, the parameter refers to the width of the image in pixels, but the effect of specifying a fixed value for the parameter
+In both cases, the parameter refers to the width of the viewport in pixels, but the effect of specifying a fixed value for the parameter
 is different in each case (selecting the portion of the map to return in the image vs. resampling the map to the requested image size).
 
 === *Web API*
