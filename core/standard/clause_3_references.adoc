@@ -9,7 +9,7 @@ The following normative documents contain provisions that, through reference in 
 
 * [[PNG]] ISO and IEC: ISO/IEC 15948:2004, **Information technology — Computer graphics and image processing — Portable Network Graphics (PNG): Functional specification** (2004) https://www.iso.org/standard/29581.html
 
-* [[TIFF V6]] Adobe development association. TIFF Revision 6.0 Final — June 3, (1992) https://www.itu.int/itudoc/itu-t/com16/tiff-fx/docs/tiff6.pdf
+* [[TIFF_V6]] Adobe development association. TIFF Revision 6.0 Final — June 3, (1992) https://www.itu.int/itudoc/itu-t/com16/tiff-fx/docs/tiff6.pdf
 
 * [[SVG]] Scalable Vector Graphics (SVG) v2. W3C Candidate Recommendation - October, (2018) https://www.w3.org/TR/SVG2/
 
