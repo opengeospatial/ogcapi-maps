@@ -7,6 +7,8 @@ The following normative documents contain provisions that, through reference in 
 
 * [[JPEG]] ISO and IEC: ISO/IEC 10918-1:1994, *Information technology — Digital compression and coding of continuous-tone still images: Requirements and guidelines* (1994) https://www.iso.org/standard/18902.html
 
+* [[JPEG_XL]] ISO and IEC: ISO/IEC 18181-1:2022, *Information technology — JPEG XL image coding system guidelines* (2022) https://www.iso.org/standard/77977.html
+
 * [[PNG]] ISO and IEC: ISO/IEC 15948:2004, **Information technology — Computer graphics and image processing — Portable Network Graphics (PNG): Functional specification** (2004) https://www.iso.org/standard/29581.html
 
 * [[TIFF_V6]] Adobe development association. TIFF Revision 6.0 Final — June 3, (1992) https://www.itu.int/itudoc/itu-t/com16/tiff-fx/docs/tiff6.pdf
