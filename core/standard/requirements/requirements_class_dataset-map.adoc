@@ -6,4 +6,5 @@
 |Target type |Web API
 |Dependency |http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 http://www.opengis.net/spec/ogcapi-common-1/1.0/req/core
+http://www.opengis.net/spec/ogcapi-common-1/1.0/req/landing-page
 |===
