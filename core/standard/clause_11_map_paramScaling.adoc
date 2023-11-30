@@ -101,10 +101,12 @@ including the specific combinations of parameters that can be provided based on 
 When `bbox`, `width` and `height` are all provided, as in OGC Web Map Service (WMS), the client is enforcing a specific aspect ratio, and these recommendations are not relevant.
 However, in general circumstances (e.g., 2D representations in the screen), the client should make an effort to provide parameters that preserve the aspect ratio.
 
-Due to the inherent difficulty in implementing the computations correctly for all CRSs and some degree of variability based on how these calculations are performed, implementations may compute missing parameters for the same request differently.
+CAUTION: Due to the inherent difficulty in implementing the computations correctly for all CRSs and some degree of variability based on how these calculations are performed, implementations may compute missing parameters for the same request differently.
 Clients should therefore always consider the `Content-Bbox:` response header and the actual dimensions of the returned map when geo-referencing and displaying images returned by the Maps API.
 For identicals responses to the same request across different implementations, clients should always provide a `bbox` (or its `subset` equivalent), `width` and `height` parameters (as in classic WMS requests),
 rather than the `scale-denominator` and `center` parameters, which are primarily intended for convenience directly accessing a Maps API, such as from a Web browser.
+For the purpose of overlaying map responses from different implementations, a client which does not itself geo-refererence the output based on the `Content-Bbox:` response header
+should always request maps using the `bbox`, `width` and `height` parameters.
 
 See also detailed step-by-step examples in an annex of computations to <<dimensions-calculation-examples,infer dimensions>> and <<bbox-calculation-examples,infer bounding boxes>> based on specified parameters.
 
