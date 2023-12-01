@@ -73,10 +73,10 @@ in order to accurately reflect the requested scale.
 The ideal aspect ratio to maintain is the `physical_width / physical_height` = `width / height`, whereas `physical_width` and `physical_height` refer to the length of features
 in the horizontal and vertical dimensions respectively, and `width` and `height` are the dimensions of the returned map in pixels.
 
-In the case of a Plate Carrée CRS, a simply way to accurately reflect the two-dimensional scale to use the most equatorial latitude contained in the map response as the standard parallel of the equirectangular projection.
+In the case of a Plate Carrée CRS, a simple way to accurately reflect the two-dimensional scale is to use the most equatorial latitude contained in the map response as the standard parallel of the equirectangular projection.
 This effectively implies scaling the horizontal distances of the Plate Carrée projection (assuming a standard parallel at 0°N) units by the cosine of that most equatorial latitude in order to get a more accurate physical horizontal distance.
 
-In the case of a World Mercator CRS, an implementation could compare the number of CRS units separating one degree of longitude at the center latitude, and compare that with the actual
+In the case of a World Mercator CRS, an implementation could compute the number of CRS units separating one degree of longitude at the center latitude, and compare that with the actual
 number of physical meters, based on the `cos(lat)` scaling mentioned above, and the length of a degree in meters (WGS84 semi-major axis of 6,378,137 m * Pi / 180, or 111,319.4907932735805 m).
 
 For slightly more accurate calculations, the WGS84 ellipsoid, can be taken into account using the following polynomial equations (from https://en.wikipedia.org/wiki/Geographic_coordinate_system#Length_of_a_degree[Wikipedia]):
@@ -91,15 +91,18 @@ If maintaining the aspect ratio between physical units proves too difficult, imp
 `maxx, maxy` the upper bounds of that output CRS unit space on the map, and `width` and `height` are the dimensions of the returned map in pixels.
 
 When neither width nor height is provided or implied, a good practical approach to default to a reasonable size which is neither too low resolution, nor requiring too much computation power from the server.
-When only one of the two parameters is provided and no specific bounding box is requested, the value of the other could be be used to return a square map by default.
+
+When only one of the two dimension parameters is provided and no specific bounding box is requested, the value of the other could be be used to return a square map by default.
+
 When a bounding box is requested, the other dimension should be computed so as to preserve the aspect ratio.
-When both dimensions are provided, but no bounding box, those dimensions should be used together with the default or requested center and scale denominator should be used to compute the bounding box.
+
+When both dimensions are provided, but no bounding box, those dimensions should be used together with the default or requested center, and the scale denominator should be used to compute the bounding box.
 
 Refer to the guidance for implementers provided in a <<overview-subsetting-and-scaling,section of the overview>> on the interactions of subsetting and scaling parameters,
 including the specific combinations of parameters that can be provided based on which requirement classes are implemented, and which parameter assume default values or should be computed in each case.
 
 When `bbox`, `width` and `height` are all provided, as in OGC Web Map Service (WMS), the client is enforcing a specific aspect ratio, and these recommendations are not relevant.
-However, in general circumstances (e.g., 2D representations in the screen), the client should make an effort to provide parameters that preserve the aspect ratio.
+However, in general circumstances (e.g., 2D representations on a screen), the client should make an effort to provide parameters that preserve the aspect ratio.
 
 CAUTION: Due to the inherent difficulty in implementing the computations correctly for all CRSs and some degree of variability based on how these calculations are performed, implementations may compute missing parameters for the same request differently.
 Clients should therefore always consider the `Content-Bbox:` response header and the actual dimensions of the returned map when geo-referencing and displaying images returned by the Maps API.

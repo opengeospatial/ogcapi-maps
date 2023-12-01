@@ -393,7 +393,7 @@ image::images/xmp_blueMarble_4326.jpg[width=400,align="center"]
 // page break to keep request & response together in PDF
 <<<
 
-Now we can instead request EPSG:3395 using this request:
+Now EPSG:3395 can be requested instead using:
 
 https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=%5BEPSG:3395%5D["https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=[EPSG:3395\]"]
 
@@ -401,7 +401,7 @@ https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-
 .Map of NASA Earth Observatory's Blue Marble Next Generation (2004), using World Mercator (EPSG:3395) output `crs`
 image::images/xmp_blueMarble_3395.jpg[width=400,align="center"]
 
-The `Content-Crs:` contains the coordinates of the bounding box selected from the requested scale and default dimensions, which we can use to make a request that will generate an equivalent response.
+The `Content-Crs:` contains the coordinates of the bounding box selected from the requested scale and default dimensions, which can be used to make a request that will generate an equivalent response.
 
 ----
 Content-Crs: <http://www.opengis.net/def/crs/EPSG/0/3395>
@@ -416,7 +416,7 @@ https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?bbox-crs=%5BEPSG:339
 <<<
 
 [[dimensions-calculation-examples]]
-=== Calculations to infer correct dimensions
+=== Calculations to infer appropriate dimensions
 
 In these examples, the client specifies a bounding box (using `bbox` or `subset`) from 30°N to 50°N and 0°E to 30°E and a `scale-denominator` of 1:10,000,000,
 and the server needs to compute appropriate map image dimensions.
@@ -449,12 +449,12 @@ GET /collections/blueMarble/map?
 
 The latitude delta is 20°, whereas the longitude delta is 30°.
 
-The implementation could assume the WGS84 111,319.4907932735805 meters / degree of latitude (`metersPerDegLat` below), and use the most equatorial latitude of the subset (30°N) to
+The implementation could assume the WGS84 111,319.49 meters / degree of latitude (`metersPerDegLat` below), and use the most equatorial latitude of the subset (30°N) to
 compute the numbers of meters / degree of longitude with:
 
 ```
 metersPerDegLon = metersPerDegLat * cos(mostEquatorialLat)
-metersPerDegLon = 111,319.4907932735805 m/deg * cos(30°) = 96,405.5069633228529 m/deg
+metersPerDegLon = 111,319.49 m/deg * cos(30°) = 96,405.51 m/deg
 ```
 
 The dimensions can then simply be computed (rounding to the nearest integer) with:
@@ -463,8 +463,8 @@ The dimensions can then simply be computed (rounding to the nearest integer) wit
 width  = deltaLon * metersPerDegLon / physicalMetersPerPixel
 height = deltaLat * metersPerDegLat / physicalMetersPerPixel
 
-width  = 30 deg *  96,405.5069633228529 m/deg / 2800 m/pix = 1033 pixels
-height = 20 deg * 111,319.4907932735805 m/deg / 2800 m/pix =  795 pixels
+width  = 30 deg *  96,405.51 m/deg / 2800 m/pix = 1033 pixels
+height = 20 deg * 111,319.49 m/deg / 2800 m/pix =  795 pixels
 ```
 
 ==== World Mercator (EPSG:3395) Example
@@ -473,46 +473,46 @@ This second example is for the same geographical area, but for an EPSG:3395 Worl
 
 ```
 GET /collections/blueMarble/map?
-   subset=E(0:3339584.723798),N(3482189.085409:6413524.594164)&
+   subset=E(0:3339584.72),N(3482189.09:6413524.59)&
    scale-denominator=10000000&
    subset-crs=[EPSG:3395]&
    crs=[EPSG:3395]
 
 GET /collections/blueMarble/map?
-   bbox=0,3482189.085409,3339584.723798,6413524.594164&
+   bbox=0,3482189.09,3339584.72,6413524.59&
    scale-denominator=10000000&
    crs=[EPSG:3395]&
    bbox-crs=[EPSG:3395]
 ```
 
-The easting delta is 3,339,584.723798, whereas the northing delta is 2,931,335.508755.
+The easting delta is 3,339,584.72, whereas the northing delta is 2,931,335.50.
 
 In order to correctly apply the scale, the ratio between CRS units and physical meters must be taken into account.
-This could be calculated for the center point: (E: 1,669,792.361899, N: 4,947,856.8397865) which corresponds to (4,947,856.8397865°N, 15°E).
+This could be calculated for the center point: (E: 1,669,792.36, N: 4,947,856.84) which corresponds to (40.7514917°N, 15°E).
 One approach could be to project two points 1 degree of longitude apart around the center point,
 using the implementation's projection library, to obtain the number of CRS units per degree of longitude.
-Transforming (40.7514917°N, 14.5°E) to EPSG:3395 yields (E: 1,614,132.6165024668, N: 4,947,856.846908879) and transforming (40.7514917°N, 15.5°E) yields (E: 1,725,452.1072957402, N: 4,947,856.846908879).
-The resulting easting delta (`oneDegEastingDelta` below) is 111,319.4907932734, which in this case can be recognized as the actual physical meters per degree at the equator, rather than at the center latitude used.
+Transforming (40.7514917°N, 14.5°E) to EPSG:3395 yields (E: 1,614,132.62, N: 4,947,856.85) and transforming (40.7514917°N, 15.5°E) yields (E: 1,725,452.11, N: 4,947,856.85).
+The resulting easting delta (`oneDegEastingDelta` below) is 111,319.49, which in this case can be recognized as the actual physical meters per degree at the equator, rather than at the center latitude used.
 Therefore, in this case implementations effectively needs to apply the reverse correction that had to be applied for Plate Carrée when considering the numbers of true meters per Easting unit.
 First, `metersPerDegLon` can be computed as in the previous example:
 
 ```
 metersPerDegLon = metersPerDegLat * cos(centerLat)
-metersPerDegLon = 111,319.49079327 m/deg * cos(40.7514917°) = 84,329.85644 m/deg
+metersPerDegLon = 111,319.49 m/deg * cos(40.7514917°) = 84,329.856 m/deg
 ```
 
 Then the meters per easting unit can be computed:
 
 ```
 metersPerEastingUnit = metersPerDegLon / oneDegEastingDelta
-metersPerEastingUnit = 84,329.85644 m/deg / 111,319.49079327 m/deg = 0.757547989
+metersPerEastingUnit = 84,329.856 m/deg / 111,319.49 m/deg = 0.75754799
 ```
 
 Notice that in this particular case of World Mercator, this is simply:
 
 ```
 metersPerEastingUnit = cos(centerLat)
-metersPerEastingUnit = cos(40.7514917°) = 0.757547989
+metersPerEastingUnit = cos(40.7514917°) = 0.75754799
 ```
 
 The implementation could also apply similar logic to compute the meters per northing unit:
@@ -529,12 +529,12 @@ Finally, the map image dimensions can be computed with:
 width  = deltaEasting  * metersPerEastingUnit  / physicalMetersPerPixel
 height = deltaNorthing * metersPerNorthingUnit / physicalMetersPerPixel
 
-width  = 3,339,584.723798 m * 0.757547989 / 2800 m/pix = 904 pixels
-height = 2,931,335.508755 m * 0.757547989 / 2800 m/pix = 793 pixels
+width  = 3,339,584.72 m * 0.75754799 / 2800 m/pix = 904 pixels
+height = 2,931,335.50 m * 0.75754799 / 2800 m/pix = 793 pixels
 ```
 
 [[bbox-calculation-examples]]
-=== Calculations to infer correct bounding boxes
+=== Calculations to infer appropriate bounding boxes
 
 In this example, the client specifies a `center`, a `scale-denominator`, and optionally `width` and or `height` dimensions.
 If either the `width` or `height` is not specified, the server could pick default values, such as making the missing dimension
@@ -612,7 +612,7 @@ This second example requests a map in an EPSG:3395 output CRS, using that same C
 
 ```
 GET /collections/blueMarble/map?
-   center=1390625.3428877322,5116008.2270851005&
+   center=1390625.34,5116008.23&
    center-crs=[EPSG:3395]&
    scale-denominator=10000000&
    crs=[EPSG:3395]&
@@ -623,7 +623,7 @@ GET /collections/blueMarble/map?
 The center corresponds to the same point as the previous example (41.8902°N, 12.4922°E).
 
 Using the same approach as for the earlier dimensions computation examples, transforming test points one degree apart, the number of physical meters per easting and northing units can be computed
-specifically for the requested center point (E: 1390625.3428877322, N: 5116008.2270851005).
+specifically for the requested center point (E: 1390625.34, N: 5116008.23).
 Like earlier, in the specific case of World Mercator the `oneDegEastingDelta` and `oneDegNorthingDelta` is constant at 111,319.49 m/deg,
 which corresponds to the number of meters per degree at the equator.
 The number of physical meters per degree of longitude at the center latitude (41.8902°N) can be computed in the same way as previous examples:
@@ -665,15 +665,15 @@ deltaEasting  = 1024 pix * 2800 m/pix / 0.74442576 = 3,851,559.355 m
 deltaNorthing =  768 pix * 2800 m/pix / 0.74442576 = 2,888,669.516 m
 ```
 
-and finally this bounding box can be extended away from the requested center point (E: 1,390,625.3428877322, N: 5,116,008.2270851005 ):
+and finally this bounding box can be extended away from the requested center point (E: 1,390,625.34, N: 5,116,008.23 ):
 
 ```
-leftEasting   = 1,390,625.3428877322 - 3,851,559.355 / 2 =  -535,154.3346122678
-lowNorthing   = 5,116,008.2270851005 - 2,888,669.516 / 2 = 3,671,673.4690851005
-rightEasting  = 1,390,625.3428877322 + 3,851,559.355 / 2 = 3,316,405.0203877322
-upperNorthing = 5,116,008.2270851005 + 2,888,669.516 / 2 = 6,560,342.9850851005
+leftEasting   = 1,390,625.34 - 3,851,559.355 / 2 =  -535,154.34
+lowNorthing   = 5,116,008.23 - 2,888,669.516 / 2 = 3,671,673.47
+rightEasting  = 1,390,625.34 + 3,851,559.355 / 2 = 3,316,405.02
+upperNorthing = 5,116,008.23 + 2,888,669.516 / 2 = 6,560,342.99
 ```
 
 which completes the bounding box calculation. Expressed in EPSG:3395 together with the required `bbox-crs`, the parameters would be:
 
-`bbox=-535154.3346122678,3671673.4690851005,3316405.0203877322,6560342.9850851005&bbox-crs=[EPSG:3395]`.
+`bbox=-535154.34,3671673.47,3316405.02,6560342.99&bbox-crs=[EPSG:3395]`.
