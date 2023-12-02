@@ -3,7 +3,7 @@
 |===
 2+|*Requirements Class Map Tilesets*
 |Target type |Web API
-2+|http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets
-|Dependency |http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/tilesets-list
-http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+2+|https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets
+|Dependency |https://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/tilesets-list
+https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 |===

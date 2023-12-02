@@ -2,8 +2,8 @@
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Geodata Map*
-2+|http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/geodata-map
+2+|https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/geodata-map
 |Target type |Web API
-|Dependency |http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
-|Dependency |http://www.opengis.net/spec/ogcapi-common-2/1.0/req/collections
+|Dependency |https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+|Dependency |https://www.opengis.net/spec/ogcapi-common-2/1.0/req/collections
 |===

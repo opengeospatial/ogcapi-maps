@@ -28,12 +28,12 @@ With this parameter, the server has information on the physical size of the map 
 For example, if the server receives a very small value, the server could decide to represent linear elements wider than for normal values, preventing to create a representation of linear features that is going to result in lines that are too thin to be correctly perceived.
 
 ==== Response
-A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
+A successful GET response is described in the core class (https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
 
 include::requirements/display-resolution/REQ_map-success.adoc[]
 
 ==== Error conditions
 
-A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in https://docs.ogc.org/is/19-072/19-072.html[OGC API - Common - Part 1: Core] Standard.
+A general summary of the HTTP status codes can be found in https://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in https://docs.ogc.org/is/19-072/19-072.html[OGC API - Common - Part 1: Core] Standard.
 
 If the parameters values for `mm-per-pixel` are out-of-range, the status code of the response will be `400`.

@@ -11,7 +11,7 @@ The Maps API core requirements class defines how to retrieve a map from a resour
 
 === General
 
-This requirements class describes how to serve maps for a dataset provided as Web API instance implementing  _OGC API - Common - Part 1_ requirement classes or http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as an alternative.
+This requirements class describes how to serve maps for a dataset provided as Web API instance implementing  _OGC API - Common - Part 1_ requirement classes or https://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as an alternative.
 
 === Dataset API landing page
 
@@ -62,7 +62,7 @@ include::recommendations/dataset-map/REC_storage-epoch.adoc[]
     ...,
     {
       "href": "https://data.example.org/map",
-      "rel": "http://www.opengis.net/def/rel/ogc/1.0/map",
+      "rel": "https://www.opengis.net/def/rel/ogc/1.0/map",
       "type": "image/png",
       "title": "Map combining collections in the dataset"
     }
@@ -77,10 +77,10 @@ include::recommendations/dataset-map/REC_storage-epoch.adoc[]
 
 include::requirements/dataset-map/REQ_operation.adoc[]
 
-The operation request does not define extra parameters. Servers can advertise the requirements class http://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/collections-selection to add a `collections` parameter that can be used to include only parts of the dataset in the map representation.
+The operation request does not define extra parameters. Servers can advertise the requirements class https://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/collections-selection to add a `collections` parameter that can be used to include only parts of the dataset in the map representation.
 
 ==== Response
-A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
+A successful GET response is described in the core class (https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
 
 A successful response is a map resource that is represent the entire dataset. In a Web API providing access to a complex dataset comprised of several geospatial data resources, there are reasons for being selective in the amount of information included. This can be achieved by applying a manual filter described in the <<rc_collections-selection>> or as an automatic decision by the server side.
 

@@ -2,7 +2,7 @@
 
 The _OGC API - Maps - Part 1: Core_ Standard defines a Web API for requesting maps over the Web.
 A _map_ is portrayal of geographic information as a digital representation suitable for display on a rendering device
-(adapted from http://portal.opengeospatial.org/files/?artifact_id=14416[OGC 06-042/ISO 19128 OpenGIS® Web Map Server (WMS) Implementation Specification]).
+(adapted from https://portal.opengeospatial.org/files/?artifact_id=14416[OGC 06-042/ISO 19128 OpenGIS® Web Map Server (WMS) Implementation Specification]).
 Implementations of the _OGC API - Maps_ Standard are designed for a client to easily:
 
 * Request a visual representation of one or more geospatial data layers in different styles;
@@ -10,7 +10,7 @@ Implementations of the _OGC API - Maps_ Standard are designed for a client to ea
 * Change parameters such as the background color and coordinate reference systems.
 
 A server that implements _OGC API - Maps_ provides information about what maps are offered.
-_OGC API - Maps_ addresses use cases similar to those addressed by the http://portal.opengeospatial.org/files/?artifact_id=14416[OGC 06-042/ISO 19128 OpenGIS® Web Map Server (WMS) Implementation Specification] Standard.
+_OGC API - Maps_ addresses use cases similar to those addressed by the https://portal.opengeospatial.org/files/?artifact_id=14416[OGC 06-042/ISO 19128 OpenGIS® Web Map Server (WMS) Implementation Specification] Standard.
 
 The key work for crafting this OGC Standard was undertaken in the Open-Earth-Monitor Cyberinfrastructure (OEMC) project, which received funding from the European Union’s Horizon Europe research and innovation program under grant agreement number 101059548 and in the All Data 4 Green Deal - An Integrated, FAIR Approach for the Common European Data Space (AD4GD) project, which received funding from the European Union’s Horizon Europe research and innovation program under grant agreement number 101061001.
 

@@ -50,19 +50,19 @@ Example of a request and associated response headers:
 ```
 
 ```
-Content-Crs-Method: <http://www.opengis.net/def/method/EPSG/0/9840>
-Content-Crs-Method-Params: <http://www.opengis.net/def/parameter/EPSG/0/8801>=30; <http://www.opengis.net/def/parameter/EPSG/0/8802>=40
-Content-Crs-Datum: <http://www.opengis.net/def/datum/EPSG/0/6326>
+Content-Crs-Method: <https://www.opengis.net/def/method/EPSG/0/9840>
+Content-Crs-Method-Params: <https://www.opengis.net/def/parameter/EPSG/0/8801>=30; <https://www.opengis.net/def/parameter/EPSG/0/8802>=40
+Content-Crs-Datum: <https://www.opengis.net/def/datum/EPSG/0/6326>
 Content-Bbox: -1000,-800,1000,800
 ```
 
 ==== Response
 
-A successful GET response is described in the Maps API core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
+A successful GET response is described in the Maps API core class (https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
 
 ==== Error conditions
 
-A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in the https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core] Standard.
+A general summary of the HTTP status codes can be found in https://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in the https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core] Standard.
 
 If the parameter value for the parameters is not valid, the status code of the response will be `400`.
 

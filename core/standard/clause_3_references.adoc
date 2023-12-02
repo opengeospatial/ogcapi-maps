@@ -1,9 +1,9 @@
 == References
 The following normative documents contain provisions that, through reference in this text, constitute provisions of this document. For dated references, subsequent amendments to, or revisions of, any of these publications do not apply. For undated references, the latest edition of the normative document referred to applies.
 
-* [[OGC19_072]] OGC: OGC 19-072, **OGC API - Common - Part 1: Core** (in development) http://docs.opengeospatial.org/DRAFTS/19-072.pdf
+* [[OGC19_072]] OGC: OGC 19-072, **OGC API - Common - Part 1: Core** (in development) https://docs.opengeospatial.org/DRAFTS/19-072.pdf
 
-* [[OpenAPI]] OpenAPI Initiative (OAI). **OpenAPI Specification 3.0** [online]. 2020 [viewed 2020-03-16]. The latest patch version at the time of publication of this standard was 3.0.3, available at http://spec.openapis.org/oas/v3.0.3
+* [[OpenAPI]] OpenAPI Initiative (OAI). **OpenAPI Specification 3.0** [online]. 2020 [viewed 2020-03-16]. The latest patch version at the time of publication of this standard was 3.0.3, available at https://spec.openapis.org/oas/v3.0.3
 
 * [[JPEG]] ISO and IEC: ISO/IEC 10918-1:1994, *Information technology — Digital compression and coding of continuous-tone still images: Requirements and guidelines* (1994) https://www.iso.org/standard/18902.html
 
@@ -15,13 +15,13 @@ The following normative documents contain provisions that, through reference in 
 
 * [[SVG]] Scalable Vector Graphics (SVG) v2. W3C Candidate Recommendation - October, (2018) https://www.w3.org/TR/SVG2/
 
-* [[rfc8288]] Internet Engineering Task Force (IETF). RFC 8288: **Web Linking** [online]. Edited by M. Nottingham. 2017 [viewed 2020-03-16]. Available at http://tools.ietf.org/rfc/rfc8288.txt
+* [[rfc8288]] Internet Engineering Task Force (IETF). RFC 8288: **Web Linking** [online]. Edited by M. Nottingham. 2017 [viewed 2020-03-16]. Available at https://tools.ietf.org/rfc/rfc8288.txt
 
 * [[HTML5]] WHATWG. *HTML*, Living Standard [online, viewed 2020-03-16]. Available at https://html.spec.whatwg.org/
 
 * [[OGC20_057]] OGC: OGC 20-057, OGC API - Tiles - Part 1: Core (2022) Available at https://docs.ogc.org/is/20-057/20-057.html
 
-* [[OGC17_083r4]] OGC: OGC 17-083r4, OGC Two Dimensional Tile Matrix Set and Tile Set Metadata 1.0 (2022) http://docs.ogc.org/is/17-083r4/17-083r4.html
+* [[OGC17_083r4]] OGC: OGC 17-083r4, OGC Two Dimensional Tile Matrix Set and Tile Set Metadata 1.0 (2022) https://docs.ogc.org/is/17-083r4/17-083r4.html
 
 * [[OGC17_069r4]] OGC: OGC: 17-069r4, OGC API - Features - Part 1: Core corrigendum, Available at https://docs.ogc.org/is/17-069r4/17-069r4.html
 

@@ -60,7 +60,7 @@ March 18, 2018, 12:31:12 UTC or earlier:
 `datetime=..%2F2018-03-18T12%3A31%3A12Z`
 =================
 
-A template for the definition of the parameter in YAML according to OpenAPI 3.0 is available at link:http://beta.schemas.opengis.net/ogcapi/common/part2/0.1/collections/openapi/parameters/datetime.yaml[datetime.yaml].
+A template for the definition of the parameter in YAML according to OpenAPI 3.0 is available at link:https://beta.schemas.opengis.net/ogcapi/common/part2/0.1/collections/openapi/parameters/datetime.yaml[datetime.yaml].
 
 
 
@@ -88,13 +88,13 @@ include::recommendations/datetime/REC_actual-datetime.adoc[]
 include::recommendations/datetime/PER_datetime-axis.adoc[]
 
 === Response
-A successful GET response is described in the Maps API core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
+A successful GET response is described in the Maps API core class (https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
 
 include::requirements/datetime/REQ_map-success.adoc[]
 
 === Error conditions
 
-A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in the https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core] Standard.
+A general summary of the HTTP status codes can be found in https://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in the https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core] Standard.
 
 If the parameter value for `datetime` is outside the domain of the collections, the status code of the response will be `400`.
 

@@ -31,7 +31,7 @@ include::requirements/styled-map/REQ_desc-links.adoc[]
     ...
     {
       "href": "https://data.example.com/collections/buildings/styles/dark/map",
-      "rel": "http://www.opengis.net/def/rel/ogc/1.0/map",
+      "rel": "https://www.opengis.net/def/rel/ogc/1.0/map",
       "type": "image/png",
     }
   ]
@@ -49,6 +49,6 @@ The Maps API standard does not specify any additional query parameter in the GET
 
 ==== Response
 
-A successful GET response is described in the Maps API core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
+A successful GET response is described in the Maps API core class (https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
 
 A successful response is a map that represents the styled resource.

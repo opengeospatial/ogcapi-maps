@@ -2,7 +2,7 @@
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Background*
-2+|http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background
+2+|https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background
 |Target type |Web API
-|Dependency |http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+|Dependency |https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 |===

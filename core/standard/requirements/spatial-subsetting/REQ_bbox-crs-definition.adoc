@@ -12,13 +12,13 @@
     required: false
     schema:
       type: string
-    example: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+    example: https://www.opengis.net/def/crs/OGC/1.3/CRS84
 ----
-^|B |For Earth centric data, the implementation SHALL support http://www.opengis.net/def/crs/OGC/1.3/CRS84 as a value.
-^|C |If the bbox-crs is not indicated http://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be assumed.
+^|B |For Earth centric data, the implementation SHALL support https://www.opengis.net/def/crs/OGC/1.3/CRS84 as a value.
+^|C |If the bbox-crs is not indicated https://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be assumed.
 ^|D |If the storage (native) CRS is known,  the storage CRS as a value SHALL be supported. Other conformance classes may allow additional values (see crs parameter definition).
 ^|E |The CRS expressed as URIs or as safe CURIEs SHALL be supported.
 ^|F |If the `bbox` parameter is not used, the `bbox-crs` SHALL be ignored.
 |===
 
-NOTE: A CURIE {authority}[-{objectType}]:{id} would correspond to the following OGC URI: http://www.opengis.net/def/{objectType}/{authority}/0/{id}. If -{objectType} is missing, the default object type is _crs_.
+NOTE: A CURIE {authority}[-{objectType}]:{id} would correspond to the following OGC URI: https://www.opengis.net/def/{objectType}/{authority}/0/{id}. If -{objectType} is missing, the default object type is _crs_.

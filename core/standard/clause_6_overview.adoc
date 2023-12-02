@@ -17,7 +17,7 @@ An annex with examples of map requests and responses is included as a way to lea
 An example OpenAPI definition for this standard is available at:
 https://petstore.swagger.io/?url=https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/openapi/ogcapi-maps-1.bundled.json .
 
-The modular and reusable components used in this example OpenAPI definition can be found http://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi .
+The modular and reusable components used in this example OpenAPI definition can be found https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi .
 More details on how to adjust and bundle these components can be found in <<rc_oas30>>.
 
 NOTE: While this specification is in draft status, the components are available from https://github.com/opengeospatial/ogcapi-maps/tree/master/openapi .

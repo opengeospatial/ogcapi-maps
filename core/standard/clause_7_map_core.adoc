@@ -42,7 +42,7 @@ Below is an example of the successful HTTP response headers describing a PNG ima
 HTTP/1.1 200 OK
 Content-Type: image/png
 Last-Modified: Fri, 21 Jul 2023 14:37:46 GMT
-Content-Crs: <http://www.opengis.net/def/crs/EPSG/0/32631>
+Content-Crs: <https://www.opengis.net/def/crs/EPSG/0/32631>
 Content-Bbox: 347736.47,4546722.45,497736.47,4608322.45
 Content-Length: 1198247
 ----
@@ -91,9 +91,9 @@ If the server declares conformity also to _OGC API - Common - Part 1: Core_ or t
 [source,JSON]
 {
   "conformsTo": [
-    "http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
-    "http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections",
-    "http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
+    "https://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
+    "https://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections",
+    "https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
   ]
 }
 =================

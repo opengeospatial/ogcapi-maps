@@ -5,7 +5,7 @@ The Maps API can be described and documented using the https://www.openapis.org/
 
 Specifically, this _OGC API - Maps_ Standard supports the following:
 
-* Discovery operations that allow an implementation instance of the Maps API to be interrogated to determine capabilities and to retrieve information about this distribution of maps. This information includes the API definition (if also implementing http://www.opengis.net/doc/is/ogcapi-common-1/1.0[_OGC API - Common - Part 1: Core_]), as well as metadata about the data layers provided and the Coordinate Reference System(s) supported by the Web API implementation instance;
+* Discovery operations that allow an implementation instance of the Maps API to be interrogated to determine capabilities and to retrieve information about this distribution of maps. This information includes the API definition (if also implementing https://www.opengis.net/doc/is/ogcapi-common-1/1.0[_OGC API - Common - Part 1: Core_]), as well as metadata about the data layers provided and the Coordinate Reference System(s) supported by the Web API implementation instance;
 * Retrieval operations that enable client applications to retrieve a map, using a default or pre-defined style, for an arbitrary geospatial resource, a dataset representing the full content distributed by the API, or an individual collection of geospatial data representing part of the dataset;
 * Parameters for specifying the background and transparency of the map;
 * Parameters for specifying the scale of the map;

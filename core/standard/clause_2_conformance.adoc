@@ -21,7 +21,7 @@ Additional classes may be specified in future parts of the _OGC API - Maps_ seri
 
 NOTE: The "Custom Projection CRS" requirements class specifies a `/projectionsAndDatums` resource listing values available for the parameters it defines.
 
-*<<rc_core>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core)
+*<<rc_core>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core)
 
 The _Maps API_ Core specifies requirements that any Web API implementation instance of the Maps API Standard must implement to claim conformance with the _OGC API - Maps - Part 1: Core_ Standard.
 This requirements class defines an operation to retrieve a map, but does not define any query parameters to customize the map.
@@ -31,9 +31,9 @@ This requirements class defines an operation to retrieve a map, but does not def
 .../map
 ```
 
-*<<rc_tilesets>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets)
+*<<rc_tilesets>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets)
 
-The _map tilesets_ requirements class defines a mechanism to list available map tilesets (sets of tiles resulting from tiling data according to a particular tiling scheme, from http://www.opengis.net/doc/IS/tms/2.0[OGC 17-083r4 Two Dimensional Tile Matrix Set and Tile Set Metadata]) supported by the Web API instance and retrieve tiles (see definition in http://www.opengis.net/doc/IS/tms/2.0[OGC 17-083r4]) of the map representation.
+The _map tilesets_ requirements class defines a mechanism to list available map tilesets (sets of tiles resulting from tiling data according to a particular tiling scheme, from https://www.opengis.net/doc/IS/tms/2.0[OGC 17-083r4 Two Dimensional Tile Matrix Set and Tile Set Metadata]) supported by the Web API instance and retrieve tiles (see definition in https://www.opengis.net/doc/IS/tms/2.0[OGC 17-083r4]) of the map representation.
 
 .Example requests:
 ```
@@ -52,7 +52,7 @@ These requirements classes define Maps API parameters that can be used together 
 
 NOTE: In the effort to make the OGC APIs more consistent, some parts of these requirements classes are expected to be imported by a future part of  OGC API - Common or be registered in the building blocks registry. A future revision of OGC API - Maps could reference them and ensure consistency with the relevant section.
 
-*<<rc_background>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background)
+*<<rc_background>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background)
 
 The _background_ requirements class defines how to request a particular background color (`bgcolor`) and to specify whether areas of the map with no data are `transparent`.
 
@@ -62,7 +62,7 @@ The _background_ requirements class defines how to request a particular backgrou
 .../map?transparent=false
 ```
 
-*<<rc_collections-selection>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection)
+*<<rc_collections-selection>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection)
 
 The _collection selection_ requirements class defines how to list specific geospatial data collection resources from which to retrieve maps.
 
@@ -71,7 +71,7 @@ The _collection selection_ requirements class defines how to list specific geosp
 .../map?collections=buildings,roads,...
 ```
 
-*<<rc_scaling>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/scaling)
+*<<rc_scaling>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/scaling)
 The _scaling_ requirements class defines how to retrieve a resampled map. This is done by specifying a `width` and/or `height` parameter (in pixels),
 or a `scale-denominator` parameter.
 
@@ -86,7 +86,7 @@ the `width` and `height` can only be used for specifying the scale when a `bbox`
 as otherwise they take on a subsetting role. When neither `bbox` nor `subset` is used for spatial subsetting,
 the `scale-denominator` parameter must be used to specify the scale.
 
-*<<rc_display-resolution>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/display-resolution)
+*<<rc_display-resolution>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/display-resolution)
 The _display resolution_ requirements class defines how to specify the resolution of the display (the size of a pixel in millimeters) using the
 `mm-per-pixel` parameter at which the map will be visualized so as to properly interpret scale denominators and apply scale-dependent symbology rules.
 
@@ -95,7 +95,7 @@ The _display resolution_ requirements class defines how to specify the resolutio
 .../map?mm-per-pixel=0.14
 ```
 
-*<<rc_spatial-subsetting>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting)
+*<<rc_spatial-subsetting>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting)
 The _spatial subsetting_ requirements class defines how to retrieve a spatial subset of a map using either a `bbox` or `subset` parameter.
 
 .Example subsetting requests using bounding box:
@@ -123,7 +123,7 @@ the `scale-denominator` parameter must be used to specify the scale.
 .../map?center-crs=[EPSG:3857]&center=750000,70000&width=1024&height=512
 ```
 
-*<<rc_datetime>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime)
+*<<rc_datetime>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime)
 The _temporal subsetting_ requirements class specifies how to request a temporal subset of the data using the `datetime` parameter,
 or the `subset` parameter for the `time` dimension.
 
@@ -133,7 +133,7 @@ or the `subset` parameter for the `time` dimension.
 .../map?subset=time("2018-02-12T23:20:52Z")
 ```
 
-*<<rc_general-subsetting>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/general-subsetting)
+*<<rc_general-subsetting>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/general-subsetting)
 The _general subsetting_ requirements class specifies how to request a subset of dimensions of the data besides the spatial and temporal dimensions
 using the `subset` parameter.
 This parameter also implies adopting a consistent way to describe all dimensions of the data in the collection's extent description.
@@ -143,7 +143,7 @@ This parameter also implies adopting a consistent way to describe all dimensions
 .../map?subset=atm_pressure_hpa(500)
 ```
 
-*<<rc_crs>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs)
+*<<rc_crs>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs)
 The _CRS by reference_ requirements class defines how to specify the output CRS of the map by referencing a URI (or CURIE) for a CRS definition.
 
 .Example request:
@@ -151,7 +151,7 @@ The _CRS by reference_ requirements class defines how to specify the output CRS 
 .../map?crs=[EPSG:3031]
 ```
 
-*<<rc_orientation>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/orientation)
+*<<rc_orientation>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/orientation)
 The _orientation_ requirements class defines how to specify an angle for re-orienting how the map is displayed (`orientation`).
 
 .Example orientation request:
@@ -159,7 +159,7 @@ The _orientation_ requirements class defines how to specify an angle for re-orie
 .../map?orientation=40
 ```
 
-*<<rc_projection>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection)
+*<<rc_projection>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection)
 The _custom projection CRS_ requirements class defines how to specify a custom CRS through a projection, including the coordinate operation method (`crs-proj-method`)
 and associated parameters (`crs-proj-params`), as well as a datum (`crs-datum`) and orientation (`orientation`).
 This class also defines a `crs-proj-center` parameter for facilitating the selection of the most likely parameters to center the projection on an area of interest.
@@ -184,7 +184,7 @@ NOTE: This "Custom Projection CRS" requirements class also defines a `/projectio
 
 === Requirements classes defining origins
 
-*<<rc_collection-map>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collection-map)
+*<<rc_collection-map>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collection-map)
 
 The _collection map_ requirements class specifies how to retrieve maps from a specific geospatial data resource.
 
@@ -193,7 +193,7 @@ The _collection map_ requirements class specifies how to retrieve maps from a sp
 /collections/buildings/map
 ```
 
-*<<rc_dataset-map>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map)
+*<<rc_dataset-map>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map)
 
 The _dataset map_ requirements class specifies how to retrieve maps for a whole dataset potentially made up of multiple geospatial data resources.
 Any Web API implementing this requirements class must support *dataset* maps following this _OGC API - Maps Part 1: Core_ Standard.
@@ -204,7 +204,7 @@ Dataset maps may combine content from multiple geospatial resources, regardless 
 /map
 ```
 
-*<<rc_styled-map>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styled-map)
+*<<rc_styled-map>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styled-map)
 
 The _styled map_ requirements class specifies how to retrieve maps for a styled resource.
 
@@ -222,42 +222,42 @@ Requirements classes are provided for the following common map formats.
 The Standard remains flexible and extensible to other formats that users and providers might need
 through HTTP content negotiation.
 
-*<<rc_png,PNG>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png)
+*<<rc_png,PNG>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png)
 
 .Media type
 ```
 image/png
 ```
 
-*<<rc_jpeg,JPEG>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpeg)
+*<<rc_jpeg,JPEG>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpeg)
 
 .Media type
 ```
 image/jpeg
 ```
 
-*<<rc_tiff,TIFF>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff)
+*<<rc_tiff,TIFF>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff)
 
 .Media type
 ```
 image/tiff
 ```
 
-*<<rc_svg,SVG>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/svg)
+*<<rc_svg,SVG>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/svg)
 
 .Media type
 ```
 image/svg+xml
 ```
 
-*<<rc_html,HTML>>* (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/html)
+*<<rc_html,HTML>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/html)
 
 .Media type
 ```
 text/html
 ```
 
-*<<rc_oas30>>*  (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/oas30)
+*<<rc_oas30>>*  (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/oas30)
 
 The _OpenAPI Specification 3.0_ requirements class specifies requirements for an OpenAPI 3.0 definition in addition to those defined in _OGC API - Common - Part 1: Core_.
 
@@ -272,25 +272,25 @@ That said, this Standard includes recommendations to support, where practical, H
 [cols="30,70",options="header"]
 |===
 | Corresponding requirements class | Conformance class URI
-| <<rc_core>>                  | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core
-| <<rc_tilesets>>              | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tilesets
-| <<rc_background>>            | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/background
-| <<rc_collections-selection>> | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collections-selection
-| <<rc_scaling>>               | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/scaling
-| <<rc_display-resolution>>    | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/display-resolution
-| <<rc_spatial-subsetting>>    | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting
-| <<rc_datetime>>              | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/datetime
-| <<rc_general-subsetting>>    | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/general-subsetting
-| <<rc_crs>>                   | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/crs
-| <<rc_orientation>>           | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/orientation
-| <<rc_projection>>            | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/projection
-| <<rc_collection-map>>        | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collection-map
-| <<rc_dataset-map>>           | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset-map
-| <<rc_styled-map>>            | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/styled-map
-| <<rc_png,PNG>>               | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/png
-| <<rc_jpeg,JPEG>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/jpeg
-| <<rc_tiff,TIFF>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tiff
-| <<rc_svg,SVG>>               | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/svg
-| <<rc_html,HTML>>             | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/html
-| <<rc_oas30>>                 | http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/oas30
+| <<rc_core>>                  | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core
+| <<rc_tilesets>>              | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tilesets
+| <<rc_background>>            | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/background
+| <<rc_collections-selection>> | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collections-selection
+| <<rc_scaling>>               | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/scaling
+| <<rc_display-resolution>>    | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/display-resolution
+| <<rc_spatial-subsetting>>    | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting
+| <<rc_datetime>>              | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/datetime
+| <<rc_general-subsetting>>    | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/general-subsetting
+| <<rc_crs>>                   | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/crs
+| <<rc_orientation>>           | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/orientation
+| <<rc_projection>>            | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/projection
+| <<rc_collection-map>>        | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collection-map
+| <<rc_dataset-map>>           | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset-map
+| <<rc_styled-map>>            | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/styled-map
+| <<rc_png,PNG>>               | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/png
+| <<rc_jpeg,JPEG>>             | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/jpeg
+| <<rc_tiff,TIFF>>             | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tiff
+| <<rc_svg,SVG>>               | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/svg
+| <<rc_html,HTML>>             | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/html
+| <<rc_oas30>>                 | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/oas30
 |===

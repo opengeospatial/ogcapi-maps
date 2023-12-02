@@ -22,7 +22,7 @@ include::requirements/oas30/REQ_completeness.adoc[]
 
 ===== Reusable API components
 
-Reusable components for creating OpenAPI definitions for implementations of this OGC API can be found in http://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi .
+Reusable components for creating OpenAPI definitions for implementations of this OGC API can be found in https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi .
 
 NOTE: While this specification is in draft status, the components are available from https://github.com/opengeospatial/ogcapi-maps/tree/master/openapi .
 

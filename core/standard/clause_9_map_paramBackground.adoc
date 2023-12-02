@@ -186,6 +186,6 @@ For formats reserving a color to define transparency (color key), the combinatio
 NOTE: The `opaque` attribute of layer element in the GetCapabilities response in WMS is deprecated and is not specified by the Maps API.
 
 ==== Response
-A successful GET response is described in the core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
+A successful GET response is described in the core class (https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
 
 include::requirements/background/REQ_map-success.adoc[]

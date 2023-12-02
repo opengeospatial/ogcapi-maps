@@ -16,7 +16,7 @@
       type: string
 ----
 ^|B |The parameter `collections` SHALL contain a comma-separated list of geospatial resource identifiers (e.g., collectionId's) or a comma-separated list of full URLs to geospatial resource identifiers.
-^|C |Only the geospatial data resource identifiers that advertise a link compatible with the type of resource to be requested (e.g., with rel: `http://www.opengis.net/def/rel/ogc/1.0/tilesets-*` for tiles and with rel: `http://www.opengis.net/def/rel/ogc/1.0/map` for maps) in the geospatial data resource description SHALL be accepted as valid values in the parameter.
+^|C |Only the geospatial data resource identifiers that advertise a link compatible with the type of resource to be requested (e.g., with rel: `https://www.opengis.net/def/rel/ogc/1.0/tilesets-*` for tiles and with rel: `https://www.opengis.net/def/rel/ogc/1.0/map` for maps) in the geospatial data resource description SHALL be accepted as valid values in the parameter.
 ^|D |Only geospatial data resources that support the same `crs` parameter value (or the same TileMatrixSet for tiles) SHALL be accepted as valid values in the parameter value.
 ^|E |If there is more than one collection name and the style applied does not specify otherwise, the comma-separated collections SHALL be included in the result starting by the first (leftmost) and ending by the last (rightmost). In map tiles, this will result in the first collection being portrayed in the bottom and the others are rendered on top of the previous ones, one by one (the rightmost collection will become topmost in the portrayal).
 |===

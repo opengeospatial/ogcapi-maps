@@ -26,15 +26,15 @@ In the Maps API Standard, these two objectives have been separated. This section
 
 In this document the CRS for subsetting can have 3 possible values:
 
-* http://www.opengis.net/def/crs/OGC/1.3/CRS84
+* https://www.opengis.net/def/crs/OGC/1.3/CRS84
 * `storageCrs` indicated in the collection description.
 * the one indicated in the `crs` parameter (the one picked for the map response). This possibility is described in the <<rc_crs, "CRS" requirement class>>.
 
-The CRS advertised in the collection's spatial extent is always in http://www.opengis.net/def/crs/OGC/1.3/CRS84 (for Earth centric data and as required by _OGC API - Features_). At least for _OGC API - Maps_ and _OGC API - Coverages_, a native CRS (also called storage CRS) is defined. The `Content-Crs:` header (see <<maps-core-overview>>) specifies the CRS used in the response to avoid confusion.
+The CRS advertised in the collection's spatial extent is always in https://www.opengis.net/def/crs/OGC/1.3/CRS84 (for Earth centric data and as required by _OGC API - Features_). At least for _OGC API - Maps_ and _OGC API - Coverages_, a native CRS (also called storage CRS) is defined. The `Content-Crs:` header (see <<maps-core-overview>>) specifies the CRS used in the response to avoid confusion.
 
-NOTE: There is no obligation to provide the maps in http://www.opengis.net/def/crs/OGC/1.3/CRS84.
+NOTE: There is no obligation to provide the maps in https://www.opengis.net/def/crs/OGC/1.3/CRS84.
 
-NOTE: The collection or dataset description will contain a `storageCrs` property indicating the native CRS. If it is not present, then http://www.opengis.net/def/crs/OGC/1.3/CRS84 is assumed. This is specified in the _Collection Map_ and _Dataset Map_ requirements classes.
+NOTE: The collection or dataset description will contain a `storageCrs` property indicating the native CRS. If it is not present, then https://www.opengis.net/def/crs/OGC/1.3/CRS84 is assumed. This is specified in the _Collection Map_ and _Dataset Map_ requirements classes.
 
 NOTE: Providing the extent of the collection or dataset in its native CRS (_storage CRS_) is also required, as specified in the _Collection Map_ and _Dataset Map_ requirements classes.
 
@@ -52,7 +52,7 @@ include::requirements/spatial-subsetting/REQ_subset-crs-definition.adoc[]
 
 include::requirements/spatial-subsetting/REQ_center-crs-definition.adoc[]
 
-NOTE: For clarification, the default CRS of the `bbox`, `center` and `subset` spatial subsetting parameters is `http://www.opengis.net/def/crs/OGC/1.3/CRS84` and the default output CRS of the map is its native (storage) CRS.
+NOTE: For clarification, the default CRS of the `bbox`, `center` and `subset` spatial subsetting parameters is `https://www.opengis.net/def/crs/OGC/1.3/CRS84` and the default output CRS of the map is its native (storage) CRS.
 
 NOTE: The `center-crs`, `subset-crs` and `bbox-crs` are defined identically except they are affecting `center`, `subset` and `bbox` parameters respectively.
 
@@ -125,7 +125,7 @@ See also examples in an annex of computations to <<dimensions-calculation-exampl
 
 === Response
 
-A successful GET response is described in the Maps API core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core).
+A successful GET response is described in the Maps API core class (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core).
 
 include::requirements/spatial-subsetting/REQ_map-success.adoc[]
 
@@ -139,7 +139,7 @@ NOTE: As defined in the Maps API core requirements class, the `Content-Bbox:` an
 
 === Error conditions
 
-A general summary of the HTTP status codes can be found in http://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
+A general summary of the HTTP status codes can be found in https://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in OGC API - Common.
 
 If the CRS in the parameter value `bbox-crs`, `subset-crs` or `center-crs` is not supported by the server for this resource, or the parameter value is out-of-range, the status code of the response will be `400`.
 If the map is not provided due to lack of data in the area, the status code of the response will be `204` or `404`.

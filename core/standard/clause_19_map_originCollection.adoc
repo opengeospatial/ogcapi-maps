@@ -62,7 +62,7 @@ include::recommendations/collection-map/REC_storage-epoch.adoc[]
     ...
     {
       "href": "https://data.example.com/collections/buildings/map",
-      "rel": "http://www.opengis.net/def/rel/ogc/1.0/map",
+      "rel": "https://www.opengis.net/def/rel/ogc/1.0/map",
       "type": "image/png",
     }
   ]
@@ -84,6 +84,6 @@ This requirements class does not specify any additional query parameter for the 
 
 ==== Response
 
-A successful GET response is described in the Maps API core class (http://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
+A successful GET response is described in the Maps API core class (https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core).
 
 A successful response is a map that represents the collection of geospatial data resource.
