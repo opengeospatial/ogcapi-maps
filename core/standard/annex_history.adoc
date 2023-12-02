@@ -16,4 +16,5 @@
 |2020-01-02 |T15-ER-1.0 |J. Masó              |various                   |Final staff review and edits of Testbed-15 engineering report (OGC 19-069).
 |2023-04-20 |0.8        |J. Masó, J. St-Louis |all                       |Re-organized into several new requirements classes providing additional capability and flexibility.
 |2023-05-02 |1.0.0rc1   |J. Masó, J. St-Louis |various                   |First version of OGC API - Maps submitted to the OAB for review.
+|2023-12-03 |1.0.0rc2   |J. Masó, J. St-Louis |various                   |Implemented feedback from the OAB. Applied Carl Reed's suggestions. Added examples annex. Improved conformance and overview sections. Complete transition to https URIs. Added security considerations section. Clarified scaling and subsetting requirement classes. Added JPEG XL requirement class. Several other improvements. Second version of OGC API - Maps submitted to the OAB for review.
 |===
