@@ -7,7 +7,11 @@ The following normative documents contain provisions that, through reference in 
 
 * [[JPEG]] ISO and IEC: ISO/IEC 10918-1:1994, *Information technology — Digital compression and coding of continuous-tone still images: Requirements and guidelines* (1994) https://www.iso.org/standard/18902.html
 
-* [[JPEG_XL]] ISO and IEC: ISO/IEC 18181-1:2022, *Information technology — JPEG XL image coding system guidelines* (2022) https://www.iso.org/standard/77977.html
+* [[JPEG_XL1]] ISO and IEC: ISO/IEC 18181-1:2022, *Information technology — JPEG XL image coding system - Part 1: Core coding system* (2022) https://www.iso.org/standard/77977.html
+
+* [[JPEG_XL2]] ISO and IEC: ISO/IEC 18181-2:2021, *Information technology — JPEG XL image coding system - Part 2: File format* (2021) https://www.iso.org/standard/80617.html
+
+https://www.iso.org/standard/80617.html[ISO/IEC 18181-2:2021 Part 2: File format]
 
 * [[PNG]] ISO and IEC: ISO/IEC 15948:2004, **Information technology — Computer graphics and image processing — Portable Network Graphics (PNG): Functional specification** (2004) https://www.iso.org/standard/29581.html
 

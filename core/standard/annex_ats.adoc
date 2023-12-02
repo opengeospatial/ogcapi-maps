@@ -653,6 +653,19 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 **Then:** (assert that all parts of the requirement are fully satisfied)
 |===
 
+=== Conformance Class "JPEG XL"
+
+==== Requirement JPEG XL map content
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/jpegxl/content
+|Requirement: |/req/jpegxl/content
+|Test purpose: | Verify that the implementation supports retrieving maps negotiating for JPEG XL content
+|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
+*When:* retrieving a JPEG XL (`image/jxl`) representation of a map resource through HTTP content negotiation +
+**Then:** (assert that all parts of the requirement are fully satisfied)
+|===
+
 === Conformance Class "TIFF"
 
 ==== Requirement TIFF map content

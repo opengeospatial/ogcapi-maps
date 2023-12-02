@@ -5,7 +5,7 @@ The framework, concepts, and methodology for testing, and the criteria to be ach
 
 The standardization targets of all conformance classes are "Web APIs".
 
-The _OGC API - Maps - Part 1: Core_ Standard defines twenty-one **(21)** conformance classes, each corresponding to one requirements class. 
+The _OGC API - Maps - Part 1: Core_ Standard defines twenty-two **(22)** conformance classes, each corresponding to one requirements class. 
 
 The core conformance class is the only mandatory one. All other conformance classes are optional and depend on the _core_.
 
@@ -236,6 +236,14 @@ image/png
 image/jpeg
 ```
 
+
+*<<rc_jpegxl,JPEG XL>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpegxl)
+
+.Media type
+```
+image/jxl
+```
+
 *<<rc_tiff,TIFF>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff)
 
 .Media type
@@ -289,6 +297,7 @@ That said, this Standard includes recommendations to support, where practical, H
 | <<rc_styled-map>>            | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/styled-map
 | <<rc_png,PNG>>               | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/png
 | <<rc_jpeg,JPEG>>             | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/jpeg
+| <<rc_jpegxl,JPEG XL>>        | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/jpegxl
 | <<rc_tiff,TIFF>>             | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tiff
 | <<rc_svg,SVG>>               | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/svg
 | <<rc_html,HTML>>             | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/html

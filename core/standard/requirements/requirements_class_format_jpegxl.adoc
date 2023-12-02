@@ -1,0 +1,10 @@
+[[rc_table_jpegxl]]
+[cols="1,4",width="90%"]
+|===
+2+|*Requirements Class JPEGXL*
+2+|https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpegxl
+|Target type |Web API
+|Dependency |<<JPEG_XL1>>
+|Dependency |<<JPEG_XL2>>
+|Dependency |https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+|===

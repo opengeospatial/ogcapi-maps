@@ -1,14 +1,22 @@
 [[rc_data_encodings]]
 == Requirements classes for encodings
 
-_OGC API - Maps_ is designed to support mapped data that can potentially be encoded and provided in existing geospatial formats or new formats that could be developed in the future. Web API deployments may adopt these encodings and declare conformance to them in the list of conformance classes supported by the Web API. The discussion in this section does not limit the number of encodings offered by a Maps Web API deployment. The intent is to provide a minimum set of encodings that could be implemented by any deployed Maps APIs as well as to provide a practical way to test conformance to this Standard. For each of these encodings, a requirements class is defined. A Web API implementing OGC API – Maps classes are free to support other encodings and data formats. These other formats may be more convenient for given use cases even though they may not be listed as supported conformance classes by the Web API deployment. In addition, the declaration of an encoding in the conformance classes supported does not mean that all the resources provided by an OGC enabled API endpoint should support all of them. Partial support could be conditioned by the  nature of the data behind each collection.
+_OGC API - Maps_ is designed to support mapped data that can potentially be encoded and provided in existing geospatial formats or new formats that could be developed in the future.
+Web API deployments may adopt these encodings and declare conformance to them in the list of conformance classes supported by the Web API.
+The discussion in this section does not limit the number of encodings offered by a Maps Web API deployment.
+The intent is to provide a minimum set of encodings that could be implemented by any deployed Maps APIs as well as to provide a practical way to test conformance to this Standard.
+For each of these encodings, a requirements class is defined. A Web API implementing OGC API – Maps classes are free to support other encodings and data formats.
+These other formats may be more convenient for given use cases even though they may not be listed as supported conformance classes by the Web API deployment.
+In addition, the declaration of an encoding in the conformance classes supported does not mean that all the resources provided by an OGC enabled API endpoint should support all of them.
+Partial support could be conditioned by the nature of the data behind each collection.
 
 === Overview
 
-This clause specifies five requirements classes for encodings for the a  OGC API - Maps implementation:
+This clause specifies six requirements classes for encodings map responses of _OGC API - Maps_ implementation:
 
 * <<rc_png,PNG>>
 * <<rc_jpeg,JPEG>>
+* <<rc_jpegxl,JPEG XL>>
 * <<rc_tiff,TIFF>>
 * <<rc_svg,SVG>>
 * <<rc_html,HTML>>
@@ -38,6 +46,20 @@ The JPEG compression algorithm operates at its best on photographs and paintings
 include::requirements/requirements_class_format_jpeg.adoc[]
 
 include::requirements/format_jpeg/REQ_content.adoc[]
+
+[[rc_jpegxl]]
+=== Requirement Class "JPEG XL"
+
+https://jpeg.org/jpegxl/[JPEG XL] is a newer promising image format with support for both lossy and lossless compression, alpha channels, high bit depths, high image quality, high compression ratio as well as high performance encoding and decoding.
+The format and codec are unencumerbered of any patent. Free and open source libraries are available to read and write the format such as https://github.com/libjxl/libjxl[libjxl], released under a 3-clause BSD license.
+Although JPEG XL is not yet widely supported in web browsers at the time of writing this document, this situation is likely to change, and this requirement class is included due to the numerous advantages of JPEG XL
+over the traditional JPEG and PNG encoding, such as avoiding the need for compromising between high compression ratio, image quality and translucency.
+JPEG XL is defined by the multi-part ISO standard Information technology JPEG XL - image coding system, including https://www.iso.org/standard/77977.html[ISO/IEC 18181-1:2022 Part 1: Core coding system] and
+https://www.iso.org/standard/80617.html[ISO/IEC 18181-2:2021 Part 2: File format].
+
+include::requirements/requirements_class_format_jpegxl.adoc[]
+
+include::requirements/format_jpegxl/REQ_content.adoc[]
 
 [[rc_tiff]]
 === Requirement Class "TIFF"

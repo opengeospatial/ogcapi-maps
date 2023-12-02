@@ -1,0 +1,13 @@
+[[req_jpegxl_content]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/jpeg/content*
+^|A |Every 200-response of the server with the media type image/jpeg SHALL be a JPEG XL file representing only one map.
+^|B |The colors of the JPEG XL SHALL represent geospatial features or coverage values in the map.
+^|C |All maps representing parts of the same resource or resources and using the same style SHALL follow the same portrayal rules.
+|===
+
+NOTE: The way the colors in the JPEG XL are mapped to geospatial features or coverage values is out of scope of the Maps API Standard.
+However, a common set of portrayal rules for all maps representing part of the same resource is essential, as maps are normally represented one after the other as a response to actions of the user (e.g., zoom and pan).
+
+NOTE: JPEG XL is an ideal file format for all map types, due to its support for high image quality (including the possibility of lossless encoding), high compression ratio, high bit depth and translucency.
