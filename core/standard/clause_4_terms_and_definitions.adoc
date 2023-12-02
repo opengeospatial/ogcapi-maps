@@ -45,8 +45,8 @@ ratio between the size of a map shown in the rendering device (commonly in expre
 portion of a rendering device where information is being visualized
 
 NOTE: For the purpose of this document, the viewport refers to the portion of the map resource response, such as a digital image, where the actual geospatial content of the map is rendered.
-It excludes any layout element such as margin, title or legend.
-For a two dimensional viewport, its dimensions are named horizontal and vertical, corresponding to the width and height dimensions of the viewport, respectively.
+It excludes any outside margin portions of the image where layout elements such as titles or a legend may be included, as could be defined by an extension.
+For a two-dimensional viewport, its dimensions are named horizontal and vertical, corresponding to the width and height of the viewport, respectively.
 
 === *width*
 

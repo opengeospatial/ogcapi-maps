@@ -188,14 +188,18 @@ These classes (<<rc_scaling, Scaling>>, <<rc_display-resolution, Display resolut
 | Parameter | Definition
 | `width` | Width of the viewport in pixel units
 | `height` | Height of the viewport in pixel units
-| `scale-denominator` | Number of units in the reality that is equivalent to 1 unit on the rendering device
+| `scale-denominator` | Number of units in the physical world that is equivalent to 1 unit on the rendering device
 | `mm-per-pixel` | Size of one pixel on the rendering device expressed in millimeters. The default value is 0.28mm
 | `bbox` (`bbox-crs`) (and the equivalent `subset` and `subset-crs`) | Bounding box of the requested map in CRS coordinates. It defines the geographic size.
 | `center` (`center-crs`) | Center of the requested map in CRS coordinates. `center` and `bbox` are mutually exclusive.
 !===
 
-All these parameters are optional. The server needs to know the geographic size of the map in the reality, and the size of the map in the viewport. Some combinations completely define both sizes. Some combinations of parameters generate impossible situations and will result in an error. Other combinations require that the server decides a default value for some parameters not provided to be able to resolve the requested sizes. This standard only specifies the default value for `mm-per-pixel` leaving to the server freedom to decide about the others.
-The following tables present an overview of the different combinations possible depending on whether the _Scaling_, _Subsetting_ or both _Scaling_ and _Subsetting_ requirements classes are supported by the implementation, to clarify the relationship between these parameters and provide centralized guidance for implementers.
+All these parameters are optional. The server needs to know the geographic extent covered by the map in physical world units, and the size of the map as rendered on the viewport (in both pixel units and physical units).
+Some combinations completely define both sizes. Some combinations of parameters generate impossible situations and will result in an error.
+Other combinations require that the server decides a default value for some parameters not provided to be able to resolve the requested sizes.
+This standard only specifies the default value for `mm-per-pixel` leaving to the server freedom to decide about the others.
+The following tables present an overview of the different combinations possible depending on whether the _Scaling_, _Subsetting_ or both _Scaling_ and _Subsetting_ requirements classes are supported by the
+implementation, to clarify the relationship between these parameters and provide centralized guidance for implementers.
 
 NOTE: The parameter `mm-per-pixel` is not included in these tables, but is used for computing one of the `scale-denominator`, dimensions (`width` and `height`) or spatial extent (`bbox`), based on the default or provided values for the others.
 If not provided in the request, the default is 0.28 mm per pixel.
