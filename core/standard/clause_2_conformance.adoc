@@ -224,46 +224,28 @@ through HTTP content negotiation.
 
 *<<rc_png,PNG>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png)
 
-.Media type
-```
-image/png
-```
+_Media type_: `image/png`
 
 *<<rc_jpeg,JPEG>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpeg)
 
-.Media type
-```
-image/jpeg
-```
+_Media type_: `image/jpeg`
 
 
 *<<rc_jpegxl,JPEG XL>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpegxl)
 
-.Media type
-```
-image/jxl
-```
+_Media type_: `image/jxl`
 
 *<<rc_tiff,TIFF>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff)
 
-.Media type
-```
-image/tiff
-```
+_Media type_: `image/tiff`
 
 *<<rc_svg,SVG>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/svg)
 
-.Media type
-```
-image/svg+xml
-```
+_Media type_: `image/svg+xml`
 
 *<<rc_html,HTML>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/html)
 
-.Media type
-```
-text/html
-```
+_Media type_: `text/html`
 
 *<<rc_oas30>>*  (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/oas30)
 
