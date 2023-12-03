@@ -122,7 +122,7 @@ There is also an equivalent notation for the previous request that uses `subset`
 
 https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?subset=Lat(51.494504:51.505496),Lon(-0.008805:0.008805)&width=1024&height=1024
 
-As explained in the aspect ratio considerations section, clients wishing to retrieve identical responses from different implementations should specify either of these `bbox` or `subset` parameters,
+As explained in the <<scaling-aspect-ratio, scale and aspect ratio considerations section>>, clients wishing to retrieve identical responses from different implementations should specify either of these `bbox` or `subset` parameters,
 together with a `width` and `height`.
 We can request a smaller image by specifying the `height` of the image.
 
@@ -547,7 +547,7 @@ height = 2,931,335.50 m * 0.75754799 / 2800 m/pix = 793 pixels
 [[bbox-calculation-examples]]
 === Calculations to infer appropriate bounding boxes
 
-In this example, the client specifies a `center`, a `scale-denominator`, and optionally `width` and or `height` dimensions.
+In these examples, the client specifies a `center`, a `scale-denominator`, and optionally `width` and / or `height` dimensions.
 If either the `width` or `height` is not specified, the server could pick default values, such as making the missing dimension
 equal to the one provided, or selecting default values.
 The examples will assume that the client explicitly requested a 1024 x 768 map at a 1:10,000,000 scale for a location centered on (41.8902°N, 12.4922°E).

@@ -90,7 +90,7 @@ If maintaining the aspect ratio between physical units proves too difficult, imp
 `(maxx - minx)/(maxy - miny) = width / height`, where `minx, miny` are the lower bounds of the output CRS unit space in the returned map,
 `maxx, maxy` the upper bounds of that output CRS unit space on the map, and `width` and `height` are the dimensions of the returned map in pixels.
 
-When neither width nor height is provided or implied, a good practical approach to default to a reasonable size which is neither too low resolution, nor requiring too much computation power from the server.
+When neither width nor height is provided or implied, a good practical approach is to default to a reasonable size which is neither too low resolution, nor requiring too much computation power from the server.
 
 When only one of the two dimension parameters is provided and no specific bounding box is requested, the value of the other could be be used to return a square map by default.
 
