@@ -81,6 +81,7 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal?f=json[https://maps.gn
 
 === Scaling and subsetting the map
 The following examples are going to be centered on The O2 (formerly known as the Millenium Dome) shown here in a night aerial picture.
+Note that the roundness of the feature facilitates validating its aspect ratio in physical units.
 
 [#o2_dome,reftext='{figure-caption} {counter:figure-num}']
 .The O2 dome peninsula (image captured from a plane by an editor of this standard while working on this annex)
@@ -178,7 +179,7 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&scal
 .Wider 1024x512 map of OS OpenMap - Local centered on the O2 dome at 1:50,000 scale
 image::images/xmp_map_center_scale_hw_1024x512.png[width=600,align="center"]
 
-For this last request, as well as for the one below, specifying both the `width` and `height`, the `center`, as well as the `scale-denominator`, combined with the fact that the default value of `mm-per-pixel`
+For this last request, specifying both the `width` and `height`, the `center`, as well as the `scale-denominator`, combined with the fact that the default value of `mm-per-pixel`
 is defined as 0.28mm/pixel, defines all of the parameters necessary to make the subsetting and scaling _mostly_ predictable by the client.
 As explained in the <<scaling-aspect-ratio, scale and aspect ratio considerations section>>, implementations may compute the dimensions and bounding boxes not explicitly specified slightly differently.
 Because of these potential differences, clients should always consider the bounding box information in the response headers for georeferencing purposes, as well as the actual dimensions of the image returned.

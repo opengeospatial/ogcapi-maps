@@ -7,7 +7,7 @@
 
 include::requirements/requirements_class_display_resolution.adoc[]
 
-The Display Resolution requirement class describes how to specify an accurate physical size of a pixel for the target display device or medium with a `mm-per-pixel` parameter. This is instead of a default 0.28 mm/pixel and allowing applying symbology rules correctly. 
+The Display Resolution requirement class describes how to specify an accurate physical size of a pixel for the target display device or medium with a `mm-per-pixel` parameter. This is instead of a default 0.28 mm/pixel and allows applying symbology rules correctly.
 The physical pixel size is considered for establishing the relationship between the scale of the map and its output dimensions in pixels.
 
 === Map Operation
@@ -15,9 +15,9 @@ The physical pixel size is considered for establishing the relationship between 
 The Display Resolution requirements class specifies the mm-per-pixel parameter to accurately interpret scale denominators and symbology rules.
 
 ==== Parameter `mm-per-pixel`
-By themselves the width and height of the image to be presented on the display device are not enough to determine the scale of a map. This is because these values are provided in pixel units. 
+By themselves, the width and height of the image to be presented on the display device are not enough to determine the scale of a map. This is because these values are provided in pixel units.
 Conversely, the `scale-denominator` does not specify the size in pixels of a map for a given spatial area.
-The scale, being the ratio between the size of features represented on the map and the size of the same features, also depends on the size of display device pixels in physical units. 
+The scale, being the ratio between the size of features as represented on the map and the physical size of the same features, also depends on the size of display device pixels in physical units.
 Knowing the size of these pixels supports accurately establishing the physical size of features as they will be presented on the display device and therefore compute the scale correctly
 by dividing the actual size of the display device in physical units (e.g., millimeters) by the actual size of the extent of the map (e.g., in meters).
 When this parameter is not specified, a default 0.28 mm/pixel is assumed (as standardized in WMS).
