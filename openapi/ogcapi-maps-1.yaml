@@ -12,7 +12,7 @@ info:
       url: http://www.opengeospatial.org/legal/
 servers:
   - description: Example OGC API - Maps server
-    url: https://maps.ecere.com/ogcapi
+    url: https://maps.gnosis.earth/ogcapi
 paths:
    # OGC API - Common - Part 1: Core
    /:
