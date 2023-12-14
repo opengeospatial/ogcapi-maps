@@ -1,0 +1,9 @@
+[[rc_table_oas3]]
+[cols="1,4",width="90%"]
+|===
+2+|*Requirements Class OpenAPI Specification 3*
+2+|https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/oas3
+|Target type |Web API
+|Dependency |https://www.opengis.net/spec/ogcapi-common-1/1.0/req/oas30 or any other OGC API - Common requirements class declaring support to other subversion of OpenAPI version 3
+|Dependency |OpenAPI Specification 3
+|===

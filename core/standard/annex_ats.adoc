@@ -75,25 +75,25 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "Background"
 
-==== Requirement `transparent` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/background/transparent-definition
-|Requirement: |/req/background/transparent-definition
-|Test purpose: | Verify that the implementation supports the `bgcolor` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving a map for all combinations of (no `transparent` parameter, transparent=false`, `transparent=true`) and with and without `bgcolor` parameter +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
-
 ==== Requirement `bgcolor` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/background/bgcolor-definition
 |Requirement: |/req/background/bgcolor-definition
-|Test purpose: | Verify that the implementation supports the `transparent` parameter
+|Test purpose: | Verify that the implementation supports the `bgcolor` parameter
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving a map without `bgcolor` parameter, with `bgcolor` using a hexadecimal value and with `bgcolor` using a W3C Web Color name +
+*Then:* (assert that all parts of the requirement are fully satisfied)
+|===
+
+==== Requirement `transparent` parameter definition
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/background/transparent-definition
+|Requirement: |/req/background/transparent-definition
+|Test purpose: | Verify that the implementation supports the `transparent` parameter
+|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
+*When:* retrieving a map for all combinations of (no `transparent` parameter, transparent=false`, `transparent=true`) and with and without `bgcolor` parameter +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -113,8 +113,8 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 ==== Requirement `collections` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
-|Test id: |/conf/collections-selection/query-collections
-|Requirement: |/req/collections-selection/query-collections
+|Test id: |/conf/collections-selection/collections-parameter
+|Requirement: |/req/collections-selection/collections-parameter
 |Test purpose: | Verify that the implementation supports the `collections` parameter
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core and that is understood to consist of multiple collections (e.g., a dataset advertising support for Dataset Map and featuring multiple collections) +
 *When:* retrieving a map using the `collections` parameter with one and multiple _collectionsIds_ +
@@ -248,6 +248,17 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+==== Requirement map subset response
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/spatial-subsetting/subset-response
+|Requirement: |/req/spatial-subsetting/subset-response
+|Test purpose: | Verify that the implementation responds correctly to map requests using the `subset` parameter
+|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
+*When:* retrieving maps using the `subset` (with and without the `subset-crs` parameter) +
+*Then:* (assert that all parts of the requirement are fully satisfied)
+|===
+
 ==== Requirement `center` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
@@ -278,17 +289,6 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test purpose: | Verify that the implementation responds correctly to map requests using subsetting parameters (`bbox`, `subset` or `center`)
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `bbox` (with and without the `bbox-crs` parameter), `subset` (with and without the `subset-crs` parameter), and `center` parameter (with and without the `center-crs` parameter, with the `width` and/or `height` parameter, with and without the `scale-denominator` parameter if scaling is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
-
-==== Requirement map subset response
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/spatial-subsetting/subset-response
-|Requirement: |/req/spatial-subsetting/subset-response
-|Test purpose: | Verify that the implementation responds correctly to map requests using the `subset` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `subset` (with and without the `subset-crs` parameter) +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -327,6 +327,17 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+==== Requirement temporal subset response
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/datetime/subset-response
+|Requirement: |/req/datetime/subset-response
+|Test purpose: | Verify that the implementation responds correctly to temporal subsetting requests using the `subset` parameter
+|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
+*When:* retrieving maps using the `subset` parameter with the `time` axis +
+*Then:* (assert that all parts of the requirement are fully satisfied)
+|===
+
 ==== Requirement temporal axis
 [cols=">20h,<80d",width="100%"]
 |===
@@ -338,16 +349,6 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement temporal subset response
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/datetime/subset-response
-|Requirement: |/req/datetime/subset-response
-|Test purpose: | Verify that the implementation responds correctly to temporal subsetting requests using the `subset` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `subset` parameter with the `time` axis +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
 
 ==== Requirement temporal subsetting success
 [cols=">20h,<80d",width="100%"]
@@ -381,17 +382,6 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test purpose: | Verify that the implementation supports general subsetting using the `subset` parameter
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `subset` parameter for an additional dimension besides space and time +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
-
-==== Requirement general subsetting `subset-crs` parameter
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/general-subsetting/subset-crs
-|Requirement: |/req/general-subsetting/subset-crs
-|Test purpose: | Verify that the implementation supports the `subset-crs` parameter to specify the CRS of the `subset` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `subset` parameter and the `subset-crs` parameter for an additional dimension besides space and time +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -524,17 +514,6 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "Collection Map"
 
-==== Requirement collection map operation
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/collection-map/map-operation
-|Requirement: |/req/collection-map/map-operation
-|Test purpose: | Verify that the implementation supports retrieving maps from an OGC API collections
-|Test method: | *Given:* an OGC API collection correctly linking to a map resource as per /conf/collection-map/desc-links +
-*When:* retrieving a map for that collection resource as per /conf/core +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
-
 ==== Requirement collection description links
 [cols=">20h,<80d",width="100%"]
 |===
@@ -557,18 +536,18 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-=== Conformance Class "Dataset map"
-
-==== Requirement dataset map operation
+==== Requirement collection map operation
 [cols=">20h,<80d",width="100%"]
 |===
-|Test id: |/conf/dataset-map/operation
-|Requirement: |/req/dataset-map/operation
-|Test purpose: | Verify that the implementation supports retrieving dataset maps from an OGC API dataset
-|Test method: | *Given:* an OGC API dataset correctly linking to a map resource as per /conf/dataset-map/landingpage +
-*When:* retrieving a map for that dataset resource as per /conf/core +
+|Test id: |/conf/collection-map/map-operation
+|Requirement: |/req/collection-map/map-operation
+|Test purpose: | Verify that the implementation supports retrieving maps from an OGC API collections
+|Test method: | *Given:* an OGC API collection correctly linking to a map resource as per /conf/collection-map/desc-links +
+*When:* retrieving a map for that collection resource as per /conf/core +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+=== Conformance Class "Dataset map"
 
 ==== Requirement dataset landing page
 [cols=">20h,<80d",width="100%"]
@@ -603,18 +582,17 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-=== Conformance Class "Styled Map"
-
-==== Requirement styled map operation
+==== Requirement dataset map operation
 [cols=">20h,<80d",width="100%"]
 |===
-|Test id: |/conf/styled-map/map-operation
-|Requirement: |/req/styled-map/map-operation
-|Test purpose: | Verify that the implementation supports retrieving maps from _OGC API - Styles_ style resources
-|Test method: | *Given:* an OGC API style correctly linking to a map resource as per /conf/styled-map/desc-links +
-*When:* retrieving a map for that style as per /conf/core +
+|Test id: |/conf/dataset-map/operation
+|Requirement: |/req/dataset-map/operation
+|Test purpose: | Verify that the implementation supports retrieving dataset maps from an OGC API dataset
+|Test method: | *Given:* an OGC API dataset correctly linking to a map resource as per /conf/dataset-map/landingpage +
+*When:* retrieving a map for that dataset resource as per /conf/core +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+=== Conformance Class "Styled Map"
 
 ==== Requirement styled map links
 [cols=">20h,<80d",width="100%"]
@@ -624,6 +602,17 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test purpose: | Verify that the implementation links correctly from a style resource to a map resource
 |Test method: | *Given:* a list of styles provided by an API conforming to OGC API - Styles - Part 1: Core +
 *When:* retrieving the JSON representation of that list of styles +
+*Then:* (assert that all parts of the requirement are fully satisfied)
+|===
+
+==== Requirement styled map operation
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/styled-map/map-operation
+|Requirement: |/req/styled-map/map-operation
+|Test purpose: | Verify that the implementation supports retrieving maps from _OGC API - Styles_ style resources
+|Test method: | *Given:* an OGC API style correctly linking to a map resource as per /conf/styled-map/desc-links +
+*When:* retrieving a map for that style as per /conf/core +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -705,16 +694,16 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-=== Conformance Class "OpenAPI 3.0 Specification"
+=== Conformance Class "OpenAPI 3 Specification"
 
 ==== Requirement OpenAPI definition completeness
 [cols=">20h,<80d",width="100%"]
 |===
-|Test id: |/conf/oas30/completeness
-|Requirement: |/req/oas30/completeness
+|Test id: |/conf/oas3/completeness
+|Requirement: |/req/oas3/completeness
 |Test purpose: | Verify that the implementation completely and correctly describes the map resources
-|Test method: | *Given:* an API conforming to _OGC API - Common - Part 1: Core_ "OAS30" requirements class +
-*When:* retrieving the OpenAPI 3.0 API description +
+|Test method: | *Given:* an API conforming to _OGC API - Common - Part 1: Core_ "OAS30" conformance class or any other OGC API - Common conformance class declaring support to other subversion of OpenAPI version 3 +
+*When:* retrieving the OpenAPI 3 API description +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -724,7 +713,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test id: |/conf/oas30/operation-id
 |Requirement: |/req/oas30/operation-id
 |Test purpose: | Verify that the implementation uses the correct OpenAPI operation Id suffixes to identify the resources defined in the Maps API Standard
-|Test method: | *Given:* an API conforming to _OGC API - Common - Part 1: Core_ "OAS30" requirements class +
+|Test method: | *Given:* an API conforming to _OGC API - Common - Part 1: Core_ "OAS30" conformance class +
 *When:* retrieving the OpenAPI 3.0 API description +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===

@@ -1,6 +1,6 @@
-[[req_oas30_operation_id]]
+[[req_oas3_operation_id]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/oas30/operation-id*
+^|*Requirement {counter:req-id}* |*/req/oas3/operation-id*
 ^|A |The `paths` defined in the OpenAPI definition SHALL have an _operationId_ value ending with the relevant dot-separated suffix corresponding to the resource as specified in <<openapi-operation-id-suffixes>>.
 |===
