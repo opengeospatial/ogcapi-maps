@@ -219,7 +219,9 @@ If not provided in the request, the default is 0.28 mm per pixel.
 NOTE: Every time that `bbox` appears as a provided parameter in these tables, it represent either `bbox` or the equivalent `subset`.
 
 NOTE: Wherever `width` and `height` appear together in these tables, it also represents either of them being specified without the other.
-In this case, for the omitted dimension, the server may either use a default value or compute the ideal value in order to preserve the aspect ratio of the map.
+Depending on the parameter combination, the server either computes the appropriate value of the omitted dimension so as to reflect the correct scale
+(when a bounding box is also provided -- see relevant <<req_scaling_width-definition, requirements>> and <<dimensions-calculation-examples, guidance>>),
+or uses a default value which is either fixed or tied by a default aspect ratio to the one dimension specified (see <<rec_scaling_dimensions, recommendation>>).
 
 [#table_params_combinations_impossible,reftext='{table-caption} {counter:table-num}']
 .Always valid requests (no scaling or subsetting parameter)
