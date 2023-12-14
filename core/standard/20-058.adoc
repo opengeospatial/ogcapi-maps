@@ -21,12 +21,12 @@
 |===
 |{set:cellbgcolor:#FFFFFF}
 |[big]*Open Geospatial Consortium*
-|Submission Date:    2023-06-01
+|Submission Date:    2024-02-15
 |Approval Date:      <yyyy-mm-dd>
-|Publication Date:   2023-09-01
+|Publication Date:   2024-05-01
 |External identifier of this OGC(R) document: https://www.opengis.net/doc/IS/ogcapi-maps-1/1.0
 |Internal reference number of this OGC(R) document: 20-058
-|Version: 1.0.0rc1
+|Version: 1.0.0rc2
 |Category: OGC(R) Implementation Specification
 |Editors:   Joan Masó and Jérôme Jacovella-St-Louis
 |===
@@ -39,7 +39,7 @@
 [cols = "^", frame = "none", grid = "none"]
 |===
 |*Copyright notice*
-|Copyright (C) 2019-2023 Open Geospatial Consortium
+|Copyright (C) 2019-2024 Open Geospatial Consortium
 |To obtain additional rights of use, visit https://www.opengeospatial.org/legal/
 |===
 
