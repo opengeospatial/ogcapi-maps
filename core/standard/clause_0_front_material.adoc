@@ -12,7 +12,9 @@ Implementations of the _OGC API - Maps_ Standard are designed for a client to ea
 A server that implements _OGC API - Maps_ provides information about what maps are offered.
 _OGC API - Maps_ addresses use cases similar to those addressed by the https://portal.opengeospatial.org/files/?artifact_id=14416[OGC 06-042/ISO 19128 OpenGIS® Web Map Server (WMS) Implementation Specification] Standard.
 
-The key work for crafting this OGC Standard was undertaken in the Open-Earth-Monitor Cyberinfrastructure (OEMC) project, which received funding from the European Union’s Horizon Europe research and innovation program under grant agreement number 101059548 and in the All Data 4 Green Deal - An Integrated, FAIR Approach for the Common European Data Space (AD4GD) project, which received funding from the European Union’s Horizon Europe research and innovation program under grant agreement number 101061001.
+Key work for crafting this OGC Standard was undertaken in the Open-Earth-Monitor Cyberinfrastructure (OEMC) project, which received funding from the European Union’s Horizon Europe research and innovation program under grant agreement number 101059548 and in the All Data 4 Green Deal - An Integrated, FAIR Approach for the Common European Data Space (AD4GD) project, which received funding from the European Union’s Horizon Europe research and innovation program under grant agreement number 101061001.
+Initial implementations and an Engineering Report constituting the first draft of this standard were also produced thanks to funding from OGC Testbed 15.
+The editors also thank Natural Resources Canada for progress on this standard achieved as part of GeoConnections 2020-2021 funded project number GNS20-21IFP02 (_Modular OGC API Workflows_).
 
 [big]*ii.    Keywords*
 
