@@ -106,7 +106,7 @@ GET .../styles/{styleId}/map?
 
 1. ["Core"](http://docs.ogc.org/DRAFTS/20-058.html#rc_core) specifies a `.../map` sub-resource allowing to retrieve a map from some origin providing geospatial data (see _Origin Conformance Classes_).
 
-2. ["Map TileSets"](http://docs.ogc.org/DRAFTS/20-058.html#rc_maps_tileSets-list) specifies how to retrieve map tilesets (e.g., `.../map/tiles/{tileMatrixSetId}`) metadata and map tiles (e.g., `.../map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}`) based on _OGC API - Tiles_ building blocks.
+2. ["Map TileSets"](http://docs.ogc.org/DRAFTS/20-058.html#rc_tilesets) specifies how to retrieve map tilesets (e.g., `.../map/tiles/{tileMatrixSetId}`) metadata and map tiles (e.g., `.../map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}`) based on _OGC API - Tiles_ building blocks.
 
 NOTE: The ["Custom Projection CRS"](http://docs.ogc.org/DRAFTS/20-058.html#rc_projection) conformance class also defines a global `/projectionsAndDatums` resource listing available projection operation methods, parameters and datums.
 
@@ -120,13 +120,13 @@ NOTE: The ["Custom Projection CRS"](http://docs.ogc.org/DRAFTS/20-058.html#rc_pr
 8. ["Date & Time"](http://docs.ogc.org/DRAFTS/20-058.html#rc_datetime) (`datetime`, `subset` with `time` axis) allows to retrieve a map for a specific date and time
 9. ["General subsetting"](http://docs.ogc.org/DRAFTS/20-058.html#rc_general-subsetting) (`subset`, `subset-crs`) allows to subset any other dimension besides spatial and temporal
 10. ["CRS"](http://docs.ogc.org/DRAFTS/20-058.html#rc_crs) (`crs`) allows to select an output CRS other than the default native/storage CRS
-11. ["Rotation"](http://docs.ogc.org/DRAFTS/20-058.html#rc_rotation) (`orientation`) allows to rotate the map
+11. ["Orientation"](http://docs.ogc.org/DRAFTS/20-058.html#rc_orientation) (`orientation`) allows to rotate the map
 12. ["Custom Projection CRS"](http://docs.ogc.org/DRAFTS/20-058.html#rc_projection) (`crs-proj-method`, `crs-proj-params`, `crs-proj-center`, `crs-datum`) allows to define a custom CRS using available projection operation methods, parameters and datums (as listed in `/projectionsAndDatums`)
 
 ### Origin Conformance Classes
 
-13. [Collection Maps](http://docs.ogc.org/DRAFTS/20-058.html#rc_collection-map) (`{datasetRoot}/collections/{collectionId}/map`) allows to retrieve a map for a specific OGC API collection, in combination with OGC API Common - Part 2: Geospatial Data.
-14. [Dataset Maps](http://docs.ogc.org/DRAFTS/20-058.html#rc_dataset-map) (`{datasetRoot}/map`) allows to retrieve a map for an OGC API dataset as a whole, in combination with OGC API Common - Part 1: Core
+13. ["Collection Map"](http://docs.ogc.org/DRAFTS/20-058.html#rc_collection-map) (`{datasetRoot}/collections/{collectionId}/map`) allows to retrieve a map for a specific OGC API collection, in combination with OGC API Common - Part 2: Geospatial Data.
+14. ["Dataset Map"](http://docs.ogc.org/DRAFTS/20-058.html#rc_dataset-map) (`{datasetRoot}/map`) allows to retrieve a map for an OGC API dataset as a whole, in combination with OGC API Common - Part 1: Core
 15. ["Styled Map"](http://docs.ogc.org/DRAFTS/20-058.html#rc_styled-map) (`({datasetRoot}|{datasetRoot}/collections/{collectionId})/styles/{styleId}/map`) allows to retrieve a map for a particular style, in combination with OGC API - Styles
 
 ### Representations Conformance Classes
@@ -137,7 +137,7 @@ NOTE: The ["Custom Projection CRS"](http://docs.ogc.org/DRAFTS/20-058.html#rc_pr
 19. ["TIFF"](http://docs.ogc.org/DRAFTS/20-058.html#rc_tiff) specifies the ability to return maps in the TIFF format (ideally, GeoTIFF)
 20. ["SVG"](http://docs.ogc.org/DRAFTS/20-058.html#rc_svg) specifies the ability to return maps in an SVG format
 21. ["HTML"](http://docs.ogc.org/DRAFTS/20-058.html#rc_html) specifies the ability to return maps as an HTML document (which might provide an interactive map)
-22. ["OpenAPI definition"](http://docs.ogc.org/DRAFTS/20-058.html#rc_oas30_definition) specifies additional requirements pertaining to operationIDs to identify Maps building blocks resources
+22. ["OpenAPI definition"](http://docs.ogc.org/DRAFTS/20-058.html#rc_oas3) specifies additional requirements pertaining to operationIDs to identify Maps building blocks resources
 
 ## OpenAPI Definition
 
