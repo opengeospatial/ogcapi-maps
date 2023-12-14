@@ -133,10 +133,11 @@ NOTE: The ["Custom Projection CRS"](http://docs.ogc.org/DRAFTS/20-058.html#rc_pr
 
 16. ["PNG"](http://docs.ogc.org/DRAFTS/20-058.html#rc_png) specifies the ability to return maps in the PNG format
 17. ["JPEG"](http://docs.ogc.org/DRAFTS/20-058.html#rc_jpeg) specifies the ability to return maps in the JPEG format
-18. ["TIFF"](http://docs.ogc.org/DRAFTS/20-058.html#rc_tiff) specifies the ability to return maps in the TIFF format (ideally, GeoTIFF)
-19. ["SVG"](http://docs.ogc.org/DRAFTS/20-058.html#rc_svg) specifies the ability to return maps in an SVG format
-20. ["HTML"](http://docs.ogc.org/DRAFTS/20-058.html#rc_html) specifies the ability to return maps as an HTML document (which might provide an interactive map)
-21. ["OpenAPI definition"](http://docs.ogc.org/DRAFTS/20-058.html#rc_oas30_definition) specifies additional requirements pertaining to operationIDs to identify Maps building blocks resources
+18. ["JPEG XL"](http://docs.ogc.org/DRAFTS/20-058.html#rc_jpegxl) specifies the ability to return maps in the JPEG XL format
+19. ["TIFF"](http://docs.ogc.org/DRAFTS/20-058.html#rc_tiff) specifies the ability to return maps in the TIFF format (ideally, GeoTIFF)
+20. ["SVG"](http://docs.ogc.org/DRAFTS/20-058.html#rc_svg) specifies the ability to return maps in an SVG format
+21. ["HTML"](http://docs.ogc.org/DRAFTS/20-058.html#rc_html) specifies the ability to return maps as an HTML document (which might provide an interactive map)
+22. ["OpenAPI definition"](http://docs.ogc.org/DRAFTS/20-058.html#rc_oas30_definition) specifies additional requirements pertaining to operationIDs to identify Maps building blocks resources
 
 ## OpenAPI Definition
 
