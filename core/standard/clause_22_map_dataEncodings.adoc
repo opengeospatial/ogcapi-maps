@@ -50,8 +50,8 @@ include::requirements/format_jpeg/REQ_content.adoc[]
 [[rc_jpegxl]]
 === Requirement Class "JPEG XL"
 
-https://jpeg.org/jpegxl/[JPEG XL] is a newer promising image format with support for both lossy and lossless compression, alpha channels, high bit depths, high image quality, high compression ratio as well as high performance encoding and decoding.
-The format and codec are unencumerbered of any patent. Free and open source libraries are available to read and write the format such as https://github.com/libjxl/libjxl[libjxl], released under a 3-clause BSD license.
+https://jpeg.org/jpegxl/[JPEG XL] is a relatively newer image format (compared to PNG and JPEG) with support for both lossy and lossless compression, alpha channels, high bit depths, high image quality, high compression ratio as well as high performance encoding and decoding.
+The format and codec are unencumbered of any patent. Free and open source libraries are available to read and write the format such as https://github.com/libjxl/libjxl[libjxl], released under a 3-clause BSD license.
 Although JPEG XL is not yet widely supported in web browsers at the time of writing this document, this situation is likely to change, and this requirement class is included due to the numerous advantages of JPEG XL
 over the traditional JPEG and PNG encoding, such as avoiding the need for compromising between high compression ratio, image quality and translucency.
 JPEG XL is defined by the multi-part ISO standard Information technology JPEG XL - image coding system, including https://www.iso.org/standard/77977.html[ISO/IEC 18181-1:2022 Part 1: Core coding system] and

@@ -1,9 +1,9 @@
 [[req_jpegxl_content]]
 [width="90%",cols="2,6a"]
 |===
-^|*Requirement {counter:req-id}* |*/req/jpeg/content*
-^|A |Every 200-response of the server with the media type image/jpeg SHALL be a JPEG XL file representing only one map.
-^|B |The colors of the JPEG XL SHALL represent geospatial features or coverage values in the map.
+^|*Requirement {counter:req-id}* |*/req/jpegxl/content*
+^|A |Every 200-response of the server with the media type image/jxl SHALL be a JPEG XL file representing only one map.
+^|B |The JPEG XL SHALL be a color image representing the geospatial features or coverage values in the map.
 ^|C |All maps representing parts of the same resource or resources and using the same style SHALL follow the same portrayal rules.
 |===
 
