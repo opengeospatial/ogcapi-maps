@@ -6,24 +6,17 @@
 The _OGC API - Maps_ Standard defines building blocks which can be used in a Web API implementation to retrieve geospatial data as maps that are visual
 portrayals of the data created by applying a style to the data (see <<rc_core>>).
 Maps can present the whole area of the geospatial data or a subset of the content, such as by filtering the data by extent (see <<rc_spatial-subsetting>>).
-Maps can be retrieved by arbitrary extent or as tiles (see <<rc_tilesets>>).
-
-The core conformance class is the only mandatory one. All other conformance classes are optional and depend on the _core_.
+Maps can be retrieved by arbitrary extent or as tiles (see <<rc_tilesets>>). The *"Core"* conformance class is the *only mandatory one*. All other conformance classes are optional and depend on the "Core".
 
 ////
 An annex with examples of map requests and responses is included as a way to learn by examples how this standard can be applied. See <<annex_examples>>.
 ////
 
-An example OpenAPI definition for this standard is available at:
-https://petstore.swagger.io/?url=https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/openapi/ogcapi-maps-1.bundled.json .
+An https://petstore.swagger.io/?url=https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/openapi/ogcapi-maps-1.bundled.json[example OpenAPI definition] for this standard is available.
+Details on how to adjust and bundle the https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi[modular and reusable components] used in this example OpenAPI definition can be found in <<rc_oas3>>
+(while this standard is a draft, components are available https://github.com/opengeospatial/ogcapi-maps/tree/master/openapi[here]).
 
-The modular and reusable components used in this example OpenAPI definition can be found at https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi .
-More details on how to adjust and bundle these components can be found in <<rc_oas3>>.
-
-NOTE: While this specification is in draft status, the components are available from https://github.com/opengeospatial/ogcapi-maps/tree/master/openapi .
-
-
-Services and clients are encouraged to support as many of the Coordinate Reference Systems (CRS)s as possible for all geospatial data resources to maximize
+Services and clients are encouraged to support as many of the Coordinate Reference Systems (CRSs) as possible for all geospatial data resources to maximize
 interoperability. However, this Standard does not require support for any specific CRS.
 
 The _OGC API - Maps_ Standard does not specify any requirement for the type of _geospatial data resource_ that could be delivered as maps.
@@ -34,7 +27,6 @@ The main difference is that layers in WMS and WMTS were not defined by other OGC
 
 These geospatial data resources can advertise one or more map portrayals in several resources, such as the dataset (see <<rc_dataset-map>>), a collection (see <<rc_collection-map>>), a dataset with a style, or a collection with a style (see <<rc_styled-map>>).
 Other OGC APIs can provide other origins that may be represented as maps.
-
 Accessing the _geospatial data resource_ content (other than as maps) or its descriptions is possible but out of the scope of this standard.
 If a description of the _geospatial data resource_ is specified by another standard, and this description has a mechanism to add links to other resources, this standard indicates the need to add a link to a map of this resource.
 
