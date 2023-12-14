@@ -276,13 +276,13 @@ It is also common for spatial datasets, especially for weather and climate data,
 such as pressure levels, or additional time dimensions relating to forecasting. These can all be handled in a generic manner also using the `subset` parameter.
 The following two example illustrates how to retrieve a map of the temperature for the whole world at _pressure_ (an extra dimension) levels of 500 and 850 hectopascals:
 
-https://maps.gnosis.earth/ogcapi/collections/climate:cmip5:byPressureLevel:temperature/map?subset=pressure(500)&datetime=2023-07-03
+https://maps.gnosis.earth/ogcapi/collections/climate:cmip5:byPressureLevel:temperature/map?subset=pressure(500)&datetime=2023-07-03&bgcolor=gray
 
 [#world_T_png,reftext='{figure-caption} {counter:figure-num}']
 .A map of CMIP5 temperature data of the world at 500 hPa on July 3rd, 2023 (from https://cds.climate.copernicus.eu/cdsapp#!/dataset/projections-cmip5-daily-pressure-levels[Copernicus climate data store])
 image::images/world_T.png[width=600,align="center"]
 
-https://maps.gnosis.earth/ogcapi/collections/climate:cmip5:byPressureLevel:temperature/map?subset=pressure(850)&datetime=2023-07-03
+https://maps.gnosis.earth/ogcapi/collections/climate:cmip5:byPressureLevel:temperature/map?subset=pressure(850)&datetime=2023-07-03&bgcolor=gray
 
 [#world_T_850_png,reftext='{figure-caption} {counter:figure-num}']
 .A map of CMIP5 temperature data of the world at 850 hPa on July 3rd, 2023 (from https://cds.climate.copernicus.eu/cdsapp#!/dataset/projections-cmip5-daily-pressure-levels[Copernicus climate data store])
@@ -293,13 +293,13 @@ image::images/world_T_850.png[width=600,align="center"]
 
 The following examples illustrates how to retrieve a map of the relative humidity for the whole world at a _pressure_ (an extra dimension) levels of 500 and hectopascals:
 
-https://maps.gnosis.earth/ogcapi/collections/climate:era5:relativeHumidity/map?subset=pressure(500)&datetime=2023-04-06T23:00:00Z
+https://maps.gnosis.earth/ogcapi/collections/climate:era5:relativeHumidity/map?subset=pressure(500)&datetime=2023-04-06T23:00:00Z&bgcolor=skyBlue
 
 [#world_HR_png,reftext='{figure-caption} {counter:figure-num}']
 .A map of ERA5 reanalysis data showing HR of the whole world at 500 hPa on April 6th, 2023 at 23:00:00 UTC (from https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-pressure-levels[Copernicus climate data store])
 image::images/world_HR.png[width=600,align="center"]
 
-https://maps.gnosis.earth/ogcapi/collections/climate:era5:relativeHumidity/map?subset=pressure(975)&datetime=2023-04-06T23:00:00Z
+https://maps.gnosis.earth/ogcapi/collections/climate:era5:relativeHumidity/map?subset=pressure(975)&datetime=2023-04-06T23:00:00Z&bgcolor=skyBlue
 
 [#world_HR_975_png,reftext='{figure-caption} {counter:figure-num}']
 .A map of ERA5 reanalysis data showing HR of the whole world at 975 hPa on April 6th, 2023 at 23:00:00 UTC (from https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-pressure-levels[Copernicus climate data store])
