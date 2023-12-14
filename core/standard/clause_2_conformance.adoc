@@ -247,9 +247,9 @@ _Media type_: `image/svg+xml`
 
 _Media type_: `text/html`
 
-*<<rc_oas30>>*  (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/oas30)
+*<<rc_oas3>>*  (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/oas3)
 
-The _OpenAPI Specification 3.0_ requirements class specifies requirements for an OpenAPI 3.0 definition in addition to those defined in _OGC API - Common - Part 1: Core_.
+The _OpenAPI Specification 3_ requirements class specifies requirements for an OpenAPI 3 definition in addition to those defined in _OGC API - Common - Part 1: Core_.
 
 All requirements classes and conformance classes described in this Standard are owned by the standard(s) identified.
 
@@ -283,5 +283,5 @@ That said, this Standard includes recommendations to support, where practical, H
 | <<rc_tiff,TIFF>>             | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tiff
 | <<rc_svg,SVG>>               | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/svg
 | <<rc_html,HTML>>             | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/html
-| <<rc_oas30>>                 | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/oas30
+| <<rc_oas3>>                  | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/oas3
 |===
