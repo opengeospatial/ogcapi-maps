@@ -182,7 +182,7 @@ The <<rc_dataset-map,_Dataset Map_>> requirements class specifies the addition o
 [[overview-subsetting-and-scaling]]
 === Subsetting and scaling the map
 
-The Maps API Standard core class provides a way to retrieve the map that is modified by other classes allowing for subsetting the domain, specifying a particular size for the output map image, and modifying the default
+The Maps API Standard core class provides a way to retrieve the map that is modified by other classes allowing for subsetting the domain, specifying a particular size for the output map image, and changing the default
 assumption about the physical size of a pixel on the rendering device. The combination of these parameters also define the scale of the map, which affects how scale-dependent symbology rules should be applied.
 These classes (<<rc_scaling, Scaling>>, <<rc_display-resolution, Display resolution>> and <<rc_spatial-subsetting, Subsetting>>) define the following parameters interacting with each other (in a not so trivial manner):
 
