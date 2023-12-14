@@ -453,7 +453,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/projection/crs-proj-params
 |Test purpose: | Verify that the implementation supports the `crs-proj-params` parameter correctly for map requests
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
-*When:* retrieving maps with the `crs-proj-method` parameter for different available values and different values of the associated method parameters as listed in `/projectionsAndDatums` +
+*When:* retrieving maps with the `crs-proj-method` parameter for different available values and different values of the associated method parameters (specified using the `crs-proj-params` query parameter) as listed in `/projectionsAndDatums` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -486,7 +486,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Requirement: |/req/projection/response-headers
 |Test purpose: | Verify that the implementation responds to map requests using the `crs-proj-method` parameter and/or `crs-datum` with the correct response headers
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
-*When:* retrieving maps with the `crs-proj-method` parameter for different available values, different values of the associated method parameters (using both `crs-proj-center` and `crs-proj-params`), and different values for `crs-proj-datums` as listed in `/projectionsAndDatums` +
+*When:* retrieving maps with the `crs-proj-method` parameter for different available values, different values of the associated method parameters (using both `crs-proj-center` and `crs-proj-params`), and different values for `crs-datum` as listed in `/projectionsAndDatums` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 

@@ -185,7 +185,7 @@ As explained in the <<scaling-aspect-ratio, scale and aspect ratio consideration
 Because of these potential differences, clients should always consider the bounding box information in the response headers for georeferencing purposes, as well as the actual dimensions of the image returned.
 This will also avoid problems in cases where the server may decide to correct the center or bounding box due to the values being out of range.
 The `center` and `scale-denominator` parameters are primarily intended as convenience parameters to let the server automatically compute ideal bounding boxes and dimensions,
-while specifying a spatial region using the `bbox` or `subset` parameter as well as `width` and `height`, should result in more deterministic responses.
+while specifying a spatial region using the `bbox` or `subset` parameter as well as `width` and `height` should result in more deterministic responses.
 
 ////
 
