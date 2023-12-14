@@ -1,5 +1,5 @@
 [[rc_collection-map]]
-== Requirement Class "Collection Maps"
+== Requirement Class "Collection Map"
 
 === Overview
 
