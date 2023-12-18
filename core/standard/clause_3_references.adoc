@@ -1,7 +1,7 @@
 == References
 The following normative documents contain provisions that, through reference in this text, constitute provisions of this document. For dated references, subsequent amendments to, or revisions of, any of these publications do not apply. For undated references, the latest edition of the normative document referred to applies.
 
-* [[OGC19_072]] OGC: OGC 19-072, **OGC API - Common - Part 1: Core** (in development) https://docs.opengeospatial.org/DRAFTS/19-072.pdf
+* [[OGC19_072]] OGC: OGC 19-072, **OGC API - Common - Part 1: Core** https://docs.ogc.org/is/19-072/19-072.html
 
 * [[OpenAPI]] OpenAPI Initiative (OAI). **OpenAPI Specification 3.0** [online]. 2020 [viewed 2020-03-16]. The latest patch version at the time of publication of this standard was 3.0.3, available at https://spec.openapis.org/oas/v3.0.3
 
