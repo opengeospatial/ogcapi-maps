@@ -48,7 +48,7 @@ Other paths are possible provided that they are correctly described in the API d
 
 === Requirements classes defining parameters
 
-These requirements classes define Maps API parameters that can be used together with any map resource.
+These requirements classes of the _Maps API_ define parameters that can be used together with any map resource.
 
 NOTE: In the effort to make the OGC APIs more consistent, some parts of these requirements classes are expected to be imported by a future part of  OGC API - Common or be registered in the building blocks registry. A future revision of OGC API - Maps could reference them and ensure consistency with the relevant section.
 
