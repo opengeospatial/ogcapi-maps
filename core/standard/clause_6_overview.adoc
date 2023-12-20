@@ -45,7 +45,7 @@ This standard provides a clear and common way to request a map image that covers
 When the _Maps API_ is implemented by different organizations that offer different collections of information, the same bounding box, in the same CRS and the same number
 of rows and columns can be requested from each organization's geospatial repository.
 The result is a set of images that perfectly overlap showing different variables of the same area depending on the collection of geospatial data requested.
-For example, a population map can be requested to one organization (e.g., SEDAC Population Density) and weather forecast to another
+For example, a population map can be requested from one organization (e.g., SEDAC Population Density) and weather forecast from another
 (e.g., NDFD Surface Wind Velocity) in the exact same way allowing to present both together in one overlaid view or side by side.
 
 [#table_sedan_nowcast,reftext='{figure-caption} {counter:figure-num}', cols=">a,<a", frame=none, grid=none]
