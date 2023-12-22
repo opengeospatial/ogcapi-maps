@@ -5,7 +5,7 @@ The framework, concepts, and methodology for testing, and the criteria to be ach
 
 The standardization targets of all conformance classes are "Web APIs".
 
-The _OGC API - Maps - Part 1: Core_ Standard defines twenty-two **(22)** conformance classes, each corresponding to one requirements class. 
+The _OGC API - Maps - Part 1: Core_ Standard defines twenty-two **(22)** conformance classes, each corresponding to one requirements class.
 
 The core conformance class is the only mandatory one. All other conformance classes are optional and depend on the _core_.
 
@@ -152,7 +152,7 @@ The _CRS by reference_ requirements class defines how to specify the output CRS 
 ```
 
 *<<rc_orientation>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/orientation)
-The _orientation_ requirements class defines how to specify an angle for re-orienting how the map is displayed (`orientation`).
+The _orientation_ requirements class defines how to specify an angle (expressed in degrees) for re-orienting how the map is displayed (`orientation`).
 
 .Example orientation request:
 ```

@@ -20,14 +20,15 @@ It is also possible to combine this building block with _OGC API - Features_ ver
 The Maps API standard does not specify how geospatial resources are exposed in the API or if they can be retrieved as raw geospatial data (e.g., feature items or coverage cell values). The Maps API standard expects that other OGC API standards will define how to expose additional access mechanisms for these geospatial resources. 
 Examples of such standards, all of which also implement _OGC API - Common - Part 2: Geospatial data_ defining the `/collections` and `/collections/{collectionId}` paths, are:
 
-* _OGC API - Tiles_ (coverage tiles and vector tiles)
-* _OGC API - Features_
-* _OGC API - EDR_
-* _OGC API - Processes - Part 3: Workflows and Chaining_ ("Collection Output" requirements class)
+* https://docs.ogc.org/is/20-057/20-057.html[_OGC API - Tiles_] (coverage tiles and vector tiles)
+* https://docs.ogc.org/is/17-069r4/17-069r4.html[_OGC API - Features_]
+* https://docs.ogc.org/DRAFTS/19-087.html[_OGC API - Coverages_] (multidimensional data cubes)
+* https://docs.ogc.org/is/19-086r6/19-086r6.html[_OGC API - EDR_] (retrieval of spatiotemporal data)
+* https://docs.ogc.org/DRAFTS/21-009.html[_OGC API - Processes - Part 3: Workflows and Chaining_] ("Collection Output" requirements class)
 
 These geospatial resources can be modified or complemented by other resources creating new endpoints indirectly giving access to the modified or complemented resources. Other OGC API family standards will define these mechanisms. Examples of OGC standards doing that are:
 
-* _OGC API - Styles_ defines how to complement a geospatial resource by adding a style to it. The new resource is an overlap of both resources
+* https://docs.ogc.org/DRAFTS/20-009.html[_OGC API - Styles_] defines how to complement a geospatial resource by adding a style to it. The new resource is an overlap of both resources.
 
 NOTE: The concept of geospatial resource path substitutes the concept of "layer" in WMS but it intends to give a better integration between data visualization and data access.
 

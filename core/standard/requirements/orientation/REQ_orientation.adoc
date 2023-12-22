@@ -2,7 +2,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/orientation/orientation*
-^|A |If rotation of the map content is desired, an orientation parameter SHALL be supported thatspecifyies the amount to rotate a map, expressed as counterclockwise degrees. This results in the viewing perspective being rotated by that same orientation in a clockwise direction.
+^|A |If rotation of the map content is desired, an orientation parameter SHALL be supported that specifies the amount by which to rotate a map, expressed as counterclockwise degrees. This results in the viewing perspective being rotated by that same orientation in a clockwise direction.
 ^|B |If an `orientation` parameter is not specified, a zero-orientation value SHALL be assumed.
 ^|C |The orientation SHALL be applied to the map with the center of the selected spatial subset as the pivot point, or the center of the map if none is specified.
 ^|D |If an `orientation` parameter is used together with `subset` or `bbox` spatial subsetting parameter,

@@ -83,7 +83,7 @@ Example of a 3D bounding box:
 ==== Parameter `subset`
 The `subset` parameter is a common building block used to select a subset of a geospatial resource shared with other OGC API Standards.
 This can be specified as an interval between lower and higher bound values or as a single value. An example of an interval is "between 10.0 and 20.0 degrees of latitude" `subset=Lat(10:20)`.
-An example of single value is "150 meters above main sea level" `subset=h(150)`.
+An example of single value is "150 meters above mean sea level" `subset=h(150)`.
 The dimensions that can be used within the value specified for this parameter, in the context of this particular requirement class, are the abbreviations for the spatial axes specified in the CRS definition.
 
 The `subset` parameter is defined as follows:

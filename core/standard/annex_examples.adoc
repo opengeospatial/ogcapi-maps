@@ -296,13 +296,13 @@ The following examples illustrates how to retrieve a map of the relative humidit
 https://maps.gnosis.earth/ogcapi/collections/climate:era5:relativeHumidity/map?subset=pressure(500)&datetime=2023-04-06T23:00:00Z&bgcolor=skyBlue
 
 [#world_HR_png,reftext='{figure-caption} {counter:figure-num}']
-.A map of ERA5 reanalysis data showing HR of the whole world at 500 hPa on April 6th, 2023 at 23:00:00 UTC (from https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-pressure-levels[Copernicus climate data store])
+.A map of ERA5 reanalysis data showing Relative Humidity of the whole world at 500 hPa on April 6th, 2023 at 23:00:00 UTC (from https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-pressure-levels[Copernicus climate data store])
 image::images/world_HR.png[width=600,align="center"]
 
 https://maps.gnosis.earth/ogcapi/collections/climate:era5:relativeHumidity/map?subset=pressure(975)&datetime=2023-04-06T23:00:00Z&bgcolor=skyBlue
 
 [#world_HR_975_png,reftext='{figure-caption} {counter:figure-num}']
-.A map of ERA5 reanalysis data showing HR of the whole world at 975 hPa on April 6th, 2023 at 23:00:00 UTC (from https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-pressure-levels[Copernicus climate data store])
+.A map of ERA5 reanalysis data showing Relative Humidity of the whole world at 975 hPa on April 6th, 2023 at 23:00:00 UTC (from https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-pressure-levels[Copernicus climate data store])
 image::images/world_HR_975.png[width=600,align="center"]
 
 The following https://maps.gnosis.earth/ogcapi/collections/climate:era5:relativeHumidity?f=json[JSON collection description] for these relative humidity examples illustrates

@@ -139,6 +139,7 @@ collection (defined by https://docs.ogc.org/DRAFTS/20-024.html[_OGC API - Common
 * https://docs.ogc.org/is/17-069r3/17-069r3.html[_OGC API - Features_] defines an API to access collections of vector features at `/collections/{collectionId}/items` and individual features at `/collections/{collectionId}/items/{itemId}`, including both geometry and properties.
 * https://docs.ogc.org/DRAFTS/19-087.html[_OGC API - Coverages_] defines an API to efficiently access information organized as multi-resolution and multi-dimensional datacubes at `/collections/{collectionId}/coverage`.
 Since several common parameters are shared with this Maps API, for some request formulations, it is possible to simply toggle between `/map` and `/coverage` while keeping the same parameters, to alternate between retrieving the raw data values or a server-side visualization.
+* https://docs.ogc.org/is/19-086r6/19-086r6.html[_OGC API - EDR_] defines an API to retrieve spatiotemporal information using multiple query patterns such as cubes, trajectory and corridors.
 
 But possibilities are endless: for example, a generic open data API giving access to tables, some of them with columns storing latitude and longitude, could be enhanced with OGC APIs to provide mapping capabilities.
 
