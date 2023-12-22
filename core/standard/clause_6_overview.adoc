@@ -48,15 +48,15 @@ The result is a set of images that perfectly overlap showing different variables
 For example, a population map can be requested from one organization (e.g., SEDAC Population Density) and weather forecast from another
 (e.g., NDFD Surface Wind Velocity) in the exact same way allowing to present both together in one overlaid view or side by side.
 
-[#table_sedan_nowcast,reftext='{figure-caption} {counter:figure-num}', cols=">a,<a", frame=none, grid=none]
-.SEDAN GPWv4 Population Density, 2015 and Forecast NDFD, Surface (10m AGL) Wind Velocity (Barb, Knots)
+[#table_sedac_nowcast,reftext='{figure-caption} {counter:figure-num}', cols=">a,<a", frame=none, grid=none]
+.SEDAC GPWv4 Population Density, 2015 and Forecast NDFD, Surface (10m AGL) Wind Velocity (Barb, Knots)
 |===
 | image::images/sedan.png[width=300,align="center"]
 | image::images/nowcast.png[width=300,align="center"]
 |===
 
 [#img_overlay,reftext='{figure-caption} {counter:figure-num}']
-.Forecast NDFD wind speed on top of SEDAN Population density
+.Forecast NDFD wind speed on top of SEDAC Population density
 image::images/sedan_and_nowcast.png[width=600,align="center"]
 
 
