@@ -195,7 +195,7 @@ These classes (<<rc_scaling, Scaling>>, <<rc_display-resolution, Display resolut
 | `width` | Width of the viewport in pixel units
 | `height` | Height of the viewport in pixel units
 | `scale-denominator` | Number of units in the physical world that is equivalent to 1 unit on the rendering device
-| `mm-per-pixel` | Size of one pixel on the rendering device expressed in millimeters. The default value is 0.28mm
+| `mm-per-pixel` | Size of one pixel on the rendering device expressed in millimeters. The default value is 0.28 mm
 | `bbox` (`bbox-crs`) (and the equivalent `subset` and `subset-crs`) | Bounding box of the requested map in CRS coordinates. It defines the geographic size.
 | `center` (`center-crs`) | Center of the requested map in CRS coordinates. `center` and `bbox` are mutually exclusive.
 !===
