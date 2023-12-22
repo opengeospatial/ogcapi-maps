@@ -291,7 +291,7 @@ image::images/world_T_850.png[width=600,align="center"]
 // page break to keep request & response together in PDF
 <<<
 
-The following examples illustrates how to retrieve a map of the relative humidity for the whole world at a _pressure_ (an extra dimension) levels of 500 and hectopascals:
+The following examples illustrates how to retrieve a map of the relative humidity for the whole world at a _pressure_ (an extra dimension) levels of 500 and 975 hectopascals:
 
 https://maps.gnosis.earth/ogcapi/collections/climate:era5:relativeHumidity/map?subset=pressure(500)&datetime=2023-04-06T23:00:00Z&bgcolor=skyBlue
 
