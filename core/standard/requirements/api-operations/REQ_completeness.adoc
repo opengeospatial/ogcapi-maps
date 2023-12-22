@@ -1,0 +1,8 @@
+[[req_api_operations_completeness]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/api-operations/completeness*
+^|A |The API definition SHALL provide paths for all map, custom projections, tileset, tilesets list and tile resources provided by the API instance.
+^|B |The resource paths defined in the API definition SHALL be consistent with the links to the same resources provided by the landing page, collections, tileset and tilesets list resources.
+^|C |The resource paths defined in the API definition SHALL provide the description of the parameters that the map, tileset and tile resources need to operate that are specified in corresponding conformance classes.
+|===

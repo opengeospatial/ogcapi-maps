@@ -247,9 +247,11 @@ _Media type_: `image/svg+xml`
 
 _Media type_: `text/html`
 
-*<<rc_oas3>>*  (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/oas3)
+*<<rc_api_operations>>*  (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/api-operations)
 
-The _OpenAPI Specification 3_ requirements class specifies requirements for an OpenAPI 3 definition in addition to those defined in _OGC API - Common - Part 1: Core_.
+The _API Operations_ requirements class specifies requirements to fully describe the _Maps API_ operations and use specific operation identifier suffixes when providing an API definition.
+It is intended to be used in conjunction with other conformance classes for a specific API definition language and/or version, such as the OpenAPI 3.0 requirement class defined in
+_OGC API - Common - Part 1: Core_, or another eventual requirement class for OpenAPI 3.1.
 
 All requirements classes and conformance classes described in this Standard are owned by the standard(s) identified.
 
@@ -283,5 +285,5 @@ That said, this Standard includes recommendations to support, where practical, H
 | <<rc_tiff,TIFF>>             | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tiff
 | <<rc_svg,SVG>>               | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/svg
 | <<rc_html,HTML>>             | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/html
-| <<rc_oas3>>                  | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/oas3
+| <<rc_api_operations>>        | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/api-operations
 |===

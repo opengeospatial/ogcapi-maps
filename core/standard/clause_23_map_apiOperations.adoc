@@ -1,0 +1,105 @@
+[[rc_api_operations]]
+== Requirements Class "API Operations"
+
+=== Overview
+
+include::requirements/requirements_class_api_operations.adoc[]
+
+The "API Operations" requirements class defines requirements for providing a definition of a Web API implementing the Maps API Standard using an API definition language.
+This requirement class is intended to be combined with another requirement class specifying requirements for providing an API definition in a particular API definition language and / or version,
+such as the Open API 3.0 requirement class defined in https://docs.ogc.org/is/19-072/19-072.html#_ab6e3c2d-d2dc-4f01-a7d4-8b52133289a0[OGC API - Common - Part 1 :Core], or another eventual requirement class
+for OpenAPI 3.1.
+
+=== Web API description
+
+The API definition provides a description of the complete list of API resources. Reading this description, an application would have the full picture of the resources that the API provides,
+how to retrieve resources, and what responses are expected for successful and unsuccessful requests. Without an API description or documentation, an application would be forced to traverse all links,
+starting with the landing page, to get an equivalent full list of resources.
+
+The _OpenAPI Specification 3.0 (oas30)_ requirement class from _OGC API - Common - Part 1: Core_ provides many details on general requirements that can be used in conjunction with this requirements class.
+A later version of OGC API - Common may describe how to declare support for other versions of OpenAPI.
+This requirement class depends on the _OGC API - Common_ landing page requirements class which provides details on how to request an API definition.
+
+==== Response
+
+===== Completeness
+The API definition resulting as a response to this request need to take into consideration the relevant resources specified in the Maps API standard.
+
+include::requirements/api-operations/REQ_completeness.adoc[]
+
+===== Reusable API components
+
+Reusable components for creating API definitions for implementations of this OGC API using OpenAPI 3.0 can be found in https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi .
+
+NOTE: While this specification is in draft status, the components are available from https://github.com/opengeospatial/ogcapi-maps/tree/master/openapi .
+
+A server implementation of the _OGC API – Maps Standard_ can use the content in the openapi directory to generate a response for the API description using OpenAPI 3.0.
+The _ogcapi-maps-1.yaml_ includes paths and components. An implementation should only include the paths that are implemented and remove the references to the paths that are not implemented.
+The components part includes parameters, responses and schemas that can be reused as-is. The `api` directory contains JSON files that are templates with enumerated values for collections, styles and tile matrix sets.
+A particular implementation of the Maps API should enumerate the actual resources exposed by the API deployment in the same way.
+The server can select to dynamically implement responses to /api/* (where * is replaced by all-collections, styles,... ) or hardcode the /api/* files with the actual list of resource identifiers in the enumerations.
+
+To improve performance, the whole content of this directory can be bundled into a single document by executing a tool such as _swagger-cli_.
+This document can be served for the _OGC API - Common - Part 1_ `service-desc` link from the landing page.
+
+===== Path Operation Identifiers
+
+The API definition provides to a client application a set of paths that the client can use to interact with the API and get new resources.
+The API description of each path provides a description of what parameters to use in the request and what to expect in the response.
+However, the Maps API Standard does not propose a fixed set of paths so there is an issue identifying the requirements classes pertaining to each path in an API instance.
+In other words, the API description alone does not provide enough information by itself.
+Therefore, there is a need to associate the resource paths in the API definition with the resources defined in the various requirements classes.
+The Maps APIs Standard proposes a suffix mechanism to be applied to the operation identifiers of the path (e.g., the `operationId` property in OpenAPI Specification 3.0) to list the requirement classes pertaining to each path.
+Each path should have a unique operationId suffix, so it is expected that the API instance provides a prefix to the proposed suffixes that make each operation identifier unique.
+
+include::requirements/api-operations/REQ_operation-id.adoc[]
+
+[#api-operation-id-suffixes,reftext='{table-caption} {counter:table-num}']
+.API operation identifier suffixes
+[width = "100%",options="header",cols="12%,8%,15%,53%"]
+|===
+|Origin          |Styled   |Resource       |Operation id suffixes
+|_root_          |         |Projections    |`getCustomCRSProjections`
+4+|_With the origins described in this document_
+|DataSet^5^      |         |Map^1^         |`.dataset.getMap`
+|DataSet^5^      |         |TileSetsList^4^|`.dataset.map.getTileSetsList`
+|DataSet^5^      |         |TileSet^3^     |`.dataset.map.getTileSet`
+|DataSet^5^      |         |Tile^2^        |`.dataset.map.getTile`
+|DataSet^5^      |Styled^7^|Map^1^         |`.dataset.style.getMap`
+|DataSet^5^      |Styled^7^|TileSetsList^4^|`.dataset.style.map.getTileSetsList`
+|DataSet^5^      |Styled^7^|TileSet^3^     |`.dataset.style.map.getTileSet`
+|DataSet^5^      |Styled^7^|Tile^2^        |`.dataset.style.map.getTile`
+|Collection^6^   |         |Map^1^         |`.collection.getMap`
+|Collection^6^   |         |TileSetsList^4^|`.collection.map.getTileSetsList`
+|Collection^6^   |         |TileSet^3^     |`.collection.map.getTileSet`
+|Collection^6^   |         |Tile^2^        |`.collection.map.getTile`
+|Collection^6^   |Styled^7^|Map^1^         |`.collection.style.getMap`
+|Collection^6^   |Styled^7^|TileSetsList^4^|`.collection.style.map.getTileSetsList`
+|Collection^6^   |Styled^7^|TileSet^3^     |`.collection.style.map.getTileSet`
+|Collection^6^   |Styled^7^|Tile^2^        |`.collection.style.map.getTile`
+4+|_With other potential origins_^8^
+|_other_         |         |Map^1^         |`#.getMap`
+|_other_         |         |TileSetsList^4^|`#.map.getTileSetsList`
+|_other_         |         |TileSet^3^     |`#.map.getTileSet`
+|_other_         |         |Tile^2^        |`#.map.getTile`
+|_other_         |Styled^7^|Map^1^         |`#.style.getMap`
+|_other_         |Styled^7^|TileSetsList^4^|`#.style.map.getTileSetsList`
+|_other_         |Styled^7^|TileSet^3^     |`#.style.map.getTileSet`
+|_other_         |Styled^7^|Tile^2^        |`#.style.map.getTile`
+4+|^1^ The _Map_ resource is defined in requirements class "Core".
+
+^2^ The _Tile_ resource is defined in the _OGC API - Tiles - Part 1: Core_ "Core" requirements class.
+
+^3^ The _TileSet_ resource is defined in the _OGC API - Tiles - Part 1: Core_ "TileSet" requirements class.
+
+^4^ The _TileSetsList_ resource is defined in the _OGC API - Tiles - Part 1: Core_ "TileSets List" requirements class.
+Map tilesets are defined in the _Map Tilesets_ requirements class_ and depend on _OGC API - Tiles - Part 1: Core_.
+
+^5^ The _DataSet_ origin is defined in requirements class "Dataset Maps" and depends on _OGC API - Common - Part 1: Core_.
+
+^6^ The _Collection_ origin is defined in requirements class "Collection Maps" and depends on the _Collections_ requirements class defined in _OGC API - Common - Part 2: Geospatial data_.
+
+^7^ Styled tilesets rely on the ability to list styles defined in _OGC API - Styles_.
+
+^8^ '#' represents an optional _origin_ that could be defined in another relevant standard.
+|===

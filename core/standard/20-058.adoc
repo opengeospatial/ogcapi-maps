@@ -126,7 +126,7 @@ include::clause_21_map_originStyle.adoc[]
 
 include::clause_22_map_dataEncodings.adoc[]
 
-include::clause_23_map_openAPI.adoc[]
+include::clause_23_map_apiOperations.adoc[]
 
 include::annex_ats.adoc[]
 

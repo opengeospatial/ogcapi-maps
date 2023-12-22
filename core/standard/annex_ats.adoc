@@ -694,26 +694,26 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-=== Conformance Class "OpenAPI 3 Specification"
+=== Conformance Class "API Operations"
 
-==== Requirement OpenAPI definition completeness
+==== Requirement API Operations completeness
 [cols=">20h,<80d",width="100%"]
 |===
-|Test id: |/conf/oas3/completeness
-|Requirement: |/req/oas3/completeness
+|Test id: |/conf/api-operations/completeness
+|Requirement: |/req/api-operations/completeness
 |Test purpose: | Verify that the implementation completely and correctly describes the map resources
-|Test method: | *Given:* an API conforming to _OGC API - Common - Part 1: Core_ "OAS30" conformance class or any other OGC API - Common conformance class declaring support to other subversion of OpenAPI version 3 +
-*When:* retrieving the OpenAPI 3 API description +
+|Test method: | *Given:* an API conforming to _OGC API - Common - Part 1: Core_ "Landing Page" conformance class +
+*When:* retrieving the API description +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement OpenAPI operation IDs
+==== Requirement API Operation identifiers
 [cols=">20h,<80d",width="100%"]
 |===
-|Test id: |/conf/oas30/operation-id
-|Requirement: |/req/oas30/operation-id
-|Test purpose: | Verify that the implementation uses the correct OpenAPI operation Id suffixes to identify the resources defined in the Maps API Standard
-|Test method: | *Given:* an API conforming to _OGC API - Common - Part 1: Core_ "OAS30" conformance class +
-*When:* retrieving the OpenAPI 3.0 API description +
+|Test id: |/conf/api-operations/operation-id
+|Requirement: |/req/api-operations/operation-id
+|Test purpose: | Verify that the implementation uses the correct API operation identifier suffixes to identify the resources defined in the Maps API Standard
+|Test method: | *Given:* an API conforming to _OGC API - Common - Part 1: Core_ "Landing Page" conformance class supporting an API definition language with a concept of operation identifiers +
+*When:* retrieving the API description +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
