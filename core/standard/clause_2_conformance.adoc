@@ -19,7 +19,7 @@ Additional classes may be specified in future parts of the _OGC API - Maps_ seri
 
 === Requirements classes defining resources
 
-NOTE: The "Custom Projection CRS" requirements class is not included in this sub-section because its primrary focus is not defining resources, but that requirements class also specifies a `/projectionsAndDatums` resource listing values available for the parameters it defines.
+NOTE: The "Custom Projection CRS" requirements class is not included in this sub-section because its primary focus is not defining resources, but that requirements class also specifies a `/projectionsAndDatums` resource listing values available for the parameters it defines.
 
 *<<rc_core>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core)
 
