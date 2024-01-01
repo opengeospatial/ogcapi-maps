@@ -219,9 +219,6 @@ The _styled map_ requirements class specifies how to retrieve maps for a styled 
 The _Maps API_ Standard does not mandate a specific encoding or format for representing maps.
 Requirements classes are provided for the following common map formats.
 
-The Standard remains flexible and extensible to other formats that users and providers might need
-through HTTP content negotiation.
-
 *<<rc_png,PNG>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png)
 
 _Media type_: `image/png`
@@ -229,7 +226,6 @@ _Media type_: `image/png`
 *<<rc_jpeg,JPEG>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpeg)
 
 _Media type_: `image/jpeg`
-
 
 *<<rc_jpegxl,JPEG XL>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpegxl)
 
@@ -247,6 +243,11 @@ _Media type_: `image/svg+xml`
 
 _Media type_: `text/html`
 
+The Standard remains flexible and extensible to other formats that users and providers might need
+through HTTP content negotiation.
+
+That said, this Standard includes recommendations to support, where practical, HTML.
+
 *<<rc_api_operations>>*  (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/api-operations)
 
 The _API Operations_ requirements class specifies requirements to fully describe the _Maps API_ operations and use specific operation identifier suffixes when providing an API definition.
@@ -254,8 +255,6 @@ It is intended to be used in conjunction with other conformance classes for a sp
 _OGC API - Common - Part 1: Core_, or another eventual requirement class for OpenAPI 3.1.
 
 All requirements classes and conformance classes described in this Standard are owned by the standard(s) identified.
-
-That said, this Standard includes recommendations to support, where practical, HTML.
 
 === Summary of conformance URIs
 
