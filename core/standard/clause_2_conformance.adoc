@@ -161,9 +161,8 @@ The _orientation_ requirements class defines how to specify an angle (expressed 
 
 *<<rc_projection>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection)
 The _custom projection CRS_ requirements class defines how to specify a custom CRS through a projection, including the coordinate operation method (`crs-proj-method`)
-and associated parameters (`crs-proj-params`), as well as a datum (`crs-datum`) and orientation (`orientation`).
+and associated parameters (`crs-proj-params`), as well as a datum (`crs-datum`).
 This class also defines a `crs-proj-center` parameter for facilitating the selection of the most likely parameters to center the projection on an area of interest.
-If the CRS by reference requirements class is also supported, the `orientation` parameter can also be used with the `crs` parameter.
 
 .Examples of an orthographic projection request:
 ```
