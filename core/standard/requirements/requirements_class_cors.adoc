@@ -1,0 +1,8 @@
+[[rc_table_cors]]
+[cols="1,4",width="90%"]
+|===
+2+|*Requirements Class CORS*
+|Target type |Web API
+2+|https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cors
+|Dependency |https://www.w3.org/TR/2020/SPSD-cors-20200602/
+|===

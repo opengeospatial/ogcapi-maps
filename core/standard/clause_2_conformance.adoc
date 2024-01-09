@@ -5,7 +5,7 @@ The framework, concepts, and methodology for testing, and the criteria to be ach
 
 The standardization targets of all conformance classes are "Web APIs".
 
-The _OGC API - Maps - Part 1: Core_ Standard defines twenty-two **(22)** conformance classes, each corresponding to one requirements class.
+The _OGC API - Maps - Part 1: Core_ Standard defines twenty-three **(23)** conformance classes, each corresponding to one requirements class.
 
 The core conformance class is the only mandatory class. All other conformance classes are optional and depend on the _core_.
 
@@ -253,6 +253,10 @@ The _API Operations_ requirements class specifies requirements to fully describe
 This requirements class is intended to be used in conjunction with other conformance classes for a specific API definition language and/or version, such as the OpenAPI 3.0 requirement class defined in
 _OGC API - Common - Part 1: Core_, or another eventual requirement class for OpenAPI 3.1.
 
+*<<rc_api_cors>>*  (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cors)
+
+The _CORS_ requirements class specifies a requirement to implement CORS to support JavaScript clients (e.g. Web Browser applications) from a domain different from the OGC API - Maps endpoint.
+
 All requirements classes and conformance classes described in this Standard are owned by the standard(s) identified.
 
 === Summary of conformance URIs
@@ -284,4 +288,5 @@ All requirements classes and conformance classes described in this Standard are 
 | <<rc_svg,SVG>>               | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/svg
 | <<rc_html,HTML>>             | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/html
 | <<rc_api_operations>>        | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/api-operations
+| <<rc_cors,CORS>>             | https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/cors
 |===

@@ -1,0 +1,6 @@
+[[req_cors_cors]]
+[width="90%",cols="2,6a"]
+|===
+^|*Requirement {counter:req-id}* |*/req/cors/cors*
+^|A |An implementation of OGC API - Maps that wants to allow JavaScript clients (e.g. Web Browser applications) from a domain different from the OGC API - Maps endpoint SHALL implement CORS as defined by W3C (https://www.w3.org/TR/2020/SPSD-cors-20200602/).
+|===

@@ -717,3 +717,16 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving the API description +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+=== Conformance Class "CORS"
+
+==== Requirement CORS
+[cols=">20h,<80d",width="100%"]
+|===
+|Test id: |/conf/cors/cors
+|Requirement: |/req/cors/cors
+|Test purpose: | Verify that the implementation completely and correctly implement CORS
+|Test method: | *Given:* an API conforming to _OGC API - Common - Part 1: Core_ "Landing Page" conformance class +
+*When:* retrieving the API description +
+*Then:* (assert that all parts of the requirement are fully satisfied)
+|===
