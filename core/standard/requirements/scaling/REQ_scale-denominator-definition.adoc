@@ -2,7 +2,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/scaling/scale-denominator-definition*
-^|A |The map operation SHALL support a parameter `scale-denominator` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+^|A |The map operation SHALL support a parameter `scale-denominator` with the characteristics defined in the OpenAPI Specification 3.0 fragment:
 [source,YAML]
 ----
   scale-denominator:

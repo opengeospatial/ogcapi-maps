@@ -2,7 +2,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/spatial-subsetting/center-crs*
-^|A |The map retrieval operation SHALL support a parameter `center-crs` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+^|A |The map retrieval operation SHALL support a parameter `center-crs` with the characteristics defined in the OpenAPI Specification 3.0 fragment:
 [source,YAML]
 ----
   crs:

@@ -5,11 +5,11 @@ The Maps API can be described and documented using the https://www.openapis.org/
 
 Specifically, this _OGC API - Maps_ Standard supports the following:
 
-* Discovery operations that allow an implementation instance of the Maps API to be interrogated to determine capabilities and to retrieve information about this distribution of maps. This information includes the API definition (if also implementing https://www.opengis.net/doc/is/ogcapi-common-1/1.0[_OGC API - Common - Part 1: Core_]), as well as metadata about the data layers provided and the Coordinate Reference System(s) supported by the Web API implementation instance;
-* Retrieval operations that enable client applications to retrieve a map, using a default or pre-defined style, for an arbitrary geospatial resource, a dataset representing the full content distributed by the API, or an individual collection of geospatial data representing part of the dataset;
-* Parameters for specifying the background and transparency of the map;
-* Parameters for specifying the scale of the map;
-* A parameter for specifying the pixel size of the device or medium on which the map is intended to be displayed;
-* Parameters for retrieving only a subset of the map;
-* A parameter for specifying a particular orientation for the map;
+* Discovery operations that allow an implementation instance of the Maps API Standard to be interrogated to determine capabilities and to retrieve information about this collection of maps. This information includes the API definition (if also implementing https://www.opengis.net/doc/is/ogcapi-common-1/1.0[_OGC API - Common - Part 1: Core_]), as well as metadata about the data layers provided and the Coordinate Reference System(s) supported by the Web API implementation instance.
+* Retrieval operations that enable client applications to retrieve a map, using a default or pre-defined style, for an arbitrary geospatial resource, a dataset representing the full content available via the Maps API endpoint, or an individual collection of geospatial data representing part of the dataset.
+* Parameters for specifying the background and transparency of the map.
+* Parameters for specifying the scale of the map.
+* A parameter for specifying the pixel size of the device or medium on which the map is intended to be displayed.
+* Parameters for retrieving only a subset of the map.
+* A parameter for specifying a particular orientation for the map.
 * Parameters for specifying a Coordinate Reference System (CRS) for the map by reference or using a projection operation method (as defined by https://docs.ogc.org/as/18-005r4/18-005r4.html#100[OGC 18-005r4 Abstract Specification Topic 2 Referencing by Coordinates]), parameters for that method and a datum.

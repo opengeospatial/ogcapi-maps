@@ -29,5 +29,5 @@
 
 NOTE: When the intervalOrPoint values fall partially outside of the range of valid values defined by the CRS for the identified axis, the service is expected to return the non-empty portion of the resource resulting from the subset.
 
-NOTE: For the operation of returning a map, there normally is no value in preserving dimensionality, therefore a _slicing_ operation (using the _point_ notation) is usually equivalent to
+NOTE: For the operation of returning a map, there normally is no value in preserving dimensionality. Therefore a _slicing_ operation (using the _point_ notation) is usually equivalent to
 a _trimming_ operation (using the _interval_ notation) when the low and high bounds of an interval are the same. Therefore, use of the point notation is encouraged in these cases.

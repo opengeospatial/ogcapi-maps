@@ -48,11 +48,11 @@ Used in combination with _OGC API - Features Part 1: Core_ or _OGC API - Common�
 
 * **https://www.opengis.net/def/rel/ogc/1.0/data**: Refers to the list of collections available for a dataset.
 
-Each resource representation includes an array of links. Implementations are free to add additional links for all resources provided by the Web API.
+Each resource representation includes an array of links. Implementations are free to add additional links for all resources provided by the Web API implementing Maps API requirement(s).
 
 === Use of HTTPS
 
-For simplicity, this document in general only refers to the HTTP protocol. This is not meant to exclude the use of HTTPS and simply is a shorthand notation for "HTTP or HTTPS."
+For simplicity,  the Maps API only refers to the HTTP protocol. This is not meant to exclude the use of HTTPS and simply is a shorthand notation for "HTTP or HTTPS."
 Following the recent push towards enhancing web security, public facing web servers are expected to use https://tools.ietf.org/html/rfc2818[HTTPS] rather than https://www.ietf.org/rfc/rfc2616.txt[HTTP].
-In the context of this Maps API, use of https provides a layer of security to prevent leaking of information related to users requesting map data for a particular geographical area,
-which may be private or sensitive in nature (for example, their own location, or the location of endangered species).
+In the context of   Maps API Standard, use of HTTPS provides a layer of security to prevent leaking of information related to users requesting map data for a particular geographical area, 
+which may be private or sensitive in nature (for example, their own location, or the location of endangered species)

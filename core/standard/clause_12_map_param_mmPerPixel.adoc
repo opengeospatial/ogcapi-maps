@@ -24,7 +24,7 @@ When this parameter is not specified, a default 0.28 mm/pixel is assumed (as sta
 
 include::requirements/display-resolution/REQ_mm-per-pixel-definition.adoc[]
 
-With this parameter, the server has information on the physical size of the map as presented on a display device or printed and apply styling and symbology rules accordingly.
+With this parameter, the server has information on the physical size of the map as presented on a display device or printed and can therefore apply styling and symbology rules accordingly.
 For example, if the server receives a very small value, the server could decide to represent linear elements wider than for normal values, preventing to create a representation of linear features that is going to result in lines that are too thin to be correctly perceived.
 
 ==== Response

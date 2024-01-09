@@ -12,8 +12,7 @@ This functionality is defined as common building blocks shared with other OGC AP
 
 === Describing the extent of the additional dimensions
 
-When implementing the General Subsetting requirements class, additional dimensions included in an extent description (e.g., as found in a OGC API collection description response described in OGC API - Common: Part 2 and follows the JSON schema in https://github.com/opengeospatial/ogcapi-maps/blob/master/openapi/schemas/common-geodata/collectionInfo.yaml)
-must use a uniform approach to describe the lower and upper bounds of those dimensions based on the `intervals` property. This is the same as with the temporal dimension.
+When implementing the General Subsetting requirements class, additional dimensions included in an extent description must use a uniform approach to describe the lower and upper bounds of those dimensions based on the `intervals` property. An example is found in a OGC API collection description response described in OGC API - Common: Part 2 and follows the JSON schema in https://github.com/opengeospatial/ogcapi-maps/blob/master/openapi/schemas/common-geodata/collectionInfo.yaml. This is the same as with the temporal dimension.
 
 include::requirements/general-subsetting/REQ_uniform-additional-dimensions.adoc[]
 

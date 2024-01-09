@@ -58,16 +58,14 @@ If a map is not provided due to lack of data in the area, the status code of the
 
 Since all parameters for map requests are optional, implementations must fill in missing parameters by using default values or computing appropriate values based on the parameters provided by the client
 and the specifics of the resource for which a map is being retrieved.
-Implementations supporting this "Scaling" requirement class should compute these values in a way which respects the scale of the map in all dimensions, and thus the aspect ratio of physical features being represented.
+Implementations supporting the "Scaling" requirement class should compute these values in a way that respects the scale of the map in all dimensions, and thus the aspect ratio of physical features being represented.
 
 For a non-global map, and for implementations supporting both "Scaling" and "Subsetting" where clients can request a subset of the map for a small local region,
-implementations should consider the *local* scale of the map (for example, the applicable scale at the center, or most equatorial latitude of the map), as opposed to the global scale (e.g., at the equator).
-In addition, implementations should aim for the map scale to apply evenly to all dimensions.
-For example, in a CRS such as Plate Carrée projection (CRS84 or EPSG:4326), when filling in an unspecified `bbox` and/or `width` and `height` parameters,
+implementations should consider the *local* scale of the map. For example, the applicable scale at the center, or most equatorial latitude of the map. This is as opposed to the global scale (e.g., at the equator). In addition, implementations should aim for the map scale to apply evenly to all dimensions. Consider a CRS such as Plate Carrée projection (CRS84 or EPSG:4326). When filling in an unspecified `bbox` and/or `width` and `height` parameters,
 this is possible by applying a different linear scaling for the horizontal and vertical dimensions between the CRS units and the pixel dimensions, based on the most equatorial latitude included in the subset.
 
-As another example, for a World Mercator projection (EPSG:3395), although the CRS unit is "meters", they are only true meters at the equator.
-When computing a bounding box extending away from a `center` and a `scale-denominator`, the ratio between those CRS unit meters and true physical meters should be considered,
+Another example is using a World Mercator projection (EPSG:3395). Although the CRS unit is "meters", they are only true meters at the equator.
+When computing a bounding box extending away from a `center` and a `scale-denominator`, the ratio between the CRS unit meters and true physical meters should be considered
 in order to accurately reflect the requested scale.
 
 The ideal aspect ratio to maintain is the `physical_width / physical_height` = `width / height`, whereas `physical_width` and `physical_height` refer to the length of features
@@ -76,7 +74,7 @@ in the horizontal and vertical dimensions respectively, and `width` and `height`
 In the case of a Plate Carrée CRS, a simple way to accurately reflect the two-dimensional scale is to use the most equatorial latitude contained in the map response as the standard parallel of the equirectangular projection.
 This effectively implies scaling the horizontal distances of the Plate Carrée projection (assuming a standard parallel at 0°N) units by the cosine of that most equatorial latitude in order to get a more accurate physical horizontal distance.
 
-In the case of a World Mercator CRS, an implementation could compute the number of CRS units separating one degree of longitude at the center latitude, and compare that with the actual
+In the case of a World Mercator CRS, an implementation could compute the number of CRS units separating one degree of longitude at the center latitude and compare that with the actual
 number of physical meters, based on the `cos(lat)` scaling mentioned above, and the length of a degree in meters (WGS84 semi-major axis of 6,378,137 m * Pi / 180, or 111,319.4907932735805 m).
 
 For slightly more accurate calculations, the WGS84 ellipsoid, can be taken into account using the following polynomial equations (from https://en.wikipedia.org/wiki/Geographic_coordinate_system#Length_of_a_degree[Wikipedia]):
@@ -86,29 +84,29 @@ metersPerDegLat = 111132.92 - 559.82 * cos(2*lat) + 1.175 * cos(4*lat) - 0.0023 
 metersPerDegLon = 111412.84 * cos(lat) - 93.5 * cos(3*lat) + 0.118 * cos(5*lat)
 ```
 
-If maintaining the aspect ratio between physical units proves too difficult, implementations could fall back to maintaining the CRS unit aspect ratio instead, ensuring that
+If maintaining the aspect ratio between physical units proves too difficult, implementations could fall back to maintaining the CRS unit aspect ratio instead. This way they ensure that
 `(maxx - minx)/(maxy - miny) = width / height`, where `minx, miny` are the lower bounds of the output CRS unit space in the returned map,
 `maxx, maxy` the upper bounds of that output CRS unit space on the map, and `width` and `height` are the dimensions of the returned map in pixels.
 
 When neither width nor height is provided or implied, a good practical approach is to default to a reasonable size which is neither too low resolution, nor requiring too much computation power from the server.
 
-When only one of the two dimension parameters is provided and no specific bounding box is requested, the value of the other could be be used to return a square map by default.
+When only one of the two dimension parameters is provided and no specific bounding box is requested, the value of the other could be used to return a square map by default.
 
 When a bounding box is requested, the other dimension should be computed so as to preserve the aspect ratio.
 
 When both dimensions are provided, but no bounding box, those dimensions should be used together with the default or requested center, and the scale denominator should be used to compute the bounding box.
 
-Refer to the guidance for implementers provided in a <<overview-subsetting-and-scaling,section of the overview>> on the interactions of subsetting and scaling parameters,
-including the specific combinations of parameters that can be provided based on which requirement classes are implemented, and which parameter assume default values or should be computed in each case.
+Refer to the guidance for implementers provided in a <<overview-subsetting-and-scaling,section of the overview>> on the interactions of subsetting and scaling parameters. This
+includes the specific combinations of parameters that can be provided based on which requirement classes are implemented, and which parameter assume default values or should be computed in each case.
 
-When `bbox`, `width` and `height` are all provided, as in OGC Web Map Service (WMS), the client is enforcing a specific aspect ratio, and these recommendations are not relevant.
-However, in general circumstances (e.g., 2D representations on a screen), the client should make an effort to provide parameters that preserve the aspect ratio.
+When `bbox`, `width` and `height` are all provided, as in OGC Web Map Service (WMS), the client enforces a specific aspect ratio, and these recommendations are not relevant.
+However, in general circumstances (e.g., 2D representations on a screen), the client should try to provide parameters that preserve the aspect ratio.
 
 CAUTION: Due to the inherent difficulty in implementing the computations correctly for all CRSs and some degree of variability based on how these calculations are performed, implementations may compute missing parameters for the same request differently.
 Clients should therefore always consider the `Content-Bbox:` response header and the actual dimensions of the returned map when geo-referencing and displaying images returned by the Maps API.
-For identicals responses to the same request across different implementations, clients should always provide a `bbox` (or its `subset` equivalent), `width` and `height` parameters (as in classic WMS requests),
+For identical responses to the same request across different implementations, clients should always provide a `bbox` (or its `subset` equivalent), `width` and `height` parameters (as in classic WMS requests). This is
 rather than the `scale-denominator` and `center` parameters, which are primarily intended for convenience directly accessing a Maps API, such as from a Web browser.
-For the purpose of overlaying map responses from different implementations, a client which does not itself geo-refererence the output based on the `Content-Bbox:` response header
+For the purpose of overlaying map responses from different implementations, a client which does not itself geo-reference the output based on the `Content-Bbox:` response header
 should always request maps using the `bbox`, `width` and `height` parameters.
 
 See also detailed step-by-step examples in an annex of computations to <<dimensions-calculation-examples,infer dimensions>> and <<bbox-calculation-examples,infer bounding boxes>> based on specified parameters.
@@ -121,7 +119,7 @@ include::recommendations/scaling/REC_max-width-height.adoc[]
 
 NOTE: The attributes `maxWidth`, `maxHeight` and `maxPixels` are intended to limit server workload, by providing limitations in the size of the output. If the `width` and `height` limits are defined in relation to the size of a common device screen, Maps API implementations should consider that new devices are being built with more and more pixels and a reasonable limit from the current year may be too restrictive for devices emerging in the next year.
 
-Example of the OpenAPI service metadata section
+Example of the OpenAPI service metadata section:
 ----
 info:
   title: My Web API

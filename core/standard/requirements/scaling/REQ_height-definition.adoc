@@ -2,7 +2,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/scaling/height-definition*
-^|A |The map operation SHALL support a parameter `height` with the characteristics defined in the OpenAPI Specification 3.0 fragment
+^|A |The map operation SHALL support a parameter `height` with the characteristics defined in the OpenAPI Specification 3.0 fragment:
 [source,YAML]
 ----
   height:
@@ -23,5 +23,5 @@
 ^|G |An error SHALL be returned if the `height` parameter is used together with the `scale-denominator` parameter and the implementation does not also support the "Subsetting" requirement class.
 ^|H |When the `height` parameter is omitted, the implementation SHALL use an appropriate height which accurately reflects the default or requested scale established as the ratio between the vertical dimension of the viewport and the corresponding size of the physical world, specifically for the local subset (bounding box) of the map being returned.
 2+|
-^1^ service metadata may be provided as an extension of the `info` section of the Open API document as indicated in https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core], Annex B.4 and discussed in the <<ScalingServiceMetadata, last subsection of the Maps API scaling requirements class section>>
+^1^ Service metadata may be provided as an extension of the `info` section of the Open API document as indicated in https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core], Annex B.4 and discussed in the <<ScalingServiceMetadata, last subsection of the Maps API scaling requirements class section>>
 |===

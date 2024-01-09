@@ -9,15 +9,15 @@ include::requirements/requirements_class_spatial-subsetting.adoc[]
 
 The Maps API core requirements class defines the map resource.
 The Maps API core also defines a minimum set of metadata that enables a client application to formulate a map request.
-The Subsetting requirements class adds the ability to request an arbitrary 2D or 3D spatial subset of a map using either a bounding box specified using one of two equivalent syntaxes
-(a `bbox` parameter similar to the one in WMS 1.3, as well as a `subset` parameter similar to WCS 2.1),
-or as a center point as well as `width` and/or `height` parameters taking into account the scale and the display resolution.
+The Subsetting requirements class adds the ability to request an arbitrary 2D or 3D spatial subset of a map using either a bounding box specified using one of two equivalent syntaxes:
+a `bbox` parameter similar to the one in WMS 1.3, or a `subset` parameter similar to WCS 2.1.
+An alternative possibility is to specify a center point as well as `width` and/or `height` parameters taking into account the scale and the display resolution.
 
 How the third (vertical) spatial dimension is applied to filter the output is left to the implementation and may depend on the nature of the data being represented and/or the negotiated output format.
 For example, the server could include features located within a vertical interval as part of a 2D map being rendered.
 In a second example, the extent of a 3D perspective view or a 3D model output would include only the subset of the vertical dimension specified.
 In a third example, a vertical profile could be returned for a single point or for a path across the other spatial dimensions.
-In this last example, the subset mechanism would likely only be used to subset the vertical dimension, while another mechanism would be used to select an arbitrary path in the horizontal dimensions (this standard part does not specify how to provide a path in a map request).
+In this last example, the subset mechanism would likely only be used to subset the vertical dimension, while another mechanism would be used to select an arbitrary path in the horizontal dimensions (this requirements class does not specify how to provide a path in a map request).
 
 [[maps-spatial-subsetting-crs]]
 === CRS for subsetting
@@ -103,7 +103,7 @@ taking into consideration the scale and display resolution of the map.
 
 include::requirements/spatial-subsetting/REQ_center-definition.adoc[]
 
-NOTE: This parameter use the comma (",") as the separator between the coordinates. Additional white space will not be used to delimit list items. The comma character should not be escaped (IETF RFC 2396).
+NOTE: This parameter uses the comma (",") as the separator between the coordinates. Additional white space will not be used to delimit list items. The comma character should not be escaped (IETF RFC 2396).
 
 include::requirements/spatial-subsetting/REQ_subsetting-width-height-definition.adoc[]
 

@@ -4,4 +4,4 @@
 ^|*Permission {counter:per-id}* |*/per/datetime/closest*
 ^|A |In case the requested map is not available in the exact requested datetime the closest or last previous time for which data is available MAY be returned by the server.
 |===
-NOTE: An Earth Observation use case where this permission is useful is to allow retrieving a map of the last datetime where imagery is available, taking into account that a certain geographic area may only be observed at an interval of "every few days" and availability may be irregular and conditioned by clouds.
+NOTE: An Earth Observation use case where this permission is useful is to allow retrieving a map of the last datetime where imagery is available, considering that a certain geographic area may only be observed at an interval of "every few days" and availability may be irregular and conditioned by clouds.

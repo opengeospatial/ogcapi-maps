@@ -6,9 +6,9 @@
 
 include::requirements/requirements_class_crs.adoc[]
 
-In WMS 1.3 the CRS parameters had two purposes: To indicate the CRS of the data rendered in the map and the CRS of the coordinates of the BBOX parameter. In this standard, these two purposes have been separated. This section describes how to request a map in a specific CRS.
+In WMS 1.3 the CRS parameters had two purposes: To indicate the CRS of the data rendered in the map and the CRS of the coordinates of the BBOX parameter. In the Maps API Standard, these two purposes have been separated. This section describes how to request a map in a specific CRS.
 
-At least for _OGC API - Maps_ and _OGC API - Coverages_, a native CRS (also called a _storage CRS_) is defined. The `Content-Crs:` header (see <<maps-core-overview>>) specifies the CRS used in the response to avoid confusion.
+For _OGC API - Maps_ and _OGC API - Coverages_, a native CRS (also called a _storage CRS_) is defined. The `Content-Crs:` header (see <<maps-core-overview>>) specifies the CRS used in the response to avoid confusion.
 
 === Operation
 
