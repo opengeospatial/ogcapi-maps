@@ -8,7 +8,7 @@ This annex provides a set of examples illustrating requests and responses for re
 The first example shows the response of a map endpoint with a request with no parameters (https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map).
 
 The server is free to respond with any `bbox` and any `width` and `height`.
-In this case the server default behaviour is to render the whole of Great Britain in a 631x1024 pixels canvas.
+In this case the server default behavior is to render the whole of Great Britain in a 631x1024 pixels canvas.
 
 [#img_xmp_map_no_param,reftext='{figure-caption} {counter:figure-num}']
 .Great Britain data served as a map without specifying any parameter. From: https://www.ordnancesurvey.co.uk/products/os-open-map-local[OS OpenMap - Local], by the Ordnance Survey.
@@ -125,7 +125,7 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?subset=Lat(51.4945
 
 As explained in the <<scaling-aspect-ratio, scale and aspect ratio considerations section>>, clients wishing to retrieve identical responses from different implementations should specify either of these `bbox` or `subset` parameters,
 together with a `width` and `height`.
-We can request a smaller image by specifying the `height` of the image.
+A smaller image can be requested by specifying `height` of the image.
 
 https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512
 
@@ -134,7 +134,7 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&heig
 image::images/xmp_map_center_h_512x512.png[width=280,align="center"]
 
 The server would be free to act otherwise, but it automatically adjusted the width to also be 512.
-Notice that in order to preserve the same default scale with a smaller image, the spatial region (bounding box) was reduced accordingly.
+Notice that to preserve the same default scale with a smaller image, the spatial region (bounding box) was reduced accordingly.
 This behavior is particularly important when the client requests a specific scale, as in the following request which specifies the same `center` point parameter as before,
 but requests a map for a 1:8000 scale:
 
@@ -171,7 +171,7 @@ image::images/xmp_map_center_scale_50000.png[width=280,align="center"]
 // page break to keep request & response together in PDF
 <<<
 
-We could force a rectangular image by also specifying the `width` of the image to be 1024, while keeping the rest of the parameters:
+A rectangular image could be “forced” by also specifying the width of the image to be 1024, while keeping the rest of the parameters:
 
 https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&scale-denominator=50000&width=1024&height=512
 
@@ -179,8 +179,8 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&scal
 .Wider 1024x512 map of OS OpenMap - Local centered on the O2 dome at 1:50,000 scale
 image::images/xmp_map_center_scale_hw_1024x512.png[width=600,align="center"]
 
-For this last request, specifying both the `width` and `height`, the `center`, as well as the `scale-denominator`, combined with the fact that the default value of `mm-per-pixel`
-is defined as 0.28 mm/pixel, defines all of the parameters necessary to make the subsetting and scaling _mostly_ predictable by the client.
+For this last request, specifying both the `width` and `height`, the `center`, the `scale-denominator`, combined with the fact that the default value of `mm-per-pixel`
+is defined as 0.28 mm/pixel, defines all the parameters necessary to make the subsetting and scaling _mostly_ predictable by the client.
 As explained in the <<scaling-aspect-ratio, scale and aspect ratio considerations section>>, implementations may compute the dimensions and bounding boxes not explicitly specified slightly differently.
 Because of these potential differences, clients should always consider the bounding box information in the response headers for georeferencing purposes, as well as the actual dimensions of the image returned.
 This will also avoid problems in cases where the server may decide to correct the center or bounding box due to the values being out of range.
@@ -291,7 +291,7 @@ image::images/world_T_850.png[width=600,align="center"]
 // page break to keep request & response together in PDF
 <<<
 
-The following examples illustrates how to retrieve a map of the relative humidity for the whole world at a _pressure_ (an extra dimension) levels of 500 and 975 hectopascals:
+The following examples illustrate how to retrieve a map of the relative humidity for the whole world at _pressure_ (an extra dimension) levels of 500 and 975 hectopascals:
 
 https://maps.gnosis.earth/ogcapi/collections/climate:era5:relativeHumidity/map?subset=pressure(500)&datetime=2023-04-06T23:00:00Z&bgcolor=skyBlue
 
@@ -499,7 +499,7 @@ GET /collections/blueMarble/map?
 
 The easting delta is 3,339,584.72, whereas the northing delta is 2,931,335.50.
 
-In order to correctly apply the scale, the ratio between CRS units and physical meters must be taken into account.
+To correctly apply the scale, the ratio between CRS units and physical meters must be considered. 
 This could be calculated for the center point: (E: 1,669,792.36, N: 4,947,856.84) which corresponds to (40.7514917°N, 15°E).
 One approach could be to project two points 1 degree of longitude apart around the center point,
 using the implementation's projection library, to obtain the number of CRS units per degree of longitude.
@@ -550,10 +550,10 @@ height = 2,931,335.50 m * 0.75754799 / 2800 m/pix = 793 pixels
 
 In these examples, the client specifies a `center`, a `scale-denominator`, and optionally `width` and / or `height` dimensions.
 If either the `width` or `height` is not specified, the server could pick default values, such as making the missing dimension
-equal to the one provided, or selecting default values.
+equal to the one provided or selecting default values.
 The examples will assume that the client explicitly requested a 1024 x 768 map at a 1:10,000,000 scale for a location centered on (41.8902°N, 12.4922°E).
 
-In order to compute the extent in CRS units, first the physical meters per pixel can be computed using the same formula as earlier (and same result in this case):
+To compute the extent in CRS units, first the physical meters per pixel can be computed using the same formula as earlier (and same result in this case):
 
 ```
 physicalMetersPerPixel = (mm-per-pixel / 1000 mm/m) * scale-denominator
@@ -576,7 +576,7 @@ GET /collections/blueMarble/map?
 
 A simple approach to computing the bounding box is to extend away from the center in both directions by the distance in CRS units corresponding to half the respective pixel dimension.
 
-In order to take into consideration the latitude of the subsets for computing the longitude extent, the latitude extent will be computed first, using the inverse of the earlier height computation:
+To consider the latitude of the subsets for computing the longitude extent, the latitude extent will be computed first, using the inverse of the earlier height computation:
 
 ```
 deltaLat = height * physicalMetersPerPixel / metersPerDegLat
@@ -634,7 +634,7 @@ GET /collections/blueMarble/map?
 
 The center corresponds to the same point as the previous example (41.8902°N, 12.4922°E).
 
-Using the same approach as for the earlier dimensions computation examples, transforming test points one degree apart, the number of physical meters per easting and northing units can be computed
+Using the same approach as for the earlier dimension computation examples, transforming test points one degree apart, the number of physical meters per easting and northing units can be computed
 specifically for the requested center point (E: 1390625.34, N: 5116008.23).
 Like earlier, in the specific case of World Mercator the `oneDegEastingDelta` and `oneDegNorthingDelta` is constant at 111,319.49 m/deg,
 which corresponds to the number of meters per degree at the equator.
@@ -652,7 +652,7 @@ metersPerEastingUnit = metersPerDegLon / oneDegEastingDelta
 metersPerEastingUnit = 82,869.096 m/deg / 111,319.49 m/deg = 0.74442576
 ```
 
-Again in the case of World Mercator, this is simply:
+Again, in the case of World Mercator, this is simply:
 
 ```
 metersPerEastingUnit = cos(centerLat)
@@ -665,7 +665,7 @@ The implementation could also apply similar logic to compute the meters per nort
 metersPerNorthingUnit = metersPerDegLat / oneDegNorthingDelta
 ```
 
-And again in this case it could simply assume that `metersPerNorthingUnit` is equal to `metersPerEastingUnit`.
+And again, in this case it could simply assume that `metersPerNorthingUnit` is equal to `metersPerEastingUnit`.
 
 Then the delta easting and northing can be computed using the inverse of the equations used for computing dimensions:
 

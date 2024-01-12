@@ -11,7 +11,7 @@
 |Test id: |/conf/core/map-op
 |Requirement: |/req/core/map-op
 |Test purpose: | Verify that the implementation supports the map retrieval operation
-|Test method: | *Given:* a geospatial data resource conforming to the Maps API standard, with an API path including `.../map...` or discovered following a link with relation type `[ogc-rel:map]` +
+|Test method: | *Given:* a geospatial data resource conforming to the Maps API Standard, with an API path including `.../map...` or discovered following a link with relation type `[ogc-rel:map]` +
 *When:* performing a GET operation on the `/map` resource with a supported media type specified in the `Accept:` header (e.g., `Accept: image/png,image/jpeg`) +
 *Then:* +
 - assert that the response has HTTP status code 200 +
@@ -38,9 +38,9 @@
 |===
 |Test id: |/conf/core/conformance-success
 |Requirement: |/req/core/conformance-success
-|Test purpose: | For implementations having a mechanism to advertise conformance classes, verify that it reports conformance to this standard correctly.
+|Test purpose: | For implementations having a mechanism to advertise conformance classes, verify that it reports conformance to this Standard correctly.
 |Test method: | *Given:* a conformance resource in a recognized format, such as the OGC API JSON `/conformance` resource +
-*When:* retrieving that resource from the API +
+*When:* retrieving that resource from the API endpoint+
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
@@ -52,7 +52,7 @@
 |Test id: |/conf/tilesets/desc-links
 |Requirement: |/req/tilesets/desc-links
 |Test purpose: | Verify that the implementation supports map tilesets
-|Test method: | *Given:* a geospatial data resource conforming to this standard, to "Map Tilesets", to OGC _API - Tiles_ and providing a description resource including links +
+|Test method: | *Given:* a geospatial data resource conforming to this Standard, to "Map Tilesets", to OGC _API - Tiles_ and providing a description resource including links +
 *When:* retrieving the geospatial data resource description +
 *Then:* +
 - assert that the geospatial data resource (e.g., collection or landing page description's `links` property) includes a link with the `href` pointing to a tileset list supported that presents a tile aspect of this geospatial data resource and with rel: `[ogc-rel:tilesets-map]`
@@ -64,7 +64,7 @@
 |Test id: |/conf/tilesets/desc-links
 |Requirement: |/req/tilesets/desc-links
 |Test purpose: | Verify that the implementation supports relevant parameters for map tilesets
-|Test method: | *Given:* a geospatial data resource conforming to this standard, to "Map Tilesets", to OGC _API - Tiles_, and to _Maps_ requirements classes introducing parameters relevant for map tiles  +
+|Test method: | *Given:* a geospatial data resource conforming to this Standard, to "Map Tilesets", to OGC _API - Tiles_, and to _Maps_ requirements classes introducing parameters relevant for map tiles  +
 *When:* retrieving the map tiles with parameters for the _background_, _display resolution_, _spatial subsetting_ (only for `subset` and `subset-crs` parameters, and only if a vertical dimension is available), _general subsetting_, and _scaling_ requirements classes +
 *Then:* +
 - assert that tiles responses reflect the relevant map parameters used for the requests
@@ -392,13 +392,13 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |===
 |Test id: |/conf/crs/crs-definition
 |Requirement: |/req/crs/crs-definition
-|Test purpose: | Verify that the implementation supports the output `crs` paramter for map requests
+|Test purpose: | Verify that the implementation supports the output `crs` parameter for map requests
 |Test method: | *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps with the `crs` parameter for different available CRS and without +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement CRS map sucess
+==== Requirement CRS map success
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/crs/map-success
@@ -496,7 +496,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test id: |/conf/projection/projections-resource
 |Requirement: |/req/projection/projections-resource
 |Test purpose: | Verify that the implementation supports retrieving the list of available projection operation methods, their parameters, and the list of available datums at `/projectionsAndDatums`
-|Test method: | *Given:* an API being tested +
+|Test method: | *Given:* an API implementation being tested +
 *When:* retrieving the `/projectionsAndDatums resource +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
@@ -507,7 +507,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test id: |/conf/projection/projections-response
 |Requirement: |/req/projection/projections-response
 |Test purpose: | Verify that the implementation responds correctly to a request for the `/projectionsAndDatums` resource, conforming to the JSON schema and using the correct URIs
-|Test method: | *Given:* an API being tested passing /conf/projection/projections-resource +
+|Test method: | *Given:* an API implementation being tested passing /conf/projection/projections-resource +
 *When:* retrieving the `/projectionsAndDatums resource` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
@@ -520,7 +520,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test id: |/conf/collection-map/desc-links
 |Requirement: |/req/collection-map/desc-links
 |Test purpose: | Verify that the implementation links correctly from the collection description resource to the map resource
-|Test method: | *Given:* a collection from an API conforming to OGC API - Common - Part 2: Geospatial Data "Collections" conformance class +
+|Test method: | *Given:* a collection from an API implementation conforming to OGC API - Common - Part 2: Geospatial Data "Collections" conformance class +
 *When:* retrieving the JSON representation of the description for that collection +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
@@ -531,7 +531,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test id: |/conf/collection-map/desc-crs
 |Requirement: |/req/collection-map/desc-crs
 |Test purpose: | Verify that the implementation describes the supported CRS correctly in its collection description resources
-|Test method: | *Given:* an API conforming to OGC API - Common - Part 2: Geospatial Data "Collections" conformance class +
+|Test method: | *Given:* an API implementation conforming to OGC API - Common - Part 2: Geospatial Data "Collections" conformance class +
 *When:* retrieving the JSON representation of the description for that collection +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
@@ -541,8 +541,8 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |===
 |Test id: |/conf/collection-map/map-operation
 |Requirement: |/req/collection-map/map-operation
-|Test purpose: | Verify that the implementation supports retrieving maps from an OGC API collections
-|Test method: | *Given:* an OGC API collection correctly linking to a map resource as per /conf/collection-map/desc-links +
+|Test purpose: | Verify that the implementation supports retrieving maps from an OGC API a collection as defined in the OGC API – Common Standard.
+|Test method: | *Given:* a collection correctly linking to a map resource as per /conf/collection-map/desc-links +
 *When:* retrieving a map for that collection resource as per /conf/core +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
@@ -555,7 +555,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test id: |/conf/dataset-map/landingpage
 |Requirement: |/req/dataset-map/landingpage
 |Test purpose: | Verify that the implementation supports linking properly from an OGC API landing page to a map resource
-|Test method: | *Given:* a dataset provided by an API conforming to OGC API - Common - Part 1: Core +
+|Test method: | *Given:* a dataset provided by an API implementation conforming to OGC API - Common - Part 1: Core +
 *When:* retrieving the JSON representation of the landing page description for that dataset +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
@@ -587,7 +587,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |===
 |Test id: |/conf/dataset-map/operation
 |Requirement: |/req/dataset-map/operation
-|Test purpose: | Verify that the implementation supports retrieving dataset maps from an OGC API dataset
+|Test purpose: | Verify that the implementation supports retrieving dataset maps a resource exposed by the OGC Maps API implementation
 |Test method: | *Given:* an OGC API dataset correctly linking to a map resource as per /conf/dataset-map/landingpage +
 *When:* retrieving a map for that dataset resource as per /conf/core +
 *Then:* (assert that all parts of the requirement are fully satisfied)
@@ -600,7 +600,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test id: |/conf/styled-map/desc-links
 |Requirement: |/req/styled-map/desc-links
 |Test purpose: | Verify that the implementation links correctly from a style resource to a map resource
-|Test method: | *Given:* a list of styles provided by an API conforming to OGC API - Styles - Part 1: Core +
+|Test method: | *Given:* a list of styles provided by an API implementation conforming to OGC API - Styles - Part 1: Core +
 *When:* retrieving the JSON representation of that list of styles +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
@@ -611,7 +611,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test id: |/conf/styled-map/map-operation
 |Requirement: |/req/styled-map/map-operation
 |Test purpose: | Verify that the implementation supports retrieving maps from _OGC API - Styles_ style resources
-|Test method: | *Given:* an OGC API style correctly linking to a map resource as per /conf/styled-map/desc-links +
+|Test method: | *Given:* a style correctly linking to a map resource as per /conf/styled-map/desc-links +
 *When:* retrieving a map for that style as per /conf/core +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
@@ -713,7 +713,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |Test id: |/conf/api-operations/operation-id
 |Requirement: |/req/api-operations/operation-id
 |Test purpose: | Verify that the implementation uses the correct API operation identifier suffixes to identify the resources defined in the Maps API Standard
-|Test method: | *Given:* an API conforming to _OGC API - Common - Part 1: Core_ "Landing Page" conformance class supporting an API definition language with a concept of operation identifiers +
+|Test method: | *Given:* an API implementation conforming to _OGC API - Common - Part 1: Core_ "Landing Page" conformance class supporting an API definition language with a concept of operation identifiers +
 *When:* retrieving the API description +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
