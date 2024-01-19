@@ -128,7 +128,7 @@ include::clause_22_map_dataEncodings.adoc[]
 
 include::clause_23_map_apiOperations.adoc[]
 
-include::clause_24_map_cors.adoc[]
+include::clause_24_map_CORS.adoc[]
 
 include::annex_ats.adoc[]
 

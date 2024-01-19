@@ -7,7 +7,7 @@
 
 include::requirements/requirements_class_datetime.adoc[]
 
-The Temporal Subsetting requirements class defines the way date and time can be used as a parameter to filter the content in the map resource.
+The Date and Time Subsetting requirements class defines the way date and time can be used as a parameter to filter the content in the map resource.
 
 === Describing the temporal extent
 
@@ -60,7 +60,7 @@ March 18, 2018, 12:31:12 UTC or earlier:
 `datetime=..%2F2018-03-18T12%3A31%3A12Z`
 =================
 
-A template for the definition of the datatime parameter is available at link:https://beta.schemas.opengis.net/ogcapi/common/part2/0.1/collections/openapi/parameters/datetime.yaml[datetime.yaml].
+A template for the definition of the `datetime` parameter is available at link:https://beta.schemas.opengis.net/ogcapi/common/part2/0.1/collections/openapi/parameters/datetime.yaml[datetime.yaml].
 
 
 

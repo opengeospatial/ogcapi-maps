@@ -242,7 +242,7 @@ _Media type_: `image/svg+xml`
 
 _Media type_: `text/html`
 
-The Standard remains flexible and extensible fro using other formats that users and providers might need
+The Standard remains flexible and extensible for using other formats that users and providers might need
 through HTTP content negotiation.
 
 That said, this Standard includes recommendations to support, where practical, HTML.

@@ -26,7 +26,7 @@ Examples of such standards, all of which also implement _OGC API - Common - Part
 * https://docs.ogc.org/is/19-086r6/19-086r6.html[_OGC API - EDR_] (retrieval of spatiotemporal data)
 * https://docs.ogc.org/DRAFTS/21-009.html[_OGC API - Processes - Part 3: Workflows and Chaining_] ("Collection Output" requirements class)
 
- The geospatial resources managed by these OGC API Standards (Tiled vector data and tiled coverage data, feature collections and features, coverages and data cubes, spatiotemporal data and collection outputs as a result of a process execution) can be modified or complemented by other resources creating new endpoints indirectly giving access to the modified or complemented resources. Other OGC API Standards will define these mechanisms. Examples of OGC API Standards doing that are:
+The geospatial resources managed by these OGC API Standards (Tiled vector data and tiled coverage data, feature collections and features, coverages and data cubes, spatiotemporal data and collection outputs as a result of a process execution) can be modified or complemented by other resources creating new endpoints indirectly giving access to the modified or complemented resources. Other OGC API Standards will define these mechanisms. Examples of OGC API Standards doing that are:
 
 * https://docs.ogc.org/DRAFTS/20-009.html[_OGC API - Styles_] defines how to complement a geospatial resource by adding a style to it. The new resource is an overlap of both resources.
 
