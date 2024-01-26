@@ -8,7 +8,7 @@
 include::requirements/requirements_class_general_subsetting.adoc[]
 
 The General Subsetting requirements class defines the way a subset of the map resource in additional dimensions beyond spatial and temporal can be specified using the `subset` parameter.
-This functionality is defined as common building blocks shared with other OGC APIs.
+This functionality is defined as common building blocks shared with other OGC API Standards.
 
 === Describing the extent of the additional dimensions
 

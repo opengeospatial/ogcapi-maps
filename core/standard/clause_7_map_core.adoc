@@ -22,7 +22,7 @@ However, a list of common paths to resources exposed by the API, where maps can 
 |/collections/{collectionId}/styles/{styleId}/map | A map representing `collectionId` in the `styleId` style
 |===
 
-NOTE: There is no mandatory dependency of the Maps API core on _OGC API - Common_. This allows non-OGC APIs to implement the core requirements class without the need to comply to the OGC API - Common structure (landing page, conformance, API description). However, many implementations may specify a dependency on _OGC API - Common_ in their conformance page.
+NOTE: There is no mandatory dependency of the Maps API core on _OGC API - Common_. This allows various Web APIs to implement the core requirements class without the need to comply to the OGC API - Common structure (landing page, conformance, API description). However, many implementations may specify a dependency on _OGC API - Common_ in their conformance page.
 
 === Map resource
 

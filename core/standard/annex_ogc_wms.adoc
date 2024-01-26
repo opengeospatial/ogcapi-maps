@@ -15,7 +15,7 @@ The _OGC API - Maps - Part 1: Core_ Standard provides the necessary elements to 
 These elements can be incorporated in an API based on _OGC API - Features - Part 1: Core_ or can be incorporated in a Web API implementation based on
 _OGC API - Common - Part 1: Core_.
 Both specify a kernel of a Web API approach to services that follows current resource-oriented architecture practices in the OGC.
-The _OGC API - Common_ Standard provides the foundation upon which implementations of the OGC APIs can be built.
+The _OGC API - Common_ Standard provides the foundation upon which implementations of the OGC API Standards can be built.
 _OGC API - Common_ can be combined with the _Maps API_ Standard and other resource-specific OGC API Standards to build an OGC standards-based API implementation.
 However, the _Maps API_ Standard is specified in a way that can extend _OGC API - Common_ but does not make _OGC API - Common_ mandatory.
 In this way, the _Maps API_ Standard can be reused as a building block in other APIs that do not follow the OGC API pattern.
@@ -25,22 +25,22 @@ Beside the general alignment with the architecture of the Web (e.g., consistency
 * Clear separation between Core requirements and more advanced capabilities. The _OGC API - Maps - Part 1: Core_ Standard presents the requirements that are
 relevant for almost any organization wanting to share or use maps at a fine-grained level. Additional capabilities deemed useful for several communities will be specified as extensions to the Core API.
 * Technologies that change more frequently are decoupled and specified in separate modules ("requirements classes" in OGC terminology). This enables, for example, the use/re-use of new encodings for spatial data or Web API definition (such as new version of the OpenAPI description document).
-* Modularization is not just about a single "service". OGC APIs Standard define building blocks that can be reused in APIs implementation in general. In other words, a server supporting _OGC API - Maps_ should not be seen as a standalone service. Rather it should be viewed as a collection of Web API building blocks that together implement _OGC API - Maps_ capabilities. A corollary for this is that it should be possible to implement an API that simultaneously conforms to conformance classes from the Features, Coverages, Maps, Tiles, and other future OGC API standards.
+* Modularization is not just about a single "service". OGC API Standards define building blocks that can be reused in APIs implementation in general. In other words, a server supporting _OGC API - Maps_ should not be seen as a standalone service. Rather it should be viewed as a collection of Web API building blocks that together implement _OGC API - Maps_ capabilities. A corollary for this is that it should be possible to implement an API that simultaneously conforms to conformance classes from the Features, Coverages, Maps, Tiles, and other future OGC API standards.
 
 This approach intends to support two types of client developers:
 
 * Those that have never heard about the OGC. Developers should be able to create a client using the Web API definition without the need to adopt a specific
 OGC approach. For example, developers no longer need to read how to implement a _GetCapabilities_ document, allowing them to focus on the geospatial aspects.
-* Those that want to write a "generic" client that can access implementations of OGC APIs. In other words, common capability and metadata resources are not specific to a particular API.
+* Those that want to write a "generic" client that can access implementations of OGC API Standards. In other words, common capability and metadata resources are not specific to a particular API.
 
-As a result of following a RESTful approach, OGC API implementations are not backwards compatible with OWS implementations per se. However, a design goal is to define OGC APIs in a way that an OGC API interface can be mapped to an OWS implementation (where appropriate). OGC APIs are intended to be simpler and more modern, but still an evolution from the previous versions and their implementations making the transition easy (e.g., by initially implementing facades in front of the current OWS services).
+As a result of following a RESTful approach, OGC API implementations are not backwards compatible with OWS implementations per se. However, a design goal is to define OGC API Standards in a way that an OGC API interface can be mapped to an OWS implementation (where appropriate). OGC API Standards are intended to be simpler and more modern, but still an evolution from the previous versions and their implementations making the transition easy (e.g., by initially implementing facades in front of the current OWS services).
 
 === Comparison between _WMS_ and _OGC API - Maps_
 
 The OGC WMS and WMTS share the concept of a map and the capability to create and distribute maps at a limited resolution and size.
 In WMS, the number of rows and columns can be selected by the user within limits and in WMTS the number of rows and columns of the response is predefined in the tile matrix set.
 
-The concept of a map used in the OGC APIs is more abstract than the one used in WMS. Read more about the map concept in the <<overview>>.
+The concept of a map used in OGC API Standards is more abstract than the one used in WMS. Read more about the map concept in the <<overview>>.
 
 ==== Functionality changes from WMS
 
@@ -71,7 +71,7 @@ Some examples include:
 * video over temporal axis,
 * video of temperature representing different elevation levels in different frames of the video.
 
-==== Correspondence between WMS map metadata and OGC APIs
+==== Correspondence between WMS map metadata and OGC API Standards
 
 In the WMS Standard, the `GetCapabilities` response provides some metadata about the server and individual `layer` sections that inform the client about layer characteristics and some restrictions useful to formulate a successful map query. In the OGC API - Maps Standard, the equivalent metadata is provided via the landing page, the list of collections, the collections details, the API definition, and the service-meta link from the landing page. Implementers of Web APIs are encouraged to make use of the mechanisms provided by other standards of the OGC API family to communicate the relevant metadata to the client.
 
@@ -142,7 +142,7 @@ fixedHeight ^7^ | N/A | |
 
 ^2^ If extra dimensions are supported the range of values are defined in additional properties of the 'extent' of the collection.
 
-^3^ No equivalent functionality to GetFeatureInfo is provided so this flag has not sense in OGC API - Maps. Please use the query capabilities of other OGC APIs family instead
+^3^ No equivalent functionality to GetFeatureInfo is provided so this flag is not applicable to OGC API - Maps. Please use the query capabilities of other OGC API Standards instead.
 
 ^4^ The `cascaded` XML attribute in WMS is removed because no practical use has been seen. `cascaded` indicated if a map was generated by the addressed service or by another service assisting the first one.
 
@@ -164,9 +164,9 @@ The OGC Web Map Service _GetFeatureInfo_ operation provides the capability for c
 
 _GetFeatureInfo_ was first proposed in the 2000 version of the OGC Web Map Service Standard. In that environment _GetFeatureInfo_ provided an easy to implement solution for the first step to "queryable" maps. 
 
-The new OGC API Standards emerged in a completely different context where most web content is dynamic and JavaScript is now a powerful programming language for the Web. Most simplistic implementations of WMS _GetFeatureInfo_ resulted in an imperfect presentation of the attribute text. Users demand much more than query by location. Now, the integration of the different building blocks defined in the OGC APIs can be provided by default. A map is connected to a collection (or a dataset) that is probably also offered as features with _OGC API - Features_ or as coverage with _OGC API - Coverages_ -- all from the same API landing page. Furthermore, _OGC API - Environmental Data Retrieval (EDR)_ also provides a point query, similar to _GetFeatureInfo_ as well as much more advanced queries by polygons, trajectories or corridors.
+The new OGC API Standards emerged in a completely different context where most web content is dynamic and JavaScript is now a powerful programming language for the Web. Most simplistic implementations of WMS _GetFeatureInfo_ resulted in an imperfect presentation of the attribute text. Users demand much more than query by location. Now, the integration of the different building blocks defined in OGC API Standards can be provided by default. A map is connected to a collection (or a dataset) that is probably also offered as features with _OGC API - Features_ or as coverage with _OGC API - Coverages_ -- all from the same API landing page. Furthermore, _OGC API - Environmental Data Retrieval (EDR)_ also provides a point query, similar to _GetFeatureInfo_ as well as much more advanced queries by polygons, trajectories or corridors.
 
-Implementers of map clients are encouraged to use OGC APIs beyond _OGC API - Maps_ to provide a functionality similar to _GetFeatureInfo_. Instead of building a request to a map point in map coordinates (I, J), implementers should use point narrow bounding boxes in CRS coordinates. For example:
+Implementers of map clients are encouraged to implement support for OGC API Standards in addition to _OGC API - Maps_ to provide a functionality similar to _GetFeatureInfo_. Instead of building a request to a map point in map coordinates (I, J), implementers should use point narrow bounding boxes in CRS coordinates. For example:
 
   * In _OGC API - Features_, map coordinates should be transformed to Lon,Lat WGS84 in the client side and implement a HTTP GET request to `/collections/{collectionId}/items?bbox=Lon,Lat,Lon,Lat`.
   * In _OGC API - Coverages_, map coordinates should be transformed to native coordinates and use `/collections/{collectionId}/coverage?bbox=x,y,x,y` or the equivalent "subset" query.

@@ -50,7 +50,7 @@ NOTE: The "Custom Projection CRS" requirements class is not included in this sub
 
 These requirements classes of the _Maps API_ define parameters that can be used together with any map resource.
 
-NOTE: In the effort to make the OGC APIs Standard more consistent, some parts of these requirements classes are expected to be imported by a future part of  OGC API - Common or be registered in the building blocks registry. A future revision of OGC API - Maps could reference them and ensure consistency with the relevant common requirements.
+NOTE: In the effort to make OGC API Standards more consistent, some parts of these requirements classes are expected to be imported by a future part of  OGC API - Common or be registered in the building blocks registry. A future revision of OGC API - Maps could reference them and ensure consistency with the relevant common requirements.
 
 *<<rc_background>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background)
 

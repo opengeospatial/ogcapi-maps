@@ -4,7 +4,7 @@ This GitHub repository contains [OGC](https://www.ogc.org/)'s multi-part standar
 
 A [Map](https://en.wikipedia.org/wiki/Map) provides a visual representation of relationships between things within a defined space. OGC API - Maps defines a standardized way to request a map to serve multiple purposes (e.g. displaying maps in web pages, mapping software, etc.). OGC API - Maps defines number of request parameters to control e.g., the dimensions, background, portions of the dataset to be included in the map, coordinate reference system used.
 
-OGC API - Maps is part of the suite of [OGC API standards](https://ogcapi.ogc.org/) that define modular API building blocks to enable access and use of location (i.e. geospatial) information in a consistent way. Information about other OGC APIs can be found [online](https://ogcapi.ogc.org/).
+OGC API - Maps is part of the suite of [OGC API standards](https://ogcapi.ogc.org/) that define modular API building blocks to enable access and use of location (i.e. geospatial) information in a consistent way. Information about other OGC API Standards can be found [online](https://ogcapi.ogc.org/).
 
 ## Overview
 
