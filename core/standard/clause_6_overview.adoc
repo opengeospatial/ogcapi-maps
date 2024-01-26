@@ -21,10 +21,10 @@ The _OGC API - Maps_ Standard does not specify any requirement for the type of _
 If the geospatial data resources can be organized into maps, they can be supported regardless of whether they are feature data, coverages, a resource that does not represent data per se (e.g., an annotation) and so forth.
 
 NOTE: Geospatial data resources (e.g., collections) replace the concept of layer in WMS and WMTS.
-The main difference is that layers in WMS and WMTS were not defined by other OGC APIs and did not support other functionalities.
+The main difference is that layers in WMS and WMTS were not defined by other OGC API Standards and did not support other functionalities.
 
 These geospatial data resources can advertise one or more map portrayals in several resources, such as the dataset (see <<rc_dataset-map>>), a collection (see <<rc_collection-map>>), a dataset with a style, or a collection with a style (see <<rc_styled-map>>).
-Other OGC APIs can provide other origins that may be represented as maps.
+Implementations of other OGC API Standards can provide other origins that may be represented as maps.
 Accessing the _geospatial data resource_ content (other than as maps) or its descriptions is possible but out of the scope of this Standard.
 If a description of the _geospatial data resource_ is specified by another standard, and this description has a mechanism to add links to other resources, this Standard indicates the need to add a link to a map of this resource.
 
