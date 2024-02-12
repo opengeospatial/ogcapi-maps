@@ -10,8 +10,6 @@
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/crs/map-success
+part:: The content of that response SHALL be consistent with the requested CRS.
 ====

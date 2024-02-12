@@ -10,8 +10,6 @@
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/tilesets/desc-links
+part:: The geospatial data resource (e.g., the collection or landing page description's `links` property) SHALL include a link with the href pointing to a list of tilesets provided of this geospatial data resource using rel: `https://www.opengis.net/def/rel/ogc/1.0/tilesets-map`.
 ====

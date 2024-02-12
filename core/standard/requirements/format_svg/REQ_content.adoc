@@ -11,8 +11,7 @@
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/svg/content
+part:: Every 200-response of the server with the media type image/svg+xml SHALL be a SVG document representing only a map.
+part:: The SVG coordinates inside the map SHALL start at 0,0 and end in the width and height of the request.
 ====

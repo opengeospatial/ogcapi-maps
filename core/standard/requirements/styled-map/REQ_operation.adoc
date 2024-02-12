@@ -11,8 +11,7 @@
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/styled-map/map-operation
+part:: Every styled resource available as a map SHALL support a path URL and a HTTP GET operation to retrieve maps
+part:: The URI SHALL be composed by two parts: The initial part is the URI of the styled resource that can be represented as a map (e.g., /collections/{collectionId}/styles/{styleId}) and the final part follows the pattern `/map`
 ====

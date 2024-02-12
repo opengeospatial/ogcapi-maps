@@ -11,8 +11,7 @@
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/display-resolution/map-success
+part:: For an implementation supporting the Maps API _scaling_ requirements class, the implementation SHALL use the `mm-per-pixel` value instead of the default 0.28 mm/pixel when establishing the relationship between the dimensions of the output image, the scale and the spatial extent of the map.
+part:: The `mm-per-pixel` value SHALL be used instead of the default 0.28 mm/pixel when establishing scale for the purpose of applying styling and symbology rules to the map. For example, this needs to be considered for scale-dependent rule selectors as well as for graphical units in real world units (e.g., meters) or display units (e.g., millimeters).
 ====

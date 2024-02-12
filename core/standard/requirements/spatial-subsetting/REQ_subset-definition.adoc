@@ -38,10 +38,36 @@ be supported to indicate an extent crossing that wrapping point.
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/spatial-subsetting/subset-definition
+part:: The implementation SHALL support a `subset` parameter conforming to the following Augmented Backus Naur Form (ABNF) fragment:
++
+[source,ABNF]
+----
+  SubsetSpec:       "subset"=axisName(intervalOrSingle)
+  axisName:         {text}
+  intervalOrSingle: interval \| single
+  interval:         low : high
+  low:              single \| *
+  high:             single \| *
+  single:            {number} \| "{text}"
+
+  Where:
+     \" = double quote = ASCII code 0x42,
+     {number} is an integer or floating-point number, and
+     {text} is some general ASCII text (such as a time and date notation in ISO 8601).
+----
+part:: Axis names `Lat` and `Lon` SHALL be supported for geographic CRS and `x` and `y` for projected CRS, which are to be interpreted as the best matching spatial axis in the CRS definition.
+part:: If a third spatial dimension is supported (if the resource's spatial extent bounding box is three dimensional), the implementation SHALL also support a `h` dimension SHALL also be supported. This is the elevation above the ellipsoid in EPSG:4979 or CRS84h for geographic CRS and `z` for projected CRS, which are to be interpreted as the vertical axis in the CRS definition.
+part:: A 400 error status code SHALL be returned if an axis name in the subset parameter value does not correspond to one of the axes of the subsetting CRS ^2^.
+part:: If the _interval_ values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code SHALL be returned.
+part:: For a CRS where an axis can wrap around, such as subsetting across the dateline (anti-meridian) in a geographic CRS, a _low_ value greater than _high_ SHALL be supported to indicate an extent crossing that wrapping point.
+part:: Coordinates SHALL be interpreted as values for the named axis of the CRS specified in the `subset-crs` parameter value or in https://www.opengis.net/def/crs/OGC/1.3/CRS84 (https://www.opengis.net/def/crs/OGC/1.3/CRS84h for vertical dimension) if the `subset-crs` parameter is missing.
+part:: If the `subset` parameter including any of the dimensions corresponding to those of the map bounding box is used with a `bbox` and/or `center` parameter, the server SHALL return a 400 client error.
+part:: Multiple `subset` parameters SHALL be interpreted, as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.
++
+^1^ Example: `subset=Lat(-90:90)&subset=Lon(-180:180)` is equivalent to `subset=Lat(-90:90),Lon(-180:180)`
+
+^2^ Note that this is only valid of the spatial dimensions. The 'additional' dimensions relay on the names of the extent of the collection.  
 ====
 
 NOTE: A subset parameter for https://www.opengis.net/def/crs/OGC/1.3/CRS84 will read as subset=Lon(left_lon:right_lon),Lat(lower_lat:upper_lat).

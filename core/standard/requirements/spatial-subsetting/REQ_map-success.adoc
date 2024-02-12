@@ -10,8 +10,6 @@
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/spatial-subsetting/map-success
+part:: The content of the response SHALL represent elements inside or intersecting with the spatial extent of the geographical area of the map identified with the subsetting coordinates.
 ====

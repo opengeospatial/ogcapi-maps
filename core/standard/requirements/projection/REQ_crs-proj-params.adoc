@@ -12,8 +12,7 @@ For example, `crs-proj-params=[epsg-parameter:8823](40),[epsg-parameter:8824](90
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/projection/crs-proj-params
+part:: A `crs-proj-params` parameter SHALL be supported that enables selection of one or more value for operation method parameters, with values in between parentheses `(` `)` following the URI of a parameter, and different parameters separated by value. For example, `crs-proj-params=[epsg-parameter:8823](40),[epsg-parameter:8824](90)`.
+part:: In addition to URI to specify the projection parameters SHALL be supported.
 ====

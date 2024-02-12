@@ -11,8 +11,7 @@
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/projection/crs-proj-method
+part:: A `crs-proj-method` parameter supporting selection of a projection operation method SHALL be supported.
+part:: CURIEs in addition to URI to specify the projection method SHALL be supported.
 ====

@@ -24,10 +24,23 @@
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/crs/crs-definition
+part:: The map operation SHALL support a parameter `crs` with the characteristics defined in the OpenAPI Specification 3.0 fragment:
++
+[source,YAML]
+----
+  crs:
+    name: crs
+    in: query
+    description: A coordinate reference system of the map response. A list of all supported CRS values can be found under the collection metadata.
+    required: false
+    schema:
+      type: string
+    example: https://www.opengis.net/def/crs/OGC/1.3/CRS84
+----
+part:: Any of the CRSs listed in the collection (or collections) description SHALL be supported. If the list of supported CRS is not present, only https://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be supported.
+part:: If the spatial subsetting requirements class is supported, the `bbox-crs` and the `subset-crs` SHALL additionally support value specified in the crs parameter.
+part:: CRS expressed as URIs or as safe CURIEs SHALL be supported.
 ====
 
 NOTE: When no crs parameters are specified, please refer to the Maps API core conformance class to know about the default crs.

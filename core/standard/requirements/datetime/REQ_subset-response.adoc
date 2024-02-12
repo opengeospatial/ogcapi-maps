@@ -12,8 +12,8 @@
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/datetime/subset-response
+part:: Only that part of the resource that falls within the bounds of the subset expression SHALL be returned.
+part:: If a lower limit of the subset expression is populated with an asterisk "*" THEN the minimum extent of the resource along that axis SHALL be selected.
+part:: If an upper limit of the subset expression is populated with an asterisk "*" THEN the maximum extent of the resource along that axis SHALL be selected.
 ====

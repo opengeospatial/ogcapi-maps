@@ -10,8 +10,6 @@
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/api-definition/operation-id
+part:: For API definitions with a concept of operation identifiers, the paths defined in the API definition SHALL have an operation identifier value ending with the relevant dot-separated suffix corresponding to the resource as specified in <<api-operation-id-suffixes>>.
 ====

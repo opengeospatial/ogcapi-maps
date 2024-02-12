@@ -10,10 +10,8 @@
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/png/content
+part:: Every 200-response of the server with the media type text/html SHALL be a HTML document representing the geospatial data as maps.
 ====
 
 NOTE: An HTML page can contain links to other resources. In particular, it can contain image sources linked to map resources as image/png or image/jpeg that will represent the actual data.

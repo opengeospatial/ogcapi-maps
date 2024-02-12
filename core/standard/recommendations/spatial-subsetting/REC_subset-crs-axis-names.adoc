@@ -1,4 +1,5 @@
 [[rec_spatial-subsetting_subset-crs-axis-names.adoc]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/spatial-subsetting/subset-crs-axis-names*
@@ -8,3 +9,15 @@
 ^|D |'Long' (lowercase/uppercase) or 'Longitude' SHOULD be interpreted as synonymous of 'Lon'.
 ^|E |'Latitude' SHOULD be interpreted as synonymous of 'Lat'.
 |===
+////
+
+[recommendation]
+====
+[%metadata]
+identifier:: /rec/spatial-subsetting/subset-crs-axis-names
+part:: The names of the axis SHOULD be the abbreviated names of the axis in the CRS definition (e.g. the ones defined in the EPSG database).
+part:: 'e' (in lowercase), 'X' (lowercase/uppercase) or 'Easting' (lowercase/uppercase) SHOULD be interpreted as synonymous of 'E'.
+part:: 'n' (in lowercase) or 'Y' (lowercase/uppercase) or 'Northing' (lowercase/uppercase) SHOULD be interpreted as synonymous of 'N'.
+part:: 'Long' (lowercase/uppercase) or 'Longitude' SHOULD be interpreted as synonymous of 'Lon'.
+part:: 'Latitude' SHOULD be interpreted as synonymous of 'Lat'.
+====

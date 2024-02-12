@@ -1,6 +1,15 @@
 [[rec_dataset_storage-epoch]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/dataset/storage-epoch*
 ^|A |If the dataset is available more efficiently using a particular CRS (exposed in the `storageCrs` parameter) that is a dynamic coordinate reference system, the property `storageCrsCoordinateEpoch` in the landing page of the dataset SHOULD provide the epoch of that CRS.
 |===
+////
+
+[recommendation]
+====
+[%metadata]
+identifier:: /rec/dataset/storage-epoch
+part:: If the dataset is available more efficiently using a particular CRS (exposed in the `storageCrs` parameter) that is a dynamic coordinate reference system, the property `storageCrsCoordinateEpoch` in the landing page of the dataset SHOULD provide the epoch of that CRS.
+====

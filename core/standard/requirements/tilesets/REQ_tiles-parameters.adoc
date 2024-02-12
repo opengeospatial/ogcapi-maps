@@ -10,8 +10,6 @@
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/tilesets/tiles-parameters
+part:: Implementations of the Maps API SHALL support parameters specified in the _background_, _display resolution_, _spatial subsetting_ (only for `subset` and `subset-crs` using a vertical dimension, if available), _general subsetting_, and _scaling_ requirements classes, for map tiles endpoint if the implementation declares conformance to the associated conformance classes.
 ====

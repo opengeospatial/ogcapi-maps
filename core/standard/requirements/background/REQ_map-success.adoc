@@ -12,8 +12,8 @@
 [requirement]
 ====
 [%metadata]
-identifier:: 
-part:: 
-part::
-part:: 
+identifier:: /req/background/map-success
+part:: The color  of the map in the areas with no data SHALL be exactly the one specified in the `bgcolor`.
+part:: In case the output format allows it and in the absence of the `transparent` parameter (or if it is `false`), the opacity (alpha value) of the map in the areas with no data SHALL be exactly 100% if `transparent` is `false` or 0% if `transparent` is `true`.
+part:: If the renderer supports anti-aliasing, at the edges between data and no-data areas, the opacity SHALL be a value between 0% and 100%.
 ====

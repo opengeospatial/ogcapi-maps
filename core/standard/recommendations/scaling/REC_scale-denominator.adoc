@@ -1,4 +1,5 @@
 [[rec_scaling_scale-denominator.adoc]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/scaling/scale-denominator*
@@ -18,3 +19,26 @@
 ----
 ^|B |In the absence of the minScaleDenominador the client will assume that there is no lower limit. In the absence of the maxScaleDenominador the client will assume that there is no upper limit.
 |===
+////
+
+[recommendation]
+====
+[%metadata]
+identifier:: /rec/scaling/scale-denominator
+part:: The map description document may include a minimum and maximum scale denominator indicating which scale range is accepted by the server. Out of this range the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment)
++
+[source,YAML]
+----
+  minScaleDenominador:
+    type: number
+    description:
+      Minimum scale denominator (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404. If it is not present we will assume there is no limit.
+    example: 10
+  maxScaleDenominador:
+    type: number
+    description:
+      Maximum scale denominator (inclusive) for which it is appropriate to generate a map of this collection. Requests outside this interval will return an HTTP 404 If it is not present we will assume there is no limit.
+    example: 10000000
+----
+part:: In the absence of the minScaleDenominador the client will assume that there is no lower limit. In the absence of the maxScaleDenominador the client will assume that there is no upper limit.
+====
