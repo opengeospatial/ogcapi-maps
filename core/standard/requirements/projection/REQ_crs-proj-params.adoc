@@ -1,4 +1,5 @@
 [[req_projection-crs-proj-params]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/projection/crs-proj-params*
@@ -6,3 +7,13 @@
 For example, `crs-proj-params=[epsg-parameter:8823](40),[epsg-parameter:8824](90)`.
 ^|B |In addition to URI to specify the projection parameters SHALL be supported.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====

@@ -1,6 +1,17 @@
 [[req_projection-projections-resource]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/projection/projections-resource*
 ^|A |A GET operation at `/projectionsAndDatums` providing at minimum a JSON representation SHALL be supported.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====

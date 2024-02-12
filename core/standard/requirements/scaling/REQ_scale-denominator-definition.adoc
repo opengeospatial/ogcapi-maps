@@ -1,4 +1,5 @@
 [[req_scaling_scale-denominator-definition]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/scaling/scale-denominator-definition*
@@ -22,3 +23,13 @@
 ^|F |If the `scale-denominator` parameter is omitted, the implementation SHALL compute it as needed (for purposes such as applying scale-dependent symbology rules) based on the default or selected dimensions, display resolution, and the spatial subset of the map to return.
 ^|G |For implementations also supporting "Subsetting", when the spatial subset of the map is not specified in the request, the `scale-denominator` value (default or specified) SHALL be used to compute this bounding box, taking into consideration the display resolution as well as the default or specified dimensions.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====

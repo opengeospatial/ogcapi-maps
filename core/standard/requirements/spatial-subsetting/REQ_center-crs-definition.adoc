@@ -1,4 +1,5 @@
 [[req_spatial-subsetting_center-crs]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/spatial-subsetting/center-crs*
@@ -20,5 +21,15 @@
 ^|E |CRS expressed as URIs or as safe CURIEs SHALL be supported.
 ^|F |If no `center` parameter is used, the `center-crs` SHALL be ignored.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====
 
 NOTE: A CURIE {authority}[-{objectType}]:{id} would map to the following OGC URI: https://www.opengis.net/def/{objectType}/{authority}/0/{id}. If -{objectType} is missing, the default object type is crs.

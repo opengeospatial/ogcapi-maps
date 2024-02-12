@@ -1,4 +1,5 @@
 [[req_core_map-response]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/core/map-response*
@@ -9,5 +10,14 @@
 ^|E |The "Content-Bbox" coordinates SHALL be in the response CRS (indicated in the "Content-Crs" or https://www.opengis.net/def/crs/OGC/1.3/CRS84 if it is not present) and SHALL contain four comma separated numbers representing the lower-left and upper right corners of the response honoring the CRS coordinates order.
 ^|F |The body of a response of a successful operation SHALL contain a map in the negotiated format.
 |===
+////
 
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====
 NOTE: A CURIE {authority}[-{objectType}]:{id} would correspond to the following OGC URI: https://www.opengis.net/def/{objectType}/{authority}/0/{id}. If -{objectType} is missing, the default object type is _crs_.

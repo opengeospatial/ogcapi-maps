@@ -1,4 +1,5 @@
 [[req_projection-projections-response]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/projection/projections-response*
@@ -18,5 +19,16 @@ To avoid repeating the same parameter, those objects may use a JSON pointer (`$r
 ^|F |In the JSON representation, the operation method objects SHALL include `centerLatParam` and/or `centerLonParam` properties (as applicable) whose values SHALL be the identifiers corresponding to the parameters
 for which values specified for the `crs-proj-center` query parameter will be mapped, in a manner consistent with requirement `/req/projection/crs-proj-center-definition`.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====
+
 
 NOTE: Refer to the OpenAPI definition for the `/projectionsAndDatums` path resource for the schema corresponding to these requirements.

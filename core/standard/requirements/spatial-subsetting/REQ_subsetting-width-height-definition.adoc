@@ -1,4 +1,5 @@
 [[req_spatial-subsetting_width-height-definition]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/spatial-subsetting/width-height*
@@ -7,3 +8,13 @@
 (e.g., using the _scaling_ conformance class `scale-denominator` parameter), as well as the display resolution
 (either the default 0.28 mm/pixel, or the one specified by the `mm-per-pixel` parameter of the _display resolution_ conformance class).
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====

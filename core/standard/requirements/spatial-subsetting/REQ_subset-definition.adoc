@@ -1,4 +1,5 @@
 [[req_spatial-subsetting_subset-definition]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/spatial-subsetting/subset-definition*
@@ -32,6 +33,16 @@ be supported to indicate an extent crossing that wrapping point.
 
 ^2^ Note that this is only valid of the spatial dimensions. The 'additional' dimensions relay on the names of the extent of the collection.  
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====
 
 NOTE: A subset parameter for https://www.opengis.net/def/crs/OGC/1.3/CRS84 will read as subset=Lon(left_lon:right_lon),Lat(lower_lat:upper_lat).
 

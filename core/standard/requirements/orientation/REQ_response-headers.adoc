@@ -1,7 +1,18 @@
 [[req_orientation-response-headers]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/orientation/response-headers*
 ^|A |For responses to a map request where the `orientation` query parameter was used, a response header `Content-Orientation: [value in decimal degrees]` corresponding to the orientation of the map SHALL be returned.
 ^|B |For responses to map request where the `orientation` query parameter was used, the `Content-Bbox` response header SHALL reflect the bounding box in the map output CRS prior to the orientation being applied.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====

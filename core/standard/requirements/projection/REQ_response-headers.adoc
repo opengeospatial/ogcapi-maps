@@ -1,4 +1,5 @@
 [[req_projection-response-headers]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/projection/response-headers*
@@ -8,3 +9,13 @@
 ^|D |For responses to map requests specifying the `crs-proj-method` query parameter, a `Content-Crs` response header SHALL NOT be included.
 ^|E |For responses to map requests specifying the `crs-proj-method` query parameter, the CRS of the `Content-Bbox` response header coordinates SHALL be in the custom CRS defined by this operation method and its parameters.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====

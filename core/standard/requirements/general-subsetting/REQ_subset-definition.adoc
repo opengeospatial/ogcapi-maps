@@ -1,4 +1,5 @@
 [[req_general-subsetting_subset-definition]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/general-subsetting/subset-definition*
@@ -26,6 +27,16 @@
 ^|F |Multiple subset parameters SHALL be interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.
 ^|  |^1^ Example: `subset=Lat(-90:90)&subset=Lon(-180:180)&subset=atm_pressure_hpa(500)` is equivalent to `subset=Lat(-90:90),Lon(-180:180),atm_pressure_hpa(500)`
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====
 
 NOTE: When the intervalOrPoint values fall partially outside of the range of valid values defined by the CRS for the identified axis, the service is expected to return the non-empty portion of the resource resulting from the subset.
 

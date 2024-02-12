@@ -1,9 +1,20 @@
 [[req_collections-selection_collections-response]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/collections-selection/collections-response*
 ^|A |Only the collections of geospatial data enumerated in the values of the `collections` parameter SHALL be used to generate the responses for the resource (map) to which they apply.
 ^|B |If there is more than one collection name and the style applied does not specify otherwise, the comma-separated collections SHALL be rendered in the result in an order starting with the first (leftmost) collection and ending with the last (rightmost).
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====
 
 NOTE: In maps and map tiles, sub-requirement B will result in the first collection being portrayed at the "bottom" of the display stack with the others rendered on top of the previous ones, one by one (the rightmost collection will become topmost in the portrayal).

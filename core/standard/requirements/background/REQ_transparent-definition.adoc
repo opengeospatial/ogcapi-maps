@@ -1,4 +1,5 @@
 [[req_background_transparent-definition]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/background/transparent-definition*
@@ -22,3 +23,13 @@
 ^|E |If `transparent` is `true` and a `bgcolor` is specified, the server SHALL use 0 for the background's opacity.
 
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====

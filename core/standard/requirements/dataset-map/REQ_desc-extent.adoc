@@ -1,8 +1,19 @@
 [[req_dataset-map_desc-extent]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/dataset-map/desc-extent*
 ^|A |An extent CRS SHALL be provided in an "extent" property following the same schema as the "extent" property for the collection (see OGC API - Common: Part 2).
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====
 
 NOTE: The spatial bounding box is provided in https://www.opengis.net/def/crs/OGC/1.3/CRS84 for Earthly data.

@@ -1,4 +1,5 @@
 [[req_datetime_subset-response]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/datetime/subset-response*
@@ -6,3 +7,13 @@
 ^|B |If a lower limit of the subset expression is populated with an asterisk "*" THEN the minimum extent of the resource along that axis SHALL be selected.
 ^|C |If an upper limit of the subset expression is populated with an asterisk "*" THEN the maximum extent of the resource along that axis SHALL be selected.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====

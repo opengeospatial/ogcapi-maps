@@ -1,4 +1,5 @@
 [[req_scaling_height-definition]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/scaling/height-definition*
@@ -25,3 +26,13 @@
 2+|
 ^1^ Service metadata may be provided as an extension of the `info` section of the Open API document as indicated in https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core], Annex B.4 and discussed in the <<ScalingServiceMetadata, last subsection of the Maps API scaling requirements class section>>
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====

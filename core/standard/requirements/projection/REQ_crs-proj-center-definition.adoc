@@ -1,4 +1,5 @@
 [[req_projection-crs-proj-center-definition]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/projection/crs-proj-center-definition*
@@ -15,3 +16,13 @@
 * [epsg-parameter:8812] Longitude of projection center (PROJ: _lon_0_)
 * [epsg-parameter:8833] Longitude of origin (PROJ: _lon_0_)
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====

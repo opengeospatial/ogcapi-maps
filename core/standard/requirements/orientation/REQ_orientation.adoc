@@ -1,4 +1,5 @@
 [[req_orientation-orientation]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/orientation/orientation*
@@ -10,3 +11,13 @@ the counterclockwise orientation SHALL be applied to the four corners of the cli
 as if the equivalent `center`, `width` and `height` spatial subsetting query parameters were used instead.
 This avoids leaving empty corners in the final rotated map image.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====

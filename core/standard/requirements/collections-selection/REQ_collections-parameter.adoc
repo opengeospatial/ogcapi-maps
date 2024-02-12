@@ -1,4 +1,5 @@
 [[req_collections-selection_collections-parameter]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/collections-selection/collections-parameter*
@@ -18,3 +19,13 @@
 ^|B |The parameter `collections` SHALL be supported by maps originating from resources consisting of multiple geospatial data sub-resources that can be addressed by identifiers (e.g. dataset map at `{datasetAPI}/maps/`).
 ^|C |Implementations SHALL support a comma-separated list of either geospatial resource identifiers (e.g., collectionId's) and/or full URLs to geospatial resource identifiers.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====

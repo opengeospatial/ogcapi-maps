@@ -1,4 +1,5 @@
 [[req_crs_crs-definition]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/crs/crs-definition*
@@ -18,6 +19,16 @@
 ^|C |If the spatial subsetting requirements class is supported, the `bbox-crs` and the `subset-crs` SHALL additionally support value specified in the crs parameter.
 ^|D |CRS expressed as URIs or as safe CURIEs SHALL be supported.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: 
+part:: 
+part::
+part:: 
+====
 
 NOTE: When no crs parameters are specified, please refer to the Maps API core conformance class to know about the default crs.
 
