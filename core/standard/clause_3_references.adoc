@@ -12,8 +12,8 @@
 * [[[isoiec15948,ISO/IEC 15948]]],
 
 * [[[openapi,openapi]]] Open API Initiative: OpenAPI Specification 3.0.3, https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md[https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md]
-* [[[TIFF_V6,TIFF_V6]]], Adobe development association: TIFF Revision 6.0 Final — June 3, (1992) https://www.itu.int/itudoc/itu-t/com16/tiff-fx/docs/tiff6.pdf
+* [[[TIFF_V6,TIFF V6]]], Adobe development association: TIFF Revision 6.0 Final — June 3, (1992) https://www.itu.int/itudoc/itu-t/com16/tiff-fx/docs/tiff6.pdf
 * [[[SVG,SVG]]], W3C: Scalable Vector Graphics (SVG) v2. W3C Candidate Recommendation - October, (2018) https://www.w3.org/TR/SVG2/
-* [[[HTML5,HTML5]]], WHATWG: HTML, Living Standard [online, viewed 2020-03-16]. Available at https://html.spec.whatwg.org/
+* [[[HTML,HTML]]], WHATWG: HTML, Living Standard [online, viewed 2020-03-16]. Available at https://html.spec.whatwg.org/
 
 Due to the delay in releasing _OGC API - Common - Part 2: Geospatial data_, we include _OGC API - Features - Part 1_ as a temporary normative reference. When _OGC API - Common - Part 2: Geospatial data_ is released, the latter should replace _OGC API - Features_ as a normative reference.

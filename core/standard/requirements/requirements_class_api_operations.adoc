@@ -1,4 +1,5 @@
 [[rc_table_api_operations]]
+////
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class API Operations*
@@ -6,3 +7,13 @@
 |Target type |Web API
 |Dependency |https://www.opengis.net/spec/ogcapi-common-1/1.0/req/landing-page
 |===
+////
+
+[requirements_class]
+.Requirements Class 'API Operations'
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/api-operations
+subject:: Web API
+inherit:: https://www.opengis.net/spec/ogcapi-common-1/1.0/req/landing-page
+====

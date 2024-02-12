@@ -1,4 +1,5 @@
 [[rc_table_core]]
+////
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Core*
@@ -6,3 +7,12 @@
 |Target type |Web API
 |Dependency |
 |===
+////
+
+[requirements_class]
+.Requirements Class 'Core'
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+subject:: Web API
+====

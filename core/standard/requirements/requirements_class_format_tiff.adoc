@@ -1,4 +1,5 @@
 [[rc_table_tiff]]
+////
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class TIFF*
@@ -7,3 +8,14 @@
 |Dependency |<<TIFF_V6>>
 |Dependency |https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 |===
+////
+
+[requirements_class]
+.Requirements Class 'TIFF'
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff
+subject:: Web API
+inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+inherit:: <<TIFF_V6,TIFF Revision 6.0>>
+====

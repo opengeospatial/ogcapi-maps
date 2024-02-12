@@ -547,7 +547,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-=== Conformance Class "Dataset map"
+=== Conformance Class "Dataset Map"
 
 ==== Requirement dataset landing page
 [cols=">20h,<80d",width="100%"]
