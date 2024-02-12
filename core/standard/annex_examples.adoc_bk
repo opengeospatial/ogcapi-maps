@@ -389,9 +389,7 @@ since the server automatically preserve scales in both dimensions, which makes t
 These examples will illustrate the two CRS by requesting a map for the Blue Marble Next Generation (2004) from NASA Earth Observatory's Visible Earth,
 first explicitly requesting EPSG:4326 (whose main difference from CRS84 is that axis order is Latitude, Longitude).
 
-//https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=%5BEPSG:4326%5D["https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=[EPSG:4326\]"]
-
-&#x68;&#x74;&#x74;&#x70;&#x73;&#x3A;//maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=&#x5B;EPSG:4326&#x5D;
+https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=%5BEPSG:4326%5D["https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=[EPSG:4326\]"]
 
 Notice that the response header now includes the `Content-Crs:` header, and that the `Content-Bbox:` axis order now follows the latitude, longitude order:
 
@@ -409,10 +407,7 @@ image::images/xmp_blueMarble_4326.jpg[width=400,align="center"]
 
 Now EPSG:3395 can be requested instead using:
 
-//https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=%5BEPSG:3395%5D["https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=[EPSG:3395\]"]
-
-&#x68;&#x74;&#x74;&#x70;&#x73;&#x3A;//maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=&#x5B;EPSG:3395&#x5D;
-
+https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=%5BEPSG:3395%5D["https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?center=0,51.5&scale-denominator=20000000&crs=[EPSG:3395\]"]
 
 [#xmp_map_blueMarble_3395,reftext='{figure-caption} {counter:figure-num}']
 .Map of NASA Earth Observatory's Blue Marble Next Generation (2004), using World Mercator (EPSG:3395) output `crs`
@@ -427,10 +422,7 @@ Content-Bbox: -4596385.263861,2080129.089271,4596385.263861,11273386.415933
 
 In order to also specify the bounding box in that EPSG:3395 CRS, the following request also makes use of the `bbox-crs` parameter, which otherwise always defaults to CRS84 (regardless of the native CRS or selected output CRS).
 
-//https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?bbox-crs=%5BEPSG:3395%5D&bbox=-4596385.263861,2080129.089271,4596385.263861,11273386.415933&crs=%5BEPSG:3395%5D["https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?bbox-crs=[EPSG:3395\]&bbox=-4596385.263861,2080129.089271,4596385.263861,11273386.415933&crs=[EPSG:3395\]"]
-
-&#x68;&#x74;&#x74;&#x70;&#x73;&#x3A;//maps.gnosis.earth/ogcapi/collections/blueMarble/map?bbox-crs=%5BEPSG:3395%5D&bbox=-4596385.263861,2080129.089271,4596385.263861,11273386.415933&crs=&#x5B;EPSG:3395&#x5D;
-
+https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?bbox-crs=%5BEPSG:3395%5D&bbox=-4596385.263861,2080129.089271,4596385.263861,11273386.415933&crs=%5BEPSG:3395%5D["https://maps.gnosis.earth/ogcapi/collections/blueMarble/map?bbox-crs=[EPSG:3395\]&bbox=-4596385.263861,2080129.089271,4596385.263861,11273386.415933&crs=[EPSG:3395\]"]
 
 // page break to keep request & response together in PDF
 <<<

@@ -1,30 +1,19 @@
+[bibliography]
 == References
-The following normative documents contain provisions that, through reference in this text, constitute provisions of this document. For dated references, subsequent amendments to, or revisions of, any of these publications do not apply. For undated references, the latest edition of the normative document referred to applies.
 
-* [[OGC19_072]] OGC: OGC 19-072, **OGC API - Common - Part 1: Core** https://docs.ogc.org/is/19-072/19-072.html
+* [[[OGC19-072,OGC 19-072]]],
+* [[[ogc17-069r4,OGC 17-069r4]]],
+* [[[ogc20-057,OGC 20-057]]],
+* [[[ogc17-083r4,OGC 17-083r4]]],
+* [[[rfc8288,IETF RFC 8288]]],
+* [[[isoiec18181-1,ISO/IEC 18181-1]]],
+* [[[isoiec18181-2,ISO/IEC 18181-2]]],
+* [[[isoiec10918-1,ISO/IEC 10918-1]]],
+* [[[isoiec15948,ISO/IEC 15948]]],
 
-* [[OpenAPI]] OpenAPI Initiative (OAI). **OpenAPI Specification 3.0** [online]. 2020 [viewed 2020-03-16]. The latest patch version at the time of publication of this standard was 3.0.3, available at https://spec.openapis.org/oas/v3.0.3
-
-* [[JPEG]] ISO and IEC: ISO/IEC 10918-1:1994, *Information technology — Digital compression and coding of continuous-tone still images: Requirements and guidelines* (1994) https://www.iso.org/standard/18902.html
-
-* [[JPEG_XL1]] ISO and IEC: ISO/IEC 18181-1:2022, *Information technology — JPEG XL image coding system - Part 1: Core coding system* (2022) https://www.iso.org/standard/77977.html
-
-* [[JPEG_XL2]] ISO and IEC: ISO/IEC 18181-2:2021, *Information technology — JPEG XL image coding system - Part 2: File format* (2021) https://www.iso.org/standard/80617.html
-
-* [[PNG]] ISO and IEC: ISO/IEC 15948:2004, **Information technology — Computer graphics and image processing — Portable Network Graphics (PNG): Functional specification** (2004) https://www.iso.org/standard/29581.html
-
-* [[TIFF_V6]] Adobe development association. TIFF Revision 6.0 Final — June 3, (1992) https://www.itu.int/itudoc/itu-t/com16/tiff-fx/docs/tiff6.pdf
-
-* [[SVG]] Scalable Vector Graphics (SVG) v2. W3C Candidate Recommendation - October, (2018) https://www.w3.org/TR/SVG2/
-
-* [[rfc8288]] Internet Engineering Task Force (IETF). RFC 8288: **Web Linking** [online]. Edited by M. Nottingham. 2017 [viewed 2020-03-16]. Available at https://tools.ietf.org/rfc/rfc8288.txt
-
-* [[HTML5]] WHATWG. *HTML*, Living Standard [online, viewed 2020-03-16]. Available at https://html.spec.whatwg.org/
-
-* [[OGC20_057]] OGC: OGC 20-057, OGC API - Tiles - Part 1: Core (2022) Available at https://docs.ogc.org/is/20-057/20-057.html
-
-* [[OGC17_083r4]] OGC: OGC 17-083r4, OGC Two Dimensional Tile Matrix Set and Tile Set Metadata 1.0 (2022) https://docs.ogc.org/is/17-083r4/17-083r4.html
-
-* [[OGC17_069r4]] OGC: OGC: 17-069r4, OGC API - Features - Part 1: Core corrigendum, Available at https://docs.ogc.org/is/17-069r4/17-069r4.html
+* [[[openapi,openapi]]] Open API Initiative: OpenAPI Specification 3.0.3, https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md[https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md]
+* [[[TIFF_V6,TIFF_V6]]], Adobe development association: TIFF Revision 6.0 Final — June 3, (1992) https://www.itu.int/itudoc/itu-t/com16/tiff-fx/docs/tiff6.pdf
+* [[[SVG,SVG]]], W3C: Scalable Vector Graphics (SVG) v2. W3C Candidate Recommendation - October, (2018) https://www.w3.org/TR/SVG2/
+* [[[HTML5,HTML5]]], WHATWG: HTML, Living Standard [online, viewed 2020-03-16]. Available at https://html.spec.whatwg.org/
 
 Due to the delay in releasing _OGC API - Common - Part 2: Geospatial data_, we include _OGC API - Features - Part 1_ as a temporary normative reference. When _OGC API - Common - Part 2: Geospatial data_ is released, the latter should replace _OGC API - Features_ as a normative reference.

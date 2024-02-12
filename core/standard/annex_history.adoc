@@ -1,10 +1,9 @@
 [appendix]
-:appendix-caption: Annex
 == Revision History
 
-[cols="12,18,12,12,46",options="header"]
+[width="90%",options="header"]
 |===
-|Date       |Release    |Editor               | Primary clauses modified |Description
+|Date |Release |Editor | Primary clauses modified |Description
 |2019-03-21 |0.0        |C. Heazel            |all                       |initial template
 |2019-06-28 |T15-ER-0.00|J. Masó              |all                       |initial version as work for the OGC API Hackathon in London
 |2019-09-09 |T15-ER-0.01|J. Masó              |all                       |Last version in the old document name with D014 and D16 together

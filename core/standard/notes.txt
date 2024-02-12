@@ -1,0 +1,3 @@
+annex_examples.adoc 
+
+compact uris appear to break the compiler. Solution for HTML was to use hex character codes. However, PDF results in broken hyperlinks.

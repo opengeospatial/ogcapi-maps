@@ -11,7 +11,7 @@ The core conformance class is the only mandatory class. All other conformance cl
 
 These classes act as building blocks that should be implemented in combination with other more fundamental classes that provide support for
 documenting and formally describing a Web API (e.g., OpenAPI), listing supported conformance classes and listing available geospatial resources.
-Possible alternatives for these fundamental classes are _OGC API - Common Part 1: Core_, _OGC API - Features Part 1: Core_ or any other non-OGC classes
+Possible alternatives for these fundamental classes are _OGC API - Common - Part 1: Core_, _OGC API - Features Part 1: Core_ or any other non-OGC classes
 that provide equivalent or alternative functionality.
 
 The _OGC API - Maps - Part 1: Core_ Standard is intended to define a minimal set of functions for a useful API for fine-grained access to retrieve maps. 
