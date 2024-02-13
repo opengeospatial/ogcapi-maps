@@ -9,8 +9,11 @@
   bgcolor:
     name: bgcolor
     in: query
-    description:
-      Hexadecimal red-green-blue color value (0-255) or case-insensitive W3C web color name for the background color (default=0xFFFFFF). For a six digit hexadecimal value, the first and second digits specify the intensity of red. The third and fourth digits specify the intensity of green. The fifth and sixth digits specify the intensity of blue.
+    description: |-
+      Hexadecimal red-green-blue color value (0-255) or case-insensitive W3C web color name for the
+      background color (default=0xFFFFFF). For a six digit hexadecimal value, the first and second
+      digits specify the intensity of red. The third and fourth digits specify the intensity of 
+      green. The fifth and sixth digits specify the intensity of blue.
     required: false
     style: form
     explode: false
@@ -34,8 +37,11 @@ part:: The map operation SHALL support a parameter `bgcolor` to define a backgro
   bgcolor:
     name: bgcolor
     in: query
-    description:
-      Hexadecimal red-green-blue color value (0-255) or case-insensitive W3C web color name for the background color (default=0xFFFFFF). For a six digit hexadecimal value, the first and second digits specify the intensity of red. The third and fourth digits specify the intensity of green. The fifth and sixth digits specify the intensity of blue.
+    description: |-
+      Hexadecimal red-green-blue color value (0-255) or case-insensitive W3C web color name for the
+      background color (default=0xFFFFFF). For a six digit hexadecimal value, the first and second
+      digits specify the intensity of red. The third and fourth digits specify the intensity of 
+      green. The fifth and sixth digits specify the intensity of blue.
     required: false
     style: form
     explode: false
