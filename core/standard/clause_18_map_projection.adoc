@@ -1,5 +1,5 @@
 [[rc_projection]]
-== Requirement Class "Custom Projection CRS"
+== Requirements Class "Custom Projection CRS"
 
 [[maps-projection-overview]]
 === Overview

@@ -1,5 +1,5 @@
 [[rc_scaling]]
-== Requirement Class "Scaling"
+== Requirements Class "Scaling"
 
 === Overview
 
@@ -113,7 +113,7 @@ See also detailed step-by-step examples in an annex of computations to <<dimensi
 
 [[ScalingServiceMetadata]]
 === Service Metadata
-The OGC API - Common Standard describes a mechanism to expose service-metadata for the API. See: OGC API - Common - Part 1: Core [OGC 19-072r1] Annex B.4 (2021)
+The OGC API - Common Standard describes a mechanism to expose service-metadata for the API. See https://docs.ogc.org/is/19-072/19-072.html#_56682cbf-76dc-4c75-a266-a58186d638aa[Annex B.4 of OGC API - Common - Part 1: Core (OGC 19-072)].
 
 include::recommendations/scaling/REC_max-width-height.adoc[]
 

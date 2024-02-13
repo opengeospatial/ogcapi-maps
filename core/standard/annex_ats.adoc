@@ -5,7 +5,7 @@
 
 === Conformance Class "Core"
 
-==== Requirement Map Operation
+==== Abstract Test for Requirement Map Operation
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/core/map-op
@@ -22,7 +22,7 @@
 - assert that the body of the response is a map of the geospatial data resource in the negotiated format.
 |===
 
-==== Requirement Map Response
+==== Abstract Test for Requirement Map Response
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/core/map-response
@@ -33,7 +33,7 @@
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement Map Conformance Success
+==== Abstract Test for Requirement Map Conformance Success
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/core/conformance-success
@@ -46,7 +46,7 @@
 
 === Conformance Class "Map Tilesets"
 
-==== Requirement desc-links
+==== Abstract Test for Requirement desc-links
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/tilesets/desc-links
@@ -58,7 +58,7 @@
 - assert that the geospatial data resource (e.g., collection or landing page description's `links` property) includes a link with the `href` pointing to a tileset list supported that presents a tile aspect of this geospatial data resource and with rel: `[ogc-rel:tilesets-map]`
 |===
 
-==== Requirement tiles-parameters
+==== Abstract Test for Requirement tiles-parameters
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/tilesets/desc-links
@@ -75,7 +75,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "Background"
 
-==== Requirement `bgcolor` parameter definition
+==== Abstract Test for Requirement `bgcolor` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/background/bgcolor-definition
@@ -86,7 +86,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement `transparent` parameter definition
+==== Abstract Test for Requirement `transparent` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/background/transparent-definition
@@ -97,7 +97,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement Background Map Success
+==== Abstract Test for Requirement Background Map Success
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/background/map-success
@@ -110,7 +110,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "Collection Selection"
 
-==== Requirement `collections` parameter definition
+==== Abstract Test for Requirement `collections` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/collections-selection/collections-parameter
@@ -121,7 +121,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement Collection Selection Response
+==== Abstract Test for Requirement Collection Selection Response
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/collections-selection/collections-response
@@ -134,7 +134,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "Scaling"
 
-==== Requirement `width` parameter definition
+==== Abstract Test for Requirement `width` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/scaling/width-definition
@@ -145,7 +145,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement `height` parameter definition
+==== Abstract Test for Requirement `height` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/scaling/height-definition
@@ -156,7 +156,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement `scale-denominator` parameter definition
+==== Abstract Test for Requirement `scale-denominator` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/scaling/scale-denominator-definition
@@ -169,7 +169,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "Display Resolution"
 
-==== Requirement `mm-per-pixel` parameter definition
+==== Abstract Test for Requirement `mm-per-pixel` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/display-resolution/mm-per-pixel-definition
@@ -180,7 +180,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement Display Resolution Map Success
+==== Abstract Test for Requirement Display Resolution Map Success
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/display-resolution/map-success
@@ -193,7 +193,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "Spatial Subsetting"
 
-==== Requirement `bbox-crs` parameter definition
+==== Abstract Test for Requirement `bbox-crs` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/spatial-subsetting/bbox-crs
@@ -204,7 +204,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement `subset-crs` parameter definition
+==== Abstract Test for Requirement `subset-crs` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/spatial-subsetting/subset-crs
@@ -215,7 +215,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement `center-crs` parameter definition
+==== Abstract Test for Requirement `center-crs` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/spatial-subsetting/center-crs
@@ -226,7 +226,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement `bbox` parameter definition
+==== Abstract Test for Requirement `bbox` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/spatial-subsetting/bbox-definition
@@ -237,7 +237,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement spatial subsetting `subset` parameter definition
+==== Abstract Test for Requirement spatial subsetting `subset` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/spatial-subsetting/subset-definition
@@ -248,7 +248,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement map subset response
+==== Abstract Test for Requirement map subset response
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/spatial-subsetting/subset-response
@@ -259,7 +259,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement `center` parameter definition
+==== Abstract Test for Requirement `center` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/spatial-subsetting/center-definition
@@ -270,7 +270,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement subsetting `width` and `height` parameters definition
+==== Abstract Test for Requirement subsetting `width` and `height` parameters definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/spatial-subsetting/width-height
@@ -281,7 +281,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement map subset success
+==== Abstract Test for Requirement map subset success
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/spatial-subsetting/map-success
@@ -294,7 +294,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "Date and Time"
 
-==== Requirement `datetime` parameter definition
+==== Abstract Test for Requirement `datetime` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/datetime/datetime-definition
@@ -305,7 +305,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement `datetime` parameter response
+==== Abstract Test for Requirement `datetime` parameter response
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/datetime/datetime-response
@@ -316,7 +316,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement temporal `subset` parameter definition
+==== Abstract Test for Requirement temporal `subset` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/datetime/subset-definition
@@ -327,7 +327,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement temporal subset response
+==== Abstract Test for Requirement temporal subset response
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/datetime/subset-response
@@ -338,7 +338,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement temporal axis
+==== Abstract Test for Requirement temporal axis
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/datetime/axis
@@ -350,7 +350,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |===
 
 
-==== Requirement temporal subsetting success
+==== Abstract Test for Requirement temporal subsetting success
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/datetime/map-success
@@ -363,7 +363,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "General Subsetting"
 
-==== Requirement uniform additional dimensions
+==== Abstract Test for Requirement uniform additional dimensions
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/general-subsetting/uniform-additional-dimensions
@@ -374,7 +374,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement general subsetting `subset` parameter
+==== Abstract Test for Requirement general subsetting `subset` parameter
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/general-subsetting/subset-definition
@@ -387,7 +387,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "Coordinate Reference System"
 
-==== Requirement `crs` parameter definition
+==== Abstract Test for Requirement `crs` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/crs/crs-definition
@@ -398,7 +398,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement CRS map success
+==== Abstract Test for Requirement CRS map success
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/crs/map-success
@@ -411,7 +411,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "Orientation"
 
-==== Requirement `orientation` parameter
+==== Abstract Test for Requirement `orientation` parameter
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/orientation/orientation
@@ -422,7 +422,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement orientation response headers
+==== Abstract Test for Requirement orientation response headers
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/orientation/response-headers
@@ -435,7 +435,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "Custom Projection CRS"
 
-==== Requirement `crs-proj-method` parameter
+==== Abstract Test for Requirement `crs-proj-method` parameter
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/projection/crs-proj-method
@@ -446,7 +446,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement `crs-proj-params` parameter
+==== Abstract Test for Requirement `crs-proj-params` parameter
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/projection/crs-proj-params
@@ -457,7 +457,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement  `crs-proj-center` parameter
+==== Abstract Test for Requirement  `crs-proj-center` parameter
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/projection/crs-proj-center-definition
@@ -468,7 +468,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement `crs-datum` parameter
+==== Abstract Test for Requirement `crs-datum` parameter
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/projection/crs-datum
@@ -479,7 +479,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement custom CRS projection response headers
+==== Abstract Test for Requirement custom CRS projection response headers
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/projection/response-headers
@@ -490,7 +490,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement `/projectionsAndDatums` resource
+==== Abstract Test for Requirement `/projectionsAndDatums` resource
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/projection/projections-resource
@@ -501,7 +501,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement `/projectionsAndDatums` response
+==== Abstract Test for Requirement `/projectionsAndDatums` response
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/projection/projections-response
@@ -514,7 +514,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "Collection Map"
 
-==== Requirement collection description links
+==== Abstract Test for Requirement collection description links
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/collection-map/desc-links
@@ -525,7 +525,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement collection description CRS
+==== Abstract Test for Requirement collection description CRS
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/collection-map/desc-crs
@@ -536,7 +536,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement collection map operation
+==== Abstract Test for Requirement collection map operation
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/collection-map/map-operation
@@ -549,7 +549,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "Dataset Map"
 
-==== Requirement dataset landing page
+==== Abstract Test for Requirement dataset landing page
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/dataset-map/landingpage
@@ -560,7 +560,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement dataset description extent
+==== Abstract Test for Requirement dataset description extent
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/dataset-map/desc-extent
@@ -571,7 +571,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement dataset description CRS
+==== Abstract Test for Requirement dataset description CRS
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/dataset-map/desc-crs
@@ -582,7 +582,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement dataset map operation
+==== Abstract Test for Requirement dataset map operation
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/dataset-map/operation
@@ -594,7 +594,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 |===
 === Conformance Class "Styled Map"
 
-==== Requirement styled map links
+==== Abstract Test for Requirement styled map links
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/styled-map/desc-links
@@ -605,7 +605,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement styled map operation
+==== Abstract Test for Requirement styled map operation
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/styled-map/map-operation
@@ -618,7 +618,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "PNG"
 
-==== Requirement PNG map content
+==== Abstract Test for Requirement PNG map content
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/png/content
@@ -631,7 +631,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "JPEG"
 
-==== Requirement JPEG map content
+==== Abstract Test for Requirement JPEG map content
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/jpeg/content
@@ -644,7 +644,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "JPEG XL"
 
-==== Requirement JPEG XL map content
+==== Abstract Test for Requirement JPEG XL map content
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/jpegxl/content
@@ -657,7 +657,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "TIFF"
 
-==== Requirement TIFF map content
+==== Abstract Test for Requirement TIFF map content
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/tiff/content
@@ -670,7 +670,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "SVG"
 
-==== Requirement SVG map content
+==== Abstract Test for Requirement SVG map content
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/svg/content
@@ -683,7 +683,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "HTML"
 
-==== Requirement HTML map content
+==== Abstract Test for Requirement HTML map content
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/html/content
@@ -696,7 +696,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "API Operations"
 
-==== Requirement API Operations completeness
+==== Abstract Test for Requirement API Operations completeness
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/api-operations/completeness
@@ -707,7 +707,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
-==== Requirement API Operation identifiers
+==== Abstract Test for Requirement API Operation identifiers
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/api-operations/operation-id
@@ -720,7 +720,7 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "CORS"
 
-==== Requirement CORS
+==== Abstract Test for Requirement CORS
 [cols=">20h,<80d",width="100%"]
 |===
 |Test id: |/conf/cors/cors

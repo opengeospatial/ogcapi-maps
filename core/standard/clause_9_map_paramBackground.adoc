@@ -1,5 +1,5 @@
 [[rc_background]]
-== Requirement Class "Background"
+== Requirements Class "Background"
 
 === Overview
 

@@ -66,7 +66,7 @@ part:: If the `subset` parameter including any of the dimensions corresponding t
 part:: Multiple `subset` parameters SHALL be interpreted, as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.
 +
 ^1^ Example: `subset=Lat(-90:90)&subset=Lon(-180:180)` is equivalent to `subset=Lat(-90:90),Lon(-180:180)`
-
++
 ^2^ Note that this is only valid of the spatial dimensions. The 'additional' dimensions relay on the names of the extent of the collection.  
 ====
 

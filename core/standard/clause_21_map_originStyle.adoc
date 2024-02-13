@@ -1,5 +1,5 @@
 [[rc_styled-map]]
-== Requirement Class "Styled Maps"
+== Requirements Class "Styled Maps"
 
 === Overview
 

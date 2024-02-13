@@ -1,5 +1,5 @@
 [[rc_tilesets]]
-== Requirement Class "Map Tilesets"
+== Requirements Class "Map Tilesets"
 
 === Overview
 

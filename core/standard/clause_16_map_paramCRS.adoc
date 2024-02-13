@@ -1,5 +1,5 @@
 [[rc_crs]]
-== Requirement Class "Coordinate Reference System"
+== Requirements Class "Coordinate Reference System"
 
 [[maps-crs-overview]]
 === Overview

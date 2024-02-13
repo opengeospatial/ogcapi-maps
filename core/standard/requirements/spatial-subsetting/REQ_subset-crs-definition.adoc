@@ -28,6 +28,7 @@
 [%metadata]
 identifier:: /req/spatial-subsetting/subset-crs
 part:: The map operation SHALL support a parameter `subset-crs` with the characteristics defined in the OpenAPI Specification 3.0 fragment:
++
 [source,YAML]
 ----
   crs:

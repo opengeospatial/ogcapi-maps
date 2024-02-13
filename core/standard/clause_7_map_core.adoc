@@ -1,5 +1,5 @@
 [[rc_core]]
-== Requirement Class "Core"
+== Requirements Class "Core"
 
 [[maps-core-overview]]
 === Overview

@@ -1,5 +1,5 @@
 [[rc_orientation]]
-== Requirement Class "Orientation"
+== Requirements Class "Orientation"
 
 [[maps-orientation-overview]]
 === Overview
