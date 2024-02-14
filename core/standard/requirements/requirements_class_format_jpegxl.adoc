@@ -20,4 +20,5 @@ subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 inherit:: <<isoiec18181-1,ISO/IEC 18181-1 JPEG XL image coding system — Part 1: Core coding system>>
 inherit:: <<isoiec18181-2,ISO/IEC 18181-2 JPEG XL image coding system — Part 2: File format>>
+requirement:: /req/jpegxl/content
 ====

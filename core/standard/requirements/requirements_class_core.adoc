@@ -15,4 +15,7 @@
 [%metadata]
 identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 subject:: Web API
+requirement:: /req/core/map-op
+requirement:: /req/core/map-response
+requirement:: /req/core/conformance-success
 ====

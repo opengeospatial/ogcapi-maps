@@ -16,4 +16,13 @@
 identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+requirement:: /req/spatial-subsetting/bbox-crs
+requirement:: /req/spatial-subsetting/subset-crs
+requirement:: /req/spatial-subsetting/center-crs
+requirement:: /req/spatial-subsetting/bbox-definition
+requirement:: /req/spatial-subsetting/subset-definition
+requirement:: /req/spatial-subsetting/subset-response
+requirement:: /req/spatial-subsetting/center-definition
+requirement:: /req/spatial-subsetting/width-height
+requirement:: /req/spatial-subsetting/map-success
 ====

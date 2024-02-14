@@ -18,4 +18,5 @@ identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpeg
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 inherit:: <<isoiec10918-1,ISO/IEC 10918-1>>
+requirement:: /req/jpeg/content
 ====

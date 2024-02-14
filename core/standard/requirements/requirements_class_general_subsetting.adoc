@@ -16,4 +16,6 @@
 identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/general-subsetting
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+requirement:: /req/general-subsetting/uniform-additional-dimensions
+requirement:: /req/general-subsetting/subset-definition
 ====

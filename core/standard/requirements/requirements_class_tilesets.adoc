@@ -18,4 +18,6 @@ identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-tiles-1/1.0/req/tilesets-list
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+requirement:: /req/tilesets/desc-links
+requirement:: /req/tilesets/tiles-parameters
 ====

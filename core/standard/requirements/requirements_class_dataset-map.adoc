@@ -20,4 +20,8 @@ subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 inherit:: https://www.opengis.net/spec/ogcapi-common-1/1.0/req/core
 inherit:: https://www.opengis.net/spec/ogcapi-common-1/1.0/req/landing-page
+requirement:: /req/dataset-map/landingpage
+requirement:: /req/dataset-map/desc-extent
+requirement:: /req/dataset-map/desc-crs
+requirement:: /req/dataset-map/operation
 ====

@@ -18,4 +18,5 @@ identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 inherit:: <<isoiec15948,ISO/IEC 15948 Portable Network Graphics (PNG)>>
+requirement:: /req/png/content
 ====

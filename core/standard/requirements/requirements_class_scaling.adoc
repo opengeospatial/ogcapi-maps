@@ -16,4 +16,7 @@
 identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/scaling
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+requirement:: /req/scaling/width-definition
+requirement:: /req/scaling/height-definition
+requirement:: /req/scaling/scale-denominator-definition
 ====

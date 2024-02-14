@@ -18,4 +18,7 @@ identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collection-map
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 inherit:: https://www.opengis.net/spec/ogcapi-common-2/1.0/req/collections
+requirement:: /req/collection-map/desc-links
+requirement:: /req/collection-map/desc-crs
+requirement:: /req/collection-map/map-operation
 ====

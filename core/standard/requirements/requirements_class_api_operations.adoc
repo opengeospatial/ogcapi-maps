@@ -16,4 +16,6 @@
 identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/api-operations
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-common-1/1.0/req/landing-page
+requirement:: /req/api-operations/completeness
+requirement:: /req/api-operations/operation-id
 ====

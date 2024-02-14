@@ -16,4 +16,11 @@
 identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+requirement:: /req/projection/crs-proj-method
+requirement:: /req/projection/crs-proj-params
+requirement:: /req/projection/crs-proj-center-definition
+requirement:: /req/projection/crs-datum
+requirement:: /req/projection/response-headers
+requirement:: /req/projection/projections-resource
+requirement:: /req/projection/projections-response
 ====

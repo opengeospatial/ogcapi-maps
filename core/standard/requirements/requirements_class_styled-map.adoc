@@ -16,4 +16,6 @@
 identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styled-map
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+requirement:: /req/styled-map/desc-links
+requirement:: /req/styled-map/map-operation
 ====

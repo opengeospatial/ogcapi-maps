@@ -16,4 +16,6 @@
 identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/display-resolution
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+requirement:: /req/display-resolution/mm-per-pixel-definition
+requirement:: /req/display-resolution/map-success
 ====

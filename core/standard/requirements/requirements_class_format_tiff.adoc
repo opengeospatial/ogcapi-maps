@@ -18,4 +18,5 @@ identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 inherit:: <<TIFF_V6,TIFF Revision 6.0>>
+requirement:: /req/tiff/content
 ====

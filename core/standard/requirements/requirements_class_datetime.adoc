@@ -16,4 +16,10 @@
 identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/temporal-partitioning
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+requirement:: /req/datetime/datetime-definition
+requirement:: /req/datetime/datetime-response
+requirement:: /req/datetime/subset-definition
+requirement:: /req/datetime/subset-response
+requirement:: /req/datetime/axis
+requirement:: /req/datetime/map-success
 ====

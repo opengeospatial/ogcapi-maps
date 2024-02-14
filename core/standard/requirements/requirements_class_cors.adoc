@@ -16,4 +16,5 @@
 identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cors
 subject:: Web API
 inherit:: https://www.w3.org/TR/2020/SPSD-cors-20200602/
+requirement:: /req/cors/cors
 ====
