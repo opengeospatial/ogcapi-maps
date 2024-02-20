@@ -10,7 +10,7 @@
 [requirement]
 ====
 [%metadata]
-identifier:: /req/png/content
+identifier:: /req/html/content
 part:: Every 200-response of the server with the media type text/html SHALL be a HTML document representing the geospatial data as maps.
 ====
 
