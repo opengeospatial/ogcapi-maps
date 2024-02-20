@@ -22,6 +22,29 @@
 - assert that the body of the response is a map of the geospatial data resource in the negotiated format.
 |===
 
+
+[abstract_test]
+====
+[%metadata]
+identifier:: /conf/core/map-op
+target:: /req/core/map-op
+test-purpose:: Verify that the implementation supports the map retrieval operation
+test-method::
++
+--
+*Given:* a geospatial data resource conforming to the Maps API Standard, with an API path including `.../map...` or discovered following a link with relation type `[ogc-rel:map]` +
+*When:* performing a GET operation on the `/map` resource with a supported media type specified in the `Accept:` header (e.g., `Accept: image/png,image/jpeg`) +
+*Then:* +
+- assert that the response has HTTP status code 200 +
+- assert that the CRS of the resulting map is the native CRS (the native CRS is `[ogc:crs84]`, unless specified in the dataset map or collection map description `storageCrs` property, or specified out-of-band if _OGC API - Common_ is not implemented), +
+- assert that the response headers either includes a `Content-Crs:` header for the native CRS, or omits it if the nativeCRS is `[ogc:crs84]`, +
+- assert that the headers of the response include a `Content-Bbox:` header with the actual axis-aligned geospatial boundary of the rendered map, +
+- assert that the `Content-Bbox:` coordinates are in the native CRS and honor the CRS coordinates order, +
+- assert that the body of the response is a map of the geospatial data resource in the negotiated format.
+--
+====
+
+
 ==== Abstract Test for Requirement Map Response
 [cols=">20h,<80d",width="100%"]
 |===
@@ -33,6 +56,21 @@
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: /conf/core/map-response
+target:: /req/core/map-response
+test-purpose:: Verify that the implementation's response for the map retrieval operation is correct
+test-method::
++
+--
+*Given:* a map resource that was successfully retrieved for /conf/core/map-op +
+*When:* retrieving that resource for the map operation +
+*Then:* (assert that all parts of the requirement are fully satisfied)
+--
+====
+
 ==== Abstract Test for Requirement Map Conformance Success
 [cols=">20h,<80d",width="100%"]
 |===
@@ -43,6 +81,21 @@
 *When:* retrieving that resource from the API endpoint+
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: /conf/core/conformance-success
+target:: /req/core/conformance-success
+test-purpose:: For implementations having a mechanism to advertise conformance classes, verify that it reports conformance to this Standard correctly.
+test-method::
++
+--
+*Given:* a conformance resource in a recognized format, such as the OGC API JSON `/conformance` resource +
+*When:* retrieving that resource from the API endpoint +
+*Then:* (assert that all parts of the requirement are fully satisfied)
+--
+====
 
 === Conformance Class "Map Tilesets"
 
@@ -58,6 +111,21 @@
 - assert that the geospatial data resource (e.g., collection or landing page description's `links` property) includes a link with the `href` pointing to a tileset list supported that presents a tile aspect of this geospatial data resource and with rel: `[ogc-rel:tilesets-map]`
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement tiles-parameters
 [cols=">20h,<80d",width="100%"]
 |===
@@ -70,6 +138,20 @@
 - assert that tiles responses reflect the relevant map parameters used for the requests
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilesets List" conformance class to which the implementation must also conform.
 
@@ -86,6 +168,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement `transparent` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
@@ -97,6 +194,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement Background Map Success
 [cols=">20h,<80d",width="100%"]
 |===
@@ -107,6 +219,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* for all combinations of (no `transparent` parameter, transparent=false`, `transparent=true`) and (without `bgcolor` parameter, with `bgcolor` using a hexadecimal value and with `bgcolor` using a W3C Web Color name) +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "Collection Selection"
 
@@ -121,6 +248,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement Collection Selection Response
 [cols=">20h,<80d",width="100%"]
 |===
@@ -131,6 +273,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving a map using the `collections` parameter with one and multiple _collectionsIds_ +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "Scaling"
 
@@ -145,6 +302,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement `height` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
@@ -156,6 +328,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement `scale-denominator` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
@@ -166,6 +353,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving maps using the `scale-denominator` parameter, combining all possibilities of with and without `width` and/or `height` parameters, with and without `bbox` and `center` parameter if spatial subsetting is supported, with and without `mm-per-pixel` parameter if display resolution is supported +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "Display Resolution"
 
@@ -180,6 +382,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement Display Resolution Map Success
 [cols=">20h,<80d",width="100%"]
 |===
@@ -190,6 +407,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving maps using the `mm-per-pixel` parameter, for different styles if styled maps are supported, combining all possibilities of with and without `width` and/or `height` parameters, with and without `bbox` and `center` parameter if spatial subsetting is supported, with and without `mm-per-pixel` parameter if display resolution is supported +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "Spatial Subsetting"
 
@@ -204,6 +436,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement `subset-crs` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
@@ -214,6 +461,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving maps using `subset` and `subset-crs` parameter for different values (using the correct spatial axes), as well as different values for the `crs` parameter if supported and applicable, +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 ==== Abstract Test for Requirement `center-crs` parameter definition
 [cols=">20h,<80d",width="100%"]
@@ -226,6 +488,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement `bbox` parameter definition
 [cols=">20h,<80d",width="100%"]
 |===
@@ -236,6 +513,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving maps using the `bbox` parameter (with and without the `bbox-crs` parameter), +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 ==== Abstract Test for Requirement spatial subsetting `subset` parameter definition
 [cols=">20h,<80d",width="100%"]
@@ -248,6 +540,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement map subset response
 [cols=">20h,<80d",width="100%"]
 |===
@@ -258,6 +565,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving maps using the `subset` (with and without the `subset-crs` parameter) +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 ==== Abstract Test for Requirement `center` parameter definition
 [cols=">20h,<80d",width="100%"]
@@ -270,6 +592,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement subsetting `width` and `height` parameters definition
 [cols=">20h,<80d",width="100%"]
 |===
@@ -281,6 +618,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement map subset success
 [cols=">20h,<80d",width="100%"]
 |===
@@ -291,6 +643,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving maps using the `bbox` (with and without the `bbox-crs` parameter), `subset` (with and without the `subset-crs` parameter), and `center` parameter (with and without the `center-crs` parameter, with the `width` and/or `height` parameter, with and without the `scale-denominator` parameter if scaling is supported +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "Date and Time"
 
@@ -305,6 +672,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement `datetime` parameter response
 [cols=">20h,<80d",width="100%"]
 |===
@@ -315,6 +697,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving maps using the `datetime` parameter +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 ==== Abstract Test for Requirement temporal `subset` parameter definition
 [cols=">20h,<80d",width="100%"]
@@ -327,6 +724,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement temporal subset response
 [cols=">20h,<80d",width="100%"]
 |===
@@ -337,6 +749,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving maps using the `subset` parameter with the `time` axis +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 ==== Abstract Test for Requirement temporal axis
 [cols=">20h,<80d",width="100%"]
@@ -349,6 +776,20 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 ==== Abstract Test for Requirement temporal subsetting success
 [cols=">20h,<80d",width="100%"]
@@ -360,6 +801,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving maps using the `subset` parameter with the `time` axis +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "General Subsetting"
 
@@ -374,6 +830,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement general subsetting `subset` parameter
 [cols=">20h,<80d",width="100%"]
 |===
@@ -384,6 +855,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving maps using the `subset` parameter for an additional dimension besides space and time +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "Coordinate Reference System"
 
@@ -398,6 +884,22 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
+
 ==== Abstract Test for Requirement CRS map success
 [cols=">20h,<80d",width="100%"]
 |===
@@ -408,6 +910,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving maps with the `crs` parameter for different available CRS and without +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "Orientation"
 
@@ -422,6 +939,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement orientation response headers
 [cols=">20h,<80d",width="100%"]
 |===
@@ -432,6 +964,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving maps with the `orientation` parameter for different values and without +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "Custom Projection CRS"
 
@@ -446,6 +993,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement `crs-proj-params` parameter
 [cols=">20h,<80d",width="100%"]
 |===
@@ -456,6 +1018,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving maps with the `crs-proj-method` parameter for different available values and different values of the associated method parameters (specified using the `crs-proj-params` query parameter) as listed in `/projectionsAndDatums` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 ==== Abstract Test for Requirement  `crs-proj-center` parameter
 [cols=">20h,<80d",width="100%"]
@@ -468,6 +1045,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement `crs-datum` parameter
 [cols=">20h,<80d",width="100%"]
 |===
@@ -478,6 +1070,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving maps with the `crs-datum` parameter for different available values as listed in `/projectionsAndDatums` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 ==== Abstract Test for Requirement custom CRS projection response headers
 [cols=">20h,<80d",width="100%"]
@@ -490,6 +1097,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement `/projectionsAndDatums` resource
 [cols=">20h,<80d",width="100%"]
 |===
@@ -501,6 +1123,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement `/projectionsAndDatums` response
 [cols=">20h,<80d",width="100%"]
 |===
@@ -511,6 +1148,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving the `/projectionsAndDatums resource` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "Collection Map"
 
@@ -525,6 +1177,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement collection description CRS
 [cols=">20h,<80d",width="100%"]
 |===
@@ -536,6 +1203,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement collection map operation
 [cols=">20h,<80d",width="100%"]
 |===
@@ -546,6 +1228,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving a map for that collection resource as per /conf/core +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "Dataset Map"
 
@@ -560,6 +1257,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement dataset description extent
 [cols=">20h,<80d",width="100%"]
 |===
@@ -570,6 +1282,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving the JSON representation of the landing page description for that dataset +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 ==== Abstract Test for Requirement dataset description CRS
 [cols=">20h,<80d",width="100%"]
@@ -582,6 +1309,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement dataset map operation
 [cols=">20h,<80d",width="100%"]
 |===
@@ -592,6 +1334,22 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving a map for that dataset resource as per /conf/core +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 === Conformance Class "Styled Map"
 
 ==== Abstract Test for Requirement styled map links
@@ -605,6 +1363,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement styled map operation
 [cols=">20h,<80d",width="100%"]
 |===
@@ -615,6 +1388,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving a map for that style as per /conf/core +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "PNG"
 
@@ -629,6 +1417,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 === Conformance Class "JPEG"
 
 ==== Abstract Test for Requirement JPEG map content
@@ -641,6 +1444,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving a JPEG (`image/jpeg`) representation of a map resource through HTTP content negotiation +
 **Then:** (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "JPEG XL"
 
@@ -655,6 +1473,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 **Then:** (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 === Conformance Class "TIFF"
 
 ==== Abstract Test for Requirement TIFF map content
@@ -667,6 +1500,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving a TIFF (`image/tiff`) and GeoTIFF (`image/tiff; application=geotiff`) representation of a map resource through HTTP content negotiation +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "SVG"
 
@@ -681,6 +1529,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 === Conformance Class "HTML"
 
 ==== Abstract Test for Requirement HTML map content
@@ -693,6 +1556,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving an (`text/html`) HTML representation of a map resource HTTP content negotiation +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "API Operations"
 
@@ -707,6 +1585,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
 
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
+
 ==== Abstract Test for Requirement API Operation identifiers
 [cols=">20h,<80d",width="100%"]
 |===
@@ -717,6 +1610,21 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving the API description +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
 
 === Conformance Class "CORS"
 
@@ -730,3 +1638,18 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 *When:* retrieving the API description +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 |===
+
+[abstract_test]
+====
+[%metadata]
+identifier:: TBA
+target:: TBA
+test-purpose:: TBA
+test-method::
++
+--
+
+TBA
+
+--
+====
