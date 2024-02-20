@@ -5,29 +5,25 @@
 
 === Conformance Class "Core"
 
+
+[[conf_core,/conf/core]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement Map Operation
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/core/map-op
-|Requirement: |/req/core/map-op
-|Test purpose: | Verify that the implementation supports the map retrieval operation
-|Test method: | *Given:* a geospatial data resource conforming to the Maps API Standard, with an API path including `.../map...` or discovered following a link with relation type `[ogc-rel:map]` +
-*When:* performing a GET operation on the `/map` resource with a supported media type specified in the `Accept:` header (e.g., `Accept: image/png,image/jpeg`) +
-*Then:* +
-- assert that the response has HTTP status code 200 +
-- assert that the CRS of the resulting map is the native CRS (the native CRS is `[ogc:crs84]`, unless specified in the dataset map or collection map description `storageCrs` property, or specified out-of-band if _OGC API - Common_ is not implemented), +
-- assert that the response headers either includes a `Content-Crs:` header for the native CRS, or omits it if the nativeCRS is `[ogc:crs84]`, +
-- assert that the headers of the response include a `Content-Bbox:` header with the actual axis-aligned geospatial boundary of the rendered map, +
-- assert that the `Content-Bbox:` coordinates are in the native CRS and honor the CRS coordinates order, +
-- assert that the body of the response is a map of the geospatial data resource in the negotiated format.
-|===
 
 
+[[conf_core_map-op,/conf/core/map-op]]
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/core/map-op
-target:: /req/core/map-op
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core/map-op
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core/map-op
 test-purpose:: Verify that the implementation supports the map retrieval operation
 test-method::
 +
@@ -46,47 +42,31 @@ test-method::
 
 
 ==== Abstract Test for Requirement Map Response
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/core/map-response
-|Requirement: |/req/core/map-response
-|Test purpose: | Verify that the implementation's response for the map retrieval operation is correct
-|Test method: | *Given:* a map resource that was successfully retrieved for /conf/core/map-op +
-*When:* retrieving that resource for the map operation +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/core/map-response
-target:: /req/core/map-response
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core/map-response
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core/map-response
 test-purpose:: Verify that the implementation's response for the map retrieval operation is correct
 test-method::
 +
 --
-*Given:* a map resource that was successfully retrieved for /conf/core/map-op +
+*Given:* a map resource that was successfully retrieved for <<conf_core_map-op>> +
 *When:* retrieving that resource for the map operation +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 --
 ====
 
 ==== Abstract Test for Requirement Map Conformance Success
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/core/conformance-success
-|Requirement: |/req/core/conformance-success
-|Test purpose: | For implementations having a mechanism to advertise conformance classes, verify that it reports conformance to this Standard correctly.
-|Test method: | *Given:* a conformance resource in a recognized format, such as the OGC API JSON `/conformance` resource +
-*When:* retrieving that resource from the API endpoint+
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/core/conformance-success
-target:: /req/core/conformance-success
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core/conformance-success
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core/conformance-success
 test-purpose:: For implementations having a mechanism to advertise conformance classes, verify that it reports conformance to this Standard correctly.
 test-method::
 +
@@ -99,23 +79,23 @@ test-method::
 
 === Conformance Class "Map Tilesets"
 
+[[conf_tilesets,/conf/tilesets]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tilesets
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement desc-links
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/tilesets/desc-links
-|Requirement: |/req/tilesets/desc-links
-|Test purpose: | Verify that the implementation supports map tilesets
-|Test method: | *Given:* a geospatial data resource conforming to this Standard, to "Map Tilesets", to OGC _API - Tiles_ and providing a description resource including links +
-*When:* retrieving the geospatial data resource description +
-*Then:* +
-- assert that the geospatial data resource (e.g., collection or landing page description's `links` property) includes a link with the `href` pointing to a tileset list supported that presents a tile aspect of this geospatial data resource and with rel: `[ogc-rel:tilesets-map]`
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/tilesets/desc-links
-target:: /req/tilesets/desc-links
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tilesets/desc-links
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets/desc-links
 test-purpose:: Verify that the implementation supports map tilesets
 test-method::
 +
@@ -128,22 +108,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement tiles-parameters
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/tilesets/tiles-parameters
-|Requirement: |/req/tilesets/tiles-parameters
-|Test purpose: | Verify that the implementation supports relevant parameters for map tilesets
-|Test method: | *Given:* a geospatial data resource conforming to this Standard, to "Map Tilesets", to OGC _API - Tiles_, and to _Maps_ requirements classes introducing parameters relevant for map tiles  +
-*When:* retrieving the map tiles with parameters for the _background_, _display resolution_, _spatial subsetting_ (only for `subset` and `subset-crs` parameters, and only if a vertical dimension is available), _general subsetting_, and _scaling_ requirements classes +
-*Then:* +
-- assert that tiles responses reflect the relevant map parameters used for the requests
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/tilesets/tiles-parameters
-target:: /req/tilesets/tiles-parameters
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tilesets/tiles-parameters
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets/tiles-parameters
 test-purpose:: Verify that the implementation supports relevant parameters for map tilesets
 test-method::
 +
@@ -159,22 +130,23 @@ NOTE: This conformance class depends on _OGC API - Tiles - Part 1: Core_ "Tilese
 
 === Conformance Class "Background"
 
+[[conf_background,/conf/background]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/background
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement `bgcolor` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/background/bgcolor-definition
-|Requirement: |/req/background/bgcolor-definition
-|Test purpose: | Verify that the implementation supports the `bgcolor` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving a map without `bgcolor` parameter, with `bgcolor` using a hexadecimal value and with `bgcolor` using a W3C Web Color name +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/background/bgcolor-definition
-target:: /req/background/bgcolor-definition
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/background/bgcolor-definition
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background/bgcolor-definition
 test-purpose:: Verify that the implementation supports the `bgcolor` parameter
 test-method::
 +
@@ -186,21 +158,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement `transparent` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/background/transparent-definition
-|Requirement: |/req/background/transparent-definition
-|Test purpose: | Verify that the implementation supports the `transparent` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving a map for all combinations of (no `transparent` parameter, transparent=false`, `transparent=true`) and with and without `bgcolor` parameter +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/background/transparent-definition
-target:: /req/background/transparent-definition
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/background/transparent-definition
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background/transparent-definition
 test-purpose:: Verify that the implementation supports the `transparent` parameter
 test-method::
 +
@@ -212,21 +176,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement Background Map Success
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/background/map-success
-|Requirement: |/req/background/map-success
-|Test purpose: | Verify that the implementation's response for the map retrieval operation with a background color and/or transparent parameter is correct
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* for all combinations of (no `transparent` parameter, transparent=false`, `transparent=true`) and (without `bgcolor` parameter, with `bgcolor` using a hexadecimal value and with `bgcolor` using a W3C Web Color name) +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/background/map-success
-target:: /req/background/map-success
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/background/map-success
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background/map-success
 test-purpose:: Verify that the implementation's response for the map retrieval operation with a background color and/or transparent parameter is correct
 test-method::
 +
@@ -239,22 +195,23 @@ test-method::
 
 === Conformance Class "Collection Selection"
 
+[[conf_collections-selection,/conf/collections-selection]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collections-selection
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement `collections` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/collections-selection/collections-parameter
-|Requirement: |/req/collections-selection/collections-parameter
-|Test purpose: | Verify that the implementation supports the `collections` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core and that is understood to consist of multiple collections (e.g., a dataset advertising support for Dataset Map and featuring multiple collections) +
-*When:* retrieving a map using the `collections` parameter with one and multiple _collectionsIds_ +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/collections-selection/collections-parameter
-target:: /req/collections-selection/collections-parameter
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collections-selection/collections-parameter
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection/collections-parameter
 test-purpose:: Verify that the implementation supports the `collections` parameter
 test-method::
 +
@@ -266,21 +223,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement Collection Selection Response
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/collections-selection/collections-response
-|Requirement: |/req/collections-selection/collections-response
-|Test purpose: | Verify that the implementation responds correctly to map requests using the `collections` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core and that is understood to consist of multiple collections (e.g., a dataset advertising support for Dataset Map and featuring multiple collections) +
-*When:* retrieving a map using the `collections` parameter with one and multiple _collectionsIds_ +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/collections-selection/collections-response
-target:: /req/collections-selection/collections-response
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collections-selection/collections-response
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection/collections-response
 test-purpose:: Verify that the implementation responds correctly to map requests using the `collections` parameter
 test-method::
 +
@@ -293,22 +242,23 @@ test-method::
 
 === Conformance Class "Scaling"
 
+[[conf_scaling,/conf/scaling]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/scaling
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/scaling
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement `width` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/scaling/width-definition
-|Requirement: |/req/scaling/width-definition
-|Test purpose: | Verify that the implementation supports the (scaling) `width` parameter correctly for map requests
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using `width` parameter for different values, as well as the same `bbox` parameter if spatial subsetting is supported, with and without `height` parameter, with and without `mm-per-pixel` parameter if display resolution is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/scaling/width-definition
-target:: /req/scaling/width-definition
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/scaling/width-definition
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/scaling/width-definition
 test-purpose:: Verify that the implementation supports the (scaling) `width` parameter correctly for map requests
 test-method::
 +
@@ -320,21 +270,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement `height` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/scaling/height-definition
-|Requirement: |/req/scaling/height-definition
-|Test purpose: | Verify that the implementation supports responds the (scaling) `height` parameter correctly for map requests
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using `height` parameter for different values, as well as the same `bbox` parameter if spatial subsetting is supported, with and without `width` parameter, with and without `mm-per-pixel` parameter if display resolution is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/scaling/height-definition
-target:: /req/scaling/height-definition
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/scaling/height-definition
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/scaling/height-definition
 test-purpose:: Verify that the implementation supports responds the (scaling) `height` parameter correctly for map requests
 test-method::
 +
@@ -346,21 +288,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement `scale-denominator` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/scaling/scale-denominator-definition
-|Requirement: |/req/scaling/scale-denominator-definition
-|Test purpose: | Verify that the implementation supports the `scale-denominator` parameter correctly for map requests
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `scale-denominator` parameter, combining all possibilities of with and without `width` and/or `height` parameters, with and without `bbox` and `center` parameter if spatial subsetting is supported, with and without `mm-per-pixel` parameter if display resolution is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/scaling/scale-denominator-definition
-target:: /req/scaling/scale-denominator-definition
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/scaling/scale-denominator-definition
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/scaling/scale-denominator-definition
 test-purpose:: Verify that the implementation supports the `scale-denominator` parameter correctly for map requests
 test-method::
 +
@@ -373,22 +307,23 @@ test-method::
 
 === Conformance Class "Display Resolution"
 
+[[conf_display-resolution,/conf/display-resolution]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/display-resolution
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/display-resolution
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement `mm-per-pixel` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/display-resolution/mm-per-pixel-definition
-|Requirement: |/req/display-resolution/mm-per-pixel-definition
-|Test purpose: | Verify that the implementation supports the `mm-per-pixel` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `mm-per-pixel` parameter, for different styles if styled maps are supported, combining all possibilities of with and without `width` and/or `height` parameters, with and without `bbox` and `center` parameter if spatial subsetting is supported, with and without `mm-per-pixel` parameter if display resolution is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/display-resolution/mm-per-pixel-definition
-target:: /req/display-resolution/mm-per-pixel-definition
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/display-resolution/mm-per-pixel-definition
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/display-resolution/mm-per-pixel-definition
 test-purpose:: Verify that the implementation supports the `mm-per-pixel` parameter
 test-method::
 +
@@ -400,21 +335,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement Display Resolution Map Success
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/display-resolution/map-success
-|Requirement: |/req/display-resolution/map-success
-|Test purpose: | Verify that the implementation responds correctly to map requests using the `mm-per-pixel` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `mm-per-pixel` parameter, for different styles if styled maps are supported, combining all possibilities of with and without `width` and/or `height` parameters, with and without `bbox` and `center` parameter if spatial subsetting is supported, with and without `mm-per-pixel` parameter if display resolution is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/display-resolution/map-success
-target:: /req/display-resolution/map-success
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/display-resolution/map-success
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/display-resolution/map-success
 test-purpose:: Verify that the implementation responds correctly to map requests using the `mm-per-pixel` parameter
 test-method::
 +
@@ -427,22 +354,23 @@ test-method::
 
 === Conformance Class "Spatial Subsetting"
 
+[[conf_spatial-subsetting,/conf/spatial-subsetting]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement `bbox-crs` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/spatial-subsetting/bbox-crs
-|Requirement: |/req/spatial-subsetting/bbox-crs
-|Test purpose: | Verify that the implementation supports the `bbox-crs` parameter for specifying the CRS of the `bbox` parameter correctly
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using `bbox` and `bbox-crs` parameter for different values, as well as different values for the `crs` parameter if supported and applicable, +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/spatial-subsetting/bbox-crs
-target:: /req/spatial-subsetting/bbox-crs
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting/bbox-crs
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting/bbox-crs
 test-purpose:: Verify that the implementation supports the `bbox-crs` parameter for specifying the CRS of the `bbox` parameter correctly
 test-method::
 +
@@ -454,21 +382,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement `subset-crs` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/spatial-subsetting/subset-crs
-|Requirement: |/req/spatial-subsetting/subset-crs
-|Test purpose: | Verify that the implementation supports the `subset-crs` parameter for specifying the CRS of the `subset` parameter correctly
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using `subset` and `subset-crs` parameter for different values (using the correct spatial axes), as well as different values for the `crs` parameter if supported and applicable, +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/spatial-subsetting/subset-crs
-target:: /req/spatial-subsetting/subset-crs
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting/subset-crs
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting/subset-crs
 test-purpose:: Verify that the implementation supports the `subset-crs` parameter for specifying the CRS of the `subset` parameter correctly
 test-method::
 +
@@ -480,21 +400,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement `center-crs` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/spatial-subsetting/center-crs
-|Requirement: |/req/spatial-subsetting/center-crs
-|Test purpose: | Verify that the implementation supports the `center-crs` parameter for specifying the CRS of the `center` parameter correctly
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using `center` and `center-crs` parameter for different values, as well as different values for the `crs` parameter if supported and applicable, +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/spatial-subsetting/center-crs
-target:: /req/spatial-subsetting/center-crs
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting/center-crs
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting/center-crs
 test-purpose:: Verify that the implementation supports the `center-crs` parameter for specifying the CRS of the `center` parameter correctly
 test-method::
 +
@@ -506,21 +418,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement `bbox` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/spatial-subsetting/bbox-definition
-|Requirement: |/req/spatial-subsetting/bbox-definition
-|Test purpose: | Verify that the implementation supports the `bbox` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `bbox` parameter (with and without the `bbox-crs` parameter), +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/spatial-subsetting/bbox-definition
-target:: /req/spatial-subsetting/bbox-definition
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting/bbox-definition
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting/bbox-definition
 test-purpose:: Verify that the implementation supports the `bbox` parameter
 test-method::
 +
@@ -532,21 +436,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement spatial subsetting `subset` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/spatial-subsetting/subset-definition
-|Requirement: |/req/spatial-subsetting/subset-definition
-|Test purpose: | Verify that the implementation supports the `subset` parameter for spatial subsetting
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `subset` parameter (with and without the `subset-crs` parameter, for the correct spatial axes), +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/spatial-subsetting/subset-definition
-target:: /req/spatial-subsetting/subset-definition
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting/subset-definition
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting/subset-definition
 test-purpose:: Verify that the implementation supports the `subset` parameter for spatial subsetting
 test-method::
 +
@@ -558,21 +454,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement map subset response
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/spatial-subsetting/subset-response
-|Requirement: |/req/spatial-subsetting/subset-response
-|Test purpose: | Verify that the implementation responds correctly to map requests using the `subset` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `subset` (with and without the `subset-crs` parameter) +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/spatial-subsetting/subset-response
-target:: /req/spatial-subsetting/subset-response
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting/subset-response
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting/subset-response
 test-purpose:: Verify that the implementation responds correctly to map requests using the `subset` parameter
 test-method::
 +
@@ -584,21 +472,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement `center` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/spatial-subsetting/center-definition
-|Requirement: |/req/spatial-subsetting/center-definition
-|Test purpose: | Verify that the implementation supports the `center` parameter correctly
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `center` parameter (with and without the `center-crs` parameter), +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/spatial-subsetting/center-definition
-target:: /req/spatial-subsetting/center-definition
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting/center-definition
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting/center-definition
 test-purpose:: Verify that the implementation supports the `center` parameter correctly
 test-method::
 +
@@ -610,21 +490,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement subsetting `width` and `height` parameters definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/spatial-subsetting/width-height
-|Requirement: |/req/spatial-subsetting/width-height
-|Test purpose: | Verify that the implementation supports the `width` and `height` parameter for spatial subsetting when used together with the `center` and/or the `scale-denominator` parameters
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `center` parameter together, with the `width` and/or `height` (with and without the `center-crs` parameter), with and without the `scale-denominator` parameter if scaling is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/spatial-subsetting/width-height
-target:: /req/spatial-subsetting/width-height
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting/width-height
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting/width-height
 test-purpose:: Verify that the implementation supports the `width` and `height` parameter for spatial subsetting when used together with the `center` and/or the `scale-denominator` parameters
 test-method::
 +
@@ -636,21 +508,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement map subset success
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/spatial-subsetting/map-success
-|Requirement: |/req/spatial-subsetting/map-success
-|Test purpose: | Verify that the implementation responds correctly to map requests using subsetting parameters (`bbox`, `subset` or `center`)
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `bbox` (with and without the `bbox-crs` parameter), `subset` (with and without the `subset-crs` parameter), and `center` parameter (with and without the `center-crs` parameter, with the `width` and/or `height` parameter, with and without the `scale-denominator` parameter if scaling is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/spatial-subsetting/map-success
-target:: /req/spatial-subsetting/map-success
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/spatial-subsetting/map-success
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting/map-success
 test-purpose:: Verify that the implementation responds correctly to map requests using subsetting parameters (`bbox`, `subset` or `center`)
 test-method::
 +
@@ -663,22 +527,23 @@ test-method::
 
 === Conformance Class "Date and Time"
 
+[[conf_datetime,/conf/datetime]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/datetime
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement `datetime` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/datetime/datetime-definition
-|Requirement: |/req/datetime/datetime-definition
-|Test purpose: | Verify that the implementation supports the `datetime` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `datetime` parameter +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/datetime/datetime-definition
-target:: /req/datetime/datetime-definition
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/datetime/datetime-definition
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime/datetime-definition
 test-purpose:: Verify that the implementation supports the `datetime` parameter
 test-method::
 +
@@ -690,21 +555,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement `datetime` parameter response
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/datetime/datetime-response
-|Requirement: |/req/datetime/datetime-response
-|Test purpose: | Verify that the implementation responds correctly to map requests using the `datetime` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `datetime` parameter +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/datetime/datetime-response
-target:: /req/datetime/datetime-response
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/datetime/datetime-response
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime/datetime-response
 test-purpose:: Verify that the implementation responds correctly to map requests using the `datetime` parameter
 test-method::
 +
@@ -716,21 +573,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement temporal `subset` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/datetime/subset-definition
-|Requirement: |/req/datetime/subset-definition
-|Test purpose: | Verify that the implementation supports temporal subsetting using the `subset` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `subset` parameter with the `time` axis +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/datetime/subset-definition
-target:: /req/datetime/subset-definition
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/datetime/subset-definition
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime/subset-definition
 test-purpose:: Verify that the implementation supports temporal subsetting using the `subset` parameter
 test-method::
 +
@@ -742,21 +591,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement temporal subset response
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/datetime/subset-response
-|Requirement: |/req/datetime/subset-response
-|Test purpose: | Verify that the implementation responds correctly to temporal subsetting requests using the `subset` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `subset` parameter with the `time` axis +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/datetime/subset-response
-target:: /req/datetime/subset-response
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/datetime/subset-response
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime/subset-response
 test-purpose:: Verify that the implementation responds correctly to temporal subsetting requests using the `subset` parameter
 test-method::
 +
@@ -768,21 +609,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement temporal axis
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/datetime/axis
-|Requirement: |/req/datetime/axis
-|Test purpose: | Verify that the implementation supports the `time` axis for temporal subsetting using the `subset` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `subset` parameter with the `time` axis +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/datetime/axis
-target:: /req/datetime/axis
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/datetime/axis
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime/axis
 test-purpose:: Verify that the implementation supports the `time` axis for temporal subsetting using the `subset` parameter
 test-method::
 +
@@ -794,21 +627,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement temporal subsetting success
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/datetime/map-success
-|Requirement: |/req/datetime/map-success
-|Test purpose: | Verify that the implementation responds correctly to temporal subsetting requests
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `subset` parameter with the `time` axis +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/datetime/map-success
-target:: /req/datetime/map-success
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/datetime/map-success
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime/map-success
 test-purpose:: Verify that the implementation responds correctly to temporal subsetting requests
 test-method::
 +
@@ -821,22 +646,23 @@ test-method::
 
 === Conformance Class "General Subsetting"
 
+[[conf_general-subsetting,/conf/general-subsetting]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/general-subsetting
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/general-subsetting
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement uniform additional dimensions
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/general-subsetting/uniform-additional-dimensions
-|Requirement: |/req/general-subsetting/uniform-additional-dimensions
-|Test purpose: | Verify that the implementation describes the extent of all additional dimensions of the data resource using the uniform additional dimension schema (using `interval`, `crs/trs/vrs` and optionally `grid`).
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core for which an extent description is available +
-*When:* retrieving the description of the data resource +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/general-subsetting/uniform-additional-dimensions
-target:: /req/general-subsetting/uniform-additional-dimensions
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/general-subsetting/uniform-additional-dimensions
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/general-subsetting/uniform-additional-dimensions
 test-purpose:: Verify that the implementation describes the extent of all additional dimensions of the data resource using the uniform additional dimension schema (using `interval`, `crs/trs/vrs` and optionally `grid`).
 test-method::
 +
@@ -848,21 +674,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement general subsetting `subset` parameter
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/general-subsetting/subset-definition
-|Requirement: |/req/general-subsetting/subset-definition
-|Test purpose: | Verify that the implementation supports general subsetting using the `subset` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps using the `subset` parameter for an additional dimension besides space and time +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/general-subsetting/subset-definition
-target:: /req/general-subsetting/subset-definition
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/general-subsetting/subset-definition
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/general-subsetting/subset-definition
 test-purpose:: Verify that the implementation supports general subsetting using the `subset` parameter
 test-method::
 +
@@ -875,22 +693,23 @@ test-method::
 
 === Conformance Class "Coordinate Reference System"
 
+[[conf_crs,/conf/crs]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/crs
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement `crs` parameter definition
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/crs/crs-definition
-|Requirement: |/req/crs/crs-definition
-|Test purpose: | Verify that the implementation supports the output `crs` parameter for map requests
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps with the `crs` parameter for different available CRS and without +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/crs/crs-definition
-target:: /req/crs/crs-definition
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/crs/crs-definition
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs/crs-definition
 test-purpose:: Verify that the implementation supports the output `crs` parameter for map requests
 test-method::
 +
@@ -903,21 +722,13 @@ test-method::
 
 
 ==== Abstract Test for Requirement CRS map success
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/crs/map-success
-|Requirement: |/req/crs/map-success
-|Test purpose: | Verify that the implementation responds correctly to map requests using the `crs` parameter
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps with the `crs` parameter for different available CRS and without +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/crs/map-success
-target:: /req/crs/map-success
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/crs/map-success
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs/map-success
 test-purpose:: Verify that the implementation responds correctly to map requests using the `crs` parameter
 test-method::
 +
@@ -930,22 +741,23 @@ test-method::
 
 === Conformance Class "Orientation"
 
+[[conf_orientation,/conf/orientation]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/orientation
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/orientation
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement `orientation` parameter
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/orientation/orientation
-|Requirement: |/req/orientation/orientation
-|Test purpose: | Verify that the implementation supports the `orientation` parameter correctly for map requests
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps with the `orientation` parameter for different values and without +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/orientation/orientation
-target:: /req/orientation/orientation
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/orientation/orientation
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/orientation/orientation
 test-purpose:: Verify that the implementation supports the `orientation` parameter correctly for map requests
 test-method::
 +
@@ -957,21 +769,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement orientation response headers
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/orientation/response-headers
-|Requirement: |/req/orientation/response-headers
-|Test purpose: | Verify that the implementation includes the correct response headers for map requests using the `orientation` parameter.
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving maps with the `orientation` parameter for different values and without +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/orientation/response-headers
-target:: /req/orientation/response-headers
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/orientation/response-headers
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/orientation/response-headers
 test-purpose:: Verify that the implementation includes the correct response headers for map requests using the `orientation` parameter.
 test-method::
 +
@@ -984,183 +788,137 @@ test-method::
 
 === Conformance Class "Custom Projection CRS"
 
+[[conf_projection,/conf/projection]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/projection
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement `crs-proj-method` parameter
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/projection/crs-proj-method
-|Requirement: |/req/projection/crs-proj-method
-|Test purpose: | Verify that the implementation supports the `crs-proj-method` parameter correctly for map requests
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
-*When:* retrieving maps with the `crs-proj-method` parameter for different available values as listed in `/projectionsAndDatums` +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/projection/crs-proj-method
-target:: /req/projection/crs-proj-method
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/projection/crs-proj-method
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection/crs-proj-method
 test-purpose:: Verify that the implementation supports the `crs-proj-method` parameter correctly for map requests
 test-method::
 +
 --
-*Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
+*Given:* a map resource that conformed successfully to <<conf_core>> and passing <<conf_projection_projections-response>> +
 *When:* retrieving maps with the `crs-proj-method` parameter for different available values as listed in `/projectionsAndDatums` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 --
 ====
 
 ==== Abstract Test for Requirement `crs-proj-params` parameter
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/projection/crs-proj-params
-|Requirement: |/req/projection/crs-proj-params
-|Test purpose: | Verify that the implementation supports the `crs-proj-params` parameter correctly for map requests
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
-*When:* retrieving maps with the `crs-proj-method` parameter for different available values and different values of the associated method parameters (specified using the `crs-proj-params` query parameter) as listed in `/projectionsAndDatums` +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/projection/crs-proj-params
-target:: /req/projection/crs-proj-params
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/projection/crs-proj-params
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection/crs-proj-params
 test-purpose:: Verify that the implementation supports the `crs-proj-params` parameter correctly for map requests
 test-method::
 +
 --
-*Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
+*Given:* a map resource that conformed successfully to <<conf_core>> and passing <<conf_projection_projections-response>> +
 *When:* retrieving maps with the `crs-proj-method` parameter for different available values and different values of the associated method parameters (specified using the `crs-proj-params` query parameter) as listed in `/projectionsAndDatums` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 --
 ====
 
 ==== Abstract Test for Requirement  `crs-proj-center` parameter
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/projection/crs-proj-center-definition
-|Requirement: |/req/projection/crs-proj-center-definition
-|Test purpose: | Verify that the implementation supports the `crs-proj-center` parameter correctly for map requests
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
-*When:* retrieving maps with the `crs-proj-method` parameter for different available values as listed in `/projectionsAndDatums` and the `crs-proj-center` parameter for different values +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/projection/crs-proj-center-definition
-target:: /req/projection/crs-proj-center-definition
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/projection/crs-proj-center-definition
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection/crs-proj-center-definition
 test-purpose:: Verify that the implementation supports the `crs-proj-center` parameter correctly for map requests
 test-method::
 +
 --
-*Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
+*Given:* a map resource that conformed successfully to <<conf_core>> and passing <<conf_projection_projections-response>> +
 *When:* retrieving maps with the `crs-proj-method` parameter for different available values as listed in `/projectionsAndDatums` and the `crs-proj-center` parameter for different values +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 --
 ====
 
 ==== Abstract Test for Requirement `crs-datum` parameter
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/projection/crs-datum
-|Requirement: |/req/projection/crs-datum
-|Test purpose: | Verify that the implementation supports the `crs-datum` parameter correctly for map requests
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
-*When:* retrieving maps with the `crs-datum` parameter for different available values as listed in `/projectionsAndDatums` +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/projection/crs-datum
-target:: /req/projection/crs-datum
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/projection/crs-datum
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection/crs-datum
 test-purpose:: Verify that the implementation supports the `crs-datum` parameter correctly for map requests
 test-method::
 +
 --
-*Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
+*Given:* a map resource that conformed successfully to <<conf_core>> and passing <<conf_projection_projections-response>> +
 *When:* retrieving maps with the `crs-datum` parameter for different available values as listed in `/projectionsAndDatums` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 --
 ====
 
 ==== Abstract Test for Requirement custom CRS projection response headers
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/projection/response-headers
-|Requirement: |/req/projection/response-headers
-|Test purpose: | Verify that the implementation responds to map requests using the `crs-proj-method` parameter and/or `crs-datum` with the correct response headers
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
-*When:* retrieving maps with the `crs-proj-method` parameter for different available values, different values of the associated method parameters (using both `crs-proj-center` and `crs-proj-params`), and different values for `crs-datum` as listed in `/projectionsAndDatums` +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/projection/response-headers
-target:: /req/projection/response-headers
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/projection/response-headers
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection/response-headers
 test-purpose::  Verify that the implementation responds to map requests using the `crs-proj-method` parameter and/or `crs-datum` with the correct response headers
 test-method::
 +
 --
-*Given:* a map resource that conformed successfully to /conf/core and passing /conf/projections/projections-response +
+*Given:* a map resource that conformed successfully to <<conf_core>> and passing <<conf_projection_projections-response>> +
 *When:* retrieving maps with the `crs-proj-method` parameter for different available values, different values of the associated method parameters (using both `crs-proj-center` and `crs-proj-params`), and different values for `crs-datum` as listed in `/projectionsAndDatums` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 --
 ====
 
 ==== Abstract Test for Requirement `/projectionsAndDatums` resource
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/projection/projections-resource
-|Requirement: |/req/projection/projections-resource
-|Test purpose: | Verify that the implementation supports retrieving the list of available projection operation methods, their parameters, and the list of available datums at `/projectionsAndDatums`
-|Test method: | *Given:* an API implementation being tested +
-*When:* retrieving the `/projectionsAndDatums resource +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
 
+
+[[conf_projection_projections-resource,/conf/projection/projections-resource]]
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/projection/projections-resource
-target:: /req/projection/projections-resource
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/projection/projections-resource
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection/projections-resource
 test-purpose:: Verify that the implementation supports retrieving the list of available projection operation methods, their parameters, and the list of available datums at `/projectionsAndDatums`
 test-method::
 +
 --
 *Given:* an API implementation being tested +
-*When:* retrieving the `/projectionsAndDatums resource +
+*When:* retrieving the `/projectionsAndDatums` resource +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 --
 ====
 
 ==== Abstract Test for Requirement `/projectionsAndDatums` response
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/projection/projections-response
-|Requirement: |/req/projection/projections-response
-|Test purpose: | Verify that the implementation responds correctly to a request for the `/projectionsAndDatums` resource, conforming to the JSON schema and using the correct URIs
-|Test method: | *Given:* an API implementation being tested passing /conf/projection/projections-resource +
-*When:* retrieving the `/projectionsAndDatums resource` +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
 
+[[conf_projection_projections-response,/conf/projection/projections-response]]
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/projection/projections-response
-target:: /req/projection/projections-response
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/projection/projections-response
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection/projections-response
 test-purpose:: Verify that the implementation responds correctly to a request for the `/projectionsAndDatums` resource, conforming to the JSON schema and using the correct URIs
 test-method::
 +
 --
-*Given:* an API implementation being tested passing /conf/projection/projections-resource +
+*Given:* an API implementation being tested passing <<conf_projection_projections-resource>>  +
 *When:* retrieving the `/projectionsAndDatums resource` +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 --
@@ -1168,22 +926,23 @@ test-method::
 
 === Conformance Class "Collection Map"
 
+[[conf_collection-map,/conf/collection-map]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collection-map
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collection-map
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement collection description links
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/collection-map/desc-links
-|Requirement: |/req/collection-map/desc-links
-|Test purpose: | Verify that the implementation links correctly from the collection description resource to the map resource
-|Test method: | *Given:* a collection from an API implementation conforming to OGC API - Common - Part 2: Geospatial Data "Collections" conformance class +
-*When:* retrieving the JSON representation of the description for that collection +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/collection-map/desc-links
-target:: /req/collection-map/desc-links
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collection-map/desc-links
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collection-map/desc-links
 test-purpose:: Verify that the implementation links correctly from the collection description resource to the map resource
 test-method::
 +
@@ -1195,21 +954,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement collection description CRS
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/collection-map/desc-crs
-|Requirement: |/req/collection-map/desc-crs
-|Test purpose: | Verify that the implementation describes the supported CRS correctly in its collection description resources
-|Test method: | *Given:* an API implementation conforming to OGC API - Common - Part 2: Geospatial Data "Collections" conformance class +
-*When:* retrieving the JSON representation of the description for that collection +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/collection-map/desc-crs
-target:: /req/collection-map/desc-crs
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collection-map/desc-crs
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collection-map/desc-crs
 test-purpose:: Verify that the implementation describes the supported CRS correctly in its collection description resources
 test-method::
 +
@@ -1221,21 +972,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement collection map operation
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/collection-map/map-operation
-|Requirement: |/req/collection-map/map-operation
-|Test purpose: | Verify that the implementation supports retrieving maps from an OGC API a collection as defined in the OGC API – Common Standard.
-|Test method: | *Given:* a collection correctly linking to a map resource as per /conf/collection-map/desc-links +
-*When:* retrieving a map for that collection resource as per /conf/core +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/collection-map/map-operation
-target:: /req/collection-map/map-operation
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/collection-map/map-operation
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collection-map/map-operation
 test-purpose:: Verify that the implementation supports retrieving maps from an OGC API a collection as defined in the OGC API – Common Standard.
 test-method::
 +
@@ -1248,22 +991,23 @@ test-method::
 
 === Conformance Class "Dataset Map"
 
+[[conf_dataset-map,/conf/dataset-map]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset-map
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement dataset landing page
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/dataset-map/landingpage
-|Requirement: |/req/dataset-map/landingpage
-|Test purpose: | Verify that the implementation supports linking properly from an OGC API landing page to a map resource
-|Test method: | *Given:* a dataset provided by an API implementation conforming to OGC API - Common - Part 1: Core +
-*When:* retrieving the JSON representation of the landing page description for that dataset +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/dataset-map/landingpage
-target:: /req/dataset-map/landingpage
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset-map/landingpage
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map/landingpage
 test-purpose:: Verify that the implementation supports linking properly from an OGC API landing page to a map resource
 test-method::
 +
@@ -1275,21 +1019,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement dataset description extent
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/dataset-map/desc-extent
-|Requirement: |/req/dataset-map/desc-extent
-|Test purpose: | Verify that the implementation describes the extent of the dataset correctly from the landing page
-|Test method: | *Given:* a dataset provided by an API conforming to OGC API - Common - Part 1: Core +
-*When:* retrieving the JSON representation of the landing page description for that dataset +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/dataset-map/desc-extent
-target:: /req/dataset-map/desc-extent
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset-map/desc-extent
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map/desc-extent
 test-purpose:: Verify that the implementation describes the extent of the dataset correctly from the landing page
 test-method::
 +
@@ -1301,21 +1037,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement dataset description CRS
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/dataset-map/desc-crs
-|Requirement: |/req/dataset-map/desc-crs
-|Test purpose: | Verify that the implementation describes the supported CRS correctly in its landing page resource
-|Test method: | *Given:* a dataset provided by an API conforming to OGC API - Common - Part 1: Core +
-*When:* retrieving the JSON representation of the landing page description for that dataset +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/dataset-map/desc-crs
-target:: /req/dataset-map/desc-crs
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset-map/desc-crs
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map/desc-crs
 test-purpose:: Verify that the implementation describes the supported CRS correctly in its landing page resource
 test-method::
 +
@@ -1327,21 +1055,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement dataset map operation
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/dataset-map/operation
-|Requirement: |/req/dataset-map/operation
-|Test purpose: | Verify that the implementation supports retrieving dataset maps a resource exposed by the OGC Maps API implementation
-|Test method: | *Given:* an OGC API dataset correctly linking to a map resource as per /conf/dataset-map/landingpage +
-*When:* retrieving a map for that dataset resource as per /conf/core +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/dataset-map/operation
-target:: /req/dataset-map/operation
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/dataset-map/operation
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map/operation
 test-purpose:: Verify that the implementation supports retrieving dataset maps a resource exposed by the OGC Maps API implementation
 test-method::
 +
@@ -1354,22 +1074,23 @@ test-method::
 
 === Conformance Class "Styled Map"
 
+[[conf_styled-map,/conf/styled-map]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/styled-map
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styled-map
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement styled map links
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/styled-map/desc-links
-|Requirement: |/req/styled-map/desc-links
-|Test purpose: | Verify that the implementation links correctly from a style resource to a map resource
-|Test method: | *Given:* a list of styles provided by an API implementation conforming to OGC API - Styles - Part 1: Core +
-*When:* retrieving the JSON representation of that list of styles +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/styled-map/desc-links
-target:: /req/styled-map/desc-links
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/styled-map/desc-links
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styled-map/desc-links
 test-purpose:: Verify that the implementation links correctly from a style resource to a map resource
 test-method::
 +
@@ -1381,21 +1102,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement styled map operation
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/styled-map/map-operation
-|Requirement: |/req/styled-map/map-operation
-|Test purpose: | Verify that the implementation supports retrieving maps from _OGC API - Styles_ style resources
-|Test method: | *Given:* a style correctly linking to a map resource as per /conf/styled-map/desc-links +
-*When:* retrieving a map for that style as per /conf/core +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/styled-map/map-operation
-target:: /req/styled-map/map-operation
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/styled-map/map-operation
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styled-map/map-operation
 test-purpose:: Verify that the implementation supports retrieving maps from _OGC API - Styles_ style resources
 test-method::
 +
@@ -1408,22 +1121,23 @@ test-method::
 
 === Conformance Class "PNG"
 
+[[conf_png,/conf/png]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/png
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement PNG map content
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/png/content
-|Requirement: |/req/png/content
-|Test purpose: | Verify that the implementation supports retrieving maps negotiating for PNG content
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving a PNG (`image/png`) representation of a map resource through HTTP content negotiation +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/png/content
-target:: /req/png/content
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/png/content
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png/content
 test-purpose:: Verify that the implementation supports retrieving maps negotiating for PNG content
 test-method::
 +
@@ -1436,22 +1150,23 @@ test-method::
 
 === Conformance Class "JPEG"
 
+[[conf_jpeg,/conf/jpeg]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/jpeg
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpeg
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement JPEG map content
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/jpeg/content
-|Requirement: |/req/jpeg/content
-|Test purpose: | Verify that the implementation supports retrieving maps negotiating for JPEG content
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving a JPEG (`image/jpeg`) representation of a map resource through HTTP content negotiation +
-**Then:** (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/jpeg/content
-target:: /req/jpeg/content
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/jpeg/content
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpeg/content
 test-purpose:: Verify that the implementation supports retrieving maps negotiating for JPEG content
 test-method::
 +
@@ -1464,22 +1179,23 @@ test-method::
 
 === Conformance Class "JPEG XL"
 
+[[conf_jpegxl,/conf/jpegxl]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/jpegxl
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpegxl
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement JPEG XL map content
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/jpegxl/content
-|Requirement: |/req/jpegxl/content
-|Test purpose: | Verify that the implementation supports retrieving maps negotiating for JPEG XL content
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving a JPEG XL (`image/jxl`) representation of a map resource through HTTP content negotiation +
-**Then:** (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/jpegxl/content
-target:: /req/jpegxl/content
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/jpegxl/content
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/jpegxl/content
 test-purpose:: Verify that the implementation supports retrieving maps negotiating for JPEG XL content
 test-method::
 +
@@ -1492,22 +1208,23 @@ test-method::
 
 === Conformance Class "TIFF"
 
+[[conf_tiff,/conf/tiff]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tiff
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement TIFF map content
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/tiff/content
-|Requirement: |/req/tiff/content
-|Test purpose: | Verify that the implementation supports retrieving maps negotiating for TIFF and/or GeoTIFF content
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving a TIFF (`image/tiff`) and GeoTIFF (`image/tiff; application=geotiff`) representation of a map resource through HTTP content negotiation +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/tiff/content
-target:: /req/tiff/content
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/tiff/content
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff/content
 test-purpose:: Verify that the implementation supports retrieving maps negotiating for TIFF and/or GeoTIFF content
 test-method::
 +
@@ -1520,22 +1237,23 @@ test-method::
 
 === Conformance Class "SVG"
 
+[[conf_svg,/conf/svg]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/svg
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/svg
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement SVG map content
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/svg/content
-|Requirement: |/req/svg/content
-|Test purpose: | Verify that the implementation supports retrieving maps negotiating for SVG content
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving an SVG (`image/svg+xml`) representation of a map resource through HTTP content negotiation +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/svg/content
-target:: /req/svg/content
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/svg/content
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/svg/content
 test-purpose:: Verify that the implementation supports retrieving maps negotiating for SVG content
 test-method::
 +
@@ -1548,22 +1266,23 @@ test-method::
 
 === Conformance Class "HTML"
 
+[[conf_html,/conf/html]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/html
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/html
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement HTML map content
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/html/content
-|Requirement: |/req/html/content
-|Test purpose: | Verify that the implementation supports retrieving maps negotiating for HTML content
-|Test method: | *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving an (`text/html`) HTML representation of a map resource HTTP content negotiation +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/html/content
-target:: /req/html/content
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/html/content
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/html/content
 test-purpose:: Verify that the implementation supports retrieving maps negotiating for HTML content
 test-method::
 +
@@ -1576,22 +1295,23 @@ test-method::
 
 === Conformance Class "API Operations"
 
+[[conf_api-operations,/conf/api-operations]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/api-operations
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/api-operations
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement API Operations completeness
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/api-operations/completeness
-|Requirement: |/req/api-operations/completeness
-|Test purpose: | Verify that the implementation completely and correctly describes the map resources
-|Test method: | *Given:* an API conforming to _OGC API - Common - Part 1: Core_ "Landing Page" conformance class +
-*When:* retrieving the API description +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/api-operations/completeness
-target:: /req/api-operations/completeness
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/api-operations/completeness
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/api-operations/completeness
 test-purpose:: Verify that the implementation completely and correctly describes the map resources
 test-method::
 +
@@ -1603,21 +1323,13 @@ test-method::
 ====
 
 ==== Abstract Test for Requirement API Operation identifiers
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/api-operations/operation-id
-|Requirement: |/req/api-operations/operation-id
-|Test purpose: | Verify that the implementation uses the correct API operation identifier suffixes to identify the resources defined in the Maps API Standard
-|Test method: | *Given:* an API implementation conforming to _OGC API - Common - Part 1: Core_ "Landing Page" conformance class supporting an API definition language with a concept of operation identifiers +
-*When:* retrieving the API description +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/api-operations/operation-id
-target:: /req/api-operations/operation-id
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/api-operations/operation-id
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/api-operations/operation-id
 test-purpose:: Verify that the implementation uses the correct API operation identifier suffixes to identify the resources defined in the Maps API Standard
 test-method::
 +
@@ -1630,22 +1342,23 @@ test-method::
 
 === Conformance Class "CORS"
 
+[[conf_cors,/conf/cors]]
+[conformance_class]
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/cors
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cors
+classification:: Target Type:Web API
+====
+
 ==== Abstract Test for Requirement CORS
-[cols=">20h,<80d",width="100%"]
-|===
-|Test id: |/conf/cors/cors
-|Requirement: |/req/cors/cors
-|Test purpose: | Verify that the implementation completely and correctly implement CORS
-|Test method: | *Given:* an API conforming to _OGC API - Common - Part 1: Core_ "Landing Page" conformance class +
-*When:* retrieving the API description +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-|===
+
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/cors/cors
-target:: /req/cors/cors
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/cors/cors
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cors/cors
 test-purpose:: Verify that the implementation completely and correctly implement CORS
 test-method::
 +
