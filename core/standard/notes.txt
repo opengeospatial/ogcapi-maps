@@ -2,8 +2,6 @@ annex_examples.adoc
 
 compact uris appear to break the compiler. Solution for HTML was to use hex character codes. However, PDF results in broken hyperlinks.
 
-check source blocks for link:++
-
 Section 10.3 first paragraph "The OGC API Common Standard describes a mechanism to expose service-metadata for the API. See: https://docs.opengeospatial.org/DRAFTS/19-072.html#service-metadata-examples"
 
 changed Req 60 identifier from  /req/api-definition/operation-id to /req/api-operations/operation-id so that it is consistent with OGC-NA policy.
