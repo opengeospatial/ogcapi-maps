@@ -34,7 +34,7 @@ include::requirements/tilesets/REQ_desc-links.adoc[]
 .Fragment of a collection description document with a links array with one item of the array pointing to a list of map tilesets.
 =================
 [source,JSON]
-
+----
 {
     "links": [
     ...
@@ -45,6 +45,7 @@ include::requirements/tilesets/REQ_desc-links.adoc[]
     }
   ]
 }
+----
 =================
 
 === Map Tileset

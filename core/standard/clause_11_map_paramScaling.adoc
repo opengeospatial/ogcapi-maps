@@ -79,10 +79,12 @@ number of physical meters, based on the `cos(lat)` scaling mentioned above, and 
 
 For slightly more accurate calculations, the WGS84 ellipsoid, can be taken into account using the following polynomial equations (from https://en.wikipedia.org/wiki/Geographic_coordinate_system#Length_of_a_degree[Wikipedia]):
 
-```
+[%unnumbered%]
+[source]
+----
 metersPerDegLat = 111132.92 - 559.82 * cos(2*lat) + 1.175 * cos(4*lat) - 0.0023 * cos(6*lat)
 metersPerDegLon = 111412.84 * cos(lat) - 93.5 * cos(3*lat) + 0.118 * cos(5*lat)
-```
+----
 
 If maintaining the aspect ratio between physical units proves too difficult, implementations could fall back to maintaining the CRS unit aspect ratio instead. This way they ensure that
 `(maxx - minx)/(maxy - miny) = width / height`, where `minx, miny` are the lower bounds of the output CRS unit space in the returned map,
@@ -119,8 +121,8 @@ include::recommendations/scaling/REC_max-width-height.adoc[]
 
 NOTE: The attributes `maxWidth`, `maxHeight` and `maxPixels` are intended to limit server workload, by providing limitations in the size of the output. If the `width` and `height` limits are defined in relation to the size of a common device screen, Maps API implementations should consider that new devices are being built with more and more pixels and a reasonable limit from the current year may be too restrictive for devices emerging in the next year.
 
-Example of the OpenAPI service metadata section:
-----
+.Example of the OpenAPI service metadata section
+=================
 info:
   title: My Web API
   version: 1.0.0
@@ -131,4 +133,4 @@ info:
       maxWidth: 2048
       maxHeight: 2048
       maxPixels: 10000000
-----
+=================

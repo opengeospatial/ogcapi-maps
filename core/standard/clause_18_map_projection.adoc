@@ -42,19 +42,21 @@ include::requirements/projection/REQ_response-headers.adoc[]
 
 Example of a request and associated response headers:
 
-```
+.Example of a request
+=================
 /map?
    crs-proj-method=[epsg-method:9840]&
    crs-proj-center=Lat(30),Lon(40)&
    crs-datum=[epsg-datum:6326]
-```
+=================
 
-```
+.Example of associated response headers
+=================
 Content-Crs-Method: <https://www.opengis.net/def/method/EPSG/0/9840>
 Content-Crs-Method-Params: <https://www.opengis.net/def/parameter/EPSG/0/8801>=30; <https://www.opengis.net/def/parameter/EPSG/0/8802>=40
 Content-Crs-Datum: <https://www.opengis.net/def/datum/EPSG/0/6326>
 Content-Bbox: -1000,-800,1000,800
-```
+=================
 
 ==== Response
 
