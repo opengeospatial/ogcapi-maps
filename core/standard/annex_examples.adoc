@@ -11,7 +11,7 @@ The server is free to respond with any `bbox` and any `width` and `height`.
 In this case the server default behavior is to render the whole of Great Britain in a 631x1024 pixels canvas.
 
 [#img_xmp_map_no_param,reftext='{figure-caption} {counter:figure-num}']
-.Great Britain data served as a map without specifying any parameter. From: https://www.ordnancesurvey.co.uk/products/os-open-map-local[OS OpenMap - Local], by the Ordnance Survey.
+.Great Britain data served as a map without specifying any parameter. From: https://www.ordnancesurvey.co.uk/products/os-open-map-local[Ordnance Survey OS OpenMap - Local product]. Contains OS data © Crown copyright and database right 2023.
 image::images/xmp_map_no_param.png[width=300,align="center"]
 
 The headers of the response provide additional information on the bounding box (`Content-Bbox`) and the CRS of the image (`Content-Crs` is omitted here, indicating the default CRS84).
@@ -101,7 +101,7 @@ The server interprets the coordinates as CRS84 and decides to respond with a low
 The response is shown in the following image.
 
 [#xmp_map_center,reftext='{figure-caption} {counter:figure-num}']
-.Map of OS OpenMap - Local close to The O2 dome, specifying `center` at 51.5°N, 0°E
+.Map of OS OpenMap - Local close to The O2 dome, specifying `center` at 51.5°N, 0°E. Contains OS data © Crown copyright and database right 2023.
 image::images/xmp_map_center.png[width=600,align="center"]
 
 The headers of the response provide additional information on the bounding box (`Content-Bbox`).
@@ -149,7 +149,7 @@ but requests a map for a 1:8000 scale:
 https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512&scale-denominator=8000
 
 [#xmp_map_center_scale8000,reftext='{figure-caption} {counter:figure-num}']
-.Map of OS OpenMap - Local centered on The O2 dome at 1:8000 scale using `scale-denominator`
+.Map of OS OpenMap - Local centered on The O2 dome at 1:8000 scale using `scale-denominator`. Contains OS data © Crown copyright and database right 2023.
 image::images/xmp_map_center_scale_8000.png[width=280,align="center"]
 
 The server responded with the same `width` and `height` (512x512 pixels).
@@ -158,19 +158,19 @@ The headers of the response provide additional information on the bounding box o
 Clients can easily zoom in and out by simply changing the `scale-denominator` parameter as in the following images at different scales:
 
 [#xmp_map_center_scale12000,reftext='{figure-caption} {counter:figure-num}']
-.Map of OS OpenMap - Local centered on The O2 dome https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512&scale-denominator=12000[at 1:12,000 scale] using `scale-denominator`
+.Map of OS OpenMap - Local centered on The O2 dome https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512&scale-denominator=12000[at 1:12,000 scale] using `scale-denominator`. Contains OS data © Crown copyright and database right 2023.
 image::images/xmp_map_center_scale_12000.png[width=280,align="center"]
 
 [#xmp_map_center_scale20000,reftext='{figure-caption} {counter:figure-num}']
-.Map of OS OpenMap - Local centered on The O2 dome https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512&scale-denominator=20000[at 1:20,000 scale] using `scale-denominator`
+.Map of OS OpenMap - Local centered on The O2 dome https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512&scale-denominator=20000[at 1:20,000 scale] using `scale-denominator`. Contains OS data © Crown copyright and database right 2023.
 image::images/xmp_map_center_scale_20000.png[width=280,align="center"]
 
 [#xmp_map_center_scale30000,reftext='{figure-caption} {counter:figure-num}']
-.Map of OS OpenMap - Local centered on The O2 dome https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512&scale-denominator=30000[at 1:30,000 scale] using `scale-denominator`
+.Map of OS OpenMap - Local centered on The O2 dome https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512&scale-denominator=30000[at 1:30,000 scale] using `scale-denominator`. Contains OS data © Crown copyright and database right 2023.
 image::images/xmp_map_center_scale_30000.png[width=280,align="center"]
 
 [#xmp_map_center_scale50000,reftext='{figure-caption} {counter:figure-num}']
-.Map of OS OpenMap - Local centered on The O2 dome https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512&scale-denominator=50000[at 1:50,000 scale] using `scale-denominator`
+.Map of OS OpenMap - Local centered on The O2 dome https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&height=512&scale-denominator=50000[at 1:50,000 scale] using `scale-denominator`. Contains OS data © Crown copyright and database right 2023.
 image::images/xmp_map_center_scale_50000.png[width=280,align="center"]
 
 // page break to keep request & response together in PDF
@@ -181,7 +181,7 @@ A rectangular image could be “forced” by also specifying the width of the im
 https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map?center=0,51.5&scale-denominator=50000&width=1024&height=512
 
 [#xmp_map_center_scale_hw_1024x512,reftext='{figure-caption} {counter:figure-num}']
-.Wider 1024x512 map of OS OpenMap - Local centered on the O2 dome at 1:50,000 scale
+.Wider 1024x512 map of OS OpenMap - Local centered on the O2 dome at 1:50,000 scale. Contains OS data © Crown copyright and database right 2023.
 image::images/xmp_map_center_scale_hw_1024x512.png[width=600,align="center"]
 
 For this last request, specifying both the `width` and `height`, the `center`, the `scale-denominator`, combined with the fact that the default value of `mm-per-pixel`
