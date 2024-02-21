@@ -315,6 +315,7 @@ how to describe the extent of multidimensional datasets, including the details o
 
 An example JSON collection description response for ERA5 relative humidity is below:
 
+[%unnumbered%]
 [source,JSON]
 ----
 {
