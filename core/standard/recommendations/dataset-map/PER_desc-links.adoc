@@ -1,6 +1,15 @@
 [[per_dataset-map_desc-links]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Permission {counter:per-id}* |*/rec/dataset-map/desc-links*
 ^|A |collections in the endpoint `/collections/{collectionId}` can be considered geospatial resources that can be exposed as maps
 |===
+////
+
+[permission]
+====
+[%metadata]
+identifier:: /per/dataset-map/desc-links
+part:: Collections in the endpoint `/collections/{collectionId}` can be considered geospatial resources that can be exposed as maps
+====
