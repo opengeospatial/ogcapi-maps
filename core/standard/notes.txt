@@ -7,3 +7,6 @@ check source blocks for link:++
 Section 10.3 first paragraph "The OGC API Common Standard describes a mechanism to expose service-metadata for the API. See: https://docs.opengeospatial.org/DRAFTS/19-072.html#service-metadata-examples"
 
 changed Req 60 identifier from  /req/api-definition/operation-id to /req/api-operations/operation-id so that it is consistent with OGC-NA policy.
+
+
+Requirements class identifier https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/temporal-partitioning changed to to https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime to be consistent with requirements and conformance class.
