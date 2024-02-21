@@ -1,8 +1,0 @@
-annex_examples.adoc 
-
-compact uris appear to break the compiler. Solution for HTML was to use hex character codes. However, PDF results in broken hyperlinks.
-
-changed Req 60 identifier from  /req/api-definition/operation-id to /req/api-operations/operation-id so that it is consistent with OGC-NA policy.
-
-
-Requirements class identifier https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/temporal-partitioning changed to to https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime to be consistent with requirements and conformance class.
