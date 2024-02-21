@@ -43,8 +43,8 @@ All questions regarding this submission should be directed to the editor or the 
 [cols=",",options="header",]
 |===
 |Name                                  |Affiliation
-|Joan Masó _(editor)_                  |UAB-CREAF
-|Jérôme Jacovella-St-Louis _(editor)_  |Ecere
+|Joan Masó _(editor)_                  |Universitat Autònoma de Barcelona (CREAF)
+|Jérôme Jacovella-St-Louis _(editor)_  |Ecere Corporation
 |Jeff Harrison                         |US Army Geospatial Center
 |Satish Sankaran                       |Esri
 |===

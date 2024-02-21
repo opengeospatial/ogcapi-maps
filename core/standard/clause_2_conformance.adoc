@@ -308,7 +308,7 @@ The _API Operations_ requirements class specifies requirements to fully describe
 This requirements class is intended to be used in conjunction with other conformance classes for a specific API definition language and/or version, such as the OpenAPI 3.0 requirement class defined in
 _OGC API - Common - Part 1: Core_, or another eventual requirement class for OpenAPI 3.1.
 
-*<<rc_api_cors>>*  (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cors)
+*<<rc_cors>>*  (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cors)
 
 The _CORS_ requirements class specifies a requirement to implement CORS to support JavaScript clients (e.g. Web Browser applications) from a domain different from the OGC API - Maps endpoint.
 
