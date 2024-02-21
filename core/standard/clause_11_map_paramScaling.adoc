@@ -123,6 +123,8 @@ NOTE: The attributes `maxWidth`, `maxHeight` and `maxPixels` are intended to lim
 
 .Example of the OpenAPI service metadata section
 =================
+[source]
+----
 info:
   title: My Web API
   version: 1.0.0
@@ -133,4 +135,5 @@ info:
       maxWidth: 2048
       maxHeight: 2048
       maxPixels: 10000000
+----
 =================
