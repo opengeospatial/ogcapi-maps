@@ -1,6 +1,15 @@
 [[rec_scaling_symbology]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/scaling/symbology*
 ^|A |An implementation rendering dynamical maps with styling capabilities SHOULD consider the requested or computed scale in applying scale-dependent symbology rules.
 |===
+////
+
+[recommendation]
+====
+[%metadata]
+identifier:: /rec/scaling/symbology
+part:: An implementation rendering dynamical maps with styling capabilities SHOULD consider the requested or computed scale in applying scale-dependent symbology rules.
+====

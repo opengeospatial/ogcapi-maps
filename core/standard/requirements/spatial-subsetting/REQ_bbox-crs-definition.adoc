@@ -1,4 +1,5 @@
 [[req_spatial-subsetting_bbox-crs]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/spatial-subsetting/bbox-crs*
@@ -20,5 +21,30 @@
 ^|E |The CRS expressed as URIs or as safe CURIEs SHALL be supported.
 ^|F |If the `bbox` parameter is not used, the `bbox-crs` SHALL be ignored.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: /req/spatial-subsetting/bbox-crs
+part:: The map retrieval operation SHALL support a parameter `bbox-crs` with the characteristics defined in the OpenAPI Specification 3.0 fragment
++
+[source,YAML]
+----
+  bbox-crs:
+    name: bbox-crs
+    in: query
+    description: A URI (or safe CURIE) of the coordinate reference system for the coordinates specified in the `bbox` parameter. The valid values are [OGC:CRS84], the native (storage) CRS (if different), or the output `crs` (if specified).
+    required: false
+    schema:
+      type: string
+    example: https://www.opengis.net/def/crs/OGC/1.3/CRS84
+----
+part:: For Earth centric data, the implementation SHALL support https://www.opengis.net/def/crs/OGC/1.3/CRS84 as a value.
+part:: If the bbox-crs is not indicated https://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be assumed.
+part:: If the storage (native) CRS is known,  the storage CRS as a value SHALL be supported. Other conformance classes may allow additional values (see crs parameter definition).
+part:: The CRS expressed as URIs or as safe CURIEs SHALL be supported.
+part:: If the `bbox` parameter is not used, the `bbox-crs` SHALL be ignored.
+====
 
 NOTE: A CURIE {authority}[-{objectType}]:{id} would correspond to the following OGC URI: https://www.opengis.net/def/{objectType}/{authority}/0/{id}. If -{objectType} is missing, the default object type is _crs_.

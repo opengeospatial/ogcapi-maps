@@ -1,4 +1,5 @@
 [[rec_core_legend-thumbnail-style]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/core/legend-thumbnail-style*
@@ -7,3 +8,14 @@
 ^|C |If a thumbnail is available for a style of the map, the server SHOULD advertise the thumbnail in the list of styles (for each style element) or in the originating resource for the map by providing an extra link with a relation type `rel`=`preview`.
 ^|D |If one or more style resources are available to apply the style to the map, the server SHOULD advertise them in the list of styles (for each style element) or in the originating resource for the map by providing extra links with a relation type `rel`=`stylesheet`.
 |===
+////
+
+[recommendation]
+====
+[%metadata]
+identifier:: /rec/core/legend-thumbnail-style
+part:: If a legend representing the symbols, lines and colors in the style applied to the map is available for a style of the map, or for the default map resource, the server SHOULD advertise the legend in the list of styles (for each style element) or in the originating resource for the map (e.g., the landing page or collection description), by providing an extra link with a relation type `rel`=`https://www.opengis.net/def/rel/ogc/1.0/legend`.
+part:: The server SHOULD support `minScaleDenominator` and `maxScaleDenominator` query parameters for the legend resource specifying the range of scales applicable to the style. Without these parameters the legend is applicable to all scales. 
+part:: If a thumbnail is available for a style of the map, the server SHOULD advertise the thumbnail in the list of styles (for each style element) or in the originating resource for the map by providing an extra link with a relation type `rel`=`preview`.
+part:: If one or more style resources are available to apply the style to the map, the server SHOULD advertise them in the list of styles (for each style element) or in the originating resource for the map by providing extra links with a relation type `rel`=`stylesheet`.
+====

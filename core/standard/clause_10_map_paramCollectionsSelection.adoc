@@ -1,6 +1,6 @@
 [[rc_collections-selection]]
 
-== Requirement Class "Collection Selection"
+== Requirements Class "Collection Selection"
 
 === Overview
 
@@ -43,6 +43,6 @@ If the value of the parameter `collections` has a wrong format or combines one o
 
 === Service Metadata
 
-The OGC API Common Standard describes a mechanism to expose service-metadata for the API. See: https://docs.opengeospatial.org/DRAFTS/19-072.html#service-metadata-examples
+The https://docs.ogc.org/is/19-072/19-072.html[OGC API - Common - Part 1: Core] Standard describes a mechanism to expose service-metadata for the API. See: https://docs.ogc.org/is/19-072/19-072.html#service-metadata-examples
 
 include::recommendations/collections-selection/REC_maxcollections.adoc[]

@@ -1,7 +1,17 @@
 [[req_spatial-subsetting_center-definition]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/spatial-subsetting/center-definition*
 ^|A |A `center` parameter SHALL be supported to specify the center of the subset of the map to include with coordinates in the CRS specified in the `center-crs` parameter value or in https://www.opengis.net/def/crs/OGC/1.3/CRS84 if the `center-crs` parameter is missing.
 ^|B |If the `center` parameter is used together with the `bbox` and/or with a `subset` parameter including any of the dimensions corresponding to those of the map bounding box, the server SHALL return a 400 client error.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: /req/spatial-subsetting/center-definition
+part:: A `center` parameter SHALL be supported to specify the center of the subset of the map to include with coordinates in the CRS specified in the `center-crs` parameter value or in https://www.opengis.net/def/crs/OGC/1.3/CRS84 if the `center-crs` parameter is missing.
+part:: If the `center` parameter is used together with the `bbox` and/or with a `subset` parameter including any of the dimensions corresponding to those of the map bounding box, the server SHALL return a 400 client error.
+====

@@ -1,4 +1,5 @@
 [[req_general-subsetting_subset-definition]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/general-subsetting/subset-definition*
@@ -26,6 +27,37 @@
 ^|F |Multiple subset parameters SHALL be interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.
 ^|  |^1^ Example: `subset=Lat(-90:90)&subset=Lon(-180:180)&subset=atm_pressure_hpa(500)` is equivalent to `subset=Lat(-90:90),Lon(-180:180),atm_pressure_hpa(500)`
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: /req/general-subsetting/subset-definition
+part:: A `subset` parameter with the following characteristics (using an Augmented Backus Naur Form (ABNF) fragment) SHALL be supported:
++
+[source,ABNF]
+----
+  SubsetSpec:       "subset"=axisName(intervalOrSingle)
+  axisName:         {text}
+  intervalOrSingle: interval \| single
+  interval:         low : high
+  low:              single \| *
+  high:             single \| *
+  single:            {number} \| "{text}"
+
+  Where:
+     \" = double quote = ASCII code 0x42,
+     {number} is an integer or floating-point number, and
+     {text} is some general ASCII text (such as a time and date notation in ISO 8601).
+----
+part:: Any name of the _additional_ dimensions in the extent of the collection SHALL be supported as axis name.
+part:: A 400 error status code SHALL be returned if an axis name does not correspond to the name of one of the _additional_ dimensions in the extent of the collection.
+part:: If the _intervalOrPoint_ values fall entirely outside the range of valid values defined for the identified axis, a 204 status code SHALL be returned.
+part:: For an axis that can wrap around, a _low_ value greater than _high_ SHALL be supported to indicate an extent crossing that wrapping point.
+part:: Multiple subset parameters SHALL be interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.
++
+^1^ Example: `subset=Lat(-90:90)&subset=Lon(-180:180)&subset=atm_pressure_hpa(500)` is equivalent to `subset=Lat(-90:90),Lon(-180:180),atm_pressure_hpa(500)`
+====
 
 NOTE: When the intervalOrPoint values fall partially outside of the range of valid values defined by the CRS for the identified axis, the service is expected to return the non-empty portion of the resource resulting from the subset.
 

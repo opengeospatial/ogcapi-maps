@@ -1,5 +1,5 @@
 [[rc_core]]
-== Requirement Class "Core"
+== Requirements Class "Core"
 
 [[maps-core-overview]]
 === Overview
@@ -9,7 +9,7 @@ include::requirements/requirements_class_core.adoc[]
 The core requirements class specifies a map resource. This is a resource that represents the geospatial data as a rendered map. Requesting a map resource, as defined in the core, results in retrieving a generic map as a graphical representation of the data in the repository being accessed via the API endpoint. When using an implementation of the core requirements class, the representation is not constrained in any way by the client. Therefore, the server is free to return a total or a partial representation of the resource at an arbitrary size. Additional Maps API requirement classes add query parameters to personalize the server behavior to the client needs. These requirement classes define specific parameters that allow the client to control the map size and resolution of the map (width, height, bounding box and CRS) as well as the background of the map. An additional requirement class defines how a map resource can be retrieved as tiles by applying the OGC API - Tiles.
 
 A map resource can be obtained from an arbitrary geospatial resource by adding `/map` to the resource URI. The Maps API Core does not specify to which resources `/map` is applicable. 
-However, a list of common paths to resources exposed by the API, where maps can commonly be obtained is presented in the following table. The <<rc_collection-map, Collection Maps]>>, <<rc_dataset-map,Dataset maps>> and <<rc_styled-map, Styled Maps>> requirements classes define some of these possibilities.
+However, a list of common paths to resources exposed by the API, where maps can commonly be obtained is presented in the following table. The <<rc_collection-map, Collection Maps>>, <<rc_dataset-map,Dataset maps>> and <<rc_styled-map, Styled Maps>> requirements classes define some of these possibilities.
 
 [#Common-map-resources-in-the-api,reftext='{table-caption} {counter:table-num}']
 .Common map resources in a geospatial API
@@ -38,6 +38,8 @@ include::requirements/core/REQ_map-response.adoc[]
 
 Below is an example of the successful HTTP response headers describing a PNG image with 1500 columns and 616 rows in the datum WGS84 and projection UTM zone 31N centered in the Barcelona area.
 
+[%unnumbered%]
+[source]
 ----
 HTTP/1.1 200 OK
 Content-Type: image/png
@@ -52,6 +54,9 @@ Content-Length: 1198247
 image::images/barcelona.png[width=600,align="center"]
 
 Below is another example of the successful HTTP response headers describing a PNG image in the datum WGS84 and lat/long centered in the Barcelona area.
+
+[%unnumbered%]
+[source]
 ----
 HTTP/1.1 200 OK
 Content-Type: image/png
@@ -85,10 +90,12 @@ include::requirements/core/REQ_conformance-success.adoc[]
 
 If the server declares conformity also to _OGC API - Common - Part 1: Core_ or to _OGC API - Features - Part 1: Core_, then the OGC API requirements for declaring conformance, such as the use of the `/conformance` resource, must be considered. In the JSON format, the conformance resource is an array of links following the link schema defined in _OGC API - Common - Part 1: Core_ or in _OGC API - Features - Part 1: Core_. Below is an example fragment of a conformance information page of an API implementation conformant to _OGC API - Common_ and _OGC API - Maps_.
 
+An example Conformance Information Page fragment is below:
+
 [[ConformancePageMapsCore]]
-.Conformance Information Page fragment
-=================
+[%unnumbered%]
 [source,JSON]
+----
 {
   "conformsTo": [
     "https://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core",
@@ -96,4 +103,4 @@ If the server declares conformity also to _OGC API - Common - Part 1: Core_ or t
     "https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core"
   ]
 }
-=================
+----

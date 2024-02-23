@@ -1,7 +1,17 @@
 [[req_projection-crs-proj-method]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/projection/crs-proj-method*
 ^|A |A `crs-proj-method` parameter supporting selection of a projection operation method SHALL be supported.
 ^|B |CURIEs in addition to URI to specify the projection method SHALL be supported.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: /req/projection/crs-proj-method
+part:: A `crs-proj-method` parameter supporting selection of a projection operation method SHALL be supported.
+part:: CURIEs in addition to URI to specify the projection method SHALL be supported.
+====

@@ -1,6 +1,15 @@
 [[rec_dataset-map_geodata-selection]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/dataset-map/geodata-selection*
 ^|A |When it is possible and sensible, all geospatial data resources (`/collections`) supporting the requested CRS SHOULD be represented in the map response.
 |===
+////
+
+[recommendation]
+====
+[%metadata]
+identifier:: /rec/dataset-map/geodata-selection
+part:: When it is possible and sensible, all geospatial data resources (`/collections`) supporting the requested CRS SHOULD be represented in the map response.
+====

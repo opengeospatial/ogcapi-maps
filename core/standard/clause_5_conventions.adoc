@@ -40,11 +40,11 @@ Used in combination with _OGC API - Styles - Part 1: Core_, other link relation 
 
 * **https://www.opengis.net/def/rel/ogc/1.0/styles**: The target IRI points to a resource that describes how to provide styles of the context resource that internally can contain links to maps.
 
-Used in combination with _OGC API - Features - Part 1: Core_ or _OGC API - Common - Part 1: Core_, other link relation types will be used, including:
+Used in combination with _OGC API - Features - Part 1: Core_ or _OGC API - Common - Part 1: Core_, other link relation types will be used, including:
 
 * **https://www.opengis.net/def/rel/ogc/1.0/conformance**: Refers to a resource that identifies the specifications that the link's context conforms to.
 
-Used in combination with _OGC API - Features Part 1: Core_ or _OGC API - Common Part 2: Geospatial data_, other link relation types will be used, including:
+Used in combination with _OGC API - Features Part 1: Core_ or _OGC API - Common - Part 2: Geospatial data_, other link relation types will be used, including:
 
 * **https://www.opengis.net/def/rel/ogc/1.0/data**: Refers to the list of collections available for a dataset.
 

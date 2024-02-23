@@ -1,4 +1,5 @@
 [[rc_table_datetime]]
+////
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Temporal Subsetting*
@@ -6,3 +7,19 @@
 |Target type |Web API
 |Dependency |https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 |===
+////
+
+[requirements_class]
+.Requirements Class 'Date and Time'
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime
+subject:: Web API
+inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+requirement:: /req/datetime/datetime-definition
+requirement:: /req/datetime/datetime-response
+requirement:: /req/datetime/subset-definition
+requirement:: /req/datetime/subset-response
+requirement:: /req/datetime/axis
+requirement:: /req/datetime/map-success
+====

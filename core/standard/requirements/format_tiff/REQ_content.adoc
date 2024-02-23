@@ -1,4 +1,5 @@
 [[req_tiff_content]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/tiff/content*
@@ -6,5 +7,15 @@
 ^|B |The TIFF file SHALL represent colors by using an image palette or RGB combination.
 ^|C |All maps representing parts of the same resource or resources and using the same style SHALL follow the same portrayal rules or represent data with the same reference and units of measure.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: /req/tiff/content
+part:: Every 200-response of the server with the media type image/tiff SHALL be a TIFF document representing only one map.
+part:: The TIFF file SHALL represent colors by using an image palette or RGB combination.
+part:: All maps representing parts of the same resource or resources and using the same style SHALL follow the same portrayal rules or represent data with the same reference and units of measure.
+====
 
 NOTE: TIFF is an ideal support for geospatial grid data values in its original format. This is not allowed for OGC API - Maps and it is expected that OGC API endpoints dealing with coverages will support this mode.

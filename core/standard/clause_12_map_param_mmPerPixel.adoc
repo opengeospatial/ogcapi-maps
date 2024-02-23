@@ -1,5 +1,5 @@
 [[rc_display-resolution]]
-== Requirement Class "Display Resolution"
+== Requirements Class "Display Resolution"
 
 === Overview
 

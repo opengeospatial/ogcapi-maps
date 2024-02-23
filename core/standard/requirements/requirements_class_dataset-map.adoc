@@ -1,4 +1,5 @@
 [[rc_table_dataset]]
+////
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Dataset Map*
@@ -8,3 +9,19 @@
 https://www.opengis.net/spec/ogcapi-common-1/1.0/req/core
 https://www.opengis.net/spec/ogcapi-common-1/1.0/req/landing-page
 |===
+////
+
+[requirements_class]
+.Requirements Class 'Dataset Map'
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map
+subject:: Web API
+inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+inherit:: https://www.opengis.net/spec/ogcapi-common-1/1.0/req/core
+inherit:: https://www.opengis.net/spec/ogcapi-common-1/1.0/req/landing-page
+requirement:: /req/dataset-map/landingpage
+requirement:: /req/dataset-map/desc-extent
+requirement:: /req/dataset-map/desc-crs
+requirement:: /req/dataset-map/operation
+====

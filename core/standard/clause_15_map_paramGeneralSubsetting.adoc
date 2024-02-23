@@ -1,5 +1,5 @@
 [[rc_general-subsetting]]
-== Requirement Class "General Subsetting"
+== Requirements Class "General Subsetting"
 
 === Overview
 

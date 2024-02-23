@@ -1,4 +1,5 @@
 [[req_scaling_width-definition]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/scaling/width-definition*
@@ -25,3 +26,33 @@
 2+|
 ^1^ Service metadata may be provided as an extension of the `info` section of the Open API document as indicated in https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core], Annex B.4 and discussed in the <<ScalingServiceMetadata, last subsection of the Maps API scaling requirements class section>>.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: /req/scaling/width-definition
+part:: The map operation SHALL support a parameter `width` with the characteristics defined in the OpenAPI Specification 3.0 fragment:
++
+[source,YAML]
+----
+  width:
+    name: width
+    in: query
+    description:
+      Width of the viewport in pixel units to present the response (the map subset).
+    required: false
+    style: form
+    schema:
+      type: number
+----
+part:: The `width` value SHALL be interpreted as the horizontal size (columns) of the viewport where the response will be presented in pixel units (number of pixels).
+part:: An error SHALL be returned if the `width` number is not a positive integer number.
+part:: An error SHALL be returned if the value of the `width` exceeds the `maxWidth` property specified in the `x-OGC-limits.maps` object included in the service metadata^1^.
+part:: An error SHALL be returned if the value of the `width` (specified or calculated) times `height` (specified or calculated) exceeds a `maxPixels` property from a `x-OGC-limits.maps` object included in the service metadata^1^.
+part:: An error SHALL be returned if the `width` parameter is used together with the `bbox` (or `subset` for spatial dimensions) as well as the `scale-denominator` parameter.
+part:: An error SHALL be returned if the `width` parameter is used together with the `scale-denominator` parameter and the implementation does not also support the "Subsetting" requirement class.
+part:: When the `width` parameter is omitted, the implementation SHALL use an appropriate width which accurately reflects the default or requested scale established as the ratio between the horizontal dimension of the viewport and the corresponding size of the physical world, specifically for the local subset (bounding box) of the map being returned, and taking into consideration the default (0.28 mm/pixel) or specified display resolution (`mm-per-pixel`).
++
+^1^ Service metadata may be provided as an extension of the `info` section of the Open API document as indicated in https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core], Annex B.4 and discussed in the <<ScalingServiceMetadata, last subsection of the Maps API scaling requirements class section>>. 
+====

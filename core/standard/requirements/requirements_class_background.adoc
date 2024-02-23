@@ -1,4 +1,5 @@
 [[rc_table_background]]
+////
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Background*
@@ -6,3 +7,16 @@
 |Target type |Web API
 |Dependency |https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 |===
+////
+
+[requirements_class]
+.Requirements Class 'Background'
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background
+subject:: Web API
+inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+requirement:: /req/background/bgcolor-definition
+requirement:: /req/background/transparent-definition
+requirement:: /req/background/map-success 
+====

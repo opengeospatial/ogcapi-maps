@@ -1,4 +1,5 @@
 [[req_datetime_subset-definition]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/datetime/subset-definition*
@@ -25,6 +26,37 @@
 ^|F |Multiple `subset` parameters SHALL be interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.
 ^|  |^1^ Example: `subset=Lat(-90:90)&subset=Lon(-180:180)&subset=time("2018-02-12T23:20:52Z")` is equivalent to `subset=Lat(-90:90),Lon(-180:180),time("2018-02-12T23:20:52Z")`
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: /req/datetime/subset-definition
+part:: The `subset` parameter SHALL have the following characteristics (using an Augmented Backus Naur Form (ABNF) fragment):
++
+[source,ABNF]
+----
+  SubsetSpec:       "subset"="time"(intervalOrSingle)
+  intervalOrSingle: interval \| single
+  interval:         low : high
+  low:              single \| *
+  high:             single \| *
+  single:            {number} \| "{text}"
+
+  Where:
+     \" = double quote = ASCII code 0x42,
+     {number} is an integer or floating-point number, and
+     {text} is some general ASCII text (such as a time and date notation in ISO 8601).
+----
+part:: The implementation SHALL support an axis name "time".
+part:: The implementation SHALL return a 400 status code if the axis name is not "time" and is not recognized in the context of another requirements class.
+part:: If the intervalOrPoint values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code SHALL be returned
+part:: Coordinates SHALL be interpreted as values for the named axis of the CRS specified in the temporal extent, or Gregorian UTC time (as specified in RFC 3339) if it is not specified in the temporal extent.
+part:: Multiple `subset` parameters SHALL be interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.
++
+^1^ Example: `subset=Lat(-90:90)&subset=Lon(-180:180)&subset=time("2018-02-12T23:20:52Z")` is equivalent to `subset=Lat(-90:90),Lon(-180:180),time("2018-02-12T23:20:52Z")`
+====
+
 
 NOTE: When the intervalOrPoint values fall partially outside of the range of valid values defined by the CRS for the identified axis, the service is expected to return the non-empty portion of the resource resulting from the subset.
 

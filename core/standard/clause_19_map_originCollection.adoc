@@ -1,5 +1,5 @@
 [[rc_collection-map]]
-== Requirement Class "Collection Map"
+== Requirements Class "Collection Map"
 
 === Overview
 
@@ -43,7 +43,8 @@ include::recommendations/collection-map/REC_storage-epoch.adoc[]
 .Fragment of a collection with a links array with one item of the array pointing to a map.
 =================
 [source,JSON]
-
+----
+{
   "id": "buildings",
   "title": "Buildings in the city of Bonn",
   "description": "This collection contains buildings",
@@ -68,6 +69,7 @@ include::recommendations/collection-map/REC_storage-epoch.adoc[]
     }
   ]
 }
+----
 =================
 
 NOTE: In the WMS Standard, layers have a hierarchical dependency. At the time this version of the Maps API Standard was approved, neither _OGC API - Features_ v1 nor _OGC API - Common_ defined such a concept.

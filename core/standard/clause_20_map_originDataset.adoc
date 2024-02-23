@@ -1,5 +1,5 @@
 [[rc_dataset-map]]
-== Requirement Class "Dataset Map"
+== Requirements Class "Dataset Map"
 
 === Overview
 

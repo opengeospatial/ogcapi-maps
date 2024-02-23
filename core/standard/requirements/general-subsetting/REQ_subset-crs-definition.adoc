@@ -1,4 +1,5 @@
 [[req_general-subsetting_subset-crs]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/general-subsetting/subset-crs*
@@ -20,5 +21,30 @@
 ^|E |CRS expressed as URIs or as safe CURIEs SHALL be supported.
 ^|F |If no `subset` parameter referring to an axis of the CRS is used, the `subset-crs` SHALL be ignored.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: /req/general-subsetting/subset-crs
+part:: The map operation SHALL support a parameter `subset-crs` with the characteristics defined in the OpenAPI Specification 3.0 fragment:
++
+[source,YAML]
+----
+  subset-crs:
+    name: subset-crs
+    in: query
+    description: A URI (or safe CURIE) of the coordinate reference system for the coordinates specified in the `subset` parameter. The valid values are `[OGC:CRS84]`, the native (storage) CRS (if different), or the output `crs` (if specified).
+    required: false
+    schema:
+      type: string
+    example: https://www.opengis.net/def/crs/OGC/1.3/CRS84
+----
+part:: For Earth centric data, https://www.opengis.net/def/crs/OGC/1.3/CRS84 as a value SHALL be supported.
+part:: If the `subset-crs` is not indicated https://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be assumed.
+part:: If the storage (native) CRS is known, the storage CRS as a value SHALL be supported. Other requirements classes may allow additional values (see `crs` parameter definition).
+part:: CRS expressed as URIs or as safe CURIEs SHALL be supported.
+part:: If no `subset` parameter referring to an axis of the CRS is used, the `subset-crs` SHALL be ignored.
+====
 
 NOTE: A CURIE `{authority}[-{objectType}]:{id}` would map to the following OGC URI: `https://www.opengis.net/def/{objectType}/{authority}/0/{id}`. If `-{objectType}` is missing, the default object type is _crs_.

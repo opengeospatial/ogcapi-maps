@@ -1,6 +1,15 @@
 [[rec_html_content]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/html/content*
 ^|A |A HTML encoding MAY internally use requests to maps in image/png or image/jpeg format using this OGC API, to present the map images (e.g. in img src tags) to start and as a response of the actions of the user (e.g. zoom and pan).
 |===
+////
+
+[recommendation]
+====
+[%metadata]
+identifier:: /rec/html/content
+part:: A HTML encoding MAY internally use requests to maps in image/png or image/jpeg format using this OGC API, to present the map images (e.g. in img src tags) to start and as a response of the actions of the user (e.g. zoom and pan).
+====

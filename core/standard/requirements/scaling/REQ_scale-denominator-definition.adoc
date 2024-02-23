@@ -1,4 +1,5 @@
 [[req_scaling_scale-denominator-definition]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/scaling/scale-denominator-definition*
@@ -22,3 +23,30 @@
 ^|F |If the `scale-denominator` parameter is omitted, the implementation SHALL compute it as needed (for purposes such as applying scale-dependent symbology rules) based on the default or selected dimensions, display resolution, and the spatial subset of the map to return.
 ^|G |For implementations also supporting "Subsetting", when the spatial subset of the map is not specified in the request, the `scale-denominator` value (default or specified) SHALL be used to compute this bounding box, taking into consideration the display resolution as well as the default or specified dimensions.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: /req/scaling/scale-denominator-definition
+part:: The map operation SHALL support a parameter `scale-denominator` with the characteristics defined in the OpenAPI Specification 3.0 fragment:
++
+[source,YAML]
+----
+  scale-denominator:
+    name: scale-denominator
+    in: query
+    description:
+      Number of units in the real-world corresponding to one such unit on the display.
+    required: false
+    style: form
+    schema:
+      type: number
+----
+part:: The `scale-denominator` value SHALL be interpreted as the number of real-world units corresponding to one of the same unit on the map (as printed or displayed), considering only the local subset of the map being returned, based on the selected (e.g., from display resolution requirements class) or default (0.28 mm/pixel) display resolution.
+part:: The implementation SHALL establish the correspondence between real-world units and pixel units based on the equation: _physicalMetersPerPixel_= (`mm-per-pixel` / 1000 mm/m) * `scale-denominator`, where the _physicalMetersPerPixel_ are not necessarily the same as the CRS units (even if those units are expressed in meters) for the region of that CRS consisting of the map subset being returned.
+part:: An HTTP 400 error SHALL be returned if the `scale-denominator` parameter is used together with `width` and/or `height` and the implementation does not declare conformance to the <<rc_table_spatial-subsetting, _spatial subsetting_>> requirements class (which specifies that the `width` and `height` parameters can also take on a subsetting role).
+part:: An HTTP 400 error SHALL be returned if the `scale-denominator` parameter is used together with `width` and/or `height` as well as a `bbox` (or equivalent `subset` parameter for a spatial dimension).
+part:: If the `scale-denominator` parameter is omitted, the implementation SHALL compute it as needed (for purposes such as applying scale-dependent symbology rules) based on the default or selected dimensions, display resolution, and the spatial subset of the map to return.
+part:: For implementations also supporting "Subsetting", when the spatial subset of the map is not specified in the request, the `scale-denominator` value (default or specified) SHALL be used to compute this bounding box, taking into consideration the display resolution as well as the default or specified dimensions.
+====

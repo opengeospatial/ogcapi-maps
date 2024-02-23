@@ -1,4 +1,5 @@
 [[rc_table_display-resolution]]
+////
 [cols="1,4",width="90%"]
 |===
 2+|*Requirements Class Display Resolution*
@@ -6,3 +7,15 @@
 |Target type |Web API
 |Dependency |https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 |===
+////
+
+[requirements_class]
+.Requirements Class 'Display Resolution'
+====
+[%metadata]
+identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/display-resolution
+subject:: Web API
+inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
+requirement:: /req/display-resolution/mm-per-pixel-definition
+requirement:: /req/display-resolution/map-success
+====

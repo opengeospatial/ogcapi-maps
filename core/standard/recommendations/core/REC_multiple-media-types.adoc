@@ -1,6 +1,15 @@
 [[rec_core_multiple-media-types]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/core/multiple-media-types*
 ^|A |If "image/png" and "image/jpeg" are supported at an endpoint and both are present in the HTTP "Accept" request header with the same `q` value, and no other supported output format is present with a higher `q` value, the server SHOULD select between PNG and JPEG and return the format considered optimal. Typically, PNG will be returned if there is transparency or for categorical maps where a limited number of colors are used, and JPEG otherwise.
 |===
+////
+
+[recommendation]
+====
+[%metadata]
+identifier:: /rec/core/multiple-media-types
+part:: If "image/png" and "image/jpeg" are supported at an endpoint and both are present in the HTTP "Accept" request header with the same `q` value, and no other supported output format is present with a higher `q` value, the server SHOULD select between PNG and JPEG and return the format considered optimal. Typically, PNG will be returned if there is transparency or for categorical maps where a limited number of colors are used, and JPEG otherwise.
+====

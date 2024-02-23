@@ -1,6 +1,15 @@
 [[req_datetime_map-success]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/datetime/map-success*
 ^|A |The content of that response SHALL be consistent with the requested datetime.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: /req/datetime/map-success
+part:: The content of that response SHALL be consistent with the requested datetime.
+====

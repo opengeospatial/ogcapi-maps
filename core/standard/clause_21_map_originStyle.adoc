@@ -1,5 +1,5 @@
 [[rc_styled-map]]
-== Requirement Class "Styled Maps"
+== Requirements Class "Styled Maps"
 
 === Overview
 
@@ -19,7 +19,8 @@ include::requirements/styled-map/REQ_desc-links.adoc[]
 .Fragment of a collection with a links array with one item of the array pointing to a map.
 =================
 [source,JSON]
-
+----
+{
   "id": "buildings",
   "title": "Buildings in the city of Bonn",
   "description": "This collection contains buildings",
@@ -36,6 +37,7 @@ include::requirements/styled-map/REQ_desc-links.adoc[]
     }
   ]
 }
+----
 =================
 
 === Styled Resource Map

@@ -1,5 +1,5 @@
 [[rc_orientation]]
-== Requirement Class "Orientation"
+== Requirements Class "Orientation"
 
 [[maps-orientation-overview]]
 === Overview
@@ -21,15 +21,23 @@ include::requirements/orientation/REQ_response-headers.adoc[]
 
 Example of a request and associated response headers:
 
-```
+.Example of a request
+=================
+[source]
+----
 /map?orientation=40
-```
+----
+=================
 
-```
+.Example of associated response headers
+=================
+[source]
+----
 Content-Crs: <https://www.opengis.net/def/crs/EPSG/0/3995>
 Content-Orientation: 40
 Content-Bbox: -10000,-4000,10000,4000
-```
+----
+=================
 
 ==== Response
 

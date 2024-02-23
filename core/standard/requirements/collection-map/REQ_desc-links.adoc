@@ -1,6 +1,15 @@
 [[req_collection-map_desc-links]]
+////
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/collection-map/desc-links*
 ^|A |If the API implementing the Maps API Standard has a mechanism for geospatial resources or modified geospatial resources to expose links to related aspects (e.g. feature items, metadata...), the API endpoint SHALL include a link with and with rel: `https://www.opengis.net/def/rel/ogc/1.0/map` and the href pointing to a the map resource that presents this geospatial data resource.
 |===
+////
+
+[requirement]
+====
+[%metadata]
+identifier:: /req/collection-map/desc-links
+part:: If the API implementing the Maps API Standard has a mechanism for geospatial resources or modified geospatial resources to expose links to related aspects (e.g. feature items, metadata...), the API endpoint SHALL include a link with and with rel: `https://www.opengis.net/def/rel/ogc/1.0/map` and the href pointing to a the map resource that presents this geospatial data resource.
+====
