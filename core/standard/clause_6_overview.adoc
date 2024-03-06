@@ -169,7 +169,7 @@ With the <<rc_collection-map,_Collection Map_>> requirements class, the https://
 inherited from _OGC API - Common - Part 2_ contains an `extent` property that can describe both the spatial and temporal domain of the data. In addition, the _Unified Additional Dimensions_ common building block,
 specified in the <<rc_general-subsetting,_General Subsetting_>> requirements class and used in the https://github.com/opengeospatial/ogcapi-maps/blob/master/openapi/schemas/common-geodata/extent-uad.yaml[example OpenAPI definition],
 requires that additional dimensions be described in a similar way to the temporal dimension.
-This allows providing an overall lower and upper bound (the first `interval` elevement), as well as optional sparse inner intervals where data is found along each dimension (additional `interval` elements).
+This allows providing an overall lower and upper bound (the first `interval` element), as well as optional sparse inner intervals where data is found along each dimension (additional `interval` elements).
 A `grid` property also supports the description of regular and irregular grids.
 The `resolution` (the distance between any two neighboring cells, an absolute value) and the number of cells (`cellsCount`) can be specified for each regular dimension.
 A list of `coordinates` where data is found can be specified for irregular dimensions.

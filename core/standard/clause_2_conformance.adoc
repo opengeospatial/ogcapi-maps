@@ -177,6 +177,7 @@ An example request is below:
 ----
 
 *<<rc_crs>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs)
+
 The _CRS by reference_ requirements class defines how to specify the output CRS of the map by referencing a URI (or CURIE) for a CRS definition.
 
 An example request is below:
@@ -186,6 +187,8 @@ An example request is below:
 ----
 .../map?crs=[EPSG:3031]
 ----
+
+NOTE: Every time that a URI to a CRS is required or recommended a CURIE equivalent is also valid. A CURIE {authority}[-{objectType}]:{id} would map to the following OGC URI: https://www.opengis.net/def/{objectType}/{authority}/0/{id}. If -{objectType} is missing, the default object type is `crs`.
 
 *<<rc_orientation>>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/orientation)
 The _orientation_ requirements class defines how to specify an angle (expressed in degrees) for re-orienting how the map is displayed (`orientation`).

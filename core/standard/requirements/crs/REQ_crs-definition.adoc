@@ -43,6 +43,5 @@ part:: If the spatial subsetting requirements class is supported, the `bbox-crs`
 part:: CRS expressed as URIs or as safe CURIEs SHALL be supported.
 ====
 
-NOTE: When no crs parameters are specified, please refer to the Maps API core conformance class to know about the default crs.
+NOTE: When no `crs` parameters are specified, please refer to the Maps API core conformance class to know about the default CRS.
 
-NOTE: A CURIE `{authority}[-{objectType}]:{id}` would map to the following OGC URI: `https://www.opengis.net/def/{objectType}/{authority}/0/{id}`. If `-{objectType}` is missing, the default object type is crs.

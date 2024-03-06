@@ -24,4 +24,3 @@ part:: The "Content-Bbox" coordinates SHALL be in the response CRS (indicated in
 part:: The body of a response of a successful operation SHALL contain a map in the negotiated format.
 ====
 
-NOTE: A CURIE {authority}[-{objectType}]:{id} would correspond to the following OGC URI: https://www.opengis.net/def/{objectType}/{authority}/0/{id}. If -{objectType} is missing, the default object type is _crs_.

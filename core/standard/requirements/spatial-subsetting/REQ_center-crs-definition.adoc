@@ -47,4 +47,3 @@ part:: CRS expressed as URIs or as safe CURIEs SHALL be supported.
 part:: If no `center` parameter is used, the `center-crs` SHALL be ignored.
 ====
 
-NOTE: A CURIE {authority}[-{objectType}]:{id} would map to the following OGC URI: https://www.opengis.net/def/{objectType}/{authority}/0/{id}. If -{objectType} is missing, the default object type is crs.

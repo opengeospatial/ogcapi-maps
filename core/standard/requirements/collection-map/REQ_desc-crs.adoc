@@ -18,4 +18,4 @@ part:: If the collection is available more efficiently (e.g., if it is stored in
 part:: If a `storageCrs` property is used and that is not https://www.opengis.net/def/crs/OGC/1.3/CRS84, an extent SHALL be provided in a `storageCrsExtent` property following the same schema as the extent property.
 ====
 
-NOTE: A CURIE `{authority}[-{objectType}]:{id}` would map to the following OGC URI: `https://www.opengis.net/def/{objectType}/{authority}/0/{id}`. If `-{objectType}` is missing, the default object type is _crs_.
+

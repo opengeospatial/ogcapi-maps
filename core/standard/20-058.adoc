@@ -83,6 +83,8 @@ include::annex_examples.adoc[]
 
 include::annex_ogc_wms.adoc[]
 
+include::annex_bgcolor.adoc[]
+
 ////
 Revision History should be the last annex before the Bibliography
 Bibliography should be the last annex

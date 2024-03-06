@@ -3,7 +3,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/collection-selection/maxcollections*
-^|A |The service metadata may include a maximum number of collections that can be included to create the map. Clients should not request a map with more collections than this limit and if they to, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment).
+^|A |The service metadata may include a maximum number of collections that can be included to create the map. Clients should not request a map with more collections than this limit and if they do, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment).
 
 [source,YAML]
 ----
@@ -29,7 +29,7 @@
 ====
 [%metadata]
 identifier:: /rec/collection-selection/maxcollections
-part:: The service metadata may include a maximum number of collections that can be included to create the map. Clients should not request a map with more collections than this limit and if they to, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment).
+part:: The service metadata may include a maximum number of collections that can be included to create the map. Clients should not request a map with more collections than this limit and if they do, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment).
 +
 [source,YAML]
 ----

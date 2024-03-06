@@ -13,3 +13,53 @@
 identifier:: /req/api-operations/operation-id
 part:: For API definitions with a concept of operation identifiers, the paths defined in the API definition SHALL have an operation identifier value ending with the relevant dot-separated suffix corresponding to the resource as specified in <<api-operation-id-suffixes>>.
 ====
+
+[#api-operation-id-suffixes,reftext='{table-caption} {counter:table-num}']
+.API operation identifier suffixes
+[width = "100%",options="header",cols="12%,8%,15%,53%"]
+|===
+|Origin          |Styled   |Resource       |Operation id suffixes
+|_root_          |         |Projections    |`getCustomCRSProjections`
+4+|_With the origins described in this document_
+|DataSet^5^      |         |Map^1^         |`.dataset.getMap`
+|DataSet^5^      |         |TileSetsList^4^|`.dataset.map.getTileSetsList`
+|DataSet^5^      |         |TileSet^3^     |`.dataset.map.getTileSet`
+|DataSet^5^      |         |Tile^2^        |`.dataset.map.getTile`
+|DataSet^5^      |Styled^7^|Map^1^         |`.dataset.style.getMap`
+|DataSet^5^      |Styled^7^|TileSetsList^4^|`.dataset.style.map.getTileSetsList`
+|DataSet^5^      |Styled^7^|TileSet^3^     |`.dataset.style.map.getTileSet`
+|DataSet^5^      |Styled^7^|Tile^2^        |`.dataset.style.map.getTile`
+|Collection^6^   |         |Map^1^         |`.collection.getMap`
+|Collection^6^   |         |TileSetsList^4^|`.collection.map.getTileSetsList`
+|Collection^6^   |         |TileSet^3^     |`.collection.map.getTileSet`
+|Collection^6^   |         |Tile^2^        |`.collection.map.getTile`
+|Collection^6^   |Styled^7^|Map^1^         |`.collection.style.getMap`
+|Collection^6^   |Styled^7^|TileSetsList^4^|`.collection.style.map.getTileSetsList`
+|Collection^6^   |Styled^7^|TileSet^3^     |`.collection.style.map.getTileSet`
+|Collection^6^   |Styled^7^|Tile^2^        |`.collection.style.map.getTile`
+4+|_With other potential origins_^8^
+|_other_         |         |Map^1^         |`#.getMap`
+|_other_         |         |TileSetsList^4^|`#.map.getTileSetsList`
+|_other_         |         |TileSet^3^     |`#.map.getTileSet`
+|_other_         |         |Tile^2^        |`#.map.getTile`
+|_other_         |Styled^7^|Map^1^         |`#.style.getMap`
+|_other_         |Styled^7^|TileSetsList^4^|`#.style.map.getTileSetsList`
+|_other_         |Styled^7^|TileSet^3^     |`#.style.map.getTileSet`
+|_other_         |Styled^7^|Tile^2^        |`#.style.map.getTile`
+4+|^1^ The _Map_ resource is defined in requirements class "Core".
+
+^2^ The _Tile_ resource is defined in the _OGC API - Tiles - Part 1: Core_ "Core" requirements class.
+
+^3^ The _TileSet_ resource is defined in the _OGC API - Tiles - Part 1: Core_ "TileSet" requirements class.
+
+^4^ The _TileSetsList_ resource is defined in the _OGC API - Tiles - Part 1: Core_ "TileSets List" requirements class.
+Map tilesets are defined in the _Map Tilesets_ requirements class_ and depend on _OGC API - Tiles - Part 1: Core_.
+
+^5^ The _DataSet_ origin is defined in requirements class "Dataset Maps" and depends on _OGC API - Common - Part 1: Core_.
+
+^6^ The _Collection_ origin is defined in requirements class "Collection Maps" and depends on the _Collections_ requirements class defined in _OGC API - Common - Part 2: Geospatial data_.
+
+^7^ Styled tilesets rely on the ability to list styles defined in _OGC API - Styles_.
+
+^8^ '#' represents an optional _origin_ that could be defined in another relevant standard.
+|===

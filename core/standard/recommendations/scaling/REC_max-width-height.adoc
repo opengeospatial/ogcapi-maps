@@ -3,7 +3,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/scaling/max-width-height*
-^|A |The service metadata may include a minimum and maximum width and height and product of both indicating what is the maximum values that the server will accept to create the map. Clients should not request a map subset with a width or a height greater than these limits and if they to, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment):
+^|A |The service metadata may include a maximum width and maximum height and maximum product of both indicating what are the maximum values that the server will accept to create the map. Clients should not request a map subset with a width or a height greater than these limits and if they do, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment):
 
 [source,YAML]
 ----
@@ -30,7 +30,7 @@
               Maximum  product of width and height parameter values. If absent the server imposes no limit.
             example: 4194304
 ----
-^|C |A Maps API implementation instance may specify the maximum width and height by adding a `minimum` property to the `width` and `height` parameter definition in the OpenAPI as in this OpenAPI Specification 3.0 fragment
+^|B |A Maps API implementation instance may specify the maximum width and height by adding a `maximum` property to the `width` and `height` parameter definition in the OpenAPI as in this OpenAPI Specification 3.0 fragment
 [source,YAML]
 ----
   width:
@@ -43,7 +43,7 @@
     explode: false
     schema:
       type: number
-      minimun: 2048
+      maximum: 2048
   height:
     name: height
     in: query
@@ -54,9 +54,9 @@
     explode: false
     schema:
       type: number
-      minimun: 2048
+      maximum: 2048
 ----
-^|B |In the absence of the `maxWidth` or `maxPixels`, the client will assume that there is no limit in the parameter `width`. In the absence of the `maxHeight` or `maxPixels`, the client will assume that there is no limit in the parameter `height`.
+^|C |In the absence of the `maxWidth` or `maxPixels`, the client will assume that there is no limit in the parameter `width`. In the absence of the `maxHeight` or `maxPixels`, the client will assume that there is no limit in the parameter `height`.
 |===
 ////
 
@@ -64,7 +64,7 @@
 ====
 [%metadata]
 identifier:: /rec/scaling/max-width-height
-part:: The service metadata may include a minimum and maximum width and height and product of both indicating what is the maximum values that the server will accept to create the map. Clients should not request a map subset with a width or a height greater than these limits and if they to, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment):
+part:: The service metadata may include a maximum width, maximum height and maximum product of both indicating what are the maximum values that the server will accept to create the map. Clients should not request a map subset with a width or a height greater than these limits and if they do, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment):
 +
 [source,YAML]
 ----
@@ -91,7 +91,7 @@ part:: The service metadata may include a minimum and maximum width and height a
               Maximum  product of width and height parameter values. If absent the server imposes no limit.
             example: 4194304
 ----
-part:: A Maps API implementation instance may specify the maximum width and height by adding a `minimum` property to the `width` and `height` parameter definition in the OpenAPI as in this OpenAPI Specification 3.0 fragment:
+part:: A Maps API implementation instance may specify the maximum width and height by adding a `maximum` property to the `width` and `height` parameter definition in the OpenAPI as in this OpenAPI Specification 3.0 fragment:
 +
 [source,YAML]
 ----
@@ -105,7 +105,7 @@ part:: A Maps API implementation instance may specify the maximum width and heig
     explode: false
     schema:
       type: number
-      minimun: 2048
+      maximum: 2048
   height:
     name: height
     in: query
@@ -116,7 +116,7 @@ part:: A Maps API implementation instance may specify the maximum width and heig
     explode: false
     schema:
       type: number
-      minimun: 2048
+      maximum: 2048
 ----
 part:: In the absence of the `maxWidth` or `maxPixels`, the client will assume that there is no limit in the parameter `width`. In the absence of the `maxHeight` or `maxPixels`, the client will assume that there is no limit in the parameter `height`.
 ====

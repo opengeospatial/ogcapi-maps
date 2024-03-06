@@ -31,7 +31,7 @@ A successful GET response is described in the Maps API core class (https://www.o
 
 === Error conditions
 
-A general summary of the HTTP status codes can be found in https://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in the https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core] Standard.
+A general summary of the HTTP status codes can be found in the https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core] Standard.
 
 If the parameter value for the additional dimensions is outside the domain of the collections, the status code of the response will be `400`.
 
