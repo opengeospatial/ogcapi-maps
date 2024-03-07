@@ -29,6 +29,14 @@ comma (",") as the separator between the resource identifiers in the list. Addit
 [[per_collections-selection_valid-collections]]
 include::recommendations/collections-selection/PER_collections-selection.adoc[]
 
+An example request is:
+
+[%unnumbered%]
+[source]
+----
+www.example.com/map?collections=buildings,roads
+----
+
 [[req_collections-selection-response]]
 ==== Response
 A successful GET response is described in the core class (https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)

@@ -38,7 +38,7 @@ how to specify a filter for which elements should be included on the map, and po
 
 === Map interoperability
 
-One of the most significant use cases for the definition of the _Maps API_ is the ability to generate maps on the web from one or more servers that can be combined into a single view. 
+One of the most significant use cases for the definition of the _Maps API_ is the ability to generate maps on the web from one or more servers that can be overlaid into a single view. 
 The Maps API Standard provides a clear and common way to request a map image that covers a bounding box of interest with a defined number of pixel rows and columns.
 When the _Maps API_ is implemented by different organizations that offer different collections of information, the same bounding box, in the same CRS, and the same number
 of rows and columns can be requested from each organization's geospatial repository.
@@ -57,6 +57,7 @@ For example, a population map can be requested from one organization (e.g., SEDA
 .Forecast NDFD wind speed on top of SEDAC Population density
 image::images/sedan_and_nowcast.png[width=600,align="center"]
 
+NOTE: The <<rc_collections-selection>> provides a way for clients to instruct a service implementing OGC API - Maps to include multiple sub-resources overlaid in the map response.
 
 === How to approach an OGC API
 There are at least two ways for using an implementation of one or more OGC API Standards.

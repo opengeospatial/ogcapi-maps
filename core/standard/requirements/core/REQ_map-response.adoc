@@ -21,6 +21,7 @@ part:: The map response SHALL be in the storage CRS specified in the collection 
 part:: The headers SHALL include the "Content-Crs" header with the URI or the safe CURIEs of the CRS used to render the map, except if the content is in the https://www.opengis.net/def/crs/OGC/1.3/CRS84 CRS.
 part:: The headers of the response SHALL include a "Content-Bbox" header with the actual geospatial boundary of the rendered map.
 part:: The "Content-Bbox" coordinates SHALL be in the response CRS (indicated in the "Content-Crs" or https://www.opengis.net/def/crs/OGC/1.3/CRS84 if it is not present) and SHALL contain four comma separated numbers representing the lower-left and upper right corners of the response honoring the CRS coordinates order.
+part:: If geospatial resource has a temporal aspect (e.g., if a temporal extent is defined in the collection description or in the dataset landing page), the headers of the response SHALL include a "Content-Datetime" header with the actual datetime instant or datetime interval of the rendered map  expressed in RFC3339 format.
 part:: The body of a response of a successful operation SHALL contain a map in the negotiated format.
 ====
 

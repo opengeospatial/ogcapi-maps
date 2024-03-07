@@ -46,6 +46,7 @@ Content-Type: image/png
 Last-Modified: Fri, 21 Jul 2023 14:37:46 GMT
 Content-Crs: <https://www.opengis.net/def/crs/EPSG/0/32631>
 Content-Bbox: 347736.47,4546722.45,497736.47,4608322.45
+Content-Datetime: 2023-01-22T0:00:00Z/2023-01-22T23:59:59Z
 Content-Length: 1198247
 ----
 

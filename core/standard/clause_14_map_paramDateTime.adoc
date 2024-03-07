@@ -98,4 +98,4 @@ A general summary of the HTTP status codes can be found in https://www.opengis.n
 
 If the parameter value for `datetime` is outside the domain of the collections, the status code of the response will be `400`.
 
-If the request returns no data (e.g., in combination with other types of subsetting), the status code of the response will be `204` or `404`.
+If the request returns no data (e.g., in combination with other types of subsetting), the status code of the response will be `204` or `404`. If permission /per/datetime/closest is implemented, this situation is unlikely to occur.
