@@ -1,0 +1,23 @@
+[[req_background_void-transparent-definition]]
+[requirement]
+====
+[%metadata]
+identifier:: /req/background/void-transparent-definition
+part:: The map operation SHALL support an optional parameter `void-transparent` specifying whether to use a different transparent setting for parts of the map outside of the valid areas of the projection / CRS with the characteristics defined in the OpenAPI Specification 3.0 fragment:
++
+[source,YAML]
+----
+  name: void-transparent
+  in: query
+  description:
+    '(defaults to the same value, specified or default, as `transparent`).'
+  required: false
+  style: form
+  explode: false
+  schema:
+    type: boolean
+    default: true
+----
+part:: The server SHALL interpret `void-transparent` as a Boolean indicating whether the parts of the map outside of the valid areas of the projection / CRS should be transparent.
+part:: If `void-transparent` is not specified, the server SHALL assume the same value as for `transparent` (specified or default).
+====

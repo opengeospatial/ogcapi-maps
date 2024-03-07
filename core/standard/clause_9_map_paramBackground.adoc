@@ -26,11 +26,26 @@ include::recommendations/background/PER_bgcolor-alpha.adoc[]
 
 include::requirements/background/REQ_transparent-definition.adoc[]
 
-NOTE: When not specified, the value of `transparent` defaults to `true` when `bgcolor` is not used, but to `false` when used together with `bgcolor`.  
+NOTE: When not specified, the value of `transparent` defaults to `true` when `bgcolor` is not used, but to `false` when used together with `bgcolor`.
 For formats with an alpha channel, explicitly setting `transparent=true` together with a `bgcolor` allow for defining the color value to use for the RGB channels where there is no data. Zero (0) will be used for the alpha channel.
 For formats reserving a color to define transparency (color key), the combination supports selecting a color that does not interfere with the actual values and colors in the map.
 
 NOTE: The `opaque` attribute of layer element in the GetCapabilities response in WMS is deprecated and is not specified by the Maps API.
+
+==== Parameters `void-transparent` and `void-color`
+The `void-transparent` and `void-color` parameters indicate how parts of the map outside of the valid area of the projection and CRS will be represented.
+
+If not specified, these parameters default to the same value as `transparent` and `bgcolor`, respectively.
+
+NOTE: These parameters only apply to CRSs including an invalid area, such as a CRS using an ortographic projection.
+
+include::requirements/background/REQ_void-color-definition.adoc[]
+
+include::recommendations/background/REC_void-color-definition.adoc[]
+
+As for `bgcolor`, the W3C web color names can be specified instead of a hexadecimal value.
+
+include::requirements/background/REQ_void-transparent-definition.adoc[]
 
 ==== Response
 A successful GET response is described in the core class (https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)

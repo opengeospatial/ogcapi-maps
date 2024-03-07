@@ -1,0 +1,28 @@
+[[req_background_void-color-definition]]
+
+[requirement]
+====
+[%metadata]
+identifier:: /req/background/void-color-definition
+part:: The map operation SHALL support a parameter `void-color` to define a void color with the characteristics defined in the OpenAPI Specification 3.0 fragment:
++
+[source,YAML]
+----
+  void-color:
+    name: void-color
+    in: query
+    description: |-
+      Hexadecimal red-green-blue color value (0-255) or case-insensitive W3C web color name for the
+      color of parts of the map outside of the valid CRS / projection areas (default=0xFFFFFF). For a six digit hexadecimal value, the first and second
+      digits specify the intensity of red. The third and fourth digits specify the intensity of
+      green. The fifth and sixth digits specify the intensity of blue.
+    required: false
+    style: form
+    explode: false
+    schema:
+      type: string
+      default: 0xFFFFFF
+----
+part:: The map operation SHALL support a `void-color` parameter which can be an hexadecimal red-green-blue color value (from 00 to FF, FF representing 255) or a case-insensitive https://www.w3.org/wiki/CSS/Properties/color/keywords[W3C web color name] for the background color of the map (default=0xFFFFFF). For a six-digit hexadecimal value, the first and second digits specify the intensity of red. The third and fourth digits specify the intensity of green. The fifth and sixth digits specify the intensity of blue.
+part:: If `void-color` is not specified, the same color value as for `bgcolor` (specified or default) SHALL be used.
+====
