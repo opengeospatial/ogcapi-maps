@@ -1,0 +1,9 @@
+name: void-transparent
+in: query
+description: Background transparency for parts of the map outside of the valid areas of the CRS / projection (defaults to the same as `transaprent` if not specified).
+required: false
+style: form
+explode: false
+schema:
+  type: boolean
+  default: true

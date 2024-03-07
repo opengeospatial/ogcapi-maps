@@ -191,6 +191,10 @@ components:
          $ref: 'parameters/maps-core/bgcolor.yaml'
       transparent:
          $ref: 'parameters/maps-core/transparent.yaml'
+      void-color:
+         $ref: 'parameters/maps-core/void-color.yaml'
+      void-transparent:
+         $ref: 'parameters/maps-core/void-transparent.yaml'
       width:
          $ref: 'parameters/maps-core/width.yaml'
       height:

@@ -276,6 +276,12 @@
             "$ref": "#/components/parameters/transparent"
           },
           {
+            "$ref": "#/components/parameters/void-color"
+          },
+          {
+            "$ref": "#/components/parameters/void-transparent"
+          },
+          {
             "$ref": "#/components/parameters/width"
           },
           {
@@ -365,6 +371,12 @@
           },
           {
             "$ref": "#/components/parameters/transparent"
+          },
+          {
+            "$ref": "#/components/parameters/void-color"
+          },
+          {
+            "$ref": "#/components/parameters/void-transparent"
           },
           {
             "$ref": "#/components/parameters/width"
@@ -464,6 +476,12 @@
             "$ref": "#/components/parameters/transparent"
           },
           {
+            "$ref": "#/components/parameters/void-color"
+          },
+          {
+            "$ref": "#/components/parameters/void-transparent"
+          },
+          {
             "$ref": "#/components/parameters/width"
           },
           {
@@ -556,6 +574,12 @@
           },
           {
             "$ref": "#/components/parameters/transparent"
+          },
+          {
+            "$ref": "#/components/parameters/void-color"
+          },
+          {
+            "$ref": "#/components/parameters/void-transparent"
           },
           {
             "$ref": "#/components/parameters/width"
@@ -900,6 +924,12 @@
             "$ref": "#/components/parameters/transparent"
           },
           {
+            "$ref": "#/components/parameters/void-color"
+          },
+          {
+            "$ref": "#/components/parameters/void-transparent"
+          },
+          {
             "$ref": "#/components/parameters/tileMatrixSetId"
           },
           {
@@ -1030,6 +1060,12 @@
           },
           {
             "$ref": "#/components/parameters/transparent"
+          },
+          {
+            "$ref": "#/components/parameters/void-color"
+          },
+          {
+            "$ref": "#/components/parameters/void-transparent"
           },
           {
             "$ref": "#/components/parameters/styleId"
@@ -1168,6 +1204,12 @@
           },
           {
             "$ref": "#/components/parameters/transparent"
+          },
+          {
+            "$ref": "#/components/parameters/void-color"
+          },
+          {
+            "$ref": "#/components/parameters/void-transparent"
           },
           {
             "$ref": "#/components/parameters/tileMatrixSetId"
@@ -1309,6 +1351,12 @@
           },
           {
             "$ref": "#/components/parameters/transparent"
+          },
+          {
+            "$ref": "#/components/parameters/void-color"
+          },
+          {
+            "$ref": "#/components/parameters/void-transparent"
           },
           {
             "$ref": "#/components/parameters/styleId-collection"
@@ -3051,6 +3099,30 @@
         "name": "transparent",
         "in": "query",
         "description": "Background transparency of map (defaults to `true` without a `bgcolor` specified, but to `false` when a `bgcolor` is used).",
+        "required": false,
+        "style": "form",
+        "explode": false,
+        "schema": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "void-color": {
+        "name": "void-color",
+        "in": "query",
+        "description": "Web color name or hexadecimal 0x[AA]RRGGBB color value for the void color (default to 0x9C9C9C gray) for parts of the map outside of the valid area of the projection / CRS. If not specified, this defaults to the same as `bgcolor`.",
+        "required": false,
+        "style": "form",
+        "explode": false,
+        "schema": {
+          "type": "string",
+          "default": "0xFFFFFF"
+        }
+      },
+      "void-transparent": {
+        "name": "void-transparent",
+        "in": "query",
+        "description": "Background transparency for parts of the map outside of the valid areas of the CRS / projection (defaults to the same as `transaprent` if not specified).",
         "required": false,
         "style": "form",
         "explode": false,

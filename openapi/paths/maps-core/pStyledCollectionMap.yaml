@@ -14,6 +14,8 @@ get:
      - $ref: '../../parameters/common-crs/subset-crs.yaml'
      - $ref: '../../parameters/maps-core/bgcolor.yaml'
      - $ref: '../../parameters/maps-core/transparent.yaml'
+     - $ref: '../../parameters/maps-core/void-color.yaml'
+     - $ref: '../../parameters/maps-core/void-transparent.yaml'
      - $ref: '../../parameters/maps-core/width.yaml'
      - $ref: '../../parameters/maps-core/height.yaml'
      - $ref: '../../parameters/maps-core/center.yaml'
