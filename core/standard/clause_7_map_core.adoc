@@ -71,6 +71,8 @@ include::recommendations/core/REC_map-op.adoc[]
 
 include::recommendations/core/REC_content-crs.adoc[]
 
+include::recommendations/core/REC_content-attribution.adoc[]
+
 include::recommendations/core/REC_legend-thumbnail-style.adoc[]
 
 include::recommendations/core/REC_multiple-media-types.adoc[]
