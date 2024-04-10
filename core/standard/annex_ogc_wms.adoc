@@ -114,9 +114,9 @@ The following table provides a reference to where some of layer metadata aspects
 | Abstract | collection response | description | OGC API - Common - Part 2
 | Keywords | collection response | keywords | OGC API - Records (Local Resources Catalogue)
 | Style | style response | id | OGC API - Styles - Part 1
-| EX_GeographicBoundingBox | collections response | extent.spatial | OGC API - Common - Part 2
+| EX_GeographicBoundingBox | collections response | extent.spatial.bbox | OGC API - Common - Part 2
 | CRS | collection response | storageCrs | This standard
-| BoundingBox | collection response | storageCrsExtent^1^ | This standard
+| BoundingBox | collection response | extent.spatial.storageCrsBbox^1^ | This standard
 | minScaleDenominator
 
 maxScaleDenominator | collection response | minScaleDenominator
