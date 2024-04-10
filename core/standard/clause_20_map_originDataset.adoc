@@ -45,16 +45,12 @@ include::recommendations/dataset-map/REC_storage-epoch.adoc[]
   "attribution": "OpenStreetMap",
   "extent": {
     "spatial" : {
-         "bbox" : [ [ -2.2830363, 39.8188272, 6.6350523, 42.7010011 ] ]
+         "bbox" : [ [ -2.2830363, 39.8188272, 6.6350523, 42.7010011 ] ],
+         "storageCrsBbox" : [ [ 47736, 4421022, 797736, 4734022 ] ]
     }
   },
   "crs": ["EPSG:32631", "EPSG:23031", "EPSG:4326"],
   "storageCrs": "EPSG:32631",
-  "storageCrsExtent": {
-    "spatial" : {
-         "bbox" : [ [ 47736, 4421022, 797736, 4734022 ] ]
-    }
-  },
   "storageCrsCoordinateEpoch": 2022.3,
   "links": [
     ...,

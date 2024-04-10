@@ -334,6 +334,7 @@ An example JSON collection description response for ERA5 relative humidity is be
          "grid" : { "cellsCount" : 144, "resolution" : "PT1H" }
       },
       "pressure" : {
+         "definition": "https://qudt.org/vocab/quantitykind/AtmosphericPressure",
          "unit" : "hPa",
          "interval" : [ [ 1.0, 1000.0 ] ],
          "grid" : {
