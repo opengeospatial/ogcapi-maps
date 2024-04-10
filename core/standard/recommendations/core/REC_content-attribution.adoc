@@ -1,0 +1,8 @@
+[[rec_core_content_attribution]]
+
+[recommendation]
+====
+[%metadata]
+identifier:: /rec/core/content-attribution
+part:: A `Content-Attribution:` header SHOULD be included in the response to a map request to indicate any attribution relevant to the data being returned, especially if this attribution varies based on the subset and scale of the request.
+====
