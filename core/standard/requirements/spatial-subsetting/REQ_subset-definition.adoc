@@ -32,7 +32,7 @@ part:: Multiple `subset` parameters SHALL be interpreted, as if all dimension su
 +
 ^1^ Example: `subset=Lat(-90:90)&subset=Lon(-180:180)` is equivalent to `subset=Lat(-90:90),Lon(-180:180)`
 +
-^2^ Note that this is only valid of the spatial dimensions. The 'additional' dimensions relay on the names of the extent of the collection.
+^2^ Note that this is only valid of the spatial dimensions. The 'additional' dimensions rely on the names of the extent of the collection.
 ====
 
 NOTE: A subset parameter for https://www.opengis.net/def/crs/OGC/1.3/CRS84 will read as subset=Lon(left_lon:right_lon),Lat(lower_lat:upper_lat).
