@@ -2403,19 +2403,20 @@
                                 "default": 0,
                                 "minimum": 0
                               },
-                              "observedProperty": {
-                                "type": "string"
-                              },
-                              "observedPropertyURI": {
+                              "x-ogc-definition": {
                                 "type": "string",
                                 "format": "uri"
                               },
-                              "uom": {
+                              "x-ogc-unit": {
                                 "type": "string"
                               },
-                              "uomURI": {
+                              "x-ogc-unitLang": {
                                 "type": "string",
                                 "format": "uri"
+                              },
+                              "x-ogc-propertySeq": {
+                                "type": "integer",
+                                "minimum": 0
                               }
                             }
                           }
