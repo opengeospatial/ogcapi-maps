@@ -65,7 +65,7 @@ include::recommendations/spatial-subsetting/PER_subset-crs-curie.adoc[]
 ==== Parameter `bbox`
 The `bbox` parameter defines how to subset a map using a bounding box (in `bbox-crs` coordinates).
 This parameter selects a spatial region consisting of any pixels of the map whose area is contained or intersects with the specified bounding box.
-Individual pixels (including the ones in the four corners of the map) occupy an area on the ground (unlike a coverage whose cell values represent an infinitely small point).
+Individual pixels (including the ones in the four corners of the map) occupy an area on the ground (unlike some coverage whose cell values represent an infinitely small point).
 The bounding box describing the spatial content of the map (e.g., in the collection description) will go around the "outside" of the pixels of the map, rather than through the centers of the map's border pixels.
 This is also true for the description of a coverage whose cells represent a value for an area, which may be available as both _Maps_ as well as through _OGC API - Coverages_, allowing
 to offer them both from the same OGC API collection. For example, a global dataset will always be described using -180 to 180 longitude bounds.
