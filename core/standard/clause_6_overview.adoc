@@ -152,7 +152,7 @@ Replacing the source (SRC) of the IMG tag programmatically with JavaScript, as a
 The WMS _GetFeatureInfo_ request added a limited capability for queryable maps. However, users are now used to moving around the map by frequently doing zoom and pan operations.
 If the server does not provide a very fast response, the user experience is not smooth and the map display application is perceived as not responsive enough.
 One possible approach to solve this problem is dividing the viewport into tiles and requesting them separately. Since tiles follow a tile matrix pattern, they can be pre-rendered in the server or cached in the Internet intermediate services. 
-For implementing fast dynamic maps, the _OGC API - Maps_ requirement should be combined with _OGC API - Tiles_ requirements.
+For implementing fast dynamic maps, the _OGC API - Maps_ requirements should be combined with _OGC API - Tiles_ requirements.
 
 ==== Client-side maps versus server-side maps
 
