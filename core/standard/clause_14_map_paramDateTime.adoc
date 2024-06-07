@@ -38,7 +38,7 @@ NOTE: ISO 8601-2 (Date and time — Representations for information interchange 
 =================
 February 12, 2018, 23:20:52 UTC:
 
-`datetime=2018-02-12T23%3A20%3A52Z`
+`datetime=2018-02-12T23:20:52Z`
 =================
 
 For resources with a temporal property that is a timestamp (like `lastUpdate`), a date-time value would match all resources where the temporal property is identical.
@@ -49,15 +49,15 @@ For resources with a temporal property that is a date or a time interval, a date
 =================
 February 12, 2018, 00:00:00 UTC to March 18, 2018, 12:31:12 UTC:
 
-`datetime=2018-02-12T00%3A00%3A00Z%2F2018-03-18T12%3A31%3A12Z`
+`datetime=2018-02-12T00:00:00Z/2018-03-18T12:31:12Z`
 
 February 12, 2018, 00:00:00 UTC or later:
 
-`datetime=2018-02-12T00%3A00%3A00Z%2F..`
+`datetime=2018-02-12T00:00:00Z/..`
 
 March 18, 2018, 12:31:12 UTC or earlier:
 
-`datetime=..%2F2018-03-18T12%3A31%3A12Z`
+`datetime=../2018-03-18T12:31:12Z`
 =================
 
 A template for the definition of the `datetime` parameter is available at link:https://beta.schemas.opengis.net/ogcapi/common/part2/0.1/collections/openapi/parameters/datetime.yaml[datetime.yaml].
