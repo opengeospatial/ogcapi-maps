@@ -3149,7 +3149,7 @@
       "void-color": {
         "name": "void-color",
         "in": "query",
-        "description": "Web color name or hexadecimal 0x[AA]RRGGBB color value for the void color (default to 0x9C9C9C gray) for parts of the map outside of the valid area of the projection / CRS. If not specified, this defaults to the same as `bgcolor`.",
+        "description": "Web color name or hexadecimal 0x[AA]RRGGBB color value for the void color for parts of the map outside of the valid area of the projection / CRS. If not specified, this defaults to the same as `bgcolor`.",
         "required": false,
         "style": "form",
         "explode": false,
