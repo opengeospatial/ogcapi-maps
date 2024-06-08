@@ -97,7 +97,7 @@ An example Conformance Information Page fragment is below:
 
 [[ConformancePageMapsCore]]
 [%unnumbered%]
-[source,JSON]
+[source,json]
 ----
 {
   "conformsTo": [

@@ -42,7 +42,7 @@ include::recommendations/collection-map/REC_storage-epoch.adoc[]
 
 .Fragment of a collection with a links array with one item of the array pointing to a map.
 =================
-[source,JSON]
+[source,json]
 ----
 {
   "id": "buildings",

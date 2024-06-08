@@ -36,7 +36,7 @@ https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal?f=json[\https://maps.g
 An example JSON collection description response for the OS OpenMap Local collection is below:
 
 [%unnumbered%]
-[source,JSON]
+[source,json]
 ----
 {
    "id" : "OpenMapLocal",
@@ -316,7 +316,7 @@ how to describe the extent of multidimensional datasets, including the details o
 An example JSON collection description response for ERA5 relative humidity is below:
 
 [%unnumbered%]
-[source,JSON]
+[source,json]
 ----
 {
    "id" : "climate:era5:relativeHumidity", "title" : "ERA5 Relative Humidity",

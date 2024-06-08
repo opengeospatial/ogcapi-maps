@@ -37,7 +37,7 @@ include::recommendations/dataset-map/REC_storage-epoch.adoc[]
 [[landingPageMap]]
 .API Landing Page fragment that advertises the dataset map, the storageCrs and the extent of it.
 =================
-[source,JSON]
+[source,json]
 ----
 {
   "title": "Dataset of the city of Bonn",
