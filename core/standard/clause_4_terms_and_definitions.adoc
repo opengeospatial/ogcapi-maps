@@ -7,7 +7,7 @@ coordinate system that is related to the real world by a datum (source: ISO 1911
 === *coordinate system*
 set of mathematical rules for specifying how coordinates are to be assigned to points (source: ISO 19111)
 
-=== *data cube (or datacube)* 
+=== *data cube (or datacube)*
 a multi-dimensional ("n-D") array of values. Sometimes, the term _data cube_ is applied in contexts where these arrays are massively larger than the hosting computer's main memory; examples include multi-terabyte/petabyte data warehouses and time series of image data.
 
 === *geographic information*

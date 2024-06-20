@@ -115,8 +115,8 @@ components:
       # Common - Geospatial Data
       collections:
          $ref: 'schemas/common-geodata/collections.yaml'
-      collectionInfo:
-         $ref: 'schemas/common-geodata/collectionInfo.yaml'
+      collectionDesc:
+         $ref: 'schemas/common-geodata/collectionDesc.yaml'
       extent:
          $ref: 'schemas/common-geodata/extent.yaml'
       extent-uad:

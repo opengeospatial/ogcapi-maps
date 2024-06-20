@@ -1,8 +1,10 @@
 name: datetime
 in: query
-description: |-
-  Either a date-time or an interval, half-bounded or bounded. Date and time expressions
-  adhere to RFC 3339. Half-bounded intervals are expressed using double-dots.
+description: >-
+  Either a date-time or an interval. Date and time expressions
+  adhere to RFC 3339, section 5.6. Intervals may be bounded or half-bounded (double-dots at start or end).
+  Server implementations may or may not support times expressed using time offsets from UTC, but need to support
+  UTC time with the notation ending with a Z.
 
   Examples:
 
@@ -10,7 +12,7 @@ description: |-
   * A bounded interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
   * Half-bounded intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
 
-  Only features that have a temporal property that intersects the value of
+  Only resources that have a temporal property that intersects the value of
   `datetime` are selected.
 
   If a feature has multiple temporal properties, it is the decision of the

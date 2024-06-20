@@ -15,6 +15,9 @@ properties:
     type: string
     description: a description of the data in the collection
     example: A Digital Elevation Model.
+  attribution:
+    type: string
+    title: attribution for the collection
   links:
     type: array
     example:
