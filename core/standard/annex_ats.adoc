@@ -58,7 +58,14 @@ test-method::
 --
 *Given:* a map resource that was successfully retrieved for <<conf_core_map-op>> +
 *When:* retrieving that resource for the map operation +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the response has an HTTP status code 200, +
+- assert that the map response is in the storage CRS specified in the collection description, or https://www.opengis.net/def/crs/OGC/1.3/CRS84 if none is specified, +
+- assert that the headers of the response include the "Content-Crs" header with the URI or the safe CURIEs of the CRS used to render the map, except if the content is in the https://www.opengis.net/def/crs/OGC/1.3/CRS84 CRS, +
+- assert that the headers of the response include a "Content-Bbox" header with the actual geospatial boundary of the rendered map, +
+- assert that the "Content-Bbox" coordinates are in the response CRS (indicated in the "Content-Crs" or https://www.opengis.net/def/crs/OGC/1.3/CRS84 if it is not present) and contains four comma-separated numbers representing the lower-left and upper-right corners of the response honoring the CRS coordinates order, +
+- assert that if the geospatial resource has a temporal aspect (e.g., if a temporal extent is defined in the collection description or in the dataset landing page), the headers of the response include a "Content-Datetime" header with the actual datetime instant or datetime interval of the rendered map expressed in RFC 3339, section 5.6 format (using either UTC time or local time offsets), +
+- assert that the body of the response contains a map encoded in the negotiated format.
 --
 ====
 
@@ -76,7 +83,9 @@ test-method::
 --
 *Given:* a conformance resource in a recognized format, such as the OGC API JSON `/conformance` resource +
 *When:* retrieving that resource from the API endpoint +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the list of conformance classes that are supported by this API implementation instance includes at minimum https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core.
+This list of conformance classes can also be used to select which other abstract tests to perform as listed in the <<table_conformance_urls>> and indicated in the tests preconditions.
 --
 ====
 
