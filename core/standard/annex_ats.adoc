@@ -153,6 +153,8 @@ target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background
 classification:: Target Type:Web API
 abstract-test:: /conf/background/bgcolor-definition
 abstract-test:: /conf/background/transparent-definition
+abstract-test:: /conf/background/void-bgcolor-definition
+abstract-test:: /conf/background/void-transparent-definition
 abstract-test:: /conf/background/map-success
 ====
 
@@ -188,6 +190,42 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving a map for all combinations of (no `transparent` parameter, transparent=false`, `transparent=true`) and with and without `bgcolor` parameter +
+*Then:* (assert that all parts of the requirement are fully satisfied)
+--
+====
+
+==== Abstract Test for Requirement `void-bgcolor` parameter definition
+
+
+[abstract_test]
+====
+[%metadata]
+identifier:: /conf/background/void-bgcolor-definition
+target:: /req/background/void-bgcolor-definition
+test-purpose:: Verify that the implementation supports the `void-bgcolor` parameter
+test-method::
++
+--
+*Given:* a map resource that conformed successfully to /conf/core +
+*When:* retrieving a map without `void-bgcolor` parameter, with `void-bgcolor` using a hexadecimal value and with `void-bgcolor` using a W3C Web Color name +
+*Then:* (assert that all parts of the requirement are fully satisfied)
+--
+====
+
+==== Abstract Test for Requirement `void-transparent` parameter definition
+
+
+[abstract_test]
+====
+[%metadata]
+identifier:: /conf/background/void-transparent-definition
+target:: /req/background/void-transparent-definition
+test-purpose:: Verify that the implementation supports the `void-transparent` parameter
+test-method::
++
+--
+*Given:* a map resource that conformed successfully to /conf/core +
+*When:* retrieving a map for all combinations of (no `void-transparent` parameter, void-transparent=false`, `void-transparent=true`) and with and without `void-bgcolor` parameter +
 *Then:* (assert that all parts of the requirement are fully satisfied)
 --
 ====
