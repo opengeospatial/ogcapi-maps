@@ -1,6 +1,7 @@
 [bibliography]
 == References
 
+* [[[rfc3339,RFC 3339]]],
 * [[[OGC19-072,OGC 19-072]]],
 * [[[ogc17-069r4,OGC 17-069r4]]],
 * [[[ogc20-057,OGC 20-057]]],
