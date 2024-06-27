@@ -909,7 +909,6 @@ abstract-test:: /conf/orientation/response-headers
 
 ==== Abstract Test for Requirement `orientation` parameter
 
-
 [abstract_test]
 ====
 [%metadata]
@@ -921,7 +920,13 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps with the `orientation` parameter for different values and without +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that an orientation parameter that specifies the amount by which to rotate a map is supported , expressed as counterclockwise degrees, resulting in the viewing perspective being rotated by that same orientation in a clockwise direction, +
+- assert that when the `orientation` parameter is not specified, a zero orientation value is be assumed, +
+- assert that the orientation is applied to the map with the center of the selected spatial subset as the pivot point, or the center of the map if none is specified, +
+- assert that if an `orientation` parameter is used together with `subset` or `bbox` spatial subsetting parameter,
+the counterclockwise orientation is applied to the four corners of the clipping box associated to that subset,
+as if the equivalent `center`, `width` and `height` spatial subsetting query parameters were used instead, avoiding leaving empty corners in the final rotated map image.
 --
 ====
 
@@ -939,7 +944,9 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps with the `orientation` parameter for different values and without +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that for responses to a map request where the `orientation` query parameter is used, a response header `Content-Orientation: [value in decimal degrees]` corresponding to the orientation of the map is returned, +
+- assert that for responses to map request where the `orientation` query parameter is used, the `Content-Bbox` response header reflects the bounding box in the map output CRS prior to the orientation being applied.
 --
 ====
 
@@ -975,7 +982,9 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to <<conf_core>> and passing <<conf_projection_projections-response>> +
 *When:* retrieving maps with the `crs-proj-method` parameter for different available values as listed in `/projectionsAndDatums` +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that a `crs-proj-method` parameter supporting selection of a projection operation method is supported, +
+- assert that CURIEs are supported in addition to URIs to specify the projection method.
 --
 ====
 
@@ -993,7 +1002,10 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to <<conf_core>> and passing <<conf_projection_projections-response>> +
 *When:* retrieving maps with the `crs-proj-method` parameter for different available values and different values of the associated method parameters (specified using the `crs-proj-params` query parameter) as listed in `/projectionsAndDatums` +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that a `crs-proj-params` parameter is supported that enables selection of one or more value for operation method parameters, with values in between parentheses `(` `)` following the URI of
+a projection parameter, and different parameters separated by value (e.g., `crs-proj-params=[epsg-parameter:8823](40),[epsg-parameter:8824](90)`), +
+- assert that in addition to CURIEs, URIs are also supported to specify the projection parameters.
 --
 ====
 
@@ -1011,7 +1023,10 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to <<conf_core>> and passing <<conf_projection_projections-response>> +
 *When:* retrieving maps with the `crs-proj-method` parameter for different available values as listed in `/projectionsAndDatums` and the `crs-proj-center` parameter for different values +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that a `crs-proj-center` parameter of the form `Lat(centerLat),Lon(centerLon)` is supported to facilitate the selection of the most relevant projection parameters to center a custom projection, +
+- assert that the projection center `Lat` value is mapped to the first matching operation method parameter available for the selected operation method of the projection query parameter, in the epsg-parameter order 8832, 8823, 8801, 8811, +
+- assert that the projection-center `Lon` value is mapped to the first matching operation method parameter available for the selected operation method of the projection query parameter, in the epsg-parameter order 8802, 8812, 8833.
 --
 ====
 
@@ -1029,7 +1044,10 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to <<conf_core>> and passing <<conf_projection_projections-response>> +
 *When:* retrieving maps with the `crs-datum` parameter for different available values as listed in `/projectionsAndDatums` +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that a `crs-datum` parameter as a URI allowing to select a datum for the output CRS is supported, +
+- assert that CURIEs are supported in addition to URIs to specify the datum parameter, +
+- assert that a if a `crs-datum` parameter is not specified, the native (storage) CRS datum is assumed (the WGS84 ensemble `[epsg-datum:6326]` datum is assumed if the native CRS is not declared).
 --
 ====
 
@@ -1047,7 +1065,12 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to <<conf_core>> and passing <<conf_projection_projections-response>> +
 *When:* retrieving maps with the `crs-proj-method` parameter for different available values, different values of the associated method parameters (using both `crs-proj-center` and `crs-proj-params`), and different values for `crs-datum` as listed in `/projectionsAndDatums` +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that for responses to map request where the `crs-proj-method` query parameter was used, a response header `Content-Crs-Method: <[URI]>` including the URI of the projection operation method is returned, +
+- assert that a response header `Content-Crs-Method-Params: <URI>=[value]; ...` is returned, including the URI of the projection operation parameters and its value for each parameter specified using the `crs-proj-method` or `crs-proj-center` query parameters, +
+- assert that for responses to map request where the `crs-datum` query parameter was used, a response header `Content-Crs-Datum: <[URI]>` corresponding to the URI of the projection operation method is returned, +
+- assert that for responses to map requests specifying the `crs-proj-method` query parameter, a `Content-Crs` response header is not included, +
+- assert that for responses to map requests specifying the `crs-proj-method` query parameter, the CRS of the `Content-Bbox` response header coordinates is in the custom CRS defined by this operation method and its parameters.
 --
 ====
 
@@ -1066,7 +1089,8 @@ test-method::
 --
 *Given:* an API implementation being tested +
 *When:* retrieving the `/projectionsAndDatums` resource +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that a GET operation at `/projectionsAndDatums` providing a JSON representation is supported.
 --
 ====
 
@@ -1084,7 +1108,18 @@ test-method::
 --
 *Given:* an API implementation being tested passing <<conf_projection_projections-resource>>  +
 *When:* retrieving the `/projectionsAndDatums resource` +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the implementation includes in its response for the `/projectionsAndDatums` resource the complete list of custom CRS projection operation methods supported for map retrieval operations, +
+- assert that the implementation includes in its response for the `/projectionsAndDatums` resource the complete list of custom CRS datums supported for map retrieval operations, +
+- assert that in the JSON representation, the list of supported projection operation methods is provided as a dictionary (associative array) value for a `methods` property associating operation method objects
+(including optional `title` and `description` properties) to the corresponding identifiers to be used as values for the `crs-proj-method` query parameter, +
+- assert that these operation method identifiers are safe CURIEs when a registered URI exists for the method, +
+- assert that in the JSON representation, the list of supported datums are provided as a dictionary (associative array) value for a `datums` property associating datum objects to the corresponding identifiers to be used as values for the `crs-datum` query parameter, +
+- assert that these datum identifiers are safe CURIEs when a registered URI exists for the datum, +
+- assert that the datum object includes an `ellipsoid` property specifying the safe CURIE for the associated ellipsoid and may contain additional optional `title` and `description` properties, +
+- assert that in the JSON representation, the operation method objects include all valid parameters for that method as a dictionary (associative array) value for a `parameters` property to method parameters object (including optional `title` and `description` properties) to the corresponding identifiers to be used as values for the `crs-proj-params` query parameter, +
+- assert that these method parameters are safe CURIEs when a registered URI exists for the parameter (to avoid repeating the same parameter, those objects may use a JSON pointer (`$ref`) to a top-level `parameters` property in the same custom projections JSON document), +
+- assert that in the JSON representation, the operation method objects include `centerLatParam` and/or `centerLonParam` properties (as applicable) whose values are the identifiers corresponding to the parameters for which values specified for the `crs-proj-center` query parameter will be mapped, in a manner consistent with requirement `/req/projection/crs-proj-center-definition`.
 --
 ====
 
@@ -1116,12 +1151,12 @@ test-method::
 --
 *Given:* a collection from an API implementation conforming to OGC API - Common - Part 2: Geospatial Data "Collections" conformance class +
 *When:* retrieving the JSON representation of the description for that collection +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the OGC API collection description includes a link with relation type `https://www.opengis.net/def/rel/ogc/1.0/map` (or `[ogc-rel:map]`) and the href pointing to a the map resource for this collection.
 --
 ====
 
 ==== Abstract Test for Requirement collection description CRS
-
 
 [abstract_test]
 ====
@@ -1134,7 +1169,12 @@ test-method::
 --
 *Given:* an API implementation conforming to OGC API - Common - Part 2: Geospatial Data "Collections" conformance class +
 *When:* retrieving the JSON representation of the description for that collection +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the `crs` property in the collection object of a geospatial collection contains URIs or safe CURIEs for the list of CRSs supported by the server for that collection, +
+- assert that if the collection is available more efficiently (e.g., if it is stored in the server in that CRS) using a particular CRS (the native CRS, also _called storage CRS_)
+that is not https://www.opengis.net/def/crs/OGC/1.3/CRS84, a `storageCrs` property in the collection object of a geospatial collection is the URI or the safe CURIE for that CRS, +
+- assert that if a `storageCrs` property is used and that is not https://www.opengis.net/def/crs/OGC/1.3/CRS84, an overall bounding box (and optional inner bounding boxes for sparse data)
+is provided in a `storageCrsBbox` property within the `spatial` dimension of the `extent` following the same schema as the CRS84 `bbox`.
 --
 ====
 
@@ -1152,7 +1192,8 @@ test-method::
 --
 *Given:* a collection correctly linking to a map resource as per /conf/collection-map/desc-links +
 *When:* retrieving a map for that collection resource as per /conf/core +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that every OGC API collection available as a map supports an HTTP GET operation to a URL `/collections/{collectionId}/map` to retrieve a map from that collection resource.
 --
 ====
 
@@ -1185,7 +1226,8 @@ test-method::
 --
 *Given:* a dataset provided by an API implementation conforming to OGC API - Common - Part 1: Core +
 *When:* retrieving the JSON representation of the landing page description for that dataset +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the deployed API endpoint landing page includes a link with relation type `https://www.opengis.net/def/rel/ogc/1.0/map` (or `[ogc-rel:map]`) to the dataset map URL at `/map`.
 --
 ====
 
@@ -1203,7 +1245,8 @@ test-method::
 --
 *Given:* a dataset provided by an API conforming to OGC API - Common - Part 1: Core +
 *When:* retrieving the JSON representation of the landing page description for that dataset +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that an extent CRS is provided in an "extent" property of the API landing page following the same schema as the "extent" property for the collection (see OGC API - Common: Part 2).
 --
 ====
 
@@ -1221,7 +1264,12 @@ test-method::
 --
 *Given:* a dataset provided by an API conforming to OGC API - Common - Part 1: Core +
 *When:* retrieving the JSON representation of the landing page description for that dataset +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the `crs` property in the landing page of a dataset contains URIs or safe CURIEs for the list of CRSs supported by the dataset as a whole, +
+- assert that if the dataset is available more efficiently using a particular CRS that is not https://www.opengis.net/def/crs/OGC/1.3/CRS84, a `storageCrs` property in the landing page of a dataset is the URI or
+the safe CURIE for that CRS as a value, +
+- assert that if a `storageCrs` property is used and that is not https://www.opengis.net/def/crs/OGC/1.3/CRS84, an overall bounding box (and optional inner bounding boxes for sparse data) is provided in
+a `storageCrsBbox` property within the `spatial` dimension of the `extent` following the same schema as the CRS84 `bbox`.
 --
 ====
 
@@ -1239,7 +1287,8 @@ test-method::
 --
 *Given:* an OGC API dataset correctly linking to a map resource as per /conf/dataset-map/landingpage +
 *When:* retrieving a map for that dataset resource as per /conf/core +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the implementation supports an HTTP GET operation for the `/map` URL to retrieve a map from the dataset API endpoint in the default style.
 --
 ====
 
@@ -1270,7 +1319,10 @@ test-method::
 --
 *Given:* a list of styles provided by an API implementation conforming to OGC API - Styles - Part 1: Core +
 *When:* retrieving the JSON representation of that list of styles +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that if the deployed API endpoint has a mechanism to expose links associated with styled geospatial resoures
+(e.g., the OGC API - Styles list of styles at `/styles` for a dataset or at `/collections/{collectionId}/styles` for a collection),
+those styled resources include a link with link relation `https://www.opengis.net/def/rel/ogc/1.0/map` (or `[ogc-rel:map]`) and the href pointing to the map associated with that styled resource.
 --
 ====
 
@@ -1288,7 +1340,9 @@ test-method::
 --
 *Given:* a style correctly linking to a map resource as per /conf/styled-map/desc-links +
 *When:* retrieving a map for that style as per /conf/core +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that every resource for which a styled map is available supports an HTTP GET operation to a `.../styles/{styleId}/map` URL to retrieve a map for a particular style
+(e.g., `/collections/{collectionId}/styles/{styleId}` for a styled collection map or `/styles/{styleId}/map` for a styled dataset map).
 --
 ====
 

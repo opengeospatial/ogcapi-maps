@@ -1,17 +1,9 @@
 [[req_styled-map_operation]]
-////
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/styled-map/map-operation*
-^|A |Every styled resource available as a map SHALL support a path URL and a HTTP GET operation to retrieve maps
-^|B |The URI SHALL be composed by two parts: The initial part is the URI of the styled resource that can be represented as a map (e.g., /collections/{collectionId}/styles/{styleId}) and the final part follows the pattern `/map`
-|===
-////
 
 [requirement]
 ====
 [%metadata]
 identifier:: /req/styled-map/map-operation
-part:: Every styled resource available as a map SHALL support a path URL and a HTTP GET operation to retrieve maps
-part:: The URI SHALL be composed by two parts: The initial part is the URI of the styled resource that can be represented as a map (e.g., /collections/{collectionId}/styles/{styleId}) and the final part follows the pattern `/map`
+part:: Every resource for which a styled map is available SHALL support an HTTP GET operation to a `.../styles/{styleId}/map` URL to retrieve a map for a particular style
+(e.g., `/collections/{collectionId}/styles/{styleId}` for a styled collection map or `/styles/{styleId}/map` for a styled dataset map).
 ====

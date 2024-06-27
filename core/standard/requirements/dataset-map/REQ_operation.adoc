@@ -1,15 +1,8 @@
 [[req_dataset-map_operation]]
-////
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/dataset-map/operation*
-^|A |If the dataset is exposed as a map in the default style, the Maps API implementation SHALL support a path URL and a HTTP GET operation to retrieve the map the API endpoint provides. The URI SHALL be `/map`
-|===
-////
 
 [requirement]
 ====
 [%metadata]
 identifier:: /req/dataset-map/operation
-part:: If the dataset is exposed as a map in the default style, the Maps API implementation SHALL support a path URL and a HTTP GET operation to retrieve the map the API endpoint provides. The URI SHALL be `/map`
+part:: The Maps API implementation SHALL support an HTTP GET operation for the `/map` URL to retrieve a map from the dataset API endpoint in the default style.
 ====

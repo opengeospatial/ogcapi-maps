@@ -1,15 +1,8 @@
 [[req_dataset-map_landingpage]]
-////
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/dataset-map/landingpage*
-^|A | If a deployed API endpoint has a mechanism to expose root resources (e.g. a landing page), the API endpoint SHALL advertise a URI to retrieve dataset maps defined by this service as links to the descriptions paths with rel: `https://www.opengis.net/def/rel/ogc/1.0/map`.
-|===
-////
 
 [requirement]
 ====
 [%metadata]
 identifier:: /req/dataset-map/landingpage
-part:: If a deployed API endpoint has a mechanism to expose root resources (e.g. a landing page), the API endpoint SHALL advertise a URI to retrieve dataset maps defined by this service as links to the descriptions paths with rel: `https://www.opengis.net/def/rel/ogc/1.0/map`.
+part:: The deployed API endpoint landing page SHALL include a link with relation type `https://www.opengis.net/def/rel/ogc/1.0/map` (or `[ogc-rel:map]`) to the dataset map URL at `/map`.
 ====

@@ -1,17 +1,8 @@
 [[req_collection-map_map-operation]]
-////
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/collection-map/map-operation*
-^|A |Every geospatial data resource available as a map SHALL support a path URL and a HTTP GET operation to retrieve maps
-^|B |The URI SHALL be composed by two parts: The initial is the URI of the geospatial data resource that can be represented as a map (e.g. /collections/{collectionId}) and the final part follows the pattern `/map`
-|===
-////
 
 [requirement]
 ====
 [%metadata]
 identifier:: /req/collection-map/map-operation
-part:: Every geospatial data resource available as a map SHALL support a path URL and a HTTP GET operation to retrieve maps
-part:: The URI SHALL be composed by two parts: The initial is the URI of the geospatial data resource that can be represented as a map (e.g. /collections/{collectionId}) and the final part follows the pattern `/map`
+part:: Every OGC API collection available as a map SHALL support an HTTP GET operation to a URL `/collections/{collectionId}/map` to retrieve a map from that collection resource.
 ====

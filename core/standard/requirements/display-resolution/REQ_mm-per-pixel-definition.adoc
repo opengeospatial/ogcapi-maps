@@ -1,25 +1,4 @@
 [[req_display-resolution_mm-per-pixel-definition]]
-////
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/display-resolution/mm-per-pixel-definition*
-^|A |The map operation SHALL support a parameter `mm-per-pixel` with the characteristics defined in the OpenAPI Specification 3.0 fragment:
-[source,YAML]
-----
-  mm-per-pixel:
-    name: mm-per-pixel
-    in: query
-    description:
-      size (in millimeters) of a pixel of the rendering device that presents the response.
-    required: false
-    style: form
-    schema:
-      type: number
-----
-^|B |`mm-per-pixel` SHALL be a positive number indicating the size (in millimeters) of a rendering device pixel.
-^|C |If the parameter `mm-per-pixel` is not provided, the server SHALL assume that the pixel size is 0.28 millimeters (90.71 pixels per inch).
-|===
-////
 
 [requirement]
 ====

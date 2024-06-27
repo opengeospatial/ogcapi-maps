@@ -11,6 +11,8 @@ All requirements and conformance tests that appear in this document are denoted 
 
 To express relationships between resources, https://tools.ietf.org/rfc/rfc8288.txt[RFC 8288 (Web Linking)] is used.
 
+Note that the CURIE based on the pattern `[ogc-rel:<relation>]` is also considered equivalent. For example, `[ogc-rel:map]` corresponds to https://www.opengis.net/def/rel/ogc/1.0/map.
+
 The following https://www.iana.org/assignments/link-relations/link-relations.xhtml[IANA link relation types] are used in this document:
 
 * **alternate**: Refers to a substitute for this context.
