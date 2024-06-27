@@ -60,15 +60,14 @@ NOTE: In the effort to make OGC API Standards more consistent, some parts of the
 
 *<<rc_background, Requirement Class "Background">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background)
 
-The _background_ requirements class defines how to request a particular background color (`bgcolor`) and to specify whether areas of the map with no data are `transparent`.
+The _background_ requirements class defines how to request two particular background colors (`bgcolor` and `void-color`) and to specify whether areas of the map with no data or where the CRS / projection is invalid are transparent (using `transparent` and `void-transparent`).
 
 Example requests are below:
 
 [%unnumbered%]
 [source]
 ----
-.../map?bgcolor=0x001122
-.../map?transparent=false
+.../map?bgcolor=0x001122&transparent=false&void-transparent=true
 ----
 
 *<<rc_collections-selection, Requirement Class "Collection Selection">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection)
