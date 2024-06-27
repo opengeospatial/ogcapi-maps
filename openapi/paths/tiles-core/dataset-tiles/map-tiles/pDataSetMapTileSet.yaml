@@ -4,7 +4,7 @@ get:
    summary: Retrieve a default map tileset of the whole dataset for the specified tiling scheme (tile matrix set)
    operationId: .dataset.map.getTileSet
    parameters:
-     - $ref: '../../../../parameters/common-geodata/collections.yaml'
+     - $ref: '../../../../parameters/maps-core/collections.yaml'
      - $ref: '../../../../parameters/unspecified/tileMatrixSetId.yaml'
      - $ref: '../../../../parameters/unspecified/f-metadata.yaml'
    responses:

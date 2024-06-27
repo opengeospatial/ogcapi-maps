@@ -3031,20 +3031,6 @@
           "$ref": "#/components/schemas/all-collections"
         }
       },
-      "collections": {
-        "name": "collections",
-        "in": "query",
-        "style": "form",
-        "description": "The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included. The collection will be rendered in the order specified, with the last one showing on top, unless the priority is overridden by styling rules.",
-        "required": false,
-        "explode": false,
-        "schema": {
-          "type": "array",
-          "items": {
-            "$ref": "#/components/schemas/all-collections"
-          }
-        }
-      },
       "bbox": {
         "name": "bbox",
         "in": "query",
@@ -3080,20 +3066,6 @@
         "style": "form",
         "explode": false
       },
-      "subset": {
-        "name": "subset",
-        "in": "query",
-        "description": "Retrieve only part of the data by slicing or trimming along one or more axis\nFor trimming: {axisAbbrev}({low}:{high}) (preserves dimensionality)\n   An asterisk (`*`) can be used instead of {low} or {high} to indicate the minimum/maximum value.\nFor slicing:  {axisAbbrev}({value})      (reduces dimensionality)\n",
-        "style": "form",
-        "explode": false,
-        "required": false,
-        "schema": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
       "crs": {
         "name": "crs",
         "in": "query",
@@ -3125,6 +3097,34 @@
         "explode": true,
         "schema": {
           "type": "string"
+        }
+      },
+      "collections": {
+        "name": "collections",
+        "in": "query",
+        "style": "form",
+        "description": "The collections that should be included in the response. The parameter value is a comma-separated list of collection identifiers. If the parameters is missing, some or all collections will be included. The collection will be rendered in the order specified, with the last one showing on top, unless the priority is overridden by styling rules.",
+        "required": false,
+        "explode": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/all-collections"
+          }
+        }
+      },
+      "subset": {
+        "name": "subset",
+        "in": "query",
+        "description": "Retrieve only part of the data by slicing or trimming along one or more axis\nFor trimming: {axisAbbrev}({low}:{high}) (preserves dimensionality)\nFor slicing:  {axisAbbrev}({value})      (reduces dimensionality)\n",
+        "style": "form",
+        "explode": false,
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "bgcolor": {

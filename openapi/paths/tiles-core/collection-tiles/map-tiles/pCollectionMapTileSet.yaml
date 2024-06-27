@@ -5,7 +5,7 @@ get:
    operationId: .collection.map.getTileSet
    parameters:
      - $ref: '../../../../parameters/common-geodata/collectionId-all.yaml'
-     - $ref: '../../../../parameters/common-geodata/collections.yaml'
+     - $ref: '../../../../parameters/maps-core/collections.yaml'
      - $ref: '../../../../parameters/unspecified/tileMatrixSetId.yaml'
      - $ref: '../../../../parameters/unspecified/f-metadata.yaml'
    responses:

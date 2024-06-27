@@ -169,24 +169,22 @@ components:
       # Common - Geospatial data
       collectionId-all:
          $ref: 'parameters/common-geodata/collectionId-all.yaml'
-      collections:
-         $ref: 'parameters/common-geodata/collections.yaml'
       bbox:
          $ref: 'parameters/common-geodata/bbox.yaml'
       datetime:
          $ref: 'parameters/common-geodata/datetime.yaml'
-      subset:
-         $ref: 'parameters/common-geodata/subset.yaml'
-
-      # Common - CRS
-      crs:
-         $ref: 'parameters/common-crs/crs.yaml'
-      bbox-crs:
-         $ref: 'parameters/common-crs/bbox-crs.yaml'
-      subset-crs:
-         $ref: 'parameters/common-crs/subset-crs.yaml'
 
       # Maps - Core
+      crs:
+         $ref: 'parameters/maps-core/crs.yaml'
+      bbox-crs:
+         $ref: 'parameters/maps-core/bbox-crs.yaml'
+      subset-crs:
+         $ref: 'parameters/maps-core/subset-crs.yaml'
+      collections:
+         $ref: 'parameters/maps-core/collections.yaml'
+      subset:
+         $ref: 'parameters/maps-core/subset.yaml'
       bgcolor:
          $ref: 'parameters/maps-core/bgcolor.yaml'
       transparent:
