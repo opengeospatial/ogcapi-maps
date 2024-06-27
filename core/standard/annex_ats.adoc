@@ -172,7 +172,11 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving a map without `bgcolor` parameter, with `bgcolor` using a hexadecimal value and with `bgcolor` using a W3C Web Color name +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the map operation supports a `bgcolor` parameter in hexadecimal red-green-blue color value (from 00 to FF, FF representing 255) for the background color of the map. For a six-digit hexadecimal value, the first and second digits specify the intensity of red. The third and fourth digits specify the intensity of green. The fifth and sixth digits specify the intensity of blue, +
+- assert that the map operation supports a `bgcolor` parameter in case-insensitive https://www.w3.org/wiki/CSS/Properties/color/keywords[W3C web color name] for the background color of the map, +
+- assert that if `bgcolor` is not specified, and either `transparent` is set to `false` or the output format cannot encode transparency, and there is an style defined the server uses the background color specified by the requested style, +
+- assert that if `bgcolor` is not specified, and either `transparent` is set to `false` or the output format cannot encode transparency, and there is no style used or the style do not specify a background color, the background color is set to 0xFFFFFF.
 --
 ====
 
@@ -190,7 +194,11 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving a map for all combinations of (no `transparent` parameter, transparent=false`, `transparent=true`) and with and without `bgcolor` parameter +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the server interprets `transparent` as a Boolean indicating whether the background of the map should be transparent, +
+- assert that, if `transparent` is not specified and a `bgcolor` is not specified, the server assumes a value of `true`, +
+- assert that, if `transparent` is not specified and a `bgcolor` is specified, the server assumes a value of `false`, +
+- assert that, if `transparent` is `true` and a `bgcolor` is specified, the server uses 0 for the background's opacity.
 --
 ====
 
@@ -208,7 +216,10 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving a map without `void-bgcolor` parameter, with `void-bgcolor` using a hexadecimal value and with `void-bgcolor` using a W3C Web Color name +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the map operation supports a `void-color` parameter which can be an hexadecimal red-green-blue color value (from 00 to FF, FF representing 255) for the parts of the map outside of the valid areas of the projection / CRS. For a six-digit hexadecimal value, the first and second digits specify the intensity of red. The third and fourth digits specify the intensity of green. The fifth and sixth digits specify the intensity of blue, +
+- assert that the map operation supports a case-insensitive https://www.w3.org/wiki/CSS/Properties/color/keywords[W3C web color name] the parts of the map outside of the valid areas of the projection / CRS, +
+- assert that if `void-color` is not specified, the same color value as for `bgcolor` (specified or default) SHALL be used for the parts of the map outside of the valid areas of the projection / CRS.
 --
 ====
 
@@ -226,7 +237,9 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving a map for all combinations of (no `void-transparent` parameter, void-transparent=false`, `void-transparent=true`) and with and without `void-bgcolor` parameter +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the server interprets `void-transparent` as a Boolean indicating whether the parts of the map outside of the valid areas of the projection / CRS should be transparent, +
+- assert that, if `void-transparent` is not specified, the server assumes the same value as for `transparent` (specified or default).
 --
 ====
 
@@ -244,7 +257,11 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* for all combinations of (no `transparent` parameter, transparent=false`, `transparent=true`) and (without `bgcolor` parameter, with `bgcolor` using a hexadecimal value and with `bgcolor` using a W3C Web Color name) +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the color of the map in the areas with no data is exactly the one specified in the `bgcolor`, +
+- assert that the color in parts of the map outside of the valid areas of the projection / CRS is the one specified by `void-color`, or otherwise default to the same as the background color (whether specified by `bgcolor` or default), +
+- assert that the transparency setting in parts of the map outside of the valid areas of the projection / CRS is the one specified by `void-transparent`, or otherwise default to the same as the background transparency setting (whether specified by `transparent` or default), +
+- assert that, in case the output format allows it and in the absence of the `transparent` parameter (or if it is `false`), the opacity (alpha value) of the map in the areas with no data is exactly 100%, if `transparent` is `false` or 0% if `transparent` is `true` (if the renderer supports anti-aliasing, at the edges between data and no-data areas, the opacity is allowed to have a value between 0% and 100%).
 --
 ====
 
@@ -275,7 +292,10 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core and that is understood to consist of multiple collections (e.g., a dataset advertising support for Dataset Map and featuring multiple collections) +
 *When:* retrieving a map using the `collections` parameter with one and multiple _collectionsIds_ +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that an operation that acts on a resource consisting of multiple geospatial data sub-resources (e.g., a resource derived from a root dataset) supports an optional parameter `collections` as an array of comma-separated collection id strings, +
+- assert that the parameter `collections` is supported by maps originating from resources consisting of multiple geospatial data sub-resources that can be addressed by identifiers (e.g. dataset map at `{datasetAPI}/maps/`), +
+- assert that implementations support both comma-separated list of geospatial resource identifiers (e.g., collectionId's) and full URLs to local geospatial resources.
 --
 ====
 
@@ -293,7 +313,9 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core and that is understood to consist of multiple collections (e.g., a dataset advertising support for Dataset Map and featuring multiple collections) +
 *When:* retrieving a map using the `collections` parameter with one and multiple _collectionsIds_ +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that only collections of geospatial data enumerated in the values of the `collections` parameter are used to generate the responses for the resource (map) to which they apply, +
+- assert that if there is more than one collection name and the style applied does not specify otherwise, the collections are rendered in the result in an order starting with the first (leftmost) collection and ending with the last (rightmost).
 --
 ====
 
@@ -325,7 +347,14 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using `width` parameter for different values, as well as the same `bbox` parameter if spatial subsetting is supported, with and without `height` parameter, with and without `mm-per-pixel` parameter if display resolution is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the `width` value is interpreted as the horizontal size (columns) of the viewport where the response will be presented in pixel units (number of pixels), +
+- assert that an HTTP 4xx error is returned if the `width` number is not a positive integer number, +
+- assert that an error is returned if the value of the `width` exceeds the `maxWidth` property specified in the `x-OGC-limits.maps` object included in the service metadata, +
+- assert that an HTTP 4xx error is returned if the value of the `width` (specified or calculated) times `height` (specified or calculated) exceeds a `maxPixels` property from a `x-OGC-limits.maps` object included in the service metadata, +
+- assert that an HTTP 4xx error be returned if the `width` parameter is used together with the `bbox` (or `subset` for spatial dimensions) as well as the `scale-denominator` parameter, +
+- assert that an HTTP 4xx error is returned if the `width` parameter is used together with the `scale-denominator` parameter and the implementation does not also support the "Subsetting" requirement class, +
+- assert that, when the `width` parameter is omitted, the implementation uses an appropriate width which accurately reflects the default or requested scale established as the ratio between the horizontal dimension of the viewport and the corresponding size of the physical world, specifically for the local subset (bounding box) of the map being returned, and taking into consideration the default (0.28 mm/pixel) or specified display resolution (`mm-per-pixel`).
 --
 ====
 
@@ -343,7 +372,14 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using `height` parameter for different values, as well as the same `bbox` parameter if spatial subsetting is supported, with and without `width` parameter, with and without `mm-per-pixel` parameter if display resolution is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the `height` value SHALL be interpreted as the vertical size (rows) of the viewport where the response will be presented in pixel units (number of pixels), +
+- assert that an HTTP 4xx error is returned if the `height` value is not a positive integer number, +
+- assert that an HTTP 4xx error is returned if the value of the `height` exceeds the `maxHeight` property specified in the `x-OGC-limits.maps` object included in the service metadata, +
+- assert that an HTTP 4xx error is returned if the value of the `width`  (specified or calculated) times `height` (specified or calculated) exceeds a `maxPixels` property from a `x-OGC-limits.maps` object included in the service metadata, +
+- assert that an HTTP 4xx error is returned if the `height` parameter is used together with the `bbox` (or `subset` for spatial dimensions) as well as the `scale-denominator` parameter, +
+- assert that an HTTP 4xx error is returned if the `height` parameter is used together with the `scale-denominator` parameter and the implementation does not also support the "Subsetting" requirement class, +
+- assert that, when the `height` parameter is omitted, the implementation SHALL use an appropriate height which accurately reflects the default or requested scale established as the ratio between the vertical dimension of the viewport and the corresponding size of the physical world, specifically for the local subset (bounding box) of the map being returned.
 --
 ====
 
@@ -361,7 +397,13 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `scale-denominator` parameter, combining all possibilities of with and without `width` and/or `height` parameters, with and without `bbox` and `center` parameter if spatial subsetting is supported, with and without `mm-per-pixel` parameter if display resolution is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the `scale-denominator` value is interpreted as the number of real-world units corresponding to one of the same unit on the map (as printed or displayed), considering only the local subset of the map being returned, based on the selected (e.g., from display resolution requirements class) or default (0.28 mm/pixel) display resolution, +
+- assert that the implementation establishes the correspondence between real-world units and pixel units based on the equation: _physicalMetersPerPixel_= (`mm-per-pixel` / 1000 mm/m) * `scale-denominator`, where the _physicalMetersPerPixel_ are not necessarily the same as the CRS units (even if those units are expressed in meters) for the region of that CRS consisting of the map subset being returned, +
+- assert that an HTTP 4xx error is returned if the `scale-denominator` parameter is used together with `width` and/or `height` and the implementation does not declare conformance to the <<rc_table_spatial-subsetting, _spatial subsetting_>> requirements class (which specifies that the `width` and `height` parameters can also take on a subsetting role), +
+- assert that an HTTP 4xx error is returned if the `scale-denominator` parameter is used together with `width` and/or `height` as well as a `bbox` (or equivalent `subset` parameter for a spatial dimension), +
+- assert that, if the `scale-denominator` parameter is omitted, the implementation computes it as needed (for purposes such as applying scale-dependent symbology rules) based on the default or selected dimensions, display resolution, and the spatial subset of the map to return, +
+- assert that, for implementations also supporting "Subsetting", when the spatial subset of the map is not specified in the request, the `scale-denominator` value (default or specified) is used to compute this bounding box, taking into consideration the display resolution as well as the default or specified dimensions.
 --
 ====
 
@@ -392,7 +434,10 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `mm-per-pixel` parameter, for different styles if styled maps are supported, combining all possibilities of with and without `width` and/or `height` parameters, with and without `bbox` and `center` parameter if spatial subsetting is supported, with and without `mm-per-pixel` parameter if display resolution is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the implementation is interpret `mm-per-pixel` as the size (in millimeters) of a rendering device pixel, +
+- assert that an HTTP 4xx error is returned if the `mm-per-pixel` value is not a positive number, +
+- assert that, if the parameter `mm-per-pixel` is not provided, the server assumes that the pixel size is 0.28 millimeters (90.71 pixels per inch).
 --
 ====
 
@@ -410,7 +455,9 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `mm-per-pixel` parameter, for different styles if styled maps are supported, combining all possibilities of with and without `width` and/or `height` parameters, with and without `bbox` and `center` parameter if spatial subsetting is supported, with and without `mm-per-pixel` parameter if display resolution is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that for an implementation supporting the Maps API _scaling_ requirements class, the implementation uses the `mm-per-pixel` value instead of the default 0.28 mm/pixel when establishing the relationship between the dimensions of the output image, the scale and the spatial extent of the map, +
+- assert that the `mm-per-pixel` value is used instead of the default 0.28 mm/pixel when establishing scale for the purpose of applying styling and symbology rules to the map. For example, this needs to be considered for scale-dependent rule selectors as well as for graphical units in real world units (e.g., meters) or display units (e.g., millimeters).
 --
 ====
 
@@ -448,7 +495,13 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using `bbox` and `bbox-crs` parameter for different values, as well as different values for the `crs` parameter if supported and applicable, +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the map retrieval operation supports a query parameter `bbox-crs` with a string, +
+- assert that for Earth centric data, the implementation supports https://www.opengis.net/def/crs/OGC/1.3/CRS84 as a value, +
+- assert that if the bbox-crs is not indicated https://www.opengis.net/def/crs/OGC/1.3/CRS84 is assumed, +
+- assert that if the storage (native) CRS is known, the storage CRS is supported as a value. Other conformance classes may allow additional values (see `crs` parameter definition), +
+- assert that the CRS expressed as URIs or as safe CURIEs is supported, +
+- assert that if the `bbox` parameter is not used, the `bbox-crs` is ignored.
 --
 ====
 
@@ -466,7 +519,13 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using `subset` and `subset-crs` parameter for different values (using the correct spatial axes), as well as different values for the `crs` parameter if supported and applicable, +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the map operation SHALL support a parameter `subset-crs` with a string, +
+- assert that for Earth centric data, https://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be supported as a value, +
+- assert that if the `subset-crs` is not indicated https://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be assumed, +
+- assert that if the storage (native) CRS is known, the storage CRS SHALL be supported as a value. Other requirements classes may allow additional values (see crs parameter definition), +
+- assert that CRS expressed as URIs or as safe CURIEs SHALL be supported, +
+- assert that if no `subset` parameter referring to an axis of the CRS is used, the `subset-crs` SHALL be ignored.
 --
 ====
 
@@ -484,8 +543,15 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using `center` and `center-crs` parameter for different values, as well as different values for the `crs` parameter if supported and applicable, +
-*Then:* (assert that all parts of the requirement are fully satisfied)
---
+*Then:* +
+- assert that the map operation supports a parameter `bbox` provided as comma-separated four or six numbers, +
+- assert that `bbox` SHALL be a comma separated list of four or six floating point numbers.
++
+If the bounding box consists of six numbers, the first three numbers are the coordinates of the lower bound corner of a three-dimensional bounding box and the last three are the coordinates of the upper bound corner.
+The axis order is determined by the `bbox-crs` parameter value or longitude and latitude if the parameter is missing (https://www.opengis.net/def/crs/OGC/1.3/CRS84 axis order for a 2D bounding box,
+https://www.opengis.net/def/crs/OGC/1.3/CRS84h for a 3D bounding box).
+For example in https://www.opengis.net/def/crs/OGC/1.3/CRS84 the order is left_long, lower_lat, right_long, upper_lat.
+- assert that if the `bbox` parameter is used together with the `center` and/or with a `subset` parameter including any of the dimensions corresponding to those of the map bounding box, the server SHALL return a 400 client error.
 ====
 
 ==== Abstract Test for Requirement `bbox` parameter definition
@@ -502,7 +568,14 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `bbox` parameter (with and without the `bbox-crs` parameter), +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the map operation supports a parameter `bbox` with a comma-separated list of four or six floating point numbers.
++
+If the bounding box consists of six numbers, the first three numbers are the coordinates of the lower bound corner of a three-dimensional bounding box and the last three are the coordinates of the upper bound corner.
+The axis order is determined by the `bbox-crs` parameter value or longitude and latitude if the parameter is missing (https://www.opengis.net/def/crs/OGC/1.3/CRS84 axis order for a 2D bounding box,
+https://www.opengis.net/def/crs/OGC/1.3/CRS84h for a 3D bounding box).
+For example in https://www.opengis.net/def/crs/OGC/1.3/CRS84 the order is left_long, lower_lat, right_long, upper_lat, +
+- assert that If the `bbox` parameter is used together with the `center` and/or with a `subset` parameter including any of the dimensions corresponding to those of the map bounding box, the server SHALL return a 4xx client error.
 --
 ====
 
@@ -520,7 +593,8 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `subset` parameter (with and without the `subset-crs` parameter, for the correct spatial axes), +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the implementation SHALL ...
 --
 ====
 

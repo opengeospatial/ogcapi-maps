@@ -26,6 +26,7 @@
 [%metadata]
 identifier:: /req/display-resolution/mm-per-pixel-definition
 part:: The map operation SHALL support a parameter `mm-per-pixel` with the characteristics defined in the OpenAPI Specification 3.0 fragment:
++
 [source,YAML]
 ----
   mm-per-pixel:
@@ -38,7 +39,8 @@ part:: The map operation SHALL support a parameter `mm-per-pixel` with the chara
     schema:
       type: number
 ----
-part:: `mm-per-pixel` SHALL be a positive number indicating the size (in millimeters) of a rendering device pixel.
+part:: The implementation SHALL interpret `mm-per-pixel` as the size (in millimeters) of a rendering device pixel.
+part:: An HTTP 4xx error SHALL be returned if the `mm-per-pixel` value is not a positive number.
 part:: If the parameter `mm-per-pixel` is not provided, the server SHALL assume that the pixel size is 0.28 millimeters (90.71 pixels per inch).
 ====
 
