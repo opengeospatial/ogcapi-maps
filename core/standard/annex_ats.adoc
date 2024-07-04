@@ -59,7 +59,7 @@ test-method::
 - assert that the headers of the response include the `Content-Crs:` header with the URI or the safe CURIEs of the CRS used to render the map, except if the content is in the https://www.opengis.net/def/crs/OGC/1.3/CRS84 CRS, +
 - assert that the headers of the response include a `Content-Bbox:` header with the actual geospatial boundary of the rendered map, +
 - assert that the `Content-Bbox:` coordinates are in the response CRS (indicated in the `Content-Crs:` or https://www.opengis.net/def/crs/OGC/1.3/CRS84 if it is not present) and contains four comma-separated numbers representing the lower-left and upper-right corners of the response honoring the CRS coordinates order, +
-- assert that if the geospatial resource has a temporal aspect (e.g., if a temporal extent is defined in the collection description or in the dataset landing page), the headers of the response include a `Content-Datetime:` header with the actual datetime instant or datetime interval of the rendered map.
+- assert that if the geospatial resource has a temporal aspect (e.g., if a temporal extent is defined in the collection description or in the dataset landing page), the headers of the response include a `Content-Datetime:` header with the actual datetime instant or datetime interval of the rendered map. +
 - assert that a `Content-Datetime:` header (if present) is expressed in RFC 3339, section 5.6 format (using either UTC time or local time offsets), but also allowing for the additional formats `yyyy`, `yyyy-mm`, `yyyy-mm-dd`, `yyyy-mm-ddThhZ` (or e.g., `yyyy-mm-ddThh-04:00`) and `yyyy-mm-ddThh:mmZ` (or e.g., `yyyy-mm-ddThh-04:00`), +
 - assert that the body of the response contains a map encoded in the negotiated format.
 --
@@ -844,13 +844,16 @@ abstract-test:: /conf/general-subsetting/subset-definition
 [%metadata]
 identifier:: /conf/general-subsetting/uniform-additional-dimensions
 target:: /req/general-subsetting/uniform-additional-dimensions
-test-purpose:: Verify that the implementation describes the extent of all additional dimensions of the data resource using the uniform additional dimension schema (using `interval`, `crs/trs/vrs` and optionally `grid`).
+test-purpose:: Verify that the implementation describes additional dimensions in a uniform manner
 test-method::
 +
 --
-*Given:* a map resource that conformed successfully to /conf/core for which an extent description is available +
-*When:* retrieving the description of the data resource +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Given:* a map resource that conformed successfully to /conf/core for which an extent description is available (e.g., conforming successfully to either the "Collection Map" or "Dataset Map")+
+*When:* retrieving the description of the data resource e.g., the collection (for "Collection Map") or the landing page (for "Dataset Map")  +
+*Then:* +
+- assert that the extent of any additional dimension(s) beyond temporal and spatial is described in a way similar to the temporal dimension,
+using the name of the dimension as a key and an object as value, with that object containing an `interval` property, a URI for the semantic `definition`, a `unit` of measure if applicable,
+and a `grid` definition if applicable, as specified in https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/openapi/schemas/common-geodata/extent-uad.yaml[_extent-uad.yaml_].
 --
 ====
 
@@ -868,7 +871,34 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `subset` parameter for an additional dimension besides space and time +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the implementation supports a `subset` parameter, consisting of an axis name followed by an interval or single value within parentheses, where an interval is separated by a colon (`:`), +
+- assert that all additional dimensions described in the extent of the collection are supported as axis name, +
+- assert that a 400 error status code is returned if an axis name not corresponding to the name of one of the _additional_ dimensions in the extent of the collection, and not corresponding to the required
+  or recommended aliases in the spatial subsetting and temporal subsetting requirement classes is used, +
+- assert that when the _intervalOrSingle_ values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code is returned, +
+- assert that for an axis that can wrap around, a _low_ value greater than _high_ are supported to indicate an extent crossing that wrapping point, +
+- assert that multiple subset parameters are interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated).
+--
+====
+
+==== Abstract Test for Requirement uniform additional dimensions
+
+[abstract_test]
+====
+[%metadata]
+identifier:: /conf/general-subsetting/uniform-additional-dimensions
+target:: /req/general-subsetting/uniform-additional-dimensions
+test-purpose:: Verify that the implementation describes additional dimensions in a uniform manner
+test-method::
++
+--
+*Given:* a map resource that conformed successfully to /conf/core as well as either the "Collection Map" or "Dataset Map" +
+*When:* retrieving the description of the collection (for "Collection Map") or the landing page (for "Dataset Map") +
+*Then:* +
+- assert that the extent of any additional dimension(s) beyond temporal and spatial is described in a way similar to the temporal dimension,
+using the name of the dimension as a key and an object as value, with that object containing an `interval` property, a URI for the semantic `definition`, a `unit` of measure if applicable,
+and a `grid` definition if applicable, as specified in https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/openapi/schemas/common-geodata/extent-uad.yaml[_extent-uad.yaml_].
 --
 ====
 
@@ -1400,7 +1430,11 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving a PNG (`image/png`) representation of a map resource through HTTP content negotiation +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that every 200-response of the server with the media type `image/png` is a PNG document representing only one map, +
+- assert that the colors of the PNG represent the geospatial features or coverage values in the map, +
+- assert that the alpha channel of the PNG is used when partial transparency is required, +
+- assert that all maps representing parts of the same resource or resources and using the same style follow the same portrayal rules.
 --
 ====
 
@@ -1430,7 +1464,10 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving a JPEG (`image/jpeg`) representation of a map resource through HTTP content negotiation +
-**Then:** (assert that all parts of the requirement are fully satisfied)
+**Then:** +
+- assert that every 200-response of the server with the media type `image/jpeg` is a JPEG document representing only one map, +
+- assert that the colors of the JPEG represent geospatial features and/or coverage values in the map, +
+- assert that all maps representing parts of the same resource or resources and using the same style follow the same portrayal rules.
 --
 ====
 
@@ -1460,7 +1497,10 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving a JPEG XL (`image/jxl`) representation of a map resource through HTTP content negotiation +
-**Then:** (assert that all parts of the requirement are fully satisfied)
+**Then:** +
+- assert that every 200-response of the server with the media type `image/jxl` is a JPEG XL file representing only one map, +
+- assert that the JPEG XL is a color image representing the geospatial features or coverage values in the map, +
+- assert that all maps representing parts of the same resource or resources and using the same style follow the same portrayal rules.
 --
 ====
 
@@ -1490,7 +1530,10 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving a TIFF (`image/tiff`) and GeoTIFF (`image/tiff; application=geotiff`) representation of a map resource through HTTP content negotiation +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that every 200-response of the server with the media type `image/tiff` is a TIFF document representing only one map, +
+- assert that the TIFF file represents colors by using an image palette or RGB combination, +
+- assert that all maps representing parts of the same resource or resources and using the same style follow the same portrayal rules or represent data with the same reference and units of measure.
 --
 ====
 
@@ -1520,7 +1563,9 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving an SVG (`image/svg+xml`) representation of a map resource through HTTP content negotiation +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that every 200-response of the server with the media type `image/svg+xml` is an SVG document representing only a map, +
+- assert that the SVG coordinates inside the map start at 0,0 and end in the width and height of the request.
 --
 ====
 
@@ -1550,7 +1595,8 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving an (`text/html`) HTML representation of a map resource HTTP content negotiation +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that every 200-response of the server with the media type `text/html` is an HTML document representing the geospatial data as maps.
 --
 ====
 
@@ -1569,7 +1615,6 @@ abstract-test:: /conf/api-operations/operation-id
 
 ==== Abstract Test for Requirement API Operations completeness
 
-
 [abstract_test]
 ====
 [%metadata]
@@ -1579,9 +1624,12 @@ test-purpose:: Verify that the implementation completely and correctly describes
 test-method::
 +
 --
-*Given:* an API conforming to _OGC API - Common - Part 1: Core_ "Landing Page" conformance class +
+*Given:* an API conforming to _OGC API - Common - Part 1: Core_ "Landing Page" conformance class, +
 *When:* retrieving the API description +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the API definition provides paths for all map, custom projections, tileset, tilesets list and tile resources provided by the API instance, +
+- assert that the resource paths defined in the API definition is consistent with the links to the same resources provided by the landing page, collections, tileset and tilesets list resources, +
+- assert that the resource paths defined in the API definition provides the description of the parameters that the map, tileset and tile resources need to operate that are specified in corresponding conformance classes.
 --
 ====
 
@@ -1599,7 +1647,7 @@ test-method::
 --
 *Given:* an API implementation conforming to _OGC API - Common - Part 1: Core_ "Landing Page" conformance class supporting an API definition language with a concept of operation identifiers +
 *When:* retrieving the API description +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+- assert that the paths defined in the API definition have an operation identifier value ending with the relevant dot-separated suffix corresponding to the resource as specified in <<api-operation-id-suffixes>>.
 --
 ====
 
@@ -1617,7 +1665,6 @@ abstract-test:: /conf/cors/cors
 
 ==== Abstract Test for Requirement CORS
 
-
 [abstract_test]
 ====
 [%metadata]
@@ -1629,6 +1676,7 @@ test-method::
 --
 *Given:* an API conforming to _OGC API - Common - Part 1: Core_ "Landing Page" conformance class +
 *When:* retrieving the API description +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the implementation supports CORS as defined by W3C (https://www.w3.org/TR/2020/SPSD-cors-20200602/).
 --
 ====

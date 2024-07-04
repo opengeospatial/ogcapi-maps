@@ -1,17 +1,9 @@
 [[req_svg_content]]
-////
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/svg/content*
-^|A |Every 200-response of the server with the media type image/svg+xml SHALL be a SVG document representing only a map.
-^|B | The SVG coordinates inside the map SHALL start at 0,0 and end in the width and height of the request.
-|===
-////
 
 [requirement]
 ====
 [%metadata]
 identifier:: /req/svg/content
-part:: Every 200-response of the server with the media type image/svg+xml SHALL be a SVG document representing only a map.
+part:: Every 200-response of the server with the media type `image/svg+xml` SHALL be an SVG document representing only a map.
 part:: The SVG coordinates inside the map SHALL start at 0,0 and end in the width and height of the request.
 ====

@@ -8,19 +8,18 @@ part:: A `subset` parameter with the following characteristics (using an Augment
 +
 [source,ABNF]
 ----
-  SubsetSpec:       "subset"=axisName(intervalOrSingle)
-  axisName:         {text}
-  intervalOrSingle: interval / single
-  interval:         low : high
-  low:              single / *
-  high:             single / *
-  single:            {number} / "{text}" / *
+  SubsetSpec =       "subset" "=" axisName "(" intervalOrSingle ")"
+  intervalOrSingle = interval / single
+  interval =         low ":" high
+  low =              single
+  high =             single
+  single =           number / text / "*"
 
   Where:
-     " = double quote = ASCII code 0x42,
-     {number} is an integer or floating-point number, and
-     {text} is some general ASCII text (such as a time and date notation in RFC 3339 section 5.6).
-  An asterisk (`*`) can be used instead of `{low}` or `{high}` to indicate the minimum/maximum value.
+     `axisName` is an abbreviation identifying an axis using lowercase and uppercase letters A-Z
+     `number` is an integer or floating-point number, and
+     `text` is some general ASCII text (such as a time and date notation in RFC 3339 section 5.6) enclosed in double-quotes (`"`, ASCII code 0x42).
+  An asterisk (`*`) can be used for `low` or `high` to indicate the minimum/maximum value.
   For an additional temporal dimension, a single asterisk may be supported to indicate the latest available time.
   Support for `*` is required for time, but optional for spatial and other dimensions.
 ----

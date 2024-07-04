@@ -1,11 +1,4 @@
 [[req_api_operations_operation_id]]
-////
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/api-definition/operation-id*
-^|A |For API definitions with a concept of operation identifiers, the paths defined in the API definition SHALL have an operation identifier value ending with the relevant dot-separated suffix corresponding to the resource as specified in <<api-operation-id-suffixes>>.
-|===
-////
 
 [requirement]
 ====

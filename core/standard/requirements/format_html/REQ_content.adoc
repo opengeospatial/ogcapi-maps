@@ -1,17 +1,10 @@
 [[req_html_content]]
-////
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/png/content*
-^|A |Every 200-response of the server with the media type text/html SHALL be a HTML document representing the geospatial data as maps.
-|===
-////
 
 [requirement]
 ====
 [%metadata]
 identifier:: /req/html/content
-part:: Every 200-response of the server with the media type text/html SHALL be a HTML document representing the geospatial data as maps.
+part:: Every 200-response of the server with the media type `text/html` SHALL be an HTML document representing the geospatial data as maps.
 ====
 
 NOTE: An HTML page can contain links to other resources. In particular, it can contain image sources linked to map resources as image/png or image/jpeg that will represent the actual data.
