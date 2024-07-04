@@ -30,9 +30,11 @@ While the processing of the `datetime` parameter is specific to the resource and
 
 include::requirements/datetime/REQ_datetime-response.adoc[]
 
-"Intersects" means that the time (instant or period) specified in the parameter `datetime` includes a timestamp that is part of the temporal geometry of the resource (again, a time instant or period). For time periods this includes the start and end time.
+"Intersects" means that the time (instant or period) specified in the parameter `datetime` includes a timestamp that is part of the temporal geometry of the resource
+(again, a time instant or period). For time periods this includes the start and end time.
 
-NOTE: ISO 8601-2 (Date and time — Representations for information interchange — Part 2: Extensions) distinguishes open start/end timestamps (double-dot) and unknown start/end timestamps (empty string). For queries, an unknown start/end has the same effect as an open start/end.
+NOTE: ISO 8601-2 (Date and time — Representations for information interchange — Part 2: Extensions) distinguishes unbounded start/end timestamps (double-dot) and unknown start/end timestamps (empty string).
+For queries, an unknown start/end has the same effect as an unbounded start/end.
 
 .A date-time
 =================

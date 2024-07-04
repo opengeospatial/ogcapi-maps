@@ -10,16 +10,15 @@ part:: The implementation SHALL support a `subset` parameter conforming to the f
 ----
   SubsetSpec:       "subset"=axisName(intervalOrSingle)
   axisName:         {text}
-  intervalOrSingle: interval \| single
+  intervalOrSingle: interval / single
   interval:         low : high
   low:              single
   high:             single
-  single:            {number} \| "{text}"
+  single:           {number}
 
   Where:
-     \" = double quote = ASCII code 0x42,
-     {number} is an integer or floating-point number, and
-     {text} is some general ASCII text (such as a time and date notation in ISO 8601).
+     " = double quote = ASCII code 0x42,
+     `{number}` is an integer or floating-point number.
 ----
 part:: Axis names `Lat` and `Lon` SHALL be supported for geographic CRS and `E` and `N` for projected CRS, which are to be interpreted as the best matching spatial axis in the CRS definition.
 part:: If a third spatial dimension is supported (if the resource's spatial extent bounding box is three dimensional), the implementation SHALL also support a `h` dimension. This is the elevation above the ellipsoid in EPSG:4979 or CRS84h for geographic CRS and `z` for projected CRS, which are to be interpreted as the vertical axis in the CRS definition.

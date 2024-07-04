@@ -10,31 +10,34 @@ part:: A `subset` parameter with the following characteristics (using an Augment
 ----
   SubsetSpec:       "subset"=axisName(intervalOrSingle)
   axisName:         {text}
-  intervalOrSingle: interval \| single
+  intervalOrSingle: interval / single
   interval:         low : high
-  low:              single
-  high:             single
-  single:            {number} \| "{text}"
+  low:              single / *
+  high:             single / *
+  single:            {number} / "{text}" / *
 
   Where:
-     \" = double quote = ASCII code 0x42,
+     " = double quote = ASCII code 0x42,
      {number} is an integer or floating-point number, and
-     {text} is some general ASCII text (such as a time and date notation in ISO 8601).
+     {text} is some general ASCII text (such as a time and date notation in RFC 3339 section 5.6).
+  An asterisk (`*`) can be used instead of `{low}` or `{high}` to indicate the minimum/maximum value.
+  For an additional temporal dimension, a single asterisk may be supported to indicate the latest available time.
+  Support for `*` is required for time, but optional for spatial and other dimensions.
 ----
 part:: Any name of the _additional_ dimensions in the extent of the collection SHALL be supported as axis name.
 part:: A 400 error status code SHALL be returned if an axis name does not correspond to the name of one of the _additional_ dimensions in the extent of the collection.
-part:: If the _intervalOrPoint_ values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code SHALL be returned.
+part:: If the _intervalOrSingle_ values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code SHALL be returned.
 part:: For an axis that can wrap around, a _low_ value greater than _high_ SHALL be supported to indicate an extent crossing that wrapping point.
 part:: Multiple subset parameters SHALL be interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.
 +
 ^1^ Example: `subset=Lat(-90:90)&subset=Lon(-180:180)&subset=atm_pressure_hpa(500)` is equivalent to `subset=Lat(-90:90),Lon(-180:180),atm_pressure_hpa(500)`
 ====
 
-NOTE: When the intervalOrPoint values fall partially outside of the range of valid values defined by the CRS for the identified axis, the service is expected to return the non-empty portion of the resource resulting from the subset.
+NOTE: When the `intervalOrSingle` values fall partially outside of the range of valid values defined by the CRS for the identified axis, the service is expected to return the non-empty portion of the resource resulting from the subset.
 
 NOTE: For the operation of returning a map, there normally is no value in preserving dimensionality. Therefore a _slicing_ operation (using the _point_ notation) is usually equivalent to
 a _trimming_ operation (using the _interval_ notation) when the low and high bounds of an interval are the same. Therefore, use of the point notation is encouraged in these cases.
 
 NOTE: For typical 2D map requests, a slicing or trimming operation for additional dimensions may be provided, where those additional dimensions are flattened on the map.
 For a response format where an additional dimension can be preserved (e.g., atmospheric pressure represented in a 3D representation), that additional dimension would not need to be flattened.
-For special maps like graphs, an additional dimensions may be presented as a vertical or horizontal axis on the map.
+For special maps like graphs, an additional dimension may be presented as a vertical or horizontal axis on the map.

@@ -9,21 +9,32 @@ part:: The `subset` parameter SHALL have the following characteristics (using an
 [source,ABNF]
 ----
   SubsetSpec:       "subset"="time"(intervalOrSingle)
-  intervalOrSingle: interval \| single
+  intervalOrSingle: interval / single
   interval:         low : high
   low:              single
   high:             single
-  single:            {number} \| "{text}"
+  single:           {number} / "{text}" / *
 
   Where:
-     \" = double quote = ASCII code 0x42,
-     {number} is an integer or floating-point number, and
-     {text} is some general ASCII text (such as a time and date notation in ISO 8601).
+     " = double quote = ASCII code 0x42,
+     `{number}` is an integer or floating-point number, and
+     `{text}` is some general ASCII text (such as a time and date notation in RFC 3339 section 5.6).
+  An asterisk (`*`) can be used instead of `{low}` or `{high}` to indicate the minimum/maximum value.
+  A single asterisk can be used to indicate the high value.
+  Support for `*` is required for time, but optional for spatial and other dimensions.
 ----
 part:: The implementation SHALL support an axis name "time".
 part:: The implementation SHALL return a 400 status code if the axis name is not "time" and is not recognized in the context of another requirements class.
 part:: If the intervalOrPoint values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code SHALL be returned
-part:: Coordinates SHALL be interpreted as values for the named axis of the CRS specified in the temporal extent, or Gregorian UTC time (as specified in RFC 3339) if it is not specified in the temporal extent.
+part:: Coordinates SHALL be interpreted as values for the CRS specified in the temporal extent, or Gregorian UTC time if it is not specified in the temporal extent.
+part:: When Gregorian UTC time is used, the implementation SHALL support time expressed using RFC 3339 section 5.6, with only support for the UTC (`Z`) notation required (support for local time offsets is optional),
+as well as the following additional partial date and time formats: +
+* only a year: `yyyy`
+* a year and a month: `yyyy-mm`
+* a year, a month and a day: `yyyy-mm-dd`
+* a year, a month, a day and an hour: `yyyy-mm-ddThhZ`
+* a year, a month, a day, an hour and a minute: `yyyy-mm-ddThh:mmZ`
+part:: The implementation SHALL support a `*` value indicating the earliest available time (for `{low}`) or the latest available time (for `{high}`).
 part:: Multiple `subset` parameters SHALL be interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.
 +
 ^1^ Example: `subset=Lat(-90:90)&subset=Lon(-180:180)&subset=time("2018-02-12T23:20:52Z")` is equivalent to `subset=Lat(-90:90),Lon(-180:180),time("2018-02-12T23:20:52Z")`
@@ -37,3 +48,5 @@ a _trimming_ operation (using the _interval_ notation) when the low and high bou
 NOTE: For typical 2D map requests, a slicing or trimming operation for the temporal dimension may be provided, where that temporal dimension is flattened on the map.
 For a response format such as a video animation, the temporal dimension would not need to be flattened.
 For special maps like the graph of a vegetation index over time for a particular spatial location, the temporal axis may be presented as a vertical or horizontal axis on the map.
+
+NOTE: If no subset parameter is used for the time dimension and no datetime parameter is used, the implementation is free to return a default temporal range.

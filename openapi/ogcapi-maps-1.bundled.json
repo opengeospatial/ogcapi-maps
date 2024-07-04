@@ -3116,7 +3116,7 @@
       "subset": {
         "name": "subset",
         "in": "query",
-        "description": "Retrieve only part of the data by slicing or trimming along one or more axis\nFor trimming: {axisAbbrev}({low}:{high}) (preserves dimensionality)\nFor slicing:  {axisAbbrev}({value})      (reduces dimensionality)\n",
+        "description": "Retrieve only part of the data by slicing or trimming along one or more axis\nFor trimming: {axisAbbrev}({low}:{high}) (preserves dimensionality)\nFor slicing:  {axisAbbrev}({value})      (reduces dimensionality)\nAn asterisk (`*`) can be used instead of {low} or {high} to indicate the minimum/maximum value.\nFor a temporal dimension, a single asterisk can be used to indicate the high value.\nSupport for `*` is required for time, but optional for spatial and other dimensions.\n",
         "style": "form",
         "explode": false,
         "required": false,

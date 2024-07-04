@@ -4,6 +4,9 @@ description: |
    Retrieve only part of the data by slicing or trimming along one or more axis
    For trimming: {axisAbbrev}({low}:{high}) (preserves dimensionality)
    For slicing:  {axisAbbrev}({value})      (reduces dimensionality)
+   An asterisk (`*`) can be used instead of {low} or {high} to indicate the minimum/maximum value.
+   For a temporal dimension, a single asterisk can be used to indicate the high value.
+   Support for `*` is required for time, but optional for spatial and other dimensions.
 style: form
 explode: false
 required: false

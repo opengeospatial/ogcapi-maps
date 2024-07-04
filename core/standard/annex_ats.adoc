@@ -921,7 +921,7 @@ test-method::
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps with the `orientation` parameter for different values and without +
 *Then:* +
-- assert that an orientation parameter that specifies the amount by which to rotate a map is supported , expressed as counterclockwise degrees, resulting in the viewing perspective being rotated by that same orientation in a clockwise direction, +
+- assert that an orientation parameter that specifies the amount by which to rotate a map is supported, expressed as counterclockwise degrees, resulting in the viewing perspective being rotated by that same orientation in a clockwise direction, +
 - assert that when the `orientation` parameter is not specified, a zero orientation value is be assumed, +
 - assert that the orientation is applied to the map with the center of the selected spatial subset as the pivot point, or the center of the map if none is specified, +
 - assert that if an `orientation` parameter is used together with `subset` or `bbox` spatial subsetting parameter,
