@@ -6,13 +6,14 @@
 identifier:: /req/core/map-response
 part:: A successful execution of a map operation SHALL be a response with a HTTP status code 200.
 part:: The map response SHALL be in the storage CRS specified in the collection description, or https://www.opengis.net/def/crs/OGC/1.3/CRS84 if none is specified, unless overridden by a specific query parameter (see <<rc_crs>>).
-part:: The headers of the response SHALL include the "Content-Crs" header with the URI or the safe CURIEs of the CRS used to render the map, except if the content is in the https://www.opengis.net/def/crs/OGC/1.3/CRS84 CRS.
-part:: The headers of the response SHALL include a "Content-Bbox" header with the actual geospatial boundary of the rendered map.
-part:: The "Content-Bbox" coordinates SHALL be in the response CRS (indicated in the "Content-Crs" or https://www.opengis.net/def/crs/OGC/1.3/CRS84 if it is not present) and SHALL contain four comma-separated numbers representing the lower-left and upper-right corners of the response honoring the CRS coordinates order.
+part:: The headers of the response SHALL include the `Content-Crs:` header with the URI or the safe CURIEs of the CRS used to render the map, except if the content is in the https://www.opengis.net/def/crs/OGC/1.3/CRS84 CRS.
+part:: The headers of the response SHALL include a `Content-Bbox:` header with the actual geospatial boundary of the rendered map.
+part:: The `Content-Bbox:` coordinates SHALL be in the response CRS (indicated in the `Content-Crs:` or https://www.opengis.net/def/crs/OGC/1.3/CRS84 if it is not present) and SHALL contain four comma-separated numbers representing the lower-left and upper-right corners of the response honoring the CRS coordinates order.
 part:: If the geospatial resource has a temporal aspect (e.g., if a temporal extent is defined in the collection description or in the dataset landing page),
-the headers of the response SHALL include a "Content-Datetime" header with the actual datetime instant or datetime interval of the rendered map.
-part:: A datetime internal SHALL be expressed using the notation `time-instant / time-instant`.
-part:: A time instant, whether the single value or the `time-instant` an interval, SHALL be expressed RFC 3339, section 5.6 format, using either UTC time or local time offsets, with the o
+the headers of the response SHALL include a `Content-Datetime:` header with the actual datetime instant or datetime interval of the rendered map.
+part:: In the `Content-Datetime:` response header, a datetime interval SHALL be expressed using the notation `time-instant / time-instant`.
+part:: In the `Content-Datetime:` response header, a time instant, whether the single value or the `time-instant` of an interval, SHALL be expressed RFC 3339, section 5.6 format, using either UTC time or local time offsets,
+with the additional options of:
 * only a year: `yyyy`
 * a year and a month: `yyyy-mm`
 * a year, a month and a day: `yyyy-mm-dd`

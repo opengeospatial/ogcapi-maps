@@ -34,12 +34,7 @@ test-method::
 *Given:* a geospatial data resource conforming to the Maps API Standard, with an API path including `.../map...` or discovered following a link with relation type `[ogc-rel:map]` +
 *When:* performing a GET operation on the `/map` resource with a supported media type specified in the `Accept:` header (e.g., `Accept: image/png,image/jpeg`) +
 *Then:* +
-- assert that the response has HTTP status code 200 +
-- assert that the CRS of the resulting map is the native CRS (the native CRS is `[ogc:crs84]`, unless specified in the dataset map or collection map description `storageCrs` property, or specified out-of-band if _OGC API - Common_ is not implemented), +
-- assert that the response headers either includes a `Content-Crs:` header for the native CRS, or omits it if the nativeCRS is `[ogc:crs84]`, +
-- assert that the headers of the response include a `Content-Bbox:` header with the actual axis-aligned geospatial boundary of the rendered map, +
-- assert that the `Content-Bbox:` coordinates are in the native CRS and honor the CRS coordinates order, +
-- assert that the body of the response is a map of the geospatial data resource in the negotiated format.
+- assert that the implementation supports retrieving map resources at one or more `.../map` URL.
 --
 ====
 
@@ -61,10 +56,11 @@ test-method::
 *Then:* +
 - assert that the response has an HTTP status code 200, +
 - assert that the map response is in the storage CRS specified in the collection description, or https://www.opengis.net/def/crs/OGC/1.3/CRS84 if none is specified, +
-- assert that the headers of the response include the "Content-Crs" header with the URI or the safe CURIEs of the CRS used to render the map, except if the content is in the https://www.opengis.net/def/crs/OGC/1.3/CRS84 CRS, +
-- assert that the headers of the response include a "Content-Bbox" header with the actual geospatial boundary of the rendered map, +
-- assert that the "Content-Bbox" coordinates are in the response CRS (indicated in the "Content-Crs" or https://www.opengis.net/def/crs/OGC/1.3/CRS84 if it is not present) and contains four comma-separated numbers representing the lower-left and upper-right corners of the response honoring the CRS coordinates order, +
-- assert that if the geospatial resource has a temporal aspect (e.g., if a temporal extent is defined in the collection description or in the dataset landing page), the headers of the response include a "Content-Datetime" header with the actual datetime instant or datetime interval of the rendered map expressed in RFC 3339, section 5.6 format (using either UTC time or local time offsets), +
+- assert that the headers of the response include the `Content-Crs:` header with the URI or the safe CURIEs of the CRS used to render the map, except if the content is in the https://www.opengis.net/def/crs/OGC/1.3/CRS84 CRS, +
+- assert that the headers of the response include a `Content-Bbox:` header with the actual geospatial boundary of the rendered map, +
+- assert that the `Content-Bbox:` coordinates are in the response CRS (indicated in the `Content-Crs:` or https://www.opengis.net/def/crs/OGC/1.3/CRS84 if it is not present) and contains four comma-separated numbers representing the lower-left and upper-right corners of the response honoring the CRS coordinates order, +
+- assert that if the geospatial resource has a temporal aspect (e.g., if a temporal extent is defined in the collection description or in the dataset landing page), the headers of the response include a `Content-Datetime:` header with the actual datetime instant or datetime interval of the rendered map.
+- assert that a `Content-Datetime:` header (if present) is expressed in RFC 3339, section 5.6 format (using either UTC time or local time offsets), but also allowing for the additional formats `yyyy`, `yyyy-mm`, `yyyy-mm-dd`, `yyyy-mm-ddThhZ` (or e.g., `yyyy-mm-ddThh-04:00`) and `yyyy-mm-ddThh:mmZ` (or e.g., `yyyy-mm-ddThh-04:00`), +
 - assert that the body of the response contains a map encoded in the negotiated format.
 --
 ====
