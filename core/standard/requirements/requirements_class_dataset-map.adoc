@@ -1,15 +1,4 @@
 [[rc_table_dataset]]
-////
-[cols="1,4",width="90%"]
-|===
-2+|*Requirements Class Dataset Map*
-2+|https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map
-|Target type |Web API
-|Dependency |https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
-https://www.opengis.net/spec/ogcapi-common-1/1.0/req/core
-https://www.opengis.net/spec/ogcapi-common-1/1.0/req/landing-page
-|===
-////
 
 [requirements_class]
 .Requirements Class 'Dataset Map'

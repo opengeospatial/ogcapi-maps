@@ -1,15 +1,8 @@
 [[req_crs_map-success]]
-////
-[width="90%",cols="2,6a"]
-|===
-^|*Requirement {counter:req-id}* |*/req/crs/map-success*
-^|A |The content of that response SHALL be consistent with the requested CRS.
-|===
-////
 
 [requirement]
 ====
 [%metadata]
 identifier:: /req/crs/map-success
-part:: The content of that response SHALL be consistent with the requested CRS.
+part:: The content of the map response SHALL be consistent with the requested CRS.
 ====

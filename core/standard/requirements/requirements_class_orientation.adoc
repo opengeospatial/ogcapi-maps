@@ -1,13 +1,4 @@
 [[rc_table_orientation]]
-////
-[cols="1,4",width="90%"]
-|===
-2+|*Requirements Class Orientation*
-2+|https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/orientation
-|Target type |Web API
-|Dependency |https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
-|===
-////
 
 [requirements_class]
 .Requirements Class 'Orientation'

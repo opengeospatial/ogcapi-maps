@@ -1,14 +1,4 @@
 [[rc_table_tiff]]
-////
-[cols="1,4",width="90%"]
-|===
-2+|*Requirements Class TIFF*
-2+|https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tiff
-|Target type |Web API
-|Dependency |<<TIFF_V6>>
-|Dependency |https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
-|===
-////
 
 [requirements_class]
 .Requirements Class 'TIFF'

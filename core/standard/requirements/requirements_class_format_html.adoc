@@ -1,14 +1,4 @@
 [[rc_table_html]]
-////
-[cols="1,4",width="90%"]
-|===
-2+|*Requirements Class HTML*
-2+|https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/html
-|Target type |Web API
-|Dependency |https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
-|Dependency |https://html.spec.whatwg.org/: HTML Living Standard
-|===
-////
 
 [requirements_class]
 .Requirements Class 'HTML'
@@ -18,4 +8,5 @@ identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/html
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 inherit:: <<HTML,HTML Living Standard>>
+requirement:: /req/png/html
 ====

@@ -33,7 +33,7 @@ as well as the following additional partial date and time formats: +
 * a year, a month and a day: `yyyy-mm-dd`
 * a year, a month, a day and an hour: `yyyy-mm-ddThhZ`
 * a year, a month, a day, an hour and a minute: `yyyy-mm-ddThh:mmZ`
-part:: The implementation SHALL support a `*` value indicating the earliest available time (for `{low}`) or the latest available time (for `{high}`).
+part:: The implementation SHALL support a `*` value indicating the earliest available time (for `low`) or the latest available time (for `high` and when used as a single time instant).
 part:: Multiple `subset` parameters SHALL be interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated)^1^.
 +
 ^1^ Example: `subset=Lat(-90:90)&subset=Lon(-180:180)&subset=time("2018-02-12T23:20:52Z")` is equivalent to `subset=Lat(-90:90),Lon(-180:180),time("2018-02-12T23:20:52Z")`

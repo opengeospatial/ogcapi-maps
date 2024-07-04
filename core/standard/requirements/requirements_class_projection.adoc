@@ -1,13 +1,4 @@
 [[rc_table_projection]]
-////
-[cols="1,4",width="90%"]
-|===
-2+|*Requirements Class Custom Projection CRS*
-2+|https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection
-|Target type |Web API
-|Dependency |https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
-|===
-////
 
 [requirements_class]
 .Requirements Class 'Custom Projection CRS'

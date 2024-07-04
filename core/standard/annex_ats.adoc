@@ -149,7 +149,7 @@ target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background
 classification:: Target Type:Web API
 abstract-test:: /conf/background/bgcolor-definition
 abstract-test:: /conf/background/transparent-definition
-abstract-test:: /conf/background/void-bgcolor-definition
+abstract-test:: /conf/background/void-color-definition
 abstract-test:: /conf/background/void-transparent-definition
 abstract-test:: /conf/background/map-success
 ====
@@ -198,20 +198,20 @@ test-method::
 --
 ====
 
-==== Abstract Test for Requirement `void-bgcolor` parameter definition
+==== Abstract Test for Requirement `void-color` parameter definition
 
 
 [abstract_test]
 ====
 [%metadata]
-identifier:: /conf/background/void-bgcolor-definition
-target:: /req/background/void-bgcolor-definition
-test-purpose:: Verify that the implementation supports the `void-bgcolor` parameter
+identifier:: /conf/background/void-color-definition
+target:: /req/background/void-color-definition
+test-purpose:: Verify that the implementation supports the `void-color` parameter
 test-method::
 +
 --
 *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving a map without `void-bgcolor` parameter, with `void-bgcolor` using a hexadecimal value and with `void-bgcolor` using a W3C Web Color name +
+*When:* retrieving a map without `void-color` parameter, with `void-color` using a hexadecimal value and with `void-color` using a W3C Web Color name +
 *Then:* +
 - assert that the map operation supports a `void-color` parameter which can be an hexadecimal red-green-blue color value (from 00 to FF, FF representing 255) for the parts of the map outside of the valid areas of the projection / CRS. For a six-digit hexadecimal value, the first and second digits specify the intensity of red. The third and fourth digits specify the intensity of green. The fifth and sixth digits specify the intensity of blue, +
 - assert that the map operation supports a case-insensitive https://www.w3.org/wiki/CSS/Properties/color/keywords[W3C web color name] the parts of the map outside of the valid areas of the projection / CRS, +
@@ -232,7 +232,7 @@ test-method::
 +
 --
 *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving a map for all combinations of (no `void-transparent` parameter, void-transparent=false`, `void-transparent=true`) and with and without `void-bgcolor` parameter +
+*When:* retrieving a map for all combinations of (no `void-transparent` parameter, void-transparent=false`, `void-transparent=true`) and with and without `void-color` parameter +
 *Then:* +
 - assert that the server interprets `void-transparent` as a Boolean indicating whether the parts of the map outside of the valid areas of the projection / CRS should be transparent, +
 - assert that, if `void-transparent` is not specified, the server assumes the same value as for `transparent` (specified or default).
@@ -431,7 +431,7 @@ test-method::
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `mm-per-pixel` parameter, for different styles if styled maps are supported, combining all possibilities of with and without `width` and/or `height` parameters, with and without `bbox` and `center` parameter if spatial subsetting is supported, with and without `mm-per-pixel` parameter if display resolution is supported +
 *Then:* +
-- assert that the implementation is interpret `mm-per-pixel` as the size (in millimeters) of a rendering device pixel, +
+- assert that the implementation interprets `mm-per-pixel` as the size (in millimeters) of a rendering device pixel, +
 - assert that an HTTP 4xx error is returned if the `mm-per-pixel` value is not a positive number, +
 - assert that, if the parameter `mm-per-pixel` is not provided, the server assumes that the pixel size is 0.28 millimeters (90.71 pixels per inch).
 --
@@ -563,8 +563,7 @@ test-method::
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `bbox` parameter (with and without the `bbox-crs` parameter), +
 *Then:* +
-- assert that the map operation supports a parameter `bbox` with a comma-separated list of four or six floating point numbers.
-+
+- assert that the map operation supports a parameter `bbox` with a comma-separated list of four or six floating point numbers. +
 If the bounding box consists of six numbers, the first three numbers are the coordinates of the lower bound corner of a three-dimensional bounding box and the last three are the coordinates of the upper bound corner.
 The axis order is determined by the `bbox-crs` parameter value or longitude and latitude if the parameter is missing (https://www.opengis.net/def/crs/OGC/1.3/CRS84 axis order for a 2D bounding box,
 https://www.opengis.net/def/crs/OGC/1.3/CRS84h for a 3D bounding box).
@@ -613,7 +612,7 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `subset` (with and without the `subset-crs` parameter) +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
 - assert that only that the part of the resource that falls within the bounds of the subset interval and/or corresponds to the single point value is returned.
 --
 ====
@@ -632,7 +631,7 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `center` parameter (with and without the `center-crs` parameter), +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
 - assert that a `center` parameter is supported to specify the center of the subset of the map to include, with coordinates in the CRS specified in the `center-crs` parameter value or in https://www.opengis.net/def/crs/OGC/1.3/CRS84 if the `center-crs` parameter is missing, +
 - assert that if the `center` parameter is used together with the `bbox` and/or with a `subset` parameter including any of the dimensions corresponding to those of the map bounding box, the server returns a 4xx client error.
 --
@@ -652,7 +651,7 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `center` parameter together, with the `width` and/or `height` (with and without the `center-crs` parameter), with and without the `scale-denominator` parameter if scaling is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
 - assert that when the `center` parameter and/or the `scale-denominator` parameter is used, or if the _scaling_ conformance class is not supported, a `width` and `height` parameter specifying the subset of the map to return around the specified or default center of the map is supported, +
 - assert that the scale of the map is considered whether returning the map at a native scale or resampled (e.g., using the _scaling_ conformance class `scale-denominator` parameter), as well as the display resolution (either the default 0.28 mm/pixel, or the one specified by the `mm-per-pixel` parameter of the _display resolution_ conformance class).
 --
@@ -672,7 +671,7 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `bbox` (with and without the `bbox-crs` parameter), `subset` (with and without the `subset-crs` parameter), and `center` parameter (with and without the `center-crs` parameter, with the `width` and/or `height` parameter, with and without the `scale-denominator` parameter if scaling is supported +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
 - assert that the content of the response represents elements inside or intersecting with the spatial extent of the geographical area of the map identified with the subsetting coordinates.
 --
 ====
@@ -708,7 +707,7 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `datetime` parameter +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
 - assert that the implementation supports an `instant` defined as specified by link:https://tools.ietf.org/html/rfc3339#section-5.6[RFC 3339, 5.6], with the exception that the server is only required to support the `Z` UTC time notation, and not required to support local time offsets, + 
 - assert that time intervals unbounded at the start or end are supported using a double-dot (`..`) or an empty string for the start/end.
 --
@@ -728,7 +727,7 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `datetime` parameter +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
 - assert that if the `datetime` parameter is provided by the client and supported by the server, then only resources that have a temporal geometry that intersects the temporal information in the `datetime` parameter are part of the result set, +
 - assert that using a `datetime` parameter all resources that does not have a temporal information associate are present in the map.
 --
@@ -748,20 +747,15 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `subset` parameter with the `time` axis +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
 - assert that the implementation supports a `subset` parameter, consisting of "time" followed by an interval or single "time coordinate" (that consists in single number or an string or a star character) within parentheses, where an interval is separated by a colon (`:`), +
 - assert that the implementation supports an axis name "time", +
 - assert that the implementation return a 4xx status code if the axis name is not "time" and is not recognized in the context of another requirements class, +
 - assert that if "time coordinate"s fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code is returned, +
 - assert that "time coordinates" are interpreted as values for the CRS specified in the temporal extent, or Gregorian UTC time if it is not specified in the temporal extent, +
 - assert that when Gregorian UTC time is used, the implementation supports time expressed using RFC 3339 section 5.6, with only support for the UTC (`Z`) notation required (meaning that support for local time offsets should not be tested),
-as well as the following additional partial date and time formats: +
-* only a year: `yyyy`, +
-* a year and a month: `yyyy-mm`, +
-* a year, a month and a day: `yyyy-mm-dd`, +
-* a year, a month, a day and an hour: `yyyy-mm-ddThhZ`, +
-* a year, a month, a day, an hour and a minute: `yyyy-mm-ddThh:mmZ`, +
-- assert that the implementation supports a `*` value indicating the earliest available time (for `{low}`) or the latest available time (for `{high}`), +
+as well as the following additional partial date and time formats: `yyyy`, `yyyy-mm`, `yyyy-mm-dd`, `yyyy-mm-ddThhZ`, `yyyy-mm-ddThh:mmZ`, +
+- assert that the implementation supports a `*` value indicating the earliest available time (for `low`) or the latest available time (for `high` and when used as a single time instant), +
 - assert that multiple `subset` parameters is interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated).
 --
 ====
@@ -780,7 +774,7 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `subset` parameter with the `time` axis +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
 - assert that only that the part of the resource that falls within the bounds of the subset interval and/or corresponds to the single point value is returned.
 --
 ====
@@ -799,8 +793,8 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `subset` parameter with the `time` axis +
-*Then:* (assert that all parts of the requirement are fully satisfied)
-- assert that to subset a generic time dimension, the server supports "time" as axisname in the subset parameter.
+*Then:* +
+- assert that to subset a generic time dimension, the server supports `time` as axis name in the `subset` parameter.
 --
 ====
 
@@ -818,7 +812,7 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `subset` parameter with the `time` axis +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
 - assert that the content of that response is consistent with the requested datetime.
 --
 ====
@@ -907,7 +901,11 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps with the `crs` parameter for different available CRS and without +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the map operation supports a `crs` string parameter, +
+- assert that all CRSs listed in the collection (or collections) description are supported, or that `[OGC:CRS84]` is supported if no list of CRS is available, +
+- assert that, if the spatial subsetting requirements class is also supported, the `bbox-crs` and the `subset-crs` also support those available CRS values when the same value is also specified in the `crs` parameter, +
+- assert that the CRS values can be expressed either as URIs or as safe CURIEs.
 --
 ====
 
@@ -926,7 +924,8 @@ test-method::
 --
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps with the `crs` parameter for different available CRS and without +
-*Then:* (assert that all parts of the requirement are fully satisfied)
+*Then:* +
+- assert that the content of the map response is consistent with the requested CRS.
 --
 ====
 
@@ -937,7 +936,7 @@ test-method::
 ====
 [%metadata]
 identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/orientation
-target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/req/orientation
+target:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/orientation
 classification:: Target Type:Web API
 abstract-test:: /conf/orientation/orientation
 abstract-test:: /conf/orientation/response-headers

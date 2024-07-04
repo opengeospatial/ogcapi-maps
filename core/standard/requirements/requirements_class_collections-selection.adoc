@@ -1,13 +1,4 @@
 [[rc_table_collections-selection]]
-////
-[cols="1,4",width="90%"]
-|===
-2+|*Requirements Class Collections Selection*
-2+|https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection
-|Target type |Web API
-|Dependency |https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
-|===
-////
 
 [requirements_class]
 .Requirements Class 'Collection Selection'

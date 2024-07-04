@@ -1,14 +1,4 @@
 [[rc_table_png]]
-////
-[cols="1,4",width="90%"]
-|===
-2+|*Requirements Class PNG*
-2+|https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/png
-|Target type |Web API
-|Dependency |<<ISO/IEC 15948 standard>>
-|Dependency |https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
-|===
-////
 
 [requirements_class]
 .Requirements Class 'PNG'
