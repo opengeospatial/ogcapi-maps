@@ -838,7 +838,6 @@ abstract-test:: /conf/general-subsetting/subset-definition
 
 ==== Abstract Test for Requirement uniform additional dimensions
 
-
 [abstract_test]
 ====
 [%metadata]
@@ -859,7 +858,6 @@ and a `grid` definition if applicable, as specified in https://raw.githubusercon
 
 ==== Abstract Test for Requirement general subsetting `subset` parameter
 
-
 [abstract_test]
 ====
 [%metadata]
@@ -879,26 +877,6 @@ test-method::
 - assert that when the _intervalOrSingle_ values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code is returned, +
 - assert that for an axis that can wrap around, a _low_ value greater than _high_ are supported to indicate an extent crossing that wrapping point, +
 - assert that multiple subset parameters are interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated).
---
-====
-
-==== Abstract Test for Requirement uniform additional dimensions
-
-[abstract_test]
-====
-[%metadata]
-identifier:: /conf/general-subsetting/uniform-additional-dimensions
-target:: /req/general-subsetting/uniform-additional-dimensions
-test-purpose:: Verify that the implementation describes additional dimensions in a uniform manner
-test-method::
-+
---
-*Given:* a map resource that conformed successfully to /conf/core as well as either the "Collection Map" or "Dataset Map" +
-*When:* retrieving the description of the collection (for "Collection Map") or the landing page (for "Dataset Map") +
-*Then:* +
-- assert that the extent of any additional dimension(s) beyond temporal and spatial is described in a way similar to the temporal dimension,
-using the name of the dimension as a key and an object as value, with that object containing an `interval` property, a URI for the semantic `definition`, a `unit` of measure if applicable,
-and a `grid` definition if applicable, as specified in https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/openapi/schemas/common-geodata/extent-uad.yaml[_extent-uad.yaml_].
 --
 ====
 
