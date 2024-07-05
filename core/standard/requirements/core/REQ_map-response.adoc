@@ -12,7 +12,7 @@ part:: The `Content-Bbox:` coordinates SHALL be in the response CRS (indicated i
 part:: If the geospatial resource has a temporal aspect (e.g., if a temporal extent is defined in the collection description or in the dataset landing page),
 the headers of the response SHALL include a `Content-Datetime:` header with the actual datetime instant or datetime interval of the rendered map.
 part:: In the `Content-Datetime:` response header, a datetime interval SHALL be expressed using the notation `time-instant / time-instant`.
-part:: In the `Content-Datetime:` response header, a time instant, whether the single value or the `time-instant` of an interval, SHALL be expressed RFC 3339, section 5.6 format, using either UTC time or local time offsets,
+part:: In the `Content-Datetime:` response header, a time instant, whether a single value or the `time-instant` of an interval, SHALL be expressed as defined in RFC 3339, section 5.6, using either UTC time or local time offsets,
 with the additional options of:
 * only a year: `yyyy`
 * a year and a month: `yyyy-mm`
