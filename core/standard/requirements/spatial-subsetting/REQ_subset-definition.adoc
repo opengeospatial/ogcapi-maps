@@ -16,7 +16,7 @@ part:: The implementation SHALL support a `subset` parameter conforming to the f
   single =           number
 
   Where:
-     `axisName` is an abbreviation identifying an axis using lowercase and uppercase letters A-Z
+     `axisName` is an abbreviation identifying an axis starting by a lowercase or uppercase letter A-Z, optionally followed by any number of alphanumeric characters
      `number` is an integer or floating-point number.
 ----
 part:: Axis names `Lat` and `Lon` SHALL be supported for geographic CRS and `E` and `N` for projected CRS, which are to be interpreted as the best matching spatial axis in the CRS definition.

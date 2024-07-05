@@ -16,7 +16,7 @@ part:: A `subset` parameter with the following characteristics (using an Augment
   single =           number / text / "*"
 
   Where:
-     `axisName` is an abbreviation identifying an axis using lowercase and uppercase letters A-Z
+     `axisName` is an abbreviation identifying an axis starting by a lowercase or uppercase letter A-Z, optionally followed by any number of alphanumeric characters
      `number` is an integer or floating-point number, and
      `text` is some general ASCII text (such as a time and date notation in RFC 3339 section 5.6) enclosed in double-quotes (`"`, ASCII code 0x42).
   An asterisk (`*`) can be used for `low` or `high` to indicate the minimum/maximum value.
