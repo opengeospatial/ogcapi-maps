@@ -750,7 +750,7 @@ test-method::
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `subset` parameter with the `time` axis +
 *Then:* +
-- assert that the implementation supports a `subset` parameter, consisting of an axis name (`time`) followed by parentheses within which can be specified an interval consisting of two "time coordinate"s separated by a colon (`:`), or a single "time coordinate", where a "time coordinate" consists of a single number, a string or an asterisk (`*`), +
+- assert that the implementation supports a `subset` parameter, consisting of an axis name (`time`) followed by parentheses within which can be specified an interval consisting of two "time coordinate"s separated by a colon (`:`), or a single "time coordinate", where a "time coordinate" consists of a single number, a string or an asterisk (`\*`), +
 - assert that the implementation supports an axis name `time`, +
 - assert that the implementation returns a 4xx status code if the axis name is not `time` (or its recommended aliases `Time`, `t` and `T`) and is not recognized in the context of another requirements class, +
 - assert that if "time coordinate"s fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code is returned, +
