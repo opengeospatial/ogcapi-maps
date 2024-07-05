@@ -4,5 +4,5 @@
 ====
 [%metadata]
 identifier:: /req/spatial-subsetting/subset-response
-part:: Only that the part of the resource that falls within the bounds of the subset interval and/or corresponds to the single point value SHALL be returned.
+part:: Only the part of the resource that falls within the bounds of the subset interval and/or corresponds to the single point value SHALL be returned.
 ====

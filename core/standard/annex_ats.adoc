@@ -615,7 +615,7 @@ test-method::
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `subset` (with and without the `subset-crs` parameter) +
 *Then:* +
-- assert that only that the part of the resource that falls within the bounds of the subset interval and/or corresponds to the single point value is returned.
+- assert that only the part of the resource that falls within the bounds of the subset interval and/or corresponds to the single point value is returned.
 --
 ====
 
@@ -777,7 +777,7 @@ test-method::
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `subset` parameter with the `time` axis +
 *Then:* +
-- assert that only that the part of the resource that falls within the bounds of the subset interval and/or corresponds to the single point value is returned.
+- assert that only the part of the resource that falls within the bounds of the subset interval and/or corresponds to the single point value is returned.
 --
 ====
 
