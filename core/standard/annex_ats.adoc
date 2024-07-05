@@ -591,7 +591,7 @@ test-method::
 *Then:* +
 - assert that the axis names `Lat` and `Lon` are supported for geographic CRS and `E` and `N` for projected CRS, which are to be interpreted as the best matching spatial axis in the CRS definition, +
 - assert that if a third spatial dimension is supported (if the resource's spatial extent bounding box is three dimensional), the implementation also supports a `h` dimension. This is the elevation above the ellipsoid in EPSG:4979 or CRS84h for geographic CRS and `z` for projected CRS, which are interpreted as the vertical axis in the CRS definition, +
-- assert that an 4xx error status code is returned if an axis name in the subset parameter value does not correspond to one of the axes of the subsetting CRS, +
+- assert that an 4xx error status code is returned if an axis name in the subset parameter value does not correspond to one of the axes of the subsetting CRS, is not an alias recommended to be supported (`lat`, `Latitude`, `latitude`, `lon`, `long`, `Long`, `Longitude`, `longitude`, `e`, `easting`, `Easting`, `x`, `X`, `n`, `y`, `Y`, `Northing`, `northing`, `z`, `Z`, `H`), and is not defined in the context of another supported requirement class, +
 - assert that if the _interval_ values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code is returned, +
 - assert that, for a CRS where an axis can wrap around, such as subsetting across the dateline (anti-meridian) in a geographic CRS, a _low_ value greater than _high_ is supported to indicate an extent crossing that wrapping point, +
 - assert that coordinates are interpreted as values for the named axis of the CRS specified in the `subset-crs` parameter value or in https://www.opengis.net/def/crs/OGC/1.3/CRS84 (https://www.opengis.net/def/crs/OGC/1.3/CRS84h for vertical dimension) if the `subset-crs` parameter is missing, +
@@ -750,9 +750,9 @@ test-method::
 *Given:* a map resource that conformed successfully to /conf/core +
 *When:* retrieving maps using the `subset` parameter with the `time` axis +
 *Then:* +
-- assert that the implementation supports a `subset` parameter, consisting of "time" followed by an interval or single "time coordinate" (that consists in single number or an string or a star character) within parentheses, where an interval is separated by a colon (`:`), +
-- assert that the implementation supports an axis name "time", +
-- assert that the implementation return a 4xx status code if the axis name is not "time" and is not recognized in the context of another requirements class, +
+- assert that the implementation supports a `subset` parameter, consisting of an axis name (`time`) followed by parentheses within which can be specified an interval consisting of two "time coordinate"s separated by a colon (`:`), or a single "time coordinate", where a "time coordinate" consists of a single number, a string or an asterisk (`*`), +
+- assert that the implementation supports an axis name `time`, +
+- assert that the implementation returns a 4xx status code if the axis name is not `time` (or its recommended aliases `Time`, `t` and `T`) and is not recognized in the context of another requirements class, +
 - assert that if "time coordinate"s fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code is returned, +
 - assert that "time coordinates" are interpreted as values for the CRS specified in the temporal extent, or Gregorian UTC time if it is not specified in the temporal extent, +
 - assert that when Gregorian UTC time is used, the implementation supports time expressed using RFC 3339 section 5.6, with only support for the UTC (`Z`) notation required (meaning that support for local time offsets should not be tested),
@@ -843,7 +843,7 @@ test-purpose:: Verify that the implementation describes additional dimensions in
 test-method::
 +
 --
-*Given:* a map resource that conformed successfully to /conf/core for which an extent description is available (e.g., conforming successfully to either the "Collection Map" or "Dataset Map")+
+*Given:* a map resource that conformed successfully to /conf/core for which an extent description is available (e.g., conforming successfully to either the "Collection Map" or "Dataset Map") +
 *When:* retrieving the description of the data resource e.g., the collection (for "Collection Map") or the landing page (for "Dataset Map")  +
 *Then:* +
 - assert that the extent of any additional dimension(s) beyond temporal and spatial is described in a way similar to the temporal dimension,
