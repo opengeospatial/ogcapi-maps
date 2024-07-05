@@ -23,6 +23,7 @@
 :xml-uri: ./document.xml
 :doc-uri: ./document.doc
 :edition: 1.0
+:xrefstyle: basic
 
 ////
 Make sure to complete each included document
