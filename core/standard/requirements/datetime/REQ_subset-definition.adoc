@@ -22,8 +22,8 @@ part:: A `subset` parameter with the following characteristics (using an Backus 
   A single asterisk can be used to indicate the high value.
   Support for `*` is required for time, but optional for spatial and other dimensions.
 ----
-part:: The implementation SHALL support an axis name "time".
-part:: The implementation SHALL return a 4xx status code if the axis name is not "time" and is not recognized in the context of another requirements class.
+part:: The implementation SHALL support an axis name `time`.
+part:: The implementation SHALL return a 4xx status code if the axis name is not `time`, is not a recommended alias for time (`Time`, `t` and `T`), and is not recognized in the context of another requirements class, such as spatial and general subsetting.
 part:: If the `intervalOrSingle` values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code SHALL be returned
 part:: Coordinates SHALL be interpreted as values for the CRS specified in the temporal extent, or Gregorian UTC time if it is not specified in the temporal extent.
 part:: When Gregorian UTC time is used, the implementation SHALL support time expressed using RFC 3339 section 5.6, with only support for the UTC (`Z`) notation required (support for local time offsets is optional),
