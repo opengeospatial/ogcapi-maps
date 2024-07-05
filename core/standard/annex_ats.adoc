@@ -1653,9 +1653,9 @@ test-purpose:: Verify that the implementation completely and correctly implement
 test-method::
 +
 --
-*Given:* an API conforming to _OGC API - Common - Part 1: Core_ "Landing Page" conformance class +
-*When:* retrieving the API description +
+*Given:* a map resource that conformed successfully to /conf/core +
+*When:* retrieving resources, such as the map resource, defined in the supported requirement classes from a web page at a different origin +
 *Then:* +
-- assert that the implementation supports CORS as defined by W3C (https://www.w3.org/TR/2020/SPSD-cors-20200602/).
+- assert that the implementation supports CORS as defined by W3C (https://www.w3.org/TR/2020/SPSD-cors-20200602/) for these resources.
 --
 ====
