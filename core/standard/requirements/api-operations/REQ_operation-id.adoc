@@ -39,20 +39,20 @@ part:: For API definitions with a concept of operation identifiers, the paths de
 |_other_         |Styled^7^|TileSetsList^4^|`#.style.map.getTileSetsList`
 |_other_         |Styled^7^|TileSet^3^     |`#.style.map.getTileSet`
 |_other_         |Styled^7^|Tile^2^        |`#.style.map.getTile`
-4+|^1^ The _Map_ resource is defined in requirements class "Core".
+4+|^1^ The _Map_ resource is defined in requirements class "Core". +
 
-^2^ The _Tile_ resource is defined in the _OGC API - Tiles - Part 1: Core_ "Core" requirements class.
+^2^ The _Tile_ resource is defined in the _OGC API - Tiles - Part 1: Core_ "Core" requirements class. +
 
-^3^ The _TileSet_ resource is defined in the _OGC API - Tiles - Part 1: Core_ "TileSet" requirements class.
+^3^ The _TileSet_ resource is defined in the _OGC API - Tiles - Part 1: Core_ "TileSet" requirements class. +
 
 ^4^ The _TileSetsList_ resource is defined in the _OGC API - Tiles - Part 1: Core_ "TileSets List" requirements class.
-Map tilesets are defined in the _Map Tilesets_ requirements class_ and depend on _OGC API - Tiles - Part 1: Core_.
+Map tilesets are defined in the _Map Tilesets_ requirements class_ and depend on _OGC API - Tiles - Part 1: Core_. +
 
-^5^ The _DataSet_ origin is defined in requirements class "Dataset Maps" and depends on _OGC API - Common - Part 1: Core_.
+^5^ The _DataSet_ origin is defined in requirements class "Dataset Maps" and depends on _OGC API - Common - Part 1: Core_. +
 
-^6^ The _Collection_ origin is defined in requirements class "Collection Maps" and depends on the _Collections_ requirements class defined in _OGC API - Common - Part 2: Geospatial data_.
+^6^ The _Collection_ origin is defined in requirements class "Collection Maps" and depends on the _Collections_ requirements class defined in _OGC API - Common - Part 2: Geospatial data_. +
 
-^7^ Styled tilesets rely on the ability to list styles defined in _OGC API - Styles_.
+^7^ Styled tilesets rely on the ability to list styles defined in _OGC API - Styles_. +
 
-^8^ '#' represents an optional _origin_ that could be defined in another relevant standard.
+^8^ '#' represents an optional _origin_ that could be defined in another relevant standard. +
 |===

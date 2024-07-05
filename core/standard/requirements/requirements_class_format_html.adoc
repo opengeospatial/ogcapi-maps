@@ -8,5 +8,5 @@ identifier:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/html
 subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 inherit:: <<HTML,HTML Living Standard>>
-requirement:: /req/png/html
+requirement:: /req/html/content
 ====

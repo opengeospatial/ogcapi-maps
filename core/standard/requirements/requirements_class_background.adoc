@@ -9,7 +9,7 @@ subject:: Web API
 inherit:: https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core
 requirement:: /req/background/bgcolor-definition
 requirement:: /req/background/transparent-definition
-requirement:: /req/background/map-success
 requirement:: /req/background/void-color-definition
 requirement:: /req/background/void-transparent-definition
+requirement:: /req/background/map-success
 ====
