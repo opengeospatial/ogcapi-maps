@@ -228,9 +228,9 @@ or uses a default value which is either fixed or tied by a default aspect ratio 
 .Always invalid parameter combinations
 [cols="30,40",options="header"]
 !===
-| Parameters provided in the request                            | Explanation
-| `bbox`, `scale-denominator`, (`width` or `height`)            | _Error (conflicts with default or provided `mm-per-pixel`)_
-| `bbox` *and* `center` (with or without additional parameters) | _Error (`bbox` and `center` are mutually exclusive)_
+| Parameters provided in the request                          | Explanation
+| `bbox`, `scale-denominator` and (`width` or `height`)       | _Error (conflicts with default or provided `mm-per-pixel`)_
+| `bbox` and `center` (with or without additional parameters) | _Error (`bbox` and `center` are mutually exclusive)_
 !===
 
 [#table_params_combinations_subsetting,reftext='{table-caption} {counter:table-num}']
@@ -263,7 +263,7 @@ but simply cut a piece from a pre-rendered map of a default scale. This is not a
 | `width` and `height`                                            | `bbox` and `center`                                 | `scale-denominator`
 | `scale-denominator`                                             | `bbox` and `center`                                 | `width` and `height`
 | `scale-denominator`, `width` and `height`                     2+| _Error (would require subsetting the map)_
-| `bbox` *or* `center` (with or without additional parameters)  2+| _Error (would require subsetting the map)_
+| `bbox` or `center` (with or without additional parameters)  2+| _Error (would require subsetting the map)_
 !===
 
 [#table_params_combinations_subsetting_scaling_,reftext='{table-caption} {counter:table-num}']
@@ -274,7 +274,7 @@ but simply cut a piece from a pre-rendered map of a default scale. This is not a
 | `width` and `height`                                | `scale-denominator` and `center`                    | `bbox`
 | `bbox`                                              | `width` and `height`                                | `scale-denominator` and `center`
 | `center`                                            | `scale-denominator`, `width` and `height`           | `bbox`
-| `center` ,`width` and `height`                      | `scale-denominator`                                 | `bbox`
+| `center`, `width` and `height`                      | `scale-denominator`                                 | `bbox`
 | `scale-denominator`                                 | `center`, `width` and `height`                      | `bbox`
 | `scale-denominator` and `center`                    | `width` and `height`                                | `bbox`
 | `scale-denominator`, `width` and `height`           | `center`                                            | `bbox`
