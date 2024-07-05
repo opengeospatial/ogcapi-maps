@@ -42,17 +42,17 @@ Below is an example of the successful HTTP response headers describing a PNG ima
 [source]
 ----
 HTTP/1.1 200 OK
-Content-Type: image/png
-Last-Modified: Fri, 21 Jul 2023 14:37:46 GMT
-Content-Crs: <https://www.opengis.net/def/crs/EPSG/0/32631>
-Content-Bbox: 347736.47,4546722.45,497736.47,4608322.45
-Content-Datetime: 2023-01-22T0:00:00Z/2023-01-22T23:59:59Z
-Content-Length: 1198247
+Content-Type: image/jpeg
+Last-Modified: Fri, 05 Jul 2024 16:46:55 GMT
+Content-Crs: <https://www.opengis.net/def/crs/EPSG/0/25831>
+Content-Bbox: 392011.47,4563522.45,453461.47,4591522.45
+Content-Datetime: 2020-01
+Content-Length: 190946
 ----
 
 [#img_barcelona,reftext='{figure-caption} {counter:figure-num}']
-.Example of a successful HTTP response body containing a PNG image captured by Sentinel 2 image. Date: 2023-01-22
-image::images/barcelona.png[width=600,align="center"]
+.Example of a successful HTTP response body containing a JPEG image captured by LANDSAT in January 2020
+image::images/landsatMiraMon.jpeg[width=600,align="center"]
 
 Below is another example of the successful HTTP response headers describing a PNG image in the datum WGS84 and lat/long centered in the Barcelona area.
 
