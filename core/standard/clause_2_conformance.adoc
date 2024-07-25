@@ -1,7 +1,7 @@
 == Conformance
 
-Conformance with this standard shall be checked using all the relevant tests specified in <<annex-ats, Annex A (normative)>> of this document if the respective conformance URLs listed in <<table_conformance_urls>> is present in the conformance response.
-The framework, concepts, and methodology for testing, and the criteria to be achieved to claim conformance are specified in the OGC Compliance Testing Policies and Procedures and the OGC Compliance Testing web site.
+Conformance with this standard shall be checked using all the relevant tests specified in <<annex-ats, Annex A (normative)>> of this document if the respective conformance URLs listed in <<table_conformance_urls>> are present in the conformance response.
+The framework, concepts, and methodology for testing, and the criteria to be achieved to claim conformance are specified in the https://docs.ogc.org/pol/08-134r11.html[OGC Compliance Testing Policies and Procedures] and the https://www.ogc.org/compliance[OGC Compliance Testing web site].
 
 The standardization targets of all conformance classes are "Web APIs".
 
@@ -19,7 +19,7 @@ Additional classes may be specified in future parts of the _OGC API - Maps_ seri
 
 === Requirements classes defining resources
 
-*<<rc_core, Requirement Class "Core">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core)
+*<<rc_core, Requirements Class "Core">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core)
 
 The _Maps API_ Core specifies requirements that any Web API implementation instance of the Maps API Standard must implement to claim conformance with the _OGC API - Maps - Part 1: Core_ Standard.
 This requirements class defines an operation to retrieve a map but does not define any query parameters to customize the map.
@@ -32,9 +32,9 @@ An example request is below:
 .../map
 ----
 
-*<<rc_tilesets, Requirement Class "Map Tilesets">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets)
+*<<rc_tilesets, Requirements Class "Map Tilesets">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/tilesets)
 
-The _map tilesets_ requirements class defines a mechanism to list available map tilesets (sets of tiles resulting from tiling data according to a particular tiling scheme, from https://www.opengis.net/doc/IS/tms/2.0[OGC 17-083r4 Two Dimensional Tile Matrix Set and Tile Set Metadata]) supported by the Web API instance and retrieve tiles (see definition in https://www.opengis.net/doc/IS/tms/2.0[OGC 17-083r4]) of the map representation.
+The _map tilesets_ requirements class defines a mechanism to list available map tilesets supported by the Web API instance and a mechanism for retrieving tiles of the map representation. The terms 'tile' and 'tile set' (alias tileset) are defined in the OGC Two Dimensional Tile Matrix Set Standard (https://www.opengis.net/doc/IS/tms/2.0[OGC 17-083r4]).
 
 Example requests are below:
 
@@ -58,7 +58,7 @@ These requirements classes of the _Maps API_ define parameters that can be used 
 
 NOTE: In the effort to make OGC API Standards more consistent, some parts of these requirements classes are expected to be imported by a future part of  OGC API - Common or be registered in the building blocks registry. A future revision of OGC API - Maps could reference them and ensure consistency with the relevant common requirements.
 
-*<<rc_background, Requirement Class "Background">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background)
+*<<rc_background, Requirements Class "Background">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/background)
 
 The _background_ requirements class defines how to request two particular background colors (`bgcolor` and `void-color`) and to specify whether areas of the map with no data or where the CRS / projection is invalid are transparent (using `transparent` and `void-transparent`).
 
@@ -70,7 +70,7 @@ Example requests are below:
 .../map?bgcolor=0x001122&transparent=false&void-transparent=true
 ----
 
-*<<rc_collections-selection, Requirement Class "Collection Selection">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection)
+*<<rc_collections-selection, Requirements Class "Collection Selection">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collections-selection)
 
 The _collection selection_ requirements class defines how to list specific geospatial data collection resources from which to retrieve maps.
 
@@ -82,7 +82,7 @@ An example request is below:
 .../map?collections=buildings,roads,...
 ----
 
-*<<rc_scaling, Requirement Class "Scaling">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/scaling)
+*<<rc_scaling, Requirements Class "Scaling">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/scaling)
 The _scaling_ requirements class defines how to retrieve a resampled map. This is done by specifying a `width` and/or `height` parameter (in pixels),
 or a `scale-denominator` parameter.
 
@@ -100,7 +100,7 @@ the `width` and `height` can only be used for specifying the scale when a `bbox`
 as otherwise they take on a subsetting role. When neither `bbox` nor `subset` is used for spatial subsetting,
 the `scale-denominator` parameter must be used to specify the scale.
 
-*<<rc_display-resolution, Requirement Class "Display Resolution">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/display-resolution)
+*<<rc_display-resolution, Requirements Class "Display Resolution">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/display-resolution)
 The _display resolution_ requirements class defines how to specify the resolution of the display (the size of a pixel in millimeters) using the
 `mm-per-pixel` parameter at which the map will be visualized so as to properly interpret scale denominators and apply scale-dependent symbology rules.
 
@@ -112,7 +112,7 @@ An example request is below:
 .../map?mm-per-pixel=0.14
 ----
 
-*<<rc_spatial-subsetting, Requirement Class "Spatial Subsetting">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting)
+*<<rc_spatial-subsetting, Requirements Class "Spatial Subsetting">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/spatial-subsetting)
 The _spatial subsetting_ requirements class defines how to retrieve a spatial subset of a map using either a `bbox` or `subset` parameter.
 
 Example subsetting requests using bounding box are below:
@@ -149,7 +149,7 @@ Example subsetting requests using center point and dimensions:
 .../map?center-crs=[EPSG:3857]&center=750000,70000&width=1024&height=512
 ----
 
-*<<rc_datetime, Requirement Class "Date and Time">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime)
+*<<rc_datetime, Requirements Class "Date and Time">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/datetime)
 The _temporal subsetting_ requirements class specifies how to request a temporal subset of the data using the `datetime` parameter,
 or the `subset` parameter for the `time` dimension.
 
@@ -162,7 +162,7 @@ Example requests are below:
 .../map?subset=time("2018-02-12T23:20:52Z")
 ----
 
-*<<rc_general-subsetting, Requirement Class "General Subsetting">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/general-subsetting)
+*<<rc_general-subsetting, Requirements Class "General Subsetting">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/general-subsetting)
 The _general subsetting_ requirements class specifies how to request a subset of dimensions of the data besides the spatial and temporal dimensions
 using the `subset` parameter.
 This parameter also implies adopting a consistent way to describe all dimensions of the data in the collection's extent description.
@@ -175,9 +175,9 @@ An example request is below:
 .../map?subset=atm_pressure_hpa(500)
 ----
 
-*<<rc_crs, Requirement Class "Coordinate Reference System">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs)
+*<<rc_crs, Requirements Class "Coordinate Reference System">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/crs)
 
-The _CRS by reference_ requirements class defines how to specify the output CRS of the map by referencing a URI (or CURIE) for a CRS definition.
+The _Coordinate Reference System_ requirements class defines how to specify the output Coordinate Reference System (CRS) of the map by referencing a Uniform Resource Identifier (URI) or compact URI (CURIE) of a CRS definition.
 
 An example request is below:
 
@@ -189,7 +189,7 @@ An example request is below:
 
 NOTE: Every time that a URI to a CRS is required or recommended a CURIE equivalent is also valid. A CURIE {authority}[-{objectType}]:{id} would map to the following OGC URI: https://www.opengis.net/def/{objectType}/{authority}/0/{id}. If -{objectType} is missing, the default object type is `crs`.
 
-*<<rc_orientation, Requirement Class "Orientation">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/orientation)
+*<<rc_orientation, Requirements Class "Orientation">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/orientation)
 The _orientation_ requirements class defines how to specify an angle (expressed in degrees) for re-orienting how the map is displayed (`orientation`).
 
 
@@ -201,7 +201,7 @@ An example orientation request is below:
 .../map?orientation=40
 ----
 
-*<<rc_projection, Requirement Class "Custom Projection CRS">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection)
+*<<rc_projection, Requirements Class "Custom Projection CRS">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/projection)
 The _custom projection CRS_ requirements class defines how to specify a custom CRS through a projection, including the coordinate operation method (`crs-proj-method`)
 and associated parameters (`crs-proj-params`), as well as a datum (`crs-datum`).
 This class also defines a `crs-proj-center` parameter for facilitating the selection of the most likely parameters to center the projection on an area of interest.
@@ -231,7 +231,7 @@ NOTE: This "Custom Projection CRS" requirements class also defines a `/projectio
 
 === Requirements classes defining origins
 
-*<<rc_collection-map, Requirement Class "Collection Map">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collection-map)
+*<<rc_collection-map, Requirements Class "Collection Map">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/collection-map)
 
 The _collection map_ requirements class specifies how to retrieve maps from a specific geospatial data resource.
 
@@ -243,7 +243,7 @@ An example request is below:
 /collections/buildings/map
 ----
 
-*<<rc_dataset-map, Requirement Class "Dataset Map">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map)
+*<<rc_dataset-map, Requirements Class "Dataset Map">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/dataset-map)
 
 The _dataset map_ requirements class specifies how to retrieve maps for a whole dataset potentially made up of multiple geospatial data resources.
 Any Web API implementing this requirements class must support *dataset* maps following this _OGC API - Maps - Part 1: Core_ Standard.
@@ -257,7 +257,7 @@ An example request is below:
 /map
 ----
 
-*<<rc_styled-map, Requirement Class "Styled Maps">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styled-map)
+*<<rc_styled-map, Requirements Class "Styled Maps">>* (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/styled-map)
 
 The _styled map_ requirements class specifies how to retrieve maps for a styled resource.
 
@@ -270,7 +270,7 @@ An example request is below:
 ----
 
 === Requirements classes defining representations
-*<<rc_data_encodings, Requirement Classes for Encodings>>*
+*<<rc_data_encodings, Requirements Classes for Encodings>>*
 
 The _Maps API_ Standard does not mandate a specific encoding or format for representing maps.
 Requirements classes are provided for the following common map formats.
@@ -304,17 +304,17 @@ through HTTP content negotiation.
 
 That said, this Standard includes recommendations to support, where practical, HTML.
 
-*<<rc_api_operations,Requiremnt Class "API Operations">>*  (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/api-operations)
+*<<rc_api_operations,Requirements Class "API Operations">>*  (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/api-operations)
 
 The _API Operations_ requirements class specifies requirements to fully describe the _Maps API_ operations and use specific operation identifier suffixes when providing an API definition.
-This requirements class is intended to be used in conjunction with other conformance classes for a specific API definition language and/or version, such as the OpenAPI 3.0 requirement class defined in
-_OGC API - Common - Part 1: Core_, or another eventual requirement class for OpenAPI 3.1.
+This requirements class is intended to be used in conjunction with other conformance classes for a specific API definition language and/or version, such as the OpenAPI 3.0 requirements class defined in
+_OGC API - Common - Part 1: Core_, or another eventual requirements class for OpenAPI 3.1.
 
-*<<rc_cors,Requirement Class "CORS">>*  (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cors)
+*<<rc_cors,Requirements Class "CORS">>*  (https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/cors)
 
 The _CORS_ requirements class specifies a requirement to implement CORS to support JavaScript clients (e.g. Web Browser applications) from a domain different from the OGC API - Maps endpoint.
 
-All requirements classes and conformance classes described in this Standard are owned by the standard(s) identified.
+All requirements classes and conformance classes described in this Standard are owned by the Standard(s) identified.
 
 === Summary of conformance URIs
 
