@@ -17,7 +17,7 @@ information concerning phenomena implicitly or explicitly associated with a loca
 
 1. vertical elevation of an object in the real world above a reference point (height above the reference ellipsoid for geographic CRS such as [OGC:CRS84h] and [EPSG:4979]).
 
-2. size in pixels of a viewport along its vertical axis
+2. size, in pixels, of a viewport along its vertical axis
 
 NOTE: Both the _spatial subsetting_ and _scaling_ requirements classes make use of the `height` query parameter.
 In both cases, the parameter refers to the height of the image in pixels, but the effect of specifying a fixed value for the parameter
@@ -47,7 +47,7 @@ For a two-dimensional viewport, its dimensions are named horizontal and vertical
 
 === *width*
 
-size of in pixels of a viewport along its horizontal axis
+size, in pixels, of a viewport along its horizontal axis
 
 NOTE: Both the _spatial subsetting_ and _scaling_ requirements classes make use of the `width` query parameter.
 In both cases, the parameter refers to the width of the viewport in pixels, but the effect of specifying a fixed value for the parameter
