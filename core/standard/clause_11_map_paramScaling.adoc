@@ -7,7 +7,7 @@
 
 include::requirements/requirements_class_scaling.adoc[]
 
-The Scaling requirement class describes how to scale a map for display by specifying a set of parameters that will define its size (width and height) in pixels of a display device that indirectly defines the scale of the map.
+The Scaling requirements class describes how to scale a map for display by specifying a set of parameters that will define its size (width and height) in pixels of a display device that indirectly defines the scale of the map.
 
 === Map Operation
 
@@ -15,7 +15,7 @@ The Maps API _core_ requirements class defines how to retrieve a map. The Scalin
 `width` and `height` parameters, or explicitly by providing a `scale-denominator` parameter.
 
 ==== Parameters `width` and `height`
-The width and height parameters indicate the size of the viewport in rows and columns where the map is to be displayed. If the format of the response is a raster image, the number of columns and rows of the responded image will commonly match the width and height of the viewport.
+The width and height parameters indicate the size of the viewport in rows and columns where the map is to be displayed. If the format of the response is a raster image, the number of columns and rows of the image in the response will commonly match the width and height of the viewport.
 
 include::requirements/scaling/REQ_width-definition.adoc[]
 
@@ -50,7 +50,7 @@ include::recommendations/scaling/REC_map-success-scale.adoc[]
 
 A general summary of the HTTP status codes can be found in https://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in the https://docs.ogc.org/is/19-072/19-072.html[OGC API – Common – Part 1: Core] Standard.
 
-If the parameters values for `width` or `height` are out-of-range, the status code of the response will be `413` (Payload too big).
+If the values of `width` or `height` parameters are out-of-range, the status code of the response will be `413` (Payload too big).
 If a map is not provided due to lack of data in the area, the status code of the response will be `204` or `404`.
 
 [[scaling-aspect-ratio]]
@@ -58,7 +58,7 @@ If a map is not provided due to lack of data in the area, the status code of the
 
 Since all parameters for map requests are optional, implementations must fill in missing parameters by using default values or computing appropriate values based on the parameters provided by the client
 and the specifics of the resource for which a map is being retrieved.
-Implementations supporting the "Scaling" requirement class should compute these values in a way that respects the scale of the map in all dimensions, and thus the aspect ratio of physical features being represented.
+Implementations supporting the "Scaling" requirements class should compute these values in a way that respects the scale of the map in all dimensions, and thus the aspect ratio of physical features being represented.
 
 For a non-global map, and for implementations supporting both "Scaling" and "Subsetting" where clients can request a subset of the map for a small local region,
 implementations should consider the *local* scale of the map. For example, the applicable scale at the center, or most equatorial latitude of the map. This is as opposed to the global scale (e.g., at the equator). In addition, implementations should aim for the map scale to apply evenly to all dimensions. Consider a CRS such as Plate Carrée projection (CRS84 or EPSG:4326). When filling in an unspecified `bbox` and/or `width` and `height` parameters,
@@ -99,16 +99,16 @@ When a bounding box is requested, the other dimension should be computed so as t
 When both dimensions are provided, but no bounding box, those dimensions should be used together with the default or requested center, and the scale denominator should be used to compute the bounding box.
 
 Refer to the guidance for implementers provided in a <<overview-subsetting-and-scaling,section of the overview>> on the interactions of subsetting and scaling parameters. This
-includes the specific combinations of parameters that can be provided based on which requirement classes are implemented, and which parameter assume default values or should be computed in each case.
+includes the specific combinations of parameters that can be provided based on which requirements classes are implemented, and which parameter assume default values or should be computed in each case.
 
-When `bbox`, `width` and `height` are all provided, as in OGC Web Map Service (WMS), the client enforces a specific aspect ratio, and these recommendations are not relevant.
+When `bbox`, `width` and `height` are all provided, as in implementations of the WMS Standard, the client enforces a specific aspect ratio, and these recommendations are not relevant.
 However, in general circumstances (e.g., 2D representations on a screen), the client should try to provide parameters that preserve the aspect ratio.
 
 CAUTION: Due to the inherent difficulty in implementing the computations correctly for all CRSs and some degree of variability based on how these calculations are performed, implementations may compute missing parameters for the same request differently.
-Clients should therefore always consider the `Content-Bbox:` response header and the actual dimensions of the returned map when geo-referencing and displaying images returned by the Maps API.
+Clients should therefore always consider the `Content-Bbox:` response header and the actual dimensions of the returned map when georeferencing and displaying images returned by the Maps API.
 For identical responses to the same request across different implementations, clients should always provide a `bbox` (or its `subset` equivalent), `width` and `height` parameters (as in classic WMS requests). This is
 rather than the `scale-denominator` and `center` parameters, which are primarily intended for convenience directly accessing a Maps API, such as from a Web browser.
-For the purpose of overlaying map responses from different implementations, a client which does not itself geo-reference the output based on the `Content-Bbox:` response header
+For the purpose of overlaying map responses from different implementations, a client which does not itself georeference the output based on the `Content-Bbox:` response header
 should always request maps using the `bbox`, `width` and `height` parameters.
 
 See also detailed step-by-step examples in an annex of computations to <<dimensions-calculation-examples,infer dimensions>> and <<bbox-calculation-examples,infer bounding boxes>> based on specified parameters.
