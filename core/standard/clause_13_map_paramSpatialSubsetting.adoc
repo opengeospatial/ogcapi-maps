@@ -117,7 +117,7 @@ and the same CRS unit to pixel unit scale regardless of the subset being request
 
 For implementations implementing both "Scaling" and "Spatial Subsetting" requirements classes, the scaling and subsetting parameters interact somewhat intricately.
 Guidance for implementers is provided in a <<overview-subsetting-and-scaling,section of the overview>> on these interactions,
-including the specific combinations of parameters that can be provided based on which requirements classes are implemented, and which parameter assume default values or should be computed in each case.
+including the specific combinations of parameters that can be provided based on which requirements classes are implemented, and which parameters assume default values or should be computed in each case.
 
 The "Scaling" requirements class also includes specific <<scaling-aspect-ratio,guidance for scale and aspect ratio considerations>>.
 

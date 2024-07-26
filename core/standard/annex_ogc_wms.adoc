@@ -168,7 +168,7 @@ The new OGC API Standards emerged in a completely different context where most w
 
 Implementers of map clients are encouraged to implement support for OGC API Standards in addition to _OGC API - Maps_ to provide a functionality similar to _GetFeatureInfo_. Instead of building a request to a map point in map coordinates (I, J), implementers should use point narrow bounding boxes in CRS coordinates. For example:
 
-  * In _OGC API - Features_, map coordinates should be transformed to Lon,Lat WGS84 in the client side and implement a HTTP GET request to `/collections/{collectionId}/items?bbox=Lon,Lat,Lon,Lat`.
+  * In _OGC API - Features_, map coordinates should be transformed to Lon,Lat WGS84 in the client side and implement an HTTP GET request to `/collections/{collectionId}/items?bbox=Lon,Lat,Lon,Lat`.
   * In _OGC API - Coverages_, map coordinates should be transformed to native coordinates and use `/collections/{collectionId}/coverage?bbox=x,y,x,y` or the equivalent "subset" query.
   * In _OGC API - EDR_, map coordinates should be transformed to a CRS coordinates and use `/collections/{collectionId}/position?coords=POINT(x y)` or by adding a radius query `/collections/{collectionId}/radius?coords=POINT(x y)&within=20&within-units=km`.
 

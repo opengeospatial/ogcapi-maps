@@ -4,7 +4,7 @@
 ====
 [%metadata]
 identifier:: /req/datetime/subset-definition
-part:: A `subset` parameter with the following characteristics (using an Backus Naur Form (ABNF) fragment) SHALL be supported:
+part:: A `subset` parameter with the following characteristics (using an Augmented Backus Naur Form (ABNF) fragment) SHALL be supported:
 +
 [source,ABNF]
 ----
