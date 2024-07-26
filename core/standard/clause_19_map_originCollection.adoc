@@ -75,7 +75,7 @@ However, there was a draft proposal to establish a hierarchical relation between
 If a collection represented a hierarchy, then the <<rc_collections-selection, Collections Selection>> requirements class could allow the selection of a subset of the collections it consists of to be included using the `collections` parameter.
 
 === Geospatial Data Resource Map
-The core requirement class defines a map resource that is associated with an operation that contains the necessary information to later formulate a map request. Nevertheless, the Maps API core does not specify how to retrieve a map resource representing another resource. This section provides one possible workflow to support that use case from a geospatial data resource offered by an implementation of the Maps API.
+The core requirements class defines a map resource that is associated with an operation that contains the necessary information to later formulate a map request. Nevertheless, the Maps API core does not specify how to retrieve a map resource representing another resource. This section provides one possible workflow to support that use case from a geospatial data resource offered by an implementation of the Maps API.
 
 ==== Map path
 
