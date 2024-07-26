@@ -11,5 +11,5 @@
 ====
 [%metadata]
 identifier:: /rec/html/content
-part:: A HTML encoding MAY internally use requests to maps in image/png or image/jpeg format using this OGC API, to present the map images (e.g. in img src tags) to start and as a response of the actions of the user (e.g. zoom and pan).
+part:: An HTML encoding MAY internally use requests to maps in image/png or image/jpeg format using this OGC API, to present the map images (e.g. in img src tags) to start and as a response to the actions of the user (e.g. zoom and pan).
 ====

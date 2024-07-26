@@ -7,7 +7,7 @@ include::requirements/requirements_class_api_operations.adoc[]
 
 The "API Operations" requirements class defines requirements for providing a definition of a Web API implementing the Maps API Standard using an API definition language.
 This requirements class is intended to be combined with another requirements class specifying requirements for providing an API definition in a particular API definition language and / or version,
-such as the Open API 3.0 requirements class defined in https://docs.ogc.org/is/19-072/19-072.html#_ab6e3c2d-d2dc-4f01-a7d4-8b52133289a0[OGC API - Common - Part 1 :Core], or another eventual requirements class
+such as the OpenAPI 3.0 requirements class defined in https://docs.ogc.org/is/19-072/19-072.html#_ab6e3c2d-d2dc-4f01-a7d4-8b52133289a0[OGC API - Common - Part 1 :Core], or another eventual requirements class
 for OpenAPI 3.1.
 
 === Web API description
@@ -21,18 +21,18 @@ This requirements class depends on the _OGC API - Common_ landing page requireme
 ==== Response
 
 ===== Completeness
-The API definition resulting as a response to this request need to take into consideration the relevant resources specified in the Maps API Standard.
+The API definition resulting as a response to this request needs to take into consideration the relevant resources specified in the Maps API Standard.
 
 include::requirements/api-operations/REQ_completeness.adoc[]
 
 ===== Reusable API components
 
-Reusable components for creating API definitions for implementations of this OGC API - Maps using OpenAPI 3.0 can be found in https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi .
+Reusable components for creating API definitions for implementations of this OGC API - Maps Standard using OpenAPI 3.0 can be found in https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi .
 
-NOTE: While this specification is in draft status, the components are available from https://github.com/opengeospatial/ogcapi-maps/tree/master/openapi .
+
 
 A server implementation of the _OGC API – Maps Standard_ can use the content in the openapi directory to generate a response for the API description using OpenAPI 3.0.
-The _ogcapi-maps-1.yaml_ includes paths and components. An implementation should only include the paths that are implemented and remove the references to the paths that are not implemented.
+The _ogcapi-maps-1.yaml_ file includes paths and components. An implementation should only include the paths that are implemented and remove the references to the paths that are not implemented.
 The components part includes parameters, responses and schemas that can be reused as-is. The `api` directory contains JSON files that are templates with enumerated values for collections, styles and tile matrix sets.
 A particular implementation of the Maps API should enumerate the actual resources exposed by the API deployment in the same way.
 The server can select to dynamically implement responses to /api/* (where * is replaced by all-collections, styles,... ) or hardcode the /api/* files with the actual list of resource identifiers in the enumerations.
@@ -47,7 +47,7 @@ The API description of each path provides a description of what parameters to us
 However, the Maps API Standard does not propose a fixed set of paths so there is an issue identifying the requirements classes pertaining to each path in an API instance.
 In other words, the API description alone does not provide enough information by itself.
 Therefore, there is a need to associate the resource paths in the API definition with the resources defined in the various requirements classes.
-The Maps APIs Standard proposes a suffix mechanism to be applied to the operation identifiers of the path (e.g., the `operationId` property in OpenAPI Specification 3.0) to list the requirements classes pertaining to each path.
+The Maps API Standard proposes a suffix mechanism to be applied to the operation identifiers of the path (e.g., the `operationId` property in OpenAPI Specification 3.0) to list the requirements classes pertaining to each path.
 Each path should have a unique operationId suffix, so it is expected that the API instance provides a prefix to the proposed suffixes that make each operation identifier unique.
 
 include::requirements/api-operations/REQ_operation-id.adoc[]

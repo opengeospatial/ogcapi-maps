@@ -2,17 +2,17 @@
 == Requirements classes for encodings
 
 The _OGC API - Maps_ Standard is designed to support mapped data that can potentially be encoded and provided in existing geospatial formats or new formats that could be developed in the future.
-Web API deployments may adopt these encodings and declare conformance to them in the list of conformance classes supported by the Web API. 
-The requirements in this section do not limit the number of encodings offered by a Maps Web API deployment.
+Web API deployments may adopt these encodings and declare conformance to them in the list of conformance classes supported by the API. 
+The requirements in this section do not limit the number of encodings offered by a Maps API deployment.
 The intent is to provide a minimum set of encodings that could be implemented by any deployed Maps APIs as well as to provide a practical way to test conformance to this Standard.
-For each of these encodings, a requirements class is defined. A Web API implementing OGC API – Maps classes are free to support other encodings and data formats.
-These other formats may be more convenient for given use cases even though they may not be listed as supported conformance classes by the Web API deployment.
-In addition, the declaration of an encoding in the conformance classes supported does not mean that all the resources provided by an OGC enabled API endpoint should support all of them.
+For each of these encodings, a requirements class is defined. An API implementing OGC API – Maps classes is free to support other encodings and data formats.
+These other formats may be more convenient for given use cases even though they may not be listed as supported conformance classes by the API.
+In addition, the declaration of an encoding in the supported conformance classes does not mean that all the resources provided by an implementation of an OGC API Standard should support all of them.
 Partial support could be conditioned by the nature of the data behind each collection.
 
 === Overview
 
-Six requirements classes for encodings map responses of _OGC API - Maps_ implementation are defined:
+Six requirements classes for map responses of _OGC API - Maps_ implementations supporting various encodings are defined:
 
 * <<rc_png,PNG>>
 * <<rc_jpeg,JPEG>>
@@ -50,8 +50,7 @@ include::requirements/format_jpeg/REQ_content.adoc[]
 [[rc_jpegxl]]
 === Requirements Class "JPEG XL"
 
-https://jpeg.org/jpegxl/[JPEG XL] is a relatively newer image format (compared to PNG and JPEG) with support for both lossy and lossless compression, alpha channels, high bit depths, high image quality, high compression ratio as well as high performance encoding and decoding.
-The format and codec are unencumbered of any patent. Free and open source libraries are available to read and write the format such as https://github.com/libjxl/libjxl[libjxl], released under a 3-clause BSD license.
+https://jpeg.org/jpegxl/[JPEG XL] is a relatively newer image format (compared to PNG and JPEG) with support for both lossy and lossless compression, alpha channels, high bit depths, high image quality, high compression ratio as well as high performance encoding and decoding. Free and open source libraries are available to read and write the format such as https://github.com/libjxl/libjxl[libjxl], released under a 3-clause BSD license.
 Although JPEG XL is not yet widely supported in web browsers at the time of writing this document, this situation is likely to change, and this requirements class is included due to the numerous advantages of JPEG XL
 over the traditional JPEG and PNG encoding, such as avoiding the need for compromising between high compression ratio, image quality and translucency.
 JPEG XL is defined by the multi-part ISO standard Information technology JPEG XL - image coding system, including https://www.iso.org/standard/77977.html[ISO/IEC 18181-1:2022 Part 1: Core coding system] and
@@ -63,7 +62,7 @@ include::requirements/format_jpegxl/REQ_content.adoc[]
 
 [[rc_tiff]]
 === Requirements Class "TIFF"
-One use case for maps is to distribute coverage values as regular grids. In these circumstances, selecting an encoding able to store grid values in their original format and eventually compress them using lossless compression is the right solution. The TIFF format is one of the older formats but is still one of the most popular formats to preserve arrays of data values and defined by the Adobe Systems TIFF v6 specification.
+One use case for maps is to distribute coverage values as regular grids. In these circumstances, selecting an encoding able to store grid values in their original format and eventually compress them using lossless compression is the right solution. The TIFF format is one of the older formats but is still one of the most popular formats to preserve arrays of data values and is defined by the Adobe Systems TIFF v6 specification.
 
 TIFF is a flexible, adaptable file format for handling images and data. The ability to store data in a lossless format makes a TIFF file a useful image archive: Unlike standard JPEG files, a TIFF file using lossless compression such as PackBits or LZW compression.
 
@@ -87,7 +86,7 @@ include::recommendations/format_svg/PER_overflow.adoc[]
 [[rc_html]]
 === Requirements Class "HTML"
 
-Returning a HTML page with a full, operational map browser that allows for interactive navigation over the map (e.g., zoom and pan) is convenient for easy exploration of the data or for testing purposes.
+Returning an HTML page with a full, operational map browser that allows for interactive navigation over the map (e.g., zoom and pan) is convenient for easy exploration of the data or for testing purposes.
 
 include::requirements/requirements_class_format_html.adoc[]
 
