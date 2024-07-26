@@ -10,9 +10,9 @@ Maps can be retrieved by arbitrary extent or as tiles (see <<rc_tilesets>>). The
 
 An annex with examples of map requests and responses is included as a way to learn by examples how this standard can be applied. See <<annex_examples>>.
 
-An https://petstore.swagger.io/?url=https://raw.githubusercontent.com/opengeospatial/ogcapi-maps/master/openapi/ogcapi-maps-1.bundled.json[example OpenAPI definition] for this Standard is available.
-Details on how to adjust and bundle the https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi[modular and reusable components] used in this example OpenAPI definition can be found in <<rc_api_operations>>
-(Components are also available https://github.com/opengeospatial/ogcapi-maps/tree/master/openapi[here]).
+An https://petstore.swagger.io/?url=https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi/ogcapi-maps-1.bundled.json[example OpenAPI definition] for this Standard is available.
+Details on how to adjust and bundle the https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi[modular and reusable components] used in this example OpenAPI definition can be found in <<rc_api_operations>> .
+
 
 Services and clients are encouraged to support as many of the Coordinate Reference Systems (CRSs) as possible for all geospatial data resources to maximize
 interoperability. However, this Standard does not require support for any specific CRS.
