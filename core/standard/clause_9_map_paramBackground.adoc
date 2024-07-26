@@ -7,7 +7,7 @@
 
 include::requirements/requirements_class_background.adoc[]
 
-The Background requirement class describes how to define the background of the map is represented.
+The Background requirements class describes how to define the background of the map that is presented.
 
 === Map operation
 
@@ -27,17 +27,17 @@ include::recommendations/background/PER_bgcolor-alpha.adoc[]
 include::requirements/background/REQ_transparent-definition.adoc[]
 
 NOTE: When not specified, the value of `transparent` defaults to `true` when `bgcolor` is not used, but to `false` when used together with `bgcolor`.
-For formats with an alpha channel, explicitly setting `transparent=true` together with a `bgcolor` allow for defining the color value to use for the RGB channels where there is no data. Zero (0) will be used for the alpha channel.
+For formats with an alpha channel, explicitly setting `transparent=true` together with a `bgcolor` allows for defining the color value to use for the RGB channels where there is no data. Zero (0) will be used for the alpha channel.
 For formats reserving a color to define transparency (color key), the combination supports selecting a color that does not interfere with the actual values and colors in the map.
 
-NOTE: The `opaque` attribute of layer element in the GetCapabilities response in WMS is deprecated and is not specified by the Maps API.
+NOTE: The `opaque` attribute of layer element in the GetCapabilities response in WMS is not specified by the Maps API.
 
 ==== Parameters `void-transparent` and `void-color`
 The `void-transparent` and `void-color` parameters indicate how parts of the map outside of the valid area of the projection and CRS will be represented.
 
 If not specified, these parameters default to the same value as `transparent` and `bgcolor`, respectively.
 
-NOTE: These parameters only apply to CRSs including an invalid area, such as a CRS using an ortographic projection.
+NOTE: These parameters only apply to CRSs including an invalid area, such as a CRS using an orthographic projection.
 
 include::requirements/background/REQ_void-color-definition.adoc[]
 

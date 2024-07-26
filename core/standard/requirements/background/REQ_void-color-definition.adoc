@@ -23,6 +23,6 @@ part:: The map operation SHALL support a parameter `void-color` to define a void
       type: string
       default: 0xFFFFFF
 ----
-part:: The map operation SHALL support a `void-color` parameter which can be an hexadecimal red-green-blue color value (from 00 to FF, FF representing 255) or a case-insensitive https://www.w3.org/wiki/CSS/Properties/color/keywords[W3C web color name] for the parts of the map outside of the valid areas of the projection / CRS (default=0xFFFFFF). For a six-digit hexadecimal value, the first and second digits specify the intensity of red. The third and fourth digits specify the intensity of green. The fifth and sixth digits specify the intensity of blue.
+part:: The map operation SHALL support a `void-color` parameter which can be a hexadecimal red-green-blue color value (from 00 to FF, FF representing 255) or a case-insensitive https://www.w3.org/wiki/CSS/Properties/color/keywords[W3C web color name] for the parts of the map outside of the valid areas of the projection / CRS (default=0xFFFFFF). For a six-digit hexadecimal value, the first and second digits specify the intensity of red. The third and fourth digits specify the intensity of green. The fifth and sixth digits specify the intensity of blue.
 part:: If `void-color` is not specified, the same color value as for `bgcolor` (specified or default) SHALL be used.
 ====
