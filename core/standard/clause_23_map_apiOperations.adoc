@@ -6,17 +6,17 @@
 include::requirements/requirements_class_api_operations.adoc[]
 
 The "API Operations" requirements class defines requirements for providing a definition of a Web API implementing the Maps API Standard using an API definition language.
-This requirement class is intended to be combined with another requirement class specifying requirements for providing an API definition in a particular API definition language and / or version,
-such as the Open API 3.0 requirement class defined in https://docs.ogc.org/is/19-072/19-072.html#_ab6e3c2d-d2dc-4f01-a7d4-8b52133289a0[OGC API - Common - Part 1 :Core], or another eventual requirement class
+This requirements class is intended to be combined with another requirements class specifying requirements for providing an API definition in a particular API definition language and / or version,
+such as the Open API 3.0 requirements class defined in https://docs.ogc.org/is/19-072/19-072.html#_ab6e3c2d-d2dc-4f01-a7d4-8b52133289a0[OGC API - Common - Part 1 :Core], or another eventual requirements class
 for OpenAPI 3.1.
 
 === Web API description
 
 The API definition provides a description of the complete list of API resources available at an endpoint. Reading this description, an application would have the full picture of the resources that the API implementation provides, how to retrieve resources, and what responses are expected for successful and unsuccessful requests. Without an API description or documentation, an application would be forced to traverse all links, starting with the landing page, to get an equivalent full list of resources.
 
-The _OpenAPI Specification 3.0 (oas30)_ requirement class from _OGC API - Common - Part 1: Core_ provides many details on general requirements that can be used in conjunction with this requirements class.
+The _OpenAPI Specification 3.0 (oas30)_ requirements class from _OGC API - Common - Part 1: Core_ provides many details on general requirements that can be used in conjunction with this requirements class.
 A later version of OGC API - Common may describe how to declare support for other versions of OpenAPI.
-This requirement class depends on the _OGC API - Common_ landing page requirements class which provides details on how to request an API definition.
+This requirements class depends on the _OGC API - Common_ landing page requirements class which provides details on how to request an API definition.
 
 ==== Response
 
