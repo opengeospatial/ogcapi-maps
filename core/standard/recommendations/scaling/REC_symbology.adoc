@@ -11,5 +11,5 @@
 ====
 [%metadata]
 identifier:: /rec/scaling/symbology
-part:: An implementation rendering dynamical maps with styling capabilities SHOULD consider the requested or computed scale in applying scale-dependent symbology rules.
+part:: An implementation serving dynamically rendered maps with styling capabilities SHOULD consider the requested or computed scale in applying scale-dependent symbology rules.
 ====
