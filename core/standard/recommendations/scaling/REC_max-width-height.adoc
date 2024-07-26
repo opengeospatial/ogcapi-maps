@@ -91,7 +91,7 @@ part:: The service metadata may include a maximum width, maximum height and maxi
               Maximum  product of width and height parameter values. If absent the server imposes no limit.
             example: 4194304
 ----
-part:: A Maps API implementation instance may specify the maximum width and height by adding a `maximum` property to the `width` and `height` parameter definition in the OpenAPI as in this OpenAPI Specification 3.0 fragment:
+part:: A Maps API implementation instance may specify the maximum width and height by adding a `maximum` property to the `width` and `height` parameter definition in the OpenAPI definition document as in this OpenAPI Specification 3.0 fragment:
 +
 [source,YAML]
 ----
