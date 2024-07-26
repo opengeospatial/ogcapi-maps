@@ -12,7 +12,7 @@ This functionality is defined as common building blocks shared with other OGC AP
 
 === Describing the extent of the additional dimensions
 
-When implementing the General Subsetting requirements class, additional dimensions included in an extent description must use a uniform approach to describe the lower and upper bounds of those dimensions based on the `intervals` property. An example is found in a OGC API collection description response described in OGC API - Common: Part 2 and follows the JSON schema in https://github.com/opengeospatial/ogcapi-maps/blob/master/openapi/schemas/common-geodata/collectionInfo.yaml. This is the same as with the temporal dimension.
+When implementing the General Subsetting requirements class, additional dimensions included in an extent description must use a uniform approach to describe the lower and upper bounds of those dimensions based on the `intervals` property. An example is found in an OGC API collection description response described in OGC API - Common - Part 2 and follows the JSON schema in https://github.com/opengeospatial/ogcapi-maps/blob/master/openapi/schemas/common-geodata/collectionInfo.yaml. This is the same as with the temporal dimension.
 
 include::requirements/general-subsetting/REQ_uniform-additional-dimensions.adoc[]
 
@@ -20,7 +20,7 @@ NOTE: The `subset-crs` mentioned in <<rc_spatial-subsetting, Spatial subsetting>
 
 === `subset` query parameter
 
-The `subset` parameter can be specified as an interval between lower and higher bound values or as a single value. An example of an interval is "between 500.0 and 1013.0 hPa" `subset=pressure(500:1013)`. An example of single value is "750 hPa" `subset=pressure(750)`.
+The `subset` parameter can be specified as an interval between lower and higher bound values or as a single value. An example of an interval is "between 500.0 and 1013.0 hPa" `subset=pressure(500:1013)`. An example of a single value is "750 hPa" `subset=pressure(750)`.
 The dimensions that can be used within the value specified for this parameter are the axis abbreviations specified in the CRS definition. 
 All additional dimensions listed in the extent as valid dimensions to be used with the subset parameter must be supported. 
 

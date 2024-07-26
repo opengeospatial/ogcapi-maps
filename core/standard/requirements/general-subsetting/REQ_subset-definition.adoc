@@ -23,7 +23,7 @@ part:: A `subset` parameter with the following characteristics (using an Augment
   For an additional temporal dimension, a single asterisk may be supported to indicate the latest available time.
   Support for `*` is required for time, but optional for spatial and other dimensions.
 ----
-part:: Any name of the _additional_ dimensions in the extent of the collection SHALL be supported as axis name.
+part:: Any name of the _additional_ dimensions in the extent of the collection SHALL be supported as an axis name.
 part:: A 4xx error status code SHALL be returned if an axis name does not correspond to the name of one of the _additional_ dimensions in the extent of the collection, or recognized in the context of another requirements class.
 part:: If the _intervalOrSingle_ values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code SHALL be returned.
 part:: For an axis that can wrap around, a _low_ value greater than _high_ SHALL be supported to indicate an extent crossing that wrapping point.
