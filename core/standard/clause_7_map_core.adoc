@@ -54,7 +54,7 @@ Content-Length: 190946
 .Example of a successful HTTP response body containing a JPEG image captured by LANDSAT in January 2020
 image::images/landsatMiraMon.jpeg[width=600,align="center"]
 
-Below is another example of the successful HTTP response headers describing a PNG image in the datum WGS84 and lat/long centered in the Barcelona area.
+Below is another example of the successful HTTP response headers describing a PNG image in the datum WGS84 and coordinates centered in the Barcelona area.
 
 [%unnumbered%]
 [source]
@@ -82,12 +82,12 @@ the _spatial subsetting_ requirements class.
 
 NOTE: The desired encoding is selected using HTTP content negotiation. In addition to the parameters specified by the Maps API core, other parameters should be added.
 
-NOTE: HTTP content negotiation replaces the `FORMAT=` parameter in WMS. However, for convenience, some implementations can implement a `f=` parameter for circumstances where content negotiation is not possible or available (e.g., testing the API in a web browser, or using a URL embedded in an HTML IMG SRC tag).
+NOTE: HTTP content negotiation addresses the same use cases as the `FORMAT=` parameter of WMS. However, for convenience, some implementations can implement an `f=` parameter for circumstances where content negotiation is not possible or available (e.g., testing the API in a web browser, or using a URL embedded in an HTML IMG SRC tag).
 
 === Declaration of conformance classes
 To support "generic" clients that want to access implementations of multiple OGC API Standards and extensions - and not "just" a specific API / server, the deployed API must declare the conformance classes it implements and conforms to.
 
-The conformance page mainly consists of a list of links.
+The conformance declaration response mainly consists of a list of links.
 
 include::requirements/core/REQ_conformance-success.adoc[]
 
