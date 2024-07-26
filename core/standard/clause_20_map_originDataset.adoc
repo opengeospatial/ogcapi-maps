@@ -11,7 +11,7 @@ The Maps API core requirements class defines how to retrieve a map from a resour
 
 === General
 
-The Dataset Map describes how to serve maps for a dataset provided as Web API instance implementing  _OGC API - Common - Part 1_ requirement classes or https://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as an alternative.
+The Dataset Map describes how to serve maps for a dataset provided as Web API instance implementing  _OGC API - Common - Part 1_ requirements classes or https://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as an alternative.
 
 === Dataset API landing page
 

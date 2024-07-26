@@ -47,7 +47,7 @@ The API description of each path provides a description of what parameters to us
 However, the Maps API Standard does not propose a fixed set of paths so there is an issue identifying the requirements classes pertaining to each path in an API instance.
 In other words, the API description alone does not provide enough information by itself.
 Therefore, there is a need to associate the resource paths in the API definition with the resources defined in the various requirements classes.
-The Maps APIs Standard proposes a suffix mechanism to be applied to the operation identifiers of the path (e.g., the `operationId` property in OpenAPI Specification 3.0) to list the requirement classes pertaining to each path.
+The Maps APIs Standard proposes a suffix mechanism to be applied to the operation identifiers of the path (e.g., the `operationId` property in OpenAPI Specification 3.0) to list the requirements classes pertaining to each path.
 Each path should have a unique operationId suffix, so it is expected that the API instance provides a prefix to the proposed suffixes that make each operation identifier unique.
 
 include::requirements/api-operations/REQ_operation-id.adoc[]

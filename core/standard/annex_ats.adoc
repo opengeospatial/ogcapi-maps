@@ -869,7 +869,7 @@ test-method::
 - assert that the implementation supports a `subset` parameter, consisting of an axis name followed by an interval or single value within parentheses, where an interval is separated by a colon (`:`), +
 - assert that all additional dimensions described in the extent of the collection are supported as axis name, +
 - assert that a 4xx error status code is returned if an axis name not corresponding to the name of one of the _additional_ dimensions in the extent of the collection, and not corresponding to the required
-  or recommended aliases in the spatial subsetting and temporal subsetting requirement classes is used, +
+  or recommended aliases in the spatial subsetting and temporal subsetting requirements classes is used, +
 - assert that when the _intervalOrSingle_ values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code is returned, +
 - assert that for an axis that can wrap around, a _low_ value greater than _high_ are supported to indicate an extent crossing that wrapping point, +
 - assert that multiple subset parameters are interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated).
@@ -1654,7 +1654,7 @@ test-method::
 +
 --
 *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving resources, such as the map resource, defined in the supported requirement classes from a web page at a different origin +
+*When:* retrieving resources, such as the map resource, defined in the supported requirements classes from a web page at a different origin +
 *Then:* +
 - assert that the implementation supports CORS as defined by W3C (https://www.w3.org/TR/2020/SPSD-cors-20200602/) for these resources.
 --
