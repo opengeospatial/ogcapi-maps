@@ -3,7 +3,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/collection-map/api-common*
-^|A |Developers implementing the OGC API – Maps Standard should consider using the requirement classes specified in the https://www.opengis.net/spec/ogcapi-common-1/1.0/req/core (OGC API - Common version 1.0).
+^|A |Developers implementing the OGC API – Maps Standard should consider using the requirements classes specified in the https://www.opengis.net/spec/ogcapi-common-1/1.0/req/core (OGC API - Common version 1.0).
 |===
 ////
 
@@ -11,5 +11,5 @@
 ====
 [%metadata]
 identifier:: /rec/collection-map/api-common
-part:: Developers implementing the OGC API – Maps Standard should consider using the requirement classes specified in the https://www.opengis.net/spec/ogcapi-common-1/1.0/req/core (OGC API - Common version 1.0).
+part:: Developers implementing the OGC API – Maps Standard should consider using the requirements classes specified in the https://www.opengis.net/spec/ogcapi-common-1/1.0/req/core (OGC API - Common version 1.0).
 ====

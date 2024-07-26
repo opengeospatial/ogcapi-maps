@@ -351,7 +351,7 @@ test-method::
 - assert that an error is returned if the value of the `width` exceeds the `maxWidth` property specified in the `x-OGC-limits.maps` object included in the service metadata, +
 - assert that an HTTP 4xx error is returned if the value of the `width` (specified or calculated) times `height` (specified or calculated) exceeds a `maxPixels` property from a `x-OGC-limits.maps` object included in the service metadata, +
 - assert that an HTTP 4xx error be returned if the `width` parameter is used together with the `bbox` (or `subset` for spatial dimensions) as well as the `scale-denominator` parameter, +
-- assert that an HTTP 4xx error is returned if the `width` parameter is used together with the `scale-denominator` parameter and the implementation does not also support the "Subsetting" requirement class, +
+- assert that an HTTP 4xx error is returned if the `width` parameter is used together with the `scale-denominator` parameter and the implementation does not also support the "Subsetting" requirements class, +
 - assert that, when the `width` parameter is omitted, the implementation uses an appropriate width which accurately reflects the default or requested scale established as the ratio between the horizontal dimension of the viewport and the corresponding size of the physical world, specifically for the local subset (bounding box) of the map being returned, and taking into consideration the default (0.28 mm/pixel) or specified display resolution (`mm-per-pixel`).
 --
 ====
@@ -376,7 +376,7 @@ test-method::
 - assert that an HTTP 4xx error is returned if the value of the `height` exceeds the `maxHeight` property specified in the `x-OGC-limits.maps` object included in the service metadata, +
 - assert that an HTTP 4xx error is returned if the value of the `width`  (specified or calculated) times `height` (specified or calculated) exceeds a `maxPixels` property from a `x-OGC-limits.maps` object included in the service metadata, +
 - assert that an HTTP 4xx error is returned if the `height` parameter is used together with the `bbox` (or `subset` for spatial dimensions) as well as the `scale-denominator` parameter, +
-- assert that an HTTP 4xx error is returned if the `height` parameter is used together with the `scale-denominator` parameter and the implementation does not also support the "Subsetting" requirement class, +
+- assert that an HTTP 4xx error is returned if the `height` parameter is used together with the `scale-denominator` parameter and the implementation does not also support the "Subsetting" requirements class, +
 - assert that, when the `height` parameter is omitted, the implementation uses an appropriate height which accurately reflects the default or requested scale established as the ratio between the vertical dimension of the viewport and the corresponding size of the physical world, specifically for the local subset (bounding box) of the map being returned.
 --
 ====
@@ -591,7 +591,7 @@ test-method::
 *Then:* +
 - assert that the axis names `Lat` and `Lon` are supported for geographic CRS and `E` and `N` for projected CRS, which are to be interpreted as the best matching spatial axis in the CRS definition, +
 - assert that if a third spatial dimension is supported (if the resource's spatial extent bounding box is three dimensional), the implementation also supports a `h` dimension. This is the elevation above the ellipsoid in EPSG:4979 or CRS84h for geographic CRS and `z` for projected CRS, which are interpreted as the vertical axis in the CRS definition, +
-- assert that an 4xx error status code is returned if an axis name in the subset parameter value does not correspond to one of the axes of the subsetting CRS, is not an alias recommended to be supported (`lat`, `Latitude`, `latitude`, `lon`, `long`, `Long`, `Longitude`, `longitude`, `e`, `easting`, `Easting`, `x`, `X`, `n`, `y`, `Y`, `Northing`, `northing`, `z`, `Z`, `H`), and is not defined in the context of another supported requirement class, +
+- assert that an 4xx error status code is returned if an axis name in the subset parameter value does not correspond to one of the axes of the subsetting CRS, is not an alias recommended to be supported (`lat`, `Latitude`, `latitude`, `lon`, `long`, `Long`, `Longitude`, `longitude`, `e`, `easting`, `Easting`, `x`, `X`, `n`, `y`, `Y`, `Northing`, `northing`, `z`, `Z`, `H`), and is not defined in the context of another supported requirements class, +
 - assert that if the _interval_ values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code is returned, +
 - assert that, for a CRS where an axis can wrap around, such as subsetting across the dateline (anti-meridian) in a geographic CRS, a _low_ value greater than _high_ is supported to indicate an extent crossing that wrapping point, +
 - assert that coordinates are interpreted as values for the named axis of the CRS specified in the `subset-crs` parameter value or in https://www.opengis.net/def/crs/OGC/1.3/CRS84 (https://www.opengis.net/def/crs/OGC/1.3/CRS84h for vertical dimension) if the `subset-crs` parameter is missing, +
@@ -869,7 +869,7 @@ test-method::
 - assert that the implementation supports a `subset` parameter, consisting of an axis name followed by an interval or single value within parentheses, where an interval is separated by a colon (`:`), +
 - assert that all additional dimensions described in the extent of the collection are supported as axis name, +
 - assert that a 4xx error status code is returned if an axis name not corresponding to the name of one of the _additional_ dimensions in the extent of the collection, and not corresponding to the required
-  or recommended aliases in the spatial subsetting and temporal subsetting requirement classes is used, +
+  or recommended aliases in the spatial subsetting and temporal subsetting requirements classes is used, +
 - assert that when the _intervalOrSingle_ values fall entirely outside the range of valid values defined for the identified axis, a 204 or 404 status code is returned, +
 - assert that for an axis that can wrap around, a _low_ value greater than _high_ are supported to indicate an extent crossing that wrapping point, +
 - assert that multiple subset parameters are interpreted as if all dimension subsetting values were provided in a single `subset` parameter (comma separated).
@@ -1654,7 +1654,7 @@ test-method::
 +
 --
 *Given:* a map resource that conformed successfully to /conf/core +
-*When:* retrieving resources, such as the map resource, defined in the supported requirement classes from a web page at a different origin +
+*When:* retrieving resources, such as the map resource, defined in the supported requirements classes from a web page at a different origin +
 *Then:* +
 - assert that the implementation supports CORS as defined by W3C (https://www.w3.org/TR/2020/SPSD-cors-20200602/) for these resources.
 --

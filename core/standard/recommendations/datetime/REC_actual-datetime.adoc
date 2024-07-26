@@ -3,7 +3,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/datetime/actual-datetime*
-^|A |The server SHOULD add a HTTP header with `OGCAPI-datetime` as a name and a temporal geometry as a value, to indicate the instant or the temporal interval of the content of the resource. The temporal geometries value shall conform to the following syntax (using link:https://tools.ietf.org/html/rfc5234[ABNF]):
+^|A |The server SHOULD add an HTTP header with `OGCAPI-datetime` as a name and a temporal geometry as a value, to indicate the instant or the temporal interval of the content of the resource. The temporal geometries value shall conform to the following syntax (using link:https://tools.ietf.org/html/rfc5234[ABNF]):
 
 [source]
 ----
@@ -19,7 +19,7 @@ The syntax of `instant` is specified by link:https://tools.ietf.org/html/rfc3339
 ====
 [%metadata]
 identifier:: /rec/datetime/actual-datetime
-part:: The server SHOULD add a HTTP header with `OGCAPI-datetime` as a name and a temporal geometry as a value, to indicate the instant or the temporal interval of the content of the resource. The temporal geometries value shall conform to the following syntax (using link:https://tools.ietf.org/html/rfc5234[ABNF]):
+part:: The server SHOULD add an HTTP header with `OGCAPI-datetime` as a name and a temporal geometry as a value, to indicate the instant or the temporal interval of the content of the resource. The temporal geometries value shall conform to the following syntax (using link:https://tools.ietf.org/html/rfc5234[ABNF]):
 +
 [source]
 ----

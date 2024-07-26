@@ -14,7 +14,7 @@ Additionally, this requirements class defines a resource at `/projectionsAndDatu
 === Operation
 
 ==== Parameter `crs-proj-method`
-The operation method refers mainly to the equations that relates geographic coordinates to projected coordinates and vice-versa.
+The operation method refers mainly to the equations that relate geographic coordinates to projected coordinates and vice-versa.
 
 include::requirements/projection/REQ_crs-proj-method.adoc[]
 

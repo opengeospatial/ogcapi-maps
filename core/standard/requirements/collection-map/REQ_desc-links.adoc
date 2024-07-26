@@ -4,5 +4,5 @@
 ====
 [%metadata]
 identifier:: /req/collection-map/desc-links
-part:: The OGC API collection description SHALL include a link with relation type `https://www.opengis.net/def/rel/ogc/1.0/map` (or `[ogc-rel:map]`) and the href pointing to a the map resource for this collection.
+part:: The OGC API collection description SHALL include a link with relation type `https://www.opengis.net/def/rel/ogc/1.0/map` (or `[ogc-rel:map]`) and the href pointing to the map resource for this collection.
 ====

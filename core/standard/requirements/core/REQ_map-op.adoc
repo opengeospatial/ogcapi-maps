@@ -4,7 +4,7 @@
 ====
 [%metadata]
 identifier:: /req/core/map-op
-part:: Every map SHALL be available as a HTTP GET request to a URI that will be composed of three parts.
+part:: Every map SHALL be available as an HTTP GET request to a URI that will be composed of three parts.
 The first part is the URI of a resource that can be represented as a map (with or without a style path parameter).
-The second part follows the pattern `/map`. The third part providing the retrieval parameters as needed.
+The second part follows the pattern `/map`. The third part provides the retrieval parameters as needed.
 ====

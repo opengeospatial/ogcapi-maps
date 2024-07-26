@@ -3,8 +3,8 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/scaling/dimensions*
-^|A |If the `width` or `height` parameter is not specified for a request, and no specific bounding box is requested (using the `subset` or `bbox` parameters defined in the Subsetting requirement class), the implementation SHOULD use the same value for both dimensions to return a map with a square viewport or preserve a particular width to height ratio.
-^|B |If neither `width` nor `height` parameter is specified for a request, and no specific bounding box is requested (using the `subset` or `bbox` parameters defined in the Subsetting requirement class), the implementation SHOULD select reasonable dimensions that will produce a map that is neither too small, nor require too much bandwidth to transfer or process (for example, around 1000 x 1000 pixels for the default 0.28 mm/pixel resolution).
+^|A |If the `width` or `height` parameter is not specified for a request, and no specific bounding box is requested (using the `subset` or `bbox` parameters defined in the Subsetting requirements class), the implementation SHOULD use the same value for both dimensions to return a map with a square viewport or preserve a particular width to height ratio.
+^|B |If neither `width` nor `height` parameter is specified for a request, and no specific bounding box is requested (using the `subset` or `bbox` parameters defined in the Subsetting requirements class), the implementation SHOULD select reasonable dimensions that will produce a map that is neither too small, nor require too much bandwidth to transfer or process (for example, around 1000 x 1000 pixels for the default 0.28 mm/pixel resolution).
 |===
 ////
 
@@ -12,6 +12,6 @@
 ====
 [%metadata]
 identifier:: /rec/scaling/dimensions
-part:: If the `width` or `height` parameter is not specified for a request, and no specific bounding box is requested (using the `subset` or `bbox` parameters defined in the Subsetting requirement class), the implementation SHOULD use the same value for both dimensions to return a map with a square viewport or preserve a particular width to height ratio.
-part:: If neither `width` nor `height` parameter is specified for a request, and no specific bounding box is requested (using the `subset` or `bbox` parameters defined in the Subsetting requirement class), the implementation SHOULD select reasonable dimensions that will produce a map that is neither too small, nor require too much bandwidth to transfer or process (for example, around 1000 x 1000 pixels for the default 0.28 mm/pixel resolution).
+part:: If the `width` or `height` parameter is not specified for a request, and no specific bounding box is requested (using the `subset` or `bbox` parameters defined in the Subsetting requirements class), the implementation SHOULD use the same value for both dimensions to return a map with a square viewport or preserve a particular width to height ratio.
+part:: If neither `width` nor `height` parameter is specified for a request, and no specific bounding box is requested (using the `subset` or `bbox` parameters defined in the Subsetting requirements class), the implementation SHOULD select reasonable dimensions that will produce a map that is neither too small, nor require too much bandwidth to transfer or process (for example, around 1000 x 1000 pixels for the default 0.28 mm/pixel resolution).
 ====

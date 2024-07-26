@@ -3,7 +3,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Requirement {counter:req-id}* |*/req/collections-selection/collections-parameter*
-^|A |An operation that acts on a resource consisting of multiple geospatial data sub-resources (e.g., a resource derived from a root dataset) SHALL support an optional parameter `collections` with the following characteristics (shown as OpenAPI Specification 3.0 fragment):
+^|A |An operation that acts on a resource consisting of multiple geospatial data sub-resources (e.g., a resource derived from a root dataset) SHALL support an optional parameter `collections` with the following characteristics (shown as an OpenAPI Specification 3.0 fragment):
 [source,YAML]
 ----
   name: collections
@@ -25,7 +25,7 @@
 ====
 [%metadata]
 identifier:: /req/collections-selection/collections-parameter
-part:: An operation that acts on a resource consisting of multiple geospatial data sub-resources (e.g., a resource derived from a root dataset) SHALL support an optional parameter `collections` with the following characteristics (shown as OpenAPI Specification 3.0 fragment):
+part:: An operation that acts on a resource consisting of multiple geospatial data sub-resources (e.g., a resource derived from a root dataset) SHALL support an optional parameter `collections` with the following characteristics (shown as an OpenAPI Specification 3.0 fragment):
 +
 [source,YAML]
 ----
@@ -40,5 +40,5 @@ part:: An operation that acts on a resource consisting of multiple geospatial da
       type: string
 ----
 part:: The parameter `collections` SHALL be supported by maps originating from resources consisting of multiple geospatial data sub-resources that can be addressed by identifiers (e.g. dataset map at `{datasetAPI}/maps/`).
-part:: Implementations SHALL support both comma-separated list of geospatial resource identifiers (e.g., collectionId's) and full URLs to local geospatial resources. 
+part:: Implementations SHALL support both a comma-separated list of geospatial resource identifiers (e.g., collectionId's) and full URLs to local geospatial resources. 
 ====

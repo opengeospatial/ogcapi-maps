@@ -15,9 +15,9 @@
 ====
 [%metadata]
 identifier:: /req/projection/response-headers
-part:: For responses to map request where the `crs-proj-method` query parameter was used, a response header `Content-Crs-Method: <[URI]>` including the URI of the projection operation method SHALL be returned.
+part:: For responses to map requests where the `crs-proj-method` query parameter was used, a response header `Content-Crs-Method: <[URI]>` including the URI of the projection operation method SHALL be returned.
 part:: A response header `Content-Crs-Method-Params: <URI>=[value]; ...` SHALL be returned. This includes the URI of the projection operation parameters and its value for each parameter specified using the `crs-proj-method` or `crs-proj-center` query parameters.
-part:: For responses to map request where the `crs-datum` query parameter was used, a response header `Content-Crs-Datum: <[URI]>` corresponding to the URI of the projection operation method SHALL be returned.
+part:: For responses to map requests where the `crs-datum` query parameter was used, a response header `Content-Crs-Datum: <[URI]>` corresponding to the URI of the projection operation method SHALL be returned.
 part:: For responses to map requests specifying the `crs-proj-method` query parameter, a `Content-Crs` response header SHALL NOT be included.
 part:: For responses to map requests specifying the `crs-proj-method` query parameter, the CRS of the `Content-Bbox` response header coordinates SHALL be in the custom CRS defined by this operation method and its parameters.
 ====

@@ -3,7 +3,7 @@
 
 === Overview
 
-This section describes a series of small requirement classes dealing with adding cartographic layout elements such as a title, a legend, a scale bar, a compass, a situation map, an attribution text or logo, and CRS grids and lat/long graticules to the map.
+This section describes a series of small requirements classes dealing with adding cartographic layout elements such as a title, a legend, a scale bar, a compass, a situation map, an attribution text or logo, and CRS grids and lat/long graticules to the map.
 
 Many of these cartographic layout elements can be better directly generated and controlled by the client that shows the map, in particular if a map is going to be presented overlaid with other maps these server rendered elements may interfere and collide, impeding the correct visualization. So requesting layout elements to the API to force the server to render them (as described in this section) is reserved to some particular use cases such as to create maps that are going to be used as static illustrations (e.g. as images in web pages). If the map is going to be presented alone as an illustration, these cartographic layout elements could make the map more informative and more "cartographic" (see for example https://reference.yourdictionary.com/resources/5-basic-parts-of-any-map.html). These requirements classes have been designed in a way that gives complete freedom to the server for the style of this elements. In some cases, the server can even decide not to show them despite the client request. Future extensions to this conformance classes may reduce the freedom to the server.
 

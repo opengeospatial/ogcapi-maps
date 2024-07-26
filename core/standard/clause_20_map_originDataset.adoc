@@ -11,7 +11,7 @@ The Maps API core requirements class defines how to retrieve a map from a resour
 
 === General
 
-The Dataset Map describes how to serve maps for a dataset provided as Web API instance implementing  _OGC API - Common - Part 1_ requirement classes or https://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as an alternative.
+The Dataset Map describes how to serve maps for a dataset provided through a Web API instance implementing  _OGC API - Common - Part 1_ requirements classes or https://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as an alternative.
 
 === Dataset API landing page
 
@@ -21,11 +21,11 @@ The landing page provides links to start exploring the resources offered by the 
 
 The root path of an OGC API offering access to geospatial data represents a dataset that will be exposed in different ways by the API.
 
-Sub-resources can be added to the root path of an OGC API endpoint to complement it by offering new endpoints indirectly giving access to the complemented dataset. Other OGC API Standards will define this mechanism. An example is OGC API - Styles which defines how to complement a geospatial resource by adding a style to it. The new resources is an overlap of the dataset and the resource.
+Sub-resources can be added to the root path of an OGC API endpoint to complement it by offering new endpoints indirectly giving access to the complemented dataset. Other OGC API Standards will define this mechanism. An example is OGC API - Styles which defines how to complement a geospatial resource by adding a style to it. The new resource is an overlap of the dataset and the resource.
 
 include::requirements/dataset-map/REQ_landingpage.adoc[]
 
-In the landing page, in JSON format, the links follow the link schema defined in the OGC API - Common or in the OGC API - Features v1 Standards. Below you can find an example fragment of the response to an OGC API - Maps landing page showing the link to the dataset map.
+In the landing page, in JSON format, the links follow the link schema defined in the OGC API - Common or in the OGC API - Features Standards. Below you can find an example fragment of the response to an OGC API - Maps landing page showing the link to the dataset map.
 
 include::requirements/dataset-map/REQ_desc-extent.adoc[]
 

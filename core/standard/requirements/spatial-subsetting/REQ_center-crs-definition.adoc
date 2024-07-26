@@ -42,7 +42,7 @@ part:: The map retrieval operation SHALL support a parameter `center-crs` with t
 ----
 part:: For Earth centric data, https://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be supported as a value.
 part:: If the `center-crs` is not used, https://www.opengis.net/def/crs/OGC/1.3/CRS84 SHALL be assumed.
-part:: If the storage (native) CRS is known, the storage CRS SHALL be supported as a value. Other requirements classes may allow additional values (see crs parameter definition).
+part:: If the storage (native) CRS is known, the storage CRS SHALL be supported as a value. Other requirements classes may allow additional values (see `crs` parameter definition).
 part:: CRS expressed as URIs or as safe CURIEs SHALL be supported.
 part:: If no `center` parameter is used, the `center-crs` SHALL be ignored.
 ====

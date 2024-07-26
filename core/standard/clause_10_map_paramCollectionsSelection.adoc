@@ -8,7 +8,7 @@ include::requirements/requirements_class_collections-selection.adoc[]
 
 [[rm_collections-selection]]
 
-In a deployed Web API incorporating elements of the OGC Maps API Standard that provides access to a complex dataset formed by several geospatial data resources, selecting specific sub-resources of interest when requesting data from this dataset can be useful. The Collection Selection requirements class defines how to include a query parameter when requesting a resource (e.g., dataset tiles) to specify which geospatial data resources (e.g., collections) should be used to generate the response. 
+In a deployed Web API incorporating elements of the OGC API - Maps Standard that provides access to a complex dataset formed by several geospatial data resources, selecting specific sub-resources of interest when requesting data from this dataset can be useful. The Collection Selection requirements class defines how to include a query parameter when requesting a resource (e.g., dataset tiles) to specify which geospatial data resources (e.g., collections) should be used to generate the response. 
 
 This requirements class is particularly useful in conjunction with the <<rc_dataset-map>> requirements class. However, sub-components of other resource types could be selected using this requirements class. A requirements class equivalent to this one is included in _OGC API - Tiles_.
 

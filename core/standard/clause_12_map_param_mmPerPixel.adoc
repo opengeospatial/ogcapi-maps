@@ -7,7 +7,7 @@
 
 include::requirements/requirements_class_display_resolution.adoc[]
 
-The Display Resolution requirement class describes how to specify an accurate physical size of a pixel for the target display device or medium with a `mm-per-pixel` parameter. This is instead of a default 0.28 mm/pixel and allows applying symbology rules correctly.
+The Display Resolution requirements class describes how to specify an accurate physical size of a pixel for the target display device or medium with a `mm-per-pixel` parameter. This is instead of a default 0.28 mm/pixel and allows applying symbology rules correctly.
 The physical pixel size is considered for establishing the relationship between the scale of the map and its output dimensions in pixels.
 
 === Map Operation
@@ -25,7 +25,7 @@ When this parameter is not specified, a default 0.28 mm/pixel is assumed (as sta
 include::requirements/display-resolution/REQ_mm-per-pixel-definition.adoc[]
 
 With this parameter, the server has information on the physical size of the map as presented on a display device or printed and can therefore apply styling and symbology rules accordingly.
-For example, if the server receives a very small value, the server could decide to represent linear elements wider than for normal values, preventing to create a representation of linear features that is going to result in lines that are too thin to be correctly perceived.
+For example, if the server receives a very small value, the server could decide to represent linear elements wider than for normal values, preventing the creation of a representation of linear features that is going to result in lines that are too thin to be correctly perceived.
 
 ==== Response
 A successful GET response is described in the core class (https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core)
@@ -36,4 +36,4 @@ include::requirements/display-resolution/REQ_map-success.adoc[]
 
 A general summary of the HTTP status codes can be found in https://www.opengis.net/doc/IS/ogcapi-features-1/1.0[OGC API - Features - Part 1: Core, version 1.0] as well as in https://docs.ogc.org/is/19-072/19-072.html[OGC API - Common - Part 1: Core] Standard.
 
-If the parameters values for `mm-per-pixel` are out-of-range, the status code of the response will be `400`.
+If the values of the `mm-per-pixel` parameters are out-of-range, the status code of the response will be `400`.

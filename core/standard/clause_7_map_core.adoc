@@ -6,9 +6,9 @@
 
 include::requirements/requirements_class_core.adoc[]
 
-The core requirements class specifies a map resource. This is a resource that represents the geospatial data as a rendered map. Requesting a map resource, as defined in the core, results in retrieving a generic map as a graphical representation of the data in the repository being accessed via the API endpoint. When using an implementation of the core requirements class, the representation is not constrained in any way by the client. Therefore, the server is free to return a total or a partial representation of the resource at an arbitrary size. Additional Maps API requirement classes add query parameters to personalize the server behavior to the client needs. These requirement classes define specific parameters that allow the client to control the map size and resolution of the map (width, height, bounding box and CRS) as well as the background of the map. An additional requirement class defines how a map resource can be retrieved as tiles by applying the OGC API - Tiles.
+The core requirements class specifies a map resource. This is a resource that represents geospatial data as a rendered map. Requesting a map resource, as defined in the core, results in retrieving a generic map as a graphical representation of the data in the repository being accessed via the API endpoint. When using an implementation of the core requirements class, the representation is not constrained in any way by the client. Therefore, the server is free to return a total or a partial representation of the resource at an arbitrary size. Additional Maps API requirements classes add query parameters to personalize the server behavior to the client needs. These requirements classes define specific parameters that allow the client to control the map size and resolution of the map (width, height, bounding box and CRS) as well as the background of the map. An additional requirements class defines how a map resource can be retrieved as tiles by applying the OGC API - Tiles.
 
-A map resource can be obtained from an arbitrary geospatial resource by adding `/map` to the resource URI. The Maps API Core does not specify to which resources `/map` is applicable. 
+A map resource can be obtained from an arbitrary geospatial resource by adding `/map` to the resource URI. The core requirements class does not specify to which resources `/map` is applicable. 
 However, a list of common paths to resources exposed by the API, where maps can commonly be obtained is presented in the following table. The <<rc_collection-map, Collection Maps>>, <<rc_dataset-map,Dataset maps>> and <<rc_styled-map, Styled Maps>> requirements classes define some of these possibilities.
 
 [#Common-map-resources-in-the-api,reftext='{table-caption} {counter:table-num}']
@@ -16,8 +16,8 @@ However, a list of common paths to resources exposed by the API, where maps can 
 [width = "100%",options="header"]
 |===
 |Resource	Path |Description
-|/map |A map representing dataset behind the API in the default style
-|/styles/{styleId}/map |A map representing dataset behind the API in the `styleId` style
+|/map |A map representing datasets behind the API in the default style
+|/styles/{styleId}/map |A map representing datasets behind the API in the `styleId` style
 |/collections/{collectionId}/map | A map representing `collectionId` in the default style
 |/collections/{collectionId}/styles/{styleId}/map | A map representing `collectionId` in the `styleId` style
 |===
@@ -54,7 +54,7 @@ Content-Length: 190946
 .Example of a successful HTTP response body containing a JPEG image captured by LANDSAT in January 2020
 image::images/landsatMiraMon.jpeg[width=600,align="center"]
 
-Below is another example of the successful HTTP response headers describing a PNG image in the datum WGS84 and lat/long centered in the Barcelona area.
+Below is another example of the successful HTTP response headers describing a PNG image in the datum WGS84 and coordinates centered in the Barcelona area.
 
 [%unnumbered%]
 [source]
@@ -82,12 +82,12 @@ the _spatial subsetting_ requirements class.
 
 NOTE: The desired encoding is selected using HTTP content negotiation. In addition to the parameters specified by the Maps API core, other parameters should be added.
 
-NOTE: HTTP content negotiation replaces the `FORMAT=` parameter in WMS. However, for convenience, some implementations can implement a `f=` parameter for circumstances where content negotiation is not possible or available (e.g., testing the API in a web browser, or using a URL embedded in an HTML IMG SRC tag).
+NOTE: HTTP content negotiation addresses the same use cases as the `FORMAT=` parameter of WMS. However, for convenience, some implementations can implement an `f=` parameter for circumstances where content negotiation is not possible or available (e.g., testing the API in a web browser, or using a URL embedded in an HTML IMG SRC tag).
 
 === Declaration of conformance classes
 To support "generic" clients that want to access implementations of multiple OGC API Standards and extensions - and not "just" a specific API / server, the deployed API must declare the conformance classes it implements and conforms to.
 
-The conformance page mainly consists of a list of links.
+The conformance declaration response mainly consists of a list of links.
 
 include::requirements/core/REQ_conformance-success.adoc[]
 

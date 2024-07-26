@@ -4,7 +4,7 @@
 ====
 [%metadata]
 identifier:: /req/styled-map/desc-links
-part:: If the deployed API endpoint has a mechanism to expose links associated with styled geospatial resoures
+part:: If the deployed API endpoint has a mechanism to expose links associated with styled geospatial resources
 (e.g., the OGC API - Styles list of styles at `/styles` for a dataset or at `/collections/{collectionId}/styles` for a collection),
 those styled resources SHALL include a link with link relation `https://www.opengis.net/def/rel/ogc/1.0/map` (or `[ogc-rel:map]`) and the href pointing to the map associated with that styled resource.
 ====

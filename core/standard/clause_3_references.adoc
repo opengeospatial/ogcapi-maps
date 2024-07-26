@@ -17,4 +17,4 @@
 * [[[SVG,SVG]]], W3C: Scalable Vector Graphics (SVG) v2. W3C Candidate Recommendation - October, (2018) https://www.w3.org/TR/SVG2/
 * [[[HTML,HTML]]], WHATWG: HTML, Living Standard [online, viewed 2020-03-16]. Available at https://html.spec.whatwg.org/
 
-Due to the delay in releasing _OGC API - Common - Part 2: Geospatial data_, we include _OGC API - Features - Part 1_ as a temporary normative reference. When _OGC API - Common - Part 2: Geospatial data_ is released, the latter should replace _OGC API - Features_ as a normative reference.
+NOTE: _OGC API - Features - Part 1: Core_ has been included as a temporary normative reference. When _OGC API - Common - Part 2: Geospatial data_ is released, the latter should replace _OGC API - Features - Part 1: Core_ as a normative reference in a future version of OGC API - Maps - Part 1: Core.
