@@ -11,4 +11,4 @@ part:: All maps representing parts of the same resource or resources and using t
 
 NOTE: The way the colors in the JPEG are mapped to geospatial features or coverage values is out of scope of the Maps API Standard. However, a common set of portrayal rules for all maps representing part of the same resource is essential, as maps are normally represented one after the other as a response to actions of the user (e.g., zoom and pan).
 
-NOTE: JPEG is an ideal support for remote sensing imagery. The use of JPEG to represent linear features or color solid polygons is not recommended.
+NOTE: JPEG is an ideal format for some remote sensing imagery. The use of JPEG to represent linear features or color solid polygons is not recommended.

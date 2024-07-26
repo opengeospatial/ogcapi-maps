@@ -5,10 +5,10 @@
 
 include::requirements/requirements_class_cors.adoc[]
 
-Many current implementations of map clients are done in HTML and JavaScript on HTTPS. A common situation is that a single JavaScript client combines maps from different Web APIs and domains. In this case, the Cross-Origin Resource Sharing (CORS) is applied by web browsers preventing access of data from a domain that is different from the Web API, if this is not explicitly allowed by the server headers. The CORS requirements class requires the implementation of CORS support for the Web APIs.
+Many current implementations of map clients are done in HTML and JavaScript on HTTPS. A common situation is that a single JavaScript client combines maps from different Web APIs and domains. In this case, Cross-Origin Resource Sharing (CORS) is applied by web browsers preventing access of data from a domain that is different from the Web API, if this is not explicitly allowed by the server headers. The CORS requirements class requires the implementation of CORS support for the Web APIs.
 
-=== CORS for javascript clients
+=== CORS for JavaScript clients
 
 include::requirements/cors/REQ_cors.adoc[]
 
-NOTE: It is not the purpose of this Standard to specify how CORS is implemented and that may change as web browsers and servers become more concerned about security (for example, currently a PNG in a <img src=""> is not affected by CORS but a PNG retrieved by the JavaScript fetch() function is affected). It is worth notice that a server that wants to authorize a JavaScript client application from another domain (under the CORS rules) should use the Access-Control-Allow-Origin: header to list which domains are authorized to read the map (or use `*` to indicate that all domains are authorized). Services that want to comply to the open data sharing principles should be willing to allow all clients reading the data even if they are in other domains. However, this is up to the server implementers.
+NOTE: It is not the purpose of this Standard to specify how CORS is implemented and that may change as web browsers and servers become more concerned about security (for example, currently a PNG in a <img src=""> is not affected by CORS but a PNG retrieved by the JavaScript fetch() function is affected). It is worth noting that a server that wants to authorize a JavaScript client application from another domain (under the CORS rules) should use the Access-Control-Allow-Origin: header to list which domains are authorized to read the map (or use `*` to indicate that all domains are authorized). Services that want to comply to the open data sharing principles should be willing to allow all clients reading the data even if they are in other domains. However, this is up to the server implementers.

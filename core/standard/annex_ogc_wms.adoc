@@ -25,7 +25,7 @@ Beside the general alignment with the architecture of the Web (e.g., consistency
 * Clear separation between Core requirements and more advanced capabilities. The _OGC API - Maps - Part 1: Core_ Standard presents the requirements that are
 relevant for almost any organization wanting to share or use maps at a fine-grained level. Additional capabilities deemed useful for several communities will be specified as extensions to the Core API.
 * Technologies that change more frequently are decoupled and specified in separate modules ("requirements classes" in OGC terminology). This enables, for example, the use/re-use of new encodings for spatial data or Web API definition (such as new version of the OpenAPI description document).
-* Modularization is not just about a single "service". OGC API Standards define building blocks that can be reused in APIs implementation in general. In other words, a server supporting _OGC API - Maps_ should not be seen as a standalone service. Rather it should be viewed as a collection of Web API building blocks that together implement _OGC API - Maps_ capabilities. A corollary for this is that it should be possible to implement an API that simultaneously conforms to conformance classes from the Features, Coverages, Maps, Tiles, and other future OGC API standards.
+* Modularization is not just about a single "service". OGC API Standards define building blocks that can be reused in API implementations in general. In other words, a server supporting _OGC API - Maps_ should not be seen as a standalone service. Rather it should be viewed as a collection of Web API building blocks that together implement _OGC API - Maps_ capabilities. A corollary for this is that it should be possible to implement an API that simultaneously conforms to conformance classes from the https://ogcapi.ogc.org/features/[OGC API - Features], https://ogcapi.ogc.org/coverages/[OGC API - Coverages], https://ogcapi.ogc.org/maps/[OGC API - Maps], https://ogcapi.ogc.org/tiles/[OGC API - Tiles], and other future OGC API Standards.
 
 This approach intends to support two types of client developers:
 
@@ -37,7 +37,7 @@ As a result of following a RESTful approach, OGC API implementations are not bac
 
 === Comparison between _WMS_ and _OGC API - Maps_
 
-The OGC WMS and WMTS share the concept of a map and the capability to create and distribute maps at a limited resolution and size.
+The OGC WMS and WMTS Standards share the concept of a map and the capability to create and distribute maps at a limited resolution and size.
 In WMS, the number of rows and columns can be selected by the user within limits and in WMTS the number of rows and columns of the response is predefined in the tile matrix set.
 
 The concept of a map used in OGC API Standards is more abstract than the one used in WMS. Read more about the map concept in the <<overview>>.
@@ -64,12 +64,12 @@ Finally, _OGC API - Maps_ can also be used to represent a vertical dimension. Th
 selecting a vertical subset of features to be rendered on a 2D output, or by rendering a vertical profile.
 Some examples include:
 
-* 3D map to be displayed on virtual reality devices,
-* 1D graph of NDVI over time for a particular point,
-* 1D graph of a temperature over a vertical profile for a given spatial point,
+* a 3D map to be displayed on virtual reality devices,
+* a 1D graph of NDVI over time for a particular point,
+* a 1D graph of a temperature over a vertical profile for a given spatial point,
 * intensity of rain along a latitude and vertical dimension,
-* video over temporal axis,
-* video of temperature representing different elevation levels in different frames of the video.
+* a video over a temporal axis,
+* a video of temperature representing different elevation levels in different frames of the video.
 
 ==== Correspondence between WMS map metadata and OGC API Standards
 
@@ -160,7 +160,7 @@ NOTE: The supported formats for map resources, or more precisely the media types
 NOTE: The `opaque` XML attribute in WMS was rarely useful and has been removed. This attribute indicated whether the map data represents features that probably do not completely fill space and shows the background opaque (true) or transparent (false).
 
 ==== No equivalent to _GetFeatureInfo_ as part of the OGC API - Maps - Part 1
-The OGC Web Map Service _GetFeatureInfo_ operation provides the capability for clients to implement some simple level of user interaction with the map. In essence the user can focus on a point in the map (e.g., by clicking on it) and the client will request from the server some textual information related to the elements represented at that point of the map (a functionality sometimes called "query by location"). If the elements represented in the map are simple features, the result should be related to their properties (attributes). If the map represents a coverage, the result should report the value of the coverage in that position (eventually, if the coverage is multidimensional, it could be a e.g., time series graphic or a vertical profile). The format of the actual response is left to the discretion of the server.
+The OGC Web Map Service _GetFeatureInfo_ operation provides the capability for clients to implement some simple level of user interaction with the map. In essence the user can focus on a point on the map (e.g., by clicking on it) and the client will request from the server some textual information related to the elements represented at that point of the map (a functionality sometimes called "query by location"). If the elements represented in the map are simple features, the result should be related to their properties (attributes). If the map represents a coverage, the result should report the value of the coverage in that position (eventually, if the coverage is multidimensional, it could be a e.g., time series graphic or a vertical profile). The format of the actual response is left to the discretion of the server.
 
 _GetFeatureInfo_ was first proposed in the 2000 version of the OGC Web Map Service Standard. In that environment _GetFeatureInfo_ provided an easy to implement solution for the first step to "queryable" maps. 
 
@@ -170,7 +170,7 @@ Implementers of map clients are encouraged to implement support for OGC API Stan
 
   * In _OGC API - Features_, map coordinates should be transformed to Lon,Lat WGS84 in the client side and implement an HTTP GET request to `/collections/{collectionId}/items?bbox=Lon,Lat,Lon,Lat`.
   * In _OGC API - Coverages_, map coordinates should be transformed to native coordinates and use `/collections/{collectionId}/coverage?bbox=x,y,x,y` or the equivalent "subset" query.
-  * In _OGC API - EDR_, map coordinates should be transformed to a CRS coordinates and use `/collections/{collectionId}/position?coords=POINT(x y)` or by adding a radius query `/collections/{collectionId}/radius?coords=POINT(x y)&within=20&within-units=km`.
+  * In _OGC API - EDR_, map coordinates should be transformed to a CRS that the API supports `/collections/{collectionId}/position?coords=POINT(x y)` or by adding a radius query `/collections/{collectionId}/radius?coords=POINT(x y)&within=20&within-units=km`.
 
 The use of _OGC API - Tiles_ and serving vector tiled content directly also makes creating visualizations with query capabilities directly on the client side possible. Since tiled vector data can contain features, their attributes can be presented to the user when clicked, and a different style can be applied to highlight that selected feature.
 

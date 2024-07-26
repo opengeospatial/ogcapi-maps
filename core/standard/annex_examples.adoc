@@ -2,7 +2,7 @@
 :appendix-caption: Annex
 [[annex_examples]]
 == Examples (informative)
-This annex provides a set of examples illustrating requests and responses for retrieving maps using capabilities defined by this Maps API.
+This annex provides a set of examples illustrating requests and responses for retrieving maps using capabilities defined by this OGC API - Maps Standard.
 
 === Default map
 The first example shows the response of a map endpoint with a request with no parameters (https://maps.gnosis.earth/ogcapi/collections/OpenMapLocal/map).
@@ -279,7 +279,7 @@ image::images/xmp_hrdem_style2.png[width=550,align="center"]
 
 It is also common for spatial datasets, especially for weather and climate data, to feature additional dimensions beyond space and time,
 such as pressure levels, or additional time dimensions relating to forecasting. These can all be handled in a generic manner also using the `subset` parameter.
-The following two example illustrates how to retrieve a map of the temperature for the whole world at _pressure_ (an extra dimension) levels of 500 and 850 hectopascals:
+The following two examples illustrate how to retrieve a map of the temperature for the whole world at _pressure_ (an extra dimension) levels of 500 and 850 hectopascals:
 
 https://maps.gnosis.earth/ogcapi/collections/climate:cmip5:byPressureLevel:temperature/map?subset=pressure(500)&datetime=2023-07-03&bgcolor=gray
 
@@ -526,7 +526,7 @@ One approach could be to project two points 1 degree of longitude apart around t
 using the implementation's projection library, to obtain the number of CRS units per degree of longitude.
 Transforming (40.7514917°N, 14.5°E) to EPSG:3395 yields (E: 1,614,132.62, N: 4,947,856.85) and transforming (40.7514917°N, 15.5°E) yields (E: 1,725,452.11, N: 4,947,856.85).
 The resulting easting delta (`oneDegEastingDelta` below) is 111,319.49, which in this case can be recognized as the actual physical meters per degree at the equator, rather than at the center latitude used.
-Therefore, in this case implementations effectively needs to apply the reverse correction that had to be applied for Plate Carrée when considering the numbers of true meters per Easting unit.
+Therefore, in this case implementations effectively need to apply the reverse correction that had to be applied for Plate Carrée when considering the numbers of true meters per Easting unit.
 First, `metersPerDegLon` can be computed as in the previous example:
 
 [%unnumbered%]
