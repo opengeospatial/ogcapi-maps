@@ -5,7 +5,7 @@
 ^|*Recommendation {counter:rec-id}* |*/rec/core/default-style*
 ^|A |A successful execution will of a map request will return a map document that MAY contain a property called _defaultStyle_ that points to an style id that will be considered the default style
 ^|B |The value of the default style SHOULD be one of the ids listed in the property _styles_
-^|C |_defaultStyle_ conforms with the following data mode (shown as OpenAPI Specification 3.0 fragment):
+^|C |_defaultStyle_ conforms with the following data mode (shown as an OpenAPI Specification 3.0 fragment):
 
 [source,YAML]
 ----
@@ -23,7 +23,7 @@
 identifier:: /rec/core/default-style
 part:: A successful execution will of a map request will return a map document that MAY contain a property called _defaultStyle_ that points to an style id that will be considered the default style
 part:: The value of the default style SHOULD be one of the ids listed in the property _styles_
-part:: _defaultStyle_ conforms with the following data mode (shown as OpenAPI Specification 3.0 fragment):
+part:: _defaultStyle_ conforms with the following data mode (shown as an OpenAPI Specification 3.0 fragment):
 +
 [source,YAML]
 ----

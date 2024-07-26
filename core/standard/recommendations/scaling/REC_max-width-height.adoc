@@ -3,7 +3,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/scaling/max-width-height*
-^|A |The service metadata may include a maximum width and maximum height and maximum product of both indicating what are the maximum values that the server will accept to create the map. Clients should not request a map subset with a width or a height greater than these limits and if they do, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment):
+^|A |The service metadata may include a maximum width and maximum height and maximum product of both indicating what are the maximum values that the server will accept to create the map. Clients should not request a map subset with a width or a height greater than these limits and if they do, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as an OpenAPI Specification 3.0 fragment):
 
 [source,YAML]
 ----
@@ -64,7 +64,7 @@
 ====
 [%metadata]
 identifier:: /rec/scaling/max-width-height
-part:: The service metadata may include a maximum width, maximum height and maximum product of both indicating what are the maximum values that the server will accept to create the map. Clients should not request a map subset with a width or a height greater than these limits and if they do, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment):
+part:: The service metadata may include a maximum width, maximum height and maximum product of both indicating what are the maximum values that the server will accept to create the map. Clients should not request a map subset with a width or a height greater than these limits and if they do, they should expect that the server will not be able to create a map. These characteristics are defined as (shown as an OpenAPI Specification 3.0 fragment):
 +
 [source,YAML]
 ----

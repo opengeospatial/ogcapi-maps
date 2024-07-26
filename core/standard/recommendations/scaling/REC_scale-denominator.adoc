@@ -3,7 +3,7 @@
 [width="90%",cols="2,6a"]
 |===
 ^|*Recommendation {counter:rec-id}* |*/rec/scaling/scale-denominator*
-^|A |The map description document may include a minimum and maximum scale denominator indicating which scale range is accepted by the server. Out of this range the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment)
+^|A |The map description document may include a minimum and maximum scale denominator indicating which scale range is accepted by the server. Out of this range the server will not be able to create a map. These characteristics are defined as (shown as an OpenAPI Specification 3.0 fragment)
 [source,YAML]
 ----
   minScaleDenominador:
@@ -25,7 +25,7 @@
 ====
 [%metadata]
 identifier:: /rec/scaling/scale-denominator
-part:: The map description document may include a minimum and maximum scale denominator indicating which scale range is accepted by the server. Out of this range the server will not be able to create a map. These characteristics are defined as (shown as OpenAPI Specification 3.0 fragment)
+part:: The map description document may include a minimum and maximum scale denominator indicating which scale range is accepted by the server. Out of this range the server will not be able to create a map. These characteristics are defined as (shown as an OpenAPI Specification 3.0 fragment)
 +
 [source,YAML]
 ----
