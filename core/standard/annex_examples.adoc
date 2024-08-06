@@ -1,7 +1,7 @@
-[appendix]
+[appendix,obligation=informative]
 :appendix-caption: Annex
 [[annex_examples]]
-== Examples (informative)
+== Examples
 This annex provides a set of examples illustrating requests and responses for retrieving maps using capabilities defined by this OGC API - Maps Standard.
 
 === Default map

@@ -1,7 +1,7 @@
-[appendix]
+[appendix,obligation=normative]
 :appendix-caption: Annex
 [[annex-ats]]
-== Conformance Class Abstract Test Suite (Normative)
+== Conformance Class Abstract Test Suite
 
 === Conformance Class "Core"
 
