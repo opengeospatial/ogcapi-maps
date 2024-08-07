@@ -2,7 +2,7 @@
 == Abstract
 
 The _OGC API - Maps - Part 1: Core_ Standard defines a Web API for requesting maps over the Web.
-A _map_ is portrayal of geographic information as a digital representation suitable for display on a rendering device
+A _map_ is a portrayal of geographic information as a digital representation suitable for display on a rendering device
 (adapted from https://portal.opengeospatial.org/files/?artifact_id=14416[OGC 06-042/ISO 19128 OpenGIS® Web Map Server (WMS) Implementation Specification]).
 Implementations of the _OGC API - Maps_ Standard are designed for a client to easily:
 

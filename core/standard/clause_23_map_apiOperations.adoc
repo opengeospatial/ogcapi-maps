@@ -27,7 +27,7 @@ include::requirements/api-operations/REQ_completeness.adoc[]
 
 ===== Reusable API components
 
-Reusable components for creating API definitions for implementations of this OGC API - Maps Standard using OpenAPI 3.0 can be found in https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi .
+Reusable components for creating API definitions for implementations of this OGC API - Maps Standard using OpenAPI 3.0 can be found at https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi .
 
 
 

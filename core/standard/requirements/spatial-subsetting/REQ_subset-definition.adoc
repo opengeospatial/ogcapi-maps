@@ -42,5 +42,5 @@ a _trimming_ operation (using the _interval_ notation) when the low and high bou
 
 NOTE: For typical 2D map requests, a trimming operation (interval) is always used (never a single slicing value) for the dimensions corresponding to the latitude (or northing) and longitude (or easting) dimensions,
 while a slicing or trimming operation for a third vertical dimension may be provided, where that third dimension is flattened on the map.
-For a response format where the content can actually be in three dimension, an interval for the third dimension would not need to be flattened.
+For a response format where the content can actually be in three dimensions, an interval for the third dimension would not need to be flattened.
 In the case of more specialized maps, such as a vertical profile, or a temporal graph for a vegetation index at a particular spatial location, a slicing operation with single values might be appropriate for all spatial dimensions.

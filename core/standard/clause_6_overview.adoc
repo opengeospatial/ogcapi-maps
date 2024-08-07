@@ -8,7 +8,7 @@ portrayals of the data created by applying a style to the data (see <<rc_core>>)
 Maps can present the whole area of the geospatial data or a subset of the content, such as by filtering the data by extent (see <<rc_spatial-subsetting>>).
 Maps can be retrieved by arbitrary extent or as tiles (see <<rc_tilesets>>). The *"Core"* conformance class is the *only mandatory one*. All other conformance classes are optional and depend on the "Core".
 
-An annex with examples of map requests and responses is included as a way to learn by examples how this standard can be applied. See <<annex_examples>>.
+An annex with examples of map requests and responses is included as a way to 'learn by example' how this standard can be applied. See <<annex_examples>>.
 
 An https://petstore.swagger.io/?url=https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi/ogcapi-maps-1.bundled.json[example OpenAPI definition] for this Standard is available. Other examples are available on the https://ogcapi.ogc.org/maps/[OGC API website]. 
 Details on how to adjust and bundle the https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi[modular and reusable components] used in this example OpenAPI definition can be found in <<rc_api_operations>> .
@@ -29,7 +29,7 @@ Accessing the _geospatial data resource_ content (other than as maps) or its des
 If a description of the _geospatial data resource_ is specified by another standard, and this description has a mechanism to add links to other resources, this Standard indicates the need to add a link to a map of this resource.
 
 The _OGC API - Maps_ Standard does not specify how to get a Web API definition, the conformance class list or the collections lists.
-However, the Maps API standard assumes that the first two are defined by some OGC API Standard (e.g., https://docs.ogc.org/is/19-072/19-072.html[_OGC API - Common - Part 1: Core_]) and the latter by an
+However, the Maps API Standard assumes that the first two are defined by some OGC API Standard (e.g., https://docs.ogc.org/is/19-072/19-072.html[_OGC API - Common - Part 1: Core_]) and the latter by an
 OGC API for collections (e.g., https://docs.ogc.org/DRAFTS/20-024.html[_OGC API - Common - Part 2: Geospatial data_]). A similar definition is provided directly by https://docs.ogc.org/is/17-069r3/17-069r3.html[_OGC API - Features - Part 1: Core_].
 
 This document is the first part of a series of _OGC API - Maps_ "parts" that follows the core and extensions model.
@@ -106,7 +106,7 @@ Again, be aware that these paths are not required by the Maps API Standard.
 
 ^4^ Specified in the _OGC API - Common Part 1: Core_ Standard
 
-^5^ Specified in the _OGC API - Common Part 2: Geospatial data_ Standard
+^5^ Specified in the _OGC API - Common Part 2: Geospatial Data_ Standard
 !===
 
 NOTE: Even though full path and full path templates in the previous table may be used in many implementations of the _OGC API - Maps_ Standard, these exact paths are ONLY examples and are NOT required by this Standard. Other paths are possible if correctly described in by the Web API definition document and/or the links between resources.
@@ -122,7 +122,7 @@ as well as other OGC Standards which address this topic).
 ==== Implementing _OGC API - Maps_ within a Web API
 A map can be delivered as a single static resource (only implementing the Maps API <<rc_core,"Core" requirements class>>), or as a dynamic service able to return different maps for arbitrary extents (implementing <<rc_spatial-subsetting, "Subsetting" requirements class>>) and/or at arbitrary scales (implementing <<rc_scaling, "Scaling" requirements class>>).
 In addition, a map can also be delivered as tiles by combining _OGC API - Maps_ with some _OGC API - Tiles_ requirements classes. This approach is defined by the <<rc_tilesets, "Map Tilesets" requirements class>> of this Standard,
-which also correspond to _map tilesets_ described in https://docs.ogc.org/is/20-057/20-057.html[_OGC API - Tiles_], with a _map_ being a specific type of data resource for which tiles are provided.
+which also corresponds to _map tilesets_ described in https://docs.ogc.org/is/20-057/20-057.html[_OGC API - Tiles_], with a _map_ being a specific type of data resource for which tiles are provided.
 
 The Maps API Standard defines building blocks that can be combined with other APIs generating or providing access to information having a geospatial component,
 including the other standards in the OGC API family such as _OGC API - Tiles_ and _OGC API - Processes_. The Maps API Standard can be referenced by other standards providing resources that can be offered as maps. For example:
@@ -137,7 +137,7 @@ collection (defined by https://docs.ogc.org/DRAFTS/20-024.html[_OGC API - Common
 * https://docs.ogc.org/is/20-057/20-057.html[_OGC API - Tiles_] also specifies link relation types to access tilesets of vector and coverage data from a dataset or collection.
 * https://docs.ogc.org/is/17-069r3/17-069r3.html[_OGC API - Features_] defines an API to access collections of vector features at `/collections/{collectionId}/items` and individual features at `/collections/{collectionId}/items/{itemId}`, including both geometry and properties.
 * https://docs.ogc.org/DRAFTS/19-087.html[_OGC API - Coverages_], a candidate Standard, defines an API to efficiently access information organized as multi-resolution and multi-dimensional datacubes at `/collections/{collectionId}/coverage`.
-Several common parameters in Coverages API are shared with this Maps API. For some request formulations, it is possible to simply toggle between `/map` and `/coverage` (while keeping the same parameters) to alternate between retrieving the raw data values (a.k.a. a coverage) or a server-side visualization (a.k.a. a map).
+Several common parameters in the Coverages API are shared with this Maps API. For some request formulations, it is possible to simply toggle between `/map` and `/coverage` (while keeping the same parameters) to alternate between retrieving the raw data values (a.k.a. a coverage) or a server-side visualization (a.k.a. a map).
 * https://docs.ogc.org/is/19-086r6/19-086r6.html[_OGC API - EDR_] defines an API to retrieve spatiotemporal information using multiple query patterns such as cubes, trajectory, and corridors.
 
 The possibilities are endless. For example, a generic open data API giving access to tables, some of them with columns storing latitude and longitude, could be enhanced with OGC API endpoints to provide mapping capabilities.

@@ -4,7 +4,7 @@
 ====
 [%metadata]
 identifier:: /req/dataset-map/desc-extent
-part:: An extent CRS SHALL be provided in an "extent" property of the API landing page following the same schema as the "extent" property for the collection (see OGC API - Common: Part 2).
+part:: An extent CRS SHALL be provided in an "extent" property of the API landing page following the same schema as the "extent" property for the collection (see OGC API - Common - Part 2: Geospatial Data).
 ====
 
 NOTE: The spatial bounding box is provided in https://www.opengis.net/def/crs/OGC/1.3/CRS84 for Earthly data.

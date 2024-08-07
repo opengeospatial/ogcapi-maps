@@ -21,14 +21,14 @@ Six requirements classes for map responses of _OGC API - Maps_ implementations s
 * <<rc_svg,SVG>>
 * <<rc_html,HTML>>
 
-NOTE: If maps are provided as tiles, this section should be ignored and the equivalent section in the _OGC API – Tiles Tiles_ Standard should be used instead.
+NOTE: If maps are provided as tiles, this section should be ignored and the equivalent section in the _OGC API – Tiles - Part 1: Core_ Standard should be used instead.
 
-NOTE: None of the encodings specified here are mandatory and an implementation of the Maps API standard may implement none of them but implement other encodings instead.
+NOTE: None of the encodings specified here are mandatory and an implementation of the Maps API Standard may implement none of them but implement other encodings instead.
 
 [[rc_png]]
 === Requirements Class "PNG"
 
-PNG can be used for simple and immediate visualization in a web browser. For this use case, selecting an encoding that can be natively interpreted by the web browser is fundamental. The PNG format is one of the most popular formats. The PNG format is defined by the ISO Information technology Computer graphics and image processing Portable Network Graphics (PNG): Functional specification. ISO/IEC 15948:2003 (E), also available by the W3C in https://www.w3.org/TR/PNG.
+PNG can be used for simple and immediate visualization in a web browser. For this use case, selecting an encoding that can be natively interpreted by the web browser is fundamental. The PNG format is one of the most popular formats. The PNG format is defined by the ISO Information technology Computer graphics and image processing https://www.iso.org/standard/29581.html[ISO/IEC 15948:2004 Information technology — Computer graphics and image processing — Portable Network Graphics (PNG): Functional specification], also available from the World Wide Web Consortium (W3C) at https://www.w3.org/TR/PNG.
 
 PNG supports lossless data compression. PNG supports palette-based images (with palettes of 24-bit RGB or 32-bit RGBA colors), grayscale images (with or without an alpha channel for transparency), and full-color non-palette-based RGB or RGBA images. The PNG working group designed the format for transferring images on the Internet, not for professional-quality print graphics. Therefore, non-RGB color spaces such as CMYK are not supported.
 
@@ -39,9 +39,9 @@ include::requirements/format_png/REQ_content.adoc[]
 [[rc_jpeg]]
 === Requirements Class "JPEG"
 
-JPEG can be used for simple and immediate visualization in a web browser. In these circumstances, selecting an encoding that can be natively interpreted by the web browser is fundamental. The JPEG format is another popular format used in web applications. JPEG is defined by the ITU-T Recommendation T.81 and the ISO/IEC 10918-1.
+JPEG can be used for simple and immediate visualization in a web browser. In these circumstances, selecting an encoding that can be natively interpreted by the web browser is fundamental. The JPEG format is another popular format used in web applications. JPEG is defined by the ITU-T Recommendation T.81 and the ISO/IEC 10918-1 Standard.
 
-The JPEG compression algorithm operates at its best on photographs and paintings with smooth variations of tone and color. It is best used for color and grayscale still images, but not for binary images. JPEG is also the most common format used by digital cameras. However, JPEG is not well suited for line drawings and other textual or iconic graphics, where the sharp contrasts between adjacent pixels can cause noticeable artifacts. Such images are better saved in a lossless graphics format such as PNG. Because JPEG uses a lossy compression method, which reduces image fidelity. As such, it is inappropriate for exact reproduction of imaging data.
+The JPEG compression algorithm operates at its best on photographs and paintings with smooth variations of tone and color. It is best used for color and grayscale still images, but not for binary images. JPEG is also the most common format used by digital cameras. However, JPEG is not well suited for line drawings and other textual or iconic graphics, where the sharp contrasts between adjacent pixels can cause noticeable artifacts. Such images are better saved in a lossless graphics format such as PNG because JPEG uses a lossy compression method, which reduces image fidelity. As such, it is inappropriate for exact reproduction of imaging data.
 
 include::requirements/requirements_class_format_jpeg.adoc[]
 
@@ -53,8 +53,8 @@ include::requirements/format_jpeg/REQ_content.adoc[]
 https://jpeg.org/jpegxl/[JPEG XL] is a relatively newer image format (compared to PNG and JPEG) with support for both lossy and lossless compression, alpha channels, high bit depths, high image quality, high compression ratio as well as high performance encoding and decoding. Free and open source libraries are available to read and write the format such as https://github.com/libjxl/libjxl[libjxl], released under a 3-clause BSD license.
 Although JPEG XL is not yet widely supported in web browsers at the time of writing this document, this situation is likely to change, and this requirements class is included due to the numerous advantages of JPEG XL
 over the traditional JPEG and PNG encoding, such as avoiding the need for compromising between high compression ratio, image quality and translucency.
-JPEG XL is defined by the multi-part ISO standard Information technology JPEG XL - image coding system, including https://www.iso.org/standard/77977.html[ISO/IEC 18181-1:2022 Part 1: Core coding system] and
-https://www.iso.org/standard/80617.html[ISO/IEC 18181-2:2021 Part 2: File format].
+JPEG XL is defined by the multi-part ISO standard Information technology JPEG XL - image coding system, including https://www.iso.org/standard/85066.html[ISO/IEC 18181-1:2024 Part 1: Core coding system] and
+https://www.iso.org/standard/85253.html[ISO/IEC 18181-2:2024 Part 2: File format].
 
 include::requirements/requirements_class_format_jpegxl.adoc[]
 

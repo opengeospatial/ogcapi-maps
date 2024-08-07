@@ -36,7 +36,7 @@ presentation of information to humans (source: ISO 19117)
 medium or apparatus on which the map being retrieved will be displayed, whether temporarily (e.g., computer screen) or permanently (e.g., paper).
 
 === *scale*
-ratio between the size of a map shown in the rendering device (commonly in expressed in mm or inches) and the equivalent geographic bounding box of a map in the reality (commonly in expressed in meters or miles). Commonly, the ratio is expressed as a fraction, where 1 unit in the rendering device is equivalent to `n` units in the reality (in the same units of measure). In this case, `n` is called scale denominator.
+ratio between the size of a map shown in the rendering device (commonly expressed in mm or inches) and the equivalent geographic bounding box of a map in the reality (commonly expressed in meters or miles). Commonly, the ratio is expressed as a fraction, where 1 unit in the rendering device is equivalent to `n` units in the reality (in the same units of measure). In this case, `n` is called a scale denominator.
 
 === *viewport*
 portion of a rendering device where information is being visualized
