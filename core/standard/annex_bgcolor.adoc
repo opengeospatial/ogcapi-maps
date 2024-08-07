@@ -1,4 +1,4 @@
-[appendix]
+[appendix,obligation=informative]
 :appendix-caption: Annex
 [[annex_bgcolor]]
 == Background color codes

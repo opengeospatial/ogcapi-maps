@@ -1,7 +1,7 @@
-[appendix]
+[appendix,obligation=normative]
 :appendix-caption: Annex
 [[annex-ats]]
-== Conformance Class Abstract Test Suite (Normative)
+== Conformance Class Abstract Test Suite
 
 === Conformance Class "Core"
 
@@ -1283,7 +1283,7 @@ test-method::
 *Given:* a dataset provided by an API conforming to OGC API - Common - Part 1: Core +
 *When:* retrieving the JSON representation of the landing page description for that dataset +
 *Then:* +
-- assert that an extent CRS is provided in an "extent" property of the API landing page following the same schema as the "extent" property for the collection (see OGC API - Common: Part 2).
+- assert that an extent CRS is provided in an "extent" property of the API landing page following the same schema as the "extent" property for the collection (see OGC API - Common - Part 2: Geospatial Data).
 --
 ====
 
