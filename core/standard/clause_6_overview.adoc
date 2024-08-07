@@ -166,9 +166,9 @@ whereas requesting raw data values using _OGC API - Tiles_ (e.g. from tiled vect
 
 The Maps API Standard defines how to describe the domain of the maps, including spatiotemporal axes as well as additional dimensions.
 
-With the <<rc_collection-map,_Collection Map_>> requirements class, the https://github.com/opengeospatial/ogcapi-maps/blob/master/openapi/schemas/common-geodata/collectionInfo.yaml[collection description]
+With the <<rc_collection-map,_Collection Map_>> requirements class, the https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi/schemas/common-geodata/collectionDesc.yaml[collection description]
 inherited from _OGC API - Common - Part 2_ contains an `extent` property that can describe both the spatial and temporal domain of the data. In addition, the _Unified Additional Dimensions_ common building block,
-specified in the <<rc_general-subsetting,_General Subsetting_>> requirements class and used in the https://github.com/opengeospatial/ogcapi-maps/blob/master/openapi/schemas/common-geodata/extent-uad.yaml[example OpenAPI definition],
+specified in the <<rc_general-subsetting,_General Subsetting_>> requirements class and used in the https://schemas.opengis.net/ogcapi/maps/part1/1.0/openapi/schemas/common-geodata/extent-uad.yaml[example OpenAPI definition],
 requires that additional dimensions be described in a similar way to the temporal dimension.
 This allows providing an overall lower and upper bound (the first `interval` element), as well as optional sparse inner intervals where data is found along each dimension (additional `interval` elements).
 A `grid` property also supports the description of regular and irregular grids.
