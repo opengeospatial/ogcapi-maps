@@ -82,7 +82,7 @@ test-method::
 *Given:* a conformance resource in a recognized format, such as the OGC API JSON `/conformance` resource +
 *When:* retrieving that resource from the API endpoint +
 *Then:* +
-- assert that the list of conformance classes that are supported by this API implementation instance includes at minimum https://www.opengis.net/spec/ogcapi-maps-1/1.0/req/core.
+- assert that the list of conformance classes that are supported by this API implementation instance includes at minimum https://www.opengis.net/spec/ogcapi-maps-1/1.0/conf/core.
 This list of conformance classes can also be used to select which other abstract tests to perform as listed in the <<table_conformance_urls>> and indicated in the tests preconditions.
 --
 ====
