@@ -14,8 +14,8 @@ This is the list of https://www.w3.org/wiki/CSS/Properties/color/keywords[W3C we
    dimGrey             |    `0x696969` | 105, 105, 105 |
    gray                |    `0x808080` | 128, 128, 128 |
    grey                |    `0x808080` | 128, 128, 128 |
-   darkGray            |    `0xa9a9a9` | 169, 169, 165 |
-   darkGrey            |    `0xa9a9a9` | 169, 169, 165 |
+   darkGray            |    `0xa9a9a9` | 169, 169, 169 |
+   darkGrey            |    `0xa9a9a9` | 169, 169, 169 |
    silver              |    `0xc0c0c0` | 192, 192, 192 |
    lightGray           |    `0xd3d3d3` | 211, 211, 211 |
    lightGrey           |    `0xd3d3d3` | 211, 211, 211 |
@@ -79,7 +79,7 @@ This is the list of https://www.w3.org/wiki/CSS/Properties/color/keywords[W3C we
    greenYellow         |    `0xadff2f` | 173, 255,  47 |
    chartreuse          |    `0x7fff00` | 127, 255,   0 |
    lawnGreen           |    `0x7cfc00` | 124, 252,   0 |
-   darkSeaGreen        |    `0x8fbc8f` | 143, 188, 139 |
+   darkSeaGreen        |    `0x8fbc8f` | 143, 188, 143 |
    forestGreen         |    `0x228b22` |  34, 139,  34 |
    limeGreen           |    `0x32cd32` |  50, 205,  50 |
    lightGreen          |    `0x90ee90` | 144, 238, 144 |
@@ -142,7 +142,7 @@ This is the list of https://www.w3.org/wiki/CSS/Properties/color/keywords[W3C we
    mediumOrchid        |    `0xba55d3` | 186,  85, 211 |
    thistle             |    `0xd8bfd8` | 216, 191, 216 |
    plum                |    `0xdda0dd` | 221, 160, 221 |
-   violet              |    `0x40e0d0` | 238, 130, 238 |
+   violet              |    `0xee82ee` | 238, 130, 238 |
    purple              |    `0x800080` | 128,   0, 128 |
    darkMagenta         |    `0x8b008b` | 139,   0, 139 |
    magenta             |    `0xff00ff` | 255,   0, 255 |
@@ -150,7 +150,7 @@ This is the list of https://www.w3.org/wiki/CSS/Properties/color/keywords[W3C we
    orchid              |    `0xda70d6` | 218, 112, 214 |
    mediumVioletRed     |    `0xc71585` | 199,  21, 133 |
    deepPink            |    `0xff1493` | 255,  20, 147 |
-   hotPink             |    `0xff69b4` | 255, 155, 180 |
+   hotPink             |    `0xff69b4` | 255, 105, 180 |
    lavenderBlush       |    `0xfff0f5` | 255, 240, 245 |
    paleVioletRed       |    `0xdb7093` | 219, 112, 147 |
    crimson             |    `0xdc143c` | 220,  20,  60 |
